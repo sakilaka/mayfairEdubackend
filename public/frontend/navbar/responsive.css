@@ -1,0 +1,206 @@
+/*=====================================
+    Extra Large Screen
+========================================*/
+@media only screen and (max-width: 1877px) {
+    .header-nav-left-side form {
+        width: 540px !important;
+    }
+}
+
+/*=====================================
+  For Large Screen
+========================================*/
+
+/*------Max 1200px Width Screen------*/
+
+@media only screen and (max-width: 1775px) {
+    /*Menu CSS*/
+    .header-nav-left-side form {
+        width: 450px !important;
+    }
+    /*Menu CSS*/
+}
+
+/*--------Max 1680px Width Screen---------*/
+@media only screen and (max-width: 1680px) {
+    /*Menu CSS*/
+    .header-nav-left-side form {
+        width: 310px !important;
+    }
+    /*Menu CSS*/
+}
+
+@media only screen and (max-width: 1560px) {
+    #mainNav .navbar-nav .nav-item .nav-link {
+        padding: 8px 12px !important;
+    }
+}
+
+@media only screen and (max-width: 1455px) {
+    #mainNav .navbar-nav .nav-item .nav-link {
+        padding: 8px 11px !important;
+    }
+    .menu-round-btn > a {
+        margin-right: 18px !important;
+    }
+    .direction-rtl .menu-round-btn > a {
+        margin-left: 18px !important;
+    }
+    .menu-language-btn > a {
+        margin-right: 18px !important;
+        margin-left: 18px !important;
+    }
+    .header-nav-left-side form {
+        margin-left: 20px !important;
+    }
+    .direction-rtl .header-nav-left-side form {
+        margin-right: 20px !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1366px) {
+    #mainNav {
+        /* padding: 21px 40px !important; */
+    }
+    .menu-language-btn > a {
+        margin-right: 15px !important;
+        margin-left: 15px !important;
+    }
+    .menu-round-btn > a {
+        margin-right: 15px !important;
+    }
+    .direction-rtl .menu-round-btn > a {
+        margin-left: 15px !important;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1240px) {
+    .header-nav-left-side form {
+        width: 248px !important;
+    }
+}
+
+/*=====================================
+  For Medium Screen
+========================================*/
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    #mainNav {
+        /* padding: 21px 16px !important; */
+    }
+    .header-nav-right-side ul li:last-child a {
+        margin-right: 0 !important;
+    }
+    .direction-rtl .header-nav-right-side ul li:last-child a {
+        margin-left: 0 !important;
+    }
+    #mainNav .navbar-brand {
+        margin-right: 15px !important;
+    }
+    .direction-rtl #mainNav .navbar-brand {
+        margin-left: 15px !important;
+    }
+    .header-nav-left-side {
+        padding-left: 20px !important;
+    }
+    .direction-rtl .header-nav-left-side {
+        padding-right: 20px !important;
+    }
+    .header-nav-left-side form {
+        display: none !important;
+    }
+    .header-nav-left-side:before {
+        height: 103px !important;
+    }
+}
+
+/*======================================
+      Tablet layout
+=========================================*/
+
+@media only screen and (max-width: 992.98px) {
+    /* menu css */
+    #mainNav .navbar-nav .nav-item .nav-link {
+        padding: 8px 11px !important;
+    }
+    .header-right-nav .theme-button1,
+    .header-right-nav .theme-button2 {
+        padding: 10px 15px !important;
+    }
+}
+
+@media only screen and (max-width: 991.98px) {
+    /*Menu CSS Start*/
+    #mainNav .navbar-nav .nav-item .nav-link {
+        padding: 8px 11px 8px 0 !important;
+    }
+    .direction-rtl #mainNav .navbar-nav .nav-item .nav-link {
+        padding: 8px 0 8px 11px !important;
+    }
+    .menu-notification-tab-content,
+    .menu-notification-tab-content > .tab-pane {
+        height: auto !important;
+    }
+    .blank-page-banner-header .blank-page-banner-wrap {
+        margin-top: 80px !important;
+    }
+    .main-menu-collapse {
+        background-color: #fff !important;
+        top: 18px !important;
+        position: relative !important;
+        padding: 10px !important;
+        box-shadow: 0px 12px 10px 0 rgba(1, 0, 64, 0.15) !important;
+        overflow-y: auto !important;
+        /* height: calc(100vh - 80px) !important; */
+        height: fit-content !important;
+        border-radius: 8px !important;
+    }
+    .header-nav-left-side {
+        padding-left: 0 !important;
+        flex-direction: column-reverse !important;
+        align-items: normal !important;
+    }
+    .direction-rtl .header-nav-left-side {
+        padding-right: 0 !important;
+    }
+    .header-nav-left-side form {
+        border: 2px solid var(--theme-color) !important;
+        width: auto !important;
+        margin-left: 0 !important;
+        margin-bottom: 25px !important;
+    }
+    .direction-rtl .header-nav-left-side form {
+        margin-right: 0 !important;
+    }
+    #librariesDropdown {
+        max-width: 300px !important;
+        width: 180px !important;
+    }
+    .header-nav-left-side:before {
+        display: none !important;
+    }
+    .menu-language-btn > a {
+        margin-left: 0 !important;
+    }
+    .direction-rtl .menu-language-btn > a {
+        margin-right: 0 !important;
+    }
+    .menu-round-btn.menu-language-btn .dropdown-toggle:after {
+        display: none !important;
+    }
+    .menu-round-btn .dropdown-toggle:after {
+        display: none !important;
+    }
+    .menu-round-btn > a {
+        margin-bottom: 15px !important;
+    }
+    .menu-round-btn .dropdown-menu {
+        margin-bottom: 15px !important;
+    }
+    .direction-rtl .menu-user-btn a {
+        margin-right: 0 !important;
+    }
+    .navbar .nav-item .dropdown-menu {
+        max-height: 290px !important;
+        overflow-y: auto !important;
+    }
+}

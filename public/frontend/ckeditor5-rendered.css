@@ -1,0 +1,285 @@
+/* CKEditor Heading Styles */
+.ckeditor5-rendered h1,
+.ckeditor5-rendered h2,
+.ckeditor5-rendered h3,
+.ckeditor5-rendered h4,
+.ckeditor5-rendered h5,
+.ckeditor5-rendered h6 {
+    font-weight: bold !important;
+    margin: 0.5em 0 0.5em !important;
+}
+.ckeditor5-rendered p {
+    margin-bottom: 0 !important;
+}
+
+/* General text styling */
+.ckeditor5-rendered .text-huge {
+    font-size: 1.8em !important;
+    font-weight: bold !important;
+}
+
+.ckeditor5-rendered .text-big {
+    font-size: 1.4em !important;
+    font-weight: bold !important;
+}
+
+.ckeditor5-rendered .text-tiny {
+    font-size: 0.7em !important;
+}
+
+.ckeditor5-rendered .text-small {
+    font-size: 0.85em !important;
+}
+
+.ckeditor5-rendered .text-medium {
+    font-size: 1.2em !important;
+}
+
+.ckeditor5-rendered .text-bold {
+    font-weight: bold !important;
+}
+
+.ckeditor5-rendered .text-italic {
+    font-style: italic !important;
+}
+
+.ckeditor5-rendered .text-underline {
+    text-decoration: underline !important;
+}
+
+.ckeditor5-rendered .text-highlight {
+    background-color: yellow !important;
+}
+
+.ckeditor5-rendered .text-color-red {
+    color: red !important;
+}
+
+.ckeditor5-rendered .text-color-blue {
+    color: blue !important;
+}
+
+/* CKEditor Text Formatting */
+.ckeditor5-rendered strong,
+.ckeditor5-rendered b {
+    font-weight: bold !important;
+}
+.ckeditor5-rendered em,
+.ckeditor5-rendered i {
+    font-style: italic !important;
+}
+.ckeditor5-rendered a {
+    color: #237c3a !important;
+    transition: 0.35s !important;
+}
+.ckeditor5-rendered a:hover {
+    text-decoration: underline !important;
+}
+
+/* CKEditor Alignment */
+.ckeditor5-rendered .ck-align-left {
+    text-align: left !important;
+}
+.ckeditor5-rendered .ck-align-center {
+    text-align: center !important;
+}
+.ckeditor5-rendered .ck-align-right {
+    text-align: right !important;
+}
+.ckeditor5-rendered .ck-align-justify {
+    text-align: justify !important;
+}
+
+/* CKEditor Font */
+.ckeditor5-rendered .font-size-small {
+    font-size: 0.875em !important;
+}
+.ckeditor5-rendered .font-size-big {
+    font-size: 1.25em !important;
+}
+.ckeditor5-rendered .font-color-red {
+    color: red !important;
+}
+
+/* CKEditor Indent */
+.ckeditor5-rendered .ck-indent-block {
+    margin-left: 2em !important;
+}
+
+/* CKEditor BlockQuote */
+.ckeditor5-rendered blockquote {
+    margin: 1em 20px !important;
+    padding: 0.5em 10px !important;
+    border-left: 5px solid #ccc !important;
+    color: #666 !important;
+    background-color: #f9f9f9 !important;
+}
+
+/* CKEditor Lists */
+.ckeditor5-rendered ul,
+.ckeditor5-rendered ol {
+    margin: 1em 0 !important;
+    padding-left: 40px !important;
+    list-style-type: disc !important;
+}
+
+.ckeditor5-rendered ol {
+    list-style-type: decimal !important;
+}
+
+.ckeditor5-rendered ul li,
+.ckeditor5-rendered ol li {
+    margin: 0.5em 0 !important;
+}
+
+/* CKEditor Image Styles */
+.ckeditor5-rendered figure {
+    margin: 0 auto !important;
+}
+.ckeditor5-rendered figure.image {
+    text-align: center !important;
+}
+.ckeditor5-rendered .image-style-align-left {
+    float: left !important;
+    margin-right: 0.65rem !important;
+}
+.ckeditor5-rendered .image-style-align-right {
+    float: right !important;
+    margin-left: 0.65rem !important;
+}
+.ckeditor5-rendered .image-style-block {
+    display: block !important;
+    margin: 0 auto !important;
+}
+.ckeditor5-rendered .image_resized {
+    max-width: 100% !important;
+    height: auto;
+}
+.ckeditor5-rendered .image img {
+    border-radius: 8px !important;
+    width: 100% !important;
+    height: auto !important;
+    margin-top: 0.65rem !important;
+}
+
+/* CKEditor Image Caption */
+.ckeditor5-rendered .image.image_resized > figcaption {
+    display: block !important;
+    padding-top: 3px !important;
+}
+.ckeditor5-rendered figcaption {
+    color: #4a4a4a !important;
+    font-size: 14px !important;
+    font-style: italic !important;
+    text-align: left !important;
+}
+
+/* CKEditor Highlight */
+.ckeditor5-rendered .marker-yellow {
+    background-color: yellow !important;
+    color: black !important;
+}
+.ckeditor5-rendered .marker-green {
+    background-color: green !important;
+    color: white !important;
+}
+.ckeditor5-rendered .marker-pink {
+    background-color: pink !important;
+    color: black !important;
+}
+.ckeditor5-rendered .marker-blue {
+    background-color: lightblue !important;
+    color: black !important;
+}
+
+/* CKEditor Code Block */
+.ckeditor5-rendered pre {
+    background-color: #f4f4f4 !important;
+    padding: 10px !important;
+    border-radius: 4px !important;
+    overflow-x: auto !important;
+}
+.ckeditor5-rendered code {
+    background-color: #f4f4f4 !important;
+    padding: 2px 4px !important;
+    border-radius: 4px !important;
+}
+
+/* CKEditor Horizontal Line */
+.ckeditor5-rendered hr {
+    border: 0 !important;
+    border-top: 1px solid #ccc !important;
+    margin: 2em 0 !important;
+}
+
+/* CKEditor Todo List */
+.ckeditor5-rendered .todo-list {
+    list-style: none !important;
+    padding-left: 0 !important;
+}
+.ckeditor5-rendered .todo-list li {
+    display: flex !important;
+    align-items: center !important;
+}
+.ckeditor5-rendered .todo-list li input {
+    margin-right: 0.5em !important;
+}
+
+/* CKEditor Media Embed */
+.ckeditor5-rendered .media {
+    margin: 1em 0 !important;
+    display: block !important;
+}
+.ckeditor5-rendered .media iframe {
+    border-radius: 8px !important; /* Rounded border for iframe */
+}
+
+/* CKEditor Table */
+.ckeditor5-rendered table {
+    width: 100% !important;
+    border-collapse: collapse !important;
+    margin: 1em 0 !important;
+}
+.ckeditor5-rendered table th,
+.ckeditor5-rendered table td {
+    border: 1px solid #ccc !important;
+    padding: 0.35em !important;
+    text-align: left !important;
+}
+.ckeditor5-rendered table th {
+    background-color: #eaeaea !important;
+}
+.ckeditor5-rendered figure.table {
+    padding: 0 !important;
+}
+
+/* CKEditor Special Characters */
+.ckeditor5-rendered .ck-special-characters {
+    font-family: Arial, sans-serif !important;
+    font-size: 1em !important;
+}
+
+/* CKEditor Word Count */
+.ckeditor5-rendered .ck-word-count {
+    display: block !important;
+    margin: 1em 0 !important;
+}
+
+/* CKEditor Source Editing */
+.ckeditor5-rendered .ck-source-editing {
+    white-space: pre-wrap !important;
+    font-family: monospace !important;
+}
+
+/* CKEditor Remove Format */
+.ckeditor5-rendered .ck-remove-format {
+    text-decoration: none !important;
+}
+
+/* CKEditor Show Blocks */
+.ckeditor5-rendered .ck-show-blocks {
+    border: 1px dashed #ccc !important;
+    margin: 1em 0 !important;
+    padding: 1em !important;
+    background-color: #f9f9f9 !important;
+}
