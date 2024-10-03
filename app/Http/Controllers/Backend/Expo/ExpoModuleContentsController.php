@@ -152,6 +152,7 @@ class ExpoModuleContentsController extends Controller
      */
     public function ui_video_page_update(Request $request)
     {
+        // return $request->all();
         try {
             $page = ExpoModuleContent::where('key', 'video')->first();
 
@@ -164,6 +165,7 @@ class ExpoModuleContentsController extends Controller
             $videoContents = [];
             $videoTypes = $request->input('video_type');
             $youtubeEmbedCodes = $request->input('youtube_embed_code');
+            $videoTitles = $request->input('video_title');
             $videoUploads = $request->file('video_upload');
             $oldPhotoGalleryImages = $request->old_photo_gallery_image ?? [];
 
@@ -214,6 +216,8 @@ class ExpoModuleContentsController extends Controller
                         }
                     }
                 }
+
+                $videoContents[$key]['title'] = $videoTitles[$key];
             }
 
             $videoContents = array_filter($videoContents, function ($content) {

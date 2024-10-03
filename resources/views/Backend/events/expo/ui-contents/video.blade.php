@@ -96,6 +96,17 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
+                                                            <div class="col-12 youtube-section">
+                                                                <div class="form-group">
+                                                                    <label for="">Video Title<span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text"
+                                                                        name="video_title[{{ $key }}]"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter Video Title"
+                                                                        value="{{ $content['title'] ?? '' }}">
+                                                                </div>
+                                                            </div>
 
                                                             <!-- Youtube Section -->
                                                             <div
