@@ -160,6 +160,7 @@ class UniversityCourseController extends Controller
             return redirect(route('admin.u_course.index'))->with('success', 'University Program Created Successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+            return $e->getMessage();
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
@@ -253,7 +254,7 @@ class UniversityCourseController extends Controller
             return redirect(route('admin.u_course.index'))->with('success', 'University Program Updated Successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
+            return $e->getMessage();
             return back()->with('error', $e->getMessage());
         }
     }
