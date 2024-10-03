@@ -125,16 +125,16 @@ class UniversityCourseController extends Controller
             $course->about = $request->about ?? "";
 
             // $course->service_charge = $request->service_charge ?? "";
-            $course->service_charge_1 = $request->service_charge_1 ?? "";
-            $course->service_charge_2 = $request->service_charge_2 ?? "";
-            $course->application_charge = $request->application_charge ?? "";
+            $course->service_charge_1 = $request->service_charge_1 ?? null;
+            $course->service_charge_2 = $request->service_charge_2 ?? null;
+            $course->application_charge = $request->application_charge ?? null;
 
             $course->year_fee = $request->year_fee;
-            $course->accommodation_fee = $request->accommodation_fee ?? "";
-            $course->insurance_fee = $request->insurance_fee ?? "";
-            $course->visa_extension_fee = $request->visa_extension_fee ?? "";
-            $course->medical_in_china_fee = $request->medical_in_china_fee ?? "";
-            $course->others_fee = $request->others_fee ?? "";
+            $course->accommodation_fee = $request->accommodation_fee ?? null;
+            $course->insurance_fee = $request->insurance_fee ?? null;
+            $course->visa_extension_fee = $request->visa_extension_fee ?? null;
+            $course->medical_in_china_fee = $request->medical_in_china_fee ?? null;
+            $course->others_fee = $request->others_fee ?? null;
 
             $yearly_original_fee = $request->year_fee +
                 $request->accommodation_fee +
@@ -219,16 +219,16 @@ class UniversityCourseController extends Controller
             $course->about = $request->about ?? "";
 
             // $course->service_charge = $request->service_charge ?? "";
-            $course->service_charge_1 = $request->service_charge_1 ?? "";
-            $course->service_charge_2 = $request->service_charge_2 ?? "";
-            $course->application_charge = $request->application_charge ?? "";
+            $course->service_charge_1 = $request->service_charge_1 ?? null;
+            $course->service_charge_2 = $request->service_charge_2 ?? null;
+            $course->application_charge = $request->application_charge ?? null;
 
             $course->year_fee = $request->year_fee;
-            $course->accommodation_fee = $request->accommodation_fee ?? "";
-            $course->insurance_fee = $request->insurance_fee ?? "";
-            $course->visa_extension_fee = $request->visa_extension_fee ?? "";
-            $course->medical_in_china_fee = $request->medical_in_china_fee ?? "";
-            $course->others_fee = $request->others_fee ?? "";
+            $course->accommodation_fee = $request->accommodation_fee ?? null;
+            $course->insurance_fee = $request->insurance_fee ?? null;
+            $course->visa_extension_fee = $request->visa_extension_fee ?? null;
+            $course->medical_in_china_fee = $request->medical_in_china_fee ?? null;
+            $course->others_fee = $request->others_fee ?? null;
 
             $yearly_original_fee = $request->year_fee +
                 $request->accommodation_fee +
