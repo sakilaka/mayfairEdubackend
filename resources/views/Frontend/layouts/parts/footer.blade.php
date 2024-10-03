@@ -196,7 +196,7 @@
                                         <i class="fa fa-solid fa-phone"
                                             style="font-size: 0.9rem; margin-right:5px;"></i>
                                         <a href="tel:{{ @$footer_contents->phone1 }}" class="text"
-                                            style="margin-bottom: 10px; line-height:0.85;">
+                                            style="line-height:0.85;">
                                             {{ @$footer_contents->phone1 }}</a>
                                     </li>
                                 @endif
@@ -205,7 +205,7 @@
                                         <i class="fa fa-solid fa-phone"
                                             style="font-size: 0.9rem; margin-right:5px;"></i>
                                         <a href="tel:{{ @$footer_contents->phone2 }}" class="text"
-                                            style="margin-bottom: 10px; line-height:0.85;">
+                                            style="line-height:0.85;">
                                             {{ @$footer_contents->phone2 }}</a>
                                     </li>
                                 @endif
@@ -214,7 +214,7 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-start align-items-center mt-3">
+                <div class="row justify-content-start align-items-center">
                     <ul class="nav-list list-unstyled mt-2 mb-0">
                         @if (@$footer_contents->email1 > 0)
                             <li class="d-flex align-items-start">
@@ -405,9 +405,9 @@
                 </div>
             </div>
 
-            <div class="col-12 mt-4">
+            <div class="col-12">
                 <hr>
-                <p class="text text-center py-3 mb-0">
+                <p class="text text-center mb-0">
                     &copy;{{ date('Y') }} <a href="#" class="text">{{ env('APP_NAME') }}</a>. All
                     Rights Reserved
                 </p>
