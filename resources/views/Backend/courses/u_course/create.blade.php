@@ -138,11 +138,11 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Section <span class="text-danger"
+                                                    <label>Intake <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <select class="form-control form-control-lg" name="section_id"
                                                         required>
-                                                        <option value="">Select Section</option>
+                                                        <option value="">Select Intake</option>
                                                         @foreach ($sections as $section)
                                                             <option value="{{ $section->id }}">{{ $section->name }}
                                                             </option>
