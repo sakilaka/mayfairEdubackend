@@ -161,9 +161,6 @@
 
             <div class="col-12 col-lg-4 mt-4 mt-lg-0">
                 <h4 class="footer_title">Stay Connected</h4>
-                <p class="text">
-                    Recieve a weekly newsletter with useful tips and updates to prepare for your studying in China.
-                </p>
 
                 <div class="row justify-content-start align-items-center mt-3">
                     <form action="{{ route('frontend.subscription') }}" method="POST">
@@ -171,7 +168,7 @@
 
                         <div class="form-group col-md-10 mb-3 d-flex align-items-center subscribe-input">
                             <input type="email" class="form-control form-control-lg" placeholder="Email">
-                            <button type="submit" class="btn btn-lg btn-primary-bg subscribe-btn">Subscribe</button>
+                            <button type="submit" class="btn btn-lg btn-tertiary-bg subscribe-btn">Subscribe</button>
                         </div>
                     </form>
 
