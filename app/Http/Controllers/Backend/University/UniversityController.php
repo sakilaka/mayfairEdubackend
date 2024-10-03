@@ -211,6 +211,7 @@ class UniversityController extends Controller
             return redirect()->route('admin.university.index')->with('success', 'University Added Successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+            return $e->getMessage();
             return back()->with('error', $e->getMessage());
         }
     }
@@ -332,6 +333,7 @@ class UniversityController extends Controller
             return redirect()->route('admin.university.index')->with('success', 'University Updated Successfully');
         } catch (\Exception $e) {
             DB::rollBack();
+            return $e->getMessage();
             return back()->with('error', $e->getMessage());
         }
     }
