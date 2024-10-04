@@ -75,28 +75,28 @@
                                                     <option value="Authorization Letters|{{ route('frontend.authorization_letters') }}">
                                                         Authorization Letters
                                                     </option>
-                                                    <option value="Payment Process|{{ route('frontend.our_services') }}">
+                                                    <option value="Payment Process|{{ route('frontend.payment_process') }}">
                                                         Payment Process
                                                     </option>
-                                                    <option value="Why China|{{ route('frontend.our_services') }}">
+                                                    <option value="Why China|{{ route('frontend.why_china') }}">
                                                         Why China
                                                     </option>
-                                                    <option value="About MalishaEdu|{{ route('frontend.our_services') }}">
+                                                    <option value="About MalishaEdu|{{ route('frontend.company_details') }}">
                                                         About MalishaEdu
                                                     </option>
-                                                    <option value="Become A Partner|{{ route('frontend.our_services') }}">
+                                                    <option value="Become A Partner|{{ route('frontend.instructor') }}">
                                                         Become A Partner
                                                     </option>
-                                                    <option value="FAQ|{{ route('frontend.our_services') }}">
+                                                    <option value="FAQ|{{ route('frontend.faq') }}">
                                                         FAQ
                                                     </option>
-                                                    <option value="Terms & Conditions|{{ route('frontend.our_services') }}">
+                                                    <option value="Terms & Conditions|{{ route('frontend.terms_conditions') }}">
                                                         Terms & Conditions
                                                     </option>
-                                                    <option value="Refund Policy|{{ route('frontend.our_services') }}">
+                                                    <option value="Refund Policy|{{ route('frontend.refund_policy') }}">
                                                         Refund Policy
                                                     </option>
-                                                    <option value="Privacy Policy|{{ route('frontend.our_services') }}">
+                                                    <option value="Privacy Policy|{{ route('frontend.privacy_policy') }}">
                                                         Privacy Policy
                                                     </option>
                                                 </select>
