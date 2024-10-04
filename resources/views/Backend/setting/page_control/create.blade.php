@@ -54,6 +54,34 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="title" class=" col-form-label">Section
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="" class="form-control form-control-lg">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="title" class=" col-form-label">Section
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <select name="section" id="section"
+                                                    class="form-control form-control-lg" required>
+                                                    <option value="">Select Section</option>
+                                                    <option value="quick_links">Quick Links</option>
+                                                    <option value="explore">Explore</option>
+                                                    <option value="policies">Policies</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="title" class=" col-form-label">Page
                                                     <span class="text-danger">*</span>
                                                 </label>
@@ -95,7 +123,7 @@
                                                     </option>
                                                 </select>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
