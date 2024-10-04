@@ -68,30 +68,19 @@
 
                     <ul class="nav-list list-unstyled mb-0 mt-4">
                         @php
-                            $quick_links = App\Models\PageControl::where()
-                                // ->select(['page', 'slug'])
+                            $quick_links = App\Models\PageControl::where('section', 'quick_links')
+                                ->select(['page', 'url'])
                                 ->orderBy('page', 'asc')
                                 ->get();
-                                dd($quick_links);
                         @endphp
-                        <li>
-                            <a href="{{ route('frontend.our_services') }}"
-                                class="text-decoration-none mb-2 text d-inline-block">
-                                Our Services
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('frontend.authorization_letters') }}"
-                                class="text-decoration-none mb-2 text d-inline-block">
-                                Authorization Letters
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('frontend.payment_process') }}"
-                                class="text-decoration-none mb-2 text d-inline-block">
-                                Payment Process
-                            </a>
-                        </li>
+                        @foreach ($quick_links as $link)
+                            <li>
+                                <a href="{{ $link['url'] }}"
+                                    class="text-decoration-none mb-2 text d-inline-block">
+                                    {{ $link['page'] }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
 
@@ -99,7 +88,21 @@
                     <h4 class="footer_title">Explore</h4>
 
                     <ul class="nav-list list-unstyled mb-0 mt-4">
-                        <li>
+                        @php
+                            $quick_links = App\Models\PageControl::where('section', 'explore')
+                                ->select(['page', 'url'])
+                                ->orderBy('page', 'asc')
+                                ->get();
+                        @endphp
+                        @foreach ($quick_links as $link)
+                            <li>
+                                <a href="{{ $link['url'] }}"
+                                    class="text-decoration-none mb-2 text d-inline-block">
+                                    {{ $link['page'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                        {{-- <li>
                             <a href="{{ route('frontend.why_china') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Why China
@@ -121,7 +124,7 @@
                             <a href="{{ route('frontend.faq') }}" class="text-decoration-none mb-2 text d-inline-block">
                                 FAQ
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
 
@@ -129,7 +132,21 @@
                     <h4 class="footer_title">Policies</h4>
 
                     <ul class="nav-list list-unstyled mt-4 mb-0">
-                        <li>
+                        @php
+                            $quick_links = App\Models\PageControl::where('section', 'policies')
+                                ->select(['page', 'url'])
+                                ->orderBy('page', 'asc')
+                                ->get();
+                        @endphp
+                        @foreach ($quick_links as $link)
+                            <li>
+                                <a href="{{ $link['url'] }}"
+                                    class="text-decoration-none mb-2 text d-inline-block">
+                                    {{ $link['page'] }}
+                                </a>
+                            </li>
+                        @endforeach
+                        {{-- <li>
                             <a href="{{ route('frontend.terms_conditions') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Terms & Conditions
@@ -145,7 +162,7 @@
                             <a href="{{ route('frontend.privacy_policy') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Privacy Policy
-                            </a>
+                            </a> --}}
                         </li>
                     </ul>
                 </div>
