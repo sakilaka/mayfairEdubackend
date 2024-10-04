@@ -75,9 +75,6 @@
                                                     <option value="Authorization Letters|{{ route('frontend.authorization_letters') }}">
                                                         Authorization Letters
                                                     </option>
-                                                    <option value="Payment Process|{{ route('frontend.payment_process') }}">
-                                                        Payment Process
-                                                    </option>
                                                     <option value="Why China|{{ route('frontend.why_china') }}">
                                                         Why China
                                                     </option>
@@ -89,15 +86,6 @@
                                                     </option>
                                                     <option value="FAQ|{{ route('frontend.faq') }}">
                                                         FAQ
-                                                    </option>
-                                                    <option value="Terms & Conditions|{{ route('frontend.terms_conditions') }}">
-                                                        Terms & Conditions
-                                                    </option>
-                                                    <option value="Refund Policy|{{ route('frontend.refund_policy') }}">
-                                                        Refund Policy
-                                                    </option>
-                                                    <option value="Privacy Policy|{{ route('frontend.privacy_policy') }}">
-                                                        Privacy Policy
                                                     </option>
                                                 </select>
                                             </div>
