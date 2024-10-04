@@ -977,7 +977,7 @@ class PageController extends Controller
                 'url' => $pageSlug,
                 'section' => $request['section'],
             ];
-
+return $data;
             $page_control->update($data);
             return redirect(route('admin.page_control.index'))->with('success', 'Page Section Updated!');
         } catch (\Exception $e) {
