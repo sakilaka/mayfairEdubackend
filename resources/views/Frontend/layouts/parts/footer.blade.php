@@ -67,7 +67,7 @@
                     <h4 class="footer_title">Quick Links</h4>
 
                     <ul class="nav-list list-unstyled mb-0 mt-4">
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('frontend.our_services') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Our Services
@@ -84,7 +84,7 @@
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Payment Process
                             </a>
-                        </li>
+                        </li> --}}
 
                         @php
                             $quick_links = App\Models\PageControl::where('section', 'quick_links')
@@ -106,7 +106,7 @@
                     <h4 class="footer_title">Explore</h4>
 
                     <ul class="nav-list list-unstyled mb-0 mt-4">
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('frontend.why_china') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Why China
@@ -129,7 +129,7 @@
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 FAQ
                             </a>
-                        </li>
+                        </li> --}}
 
                         @php
                             $quick_links = App\Models\PageControl::where('section', 'explore')
@@ -151,7 +151,7 @@
                     <h4 class="footer_title">Policies</h4>
 
                     <ul class="nav-list list-unstyled mt-4 mb-0">
-                        <li>
+                        {{-- <li>
                             <a href="{{ route('frontend.terms_conditions') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Terms & Conditions
@@ -168,7 +168,7 @@
                                 class="text-decoration-none mb-2 text d-inline-block">
                                 Privacy Policy
                             </a>
-                        </li>
+                        </li> --}}
 
                         @php
                             $quick_links = App\Models\PageControl::where('section', 'policies')
