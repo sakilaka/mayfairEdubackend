@@ -65,7 +65,8 @@
                                                     class="form-control form-control-lg" required>
                                                     <option value="">Select Page</option>
                                                     @foreach ($pages as $page)
-                                                        <option value="{{ $page['title'] }}|{{ $page['slug'] }}" @if($page_control['page'].'|'.$page_control['url'] == $page['title'].'|'.$page['slug']) selected @endif>
+                                                        <option value="{{ $page['title'] }}|{{ $page['slug'] }}"
+                                                            @if ($page_control['page'] == $page['title'] && $page_control['url'] == $page['slug']) selected @endif>
                                                             {{ $page['title'] }}
                                                         </option>
                                                     @endforeach
