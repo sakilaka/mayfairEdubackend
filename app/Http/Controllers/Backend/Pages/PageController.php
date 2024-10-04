@@ -952,6 +952,7 @@ class PageController extends Controller
             PageControl::create($data);
             return redirect(route('admin.page_control.index'))->with('success', 'Page Section Updated!');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return back()->with('error', 'Something Went Wrong!');
         }
     }
@@ -977,11 +978,16 @@ class PageController extends Controller
                 'url' => $pageSlug,
                 'section' => $request['section'],
             ];
-return $page_control;
+
             $page_control->update($data);
             return redirect(route('admin.page_control.index'))->with('success', 'Page Section Updated!');
         } catch (\Exception $e) {
             return back()->with('error', 'Something Went Wrong!');
         }
+    }
+
+    public function page_control_delete(Request $request)
+    {
+        return $request->all();
     }
 }

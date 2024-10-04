@@ -12,6 +12,7 @@ class PageControl extends Model
     protected $fillable = [
         'page',
         'url',
-        'slug'
+        'slug',
+        'section'
     ];
 }

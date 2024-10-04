@@ -85,9 +85,9 @@
                                     width="50" height="46">
                                 <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
                                 <div class="m-t-20 flex">
-                                    <form action="{{ route('page.delete') }}" method="POST" id="deleteForm">
+                                    <form action="{{ route('admin.page_control.delete') }}" method="POST" id="deleteForm">
                                         @csrf
-                                        <input type="hidden" name="page_id" id="modal_item_id" value="">
+                                        <input type="hidden" name="page_control_id" id="modal_item_id" value="">
                                     </form>
                                     <div class="mt-3">
                                         <a href="#" class="btn btn-success" data-dismiss="modal">Cancel</a>
