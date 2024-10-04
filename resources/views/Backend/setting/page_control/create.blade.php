@@ -31,8 +31,8 @@
                         <div class="col-md-9 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample" action="{{ route('admin.page_control.store') }}" method="POST"
-                                        enctype="multipart/form-data">
+                                    <form class="forms-sample" action="{{ route('admin.page_control.store') }}"
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row">
@@ -43,7 +43,8 @@
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <select name="section" id="section" class="form-control form-control-lg">
+                                                <select name="section" id="section"
+                                                    class="form-control form-control-lg">
                                                     <option value="">Select Section</option>
                                                     <option value="quick_links">Quick Links</option>
                                                     <option value="explore">Explore</option>
@@ -53,17 +54,18 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
-                                                <label for="title" class=" col-form-label">Section
+                                                <label for="title" class=" col-form-label">Page
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <select name="section" id="section" class="form-control form-control-lg">
-                                                    <option value="">Select Section</option>
-                                                    <option value="quick_links">Quick Links</option>
-                                                    <option value="explore">Explore</option>
-                                                    <option value="policies">Policies</option>
+                                                <select name="page" id="page"
+                                                    class="form-control form-control-lg">
+                                                    <option value="">Select Page</option>
+                                                    @foreach ($pages as $page)
+                                                        <option value="{{ $page['id'] }}">{{ $page['title'] }}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
