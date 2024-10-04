@@ -58,7 +58,7 @@
                                                 @endif
                                             </td>
                                             <td class="text-right">
-                                                <a href="{{ route('all-pages.edit', $page['id']) }}"
+                                                <a href="{{ route('admin.page_control.edit', $page['id']) }}"
                                                     class="btn text-primary">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
