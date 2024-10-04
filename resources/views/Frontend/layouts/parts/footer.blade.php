@@ -68,7 +68,11 @@
 
                     <ul class="nav-list list-unstyled mb-0 mt-4">
                         @php
-                            $quick_links = App\Models\PageControl::where()->
+                            $quick_links = App\Models\PageControl::where()
+                                // ->select(['page', 'slug'])
+                                ->orderBy('page', 'asc')
+                                ->get();
+                                dd($quick_links);
                         @endphp
                         <li>
                             <a href="{{ route('frontend.our_services') }}"
