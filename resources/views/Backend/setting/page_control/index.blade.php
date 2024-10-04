@@ -44,7 +44,7 @@
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
-                                                <a href="{{ url($page['url']) }}" class="text-primary">
+                                                <a href="{{ url($page['url']) }}" class="text-primary" target="_blank">
                                                     {{ $page['page'] }}
                                                 </a>
                                             </td>
@@ -85,8 +85,7 @@
                                     width="50" height="46">
                                 <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
                                 <div class="m-t-20 flex">
-                                    <form action="{{ route('page.delete') }}" method="POST"
-                                        id="deleteForm">
+                                    <form action="{{ route('page.delete') }}" method="POST" id="deleteForm">
                                         @csrf
                                         <input type="hidden" name="page_id" id="modal_item_id" value="">
                                     </form>
