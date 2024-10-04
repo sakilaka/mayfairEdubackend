@@ -962,4 +962,26 @@ class PageController extends Controller
         $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
         return view('Backend.setting.page_control.update', $data);
     }
+
+    public function page_control_update(Request $request, $id)
+    {
+        try {
+            $page_control = PageControl::find($id);
+            $pageParts = explode('|', $request['page']);
+
+            $pageName = $pageParts[0];
+            $pageSlug = $pageParts[1];
+
+            $data = [
+                'page' => $pageName,
+                'url' => $pageSlug,
+                'section' => $request['section'],
+            ];
+
+            $page_control->update($data);
+            return redirect(route('admin.page_control.index'))->with('success', 'Page Section Updated!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Something Went Wrong!');
+        }
+    }
 }

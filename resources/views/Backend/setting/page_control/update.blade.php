@@ -67,9 +67,38 @@
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
+                                                @php
+                                                    function generateRouteUrl($routeName)
+                                                    {
+                                                        return ltrim(
+                                                            Str::replaceFirst(url('/'), '', route($routeName)),
+                                                            '/',
+                                                        );
+                                                    }
+
+                                                    $staticPages = [
+                                                        ['title' => 'Our Services', 'route' => 'frontend.our_services'],
+                                                        [
+                                                            'title' => 'Authorization Letters',
+                                                            'route' => 'frontend.authorization_letters',
+                                                        ],
+                                                        ['title' => 'Why China', 'route' => 'frontend.why_china'],
+                                                        [
+                                                            'title' => 'About MalishaEdu',
+                                                            'route' => 'frontend.company_details',
+                                                        ],
+                                                        [
+                                                            'title' => 'Become A Partner',
+                                                            'route' => 'frontend.instructor',
+                                                        ],
+                                                        ['title' => 'FAQ', 'route' => 'frontend.faq'],
+                                                    ];
+                                                @endphp
+
                                                 <select name="page" id="page"
                                                     class="form-control form-control-lg" required>
                                                     <option value="">Select Page</option>
+
                                                     @foreach ($pages as $page)
                                                         <option value="{{ $page['title'] }}|{{ $page['slug'] }}"
                                                             @if ($page_control['page'] . '|' . $page_control['url'] == $page['title'] . '|' . $page['slug']) selected @endif>
@@ -77,49 +106,17 @@
                                                         </option>
                                                     @endforeach
 
-                                                    <option
-                                                        value="Our Services|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.our_services')), '/') }}"
-                                                        @if (
-                                                            $page_control['page'] . '|' . $page_control['url'] ==
-                                                                'Our Services' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.our_services')), '/')) selected @endif>
-                                                        Our Services
-                                                    </option>
-                                                    <option
-                                                        value="Authorization Letters|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.authorization_letters')), '/') }}"
-                                                        @if (
-                                                            $page_control['page'] . '|' . $page_control['url'] ==
-                                                                'Authorization Letters' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.authorization_letters')), '/')) selected @endif>
-                                                        Authorization Letters
-                                                    </option>
-                                                    <option
-                                                        value="Why China|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.why_china')), '/') }}"
-                                                        @if (
-                                                            $page_control['page'] . '|' . $page_control['url'] ==
-                                                                'Why China' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.why_china')), '/')) selected @endif>
-                                                        Why China
-                                                    </option>
-                                                    <option
-                                                        value="About MalishaEdu|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.company_details')), '/') }}"
-                                                        @if (
-                                                            $page_control['page'] . '|' . $page_control['url'] ==
-                                                                'About MalishaEdu' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.company_details')), '/')) selected @endif>
-                                                        About MalishaEdu
-                                                    </option>
-                                                    <option
-                                                        value="Become A Partner|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.instructor')), '/') }}"
-                                                        @if (
-                                                            $page_control['page'] . '|' . $page_control['url'] ==
-                                                                'Become A Partner' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.instructor')), '/')) selected @endif>
-                                                        Become A Partner
-                                                    </option>
-                                                    <option
-                                                        value="FAQ|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.faq')), '/') }}"
-                                                        @if (
-                                                            $page_control['page'] . '|' . $page_control['url'] ==
-                                                                'FAQ' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.faq')), '/')) selected @endif>
-                                                        FAQ
-                                                    </option>
+                                                    @foreach ($staticPages as $staticPage)
+                                                        @php
+                                                            $slug = generateRouteUrl($staticPage['route']);
+                                                        @endphp
+                                                        <option value="{{ $staticPage['title'] }}|{{ $slug }}"
+                                                            @if ($page_control['page'] . '|' . $page_control['url'] == $staticPage['title'] . '|' . $slug) selected @endif>
+                                                            {{ $staticPage['title'] }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
+
                                             </div>
                                         </div>
 
