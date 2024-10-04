@@ -305,7 +305,6 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
     Route::post('edit/{id}', [PageController::class, 'page_control_update'])->name('admin.page_control.update');
     Route::post('delete', [PageController::class, 'page_control_delete'])->name('admin.page_control.delete');
   });
-  //page Route end
 
   Route::prefix('appearance')->group(function () {
     //appearance /theme option
