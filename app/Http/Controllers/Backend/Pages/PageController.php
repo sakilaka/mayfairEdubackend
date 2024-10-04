@@ -924,7 +924,13 @@ class PageController extends Controller
 
     public function page_control_index()
     {
-        $data['pages'] = [];
+        $data['page_controls'] = [];
         return view('Backend.setting.page_control.index', $data);
+    }
+
+    public function page_control_create()
+    {
+        $data['pages'] = Page::all()->select(['id', 'title']);
+        return view('Backend.setting.page_control.create');
     }
 }

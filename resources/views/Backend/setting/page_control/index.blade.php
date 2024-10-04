@@ -21,9 +21,9 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('all-pages.create') }}" class="btn btn-primary btn-fw">
+                            <a href="{{ route('admin.page_control.create') }}" class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                Add Page</a>
+                                Assign Page</a>
                         </nav>
                     </div>
 
@@ -40,7 +40,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($pages as $page)
+                                    @foreach ($page_controls as $page)
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>{{ $page->title }}</td>

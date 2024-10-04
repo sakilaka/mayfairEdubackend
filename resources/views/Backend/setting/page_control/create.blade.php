@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Add Page</title>
+    <title>{{ env('APP_NAME') }} | Assign Page</title>
 </head>
 
 <body>
@@ -17,11 +17,11 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Add Page
+                            Assign Page
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('all-pages.index') }}" class="btn btn-primary btn-fw">
+                            <a href="{{ route('admin.page_control.index') }}" class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 View All</a>
                         </nav>
@@ -31,32 +31,40 @@
                         <div class="col-md-9 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample" action="{{ route('all-pages.store') }}" method="POST"
+                                    <form class="forms-sample" action="{{ route('admin.page_control.store') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
-                                                <label for="title" class=" col-form-label">Title
+                                                <label for="title" class=" col-form-label">Section
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input id="title" type="text" name="title" class="form-control"
-                                                    placeholder="Enter Title" required>
+                                                <select name="section" id="section" class="form-control form-control-lg">
+                                                    <option value="">Select Section</option>
+                                                    <option value="quick_links">Quick Links</option>
+                                                    <option value="explore">Explore</option>
+                                                    <option value="policies">Policies</option>
+                                                </select>
                                             </div>
                                         </div>
-
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
-                                                <label for="details" class=" col-form-label">
-                                                    Description
+                                                <label for="title" class=" col-form-label">Section
+                                                    <span class="text-danger">*</span>
                                                 </label>
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <textarea type="text" name="description" class="editor form-control"></textarea>
+                                                <select name="section" id="section" class="form-control form-control-lg">
+                                                    <option value="">Select Section</option>
+                                                    <option value="quick_links">Quick Links</option>
+                                                    <option value="explore">Explore</option>
+                                                    <option value="policies">Policies</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -71,7 +79,6 @@
                 </div>
 
                 @include('Backend.components.footer')
-                @include('Backend.components.ckeditor5-config')
             </div>
         </div>
     </div>
