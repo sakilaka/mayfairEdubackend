@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('page_controls', function (Blueprint $table) {
             $table->id();
             $table->string('page');
-            $table->string('page');
+            $table->text('url')->nullable();
             $table->enum('section', ['quick_links', 'explore', 'policies']);
             $table->timestamps();
         });
