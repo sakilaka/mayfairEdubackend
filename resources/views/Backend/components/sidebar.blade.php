@@ -724,7 +724,10 @@
                     Route::is('all-pages.edit') ||
                     Route::is('admin.landing_page.index') ||
                     Route::is('admin.landing_page.create') ||
-                    Route::is('admin.landing_page.edit');
+                    Route::is('admin.landing_page.edit') ||
+                    Route::is('admin.page_control.index') ||
+                    Route::is('admin.page_control.create') ||
+                    Route::is('admin.page_control.edit');
             @endphp
             <li class="nav-item {{ $is_active_appearance ? 'active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#appearance-sidemenu" aria-expanded="false"
@@ -776,6 +779,13 @@
                                 class="nav-link {{ Route::is('all-pages.index') || Route::is('all-pages.create') || Route::is('all-pages.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Pages
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="{{ route('admin.page_control.index') }}"
+                                class="nav-link {{ Route::is('admin.page_control.index') || Route::is('admin.page_control.create') || Route::is('admin.page_control.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
+                                Manage Page Control
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-block">
