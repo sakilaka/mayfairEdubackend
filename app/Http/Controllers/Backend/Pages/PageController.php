@@ -14,6 +14,7 @@ use App\Models\MaestroClassSetup;
 use App\Models\PackageDetails;
 use App\Models\PackageTagLine;
 use App\Models\Page;
+use App\Models\PageControl;
 use Illuminate\Http\Request;
 use \Cviebrock\EloquentSluggable\Services\SlugService;
 use Illuminate\Support\Str;
@@ -924,7 +925,7 @@ class PageController extends Controller
 
     public function page_control_index()
     {
-        $data['page_controls'] = [];
+        $data['page_controls'] = PageControl::all()->select('id', 'page', 'url', 'section');
         return view('Backend.setting.page_control.index', $data);
     }
 
@@ -934,7 +935,24 @@ class PageController extends Controller
         return view('Backend.setting.page_control.create', $data);
     }
 
-    public function page_control_store(Request $request){
-        return $request->all();
+    public function page_control_store(Request $request)
+    {
+        try {
+            $pageParts = explode('|', $request['page']);
+
+            $pageName = $pageParts[0];
+            $pageSlug = $pageParts[1];
+
+            $data = [
+                'page' => $pageName,
+                'url' => $pageSlug,
+                'section' => $request['section'],
+            ];
+
+            PageControl::create($data);
+            return redirect(route('admin.page_control.index'))->with('success', 'Page Section Updated!');
+        } catch (\Exception $e) {
+            return back()->with('error', 'Something Went Wrong!');
+        }
     }
 }

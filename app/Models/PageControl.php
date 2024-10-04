@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class PageControl extends Model
 {
     use HasFactory;
+    protected $table = 'page_controls';
+    protected $fillable = [
+        'page',
+        'url',
+        'slug'
+    ];
 }

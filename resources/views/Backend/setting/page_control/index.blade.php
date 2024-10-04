@@ -34,8 +34,8 @@
                                 <thead>
                                     <tr role="row">
                                         <th>SL</th>
-                                        <th>Title</th>
-                                        <th class="text-center">Status</th>
+                                        <th>Page</th>
+                                        <th>Section</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
@@ -43,24 +43,26 @@
                                     @foreach ($page_controls as $page)
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
-                                            <td>{{ $page->title }}</td>
-                                            <td class="text-center">
-                                                @if ($page->status == 1)
-                                                    <a href="{{ route('page.status_toggle', $page->id) }}">
-                                                        <span class="badge badge-success">Active</span>
-                                                    </a>
-                                                @elseif($page->status == 0)
-                                                    <a href="{{ route('page.status_toggle', $page->id) }}">
-                                                        <span class="badge badge-danger">Inactive</span>
-                                                    </a>
+                                            <td>
+                                                <a href="{{ $page['url'] }}" class="text-primary">
+                                                    {{ $page['page'] }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if ($page['section'] == 'quick_links')
+                                                    {{ 'Quick Links' }}
+                                                @elseif ($page['section'] == 'explore')
+                                                    {{ 'Explore' }}
+                                                @elseif ($page['section'] == 'policies')
+                                                    {{ 'Policies' }}
                                                 @endif
                                             </td>
                                             <td class="text-right">
-                                                <a href="{{ route('all-pages.edit', $page->id) }}"
+                                                <a href="{{ route('all-pages.edit', $page['id']) }}"
                                                     class="btn text-primary">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
-                                                <input type="hidden" value="{{ $page->id }}">
+                                                <input type="hidden" value="{{ $page['id'] }}">
                                                 <a data-toggle="modal" data-target="#delete_modal_box"
                                                     class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
