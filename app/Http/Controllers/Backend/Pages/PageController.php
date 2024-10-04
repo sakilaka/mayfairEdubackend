@@ -988,6 +988,8 @@ class PageController extends Controller
 
     public function page_control_delete(Request $request)
     {
-        return $request->all();
+        $page_control = PageControl::find($request->page_control_id);
+        $page_control->delete();
+        return redirect(route('admin.page_control.index'))->with('success', 'Page Control Deleted!');
     }
 }
