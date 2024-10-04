@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('page');
             $table->text('url')->nullable();
-            $table->enum('section', ['quick_links', 'explore', 'policies']);
+            $table->string('section');
             $table->timestamps();
         });
     }
