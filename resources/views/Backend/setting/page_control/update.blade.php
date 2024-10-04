@@ -61,6 +61,32 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="page" class=" col-form-label">Title
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="page" placeholder="Enter Page Title"
+                                                    value="{{ $page_control['page'] }}"
+                                                    class="form-control form-control-lg">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="title" class=" col-form-label">URL
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input type="text" name="url" placeholder="Enter Page URL"
+                                                    value="{{ $page_control['url'] }}"
+                                                    class="form-control form-control-lg">
+                                            </div>
+                                        </div>
+                                        {{-- <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="title" class=" col-form-label">Page
                                                     <span class="text-danger">*</span>
                                                 </label>
@@ -118,7 +144,7 @@
                                                 </select>
 
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
