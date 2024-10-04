@@ -69,22 +69,28 @@
                                                         </option>
                                                     @endforeach
 
-                                                    <option value="Our Services|{{ route('frontend.our_services') }}">
+                                                    <option
+                                                        value="Our Services|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.our_services')), '/') }}">
                                                         Our Services
                                                     </option>
-                                                    <option value="Authorization Letters|{{ route('frontend.authorization_letters') }}">
+                                                    <option
+                                                        value="Authorization Letters|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.authorization_letters')), '/') }}">
                                                         Authorization Letters
                                                     </option>
-                                                    <option value="Why China|{{ route('frontend.why_china') }}">
+                                                    <option
+                                                        value="Why China|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.why_china')), '/') }}">
                                                         Why China
                                                     </option>
-                                                    <option value="About MalishaEdu|{{ route('frontend.company_details') }}">
+                                                    <option
+                                                        value="About MalishaEdu|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.company_details')), '/') }}">
                                                         About MalishaEdu
                                                     </option>
-                                                    <option value="Become A Partner|{{ route('frontend.instructor') }}">
+                                                    <option
+                                                        value="Become A Partner|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.instructor')), '/') }}">
                                                         Become A Partner
                                                     </option>
-                                                    <option value="FAQ|{{ route('frontend.faq') }}">
+                                                    <option
+                                                        value="FAQ|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.faq')), '/') }}">
                                                         FAQ
                                                     </option>
                                                 </select>
