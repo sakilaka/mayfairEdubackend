@@ -931,21 +931,21 @@ class PageController extends Controller
 
     public function page_control_create()
     {
-        $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
-        return view('Backend.setting.page_control.create', $data);
+        // $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
+        return view('Backend.setting.page_control.create'/* , $data */);
     }
 
     public function page_control_store(Request $request)
     {
         try {
-            $pageParts = explode('|', $request['page']);
+            /* $pageParts = explode('|', $request['page']);
 
             $pageName = $pageParts[0];
-            $pageSlug = $pageParts[1];
+            $pageSlug = $pageParts[1]; */
 
             $data = [
-                'page' => $pageName,
-                'url' => $pageSlug,
+                'page' => $request['page'],
+                'url' => $request['url'],
                 'section' => $request['section'],
             ];
 
@@ -960,7 +960,7 @@ class PageController extends Controller
     public function page_control_edit($id)
     {
         $data['page_control'] = PageControl::find($id);
-        $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
+        // $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
         return view('Backend.setting.page_control.update', $data);
     }
 
@@ -968,14 +968,14 @@ class PageController extends Controller
     {
         try {
             $page_control = PageControl::find($id);
-            $pageParts = explode('|', $request['page']);
+            /* $pageParts = explode('|', $request['page']);
 
             $pageName = $pageParts[0];
-            $pageSlug = $pageParts[1];
+            $pageSlug = $pageParts[1]; */
 
             $data = [
-                'page' => $pageName,
-                'url' => $pageSlug,
+                'page' => $request['page'],
+                'url' => $request['url'],
                 'section' => $request['section'],
             ];
 

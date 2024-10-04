@@ -54,30 +54,24 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
-                                                <label for="title" class=" col-form-label">Section
+                                                <label for="page" class=" col-form-label">Title
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input type="text" name="" class="form-control form-control-lg">
+                                                <input type="text" name="page" placeholder="Enter Page Title" class="form-control form-control-lg">
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
-                                                <label for="title" class=" col-form-label">Section
+                                                <label for="title" class=" col-form-label">URL
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <select name="section" id="section"
-                                                    class="form-control form-control-lg" required>
-                                                    <option value="">Select Section</option>
-                                                    <option value="quick_links">Quick Links</option>
-                                                    <option value="explore">Explore</option>
-                                                    <option value="policies">Policies</option>
-                                                </select>
+                                                <input type="text" name="url" placeholder="Enter Page URL" class="form-control form-control-lg">
                                             </div>
                                         </div>
                                         {{-- <div class="form-group row">
