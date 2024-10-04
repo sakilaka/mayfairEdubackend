@@ -78,7 +78,10 @@
                                                     @endforeach
 
                                                     <option
-                                                        value="Our Services|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.our_services')), '/') }}">
+                                                        value="Our Services|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.our_services')), '/') }}"
+                                                        @if (
+                                                            $page_control['page'] . '|' . $page_control['url'] ==
+                                                                'Our Services' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.our_services')), '/')) selected @endif>
                                                         Our Services
                                                     </option>
                                                     <option
