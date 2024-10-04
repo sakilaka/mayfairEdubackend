@@ -47,9 +47,15 @@
                                                 <select name="section" id="section"
                                                     class="form-control form-control-lg" required>
                                                     <option value="">Select Section</option>
-                                                    <option value="quick_links">Quick Links</option>
-                                                    <option value="explore">Explore</option>
-                                                    <option value="policies">Policies</option>
+                                                    <option value="quick_links"
+                                                        @if ($page_control['section'] == 'quick_links') selected @endif>Quick Links
+                                                    </option>
+                                                    <option value="explore"
+                                                        @if ($page_control['section'] == 'explore') selected @endif>Explore
+                                                    </option>
+                                                    <option value="policies"
+                                                        @if ($page_control['section'] == 'policies') selected @endif>Policies
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
@@ -65,7 +71,8 @@
                                                     class="form-control form-control-lg" required>
                                                     <option value="">Select Page</option>
                                                     @foreach ($pages as $page)
-                                                        <option value="{{ $page['title'] }}|{{ $page['slug'] }}" @if($page_control['page'].'|'.$page_control['url'] == $page['title'].'|'.$page['slug']) selected @endif>
+                                                        <option value="{{ $page['title'] }}|{{ $page['slug'] }}"
+                                                            @if ($page_control['page'] . '|' . $page_control['url'] == $page['title'] . '|' . $page['slug']) selected @endif>
                                                             {{ $page['title'] }}
                                                         </option>
                                                     @endforeach
