@@ -44,7 +44,7 @@
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
-                                                <a href="{{ $page['url'] }}" class="text-primary">
+                                                <a href="domain/{{ $page['url'] }}" class="text-primary">
                                                     {{ $page['page'] }}
                                                 </a>
                                             </td>
