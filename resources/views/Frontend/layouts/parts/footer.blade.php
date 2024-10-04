@@ -67,6 +67,9 @@
                     <h4 class="footer_title">Quick Links</h4>
 
                     <ul class="nav-list list-unstyled mb-0 mt-4">
+                        @php
+                            $quick_links = App\Models\PageControl::where()->
+                        @endphp
                         <li>
                             <a href="{{ route('frontend.our_services') }}"
                                 class="text-decoration-none mb-2 text d-inline-block">
