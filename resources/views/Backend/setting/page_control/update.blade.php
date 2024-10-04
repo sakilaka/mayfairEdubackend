@@ -85,23 +85,38 @@
                                                         Our Services
                                                     </option>
                                                     <option
-                                                        value="Authorization Letters|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.authorization_letters')), '/') }}">
+                                                        value="Authorization Letters|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.authorization_letters')), '/') }}"
+                                                        @if (
+                                                            $page_control['page'] . '|' . $page_control['url'] ==
+                                                                'Authorization Letters' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.authorization_letters')), '/')) selected @endif>
                                                         Authorization Letters
                                                     </option>
                                                     <option
-                                                        value="Why China|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.why_china')), '/') }}">
+                                                        value="Why China|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.why_china')), '/') }}"
+                                                        @if (
+                                                            $page_control['page'] . '|' . $page_control['url'] ==
+                                                                'Why China' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.why_china')), '/')) selected @endif>
                                                         Why China
                                                     </option>
                                                     <option
-                                                        value="About MalishaEdu|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.company_details')), '/') }}">
+                                                        value="About MalishaEdu|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.company_details')), '/') }}"
+                                                        @if (
+                                                            $page_control['page'] . '|' . $page_control['url'] ==
+                                                                'About MalishaEdu' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.company_details')), '/')) selected @endif>
                                                         About MalishaEdu
                                                     </option>
                                                     <option
-                                                        value="Become A Partner|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.instructor')), '/') }}">
+                                                        value="Become A Partner|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.instructor')), '/') }}"
+                                                        @if (
+                                                            $page_control['page'] . '|' . $page_control['url'] ==
+                                                                'Become A Partner' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.instructor')), '/')) selected @endif>
                                                         Become A Partner
                                                     </option>
                                                     <option
-                                                        value="FAQ|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.faq')), '/') }}">
+                                                        value="FAQ|{{ ltrim(Str::replaceFirst(url('/'), '', route('frontend.faq')), '/') }}"
+                                                        @if (
+                                                            $page_control['page'] . '|' . $page_control['url'] ==
+                                                                'FAQ' . '|' . ltrim(Str::replaceFirst(url('/'), '', route('frontend.faq')), '/')) selected @endif>
                                                         FAQ
                                                     </option>
                                                 </select>
