@@ -930,7 +930,7 @@ class PageController extends Controller
 
     public function page_control_create()
     {
-        $data['pages'] = Page::where('status', 1)->select(['id', 'title'])->orderBy('title', 'asc')->get();
+        $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
         return view('Backend.setting.page_control.create', $data);
     }
 }

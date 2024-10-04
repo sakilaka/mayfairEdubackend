@@ -64,8 +64,41 @@
                                                     class="form-control form-control-lg">
                                                     <option value="">Select Page</option>
                                                     @foreach ($pages as $page)
-                                                        <option value="{{ $page['id'] }}">{{ $page['title'] }}</option>
+                                                        <option value="{{ $page['title'] }}|{{ $page['slug'] }}">
+                                                            {{ $page['title'] }}
+                                                        </option>
                                                     @endforeach
+
+                                                    <option value="Our Services|{{ route('frontend.our_services') }}">
+                                                        Our Services
+                                                    </option>
+                                                    <option value="Authorization Letters|{{ route('frontend.authorization_letters') }}">
+                                                        Authorization Letters
+                                                    </option>
+                                                    <option value="Payment Process|{{ route('frontend.our_services') }}">
+                                                        Payment Process
+                                                    </option>
+                                                    <option value="Why China|{{ route('frontend.our_services') }}">
+                                                        Why China
+                                                    </option>
+                                                    <option value="About MalishaEdu|{{ route('frontend.our_services') }}">
+                                                        About MalishaEdu
+                                                    </option>
+                                                    <option value="Become A Partner|{{ route('frontend.our_services') }}">
+                                                        Become A Partner
+                                                    </option>
+                                                    <option value="FAQ|{{ route('frontend.our_services') }}">
+                                                        FAQ
+                                                    </option>
+                                                    <option value="Terms & Conditions|{{ route('frontend.our_services') }}">
+                                                        Terms & Conditions
+                                                    </option>
+                                                    <option value="Refund Policy|{{ route('frontend.our_services') }}">
+                                                        Refund Policy
+                                                    </option>
+                                                    <option value="Privacy Policy|{{ route('frontend.our_services') }}">
+                                                        Privacy Policy
+                                                    </option>
                                                 </select>
                                             </div>
                                         </div>
