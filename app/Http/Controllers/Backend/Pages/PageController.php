@@ -924,6 +924,7 @@ class PageController extends Controller
 
     public function page_control_index()
     {
-        return true;
+        $data['pages'] = [];
+        return view('Backend.setting.page_control.index', $data);
     }
 }

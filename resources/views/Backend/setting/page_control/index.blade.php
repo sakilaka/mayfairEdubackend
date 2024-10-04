@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Manage Pages</title>
+    <title>{{ env('APP_NAME') }} | Manage Page Control</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Manage Pages
+                            Manage Page Control
                         </h3>
 
                         <nav aria-label="breadcrumb">
