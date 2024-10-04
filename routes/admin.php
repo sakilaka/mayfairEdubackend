@@ -301,8 +301,8 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
     Route::get('/', [PageController::class, 'page_control_index'])->name('admin.page_control.index');
     Route::get('create', [PageController::class, 'page_control_create'])->name('admin.page_control.create');
     Route::post('create', [PageController::class, 'page_control_store'])->name('admin.page_control.store');
-    Route::get('edit', [PageController::class, 'page_control_edit'])->name('admin.page_control.edit');
-    Route::post('edit', [PageController::class, 'page_control_update'])->name('admin.page_control.update');
+    Route::get('edit/{id}', [PageController::class, 'page_control_edit'])->name('admin.page_control.edit');
+    Route::post('edit/{id}', [PageController::class, 'page_control_update'])->name('admin.page_control.update');
   });
   //page Route end
 

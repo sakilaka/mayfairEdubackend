@@ -955,4 +955,10 @@ class PageController extends Controller
             return back()->with('error', 'Something Went Wrong!');
         }
     }
+
+    public function page_control_edit($id)
+    {
+        $data['page'] = PageControl::find($id);
+        return view('Backend.setting.page_control.edit', $data);
+    }
 }
