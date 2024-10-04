@@ -289,29 +289,29 @@ class PageController extends Controller
     {
         try {
             $page = AdditionalPage::where('page', 'gallery')->first();
-    
+
             if (!$page) {
                 $page = new AdditionalPage();
             }
-    
+
             $page->title = 'Gallery';
             $page->page = 'gallery';
-    
+
             $allGalleries = [];
             $oldGalleries = json_decode($page->contents, true);
-    
+
             if ($request->galleries) {
                 $galleries = $request->galleries;
-    
+
                 foreach ($galleries as $galleryKey => $gallery) {
                     $galleryData = [
                         'title' => $gallery['gallery_title'],
                         'description' => $gallery['gallery_description'],
                     ];
-    
+
                     $galleryImages = [];
                     $galleryImageKeys = array_keys($gallery['gallery_image'] ?? []);
-    
+
                     foreach ($galleryImageKeys as $imageKey) {
                         if ($request->hasFile("galleries.$galleryKey.gallery_image.$imageKey")) {
                             $file = $request->file("galleries.$galleryKey.gallery_image.$imageKey");
@@ -320,44 +320,43 @@ class PageController extends Controller
                             $galleryImages[$imageKey] = url('upload/additional-pages/' . $fileName);
                         }
                     }
-    
+
                     $oldGalleryImages = $gallery['old_gallery_image'] ?? [];
                     $mergedGalleryImages = $oldGalleryImages;
-    
+
                     foreach ($galleryImages as $imageKey => $url) {
                         if (isset($mergedGalleryImages[$imageKey]) && file_exists(public_path('upload/additional-pages/' . basename($mergedGalleryImages[$imageKey])))) {
                             unlink(public_path('upload/additional-pages/' . basename($mergedGalleryImages[$imageKey])));
                         }
-    
+
                         $mergedGalleryImages[$imageKey] = $url;
                     }
-    
+
                     $galleryData['images'] = $mergedGalleryImages;
                     $galleryData['image_titles'] = $gallery['image_title'] ?? '';
-    
+
                     $allGalleries[$galleryKey] = $galleryData;
                 }
-    
+
                 if (isset($oldGalleries)) {
                     foreach ($oldGalleries as $oldGalleryKey => $oldGallery) {
                         if (isset($allGalleries[$oldGalleryKey])) {
                             $removedImages = array_diff_key($oldGallery['images'], $allGalleries[$oldGalleryKey]['images']);
-    
+
                             foreach ($removedImages as $imageKey => $imageUrl) {
                                 $imagePath = public_path('upload/additional-pages/' . basename($imageUrl));
-    
+
                                 if (file_exists($imagePath)) {
                                     unlink($imagePath);
                                 }
                             }
-    
+
                             $allGalleries[$oldGalleryKey] = array_merge($oldGallery, $allGalleries[$oldGalleryKey]);
                         } else {
                             $allGalleries[$oldGalleryKey] = $oldGallery;
                         }
                     }
                 }
-    
             } else {
                 foreach ($oldGalleries as $key => $gallery) {
                     foreach ($gallery['images'] as $key => $image) {
@@ -367,10 +366,10 @@ class PageController extends Controller
                     }
                 }
             }
-    
+
             $page->contents = json_encode($allGalleries);
             $page->save();
-    
+
             return redirect(route('admin.gallery_page'))->with('success', 'Page Updated!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
@@ -388,29 +387,29 @@ class PageController extends Controller
     {
         try {
             $page = AdditionalPage::where('page', 'authorization-letters')->first();
-    
+
             if (!$page) {
                 $page = new AdditionalPage();
             }
-    
+
             $page->title = 'Authorization Letters';
             $page->page = 'authorization-letters';
-    
+
             $allAuthorizationLetters = [];
             $oldAuthorizationLetters = json_decode($page->contents, true);
-    
+
             if ($request->authorization_letters) {
                 $authorization_letters = $request->authorization_letters;
-    
+
                 foreach ($authorization_letters as $authorizationLetterKey => $authorizationLetter) {
                     $authorizationLetterData = [
                         'title' => $authorizationLetter['authorization_letter_title'] ?? '',
                         'description' => $authorizationLetter['authorization_letter_description'] ?? '',
                     ];
-    
+
                     $authorizationLetterImages = [];
                     $authorizationLetterImageKeys = array_keys($authorizationLetter['authorization_letter_image'] ?? []);
-    
+
                     foreach ($authorizationLetterImageKeys as $imageKey) {
                         if ($request->hasFile("authorization_letters.$authorizationLetterKey.authorization_letter_image.$imageKey")) {
                             $file = $request->file("authorization_letters.$authorizationLetterKey.authorization_letter_image.$imageKey");
@@ -419,36 +418,36 @@ class PageController extends Controller
                             $authorizationLetterImages[$imageKey] = url('upload/additional-pages/' . $fileName);
                         }
                     }
-    
+
                     $oldAuthorizationLetterImages = $authorizationLetter['old_authorization_letter_image'] ?? [];
                     $mergedAuthorizationLetterImages = $oldAuthorizationLetterImages;
-    
+
                     foreach ($authorizationLetterImages as $imageKey => $url) {
                         if (isset($mergedAuthorizationLetterImages[$imageKey]) && file_exists(public_path('upload/additional-pages/' . basename($mergedAuthorizationLetterImages[$imageKey])))) {
                             unlink(public_path('upload/additional-pages/' . basename($mergedAuthorizationLetterImages[$imageKey])));
                         }
-    
+
                         $mergedAuthorizationLetterImages[$imageKey] = $url;
                     }
-    
+
                     $authorizationLetterData['images'] = $mergedAuthorizationLetterImages;
                     $authorizationLetterData['image_titles'] = $authorizationLetter['image_title'] ?? '';
                     $allAuthorizationLetters[$authorizationLetterKey] = $authorizationLetterData;
                 }
-    
+
                 if (isset($oldAuthorizationLetters)) {
                     foreach ($oldAuthorizationLetters as $oldAuthorizationLetterKey => $oldAuthorizationLetter) {
                         if (isset($allAuthorizationLetters[$oldAuthorizationLetterKey])) {
                             $removedImages = array_diff_key($oldAuthorizationLetter['images'], $allAuthorizationLetters[$oldAuthorizationLetterKey]['images']);
-    
+
                             foreach ($removedImages as $imageKey => $imageUrl) {
                                 $imagePath = public_path('upload/additional-pages/' . basename($imageUrl));
-    
+
                                 if (file_exists($imagePath)) {
                                     unlink($imagePath);
                                 }
                             }
-    
+
                             $allAuthorizationLetters[$oldAuthorizationLetterKey] = array_merge($oldAuthorizationLetter, $allAuthorizationLetters[$oldAuthorizationLetterKey]);
                         } else {
                             $allAuthorizationLetters[$oldAuthorizationLetterKey] = $oldAuthorizationLetter;
@@ -464,10 +463,10 @@ class PageController extends Controller
                     }
                 }
             }
-    
+
             $page->contents = json_encode($allAuthorizationLetters);
             $page->save();
-    
+
             return redirect(route('admin.authorizationLetters_page'))->with('success', 'Page Updated!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
@@ -920,5 +919,11 @@ class PageController extends Controller
         } catch (\Exception $e) {
             return back()->with("success", "Something Went Wrong!");
         }
+    }
+
+
+    public function page_control_index()
+    {
+        return true;
     }
 }

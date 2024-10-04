@@ -296,6 +296,14 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::resource('all-pages', PageController::class);
   Route::post('/delete-page', [PageController::class, 'pageDelete'])->name('page.delete');
   Route::get('/all-page-status/{id}', [PageController::class, 'status_toggle'])->name('page.status_toggle');
+
+  Route::prefix('page-control')->group(function () {
+    Route::get('/', [PageController::class, 'page_control_index'])->name('admin.page_control.index');
+    Route::get('/', [PageController::class, 'page_control_create'])->name('admin.page_control.create');
+    Route::get('/', [PageController::class, 'page_control_store'])->name('admin.page_control.store');
+    Route::get('/', [PageController::class, 'page_control_edit'])->name('admin.page_control.edit');
+    Route::get('/', [PageController::class, 'page_control_update'])->name('admin.page_control.update');
+  });
   //page Route end
 
   Route::prefix('appearance')->group(function () {
