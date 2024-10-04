@@ -32,7 +32,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="forms-sample"
-                                        action="{{ route('admin.page_control.update', ['id' => $page['id']]) }}"
+                                        action="{{ route('admin.page_control.update', ['id' => $page_control['id']]) }}"
                                         method="POST" enctype="multipart/form-data">
                                         @csrf
 
@@ -45,7 +45,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <select name="section" id="section"
-                                                    class="form-control form-control-lg">
+                                                    class="form-control form-control-lg" required>
                                                     <option value="">Select Section</option>
                                                     <option value="quick_links">Quick Links</option>
                                                     <option value="explore">Explore</option>
@@ -62,7 +62,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <select name="page" id="page"
-                                                    class="form-control form-control-lg">
+                                                    class="form-control form-control-lg" required>
                                                     <option value="">Select Page</option>
                                                     @foreach ($pages as $page)
                                                         <option value="{{ $page['title'] }}|{{ $page['slug'] }}">

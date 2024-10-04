@@ -958,7 +958,8 @@ class PageController extends Controller
 
     public function page_control_edit($id)
     {
-        $data['page'] = PageControl::find($id);
-        return view('Backend.setting.page_control.edit', $data);
+        $data['page_control'] = PageControl::find($id);
+        $data['pages'] = Page::where('status', 1)->select(['slug', 'title'])->orderBy('title', 'asc')->get();
+        return view('Backend.setting.page_control.update', $data);
     }
 }
