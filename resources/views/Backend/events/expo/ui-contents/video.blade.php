@@ -69,7 +69,7 @@
 
                                                 <div class="photo-gallery-container">
                                                     @forelse ($contents as $key => $content)
-                                                        <div class="row align-items-center video-container mt-2">
+                                                        <div class="row align-items-center video-container mt-2 mb-4" style="border-bottom: 3px solid #ddd">
                                                             <div
                                                                 class="col-12 row align-items-center justify-content-between">
                                                                 <div class="col-md-6">
@@ -160,7 +160,7 @@
                                                             </div>
                                                         </div>
                                                     @empty
-                                                        <div class="row align-items-center video-container mt-2">
+                                                        <div class="row align-items-center video-container mt-2 mb-4" style="border-bottom: 3px solid #ddd">
                                                             @php
                                                                 $random = rand(10000, 99999);
                                                             @endphp
@@ -286,7 +286,7 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var myvar = `
-                <div class="row align-items-center video-container mt-2">
+                <div class="row align-items-center video-container mt-2 mb-4" style="border-bottom: 3px solid #ddd">
                     <div class="col-12 row align-items-center justify-content-between">
                         <div class="col-md-6">
                             <div class="form-group">
