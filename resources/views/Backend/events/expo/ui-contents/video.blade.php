@@ -56,8 +56,8 @@
                                                 <div class="d-flex justify-content-between">
                                                     <h5 class="d-inline">Videos</h5>
                                                     <div class="d-flex">
-                                                        <button type="submit"
-                                                            class="btn blue-btn btn-primary" style="margin-right: 8px">Save</button>
+                                                        <button type="submit" class="btn blue-btn btn-primary"
+                                                            style="margin-right: 8px">Save</button>
 
                                                         <a href="javascript:void(0)" class="btn btn-sm btn-primary"
                                                             id="add-photo-gallery-image">
@@ -69,7 +69,8 @@
 
                                                 <div class="photo-gallery-container">
                                                     @forelse ($contents as $key => $content)
-                                                        <div class="row align-items-center video-container mt-2 mb-4" style="border-bottom: 3px solid #ddd">
+                                                        <div class="row align-items-center video-container mt-2 mb-4"
+                                                            style="{{ !$loop->last ? 'border-bottom: 3px solid #ddd;' : '' }}">
                                                             <div
                                                                 class="col-12 row align-items-center justify-content-between">
                                                                 <div class="col-md-6">
@@ -160,7 +161,8 @@
                                                             </div>
                                                         </div>
                                                     @empty
-                                                        <div class="row align-items-center video-container mt-2 mb-4" style="border-bottom: 3px solid #ddd">
+                                                        <div class="row align-items-center video-container mt-2 mb-4"
+                                                            style="border-bottom: 3px solid #ddd">
                                                             @php
                                                                 $random = rand(10000, 99999);
                                                             @endphp
