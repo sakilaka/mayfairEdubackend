@@ -47,11 +47,17 @@
                                             <div class="col-12 mb-3 px-4">
                                                 <div class="row justify-content-between">
                                                     <h4 class="d-inline">Galleries</h4>
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary"
-                                                        id="add-gallery">
-                                                        <i class="fa fa-plus"></i>
-                                                        Add
-                                                    </a>
+                                                    
+                                                    <div class="d-flex">
+                                                        <button type="submit"
+                                                            class="btn blue-btn btn-primary" style="margin-right: 8px">Save</button>
+
+                                                        <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                            id="add-gallery">
+                                                            <i class="fa fa-plus"></i>
+                                                            Add
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -424,12 +430,6 @@
                                                     </div>
                                                 @endforelse
 
-                                            </div>
-                                        </div>
-
-                                        <div class="row tabs-footer mt-3">
-                                            <div class="col-lg-12 text-center">
-                                                <button type="submit" class="btn blue-btn btn-primary">Save</button>
                                             </div>
                                         </div>
 
