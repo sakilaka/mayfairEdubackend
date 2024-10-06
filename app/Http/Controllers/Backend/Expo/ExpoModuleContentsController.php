@@ -144,6 +144,7 @@ class ExpoModuleContentsController extends Controller
     public function ui_video_page()
     {
         $data['page'] = ExpoModuleContent::where('key', 'video')->first();
+        return $data['page'];
         return view('Backend.events.expo.ui-contents.video', $data);
     }
 
@@ -152,7 +153,6 @@ class ExpoModuleContentsController extends Controller
      */
     public function ui_video_page_update(Request $request)
     {
-        // return $request->all();
         try {
             $page = ExpoModuleContent::where('key', 'video')->first();
 
