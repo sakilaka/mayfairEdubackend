@@ -448,19 +448,15 @@
 
             var myvar = `
                 <div class="row align-items-center video-container mt-2">
-                    <div
-                        class="col-12 row align-items-center justify-content-between">
+                    <div class="col-12 row align-items-center justify-content-between">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="">Video Type <span
-                                        class="text-danger">*</span></label>
+                                <label for="">Video Type <span class="text-danger">*</span></label>
                                 <select name="video_type[${randomNumber}]"
                                     class="form-control form-control-lg video-type-selector"
                                     required>
-                                    <option value="">Choose an option
-                                    </option>
-                                    <option value="youtube">Youtube Embed Code
-                                    </option>
+                                    <option value="">Choose an option</option>
+                                    <option value="youtube">Youtube Embed Code</option>
                                     <option value="upload">Video Upload</option>
                                 </select>
                             </div>
@@ -469,18 +465,26 @@
                         <div class="col-1">
                             <a href="javascript:void(0)"
                                 class="remove-photo-gallery-image btn btn-danger btn-sm m-0 ml-2">
-                                <i class="fas fa-minus-circle"> </i>
+                                <i class="fas fa-minus-circle"></i>
                             </a>
+                        </div>
+                    </div>
+
+                    <!-- Video Title Section -->
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="">Video Title<span class="text-danger">*</span></label>
+                            <input type="text" name="video_title[${randomNumber}]"
+                                class="form-control form-control-lg"
+                                placeholder="Enter Video Title">
                         </div>
                     </div>
 
                     <!-- Youtube Section -->
                     <div class="col-12 youtube-section d-none">
                         <div class="form-group">
-                            <label for="">Youtube Embed Code <span
-                                    class="text-danger">*</span></label>
-                            <input type="text"
-                                name="youtube_embed_code[${randomNumber}]"
+                            <label for="">Youtube Embed Code <span class="text-danger">*</span></label>
+                            <input type="text" name="youtube_embed_code[${randomNumber}]"
                                 class="form-control form-control-lg"
                                 placeholder="Enter Youtube Embed Code">
                         </div>
@@ -491,19 +495,14 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="upload_video">Upload Video</label>
-                                <input type="file"
-                                    name="video_upload[${randomNumber}]"
-                                    class="form-control video-upload"
-                                    accept="video/*">
+                                <input type="file" name="video_upload[${randomNumber}]"
+                                    class="form-control video-upload" accept="video/*">
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div
-                                class="form-group video-preview-container d-none">
+                            <div class="form-group video-preview-container d-none">
                                 <label>Video Preview:</label>
-                                <video class="video-preview"
-                                    style="width: 100%; max-height: 200px;"
-                                    controls>
+                                <video class="video-preview" style="width: 100%; max-height: 200px;" controls>
                                     <source src="" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>
@@ -512,6 +511,7 @@
                     </div>
                 </div>
             `;
+
             $('.photo-gallery-container').prepend(myvar);
             $(`.dropify`).dropify();
         });
