@@ -75,6 +75,11 @@
                                             <td>{{ $user->email }}</td>
 
                                             <td class="text-end d-flex justify-content-end">
+                                                <a href="javascript:void(0)"
+                                                    class="btn text-primary" data-toggle="tooltip" data-placement="top"
+                                                    title="View Participant's Data">
+                                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                                </a>
                                                 <a href="javascript:void(0)" class="btn text-primary"
                                                     data-toggle="modal" data-target="#emailModal"
                                                     data-original-title="Send email to this participant"
@@ -125,7 +130,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close</button>
                                     <button type="submit" class="btn btn-primary">Send Email</button>
                                 </div>
                             </form>
