@@ -56,10 +56,10 @@ class LoginController extends Controller
             ]);
 
             // Attempt login
-            if (auth()->attempt($request->only(['email', 'password']))) {
+            if (auth('admin')->attempt($request->only(['email', 'password']))) {
                 // Save necessary session data
-                session()->put('partner_ref_id', auth()->user()->id);
-                session()->put('applied_by', auth()->user()->role);
+                session()->put('partner_ref_id', auth('admin')->user()->id);
+                session()->put('applied_by', auth('admin')->user()->role);
                 session()->put('is_applied_partner', true);
 
                 // Redirect to the dashboard upon successful login
@@ -69,7 +69,10 @@ class LoginController extends Controller
                 return back()->with('error', 'Invalid email or password.');
             }
         } catch (\Exception $e) {
-            // Catch any exception and display the error message
+            // Use dd() to inspect the error before redirecting back
+            dd($e->getMessage()); // This will dump the error message and stop execution
+
+            // Redirect back with error (this won't be executed due to dd())
             return back()->with('error', $e->getMessage());
         }
     }
