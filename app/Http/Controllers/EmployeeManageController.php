@@ -117,6 +117,7 @@ class EmployeeManageController extends Controller
             $employee->delete();
             return back()->with('success', 'Employee Deleted Successfully');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return back()->with('error', $e->getMessage());
         }
     }
