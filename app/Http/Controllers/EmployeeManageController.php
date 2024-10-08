@@ -92,7 +92,14 @@ class EmployeeManageController extends Controller
             }
 
             if ($request->hasFile('image')) {
-                unlink(public_path('upload/users/' . $employee->image));
+
+                if ($employee && $employee->image) {
+                    $imagePath = public_path('upload/users/' . $employee->image);
+
+                    if (file_exists($imagePath) && !is_dir($imagePath)) {
+                        unlink($imagePath);
+                    }
+                }
 
                 $fileName = rand() . time() . '_image.' . request()->image->getClientOriginalExtension();
                 request()->image->move(public_path('upload/users/'), $fileName);
@@ -112,12 +119,18 @@ class EmployeeManageController extends Controller
     {
         try {
             $employee =  User::find($request->employee_id);
-            unlink(public_path('upload/users/' . $employee->image));
+
+            if ($employee && $employee->image) {
+                $imagePath = public_path('upload/users/' . $employee->image);
+
+                if (file_exists($imagePath) && !is_dir($imagePath)) {
+                    unlink($imagePath);
+                }
+            }
 
             $employee->delete();
             return back()->with('success', 'Employee Deleted Successfully');
         } catch (\Exception $e) {
-            return $e->getMessage();
             return back()->with('error', $e->getMessage());
         }
     }
