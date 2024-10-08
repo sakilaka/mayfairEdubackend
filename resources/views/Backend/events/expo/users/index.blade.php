@@ -177,6 +177,40 @@
                     </div>
                 </div>
 
+                <!-- Participant Details Modal -->
+                <div class="modal fade" id="participantModal" tabindex="-1" role="dialog"
+                    aria-labelledby="participantModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="participantModalLabel">Participant Details</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p><strong>Ticket No:</strong> <span id="modalTicketNo"></span></p>
+                                <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+                                <p><strong>First Name:</strong> <span id="modalFirstName"></span></p>
+                                <p><strong>Last Name:</strong> <span id="modalLastName"></span></p>
+                                <p><strong>ID Type:</strong> <span id="modalIdType"></span></p>
+                                <p><strong>ID No:</strong> <span id="modalIdNo"></span></p>
+                                <p><strong>Nationality:</strong> <span id="modalNationality"></span></p>
+                                <p><strong>Sex:</strong> <span id="modalSex"></span></p>
+                                <p><strong>Date of Birth:</strong> <span id="modalDob"></span></p>
+                                <p><strong>Phone:</strong> <span id="modalPhone"></span></p>
+                                <p><strong>Profession:</strong> <span id="modalProfession"></span></p>
+                                <p><strong>Institution:</strong> <span id="modalInstitution"></span></p>
+                                <p><strong>Program:</strong> <span id="modalProgram"></span></p>
+                                <p><strong>Degree:</strong> <span id="modalDegree"></span></p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 @include('Backend.components.footer')
             </div>
@@ -224,21 +258,32 @@
 
             // Make an AJAX request
             $.ajax({
-                url: '{{ route('admin.expo.view_participant') }}', // The route to hit
-                method: 'GET', // Use POST if needed
+                url: '{{ route('admin.expo.view_participant') }}',
+                method: 'GET',
                 data: {
-                    ticket_no: ticketNo // Send the ticket number to the server
+                    ticket_no: ticketNo
                 },
                 success: function(response) {
-                    console.log(response);
-                    
-                    // Handle the success case
-                    // For example, show the participant's data in a modal or alert
-                    alert('Participant data: ' + JSON.stringify(response));
-                    // Optionally, update the UI with the response data
+                    // Populate the modal with data
+                    $('#modalTicketNo').text(response.ticket_no);
+                    $('#modalEmail').text(response.email);
+                    $('#modalFirstName').text(response.first_name);
+                    $('#modalLastName').text(response.last_name);
+                    $('#modalIdType').text(response.id_type);
+                    $('#modalIdNo').text(response.id_no);
+                    $('#modalNationality').text(response.nationality);
+                    $('#modalSex').text(response.sex);
+                    $('#modalDob').text(response.dob);
+                    $('#modalPhone').text(response.phone);
+                    $('#modalProfession').text(response.profession);
+                    $('#modalInstitution').text(response.institution);
+                    $('#modalProgram').text(response.program);
+                    $('#modalDegree').text(response.degree);
+
+                    // Show the modal
+                    $('#participantModal').modal('show');
                 },
                 error: function(xhr) {
-                    // Handle the error case
                     alert('Failed to fetch participant data. Please try again.');
                 }
             });
