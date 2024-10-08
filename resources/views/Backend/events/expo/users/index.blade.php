@@ -75,11 +75,13 @@
                                             <td>{{ $user->email }}</td>
 
                                             <td class="text-end d-flex justify-content-end">
-                                                <a href="javascript:void(0)"
-                                                    class="btn text-primary" data-toggle="tooltip" data-placement="top"
-                                                    title="View Participant's Data" data-ticket-no="{{ $user->ticket_no }}">
+                                                <a href="javascript:void(0)" class="btn text-primary"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="View Participant's Data"
+                                                    data-ticket-no="{{ $user->ticket_no }}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
+
                                                 <a href="javascript:void(0)" class="btn text-primary"
                                                     data-toggle="modal" data-target="#emailModal"
                                                     data-original-title="Send email to this participant"
@@ -213,6 +215,34 @@
                 }
             });
         }
+    </script>
+
+    <script>
+        $('.btn.text-primary').on('click', function() {
+            // Get the ticket number from the button's data attribute
+            var ticketNo = $(this).data('ticket-no');
+
+            // Make an AJAX request
+            $.ajax({
+                url: '{{ route('admin.expo.view_participant') }}', // The route to hit
+                method: 'GET', // Use POST if needed
+                data: {
+                    ticket_no: ticketNo // Send the ticket number to the server
+                },
+                success: function(response) {
+                    console.log(response);
+                    
+                    // Handle the success case
+                    // For example, show the participant's data in a modal or alert
+                    alert('Participant data: ' + JSON.stringify(response));
+                    // Optionally, update the UI with the response data
+                },
+                error: function(xhr) {
+                    // Handle the error case
+                    alert('Failed to fetch participant data. Please try again.');
+                }
+            });
+        });
     </script>
 
 </body>
