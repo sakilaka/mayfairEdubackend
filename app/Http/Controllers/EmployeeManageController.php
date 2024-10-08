@@ -45,7 +45,7 @@ class EmployeeManageController extends Controller
                 request()->image->move(public_path('upload/users/'), $fileName);
             }
 
-            $employee->image = $fileName;
+            $employee->image = $fileName ?? '';
             $employee->save();
 
             return redirect(route('backend.admin.manage_employee.index'))->with('success', ucwords($request->role) . ' Created Successfully!');
