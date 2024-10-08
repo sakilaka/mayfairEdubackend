@@ -54,9 +54,9 @@ class LoginController extends Controller
                 'password' => 'required|min:6'
             ]);
 
-            if (auth()->guard('admin')->attempt($request->only(['email', 'password']))) {
-                session()->put('partner_ref_id', auth('admin')->user()->id);
-                session()->put('applied_by', auth('admin')->user()->role);
+            if (auth()/* ->guard('admin') */->attempt($request->only(['email', 'password']))) {
+                session()->put('partner_ref_id', auth(/* 'admin' */)->user()->id);
+                session()->put('applied_by', auth(/* 'admin' */)->user()->role);
                 session()->put('is_applied_partner', true);
 
                 return redirect('/admin/dashboard');
