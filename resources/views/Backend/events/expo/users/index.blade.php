@@ -192,22 +192,36 @@
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <p style="font-size: 14px"><strong>Ticket No:</strong> <span id="modalTicketNo"></span></p>
-                                        <p style="font-size: 14px"><strong>Email:</strong> <span id="modalEmail"></span></p>
-                                        <p style="font-size: 14px"><strong>First Name:</strong> <span id="modalFirstName"></span></p>
-                                        <p style="font-size: 14px"><strong>Last Name:</strong> <span id="modalLastName"></span></p>
-                                        <p style="font-size: 14px"><strong>ID Type:</strong> <span id="modalIdType"></span></p>
-                                        <p style="font-size: 14px"><strong>ID No:</strong> <span id="modalIdNo"></span></p>
-                                        <p style="font-size: 14px"><strong>Nationality:</strong> <span id="modalNationality"></span></p>
+                                        <p style="font-size: 14px"><strong>Ticket No:</strong> <span
+                                                id="modalTicketNo"></span></p>
+                                        <p style="font-size: 14px"><strong>Email:</strong> <span
+                                                id="modalEmail"></span></p>
+                                        <p style="font-size: 14px"><strong>First Name:</strong> <span
+                                                id="modalFirstName"></span></p>
+                                        <p style="font-size: 14px"><strong>Last Name:</strong> <span
+                                                id="modalLastName"></span></p>
+                                        <p style="font-size: 14px"><strong>ID Type:</strong> <span
+                                                id="modalIdType"></span></p>
+                                        <p style="font-size: 14px"><strong>ID No:</strong> <span
+                                                id="modalIdNo"></span></p>
+                                        <p style="font-size: 14px"><strong>Nationality:</strong> <span
+                                                id="modalNationality"></span></p>
                                     </div>
                                     <div class="col-md-6">
-                                        <p style="font-size: 14px"><strong>Sex:</strong> <span id="modalSex"></span></p>
-                                        <p style="font-size: 14px"><strong>Date of Birth:</strong> <span id="modalDob"></span></p>
-                                        <p style="font-size: 14px"><strong>Phone:</strong> <span id="modalPhone"></span></p>
-                                        <p style="font-size: 14px"><strong>Profession:</strong> <span id="modalProfession"></span></p>
-                                        <p style="font-size: 14px"><strong>Institution:</strong> <span id="modalInstitution"></span></p>
-                                        <p style="font-size: 14px"><strong>Program:</strong> <span id="modalProgram"></span></p>
-                                        <p style="font-size: 14px"><strong>Degree:</strong> <span id="modalDegree"></span></p>
+                                        <p style="font-size: 14px"><strong>Sex:</strong> <span id="modalSex"></span>
+                                        </p>
+                                        <p style="font-size: 14px"><strong>Date of Birth:</strong> <span
+                                                id="modalDob"></span></p>
+                                        <p style="font-size: 14px"><strong>Phone:</strong> <span
+                                                id="modalPhone"></span></p>
+                                        <p style="font-size: 14px"><strong>Profession:</strong> <span
+                                                id="modalProfession"></span></p>
+                                        <p style="font-size: 14px"><strong>Institution:</strong> <span
+                                                id="modalInstitution"></span></p>
+                                        <p style="font-size: 14px"><strong>Program:</strong> <span
+                                                id="modalProgram"></span></p>
+                                        <p style="font-size: 14px"><strong>Degree:</strong> <span
+                                                id="modalDegree"></span></p>
                                     </div>
                                 </div>
                             </div>
@@ -261,10 +275,9 @@
 
     <script>
         $('.btn.text-primary').on('click', function() {
-            // Get the ticket number from the button's data attribute
             var ticketNo = $(this).data('ticket-no');
 
-            // Make an AJAX request
+            clearModalContent();
             $.ajax({
                 url: '{{ route('admin.expo.view_participant') }}',
                 method: 'GET',
@@ -272,7 +285,6 @@
                     ticket_no: ticketNo
                 },
                 success: function(response) {
-                    // Populate the modal with data
                     $('#modalTicketNo').text(response.ticket_no);
                     $('#modalEmail').text(response.email);
                     $('#modalFirstName').text(response.first_name);
@@ -288,13 +300,30 @@
                     $('#modalProgram').text(response.program);
                     $('#modalDegree').text(response.degree);
 
-                    // Show the modal
                     $('#participantModal').modal('show');
                 },
                 error: function(xhr) {
                     alert('Failed to fetch participant data. Please try again.');
                 }
             });
+
+            // Function to clear modal content
+            function clearModalContent() {
+                $('#modalTicketNo').text('');
+                $('#modalEmail').text('');
+                $('#modalFirstName').text('');
+                $('#modalLastName').text('');
+                $('#modalIdType').text('');
+                $('#modalIdNo').text('');
+                $('#modalNationality').text('');
+                $('#modalSex').text('');
+                $('#modalDob').text('');
+                $('#modalPhone').text('');
+                $('#modalProfession').text('');
+                $('#modalInstitution').text('');
+                $('#modalProgram').text('');
+                $('#modalDegree').text('');
+            }
         });
     </script>
 
