@@ -78,9 +78,9 @@ class EmployeeManageController extends Controller
             $employee = User::find($id);
 
             $request->validate([
-                'email' => 'required|unique:users,email,' . $employee->email
+                'email' => 'required|email|unique:users,email,' . $employee->id
             ]);
-
+            
             $employee->name = $request->name;
             $employee->mobile = $request->mobile;
             $employee->email = $request->email;
