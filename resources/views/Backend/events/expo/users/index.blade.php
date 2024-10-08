@@ -191,6 +191,12 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
+                                    <div class="col-12">
+                                        <div>
+                                            <img id="modalPhoto" src="{{ asset('frontend/images/no-profile.jpg') }}" alt="Participant Photo" width="200"
+                                                style="height: auto; border-radius: 5px; margin-bottom: 10px;">
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <p style="font-size: 14px"><strong>Ticket No:</strong> <span
                                                 id="modalTicketNo"></span></p>
