@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | All Expo Users</title>
+    <title>{{ env('APP_NAME') }} | Expo Participants</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            All Expo Users
+                            Expo Participants
                         </h3>
 
                         <nav aria-label="breadcrumb">
