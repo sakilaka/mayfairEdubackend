@@ -72,12 +72,14 @@ class EmployeeManageController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'email' => 'required|unique:users,email,' . $request->email
-        ]);
+
 
         try {
             $employee = User::find($id);
+
+            $request->validate([
+                'email' => 'required|unique:users,email,' . $employee->email
+            ]);
 
             $employee->name = $request->name;
             $employee->mobile = $request->mobile;
