@@ -63,7 +63,7 @@
                                             <td>{{ $employee->mobile }}</td>
                                             <td>{{ $employee->email }}</td>
                                             <td>{{ $employee->office?->name }}</td>
-                                            <td class="text-right">
+                                            <td class="text-right d-flex">
                                                 <a href="#" class="btn text-primary" data-toggle="tooltip"
                                                     data-placement="top" title="Manage Module(s)"
                                                     id="manage_permission_modal_trigger"
