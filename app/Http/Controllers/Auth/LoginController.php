@@ -48,7 +48,6 @@ class LoginController extends Controller
 
     public function adminLogin(Request $request)
     {
-        return $request->all();
         try {
             $this->validate($request, [
                 'email'   => 'required|email',
@@ -62,6 +61,7 @@ class LoginController extends Controller
 
                 return redirect('/admin/dashboard');
             }
+            return 'no';
         } catch (\Exception $e) {
             return $e->getMessage();
         }
