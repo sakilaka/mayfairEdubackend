@@ -45,24 +45,26 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    
+
     public function adminLogin(Request $request)
     {
-        $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
-        ]);
+        try {
+            $this->validate($request, [
+                'email'   => 'required|email',
+                'password' => 'required|min:6'
+            ]);
 
-        if (auth()->guard('admin')->attempt($request->only(['email','password']))){
-            session()->put('partner_ref_id', auth('admin')->user()->id);
-            session()->put('applied_by', auth('admin')->user()->role);
-            session()->put('is_applied_partner', true);
+            if (auth()->guard('admin')->attempt($request->only(['email', 'password']))) {
+                session()->put('partner_ref_id', auth('admin')->user()->id);
+                session()->put('applied_by', auth('admin')->user()->role);
+                session()->put('is_applied_partner', true);
 
-            return redirect('/admin/dashboard');
-        }else{
-            return back()->with('error', 'Your email or password is incorrect.');
+                return redirect('/admin/dashboard');
+            }
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
 
-        return back()->withInput($request->only('email'));
+        // return back()->withInput($request->only('email'));
     }
 }
