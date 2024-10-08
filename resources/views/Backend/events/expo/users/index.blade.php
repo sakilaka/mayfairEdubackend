@@ -292,6 +292,8 @@
                     ticket_no: ticketNo
                 },
                 success: function(response) {
+                    $('#modalPhoto').attr('src', response.photo ? response.photo :
+                        {{ asset('frontend/images/no-profile.jpg') }});
                     $('#modalTicketNo').text(response.ticket_no);
                     $('#modalEmail').text(response.email);
                     $('#modalFirstName').text(response.first_name);
@@ -316,8 +318,7 @@
 
             // Function to clear modal content
             function clearModalContent() {
-                $('#modalPhoto').attr('src', response.photo ? response.photo :
-                    {{ asset('frontend/images/no-profile.jpg') }});
+                $('#modalPhoto').attr('src', {{ asset('frontend/images/no-profile.jpg') }});
                 $('#modalTicketNo').text('');
                 $('#modalEmail').text('');
                 $('#modalFirstName').text('');
