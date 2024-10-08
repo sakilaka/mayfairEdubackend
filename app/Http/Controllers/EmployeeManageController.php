@@ -26,6 +26,7 @@ class EmployeeManageController extends Controller
 
     public function store(Request $request)
     {
+        return User::where('email', $request->email)->first();
         try {
             $employee = new User();
 
