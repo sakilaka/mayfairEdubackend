@@ -283,6 +283,7 @@
     <script>
         $('.btn.text-primary').on('click', function() {
             var ticketNo = $(this).data('ticket-no');
+            var noProfileImage = '{{ asset('frontend/images/no-profile.jpg') }}';
 
             clearModalContent();
             $.ajax({
@@ -292,8 +293,9 @@
                     ticket_no: ticketNo
                 },
                 success: function(response) {
-                    $('#modalPhoto').attr('src', response.photo ? response.photo :
-                        {{ asset('frontend/images/no-profile.jpg') }});
+                    $('#participantModal').modal('show');
+
+                    $('#modalPhoto').attr('src', response.photo ? response.photo : noProfileImage);
                     $('#modalTicketNo').text(response.ticket_no);
                     $('#modalEmail').text(response.email);
                     $('#modalFirstName').text(response.first_name);
@@ -308,8 +310,6 @@
                     $('#modalInstitution').text(response.institution);
                     $('#modalProgram').text(response.program);
                     $('#modalDegree').text(response.degree);
-
-                    $('#participantModal').modal('show');
                 },
                 error: function(xhr) {
                     alert('Failed to fetch participant data. Please try again.');
@@ -318,7 +318,7 @@
 
             // Function to clear modal content
             function clearModalContent() {
-                $('#modalPhoto').attr('src', {{ asset('frontend/images/no-profile.jpg') }});
+                $('#modalPhoto').attr('src', noProfileImage);
                 $('#modalTicketNo').text('');
                 $('#modalEmail').text('');
                 $('#modalFirstName').text('');
