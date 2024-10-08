@@ -26,7 +26,10 @@ class EmployeeManageController extends Controller
 
     public function store(Request $request)
     {
-        return User::where('email', $request->email)->first();
+        $request->validate([
+            'email' => 'required|unique:users,email'
+        ]);
+
         try {
             $employee = new User();
 

@@ -107,6 +107,9 @@
 
                                                 <input type="email" name="email" class="form-control"
                                                     placeholder="Enter Email" required>
+                                                @error('email')
+                                                    {{ $message }}
+                                                @enderror
                                             </div>
 
                                             <div class="form-group col-md-6">
