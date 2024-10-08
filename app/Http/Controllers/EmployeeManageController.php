@@ -95,7 +95,8 @@ class EmployeeManageController extends Controller
 
             return redirect(route('backend.admin.manage_employee.index'))->with('success', ucwords($request->role) . ' Updated Successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something Went Wrong!');
+            return $e->getMessage();
+            return redirect()->back()->with('error', $e->getMessage());
         }
     }
 
