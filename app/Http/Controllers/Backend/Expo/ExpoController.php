@@ -495,6 +495,22 @@ class ExpoController extends Controller
     }
 
     /**
+     * view expo participant data
+     */
+    public function expo_view_participant(Request $request)
+    {
+        $ticketNo = $request->input('ticket_no');
+
+        $participant = ExpoModule::where('ticket_no', $ticketNo)->first();
+
+        if ($participant) {
+            return response()->json($participant);
+        } else {
+            return response()->json(['error' => 'Participant not found'], 404);
+        }
+    }
+
+    /**
      * send mail to participant
      */
     public function expo_send_mail(Request $request)
