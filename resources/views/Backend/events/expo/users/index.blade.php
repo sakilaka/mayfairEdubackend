@@ -193,7 +193,8 @@
                                 <div class="row">
                                     <div class="col-12 text-center">
                                         <div class="mb-3">
-                                            <img id="modalPhoto" src="" alt="Participant Photo" width="150"
+                                            <img id="modalPhoto" src="" alt="Participant Photo"
+                                                width="150"
                                                 style="height: auto; border-radius: 5px; margin-bottom: 10px;">
                                         </div>
                                     </div>
@@ -315,7 +316,8 @@
 
             // Function to clear modal content
             function clearModalContent() {
-                $('#modalPhoto').attr('src', response.photo ? response.photo : 'path/to/default/image.jpg');
+                $('#modalPhoto').attr('src', response.photo ? response.photo :
+                    {{ asset('frontend/images/no-profile.jpg') }});
                 $('#modalTicketNo').text('');
                 $('#modalEmail').text('');
                 $('#modalFirstName').text('');
