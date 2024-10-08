@@ -49,30 +49,21 @@ class LoginController extends Controller
     public function adminLogin(Request $request)
     {
         try {
-            // Validate the input fields
             $this->validate($request, [
                 'email'   => 'required|email',
                 'password' => 'required|min:6'
             ]);
 
-            // Attempt login
             if (auth('admin')->attempt($request->only(['email', 'password']))) {
-                // Save necessary session data
                 session()->put('partner_ref_id', auth('admin')->user()->id);
                 session()->put('applied_by', auth('admin')->user()->role);
                 session()->put('is_applied_partner', true);
 
-                // Redirect to the dashboard upon successful login
                 return redirect('/admin/dashboard');
             } else {
-                // Authentication failed, send error message
                 return back()->with('error', 'Invalid email or password.');
             }
         } catch (\Exception $e) {
-            // Use dd() to inspect the error before redirecting back
-            dd($e->getMessage()); // This will dump the error message and stop execution
-
-            // Redirect back with error (this won't be executed due to dd())
             return back()->with('error', $e->getMessage());
         }
     }
