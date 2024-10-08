@@ -107,8 +107,9 @@
 
                                                 <input type="email" name="email" class="form-control"
                                                     placeholder="Enter Email" required>
+
                                                 @error('email')
-                                                    {{ $message }}
+                                                    <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
 
