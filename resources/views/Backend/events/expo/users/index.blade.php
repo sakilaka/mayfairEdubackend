@@ -77,7 +77,7 @@
                                             <td class="text-end d-flex justify-content-end">
                                                 <a href="javascript:void(0)"
                                                     class="btn text-primary" data-toggle="tooltip" data-placement="top"
-                                                    title="View Participant's Data">
+                                                    title="View Participant's Data" data-ticket-no="{{ $user->ticket_no }}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                 </a>
                                                 <a href="javascript:void(0)" class="btn text-primary"
