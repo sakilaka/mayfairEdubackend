@@ -181,11 +181,14 @@
 
         const form = document.querySelector('form');
         form.addEventListener('submit', function(event) {
-            input.value = iti.getNumber(); // Get the full phone number with country code
+            input.value = iti.getNumber(); 
+            console.log(input.value);
+            
             if (!iti.isValidNumber()) {
                 event.preventDefault(); // Stop submission if the number is invalid
                 alert("Please enter a valid phone number");
             }
+            event.preventDefault();
         });
     </script>
 @endsection
