@@ -178,5 +178,14 @@
         window.intlTelInput(input, {
             loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
         });
+
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            input.value = iti.getNumber(); // Get the full phone number with country code
+            if (!iti.isValidNumber()) {
+                event.preventDefault(); // Stop submission if the number is invalid
+                alert("Please enter a valid phone number");
+            }
+        });
     </script>
 @endsection
