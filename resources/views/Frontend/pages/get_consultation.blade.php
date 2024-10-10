@@ -38,6 +38,8 @@
             font-size: 0.85rem;
         }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
 @endsection
 @section('main_content')
 
@@ -89,7 +91,7 @@
                                                     <label>Phone Number
                                                         <span class="text-danger">*</span>
                                                     </label>
-                                                    <input type="text"
+                                                    <input id="phone" type="tel"
                                                         class="form-control form-control-lg @error('phone') is-invalid @enderror"
                                                         name="phone" placeholder="Whatsapp/WeChat/Telegram/Line"
                                                         value="{{ old('phone') }}" required>
@@ -167,6 +169,23 @@
     <script>
         $('.select2').select2({
             placeholder: 'Select an option'
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var input = document.querySelector("#phone");
+            window.intlTelInput(input, {
+                initialCountry: "auto",
+                geoIpLookup: function(callback) {
+                    fetch(
+                        'https://ipinfo.io?token=YOUR_TOKEN') // You can add your IP-based country service if needed
+                        .then(response => response.json())
+                        .then(data => callback(data.country));
+                },
+                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
+            });
         });
     </script>
 @endsection
