@@ -180,8 +180,6 @@
         });
 
         $("form").on("submit", function(event) {
-            event.preventDefault();
-
             const fullNumber = iti.getNumber();
             input.val(fullNumber);
         });
