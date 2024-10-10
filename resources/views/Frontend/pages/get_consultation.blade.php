@@ -87,13 +87,13 @@
                                             </div>
 
                                             <div class="col-12 col-md-6 mt-2">
-                                                <div class="form-group">
-                                                    <label>Phone Number
+                                                <div class="form-group d-flex flex-column">
+                                                    <label>Phone Number (Whatsapp/WeChat/Telegram/Line)
                                                         <span class="text-danger">*</span>
                                                     </label>
                                                     <input id="phone" type="tel"
                                                         class="form-control form-control-lg @error('phone') is-invalid @enderror"
-                                                        name="phone" placeholder="Whatsapp/WeChat/Telegram/Line"
+                                                        name="phone" placeholder="{{-- Whatsapp/WeChat/Telegram/Line --}}"
                                                         value="{{ old('phone') }}" required>
                                                     @error('phone')
                                                         <span class="text-danger">{{ $message }}</span>
