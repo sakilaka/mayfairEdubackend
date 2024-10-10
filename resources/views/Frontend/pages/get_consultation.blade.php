@@ -174,21 +174,25 @@
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
-        const input = document.querySelector("#phone");
-        window.intlTelInput(input, {
+        /* const input = document.querySelector("#phone");
+            window.intlTelInput(input, {
+                loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
+            }); */
+
+        const input = $("#phone");
+        const iti = window.intlTelInput(input[0], {
             loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
         });
 
-        const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            input.value = iti.getNumber(); 
-            console.log(input.value);
-            
+        $("form").on("submit", function(event) {
+            event.preventDefault(); // Prevent form submission for debugging
+
+            const fullNumber = iti.getNumber(); // Get the full international number
+            console.log("Full International Number:", fullNumber); // Log the number
+
             if (!iti.isValidNumber()) {
-                event.preventDefault(); // Stop submission if the number is invalid
-                alert("Please enter a valid phone number");
+                console.error("Invalid phone number");
             }
-            event.preventDefault();
         });
     </script>
 @endsection
