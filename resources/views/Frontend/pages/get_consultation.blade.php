@@ -39,7 +39,7 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
 @endsection
 @section('main_content')
 
@@ -172,20 +172,11 @@
         });
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var input = document.querySelector("#phone");
-            window.intlTelInput(input, {
-                initialCountry: "auto",
-                geoIpLookup: function(callback) {
-                    fetch(
-                        'https://ipinfo.io?token=YOUR_TOKEN') // You can add your IP-based country service if needed
-                        .then(response => response.json())
-                        .then(data => callback(data.country));
-                },
-                utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js"
-            });
+        const input = document.querySelector("#phone");
+        window.intlTelInput(input, {
+            loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
         });
     </script>
 @endsection
