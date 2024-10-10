@@ -21,7 +21,6 @@ class GetConsultationController extends Controller
      */
     public function get_consultation_store(Request $request, $consultation_id = null)
     {
-        return $request->all();
         try {
             if ($consultation_id) {
                 $get_consultation = GetConsultation::find($consultation_id);
