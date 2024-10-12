@@ -186,7 +186,7 @@
                 </div>
 
                 {{-- assign application to partner - modal --}}
-                <div class="modal fade" id="assign_application_to_partner_modal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="assign_consultation_to_partner_modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -199,7 +199,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <input type="hidden" name="application_id" value="">
+                                    <input type="hidden" name="consultation_id" value="">
                                     <div class="row">
                                         <div class="col-6 mt-3">
                                             <p class="fw-bold">Choose Manager</p>
@@ -377,10 +377,10 @@
         // assign application to user
         $('.assign-application-modal-trigger').click(function() {
             var applicationId = $(this).data('application-id');
-            $('input[name="application_id"]').val(applicationId);
+            $('input[name="consultation_id"]').val(applicationId);
 
             $.ajax({
-                url: '{{ route('admin.fetch_application', ':application_id') }}'.replace(':application_id',
+                url: '{{ route('admin.fetch_application', ':consultation_id') }}'.replace(':consultation_id',
                     applicationId),
                 method: 'GET',
                 success: function(response) {
@@ -390,9 +390,9 @@
                         $('.selectManager').val(data.manager_id).trigger('change');
                         $('.selectSupport').val(data.support_id).trigger('change');
 
-                        $('#assign_application_to_partner_modal').modal('show');
+                        $('#assign_consultation_to_partner_modal').modal('show');
                     } else {
-                        alert('Failed to fetch application data: ' + response.message);
+                        alert('Failed to fetch consultation data: ' + response.message);
                     }
                 },
                 error: function() {
@@ -401,8 +401,8 @@
             });
         });
 
-        $('#assign_application_to_partner_modal').on('hidden.bs.modal', function() {
-            $(this).find('input[name="application_id"]').val('');
+        $('#assign_consultation_to_partner_modal').on('hidden.bs.modal', function() {
+            $(this).find('input[name="consultation_id"]').val('');
         });
 
         // show application support
@@ -410,8 +410,8 @@
             var applicationId = $(this).data('application-id');
 
             $.ajax({
-                url: '{{ route('admin.fetch_application_support', ':application_id') }}'.replace(
-                    ':application_id', applicationId),
+                url: '{{ route('admin.fetch_application_support', ':consultation_id') }}'.replace(
+                    ':consultation_id', applicationId),
                 method: 'GET',
                 success: function(response) {
                     if (response.success) {
@@ -466,7 +466,7 @@
                         $('#support-details').html(modalBody);
                         $('#show_application_support_modal').modal('show');
                     } else {
-                        alert('Failed to fetch application data: ' + response.message);
+                        alert('Failed to fetch consultation data: ' + response.message);
                     }
                 },
                 error: function() {
