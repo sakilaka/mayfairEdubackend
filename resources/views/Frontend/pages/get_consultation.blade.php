@@ -172,22 +172,6 @@
         });
     </script>
 
-    {{-- <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
-    <script>
-        const input = $("#phone");
-        const iti = window.intlTelInput(input[0], {
-            initialCountry: "auto",
-            nationalMode: true,
-            geoIpLookup: callback => {
-                fetch("https://ipapi.co/json")
-                    .then(res => res.json())
-                    .then(data => callback(data.country_code))
-                    .catch(() => callback("bd"));
-            },
-            loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
-        });
-    </script> --}}
-
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
         const input = document.querySelector("#phone");
