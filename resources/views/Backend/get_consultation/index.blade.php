@@ -99,7 +99,7 @@
                                                                 data-consultation-id="{{ $consultation->id }}">
                                                                 <i class="fa fa-users" aria-hidden="true"></i>
                                                             </a>
-                                                            
+
                                                             @if (!$is_assigned)
                                                                 <a href="javascript:void(0)"
                                                                     class="btn text-primary assign-consultation-modal-trigger"
@@ -409,43 +409,44 @@
         });
     </script>
 
-<script>
-    
-</script>
-    <script>
-        // assign consultation to user
-        $('.assign-consultation-modal-trigger').click(function() {
-            var consultationId = $(this).data('consultation-id');
-            $('input[name="consultation_id"]').val(consultationId);
+    @if (!$is_assigned)
+        <script>
+            // assign consultation to user
+            $('.assign-consultation-modal-trigger').click(function() {
+                var consultationId = $(this).data('consultation-id');
+                $('input[name="consultation_id"]').val(consultationId);
 
-            $.ajax({
-                url: '{{ route('admin.fetch_consultation', ':consultation_id') }}'.replace(
-                    ':consultation_id',
-                    consultationId),
-                method: 'GET',
-                success: function(response) {
-                    if (response.success) {
-                        var data = response.data;
+                $.ajax({
+                    url: '{{ route('admin.fetch_consultation', ':consultation_id') }}'.replace(
+                        ':consultation_id',
+                        consultationId),
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.success) {
+                            var data = response.data;
 
-                        $('.selectManager').val(data.manager_id).trigger('change');
-                        $('.selectSupport').val(data.support_id).trigger('change');
-                        $('.selectGeneralEmployee').val(data.general_employee_id).trigger('change');
+                            $('.selectManager').val(data.manager_id).trigger('change');
+                            $('.selectSupport').val(data.support_id).trigger('change');
+                            $('.selectGeneralEmployee').val(data.general_employee_id).trigger('change');
 
-                        $('#assign_consultation_to_employee_modal').modal('show');
-                    } else {
-                        alert('Failed to fetch consultation data: ' + response.message);
+                            $('#assign_consultation_to_employee_modal').modal('show');
+                        } else {
+                            alert('Failed to fetch consultation data: ' + response.message);
+                        }
+                    },
+                    error: function() {
+                        alert('An error occurred while fetching the consultation data.');
                     }
-                },
-                error: function() {
-                    alert('An error occurred while fetching the consultation data.');
-                }
+                });
             });
-        });
 
-        $('#assign_consultation_to_employee_modal').on('hidden.bs.modal', function() {
-            $(this).find('input[name="consultation_id"]').val('');
-        });
+            $('#assign_consultation_to_employee_modal').on('hidden.bs.modal', function() {
+                $(this).find('input[name="consultation_id"]').val('');
+            });
+        </script>
+    @endif
 
+    <script>
         // show consultation support
         $('.show-consultation-support-modal-trigger').click(function() {
             var consultationId = $(this).data('consultation-id');
