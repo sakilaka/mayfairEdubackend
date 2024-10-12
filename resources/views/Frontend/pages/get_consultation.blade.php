@@ -206,19 +206,6 @@
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
         });
 
-        /* const handleChange = () => {
-            let text;
-            if (input.value) {
-                text = iti.isValidNumber() ?
-                    "Valid number! Full international format: " + iti.getNumber() :
-                    "Please enter a valid number";
-            } else {
-                text = "Please enter a valid number";
-            }
-            const textNode = document.createTextNode(text);
-            output.innerHTML = "";
-            output.appendChild(textNode);
-        }; */
         const handleChange = () => {
             let text = "";
             if (input.value) {
@@ -246,11 +233,6 @@
 
 
     <script>
-        /* $("form").on("submit", function(event) {
-                const fullNumber = iti.getNumber();
-                input.val(fullNumber);
-            }); */
-
         $("form").on("submit", function(event) {
             if (!iti.isValidNumber()) {
                 event.preventDefault();
