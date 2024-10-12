@@ -62,7 +62,6 @@ class GetConsultationController extends Controller
     {
         $query = GetConsultation::latest();
 
-        // Apply filters if present
         if ($request->has('status') && $request->input('status') != '' && $request->input('status') != 'all') {
             $query->where('status', $request->input('status'));
         }
