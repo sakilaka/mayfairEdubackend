@@ -204,7 +204,8 @@
                                         <div class="col-6 mt-3">
                                             <p class="fw-bold">Choose Manager</p>
                                             <select name="manager_id"
-                                                class="form-control form-control-lg selectManager select2" style="width: 100% !important">
+                                                class="form-control form-control-lg selectManager select2"
+                                                style="width: 100% !important">
                                                 <option value="">None</option>
                                                 @foreach ($all_managers as $manager)
                                                     @php
@@ -228,7 +229,8 @@
                                         <div class="col-6 mt-3">
                                             <p class="fw-bold">Choose Support</p>
                                             <select name="support_id"
-                                                class="form-control form-control-lg selectSupport select2" style="width: 100% !important">
+                                                class="form-control form-control-lg selectSupport select2"
+                                                style="width: 100% !important">
                                                 <option value="">None</option>
                                                 @foreach ($all_supports as $support)
                                                     @php
@@ -367,6 +369,109 @@
                         console.error('Error fetching consultation data:', xhr);
                     }
                 });
+            });
+        });
+    </script>
+
+    <script>
+        // assign application to user
+        $('.assign-application-modal-trigger').click(function() {
+            var applicationId = $(this).data('application-id');
+            $('input[name="application_id"]').val(applicationId);
+
+            $.ajax({
+                url: '{{ route('admin.fetch_application', ':application_id') }}'.replace(':application_id',
+                    applicationId),
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        var data = response.data;
+
+                        $('.selectManager').val(data.manager_id).trigger('change');
+                        $('.selectSupport').val(data.support_id).trigger('change');
+
+                        $('#assign_application_to_partner_modal').modal('show');
+                    } else {
+                        alert('Failed to fetch application data: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while fetching the application data.');
+                }
+            });
+        });
+
+        $('#assign_application_to_partner_modal').on('hidden.bs.modal', function() {
+            $(this).find('input[name="application_id"]').val('');
+        });
+
+        // show application support
+        $('.show-application-support-modal-trigger').click(function() {
+            var applicationId = $(this).data('application-id');
+
+            $.ajax({
+                url: '{{ route('admin.fetch_application_support', ':application_id') }}'.replace(
+                    ':application_id', applicationId),
+                method: 'GET',
+                success: function(response) {
+                    if (response.success) {
+                        var data = response.data;
+
+                        function createUserSection(user, isLast) {
+                            if (user) {
+                                const addressLine = [
+                                    user.address || 'No Address Provided',
+                                    user.country ? `${user.country}` : '',
+                                    user.continent ? `${user.continent}` : ''
+                                ].filter(part => part).join(', ');
+
+                                const borderBottomClass = isLast ? '' : 'border-bottom';
+
+                                return `
+                                    <div class="col-12 my-2 pb-2 ${borderBottomClass}">
+                                        <h4 style="font-size: 20px" class="mb-2">${user.role}</h4>
+                                        <div class="d-flex justify-content-between">
+                                            <div>
+                                                <h5 style="font-size: 16px">${user.name || 'No Name'}</h5>
+                                                <p class="mb-1" style="font-size: 16px">${addressLine}</p>
+                                                <p class="mb-1" style="font-size: 16px">${user.phone || 'No Phone Number'}</p>
+                                                <p class="mb-1" style="font-size: 16px">${user.email || 'No Email'}</p>
+                                            </div>
+                                            <div>
+                                                <img src="${user.photo || '{{ asset('frontend/images/no-profile.jpg') }}'}" alt="" style="border-radius: 8px; height:100px; width:100px; object-fit:contain;">
+                                            </div>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                            return '';
+                        }
+
+                        var modalBody = '';
+                        var hasData = false;
+                        var users = [data.partner, data.manager, data.support];
+                        users.forEach((user, index) => {
+                            if (user) {
+                                modalBody += createUserSection(user, index === users.length -
+                                    1);
+                                hasData = true;
+                            }
+                        });
+
+                        if (!hasData) {
+                            modalBody =
+                                '<p class="text-center" style="font-size:16px">No support is assigned to this application.</p>';
+                        }
+
+                        $('#support-details').html(modalBody);
+                        $('#show_application_support_modal').modal('show');
+                    } else {
+                        alert('Failed to fetch application data: ' + response.message);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred while fetching the application data.');
+                }
             });
         });
     </script>
