@@ -178,7 +178,9 @@
         const iti = window.intlTelInput(input[0], {
             loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
         });
-
+    </script>
+    
+    <script>
         $("form").on("submit", function(event) {
             const fullNumber = iti.getNumber();
             input.val(fullNumber);
