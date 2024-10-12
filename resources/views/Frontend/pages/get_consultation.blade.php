@@ -93,10 +93,8 @@
                                                     </label>
                                                     <input id="phone" type="tel"
                                                         class="form-control form-control-lg @error('phone') is-invalid @enderror"
-                                                        name="phone" placeholder="{{-- Whatsapp/WeChat/Telegram/Line --}}"
-                                                        value="{{ old('phone') }}" required>
-                                                    <span class="text-danger" id="output">Please provide a valid
-                                                        number</span>
+                                                        name="phone" value="{{ old('phone') }}" required>
+                                                    <span class="text-danger" id="output"></span>
                                                     @error('phone')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
@@ -195,37 +193,33 @@
         const input = document.querySelector("#phone");
         const output = document.querySelector("#output");
 
-        // Initialize intl-tel-input with nationalMode and geoIpLookup for automatic country detection
         const iti = window.intlTelInput(input, {
             initialCountry: "auto",
-            nationalMode: true, // National mode enabled (no country code in the input)
+            nationalMode: true,
             geoIpLookup: callback => {
                 fetch("https://ipapi.co/json")
                     .then(res => res.json())
                     .then(data => callback(data.country_code
-                .toLowerCase())) // Automatically detect country code
-                    .catch(() => callback("bd")); // Default to Bangladesh if country detection fails
+                        .toLowerCase()))
+                    .catch(() => callback("bd"));
             },
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js" // Load utils for formatting and validation
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
         });
 
-        // Function to handle phone number validation and display feedback
         const handleChange = () => {
             let text;
             if (input.value) {
-                // Check if the entered phone number is valid
                 text = iti.isValidNumber() ?
                     "Valid number! Full international format: " + iti.getNumber() :
-                    "Invalid number - please try again";
+                    "Please enter a valid number";
             } else {
-                text = "Please enter a valid number below";
+                text = "Please enter a valid number";
             }
             const textNode = document.createTextNode(text);
-            output.innerHTML = ""; // Clear previous message
-            output.appendChild(textNode); // Show new message
+            output.innerHTML = "";
+            output.appendChild(textNode);
         };
 
-        // Listen to 'change' and 'keyup' events to validate on input change
         input.addEventListener('change', handleChange);
         input.addEventListener('keyup', handleChange);
     </script>
