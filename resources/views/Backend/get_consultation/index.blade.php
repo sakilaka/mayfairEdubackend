@@ -185,8 +185,8 @@
                     </div>
                 </div>
 
-                {{-- assign consultation to partner - modal --}}
-                <div class="modal fade" id="assign_consultation_to_partner_modal" tabindex="-1" role="dialog"
+                {{-- assign consultation to employee - modal --}}
+                <div class="modal fade" id="assign_consultation_to_employee_modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -391,7 +391,7 @@
                         $('.selectManager').val(data.manager_id).trigger('change');
                         $('.selectSupport').val(data.support_id).trigger('change');
 
-                        $('#assign_consultation_to_partner_modal').modal('show');
+                        $('#assign_consultation_to_employee_modal').modal('show');
                     } else {
                         alert('Failed to fetch consultation data: ' + response.message);
                     }
@@ -402,7 +402,7 @@
             });
         });
 
-        $('#assign_consultation_to_partner_modal').on('hidden.bs.modal', function() {
+        $('#assign_consultation_to_employee_modal').on('hidden.bs.modal', function() {
             $(this).find('input[name="consultation_id"]').val('');
         });
 
