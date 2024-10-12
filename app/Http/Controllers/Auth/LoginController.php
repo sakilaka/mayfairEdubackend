@@ -55,8 +55,16 @@ class LoginController extends Controller
             ]);
 
             if (auth('admin')->attempt($request->only(['email', 'password']))) {
+                return 'admin';
                 session()->put('partner_ref_id', auth('admin')->user()->id);
                 session()->put('applied_by', auth('admin')->user()->role);
+                session()->put('is_applied_partner', true);
+
+                return redirect('/admin/dashboard');
+            } elseif (auth()->attempt($request->only(['email', 'password']))) {
+                return 'employee';
+                session()->put('partner_ref_id', auth()->user()->id);
+                session()->put('applied_by', auth()->user()->role);
                 session()->put('is_applied_partner', true);
 
                 return redirect('/admin/dashboard');
