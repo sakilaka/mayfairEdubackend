@@ -9,6 +9,7 @@ use App\Models\GetConsultation;
 use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class GetConsultationController extends Controller
 {
@@ -79,10 +80,10 @@ class GetConsultationController extends Controller
         })
             ->orderBy('id', 'desc')
             ->get();
-        if (count($data['assigned_consultations'])) {
+        if (count($data['assigned_consultations']) && Route::is('admin.get_consultation.index.assigned')) {
             $data['consultations'] = $data['assigned_consultations'];
         }
-        return $data['consultations'];
+
         $data['all_managers'] = User::where('role', 'manager')->orderBy('name', 'asc')->get();
         $data['all_supports'] = User::where('role', 'support')->orderBy('name', 'asc')->get();
 
