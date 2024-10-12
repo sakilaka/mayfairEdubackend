@@ -60,12 +60,6 @@ class LoginController extends Controller
                 session()->put('is_applied_partner', true);
 
                 return redirect('/admin/dashboard');
-            } elseif (auth()->attempt($request->only(['email', 'password']))) {
-                session()->put('partner_ref_id', auth()->user()->id);
-                session()->put('applied_by', auth()->user()->role);
-                session()->put('is_applied_partner', true);
-
-                return redirect('/admin/dashboard');
             } else {
                 return back()->with('error', 'Invalid email or password.');
             }
