@@ -201,30 +201,6 @@
                                 <div class="modal-body">
                                     <input type="hidden" name="application_id" value="">
                                     <div class="row">
-                                        <div class="col-12">
-                                            <p class="fw-bold">Choose Partner</p>
-                                            <select name="partner_id"
-                                                class="form-control form-control-lg selectPartner select2" style="width: 100% !important">
-                                                <option value="">None</option>
-                                                @foreach ($all_partners as $partner)
-                                                    @php
-                                                        $continentName = !empty($partner->continent_id)
-                                                            ? App\Models\Continent::find($partner->continent_id)->name
-                                                            : '';
-                                                        $roleName = $partner->role ?? '';
-                                                    @endphp
-                                                    <option value="{{ $partner->id }}">
-                                                        {{ $partner->name }}
-                                                        @if ($continentName)
-                                                            ({{ $continentName }})
-                                                        @endif
-                                                        @if ($roleName)
-                                                            - {{ ucwords($roleName) }}
-                                                        @endif
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
                                         <div class="col-6 mt-3">
                                             <p class="fw-bold">Choose Manager</p>
                                             <select name="manager_id"

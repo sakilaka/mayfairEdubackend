@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend\GetConsultation;
 
 use App\Http\Controllers\Controller;
 use App\Models\GetConsultation;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class GetConsultationController extends Controller
@@ -67,6 +68,10 @@ class GetConsultationController extends Controller
         }
 
         $data['consultations'] = $query->get();
+
+        $data['all_managers'] = User::where('role', 'manager')->orderBy('name', 'asc')->get();
+        $data['all_supports'] = User::where('role', 'support')->orderBy('name', 'asc')->get();
+
         return view('Backend.get_consultation.index', $data);
     }
 
