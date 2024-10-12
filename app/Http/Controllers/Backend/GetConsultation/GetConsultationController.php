@@ -79,7 +79,10 @@ class GetConsultationController extends Controller
         })
             ->orderBy('id', 'desc')
             ->get();
-
+        if (count($data['assigned_consultations'])) {
+            $data['consultations'] = $data['assigned_consultations'];
+        }
+        return $data['consultations'];
         $data['all_managers'] = User::where('role', 'manager')->orderBy('name', 'asc')->get();
         $data['all_supports'] = User::where('role', 'support')->orderBy('name', 'asc')->get();
 
