@@ -179,12 +179,10 @@
         const input = $("#phone");
         const iti = window.intlTelInput(input[0], {
             initialCountry: "auto",
+            nationalMode: true,
             geoIpLookup: callback => {
                 fetch("https://ipapi.co/json")
                     .then(res => res.json())
-                    .then(data => {
-                        console.log("User's IP Address: ", data.ip);
-                    })
                     .then(data => callback(data.country_code))
                     .catch(() => callback("bd"));
             },
