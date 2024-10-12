@@ -174,7 +174,7 @@
         });
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
         const input = $("#phone");
         const iti = window.intlTelInput(input[0], {
@@ -188,7 +188,48 @@
             },
             loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
         });
+    </script> --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+    <script>
+        const input = document.querySelector("#phone");
+        const output = document.querySelector("#output");
+
+        // Initialize intl-tel-input with nationalMode and geoIpLookup for automatic country detection
+        const iti = window.intlTelInput(input, {
+            initialCountry: "auto",
+            nationalMode: true, // National mode enabled (no country code in the input)
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code
+                .toLowerCase())) // Automatically detect country code
+                    .catch(() => callback("bd")); // Default to Bangladesh if country detection fails
+            },
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js" // Load utils for formatting and validation
+        });
+
+        // Function to handle phone number validation and display feedback
+        const handleChange = () => {
+            let text;
+            if (input.value) {
+                // Check if the entered phone number is valid
+                text = iti.isValidNumber() ?
+                    "Valid number! Full international format: " + iti.getNumber() :
+                    "Invalid number - please try again";
+            } else {
+                text = "Please enter a valid number below";
+            }
+            const textNode = document.createTextNode(text);
+            output.innerHTML = ""; // Clear previous message
+            output.appendChild(textNode); // Show new message
+        };
+
+        // Listen to 'change' and 'keyup' events to validate on input change
+        input.addEventListener('change', handleChange);
+        input.addEventListener('keyup', handleChange);
     </script>
+
 
     <script>
         $("form").on("submit", function(event) {
