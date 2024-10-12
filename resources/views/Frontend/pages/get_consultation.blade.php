@@ -177,19 +177,14 @@
         const input = $("#phone");
         const iti = window.intlTelInput(input[0], {
             initialCountry: "auto",
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code))
+                    .catch(() => callback("us"));
+            },
             loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
         });
-        /* const iti = window.intlTelInput(input[0], {
-            initialCountry: "auto",
-            geoIpLookup: function(callback) {
-                $.get('https://ipinfo.io?token=<YOUR_API_TOKEN>', function(resp) {
-                    const countryCode = resp && resp.country ? resp.country :
-                    "us"; // Default to 'us' if not found
-                    callback(countryCode.toLowerCase());
-                }, "json");
-            },
-            loadUtils: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
-        }); */
     </script>
 
     <script>
