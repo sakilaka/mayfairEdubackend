@@ -257,6 +257,8 @@
                 output.innerHTML = "Please enter a valid number";
                 output.classList.remove('text-success');
                 output.classList.add('text-danger');
+
+                alert('Please fix the issue');
             } else {
                 const fullNumber = iti.getNumber();
                 input.value = fullNumber;
