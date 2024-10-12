@@ -86,35 +86,49 @@
                                             <td>{{ $consultation->phone ?? '' }}</td>
                                             <td>{{ ucwords($consultation->status) }}</td>
                                             <td class="text-right">
-                                                <a href="javascript:void(0)"
-                                                    class="btn text-primary show-application-support-modal-trigger"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    data-original-title="View supports for this application"
-                                                    data-application-id="{{ $consultation->id }}">
-                                                    <i class="fa fa-users" aria-hidden="true"></i>
-                                                </a>
-                                                <a href="javascript:void(0)"
-                                                    class="btn text-primary assign-application-modal-trigger"
-                                                    data-toggle="tooltip" data-placement="top"
-                                                    data-original-title="Assign Application to Partner"
-                                                    data-application-id="{{ $consultation->id }}">
-                                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                                </a>
+                                                <div class="dropdown dropdown-action">
+                                                    <a href="#" class="action-icon dropdown-toggle"
+                                                        data-toggle="dropdown" aria-expanded="false"><i
+                                                            class="fa fa-ellipsis-v text-primary"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <div class="d-flex">
+                                                            <a href="javascript:void(0)"
+                                                                class="btn text-primary show-application-support-modal-trigger"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                data-original-title="View supports for this application"
+                                                                data-application-id="{{ $consultation->id }}">
+                                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="javascript:void(0)"
+                                                                class="btn text-primary assign-application-modal-trigger"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                data-original-title="Assign Application to Partner"
+                                                                data-application-id="{{ $consultation->id }}">
+                                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                            </a>
 
-                                                <a href="javascript:void(0)" class="btn text-primary view-consultation"
-                                                    data-id="{{ $consultation->id }}">
-                                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                                </a>
+                                                            <a href="javascript:void(0)" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                data-original-title="View Consultation"
+                                                                class="btn text-primary view-consultation"
+                                                                data-id="{{ $consultation->id }}">
+                                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                                            </a>
 
-                                                <a href="{{ route('admin.get_consultation.edit', ['id' => $consultation->id]) }}"
-                                                    class="btn text-primary">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                                </a>
-                                                <input type="hidden" value="{{ $consultation->id }}">
-                                                <a data-toggle="modal" data-target="#delete_modal_box"
-                                                    class="btn text-primary delete-item">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
+                                                            <a href="{{ route('admin.get_consultation.edit', ['id' => $consultation->id]) }}"
+                                                                class="btn text-primary" data-toggle="tooltip"
+                                                                data-placement="top"
+                                                                data-original-title="Edit Consultation">
+                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                            </a>
+                                                            <input type="hidden" value="{{ $consultation->id }}">
+                                                            <a data-toggle="modal" data-target="#delete_modal_box"
+                                                                class="btn text-primary delete-item">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -149,7 +163,7 @@
                     </div>
                 </div>
 
-                <!-- Modal -->
+                <!-- Consultation details view - modal -->
                 <div class="modal fade" id="consultationModal" role="dialog">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
@@ -166,6 +180,129 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- assign application to partner - modal --}}
+                <div class="modal fade" id="assign_application_to_partner_modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <form action="{{ route('admin.assign_application_to_employee') }}" method="POST">
+                                @csrf
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Assign Application To Partner</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name="application_id" value="">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="fw-bold">Choose Partner</p>
+                                            <select name="partner_id"
+                                                class="form-control form-control-lg selectPartner select2" style="width: 100% !important">
+                                                <option value="">None</option>
+                                                @foreach ($all_partners as $partner)
+                                                    @php
+                                                        $continentName = !empty($partner->continent_id)
+                                                            ? App\Models\Continent::find($partner->continent_id)->name
+                                                            : '';
+                                                        $roleName = $partner->role ?? '';
+                                                    @endphp
+                                                    <option value="{{ $partner->id }}">
+                                                        {{ $partner->name }}
+                                                        @if ($continentName)
+                                                            ({{ $continentName }})
+                                                        @endif
+                                                        @if ($roleName)
+                                                            - {{ ucwords($roleName) }}
+                                                        @endif
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-6 mt-3">
+                                            <p class="fw-bold">Choose Manager</p>
+                                            <select name="manager_id"
+                                                class="form-control form-control-lg selectManager select2" style="width: 100% !important">
+                                                <option value="">None</option>
+                                                @foreach ($all_managers as $manager)
+                                                    @php
+                                                        $continentName = !empty($manager->continent_id)
+                                                            ? App\Models\Continent::find($manager->continent_id)->name
+                                                            : '';
+                                                        $roleName = $manager->role ?? '';
+                                                    @endphp
+                                                    <option value="{{ $manager->id }}">
+                                                        {{ $manager->name }}
+                                                        @if ($continentName)
+                                                            ({{ $continentName }})
+                                                        @endif
+                                                        @if ($roleName)
+                                                            - {{ ucwords($roleName) }}
+                                                        @endif
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-6 mt-3">
+                                            <p class="fw-bold">Choose Support</p>
+                                            <select name="support_id"
+                                                class="form-control form-control-lg selectSupport select2" style="width: 100% !important">
+                                                <option value="">None</option>
+                                                @foreach ($all_supports as $support)
+                                                    @php
+                                                        $continentName = !empty($support->continent_id)
+                                                            ? App\Models\Continent::find($support->continent_id)->name
+                                                            : '';
+                                                        $roleName = $support->role ?? '';
+                                                    @endphp
+                                                    <option value="{{ $support->id }}">
+                                                        {{ $support->name }}
+                                                        @if ($continentName)
+                                                            ({{ $continentName }})
+                                                        @endif
+                                                        @if ($roleName)
+                                                            - {{ ucwords($roleName) }}
+                                                        @endif
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <p class="mt-2">Assign an application to specific user.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" type="button" class="btn btn-light"
+                                        data-dismiss="modal">Cancel</a>
+                                    <button type="submit" class="btn btn-primary">Assign</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- show application supports - modal --}}
+                <div class="modal fade" id="show_application_support_modal" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Take a look at the supports of this application</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div id="support-details" class="row">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>
