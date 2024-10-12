@@ -85,9 +85,15 @@ class GetConsultationController extends Controller
             $data['consultations'] = $data['assigned_consultations'];
         }
 
-        $data['all_managers'] = User::where('role', 'manager')->orderBy('name', 'asc')->get();
-        $data['all_supports'] = User::where('role', 'support')->orderBy('name', 'asc')->get();
-        $data['all_general_employees'] = User::where('role', 'general_employee')->orderBy('name', 'asc')->get();
+        $roles = ['manager', 'support', 'general_employee'];
+        $users = User::whereIn('role', $roles)
+            ->orderBy('name', 'asc')
+            ->get()
+            ->groupBy('role');
+
+        $data['all_managers'] = $users->get('manager', collect());
+        $data['all_supports'] = $users->get('support', collect());
+        $data['all_general_employees'] = $users->get('general_employee', collect());
 
         return view('Backend.get_consultation.index', $data);
     }

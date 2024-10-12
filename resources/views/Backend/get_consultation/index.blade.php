@@ -202,7 +202,7 @@
                                     <input type="hidden" name="consultation_id" value="">
                                     <div class="row">
                                         <div class="col-12 mt-3">
-                                            <p class="fw-bold">Choose Manager</p>
+                                            <label class="fw-bold">Choose Manager</label>
                                             <select name="manager_id"
                                                 class="form-control form-control-lg selectManager select2"
                                                 style="width: 100% !important">
@@ -227,20 +227,20 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 mt-3">
-                                            <p class="fw-bold">Choose Manager</p>
-                                            <select name="manager_id"
-                                                class="form-control form-control-lg selectManager select2"
+                                            <label class="fw-bold">Choose Support</label>
+                                            <select name="support_id"
+                                                class="form-control form-control-lg selectSupport select2"
                                                 style="width: 100% !important">
                                                 <option value="">None</option>
-                                                @foreach ($all_managers as $manager)
+                                                @foreach ($all_supports as $support)
                                                     @php
-                                                        $continentName = !empty($manager->continent_id)
-                                                            ? App\Models\Continent::find($manager->continent_id)->name
+                                                        $continentName = !empty($support->continent_id)
+                                                            ? App\Models\Continent::find($support->continent_id)->name
                                                             : '';
-                                                        $roleName = $manager->role ?? '';
+                                                        $roleName = $support->role ?? '';
                                                     @endphp
-                                                    <option value="{{ $manager->id }}">
-                                                        {{ $manager->name }}
+                                                    <option value="{{ $support->id }}">
+                                                        {{ $support->name }}
                                                         @if ($continentName)
                                                             ({{ $continentName }})
                                                         @endif
@@ -252,7 +252,7 @@
                                             </select>
                                         </div>
                                         <div class="col-md-6 mt-3">
-                                            <p class="fw-bold">Choose General Staff</p>
+                                            <label class="fw-bold">Choose General Staff</label>
                                             <select name="general_employee_id"
                                                 class="form-control form-control-lg selectGeneralEmployee select2"
                                                 style="width: 100% !important">
@@ -279,7 +279,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <p class="mt-2">Assign an consultation to specific user.</p>
+                                    <label class="mt-2">Assign an consultation to specific or multiple employee.</label>
                                 </div>
                                 <div class="modal-footer">
                                     <a href="#" type="button" class="btn btn-light"
@@ -482,7 +482,7 @@
                         users.forEach((user, index) => {
                             if (user) {
                                 modalBody += createUserSection(user, index === users.length -
-                                1);
+                                    1);
                                 hasData = true;
                             }
                         });
