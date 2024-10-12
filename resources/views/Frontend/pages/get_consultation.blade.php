@@ -175,10 +175,11 @@
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
         const input = $("#phone");
-        /* const iti = window.intlTelInput(input[0], {
-            loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
-        }); */
         const iti = window.intlTelInput(input[0], {
+            initialCountry: "auto",
+            loadUtilsOnInit: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
+        });
+        /* const iti = window.intlTelInput(input[0], {
             initialCountry: "auto",
             geoIpLookup: function(callback) {
                 $.get('https://ipinfo.io?token=<YOUR_API_TOKEN>', function(resp) {
@@ -188,7 +189,7 @@
                 }, "json");
             },
             loadUtils: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js",
-        });
+        }); */
     </script>
 
     <script>
