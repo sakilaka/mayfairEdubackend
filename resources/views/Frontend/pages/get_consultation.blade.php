@@ -95,6 +95,8 @@
                                                         class="form-control form-control-lg @error('phone') is-invalid @enderror"
                                                         name="phone" placeholder="{{-- Whatsapp/WeChat/Telegram/Line --}}"
                                                         value="{{ old('phone') }}" required>
+                                                    <span class="text-danger" id="output">Please provide a valid
+                                                        number</span>
                                                     @error('phone')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
