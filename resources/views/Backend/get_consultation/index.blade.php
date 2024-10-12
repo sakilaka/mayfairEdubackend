@@ -265,7 +265,7 @@
                 </div>
 
                 {{-- show application supports - modal --}}
-                <div class="modal fade" id="show_application_support_modal" tabindex="-1" role="dialog"
+                <div class="modal fade" id="show_consultation_support_modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -396,7 +396,7 @@
                     }
                 },
                 error: function() {
-                    alert('An error occurred while fetching the application data.');
+                    alert('An error occurred while fetching the consultation data.');
                 }
             });
         });
@@ -449,7 +449,7 @@
 
                         var modalBody = '';
                         var hasData = false;
-                        var users = [data.partner, data.manager, data.support];
+                        var users = [data.manager, data.support];
                         users.forEach((user, index) => {
                             if (user) {
                                 modalBody += createUserSection(user, index === users.length -
@@ -460,17 +460,17 @@
 
                         if (!hasData) {
                             modalBody =
-                                '<p class="text-center" style="font-size:16px">No support is assigned to this application.</p>';
+                                '<p class="text-center" style="font-size:16px">No support is assigned to this consultation.</p>';
                         }
 
                         $('#support-details').html(modalBody);
-                        $('#show_application_support_modal').modal('show');
+                        $('#show_consultation_support_modal').modal('show');
                     } else {
                         alert('Failed to fetch consultation data: ' + response.message);
                     }
                 },
                 error: function() {
-                    alert('An error occurred while fetching the application data.');
+                    alert('An error occurred while fetching the consultation data.');
                 }
             });
         });
