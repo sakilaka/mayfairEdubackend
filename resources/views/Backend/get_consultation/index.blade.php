@@ -99,13 +99,16 @@
                                                                 data-consultation-id="{{ $consultation->id }}">
                                                                 <i class="fa fa-users" aria-hidden="true"></i>
                                                             </a>
-                                                            <a href="javascript:void(0)"
-                                                                class="btn text-primary assign-consultation-modal-trigger"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                data-original-title="Assign Consultation to Employee"
-                                                                data-consultation-id="{{ $consultation->id }}">
-                                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                                            </a>
+                                                            
+                                                            @if (!$is_assigned)
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn text-primary assign-consultation-modal-trigger"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    data-original-title="Assign Consultation to Employee"
+                                                                    data-consultation-id="{{ $consultation->id }}">
+                                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                                </a>
+                                                            @endif
 
                                                             <a href="javascript:void(0)" data-toggle="tooltip"
                                                                 data-placement="top"
@@ -185,111 +188,117 @@
                     </div>
                 </div>
 
-                {{-- assign consultation to employee - modal --}}
-                <div class="modal fade" id="assign_consultation_to_employee_modal" tabindex="-1" role="dialog"
-                    aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <form action="{{ route('admin.assign_consultation_to_employee') }}" method="POST">
-                                @csrf
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Assign Consultation To Partner</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <input type="hidden" name="consultation_id" value="">
-                                    <div class="row">
-                                        <div class="col-12 mt-3">
-                                            <label class="fw-bold">Choose Manager</label>
-                                            <select name="manager_id"
-                                                class="form-control form-control-lg selectManager select2"
-                                                style="width: 100% !important">
-                                                <option value="">None</option>
-                                                @foreach ($all_managers as $manager)
-                                                    @php
-                                                        $continentName = !empty($manager->continent_id)
-                                                            ? App\Models\Continent::find($manager->continent_id)->name
-                                                            : '';
-                                                        $roleName = $manager->role ?? '';
-                                                    @endphp
-                                                    <option value="{{ $manager->id }}">
-                                                        {{ $manager->name }}
-                                                        @if ($continentName)
-                                                            ({{ $continentName }})
-                                                        @endif
-                                                        @if ($roleName)
-                                                            - {{ ucwords($roleName) }}
-                                                        @endif
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="fw-bold">Choose Support</label>
-                                            <select name="support_id"
-                                                class="form-control form-control-lg selectSupport select2"
-                                                style="width: 100% !important">
-                                                <option value="">None</option>
-                                                @foreach ($all_supports as $support)
-                                                    @php
-                                                        $continentName = !empty($support->continent_id)
-                                                            ? App\Models\Continent::find($support->continent_id)->name
-                                                            : '';
-                                                        $roleName = $support->role ?? '';
-                                                    @endphp
-                                                    <option value="{{ $support->id }}">
-                                                        {{ $support->name }}
-                                                        @if ($continentName)
-                                                            ({{ $continentName }})
-                                                        @endif
-                                                        @if ($roleName)
-                                                            - {{ ucwords($roleName) }}
-                                                        @endif
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="col-md-6 mt-3">
-                                            <label class="fw-bold">Choose General Staff</label>
-                                            <select name="general_employee_id"
-                                                class="form-control form-control-lg selectGeneralEmployee select2"
-                                                style="width: 100% !important">
-                                                <option value="">None</option>
-                                                @foreach ($all_general_employees as $general_employee)
-                                                    @php
-                                                        $continentName = !empty($general_employee->continent_id)
-                                                            ? App\Models\Continent::find(
-                                                                $general_employee->continent_id,
-                                                            )->name
-                                                            : '';
-                                                        $roleName = $general_employee->role ?? '';
-                                                    @endphp
-                                                    <option value="{{ $general_employee->id }}">
-                                                        {{ $general_employee->name }}
-                                                        @if ($continentName)
-                                                            ({{ $continentName }})
-                                                        @endif
-                                                        @if ($roleName)
-                                                            - {{ ucwords($roleName) }}
-                                                        @endif
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                @if (!$is_assigned)
+                    {{-- assign consultation to employee - modal --}}
+                    <div class="modal fade" id="assign_consultation_to_employee_modal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <form action="{{ route('admin.assign_consultation_to_employee') }}" method="POST">
+                                    @csrf
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Assign Consultation To Partner</h5>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                            aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
                                     </div>
-                                    <label class="mt-2">Assign an consultation to specific or multiple employee.</label>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="#" type="button" class="btn btn-light"
-                                        data-dismiss="modal">Cancel</a>
-                                    <button type="submit" class="btn btn-primary">Assign</button>
-                                </div>
-                            </form>
+                                    <div class="modal-body">
+                                        <input type="hidden" name="consultation_id" value="">
+                                        <div class="row">
+                                            <div class="col-12 mt-3">
+                                                <label class="fw-bold">Choose Manager</label>
+                                                <select name="manager_id"
+                                                    class="form-control form-control-lg selectManager select2"
+                                                    style="width: 100% !important">
+                                                    <option value="">None</option>
+                                                    @foreach ($all_managers as $manager)
+                                                        @php
+                                                            $continentName = !empty($manager->continent_id)
+                                                                ? App\Models\Continent::find($manager->continent_id)
+                                                                    ->name
+                                                                : '';
+                                                            $roleName = $manager->role ?? '';
+                                                        @endphp
+                                                        <option value="{{ $manager->id }}">
+                                                            {{ $manager->name }}
+                                                            @if ($continentName)
+                                                                ({{ $continentName }})
+                                                            @endif
+                                                            @if ($roleName)
+                                                                - {{ ucwords($roleName) }}
+                                                            @endif
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                <label class="fw-bold">Choose Support</label>
+                                                <select name="support_id"
+                                                    class="form-control form-control-lg selectSupport select2"
+                                                    style="width: 100% !important">
+                                                    <option value="">None</option>
+                                                    @foreach ($all_supports as $support)
+                                                        @php
+                                                            $continentName = !empty($support->continent_id)
+                                                                ? App\Models\Continent::find($support->continent_id)
+                                                                    ->name
+                                                                : '';
+                                                            $roleName = $support->role ?? '';
+                                                        @endphp
+                                                        <option value="{{ $support->id }}">
+                                                            {{ $support->name }}
+                                                            @if ($continentName)
+                                                                ({{ $continentName }})
+                                                            @endif
+                                                            @if ($roleName)
+                                                                - {{ ucwords($roleName) }}
+                                                            @endif
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 mt-3">
+                                                <label class="fw-bold">Choose General Staff</label>
+                                                <select name="general_employee_id"
+                                                    class="form-control form-control-lg selectGeneralEmployee select2"
+                                                    style="width: 100% !important">
+                                                    <option value="">None</option>
+                                                    @foreach ($all_general_employees as $general_employee)
+                                                        @php
+                                                            $continentName = !empty($general_employee->continent_id)
+                                                                ? App\Models\Continent::find(
+                                                                    $general_employee->continent_id,
+                                                                )->name
+                                                                : '';
+                                                            $roleName = $general_employee->role ?? '';
+                                                        @endphp
+                                                        <option value="{{ $general_employee->id }}">
+                                                            {{ $general_employee->name }}
+                                                            @if ($continentName)
+                                                                ({{ $continentName }})
+                                                            @endif
+                                                            @if ($roleName)
+                                                                - {{ ucwords($roleName) }}
+                                                            @endif
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <label class="mt-2">Assign an consultation to specific or multiple
+                                            employee.</label>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#" type="button" class="btn btn-light"
+                                            data-dismiss="modal">Cancel</a>
+                                        <button type="submit" class="btn btn-primary">Assign</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
 
                 {{-- show consultation supports - modal --}}
                 <div class="modal fade" id="show_consultation_support_modal" tabindex="-1" role="dialog"
@@ -401,6 +410,7 @@
     </script>
 
     <script>
+        
         // assign consultation to user
         $('.assign-consultation-modal-trigger').click(function() {
             var consultationId = $(this).data('consultation-id');

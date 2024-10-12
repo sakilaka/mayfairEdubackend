@@ -627,15 +627,15 @@
                     <span class="menu-title">Consulations</span>
                 </a>
             </li>
+        @endif
 
-            @if (Auth::user()->role !== 'admin')
-                <li class="nav-item {{ Route::is('admin.get_consultation.index.assigned') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('admin.get_consultation.index.assigned') }}">
-                        <i class="fa fa-user-plus menu-icon"></i>
-                        <span class="menu-title">Assinged Consulations</span>
-                    </a>
-                </li>
-            @endif
+        @if (Auth::user()->role !== 'admin')
+            <li class="nav-item {{ Route::is('admin.get_consultation.index.assigned') ? 'active' : '' }}">
+                <a class="nav-link" href="{{ route('admin.get_consultation.index.assigned') }}">
+                    <i class="fa fa-user-plus menu-icon"></i>
+                    <span class="menu-title">Assinged Consulations</span>
+                </a>
+            </li>
         @endif
 
         @if (in_array('office_module', $permissions ?? []))

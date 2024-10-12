@@ -83,6 +83,9 @@ class GetConsultationController extends Controller
             ->get();
         if (count($data['assigned_consultations']) && Route::is('admin.get_consultation.index.assigned')) {
             $data['consultations'] = $data['assigned_consultations'];
+            $data['is_assigned'] = true;
+        } else {
+            $data['is_assigned'] = false;
         }
 
         $roles = ['manager', 'support', 'general_employee'];
