@@ -376,13 +376,13 @@
     <script>
         // assign consultation to user
         $('.assign-consultation-modal-trigger').click(function() {
-            var applicationId = $(this).data('application-id');
-            $('input[name="consultation_id"]').val(applicationId);
+            var consultationId = $(this).data('consultation-id');
+            $('input[name="consultation_id"]').val(consultationId);
 
             $.ajax({
-                url: '{{ route('admin.fetch_application', ':consultation_id') }}'.replace(
+                url: '{{ route('admin.fetch_consultation', ':consultation_id') }}'.replace(
                     ':consultation_id',
-                    applicationId),
+                    consultationId),
                 method: 'GET',
                 success: function(response) {
                     if (response.success) {

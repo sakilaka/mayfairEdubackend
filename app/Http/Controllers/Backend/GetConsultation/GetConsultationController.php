@@ -149,6 +149,30 @@ class GetConsultationController extends Controller
         }
     }
 
+    public function fetchConsultation($consultation_id)
+    {
+        try {
+            $consultation = GetConsultation::findOrFail($consultation_id);
+            $partner_ref_data = json_decode($consultation->partner_ref_id, true) ?? [];
+
+            $manager_id = $partner_ref_data['manager'] ?? null;
+            $support_id = $partner_ref_data['support'] ?? null;
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'manager_id' => $manager_id,
+                    'support_id' => $support_id,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch consultation data.',
+            ]);
+        }
+    }
+
     public function fetchConsultationSupports($consultation_id)
     {
         try {
