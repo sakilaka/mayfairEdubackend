@@ -409,8 +409,10 @@
         });
     </script>
 
+<script>
+    
+</script>
     <script>
-        
         // assign consultation to user
         $('.assign-consultation-modal-trigger').click(function() {
             var consultationId = $(this).data('consultation-id');
