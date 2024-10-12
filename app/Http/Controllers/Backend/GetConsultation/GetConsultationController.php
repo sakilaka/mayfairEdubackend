@@ -72,6 +72,14 @@ class GetConsultationController extends Controller
 
         $data['consultations'] = $query->get();
 
+        $data['assigned_consultations'] = GetConsultation::where(function ($query) {
+            $userId = auth()->user()->id;
+            $query->where('partner_ref_id', 'like', '%"manager":' . $userId . '%')
+                ->orWhere('partner_ref_id', 'like', '%"support":' . $userId . '%');
+        })
+            ->orderBy('id', 'desc')
+            ->get();
+
         $data['all_managers'] = User::where('role', 'manager')->orderBy('name', 'asc')->get();
         $data['all_supports'] = User::where('role', 'support')->orderBy('name', 'asc')->get();
 

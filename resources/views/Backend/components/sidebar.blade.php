@@ -629,9 +629,9 @@
             </li>
 
             @if (Auth::user()->role !== 'admin')
-                <li class="nav-item {{ Route::is('admin.landing_page.index.assigned') ? 'active' : '' }}">
-                    <a class="nav-link" href="{{ route('admin.landing_page.index.assigned') }}">
-                        <i class="fa fa-paper-plane menu-icon"></i>
+                <li class="nav-item {{ Route::is('admin.get_consultation.index.assigned') ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('admin.get_consultation.index.assigned') }}">
+                        <i class="fa fa-user-plus menu-icon"></i>
                         <span class="menu-title">Assinged Consulations</span>
                     </a>
                 </li>

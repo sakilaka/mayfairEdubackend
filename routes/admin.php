@@ -582,8 +582,6 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
 
   Route::prefix('landing')->group(function () {
     Route::get('/', [LandingPageController::class, 'index'])->name('admin.landing_page.index');
-    Route::get('assigned', [LandingPageController::class, 'index'])->name('admin.landing_page.index.assigned');
-
     Route::get('create', [LandingPageController::class, 'create'])->name('admin.landing_page.create');
     Route::post('store', [LandingPageController::class, 'store'])->name('admin.landing_page.store');
     Route::get('edit/{id}', [LandingPageController::class, 'edit'])->name('admin.landing_page.edit');
@@ -594,6 +592,8 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
 
   Route::prefix('get-consultation')->group(function () {
     Route::get('/', [GetConsultationController::class, 'index'])->name('admin.get_consultation.index');
+    Route::get('assigned', [GetConsultationController::class, 'index'])->name('admin.get_consultation.index.assigned');
+
     Route::post('/', [GetConsultationController::class, 'index'])->name('admin.get_consultation.index.filter');
     Route::get('edit/{id}', [GetConsultationController::class, 'edit'])->name('admin.get_consultation.edit');
     Route::post('update/{id}', [GetConsultationController::class, 'get_consultation_store'])->name('admin.get_consultation.update');
