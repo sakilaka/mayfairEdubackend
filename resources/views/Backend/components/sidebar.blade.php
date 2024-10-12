@@ -617,7 +617,6 @@
             @php
                 $is_active_inquiry =
                     Route::is('admin.get_consultation.index') ||
-                    Route::is('admin.landing_page.index.assigned') ||
                     Route::is('admin.get_consultation.index.filter') ||
                     Route::is('admin.get_consultation.edit') ||
                     Route::is('admin.get_consultation.view');
@@ -630,7 +629,7 @@
             </li>
 
             @if (Auth::user()->role !== 'admin')
-                <li class="nav-item {{ $is_active_inquiry ? 'active' : '' }}">
+                <li class="nav-item {{ Route::is('admin.landing_page.index.assigned') ? 'active' : '' }}">
                     <a class="nav-link" href="{{ route('admin.landing_page.index.assigned') }}">
                         <i class="fa fa-paper-plane menu-icon"></i>
                         <span class="menu-title">Assinged Consulations</span>
