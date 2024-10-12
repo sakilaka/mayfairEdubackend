@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend\GetConsultation;
 
 use App\Http\Controllers\Controller;
+use App\Models\Continent;
+use App\Models\Country;
 use App\Models\GetConsultation;
+use App\Models\Notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -107,6 +110,121 @@ class GetConsultationController extends Controller
             return redirect()->back()->with('success', 'Consultation Form Has Been Deleted!');
         } else {
             return redirect()->back()->with('error', 'Consultation Form Not Found!');
+        }
+    }
+
+    public function assignConsultationToEmployee(Request $request)
+    {
+        try {
+            $consultation = GetConsultation::findOrFail($request->consultation_id);
+
+            $managerId = isset($request->manager_id) ? (int) $request->manager_id : null;
+            $supportId = isset($request->support_id) ? (int) $request->support_id : null;
+
+            $newPartnerRefId = array_filter([
+                'manager' => $managerId,
+                'support' => $supportId,
+            ]);
+
+            $consultation->partner_ref_id = !empty($newPartnerRefId) ? json_encode($newPartnerRefId) : null;
+            $consultation->save();
+
+            foreach ($newPartnerRefId as $role => $id) {
+                if ($id) {
+                    $user = User::find($id);
+
+                    if ($user) {
+                        $notification = new Notification();
+                        $notification->partner_id = $user->id;
+                        $notification->user_id = $user->id;
+                        $notification->text = 'Consultation for ' . '\'' . $consultation->name . '\'' . ' has been assigned to ' . ucwords($role) . ' - ' . $user->name;
+                        $notification->save();
+                    }
+                }
+            }
+
+            return redirect()->back()->with('success', 'Consultation assigned to selected employees successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong! Please try again.');
+        }
+    }
+
+    public function fetchConsultation($consultation_id)
+    {
+        try {
+            $consultation = GetConsultation::findOrFail($consultation_id);
+            $partner_ref_data = json_decode($consultation->partner_ref_id, true) ?? [];
+
+            $manager_id = $partner_ref_data['manager'] ?? null;
+            $support_id = $partner_ref_data['support'] ?? null;
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'manager_id' => $manager_id,
+                    'support_id' => $support_id,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch consultation data.',
+            ]);
+        }
+    }
+
+    public function fetchConsultationSupports($consultation_id)
+    {
+        try {
+            $consultation = GetConsultation::findOrFail($consultation_id);
+            $partner_ref_data = json_decode($consultation->partner_ref_id, true) ?? [];
+
+            $manager_id = $partner_ref_data['manager'] ?? null;
+            $support_id = $partner_ref_data['support'] ?? null;
+
+            $getUserData = function ($user) {
+                $countryName = null;
+                $continentName = null;
+
+                if ($user) {
+                    if ($user->country_id) {
+                        $countryId = (int) $user->country;
+                        $countryName = Country::find($countryId)?->name;
+                    }
+
+                    if ($user->continent_id) {
+                        $continentId = (int) $user->continent_id;
+                        $continentName = Continent::find($continentId)?->name;
+                    }
+                }
+
+                return $user ? [
+                    'name' => $user->name,
+                    'role' => ucwords(str_replace('_', ' ', $user->role)),
+                    'address' => $user->address,
+                    'country' => $countryName,
+                    'continent' => $continentName,
+                    'phone' => $user->mobile,
+                    'email' => $user->email,
+                    'photo' => $user->image_show,
+                ] : null;
+            };
+
+            $managerData = $getUserData(User::find($manager_id));
+            $supportData = $getUserData(User::find($support_id));
+
+            return response()->json([
+                'success' => true,
+                'data' => [
+                    'manager' => $managerData,
+                    'support' => $supportData,
+                ],
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to fetch application data.',
+            ]);
         }
     }
 }

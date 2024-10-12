@@ -185,15 +185,15 @@
                     </div>
                 </div>
 
-                {{-- assign application to partner - modal --}}
+                {{-- assign consultation to partner - modal --}}
                 <div class="modal fade" id="assign_consultation_to_partner_modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('admin.assign_application_to_employee') }}" method="POST">
+                            <form action="{{ route('admin.assign_consultation_to_employee') }}" method="POST">
                                 @csrf
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Assign Application To Partner</h5>
+                                    <h5 class="modal-title">Assign Consultation To Partner</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
@@ -252,7 +252,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <p class="mt-2">Assign an application to specific user.</p>
+                                    <p class="mt-2">Assign an consultation to specific user.</p>
                                 </div>
                                 <div class="modal-footer">
                                     <a href="#" type="button" class="btn btn-light"
@@ -264,13 +264,13 @@
                     </div>
                 </div>
 
-                {{-- show application supports - modal --}}
+                {{-- show consultation supports - modal --}}
                 <div class="modal fade" id="show_consultation_support_modal" tabindex="-1" role="dialog"
                     aria-labelledby="exampleModalLabel-2" style="display: none;" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Take a look at the supports of this application</h5>
+                                <h5 class="modal-title">Take a look at the supports of this consultation</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -380,7 +380,8 @@
             $('input[name="consultation_id"]').val(applicationId);
 
             $.ajax({
-                url: '{{ route('admin.fetch_application', ':consultation_id') }}'.replace(':consultation_id',
+                url: '{{ route('admin.fetch_application', ':consultation_id') }}'.replace(
+                    ':consultation_id',
                     applicationId),
                 method: 'GET',
                 success: function(response) {
@@ -405,13 +406,13 @@
             $(this).find('input[name="consultation_id"]').val('');
         });
 
-        // show application support
-        $('.show-application-support-modal-trigger').click(function() {
-            var applicationId = $(this).data('application-id');
+        // show consultation support
+        $('.show-consultation-support-modal-trigger').click(function() {
+            var consultationId = $(this).data('consultation-id');
 
             $.ajax({
-                url: '{{ route('admin.fetch_application_support', ':consultation_id') }}'.replace(
-                    ':consultation_id', applicationId),
+                url: '{{ route('admin.fetch_consultation_support', ':consultation_id') }}'.replace(
+                    ':consultation_id', consultationId),
                 method: 'GET',
                 success: function(response) {
                     if (response.success) {
