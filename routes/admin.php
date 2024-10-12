@@ -599,7 +599,7 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
     Route::post('delete', [GetConsultationController::class, 'delete'])->name('admin.get_consultation.delete');
 
     Route::post('assign-consultation-to-employee', [GetConsultationController::class, "assignConsultationToEmployee"])->name('admin.assign_consultation_to_employee');
-    Route::get('fetch-consultation/{consultation_id}', [GetConsultationController::class, 'fetchCosultation'])->name('admin.fetch_consultation');
-    Route::get('fetch-supports/{consultation_id}', [GetConsultationController::class, 'fetchCosultationSupports'])->name('admin.fetch_consultation_support');
+    Route::get('fetch-consultation/{consultation_id}', [GetConsultationController::class, 'fetchConsultation'])->name('admin.fetch_consultation');
+    Route::get('fetch-supports/{consultation_id}', [GetConsultationController::class, 'fetchConsultationSupports'])->name('admin.fetch_consultation_support');
   });
 });
