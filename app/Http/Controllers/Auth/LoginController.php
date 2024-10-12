@@ -53,7 +53,7 @@ class LoginController extends Controller
                 'email'   => 'required|email',
                 'password' => 'required|min:6'
             ]);
-
+return $request->all();
             if (auth('admin')->attempt($request->only(['email', 'password']))) {
                 return 'admin';
                 session()->put('partner_ref_id', auth('admin')->user()->id);
