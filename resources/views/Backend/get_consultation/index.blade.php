@@ -86,6 +86,21 @@
                                             <td>{{ $consultation->phone ?? '' }}</td>
                                             <td>{{ ucwords($consultation->status) }}</td>
                                             <td class="text-right">
+                                                <a href="javascript:void(0)"
+                                                    class="btn text-primary show-application-support-modal-trigger"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    data-original-title="View supports for this application"
+                                                    data-application-id="{{ $consultation->id }}">
+                                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="javascript:void(0)"
+                                                    class="btn text-primary assign-application-modal-trigger"
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    data-original-title="Assign Application to Partner"
+                                                    data-application-id="{{ $consultation->id }}">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </a>
+
                                                 <a href="javascript:void(0)" class="btn text-primary view-consultation"
                                                     data-id="{{ $consultation->id }}">
                                                     <i class="fa fa-eye" aria-hidden="true"></i>
