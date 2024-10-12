@@ -238,7 +238,7 @@ class GetConsultationController extends Controller
                 'data' => [
                     'manager' => $managerData,
                     'support' => $supportData,
-                    'support' => $generalEmployeeData,
+                    'general_employee' => $generalEmployeeData,
                 ],
             ]);
         } catch (\Exception $e) {

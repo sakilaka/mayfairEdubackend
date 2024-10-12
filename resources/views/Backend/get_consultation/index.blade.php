@@ -201,7 +201,7 @@
                                 <div class="modal-body">
                                     <input type="hidden" name="consultation_id" value="">
                                     <div class="row">
-                                        <div class="col-6 mt-3">
+                                        <div class="col-12 mt-3">
                                             <p class="fw-bold">Choose Manager</p>
                                             <select name="manager_id"
                                                 class="form-control form-control-lg selectManager select2"
@@ -226,21 +226,48 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-6 mt-3">
-                                            <p class="fw-bold">Choose Support</p>
-                                            <select name="support_id"
-                                                class="form-control form-control-lg selectSupport select2"
+                                        <div class="col-md-6 mt-3">
+                                            <p class="fw-bold">Choose Manager</p>
+                                            <select name="manager_id"
+                                                class="form-control form-control-lg selectManager select2"
                                                 style="width: 100% !important">
                                                 <option value="">None</option>
-                                                @foreach ($all_supports as $support)
+                                                @foreach ($all_managers as $manager)
                                                     @php
-                                                        $continentName = !empty($support->continent_id)
-                                                            ? App\Models\Continent::find($support->continent_id)->name
+                                                        $continentName = !empty($manager->continent_id)
+                                                            ? App\Models\Continent::find($manager->continent_id)->name
                                                             : '';
-                                                        $roleName = $support->role ?? '';
+                                                        $roleName = $manager->role ?? '';
                                                     @endphp
-                                                    <option value="{{ $support->id }}">
-                                                        {{ $support->name }}
+                                                    <option value="{{ $manager->id }}">
+                                                        {{ $manager->name }}
+                                                        @if ($continentName)
+                                                            ({{ $continentName }})
+                                                        @endif
+                                                        @if ($roleName)
+                                                            - {{ ucwords($roleName) }}
+                                                        @endif
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mt-3">
+                                            <p class="fw-bold">Choose General Staff</p>
+                                            <select name="general_employee_id"
+                                                class="form-control form-control-lg selectGeneralEmployee select2"
+                                                style="width: 100% !important">
+                                                <option value="">None</option>
+                                                @foreach ($all_general_employees as $general_employee)
+                                                    @php
+                                                        $continentName = !empty($general_employee->continent_id)
+                                                            ? App\Models\Continent::find(
+                                                                $general_employee->continent_id,
+                                                            )->name
+                                                            : '';
+                                                        $roleName = $general_employee->role ?? '';
+                                                    @endphp
+                                                    <option value="{{ $general_employee->id }}">
+                                                        {{ $general_employee->name }}
                                                         @if ($continentName)
                                                             ({{ $continentName }})
                                                         @endif
@@ -390,6 +417,7 @@
 
                         $('.selectManager').val(data.manager_id).trigger('change');
                         $('.selectSupport').val(data.support_id).trigger('change');
+                        $('.selectGeneralEmployee').val(data.general_employee_id).trigger('change');
 
                         $('#assign_consultation_to_employee_modal').modal('show');
                     } else {
@@ -450,11 +478,11 @@
 
                         var modalBody = '';
                         var hasData = false;
-                        var users = [data.manager, data.support];
+                        var users = [data.manager, data.support, data.general_employee];
                         users.forEach((user, index) => {
                             if (user) {
                                 modalBody += createUserSection(user, index === users.length -
-                                    1);
+                                1);
                                 hasData = true;
                             }
                         });
