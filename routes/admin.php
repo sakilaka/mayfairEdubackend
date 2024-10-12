@@ -582,6 +582,8 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
 
   Route::prefix('landing')->group(function () {
     Route::get('/', [LandingPageController::class, 'index'])->name('admin.landing_page.index');
+    Route::get('assigned', [LandingPageController::class, 'index'])->name('admin.landing_page.index.assigned');
+
     Route::get('create', [LandingPageController::class, 'create'])->name('admin.landing_page.create');
     Route::post('store', [LandingPageController::class, 'store'])->name('admin.landing_page.store');
     Route::get('edit/{id}', [LandingPageController::class, 'edit'])->name('admin.landing_page.edit');
