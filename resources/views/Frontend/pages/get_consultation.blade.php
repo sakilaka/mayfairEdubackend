@@ -253,13 +253,13 @@
 
         $("form").on("submit", function(event) {
             if (!iti.isValidNumber()) {
-                event.preventDefault(); // Prevent submission
+                event.preventDefault();
                 output.innerHTML = "Please enter a valid number";
                 output.classList.remove('text-success');
                 output.classList.add('text-danger');
             } else {
-                const fullNumber = iti.getNumber(); // Get full international number
-                input.value = fullNumber; // Set full number to form input
+                const fullNumber = iti.getNumber();
+                input.value = fullNumber;
             }
         });
     </script>
