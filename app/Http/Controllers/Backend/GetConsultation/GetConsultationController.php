@@ -134,10 +134,12 @@ class GetConsultationController extends Controller
 
             $managerId = isset($request->manager_id) ? (int) $request->manager_id : null;
             $supportId = isset($request->support_id) ? (int) $request->support_id : null;
+            $generalEmployeeId = isset($request->general_employee_id) ? (int) $request->general_employee_id : null;
 
             $newPartnerRefId = array_filter([
                 'manager' => $managerId,
                 'support' => $supportId,
+                'general_employee' => $generalEmployeeId,
             ]);
 
             $consultation->partner_ref_id = !empty($newPartnerRefId) ? json_encode($newPartnerRefId) : null;
@@ -171,12 +173,14 @@ class GetConsultationController extends Controller
 
             $manager_id = $partner_ref_data['manager'] ?? null;
             $support_id = $partner_ref_data['support'] ?? null;
+            $general_employee_id = $partner_ref_data['general_employee'] ?? null;
 
             return response()->json([
                 'success' => true,
                 'data' => [
                     'manager_id' => $manager_id,
                     'support_id' => $support_id,
+                    'general_employee_id' => $general_employee_id,
                 ],
             ]);
         } catch (\Exception $e) {
@@ -195,6 +199,7 @@ class GetConsultationController extends Controller
 
             $manager_id = $partner_ref_data['manager'] ?? null;
             $support_id = $partner_ref_data['support'] ?? null;
+            $general_employee_id = $partner_ref_data['general_employee'] ?? null;
 
             $getUserData = function ($user) {
                 $countryName = null;
@@ -226,12 +231,14 @@ class GetConsultationController extends Controller
 
             $managerData = $getUserData(User::find($manager_id));
             $supportData = $getUserData(User::find($support_id));
+            $generalEmployeeData = $getUserData(User::find($general_employee_id));
 
             return response()->json([
                 'success' => true,
                 'data' => [
                     'manager' => $managerData,
                     'support' => $supportData,
+                    'support' => $generalEmployeeData,
                 ],
             ]);
         } catch (\Exception $e) {
