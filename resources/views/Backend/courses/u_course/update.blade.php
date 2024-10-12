@@ -298,7 +298,7 @@
                                                     <label>Course Duration (Yearly) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" min="0" name="course_duration"
-                                                        placeholder="Enter Course Duration In Hours"
+                                                        placeholder="Enter Course Duration In Yearly"
                                                         value="{{ $course->course_duration }}" class="form-control"
                                                         required>
                                                 </div>
