@@ -194,7 +194,7 @@
             let text = "";
             if (input.value) {
                 if (iti.isValidNumber()) {
-                    text = "Valid number! Full international format: " + iti.getNumber();
+                    text = "Valid number detected. International format: " + iti.getNumber();
                     output.classList.remove('text-danger');
                     output.classList.add('text-success');
                 } else {
@@ -224,7 +224,7 @@
                 output.classList.remove('text-success');
                 output.classList.add('text-danger');
 
-                alert('Please fix the issue');
+                alert('Please enter a valid number');
             } else {
                 const fullNumber = iti.getNumber();
                 input.value = fullNumber;
