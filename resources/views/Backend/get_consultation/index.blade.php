@@ -93,17 +93,17 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <div class="d-flex">
                                                             <a href="javascript:void(0)"
-                                                                class="btn text-primary show-application-support-modal-trigger"
+                                                                class="btn text-primary show-consultation-support-modal-trigger"
                                                                 data-toggle="tooltip" data-placement="top"
-                                                                data-original-title="View supports for this application"
-                                                                data-application-id="{{ $consultation->id }}">
+                                                                data-original-title="View supports for this consultation"
+                                                                data-consultation-id="{{ $consultation->id }}">
                                                                 <i class="fa fa-users" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="javascript:void(0)"
-                                                                class="btn text-primary assign-application-modal-trigger"
+                                                                class="btn text-primary assign-consultation-modal-trigger"
                                                                 data-toggle="tooltip" data-placement="top"
-                                                                data-original-title="Assign Application to Partner"
-                                                                data-application-id="{{ $consultation->id }}">
+                                                                data-original-title="Assign Consultation to Employee"
+                                                                data-consultation-id="{{ $consultation->id }}">
                                                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                                             </a>
 
@@ -374,8 +374,8 @@
     </script>
 
     <script>
-        // assign application to user
-        $('.assign-application-modal-trigger').click(function() {
+        // assign consultation to user
+        $('.assign-consultation-modal-trigger').click(function() {
             var applicationId = $(this).data('application-id');
             $('input[name="consultation_id"]').val(applicationId);
 
