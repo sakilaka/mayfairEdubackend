@@ -26,6 +26,10 @@ class GetConsultationController extends Controller
      */
     public function get_consultation_store(Request $request, $consultation_id = null)
     {
+        $request->validate([
+            'email' => 'unique:get_consultation,email'
+        ]);
+        
         try {
             if ($consultation_id) {
                 $get_consultation = GetConsultation::find($consultation_id);
