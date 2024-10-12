@@ -206,7 +206,7 @@
             utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
         });
 
-        const handleChange = () => {
+        /* const handleChange = () => {
             let text;
             if (input.value) {
                 text = iti.isValidNumber() ?
@@ -218,7 +218,27 @@
             const textNode = document.createTextNode(text);
             output.innerHTML = "";
             output.appendChild(textNode);
+        }; */
+        const handleChange = () => {
+            let text = "";
+            if (input.value) {
+                if (iti.isValidNumber()) {
+                    text = "Valid number! Full international format: " + iti.getNumber();
+                    output.classList.remove('text-danger');
+                    output.classList.add('text-success');
+                } else {
+                    text = "Please enter a valid number";
+                    output.classList.remove('text-success');
+                    output.classList.add('text-danger');
+                }
+            } else {
+                text = "Please enter a valid number";
+                output.classList.remove('text-success');
+                output.classList.add('text-danger');
+            }
+            output.innerHTML = text;
         };
+
 
         input.addEventListener('change', handleChange);
         input.addEventListener('keyup', handleChange);
@@ -226,9 +246,21 @@
 
 
     <script>
+        /* $("form").on("submit", function(event) {
+                const fullNumber = iti.getNumber();
+                input.val(fullNumber);
+            }); */
+
         $("form").on("submit", function(event) {
-            const fullNumber = iti.getNumber();
-            input.val(fullNumber);
+            if (!iti.isValidNumber()) {
+                event.preventDefault(); // Prevent submission
+                output.innerHTML = "Please enter a valid number";
+                output.classList.remove('text-success');
+                output.classList.add('text-danger');
+            } else {
+                const fullNumber = iti.getNumber(); // Get full international number
+                input.value = fullNumber; // Set full number to form input
+            }
         });
     </script>
 @endsection
