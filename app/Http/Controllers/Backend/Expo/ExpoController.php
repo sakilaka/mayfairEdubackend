@@ -405,7 +405,7 @@ class ExpoController extends Controller
                 $exhibitor->show_in_expo = 0;
                 $message = $exhibitor->name . ' is no longer being shown in the expo.';
             }
-
+return $exhibitor;
             $exhibitor->save();
 
             return redirect()->back()->with('success', $message);
