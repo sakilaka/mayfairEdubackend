@@ -3,7 +3,9 @@
 
 <head>
     @include('Expo.components.head')
-    <title>{{ env('APP_NAME') }} - Details of {{ $expo['title'] }}</title>
+    @section('title')
+        {{ env('APP_NAME') }} - Details of {{ $expo['title'] }}
+    @endsection
 </head>
 
 <body>
