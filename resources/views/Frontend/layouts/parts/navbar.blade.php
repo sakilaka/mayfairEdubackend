@@ -155,9 +155,57 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link {{ Route::is('frontend.expo_list') ? 'active' : '' }}"
                                 href="{{ route('frontend.expo_list') }}">Expo</a>
+                        </li> --}}
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="contactDropdown"
+                                data-bs-toggle="dropdown">
+                                Expo
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- Contact -->
+                                <li>
+                                    <a class="dropdown-item {{ Route::is('frontend.contact') ? 'active-bg' : '' }}"
+                                        href="{{ route('frontend.contact') }}">Expo In China</a>
+                                </li>
+
+                                <!-- Head Office -->
+                                <li>
+                                    <a class="dropdown-item"
+                                        href="{{ route('frontend.office_details', ['office_id' => $offices['head_office']->id]) }}">
+                                        Expo In Overseas
+                                    </a>
+                                </li>
+
+                                <!-- Regional Offices Dropdown -->
+                                @if (!empty($offices['country_offices']))
+                                    <li>
+                                        <a href="#" class="dropdown-item dropdown-toggle">Regional Offices</a>
+                                        <ul class="submenu dropdown-menu">
+                                            @foreach ($offices['country_offices'] as $country => $countryOffices)
+                                                <li>
+                                                    <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
+                                                        {{ $country }} Offices &nbsp;
+                                                    </a>
+                                                    <ul class="submenu dropdown-menu">
+                                                        @foreach ($countryOffices as $office)
+                                                            <li>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('frontend.office_details', ['office_id' => $office['id']]) }}">
+                                                                    {{ $office['name'] }}
+                                                                </a>
+                                                            </li>
+                                                        @endforeach
+                                                    </ul>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                @endif
+                            </ul>
                         </li>
 
                         <li class="nav-item dropdown">
