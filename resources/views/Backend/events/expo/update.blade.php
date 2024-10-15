@@ -140,7 +140,8 @@
                                             <div class="col-md-6">
                                                 @php
                                                     $location = json_decode($expo['location'], true) ?? [];
-                                                    $isOverseas = $location['type'] === 'overseas';
+                                                    $locationType = isset($location['type']) ? $location['type'] : '';
+                                                    $isOverseas = $locationType === 'overseas';
                                                 @endphp
                                                 <div class="row expo-location-container">
                                                     <div
@@ -153,7 +154,7 @@
                                                                 required>
                                                                 <option value="">Select Location</option>
                                                                 <option value="china"
-                                                                    {{ $location['type'] === 'china' ? 'selected' : '' }}>
+                                                                    {{ $locationType === 'china' ? 'selected' : '' }}>
                                                                     China</option>
                                                                 <option value="overseas"
                                                                     {{ $isOverseas ? 'selected' : '' }}>Overseas
@@ -172,6 +173,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
 
                                             <div class="col-md-12">
