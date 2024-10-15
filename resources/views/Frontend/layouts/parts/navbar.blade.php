@@ -144,7 +144,7 @@
                                         @foreach ($groupedExpos['china'] as $expo)
                                             <li>
                                                 <a class="dropdown-item"
-                                                    href="{{ route('frontend.expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
+                                                    href="{{ route('expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -162,7 +162,7 @@
                                                 <ul class="submenu dropdown-menu">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('frontend.expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
+                                                            href="{{ route('expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
                                                     </li>
                                                 </ul>
                                             </li>
