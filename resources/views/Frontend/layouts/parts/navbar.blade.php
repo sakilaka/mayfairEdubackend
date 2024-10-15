@@ -139,7 +139,7 @@
                             <ul class="dropdown-menu">
                                 <!-- Expo in China -->
                                 <li>
-                                    <a class="dropdown-item" href="#">Expo In China</a>
+                                    <a class="dropdown-item dropdown-toggle" href="#">Expo In China</a>
                                     <ul class="submenu dropdown-menu">
                                         @foreach ($groupedExpos['china'] as $expo)
                                             <li>
@@ -156,7 +156,7 @@
                                         @foreach ($groupedExpos['overseas'] as $expo)
                                             <li>
                                                 <a class="dropdown-item" href="#">
-                                                    {{ $expo['location'] }} &nbsp; <!-- Country name -->
+                                                    {{ $expo['location'] }} &nbsp;
                                                 </a>
                                                 <ul class="submenu dropdown-menu">
                                                     <li>
