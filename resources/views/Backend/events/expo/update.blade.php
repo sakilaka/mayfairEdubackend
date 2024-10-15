@@ -124,7 +124,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label class="form-control-label">Place:
                                                         <span class="text-danger"
@@ -133,6 +133,34 @@
                                                         <input type="text" name="place" class="form-control"
                                                             placeholder="Enter Address" value="{{ $expo->place }}"
                                                             required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                <div class="row expo-location-container">
+                                                    <div class="col-md-12 expo-location-select-container">
+                                                        <div class="form-group">
+                                                            <label>Expo Location:
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select class="form-control form-control-lg"
+                                                                name="location[type]" id="expoLocationSelect"
+                                                                required>
+                                                                <option value="">Select Location</option>
+                                                                <option value="china">China</option>
+                                                                <option value="overseas">Overseas</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 expo-country-container"
+                                                        style="display:none;">
+                                                        <div class="form-group">
+                                                            <label>Country:</label>
+                                                            <input type="text" class="form-control"
+                                                                name="location[country]"
+                                                                placeholder="Enter Country Name">
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -865,6 +893,19 @@
 
         $(document).on('click', '.remove-photo-gallery', function() {
             $(this).parent().remove();
+        });
+    </script>
+
+    <script>
+        $('#expoLocationSelect').on('change', function() {
+            var selectedLocation = $(this).val();
+            if (selectedLocation === 'overseas') {
+                $('.expo-location-select-container').removeClass('col-md-12').addClass('col-md-6');
+                $('.expo-country-container').show();
+            } else {
+                $('.expo-location-select-container').removeClass('col-md-6').addClass('col-md-12');
+                $('.expo-country-container').hide();
+            }
         });
     </script>
 </body>
