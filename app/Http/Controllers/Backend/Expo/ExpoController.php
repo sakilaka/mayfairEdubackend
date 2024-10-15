@@ -42,6 +42,7 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->all();
         try {
             $data = [
                 'title' => $request->title,
