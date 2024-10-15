@@ -233,11 +233,6 @@
                             </ul>
                         </li>
 
-                        {{-- <li class="nav-item">
-                            <a class="nav-link {{ Route::is('frontend.expo_list') ? 'active' : '' }}"
-                                href="{{ route('frontend.expo_list') }}">Expo</a>
-                        </li> --}}
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="contactDropdown"
                                 data-bs-toggle="dropdown">
