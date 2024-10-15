@@ -31,7 +31,7 @@ class ExpoModuleController extends Controller
     public function expoDetails($id)
     {
         $data['expo'] = Expo::find($id);
-        return view('Frontend.pages.expodetails', $data);
+        return view('Expo.home', $data);
     }
 
     /**
