@@ -139,8 +139,22 @@
                             <ul class="dropdown-menu">
                                 <!-- Expo in china -->
                                 <li>
-                                    <a class="dropdown-item {{ Route::is('ffrontend.expo_list') ? 'active-bg' : '' }}"
-                                        href="{{ route('frontend.expo_list') }}">Expo In China</a>
+                                    <a class="dropdown-item" href="#">Expo In China</a>
+
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="#">
+                                                Expo title 1
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item"
+                                                href="#">
+                                                Expo title 2
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
 
                                 <!-- Expo in overseas -->
@@ -154,7 +168,29 @@
                                             <ul class="submenu dropdown-menu">
                                                 <li>
                                                     <a class="dropdown-item" href="#">
-                                                        Beijing
+                                                        Expo title 1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        Expo title 2
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
+                                                Country 2 &nbsp;
+                                            </a>
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        Expo title 1
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        Expo title 2
                                                     </a>
                                                 </li>
                                             </ul>
