@@ -239,8 +239,6 @@
                     </div>
                 </div>
 
-
-
                 @include('Backend.components.footer')
             </div>
         </div>
