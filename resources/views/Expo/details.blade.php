@@ -11,10 +11,6 @@
 
     @include('Expo.home_sections.section_2')
 
-    <section class="overlay-section">
-        <div class="overlay"></div>
-    </section>
-
     @include('Expo.home_sections.organizer_profile')
 
     @include('Expo.home_sections.co_organizer_profile')
