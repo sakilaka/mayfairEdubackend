@@ -129,7 +129,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-12">
+                                            <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label>Participated Universities:</label>
                                                     <select class="form-control form-control-lg multipleSelect2Search"
@@ -142,6 +142,10 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
+                                            </div>
+
+                                            <div class="col-md-6">
+                                                
                                             </div>
 
                                             <div class="col-md-12">
