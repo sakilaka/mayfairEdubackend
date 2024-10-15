@@ -36,7 +36,7 @@ class ExpoModuleController extends Controller
             abort(404, 'Expo Not Found!');
         }
 
-        return view('Expo.home', $data);
+        return view('Expo.details', $data);
     }
 
     /**
