@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Expo\Controllers;
+namespace App\Http\Controllers\Expo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expo;

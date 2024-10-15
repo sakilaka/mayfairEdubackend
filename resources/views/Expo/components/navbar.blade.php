@@ -41,20 +41,20 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('frontend.about_us') ? 'active' : '' }}"
-                href="{{ route('frontend.about_us') }}" style="color: white;">About US</a>
+            <a class="nav-link {{ Route::is('expo.about_us') ? 'active' : '' }}"
+                href="{{ route('expo.about_us') }}" style="color: white;">About US</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('frontend.contact') ? 'active' : '' }}"
-                href="{{ route('frontend.contact') }}" style="color: white;">Contact</a>
+            <a class="nav-link {{ Route::is('expo.contact') ? 'active' : '' }}"
+                href="{{ route('expo.contact') }}" style="color: white;">Contact</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  {{ Route::is('frontend.gallery') ? 'active' : '' }}"
-                href="{{ route('frontend.gallery') }}" style="color: white;">Gallery</a>
+            <a class="nav-link  {{ Route::is('expo.gallery') ? 'active' : '' }}"
+                href="{{ route('expo.gallery') }}" style="color: white;">Gallery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('frontend.exhibitors') ? 'active' : '' }}"
-                href="{{ route('frontend.exhibitors') }}" style="color: white;">Exhibitors</a>
+            <a class="nav-link {{ Route::is('expo.exhibitors') ? 'active' : '' }}"
+                href="{{ route('expo.exhibitors') }}" style="color: white;">Exhibitors</a>
         </li>
         <li class="nav-item">
             <a class="nav-link registration-btn btn-danger-bg px-2" href="{{ route('expo_module.expo-form') }}"
