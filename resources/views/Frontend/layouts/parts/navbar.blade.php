@@ -94,12 +94,48 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="contactDropdown"
                                 data-bs-toggle="dropdown">
                                 Expo
                             </a>
+                            @php
+                                $expoArray = App\Models\Expo::select('id', 'title', 'location')->latest()->get();
+                                $groupedExpos = [
+                                    'china' => [],
+                                    'overseas' => [],
+                                    'undefined' => [],
+                                ];
+
+                                foreach ($expoArray as $expo) {
+                                    $locationData = $expo->location ? json_decode($expo->location, true) : null;
+
+                                    if ($locationData && isset($locationData['type'])) {
+                                        $countryName = $locationData['country'] ?? null;
+
+                                        if ($locationData['type'] === 'china') {
+                                            $groupedExpos['china'][] = [
+                                                'id' => $expo->id,
+                                                'title' => $expo->title,
+                                                'location' => 'China',
+                                            ];
+                                        } elseif ($locationData['type'] === 'overseas') {
+                                            $groupedExpos['overseas'][] = [
+                                                'id' => $expo->id,
+                                                'title' => $expo->title,
+                                                'location' => $countryName,
+                                            ];
+                                        }
+                                    } else {
+                                        $groupedExpos['undefined'][] = [
+                                            'id' => $expo->id,
+                                            'title' => $expo->title,
+                                            'location' => null,
+                                        ];
+                                    }
+                                }
+                            @endphp
                             <ul class="dropdown-menu">
                                 <!-- Expo in china -->
                                 <li>
@@ -113,7 +149,7 @@
                                     <ul class="submenu dropdown-menu">
                                         <li>
                                             <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
-                                                China &nbsp;
+                                                Country 1 &nbsp;
                                             </a>
                                             <ul class="submenu dropdown-menu">
                                                 <li>

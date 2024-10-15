@@ -109,44 +109,6 @@ class FrontendController extends Controller
 
     public function index(Request $request)
     {
-        $expoArray = Expo::select('id', 'title', 'location')->latest()->get();
-        $groupedExpos = [
-            'china' => [],
-            'overseas' => [],
-            'undefined' => []
-        ];
-
-        foreach ($expoArray as $expo) {
-            $locationData = $expo->location ? json_decode($expo->location, true) : null;
-
-            if ($locationData && isset($locationData['type'])) {
-                $countryName = $locationData['country'] ?? null;
-
-                if ($locationData['type'] === 'china') {
-                    $groupedExpos['china'][] = [
-                        'id' => $expo->id,
-                        'title' => $expo->title,
-                        'location' => 'China'
-                    ];
-                } elseif (
-                    $locationData['type'] === 'overseas'
-                ) {
-                    $groupedExpos['overseas'][] = [
-                        'id' => $expo->id,
-                        'title' => $expo->title,
-                        'location' => $countryName
-                    ];
-                }
-            } else {
-                $groupedExpos['undefined'][] = [
-                    'id' => $expo->id,
-                    'title' => $expo->title,
-                    'location' => null
-                ];
-            }
-        }
-        return $groupedExpos;
-
         $data['home_content'] = HomeContentSetup::first();
         $data['partners'] = Partner::all();
 
