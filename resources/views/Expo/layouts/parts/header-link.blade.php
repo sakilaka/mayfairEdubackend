@@ -56,9 +56,11 @@
     href="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/plugins/datatables/buttons.bootstrap4.min.css"
     rel="stylesheet">
 
-<link href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/style.css') }}?v={{ rand() }}"
+<link
+    href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/style.css') }}?v={{ rand() }}"
     rel="stylesheet">
-<link href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/frontends.css') }}?v={{ rand() }}"
+<link
+    href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/frontends.css') }}?v={{ rand() }}"
     rel="stylesheet">
 <script src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/js/virtualpaginate.js">
 </script>
@@ -83,5 +85,3 @@
 <script
     src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/plugins/Chart.js/chart.min.js">
 </script>
-
-<title>@yield('title')</title>
