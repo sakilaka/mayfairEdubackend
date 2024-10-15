@@ -41,24 +41,24 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('expo.about_us') ? 'active' : '' }}"
-                href="{{ route('expo.about_us') }}" style="color: white;">About US</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/about-us" style="color: white;"
+                target="_blank">About US</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('expo.contact') ? 'active' : '' }}"
-                href="{{ route('expo.contact') }}" style="color: white;">Contact</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;"
+                target="_blank">Contact</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"
-                href="http://studyinchinaexhibition.com/gallery" style="color: white;">Gallery</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/gallery" style="color: white;"
+                target="_blank">Gallery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link"
-                href="http://studyinchinaexhibition.com/exhibitors" style="color: white;">Exhibitors</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
+                target="_blank">Exhibitors</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link registration-btn btn-danger-bg px-2" href="http://studyinchinaexhibition.com/expo-sign-up"
-                style="color: white;">Participate</a>
+            <a class="nav-link registration-btn btn-danger-bg px-2"
+                href="http://studyinchinaexhibition.com/expo-sign-up" style="color: white;">Participate</a>
         </li>
     </ul>
 </div>
