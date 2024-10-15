@@ -103,7 +103,7 @@
                         $redirectURL = route('frontend.event.details', ['id' => $firstItemId]);
                     } elseif ($firstCategory == 'expo') {
                         $firstDetails = $home_content->getExpoDetails($firstItemId);
-                        $redirectURL = route('frontend.expo.details', ['id' => $firstItemId]);
+                        $redirectURL = route('expo.details', ['id' => $firstItemId]);
                     }
                 }
             @endphp
@@ -154,7 +154,7 @@
                                         $redirectURL = route('frontend.event.details', ['id' => $itemId]);
                                     } elseif ($category == 'expo') {
                                         $details = $home_content->getExpoDetails($itemId);
-                                        $redirectURL = route('frontend.expo.details', ['id' => $itemId]);
+                                        $redirectURL = route('expo.details', ['id' => $itemId]);
                                     }
                                 @endphp
 
