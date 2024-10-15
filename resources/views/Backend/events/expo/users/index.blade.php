@@ -95,6 +95,12 @@
                                     @endforeach
                                 </tbody>
                             </table>
+
+                            <div class="d-flex justify-content-end mt-3">
+                                <div class="pagination-container">
+                                    {{ $expo_users->links() }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

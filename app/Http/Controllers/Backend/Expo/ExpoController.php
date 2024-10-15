@@ -436,7 +436,7 @@ class ExpoController extends Controller
      */
     public function expo_users()
     {
-        $data['expo_users'] = ExpoModule::latest()->get();
+        $data['expo_users'] = ExpoModule::latest()->paginate(50);
         return view('Backend.events.expo.users.index', $data);
     }
 
