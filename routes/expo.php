@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
+use App\Http\Expo\Controllers\ExpoModuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
@@ -43,3 +44,11 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
+
+Route::get('/expo-details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.expo.details');
+
+// pages
+Route::get('about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
+Route::get('contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
+Route::get('exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
+Route::get('gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
