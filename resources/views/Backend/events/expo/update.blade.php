@@ -142,11 +142,11 @@
                                                     $location = json_decode($expo['location'], true) ?? [];
                                                 @endphp
                                                 <div class="row expo-location-container">
-                                                    <div class="col-md-12 expo-location-select-container">
+                                                    <div
+                                                        class="@if ($location['type'] === 'overseas') col-md-6 @else col-md-12 @endif expo-location-select-container">
                                                         <div class="form-group">
-                                                            <label>Expo Location:
-                                                                <span class="text-danger">*</span>
-                                                            </label>
+                                                            <label>Expo Location: <span
+                                                                    class="text-danger">*</span></label>
                                                             <select class="form-control form-control-lg"
                                                                 name="location[type]" id="expoLocationSelect"
                                                                 required>
@@ -161,11 +161,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 expo-country-container"
-                                                        style="display:none;">
+                                                        @if ($location['type'] !== 'overseas') style="display:none;" @endif>
                                                         <div class="form-group">
                                                             <label>Country:</label>
                                                             <input type="text" class="form-control"
-                                                                name="location[country]" value="{{ $location['country'] }}"
+                                                                name="location[country]"
+                                                                value="{{ $location['country'] ?? '' }}"
                                                                 placeholder="Enter Country Name">
                                                         </div>
                                                     </div>
