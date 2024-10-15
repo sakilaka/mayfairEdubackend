@@ -788,7 +788,8 @@ class FrontendController extends Controller
     public function expoDetails($id)
     {
         $data['expo'] = Expo::find($id);
-        return view('Frontend.pages.expodetails', $data);
+        // return view('Frontend.pages.expodetails', $data);
+        return view('Expo.pages.expodetails', $data);
     }
 
     //ajax get Event
