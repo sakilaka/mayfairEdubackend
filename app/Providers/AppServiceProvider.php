@@ -33,4 +33,15 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo convertCurrency($value); ?>";
         });
     }
+
+    /**
+     * Check if the current route has 'admin' prefix.
+     */
+    protected function isAdminRoute(): bool
+    {
+        /* $route = request()->route();
+        return $route && str_starts_with($route->getPrefix(), 'admin'); */
+        $route = request()->route();
+        return $route && ($route->getPrefix() && (str_starts_with($route->getPrefix(), 'admin') || str_starts_with($route->getPrefix(), 'user')));
+    }
 }
