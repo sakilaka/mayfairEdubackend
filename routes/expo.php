@@ -14,7 +14,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
 
     Route::prefix('exhibitors')->group(function () {
-        Route::get('/', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
+        Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
         Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo.exhibitors.store');
         Route::post('delete', [ExpoController::class, "exhibitors_destroy"])->name('admin.expo.exhibitors.delete');
         Route::get('toggle-show-in-expo/{id}', [ExpoController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo.exhibitors.toggle_show_in_expo');
