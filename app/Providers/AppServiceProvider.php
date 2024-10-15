@@ -26,9 +26,6 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         View::composer('*', function ($view) {
-            /**
-             * Declaring Global Variables
-             */
             $view->with('currentUser', Auth::user());
         });
 
