@@ -150,7 +150,7 @@
                                                         <div class="form-group">
                                                             <label>Expo Location:</label>
                                                             <select class="form-control form-control-lg"
-                                                                name="expo_location" id="expoLocationSelect">
+                                                                name="location[type]" id="expoLocationSelect">
                                                                 <option value="">Select Location</option>
                                                                 <option value="china">China</option>
                                                                 <option value="overseas">Overseas</option>
@@ -162,7 +162,7 @@
                                                         <div class="form-group">
                                                             <label>Country:</label>
                                                             <input type="text" class="form-control"
-                                                                name="overseas_country" placeholder="Enter Country Name">
+                                                                name="location[country]" placeholder="Enter Country Name">
                                                         </div>
                                                     </div>
                                                 </div>
