@@ -146,21 +146,23 @@
 
                                             <div class="col-md-6">
                                                 <div class="row expo-location-container">
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-12 expo-location-select-container">
                                                         <div class="form-group">
                                                             <label>Expo Location:</label>
                                                             <select class="form-control form-control-lg"
-                                                                name="expo_location">
+                                                                name="expo_location" id="expoLocationSelect">
                                                                 <option value="">Select Location</option>
                                                                 <option value="china">China</option>
                                                                 <option value="overseas">Overseas</option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    <div class="col-md-6 expo-country-container"
+                                                        style="display:none;">
                                                         <div class="form-group">
                                                             <label>Country:</label>
-                                                            <input type="text" class="form-control" name="overseas_country">
+                                                            <input type="text" class="form-control"
+                                                                name="overseas_country" placeholder="Enter Country Name">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -683,6 +685,21 @@
 
         $(document).on('click', '.remove-photo-gallery', function() {
             $(this).parent().remove();
+        });
+    </script>
+
+    <script>
+        $('#expoLocationSelect').on('change', function() {
+            var selectedLocation = $(this).val();
+            if (selectedLocation === 'overseas') {
+                // Show the country input field and change the select box width
+                $('.expo-location-select-container').removeClass('col-md-12').addClass('col-md-6');
+                $('.expo-country-container').show();
+            } else {
+                // Hide the country input field and restore the select box to full width
+                $('.expo-location-select-container').removeClass('col-md-6').addClass('col-md-12');
+                $('.expo-country-container').hide();
+            }
         });
     </script>
 </body>
