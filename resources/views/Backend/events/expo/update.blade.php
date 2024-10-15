@@ -140,10 +140,11 @@
                                             <div class="col-md-6">
                                                 @php
                                                     $location = json_decode($expo['location'], true) ?? [];
+                                                    $isOverseas = $location['type'] === 'overseas';
                                                 @endphp
                                                 <div class="row expo-location-container">
                                                     <div
-                                                        class="@if ($location['type'] === 'overseas') col-md-6 @else col-md-12 @endif expo-location-select-container">
+                                                        class="{{ $isOverseas ? 'col-md-6' : 'col-md-12' }} expo-location-select-container">
                                                         <div class="form-group">
                                                             <label>Expo Location: <span
                                                                     class="text-danger">*</span></label>
@@ -152,16 +153,16 @@
                                                                 required>
                                                                 <option value="">Select Location</option>
                                                                 <option value="china"
-                                                                    @if ($location['type'] === 'china') selected @endif>
+                                                                    {{ $location['type'] === 'china' ? 'selected' : '' }}>
                                                                     China</option>
                                                                 <option value="overseas"
-                                                                    @if ($location['type'] === 'overseas') selected @endif>
-                                                                    Overseas</option>
+                                                                    {{ $isOverseas ? 'selected' : '' }}>Overseas
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6 expo-country-container"
-                                                        @if ($location['type'] !== 'overseas') style="display:none;" @endif>
+                                                        style="{{ $isOverseas ? '' : 'display:none;' }}">
                                                         <div class="form-group">
                                                             <label>Country:</label>
                                                             <input type="text" class="form-control"
