@@ -145,12 +145,12 @@
                                             </div>
 
                                             <div class="col-md-6">
-                                                <div class="row">
+                                                <div class="row expo-location-container">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Expo Location:</label>
                                                             <select class="form-control form-control-lg"
-                                                                name="universities">
+                                                                name="expo_location">
                                                                 <option value="">Select Location</option>
                                                                 <option value="china">China</option>
                                                                 <option value="overseas">Overseas</option>
@@ -160,12 +160,7 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Country:</label>
-                                                            <select class="form-control form-control-lg"
-                                                                name="universities">
-                                                                <option value="">Select Location</option>
-                                                                <option value="china">China</option>
-                                                                <option value="overseas">Overseas</option>
-                                                            </select>
+                                                            <input type="text" class="form-control" name="overseas_country">
                                                         </div>
                                                     </div>
                                                 </div>
