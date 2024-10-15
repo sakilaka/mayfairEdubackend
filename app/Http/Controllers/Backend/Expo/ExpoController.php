@@ -148,7 +148,6 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // return $request->all();
         $expo = Expo::find($id);
 
         if (!$expo) {
