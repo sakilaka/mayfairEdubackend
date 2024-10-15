@@ -143,7 +143,8 @@
                                     <ul class="submenu dropdown-menu">
                                         @foreach ($groupedExpos['china'] as $expo)
                                             <li>
-                                                <a class="dropdown-item" href="#">{{ $expo['title'] }}</a>
+                                                <a class="dropdown-item"
+                                                    href="{{ route('frontend.expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -155,13 +156,13 @@
                                     <ul class="submenu dropdown-menu">
                                         @foreach ($groupedExpos['overseas'] as $expo)
                                             <li>
-                                                <a class="dropdown-item" href="#">
+                                                <a class="dropdown-item dropdown-toggle" href="javascript:void(0)">
                                                     {{ $expo['location'] }} &nbsp;
                                                 </a>
                                                 <ul class="submenu dropdown-menu">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="#">{{ $expo['title'] }}</a>
+                                                            href="{{ route('frontend.expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
                                                     </li>
                                                 </ul>
                                             </li>
