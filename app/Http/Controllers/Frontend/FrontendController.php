@@ -109,7 +109,7 @@ class FrontendController extends Controller
 
     public function index(Request $request)
     {
-        $expoArray = Expo::all();
+        $expoArray = Expo::select('id', 'title', 'location')->latest()->get();
         return $expoArray;
 
         $data['home_content'] = HomeContentSetup::first();
