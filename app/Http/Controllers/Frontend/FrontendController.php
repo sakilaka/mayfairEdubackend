@@ -789,7 +789,7 @@ class FrontendController extends Controller
     {
         $data['expo'] = Expo::find($id);
         // return view('Frontend.pages.expodetails', $data);
-        return view('Expo.pages.expodetails', $data);
+        return view('Expo.home', $data);
     }
 
     //ajax get Event
