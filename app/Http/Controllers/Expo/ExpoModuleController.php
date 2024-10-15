@@ -31,6 +31,11 @@ class ExpoModuleController extends Controller
     public function expoDetails($id)
     {
         $data['expo'] = Expo::find($id);
+
+        if (!$data['expo']) {
+            abort(404, 'Expo Not Found!');
+        }
+
         return view('Expo.home', $data);
     }
 
