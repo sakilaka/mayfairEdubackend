@@ -103,8 +103,8 @@
                             <ul class="dropdown-menu">
                                 <!-- Expo in china -->
                                 <li>
-                                    <a class="dropdown-item {{ Route::is('frontend.contact') ? 'active-bg' : '' }}"
-                                        href="{{ route('frontend.contact') }}">Expo In China</a>
+                                    <a class="dropdown-item {{ Route::is('ffrontend.expo_list') ? 'active-bg' : '' }}"
+                                        href="{{ route('frontend.expo_list') }}">Expo In China</a>
                                 </li>
 
                                 <!-- Expo in overseas -->
@@ -113,7 +113,7 @@
                                     <ul class="submenu dropdown-menu">
                                         <li>
                                             <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
-                                                China Offices &nbsp;
+                                                China &nbsp;
                                             </a>
                                             <ul class="submenu dropdown-menu">
                                                 <li>
