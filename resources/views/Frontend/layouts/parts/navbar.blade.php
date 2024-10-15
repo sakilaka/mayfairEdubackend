@@ -172,39 +172,24 @@
                                         href="{{ route('frontend.contact') }}">Expo In China</a>
                                 </li>
 
-                                <!-- Head Office -->
-                                <li>
-                                    <a class="dropdown-item"
-                                        href="{{ route('frontend.office_details', ['office_id' => $offices['head_office']->id]) }}">
-                                        Expo In Overseas
-                                    </a>
-                                </li>
-
                                 <!-- Regional Offices Dropdown -->
-                                @if (!empty($offices['country_offices']))
-                                    <li>
-                                        <a href="#" class="dropdown-item dropdown-toggle">Regional Offices</a>
-                                        <ul class="submenu dropdown-menu">
-                                            @foreach ($offices['country_offices'] as $country => $countryOffices)
+                                <li>
+                                    <a href="#" class="dropdown-item dropdown-toggle">Expo In Overseas</a>
+                                    <ul class="submenu dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
+                                                China Offices &nbsp;
+                                            </a>
+                                            <ul class="submenu dropdown-menu">
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
-                                                        {{ $country }} Offices &nbsp;
+                                                    <a class="dropdown-item" href="#">
+                                                        Beijing
                                                     </a>
-                                                    <ul class="submenu dropdown-menu">
-                                                        @foreach ($countryOffices as $office)
-                                                            <li>
-                                                                <a class="dropdown-item"
-                                                                    href="{{ route('frontend.office_details', ['office_id' => $office['id']]) }}">
-                                                                    {{ $office['name'] }}
-                                                                </a>
-                                                            </li>
-                                                        @endforeach
-                                                    </ul>
                                                 </li>
-                                            @endforeach
-                                        </ul>
-                                    </li>
-                                @endif
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
 
@@ -235,7 +220,8 @@
                                         <ul class="submenu dropdown-menu">
                                             @foreach ($offices['country_offices'] as $country => $countryOffices)
                                                 <li>
-                                                    <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
+                                                    <a href="javascript:void(0)"
+                                                        class="dropdown-item dropdown-toggle">
                                                         {{ $country }} Offices &nbsp;
                                                     </a>
                                                     <ul class="submenu dropdown-menu">
