@@ -3,7 +3,6 @@
 
 <head>
     @include('Backend.components.head')
-    {{-- <link rel="stylesheet" href="{{ asset('backend/assets/vendors/summernote/dist/summernote-bs4.css') }}"> --}}
     <title>{{ env('APP_NAME') }} | Add Expo</title>
 </head>
 
