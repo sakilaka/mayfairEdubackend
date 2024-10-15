@@ -6,7 +6,7 @@ use App\Http\Controllers\Expo\ExpoModuleController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
-    Route::get('/', [ExpoController::class, "index"])->name('admin.expo.index');
+    Route::get('list', [ExpoController::class, "index"])->name('admin.expo.index');
     Route::get('create', [ExpoController::class, "create"])->name('admin.expo.create');
     Route::post('store', [ExpoController::class, "store"])->name('admin.expo.store');
     Route::get('edit/{id}', [ExpoController::class, "edit"])->name('admin.expo.edit');
