@@ -95,7 +95,7 @@ Route::middleware(['accessLogin'])->group(function () {
     
     //Expo List Page Route
     Route::get('/expo-list', [FrontendController::class, 'expoList'])->name('frontend.expo_list');
-    Route::get('/expo-details/{id}', [FrontendController::class, 'expoDetails'])->name('frontend.expo.details');
+    // Route::get('/expo-details/{id}', [FrontendController::class, 'expoDetails'])->name('frontend.expo.details');
 
     Route::middleware(['userCheck'])->group(function () {
         Route::post('/event-massage', [FrontendController::class, 'eventMassage'])->name('event.details.massage');
