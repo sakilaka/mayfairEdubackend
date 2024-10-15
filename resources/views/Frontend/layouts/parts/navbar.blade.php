@@ -96,6 +96,39 @@
                         </li>
 
                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="contactDropdown"
+                                data-bs-toggle="dropdown">
+                                Expo
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- Expo in china -->
+                                <li>
+                                    <a class="dropdown-item {{ Route::is('frontend.contact') ? 'active-bg' : '' }}"
+                                        href="{{ route('frontend.contact') }}">Expo In China</a>
+                                </li>
+
+                                <!-- Expo in overseas -->
+                                <li>
+                                    <a href="#" class="dropdown-item dropdown-toggle">Expo In Overseas</a>
+                                    <ul class="submenu dropdown-menu">
+                                        <li>
+                                            <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
+                                                China Offices &nbsp;
+                                            </a>
+                                            <ul class="submenu dropdown-menu">
+                                                <li>
+                                                    <a class="dropdown-item" href="#">
+                                                        Beijing
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)"
                                 data-bs-toggle="dropdown">About
                             </a>
@@ -159,39 +192,6 @@
                             <a class="nav-link {{ Route::is('frontend.expo_list') ? 'active' : '' }}"
                                 href="{{ route('frontend.expo_list') }}">Expo</a>
                         </li> --}}
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="contactDropdown"
-                                data-bs-toggle="dropdown">
-                                Expo
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- Contact -->
-                                <li>
-                                    <a class="dropdown-item {{ Route::is('frontend.contact') ? 'active-bg' : '' }}"
-                                        href="{{ route('frontend.contact') }}">Expo In China</a>
-                                </li>
-
-                                <!-- Regional Offices Dropdown -->
-                                <li>
-                                    <a href="#" class="dropdown-item dropdown-toggle">Expo In Overseas</a>
-                                    <ul class="submenu dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
-                                                China Offices &nbsp;
-                                            </a>
-                                            <ul class="submenu dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Beijing
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)" id="contactDropdown"
