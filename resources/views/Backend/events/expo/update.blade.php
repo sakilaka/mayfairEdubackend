@@ -165,7 +165,7 @@
                                                         <div class="form-group">
                                                             <label>Country:</label>
                                                             <input type="text" class="form-control"
-                                                                name="location[country]"
+                                                                name="location[country]" value="{{ $location['country'] }}"
                                                                 placeholder="Enter Country Name">
                                                         </div>
                                                     </div>
