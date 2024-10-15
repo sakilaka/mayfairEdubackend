@@ -49,15 +49,15 @@
                 href="{{ route('expo.contact') }}" style="color: white;">Contact</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  {{ Route::is('expo.gallery') ? 'active' : '' }}"
-                href="{{ route('expo.gallery') }}" style="color: white;">Gallery</a>
+            <a class="nav-link"
+                href="http://studyinchinaexhibition.com/gallery" style="color: white;">Gallery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('expo.exhibitors') ? 'active' : '' }}"
-                href="{{ route('expo.exhibitors') }}" style="color: white;">Exhibitors</a>
+            <a class="nav-link"
+                href="http://studyinchinaexhibition.com/exhibitors" style="color: white;">Exhibitors</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link registration-btn btn-danger-bg px-2" href="{{ route('expo_module.expo-form') }}"
+            <a class="nav-link registration-btn btn-danger-bg px-2" href="http://studyinchinaexhibition.com/expo-sign-up"
                 style="color: white;">Participate</a>
         </li>
     </ul>
