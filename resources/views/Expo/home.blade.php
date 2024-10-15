@@ -15,8 +15,6 @@
         <div class="overlay"></div>
     </section>
 
-    @include('Expo.home_sections.exhibitors')
-
     @include('Expo.home_sections.organizer_profile')
 
     @include('Expo.home_sections.co_organizer_profile')
