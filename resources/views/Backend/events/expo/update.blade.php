@@ -138,6 +138,9 @@
                                             </div>
 
                                             <div class="col-md-6">
+                                                @php
+                                                    $location = json_decode($expo['location'], true) ?? [];
+                                                @endphp
                                                 <div class="row expo-location-container">
                                                     <div class="col-md-12 expo-location-select-container">
                                                         <div class="form-group">
@@ -148,8 +151,12 @@
                                                                 name="location[type]" id="expoLocationSelect"
                                                                 required>
                                                                 <option value="">Select Location</option>
-                                                                <option value="china">China</option>
-                                                                <option value="overseas">Overseas</option>
+                                                                <option value="china"
+                                                                    @if ($location['type'] === 'china') selected @endif>
+                                                                    China</option>
+                                                                <option value="overseas"
+                                                                    @if ($location['type'] === 'overseas') selected @endif>
+                                                                    Overseas</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -183,10 +190,8 @@
                                                         name="universities[]" multiple>
                                                         <option value="">Select University</option>
                                                         @php
-                                                            $selectedUniversities = json_decode(
-                                                                $expo->universities,
-                                                                true,
-                                                            ) ?? [];
+                                                            $selectedUniversities =
+                                                                json_decode($expo->universities, true) ?? [];
                                                         @endphp
                                                         @foreach ($universities as $university)
                                                             <option value="{{ $university->id }}"
@@ -255,14 +260,16 @@
                                                                             name="guestDesignation[]"
                                                                             class="mr-1 form-control"
                                                                             placeholder="Designation"
-                                                                            value="{{ $guest['designation'] }}" required>
+                                                                            value="{{ $guest['designation'] }}"
+                                                                            required>
                                                                     </div>
                                                                     <div style="width: 24.5%;">
                                                                         <input type="text"
                                                                             name="guestOrganization[]"
                                                                             class="mr-1 form-control"
                                                                             placeholder="Organization"
-                                                                            value="{{ $guest['organization'] }}" required>
+                                                                            value="{{ $guest['organization'] }}"
+                                                                            required>
                                                                     </div>
                                                                 </div>
 
@@ -327,7 +334,8 @@
 
                                                 <div class="media-partner-container">
                                                     @php
-                                                        $mediaPartnerImages = json_decode($expo->media_partner, true) ?? [];
+                                                        $mediaPartnerImages =
+                                                            json_decode($expo->media_partner, true) ?? [];
                                                     @endphp
 
                                                     @forelse ($mediaPartnerImages as $key => $image)
@@ -512,7 +520,8 @@
 
                                                             <div class="photo-gallery-container">
                                                                 @php
-                                                                    $galleryImages = json_decode($expo->photos, true) ?? [];
+                                                                    $galleryImages =
+                                                                        json_decode($expo->photos, true) ?? [];
                                                                 @endphp
 
                                                                 @forelse ($galleryImages as $key => $image)
