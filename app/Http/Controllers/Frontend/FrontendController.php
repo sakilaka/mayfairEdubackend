@@ -109,6 +109,9 @@ class FrontendController extends Controller
 
     public function index(Request $request)
     {
+        $expoArray = Expo::all();
+        return $expoArray;
+
         $data['home_content'] = HomeContentSetup::first();
         $data['partners'] = Partner::all();
 
