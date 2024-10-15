@@ -3,9 +3,7 @@
 
 <head>
     @include('Expo.components.head')
-    @section('title')
-        {{ env('APP_NAME') }} - Details of {{ $expo['title'] }}
-    @endsection
+    <title>sldkjf</title>
 </head>
 
 <body>
