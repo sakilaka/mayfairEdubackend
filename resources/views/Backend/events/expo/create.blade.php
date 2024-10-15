@@ -692,11 +692,9 @@
         $('#expoLocationSelect').on('change', function() {
             var selectedLocation = $(this).val();
             if (selectedLocation === 'overseas') {
-                // Show the country input field and change the select box width
                 $('.expo-location-select-container').removeClass('col-md-12').addClass('col-md-6');
                 $('.expo-country-container').show();
             } else {
-                // Hide the country input field and restore the select box to full width
                 $('.expo-location-select-container').removeClass('col-md-6').addClass('col-md-12');
                 $('.expo-country-container').hide();
             }
