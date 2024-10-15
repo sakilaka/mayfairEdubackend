@@ -137,68 +137,40 @@
                                 }
                             @endphp
                             <ul class="dropdown-menu">
-                                <!-- Expo in china -->
+                                <!-- Expo in China -->
                                 <li>
                                     <a class="dropdown-item" href="#">Expo In China</a>
-
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a class="dropdown-item"
-                                                href="#">
-                                                Expo title 1
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item"
-                                                href="#">
-                                                Expo title 2
-                                            </a>
-                                        </li>
+                                    <ul class="submenu dropdown-menu">
+                                        @foreach ($groupedExpos['china'] as $expo)
+                                            <li>
+                                                <a class="dropdown-item" href="#">{{ $expo['title'] }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
 
-                                <!-- Expo in overseas -->
+                                <!-- Expo in Overseas -->
                                 <li>
                                     <a href="#" class="dropdown-item dropdown-toggle">Expo In Overseas</a>
                                     <ul class="submenu dropdown-menu">
-                                        <li>
-                                            <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
-                                                Country 1 &nbsp;
-                                            </a>
-                                            <ul class="submenu dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Expo title 1
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Expo title 2
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:void(0)" class="dropdown-item dropdown-toggle">
-                                                Country 2 &nbsp;
-                                            </a>
-                                            <ul class="submenu dropdown-menu">
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Expo title 1
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        Expo title 2
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
+                                        @foreach ($groupedExpos['overseas'] as $expo)
+                                            <li>
+                                                <a class="dropdown-item" href="#">
+                                                    {{ $expo['location'] }} &nbsp; <!-- Country name -->
+                                                </a>
+                                                <ul class="submenu dropdown-menu">
+                                                    <li>
+                                                        <a class="dropdown-item"
+                                                            href="#">{{ $expo['title'] }}</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                             </ul>
                         </li>
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)"
