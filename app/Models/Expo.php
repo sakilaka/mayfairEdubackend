@@ -19,7 +19,8 @@ class Expo extends Model
         'media_partner',
         'photos',
         'videos',
-        'description'
+        'description',
+        'location'
     ];
 
     public function universities()

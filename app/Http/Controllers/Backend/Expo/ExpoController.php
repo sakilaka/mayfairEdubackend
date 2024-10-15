@@ -42,14 +42,14 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
         try {
             $data = [
                 'title' => $request->title,
                 'datetime' => date('d M, Y', strtotime($request->date)) . ' ' . date('h:i A', strtotime($request->time)),
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->universities) ?? '',
-                'description' => $request->description
+                'description' => $request->description,
+                'location' => json_encode($request->location)
             ];
 
             if ($request->hasFile('banner')) {
@@ -119,7 +119,7 @@ class ExpoController extends Controller
                 }
                 $data['photos'] = json_encode($galleryImages);
             }
-
+return $data;
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
