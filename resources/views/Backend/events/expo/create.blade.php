@@ -148,9 +148,12 @@
                                                 <div class="row expo-location-container">
                                                     <div class="col-md-12 expo-location-select-container">
                                                         <div class="form-group">
-                                                            <label>Expo Location:</label>
+                                                            <label>Expo Location:
+                                                                <span class="text-danger">*</span>
+                                                            </label>
                                                             <select class="form-control form-control-lg"
-                                                                name="location[type]" id="expoLocationSelect">
+                                                                name="location[type]" id="expoLocationSelect"
+                                                                required>
                                                                 <option value="">Select Location</option>
                                                                 <option value="china">China</option>
                                                                 <option value="overseas">Overseas</option>
@@ -162,7 +165,8 @@
                                                         <div class="form-group">
                                                             <label>Country:</label>
                                                             <input type="text" class="form-control"
-                                                                name="location[country]" placeholder="Enter Country Name">
+                                                                name="location[country]"
+                                                                placeholder="Enter Country Name">
                                                         </div>
                                                     </div>
                                                 </div>
