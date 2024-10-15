@@ -45,7 +45,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
 
-Route::get('/expo-details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
+Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
 
 // pages
 Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
