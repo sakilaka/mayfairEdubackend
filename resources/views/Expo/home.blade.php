@@ -2,28 +2,28 @@
 <html lang="en">
 
 <head>
-    @include('Frontend.components.head')
+    @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Expo</title>
 </head>
 
 <body>
-    @include('Frontend.home_sections.hero')
+    @include('Expo.home_sections.hero')
 
-    @include('Frontend.home_sections.section_2')
+    @include('Expo.home_sections.section_2')
 
     <section class="overlay-section">
         <div class="overlay"></div>
     </section>
 
-    @include('Frontend.home_sections.exhibitors')
+    @include('Expo.home_sections.exhibitors')
 
-    @include('Frontend.home_sections.organizer_profile')
+    @include('Expo.home_sections.organizer_profile')
 
-    @include('Frontend.home_sections.co_organizer_profile')
+    @include('Expo.home_sections.co_organizer_profile')
 
-    @include('Frontend.home_sections.footer')
+    @include('Expo.home_sections.footer')
 
-    @include('Frontend.components.footer')
+    @include('Expo.components.footer')
 </body>
 
 </html>

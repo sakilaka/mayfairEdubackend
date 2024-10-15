@@ -13,7 +13,7 @@
 @if (Route::is('home'))
     <link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/bootstrap.min.css') }}" crossorigin="anonymous">
 @else
-    @include('Frontend.layouts.parts.header-link')
+    @include('Expo.layouts.parts.header-link')
 @endif
 <link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/site.css') }}?v={{ rand() }}">
 
