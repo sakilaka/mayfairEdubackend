@@ -270,7 +270,7 @@ h2 {
 }
 
 .hero-bottom-location-container {
-    background-color: #263c9d;
+    background-color: var(--primary_background);
     color: white;
     width: fit-content;
     border-radius: 8px;

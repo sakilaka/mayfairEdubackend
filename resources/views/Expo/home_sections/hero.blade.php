@@ -31,13 +31,15 @@
                 </div>
                 <div>
                     <div>
-                        <p style="font-size: 16px;" class="text-white mb-0">Organizer:</p>
+                        <p style="font-size: 16px; color:var(--secondary_background)" class="text-white mb-0">Organizer:
+                        </p>
                         <p class="location-text text-white">
                             <span class="text-style fw-bold">Guangzhou MalishaEdu Co. Ltd.</span>
                         </p>
                     </div>
                     <div>
-                        <p style="font-size: 16px;" class="text-white mb-0">Co-Organizer:</p>
+                        <p style="font-size: 16px; color:var(--secondary_background)" class="text-white mb-0">
+                            Co-Organizer:</p>
                         <p class="location-text text-white">
                             <span class="text-style fw-bold">The Belt and Road Chinese Center (BRCC) and Easy
                                 Link</span>
@@ -63,9 +65,9 @@
                 <div
                     class="d-flex flex-column flex-md-row mx-auto align-items-center justify-content-center p-2 px-4 border hero-bottom-location-container">
                     <div class="d-flex align-items-center me-md-3">
-                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                            viewBox="0 0 24 24">
+                        <svg class="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            width="24" height="24" fill="currentColor" viewBox="0 0 24 24"
+                            style="fill: var(--secondary_background)">
                             <path fill-rule="evenodd"
                                 d="M5 5a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1h1a1 1 0 0 0 1-1 1 1 0 1 1 2 0 1 1 0 0 0 1 1 2 2 0 0 1 2 2v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a2 2 0 0 1 2-2ZM3 19v-7a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm6.01-6a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm-10 4a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm6 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0Zm2 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z"
                                 clip-rule="evenodd" />
@@ -75,7 +77,7 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 70 70" viewBox="0 0 70 70"
-                            id="map" width="24" height="24" style="fill: white">
+                            id="map" width="24" height="24" style="fill: var(--secondary_background)">
                             <path d="M36.1,31.4v18.5l11-6.1V20.4l-4.7,2.5C40.4,26.5,37.2,30.2,36.1,31.4z"></path>
                             <polygon points="22.9 46.3 33.9 50.2 33.9 39 22.9 36.7"></polygon>
                             <polygon points="9.6 51.8 20.7 46.4 20.7 37.8 9.6 47.6"></polygon>
