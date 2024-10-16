@@ -155,6 +155,7 @@ class ExpoController extends Controller
                 $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
+            return $data;
 
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
@@ -176,7 +177,7 @@ class ExpoController extends Controller
         }
 
         $data['universities'] = University::where('status', 1)->get();
-return $data['expo'];
+// return $data['expo'];
         return view("Backend.events.expo.update", $data);
     }
 
