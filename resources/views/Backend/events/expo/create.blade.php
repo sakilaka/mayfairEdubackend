@@ -31,7 +31,7 @@
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST">
+                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST" class="validate-form">
                                         @csrf
 
                                         <div>
@@ -924,7 +924,7 @@
                 var formObject = form.serializeArray();
                 console.log("Form Fields: ", formObject);
 
-                form.submit();
+                // form.submit();
             }
         });
     </script>
