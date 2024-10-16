@@ -13,14 +13,16 @@
 <style>
     :root {
         --primary_background: #0c4493;
+        --primary_background_hover: #3a62a0;
         --secondary_background: #58b135;
+        --secondary_background_hover: #357e61;
         --tertiary_background: #c0392b;
 
-        --btn_primary_color: var(--secondary_background);
-        --btn_primary_hover_color: var(--primary_background);
+        --btn_primary_color: var(--primary_background);
+        --btn_primary_hover_color: var(--primary_background_hover);
 
-        --btn_secondary_color: var(--primary_background);
-        --btn_secondary_hover_color: var(--secondary_background);
+        --btn_secondary_color: var(--secondary_background);
+        --btn_secondary_hover_color: var(--secondary_background_hover);
 
         --btn_tertiary_color: var(--tertiary_background);
         --btn_tertiary_hover_color: {{ '#c10000' }};
