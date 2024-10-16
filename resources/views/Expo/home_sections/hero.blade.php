@@ -60,34 +60,8 @@
                     </div>
                 </div>
 
-                {{-- <div class="text-white">
-                    <a href="http://studyinchinaexhibition.com/expo-sign-up"
-                        class="btn btn-light fw-bold btn-responsive mb-2">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-person-vcard" viewBox="0 0 16 16">
-                                <path
-                                    d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5" />
-                                <path
-                                    d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z" />
-                            </svg>
-                        </span>
-                        Registration
-                    </a>
-                    <a href="https://maps.app.goo.gl/Tkx7Et7Lk8gZjbgV6" target="_blank"
-                        class="btn text-white fw-bold btn-responsive mb-2">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
-                                class="bi bi-map-fill" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                    d="M16 .5a.5.5 0 0 0-.598-.49L10.5.99 5.598.01a.5.5 0 0 0-.196 0l-5 1A.5.5 0 0 0 0 1.5v14a.5.5 0 0 0 .598.49l4.902-.98 4.902.98a.5.5 0 0 0 .196 0l5-1A.5.5 0 0 0 16 14.5zM5 14.09V1.11l.5-.1.5.1v12.98l-.402-.08a.5.5 0 0 0-.196 0zm5 .8V1.91l.402.08a.5.5 0 0 0 .196 0L11 1.91v12.98l-.5.1z" />
-                            </svg>
-                        </span>
-                        View Location
-                    </a>
-                </div> --}}
                 <div
-                    class="d-flex mx-auto align-items-center justify-content-center p-2 border hero-bottom-location-container">
+                    class="d-flex flex-column flex-md-row mx-auto align-items-center justify-content-center p-2 border hero-bottom-location-container">
                     <div class="d-flex align-items-center me-3">
                         <i class="bi bi-calendar2-event" style="color: #4CAF50;"></i>
                         <span class="ms-2">21<sup>st</sup> & 22<sup>nd</sup> November, 2024</span>
