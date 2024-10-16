@@ -35,15 +35,11 @@
                                         <div>
                                             <h3>Expo Details</h3>
                                             <section>
-                                                <h4>Account</h4>
+                                                <h4>Expo Details</h4>
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
                                                         <div class="row">
-                                                            <div class="col-sm-12 mb-2">
-                                                                <h4>Expo Details</h4>
-                                                            </div>
-
                                                             <div class="col-sm-6 img-upload-container">
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Banner</label>
@@ -482,7 +478,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-12 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
@@ -904,7 +900,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 @include('Backend.components.footer')
