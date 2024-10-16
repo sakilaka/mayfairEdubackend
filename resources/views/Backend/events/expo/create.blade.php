@@ -456,7 +456,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">jquery-steps wizard</h4>
-                                    <form id="example-form" action="#">
+                                    <form id="expo-form-wizard" action="#">
                                         <div>
                                             <h3>Account</h3>
                                             <section>
@@ -479,6 +479,7 @@
                                                         placeholder="Confirm password">
                                                 </div>
                                             </section>
+                                            
                                             <h3>Profile</h3>
                                             <section>
                                                 <h4>Profile</h4>
@@ -497,6 +498,7 @@
                                                         placeholder="Profession">
                                                 </div>
                                             </section>
+                                            
                                             <h3>Comments</h3>
                                             <section>
                                                 <h4>Comments</h4>
@@ -505,6 +507,7 @@
                                                     <textarea class="form-control" rows="3"></textarea>
                                                 </div>
                                             </section>
+                                            
                                             <h3>Finish</h3>
                                             <section>
                                                 <h4>Finish</h4>
@@ -532,7 +535,7 @@
     @include('Backend.components.ckeditor5-config')
 
     <script>
-        var form = $("#example-form");
+        var form = $("#expo-form-wizard");
         form.children("div").steps({
             headerTag: "h3",
             bodyTag: "section",
