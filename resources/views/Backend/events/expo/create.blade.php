@@ -31,7 +31,8 @@
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST">
+                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
 
                                         <div>
@@ -471,14 +472,16 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 img-upload-container">
                                                                 <div class="form-group">
-                                                                    <label class="form-control-label">Upload Logo</label>
+                                                                    <label class="form-control-label">Upload
+                                                                        Logo</label>
                                                                     <div class="dropify-wrapper" style="border: none">
                                                                         <div class="dropify-loader"></div>
                                                                         <div class="dropify-errors-container">
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="additional_contents[nav_logo]" accept="image/*">
+                                                                            name="additional_contents[nav_logo]"
+                                                                            accept="image/*">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
                                                                         <div class="dropify-preview">
@@ -518,14 +521,16 @@
                                                         <div class="row">
                                                             <div class="col-sm-6 img-upload-container">
                                                                 <div class="form-group">
-                                                                    <label class="form-control-label">Upload Background</label>
+                                                                    <label class="form-control-label">Upload
+                                                                        Background</label>
                                                                     <div class="dropify-wrapper" style="border: none">
                                                                         <div class="dropify-loader"></div>
                                                                         <div class="dropify-errors-container">
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="additional_contents[hero_bg]" accept="image/*">
+                                                                            name="additional_contents[hero_bg]"
+                                                                            accept="image/*">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
                                                                         <div class="dropify-preview">
