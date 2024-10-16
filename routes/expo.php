@@ -54,7 +54,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
 /**
  * Expo Routes (User)
  */
-Route::middleware(['accessLogin'])->group(function () {
+Route::prefix('expo')->middleware(['accessLogin'])->group(function () {
     Route::prefix('user')->middleware(['userCheck'])->group(function () {
         Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('user.dashboard');
         Route::get('/profile', [ExpoUserController::class, 'index'])->name('user.profile');
