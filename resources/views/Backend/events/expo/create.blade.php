@@ -36,6 +36,7 @@
                                             <h3>Expo Details</h3>
                                             <section>
                                                 <h4>Account</h4>
+
                                                 <div class="form-group">
                                                     <label>Email address</label>
                                                     <input type="email" class="form-control"
@@ -43,15 +44,6 @@
                                                     <small id="emailHelp" class="form-text text-muted">We'll never share
                                                         your email with anyone
                                                         else.</small>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Password</label>
-                                                    <input type="password" class="form-control" placeholder="Password">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Confirm Password</label>
-                                                    <input type="password" class="form-control"
-                                                        placeholder="Confirm password">
                                                 </div>
                                             </section>
 
