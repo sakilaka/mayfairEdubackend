@@ -1,14 +1,10 @@
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav"
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-</button>
 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav ms-auto d-flex align-items-center custom-navbar-width">
         <li class="nav-item">
             <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}"
                 style="color: white;">Home</a>
         </li>
-        
+
         <li class="nav-item">
             <a class="nav-link" href="#" style="color: white;" target="_blank">Schedule</a>
         </li>

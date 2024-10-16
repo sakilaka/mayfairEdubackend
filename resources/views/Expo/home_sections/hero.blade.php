@@ -1,12 +1,18 @@
 <div class="bg-section">
     <div class="container">
-        <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
+        <nav class="navbar navbar-expand-lg shadow-none" style="z-index: 3">
             <div class="container d-flex justify-content-between">
                 <a class="navbar-brand" href="{{ route('home') }}">
                     <img src="{{ asset('frontend/expo-domain/images/vector_smart_object_3.png') }}" alt="Logo"
                         class="logo">
                 </a>
 
+                <button class="navbar-toggler d-md-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                
                 @include('Expo.components.navbar')
             </div>
         </nav>
@@ -34,7 +40,8 @@
                     <div>
                         <p style="font-size: 16px;" class="text-white mb-0">Co-Organizer:</p>
                         <p class="location-text text-white">
-                            <span class="text-style fw-bold">The Belt and Road Chinese Center (BRCC) and Easy Link</span>
+                            <span class="text-style fw-bold">The Belt and Road Chinese Center (BRCC) and Easy
+                                Link</span>
                         </p>
                     </div>
                     <div>
