@@ -1509,6 +1509,21 @@
     @include('Backend.components.ckeditor5-config')
 
     <script>
+        var form = $("#expo-form-wizard");
+        form.children("div").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onFinished: function(event, currentIndex) {
+                var formObject = form.serializeArray();
+                console.log("Form Fields: ", formObject);
+
+                form.submit();
+            }
+        });
+    </script>
+
+    <script>
         $('.multipleSelect2Search').select2();
     </script>
 
