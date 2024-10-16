@@ -49,13 +49,11 @@ class ExpoController extends Controller
             'date' => 'required',
             'time' => 'required',
             'place' => 'required',
-            'location[]' => 'required',
         ], [
             'title.required' => 'The title field is required.',
             'date.required' => 'Please provide the date of the expo.',
             'time.required' => 'The expo time is required.',
             'place.required' => 'Please specify the place.',
-            'location[].required' => 'You need to select a location.',
         ]);
 
         if ($validator->fails()) {
@@ -152,6 +150,7 @@ class ExpoController extends Controller
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
