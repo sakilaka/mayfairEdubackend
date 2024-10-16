@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="rectangle-3-copy-holder text-white">
-                    <a href="http://studyinchinaexhibition.com/expo-sign-up"
+                    {{-- <a href="http://studyinchinaexhibition.com/expo-sign-up"
                         class="btn btn-light fw-bold btn-responsive mb-2">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -85,7 +85,7 @@
                             </svg>
                         </span>
                         View Location
-                    </a>
+                    </a> --}}
                 </div>
 
             </div>
