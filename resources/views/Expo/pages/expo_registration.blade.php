@@ -105,13 +105,13 @@
         }
 
         .step-item.active-step .step-text {
-            color: #d9534f;
+            color: var(--primary_background);
             font-weight: bold;
         }
 
         .step-item.active-step .step-number {
-            border-color: #d9534f;
-            color: #d9534f;
+            border-color: var(--primary_background);
+            color: var(--primary_background);
         }
 
         .step-item.completed-step {
@@ -234,7 +234,6 @@
                             </div>
 
                             <div class="card bg-transparent border-0">
-
                                 @if (session()->has('success') && session('status') === 'submitted')
                                     <div class="mt-4 d-flex flex-column justify-content-center align-items-center">
                                         <img src="{{ asset('frontend/images/done.png') }}" alt=""
@@ -333,11 +332,11 @@
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
                                                         <a href="{{ route('expo.login.page') }}"
-                                                            class="btn btn-danger-bg">Login</a>
+                                                            class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-danger-bg nextBtn">Next</button>
+                                                            class="btn btn-secondary-bg nextBtn">Next</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -577,13 +576,13 @@
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
                                                         <a href="{{ route('expo.login.page') }}"
-                                                            class="btn btn-danger-bg">Login</a>
+                                                            class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-danger prevBtn">Previous</button>
+                                                            class="btn btn-primary-bg prevBtn">Previous</button>
                                                         <button type="button"
-                                                            class="btn btn-tertiary-bg nextBtn">Next</button>
+                                                            class="btn btn-secondary-bg nextBtn">Next</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -612,12 +611,12 @@
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
                                                         <a href="{{ route('expo.login.page') }}"
-                                                            class="btn btn-danger-bg">Login</a>
+                                                            class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-danger prevBtn">Previous</button>
-                                                        <button type="submit" class="btn btn-success">Submit</button>
+                                                            class="btn btn-primary-bg prevBtn">Previous</button>
+                                                        <button type="submit" class="btn btn-secondary-bg">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
