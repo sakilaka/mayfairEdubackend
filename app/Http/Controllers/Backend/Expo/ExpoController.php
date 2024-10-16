@@ -42,7 +42,6 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
         $request->validate([
             'title' => 'required',
             'date' => 'required',
@@ -129,7 +128,7 @@ class ExpoController extends Controller
                 $data['photos'] = json_encode($galleryImages);
             }
 
-            Expo::create($data);
+            // Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
