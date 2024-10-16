@@ -45,17 +45,17 @@
         border: none;
         cursor: pointer;
         font-size: 24px;
-        color: var(--primary_background);
+        color: var(--secondary_background);
         transition: right 0.3s ease;
     }
 </style>
 
 {{-- <button id="btn-toggle">
-        <i class="fa fa-arrow-left"></i>
-    </button> --}}
+    <i class="fa fa-arrow-left"></i>
+</button> --}}
 
 <div class="fixed-buttons" id="fixed-buttons">
-    <a class="nav-link registration-btn rounded-0 btn-primary-bg px-2"
+    <a class="nav-link registration-btn rounded-0 btn-secondary-bg px-2"
         href="http://studyinchinaexhibition.com/expo-sign-up" style="color: white;">Participate</a>
 </div>
 <script>
