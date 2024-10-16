@@ -43,10 +43,6 @@
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
                                                         <div class="row">
-                                                            <div class="col-sm-12 mb-2">
-                                                                <h4>Expo Details</h4>
-                                                            </div>
-
                                                             <div class="col-sm-6 img-upload-container">
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Banner</label>
