@@ -5,6 +5,9 @@ use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
 use App\Http\Controllers\Expo\ExpoModuleController;
 use Illuminate\Support\Facades\Route;
 
+/**
+ * Expo Routes (Admin)
+ */
 Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
     Route::get('list', [ExpoController::class, "index"])->name('admin.expo.index');
     Route::get('create', [ExpoController::class, "create"])->name('admin.expo.create');
@@ -45,10 +48,12 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
 
-Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
 
-// pages
+/**
+ * Page Routes (Global)
+ */
 Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
 Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
 Route::get('expo/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
 Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
+Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
