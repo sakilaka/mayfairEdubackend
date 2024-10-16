@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
 use App\Http\Controllers\Expo\CaptchaController;
+use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
 use App\Http\Controllers\Expo\ExpoUserController;
 use App\Http\Controllers\Frontend\UserLoginController;
@@ -77,6 +78,10 @@ Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo
 Route::get('expo/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
 Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
+
+Route::get('expo-login', [ExpoLoginController::class, 'login_page'])->name('expo.login.page');
+Route::post('expo-login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
+Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
 
 Route::get('/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
 Route::post('/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');

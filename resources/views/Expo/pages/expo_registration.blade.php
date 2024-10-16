@@ -251,7 +251,7 @@
                                                 class="mt-2 me-2 btn btn-primary-bg">
                                                 Register Another
                                             </a>
-                                            <a href="{{ route('login.page') }}" class="mt-2 me-2 btn btn-primary-bg">
+                                            <a href="{{ route('expo.login.page') }}" class="mt-2 me-2 btn btn-primary-bg">
                                                 Login
                                             </a>
                                             <a href="https://malishaedu.com" class="mt-2 btn btn-secondary-bg">
@@ -332,7 +332,7 @@
 
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
-                                                        <a href="{{ route('login.page') }}"
+                                                        <a href="{{ route('expo.login.page') }}"
                                                             class="btn btn-danger-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
@@ -576,7 +576,7 @@
                                                 <!-- Navigation Buttons -->
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
-                                                        <a href="{{ route('login.page') }}"
+                                                        <a href="{{ route('expo.login.page') }}"
                                                             class="btn btn-danger-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
@@ -611,7 +611,7 @@
                                                 <!-- Navigation Buttons -->
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
-                                                        <a href="{{ route('login.page') }}"
+                                                        <a href="{{ route('expo.login.page') }}"
                                                             class="btn btn-danger-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
