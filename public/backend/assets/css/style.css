@@ -47636,7 +47636,7 @@ div.tagsinput span.tag a {
     background: #ffffff;
     display: block;
     margin: 0.5em;
-    min-height: 24em;
+    /* min-height: 24em; */
     overflow: hidden;
     position: relative;
     width: auto;
@@ -47653,7 +47653,7 @@ div.tagsinput span.tag a {
 
 .wizard > .content > .body {
     float: left;
-    position: absolute;
+    /* position: absolute; */
     width: 95%;
     height: 95%;
     padding: 2.5%;
