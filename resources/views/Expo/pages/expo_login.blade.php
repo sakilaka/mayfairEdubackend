@@ -39,7 +39,7 @@
 
         <div style="width: 100%;" class="section-height d-flex justify-content-center align-items-center">
             <div
-                class="{{-- container --}} border row justify-content-center justify-content-md-start align-items-center mb-md-5 pb-md-5">
+                class="container mx-auto row justify-content-center justify-content-md-start align-items-center mb-md-5 pb-md-5">
                 <div class="col-md-8 z-2 p-4 pb-5" style="position: relative; z-index: 2;">
                     <div>
                         <h2 class="main-heading text-white fw-semibold">Biggest Expo In Bangladesh</h2>
