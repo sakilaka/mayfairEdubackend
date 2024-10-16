@@ -43,6 +43,10 @@
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
                                                         <div class="row">
+                                                            <div class="col-sm-12 mb-2">
+                                                                <h4>Expo Details</h4>
+                                                            </div>
+
                                                             <div class="col-sm-6 img-upload-container">
                                                                 <div class="form-group">
                                                                     <label class="form-control-label">Banner</label>
@@ -77,7 +81,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $expo->banner ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
@@ -95,13 +99,11 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text" name="title"
                                                                     class="form-control" placeholder="Enter Expo Title"
-                                                                    required>
-                                                                @error('title')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
+                                                                    value="{{ $expo->title }}" required>
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Date:
@@ -109,13 +111,12 @@
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="date" name="date"
+                                                                    value="{{ Carbon\Carbon::createFromFormat('d M Y h:i A', str_replace(',', '', $expo->datetime))->format('Y-m-d') }}"
                                                                     class="form-control" required>
-                                                                @error('date')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-4">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Time:
@@ -123,14 +124,13 @@
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="time" name="time"
-                                                                    class="form-control" required>
-                                                                @error('time')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
+                                                                    class="form-control"
+                                                                    value="{{ Carbon\Carbon::createFromFormat('d M Y h:i A', str_replace(',', '', $expo->datetime))->format('H:i') }}"
+                                                                    required>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Place:
                                                                 <span class="text-danger"
@@ -138,59 +138,51 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text" name="place"
                                                                     class="form-control" placeholder="Enter Address"
-                                                                    required>
-                                                                @error('place')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
+                                                                    value="{{ $expo->place }}" required>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Participated Universities:</label>
-                                                            <select
-                                                                class="form-control form-control-lg multipleSelect2Search"
-                                                                name="universities[]" multiple>
-                                                                <option value="">Select University</option>
-                                                                @foreach ($universities as $university)
-                                                                    <option value="{{ $university->id }}">
-                                                                        {{ $university->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-md-6">
+                                                        @php
+                                                            $location = json_decode($expo['location'], true) ?? [];
+                                                            $locationType = isset($location['type'])
+                                                                ? $location['type']
+                                                                : '';
+                                                            $isOverseas = $locationType === 'overseas';
+                                                        @endphp
                                                         <div class="row expo-location-container">
-                                                            <div class="col-md-12 expo-location-select-container">
+                                                            <div
+                                                                class="{{ $isOverseas ? 'col-md-6' : 'col-md-12' }} expo-location-select-container">
                                                                 <div class="form-group">
-                                                                    <label>Expo Location:
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
+                                                                    <label>Expo Location: <span
+                                                                            class="text-danger">*</span></label>
                                                                     <select class="form-control form-control-lg"
                                                                         name="location[type]" id="expoLocationSelect"
                                                                         required>
                                                                         <option value="">Select Location</option>
-                                                                        <option value="china">China</option>
-                                                                        <option value="overseas">Overseas</option>
+                                                                        <option value="china"
+                                                                            {{ $locationType === 'china' ? 'selected' : '' }}>
+                                                                            China</option>
+                                                                        <option value="overseas"
+                                                                            {{ $isOverseas ? 'selected' : '' }}>
+                                                                            Overseas
+                                                                        </option>
                                                                     </select>
-                                                                    @error('location[]')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 expo-country-container"
-                                                                style="display:none;">
+                                                                style="{{ $isOverseas ? '' : 'display:none;' }}">
                                                                 <div class="form-group">
                                                                     <label>Country:</label>
                                                                     <input type="text" class="form-control"
                                                                         name="location[country]"
+                                                                        value="{{ $location['country'] ?? '' }}"
                                                                         placeholder="Enter Country Name">
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                     </div>
 
                                                     <div class="col-md-12">
@@ -199,8 +191,29 @@
                                                                 Expo Description:
                                                             </label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <textarea name="description" class="editor form-control"></textarea>
+                                                                <textarea name="description" class="editor form-control">{{ $expo->description }}</textarea>
                                                             </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-sm-12">
+                                                        <div class="form-group">
+                                                            <label>Participated Universities:</label>
+                                                            <select
+                                                                class="form-control form-control-lg multipleSelect2Search"
+                                                                name="universities[]" multiple>
+                                                                <option value="">Select University</option>
+                                                                @php
+                                                                    $selectedUniversities =
+                                                                        json_decode($expo->universities, true) ?? [];
+                                                                @endphp
+                                                                @foreach ($universities as $university)
+                                                                    <option value="{{ $university->id }}"
+                                                                        {{ in_array($university->id, $selectedUniversities) ? 'selected' : '' }}>
+                                                                        {{ $university->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
 
@@ -226,45 +239,103 @@
                                                                 </table>
                                                             </div>
                                                             <div class="mg-t-10 mg-sm-t-0 special-guest-container">
-                                                                <div class="d-flex align-items-center mt-2">
-                                                                    <div class="d-flex align-items-center justify-content-between select-add-section"
-                                                                        style="width: 97%;">
-                                                                        <div style="width: 25%;">
-                                                                            <input type="text" name="guestName[]"
-                                                                                class="mr-1 form-control"
-                                                                                placeholder="Guest Name">
-                                                                        </div>
-                                                                        <div style="width: 24.5%;">
-                                                                            <div
-                                                                                class="d-flex align-items-center justify-content-between">
-                                                                                <img src="{{ asset('frontend/images/no-profile.jpg') }}"
-                                                                                    alt=""
-                                                                                    style="width: 48px; height:auto;">
-                                                                                <input type="file"
-                                                                                    name="guestImage[{{ rand(10000, 99999) }}]"
+                                                                @php
+                                                                    $guests = json_decode($expo->guests, true) ?? [];
+                                                                @endphp
+
+                                                                @forelse ($guests as $key => $guest)
+                                                                    <div class="d-flex align-items-center mt-2">
+                                                                        <div class="d-flex align-items-center justify-content-between select-add-section"
+                                                                            style="width: 97%;">
+                                                                            <div style="width: 25%;">
+                                                                                <input type="text"
+                                                                                    name="guestName[]"
                                                                                     class="mr-1 form-control"
-                                                                                    accept="image/*"
-                                                                                    onchange="previewImage(this)">
+                                                                                    placeholder="Guest Name"
+                                                                                    value="{{ $guest['name'] }}"
+                                                                                    required>
+                                                                            </div>
+                                                                            <div style="width: 24.5%;">
+                                                                                <div
+                                                                                    class="d-flex align-items-center justify-content-between">
+                                                                                    <img src="{{ $guest['image'] ?? asset('frontend/images/no-profile.jpg') }}"
+                                                                                        alt=""
+                                                                                        style="width: 48px; height:auto;">
+                                                                                    <input type="file"
+                                                                                        name="guestImage[{{ $key }}]"
+                                                                                        class="mr-1 form-control"
+                                                                                        accept="image/*"
+                                                                                        onchange="previewImage(this)"
+                                                                                        required>
+                                                                                    <input type="hidden"
+                                                                                        name="oldGuestImage[{{ $key }}]"
+                                                                                        value="{{ $guest['image'] }}">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="width: 24.5%;">
+                                                                                <input type="text"
+                                                                                    name="guestDesignation[]"
+                                                                                    class="mr-1 form-control"
+                                                                                    placeholder="Designation"
+                                                                                    value="{{ $guest['designation'] }}"
+                                                                                    required>
+                                                                            </div>
+                                                                            <div style="width: 24.5%;">
+                                                                                <input type="text"
+                                                                                    name="guestOrganization[]"
+                                                                                    class="mr-1 form-control"
+                                                                                    placeholder="Organization"
+                                                                                    value="{{ $guest['organization'] }}"
+                                                                                    required>
                                                                             </div>
                                                                         </div>
-                                                                        <div style="width: 24.5%;">
-                                                                            <input type="text"
-                                                                                name="guestDesignation[]"
-                                                                                class="mr-1 form-control"
-                                                                                placeholder="Designation">
-                                                                        </div>
-                                                                        <div style="width: 24.5%;">
-                                                                            <input type="text"
-                                                                                name="guestOrganization[]"
-                                                                                class="mr-1 form-control"
-                                                                                placeholder="Organization">
-                                                                        </div>
-                                                                    </div>
 
-                                                                    <a href="javascript:void(0)"
-                                                                        class="remove-special-guest px-1 p-0 m-0 ml-2"><i
-                                                                            class="fas fa-minus"></i></a>
-                                                                </div>
+                                                                        <a href="javascript:void(0)"
+                                                                            class="remove-special-guest px-1 p-0 m-0 ml-2"><i
+                                                                                class="fas fa-minus"></i></a>
+                                                                    </div>
+                                                                @empty
+                                                                    <div class="d-flex align-items-center mt-2">
+                                                                        <div class="d-flex align-items-center justify-content-between select-add-section"
+                                                                            style="width: 97%;">
+                                                                            <div style="width: 25%;">
+                                                                                <input type="text"
+                                                                                    name="guestName[]"
+                                                                                    class="mr-1 form-control"
+                                                                                    placeholder="Guest Name">
+                                                                            </div>
+                                                                            <div style="width: 24.5%;">
+                                                                                <div
+                                                                                    class="d-flex align-items-center justify-content-between">
+                                                                                    <img src="{{ asset('frontend/images/no-profile.jpg') }}"
+                                                                                        alt=""
+                                                                                        style="width: 48px; height:auto;">
+                                                                                    <input type="file"
+                                                                                        name="guestImage[{{ rand(10000, 99999) }}]"
+                                                                                        class="mr-1 form-control"
+                                                                                        accept="image/*"
+                                                                                        onchange="previewImage(this)">
+                                                                                </div>
+                                                                            </div>
+                                                                            <div style="width: 24.5%;">
+                                                                                <input type="text"
+                                                                                    name="guestDesignation[]"
+                                                                                    class="mr-1 form-control"
+                                                                                    placeholder="Designation">
+                                                                            </div>
+                                                                            <div style="width: 24.5%;">
+                                                                                <input type="text"
+                                                                                    name="guestOrganization[]"
+                                                                                    class="mr-1 form-control"
+                                                                                    placeholder="Organization">
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <a href="javascript:void(0)"
+                                                                            class="remove-special-guest px-1 p-0 m-0 ml-2"><i
+                                                                                class="fas fa-minus"></i></a>
+                                                                    </div>
+                                                                @endforelse
                                                             </div>
                                                         </div>
                                                     </div>
@@ -280,59 +351,129 @@
                                                         </div>
 
                                                         <div class="media-partner-container">
-                                                            <div class="d-flex align-items-center">
-                                                                <div class="row align-items-center">
-                                                                    <div
-                                                                        class="col-sm-12 col-md-6 mt-3 img-upload-container">
-                                                                        <label class="form-control-label">Add
-                                                                            Image:</label>
-                                                                        <div class="dropify-wrapper"
-                                                                            style="border: none">
-                                                                            <div class="dropify-loader"></div>
-                                                                            <div class="dropify-errors-container">
-                                                                                <ul></ul>
-                                                                            </div>
-                                                                            <input type="file" class="dropify"
-                                                                                name="media_partner_logo[{{ rand(10000, 99999) }}]"
-                                                                                accept="image/*">
-                                                                            <button type="button"
-                                                                                class="dropify-clear">Remove</button>
-                                                                            <div class="dropify-preview">
-                                                                                <span class="dropify-render"></span>
-                                                                                <div class="dropify-infos">
-                                                                                    <div class="dropify-infos-inner">
-                                                                                        <p class="dropify-filename">
-                                                                                            <span
-                                                                                                class="file-icon"></span>
-                                                                                            <span
-                                                                                                class="dropify-filename-inner"></span>
-                                                                                        </p>
-                                                                                        <p
-                                                                                            class="dropify-infos-message">
-                                                                                            Drag
-                                                                                            and drop or click to
-                                                                                            replace</p>
+                                                            @php
+                                                                $mediaPartnerImages =
+                                                                    json_decode($expo->media_partner, true) ?? [];
+                                                            @endphp
+
+                                                            @forelse ($mediaPartnerImages as $key => $image)
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="row align-items-center">
+                                                                        <div
+                                                                            class="col-sm-12 col-md-6 mt-3 img-upload-container">
+                                                                            <label class="form-control-label">Edit
+                                                                                Image:</label>
+                                                                            <div class="dropify-wrapper"
+                                                                                style="border: none">
+                                                                                <div class="dropify-loader"></div>
+                                                                                <div class="dropify-errors-container">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                                <input type="file" class="dropify"
+                                                                                    name="media_partner_logo[{{ $key }}]"
+                                                                                    accept="image/*">
+                                                                                <input type="hidden"
+                                                                                    name="old_media_partner_logo[{{ $key }}]"
+                                                                                    value="{{ $image }}">
+                                                                                <button type="button"
+                                                                                    class="dropify-clear">Remove</button>
+                                                                                <div class="dropify-preview">
+                                                                                    <span
+                                                                                        class="dropify-render"></span>
+                                                                                    <div class="dropify-infos">
+                                                                                        <div
+                                                                                            class="dropify-infos-inner">
+                                                                                            <p
+                                                                                                class="dropify-filename">
+                                                                                                <span
+                                                                                                    class="file-icon"></span>
+                                                                                                <span
+                                                                                                    class="dropify-filename-inner"></span>
+                                                                                            </p>
+                                                                                            <p
+                                                                                                class="dropify-infos-message">
+                                                                                                Drag
+                                                                                                and drop or click to
+                                                                                                replace</p>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
 
-                                                                    <div
-                                                                        class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
-                                                                        <div class="px-3 mt-3">
-                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                alt="" class="img-fluid"
-                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                        <div
+                                                                            class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                            <div class="px-3 mt-3">
+                                                                                <img src="{{ $image ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                    alt="" class="img-fluid"
+                                                                                    style="border-radius: 10px; max-height: 200px !important;">
+                                                                            </div>
                                                                         </div>
                                                                     </div>
-                                                                </div>
 
-                                                                <a href="javascript:void(0)"
-                                                                    class="remove-media-partner px-1 p-0 m-0 ml-2">
-                                                                    <i class="fas fa-minus-circle"> </i>
-                                                                </a>
-                                                            </div>
+                                                                    <a href="javascript:void(0)"
+                                                                        class="remove-media-partner px-1 p-0 m-0 ml-2">
+                                                                        <i class="fas fa-minus-circle"> </i>
+                                                                    </a>
+                                                                </div>
+                                                            @empty
+                                                                <div class="d-flex align-items-center">
+                                                                    <div class="row align-items-center">
+                                                                        <div
+                                                                            class="col-sm-12 col-md-6 mt-3 img-upload-container">
+                                                                            <label class="form-control-label">Add
+                                                                                Image:</label>
+                                                                            <div class="dropify-wrapper"
+                                                                                style="border: none">
+                                                                                <div class="dropify-loader"></div>
+                                                                                <div class="dropify-errors-container">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                                <input type="file" class="dropify"
+                                                                                    name="media_partner_logo[{{ rand(10000, 99999) }}]"
+                                                                                    accept="image/*">
+                                                                                <button type="button"
+                                                                                    class="dropify-clear">Remove</button>
+                                                                                <div class="dropify-preview">
+                                                                                    <span
+                                                                                        class="dropify-render"></span>
+                                                                                    <div class="dropify-infos">
+                                                                                        <div
+                                                                                            class="dropify-infos-inner">
+                                                                                            <p
+                                                                                                class="dropify-filename">
+                                                                                                <span
+                                                                                                    class="file-icon"></span>
+                                                                                                <span
+                                                                                                    class="dropify-filename-inner"></span>
+                                                                                            </p>
+                                                                                            <p
+                                                                                                class="dropify-infos-message">
+                                                                                                Drag
+                                                                                                and drop or click to
+                                                                                                replace</p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div
+                                                                            class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                            <div class="px-3 mt-3">
+                                                                                <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                                    alt="" class="img-fluid"
+                                                                                    style="border-radius: 10px; max-height: 200px !important;">
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <a href="javascript:void(0)"
+                                                                        class="remove-media-partner px-1 p-0 m-0 ml-2">
+                                                                        <i class="fas fa-minus-circle"> </i>
+                                                                    </a>
+                                                                </div>
+                                                            @endforelse
                                                         </div>
                                                     </div>
 
@@ -389,8 +530,9 @@
                                                                     <div
                                                                         class="col-sm-12 col-md-5 d-flex justify-content-center align-items-center">
                                                                         <div class="px-3 mt-3">
-                                                                            <video id="video_preview" width="320"
-                                                                                height="240" controls
+                                                                            <video id="video_preview"
+                                                                                src="{{ json_decode($expo->videos, true)[0] ?? '' }}"
+                                                                                width="320" height="240" controls
                                                                                 style="border-radius: 8px"></video>
                                                                         </div>
                                                                     </div>
@@ -410,68 +552,151 @@
                                                                     </div>
 
                                                                     <div class="photo-gallery-container">
-                                                                        <div class="d-flex align-items-center">
-                                                                            <div class="row align-items-center mt-2">
+                                                                        @php
+                                                                            $galleryImages =
+                                                                                json_decode($expo->photos, true) ?? [];
+                                                                        @endphp
+
+                                                                        @forelse ($galleryImages as $key => $image)
+                                                                            <div class="d-flex align-items-center">
                                                                                 <div
-                                                                                    class="col-sm-12 col-md-6 mt-3 img-upload-container">
-                                                                                    <label
-                                                                                        class="form-control-label">Add
-                                                                                        Image:</label>
-                                                                                    <div class="dropify-wrapper"
-                                                                                        style="border: none">
-                                                                                        <div class="dropify-loader">
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="dropify-errors-container">
-                                                                                            <ul></ul>
-                                                                                        </div>
-                                                                                        <input type="file"
-                                                                                            class="dropify"
-                                                                                            name="gallery_image[{{ rand(10000, 99999) }}]"
-                                                                                            accept="image/*">
-                                                                                        <button type="button"
-                                                                                            class="dropify-clear">Remove</button>
-                                                                                        <div class="dropify-preview">
-                                                                                            <span
-                                                                                                class="dropify-render"></span>
-                                                                                            <div class="dropify-infos">
+                                                                                    class="row align-items-center mt-2">
+                                                                                    <div
+                                                                                        class="col-sm-12 col-md-6 mt-3 img-upload-container">
+                                                                                        <label
+                                                                                            class="form-control-label">Add
+                                                                                            Image:</label>
+                                                                                        <div class="dropify-wrapper"
+                                                                                            style="border: none">
+                                                                                            <div
+                                                                                                class="dropify-loader">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="dropify-errors-container">
+                                                                                                <ul></ul>
+                                                                                            </div>
+                                                                                            <input type="file"
+                                                                                                class="dropify"
+                                                                                                name="gallery_image[{{ $key }}]"
+                                                                                                accept="image/*">
+                                                                                            <input type="hidden"
+                                                                                                name="old_gallery_image[{{ $key }}]"
+                                                                                                value="{{ $image }}">
+                                                                                            <button type="button"
+                                                                                                class="dropify-clear">Remove</button>
+                                                                                            <div
+                                                                                                class="dropify-preview">
+                                                                                                <span
+                                                                                                    class="dropify-render"></span>
                                                                                                 <div
-                                                                                                    class="dropify-infos-inner">
-                                                                                                    <p
-                                                                                                        class="dropify-filename">
-                                                                                                        <span
-                                                                                                            class="file-icon"></span>
-                                                                                                        <span
-                                                                                                            class="dropify-filename-inner"></span>
-                                                                                                    </p>
-                                                                                                    <p
-                                                                                                        class="dropify-infos-message">
-                                                                                                        Drag
-                                                                                                        and drop or
-                                                                                                        click to
-                                                                                                        replace</p>
+                                                                                                    class="dropify-infos">
+                                                                                                    <div
+                                                                                                        class="dropify-infos-inner">
+                                                                                                        <p
+                                                                                                            class="dropify-filename">
+                                                                                                            <span
+                                                                                                                class="file-icon"></span>
+                                                                                                            <span
+                                                                                                                class="dropify-filename-inner"></span>
+                                                                                                        </p>
+                                                                                                        <p
+                                                                                                            class="dropify-infos-message">
+                                                                                                            Drag
+                                                                                                            and drop or
+                                                                                                            click to
+                                                                                                            replace</p>
+                                                                                                    </div>
                                                                                                 </div>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
-                                                                                </div>
 
-                                                                                <div
-                                                                                    class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
-                                                                                    <div class="px-3 mt-3">
-                                                                                        <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                            alt=""
-                                                                                            class="img-fluid"
-                                                                                            style="border-radius: 10px; max-height: 200px !important;">
+                                                                                    <div
+                                                                                        class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                                        <div class="px-3 mt-3">
+                                                                                            <img src="{{ $image ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                                alt=""
+                                                                                                class="img-fluid"
+                                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </div>
 
-                                                                            <a href="javascript:void(0)"
-                                                                                class="remove-photo-gallery px-1 p-0 m-0 ml-2">
-                                                                                <i class="fas fa-minus-circle"> </i>
-                                                                            </a>
-                                                                        </div>
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="remove-photo-gallery px-1 p-0 m-0 ml-2">
+                                                                                    <i class="fas fa-minus-circle">
+                                                                                    </i>
+                                                                                </a>
+                                                                            </div>
+                                                                        @empty
+                                                                            <div class="d-flex align-items-center">
+                                                                                <div
+                                                                                    class="row align-items-center mt-2">
+                                                                                    <div
+                                                                                        class="col-sm-12 col-md-6 mt-3 img-upload-container">
+                                                                                        <label
+                                                                                            class="form-control-label">Add
+                                                                                            Image:</label>
+                                                                                        <div class="dropify-wrapper"
+                                                                                            style="border: none">
+                                                                                            <div
+                                                                                                class="dropify-loader">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="dropify-errors-container">
+                                                                                                <ul></ul>
+                                                                                            </div>
+                                                                                            <input type="file"
+                                                                                                class="dropify"
+                                                                                                name="gallery_image[{{ rand(10000, 99999) }}]"
+                                                                                                accept="image/*">
+                                                                                            <button type="button"
+                                                                                                class="dropify-clear">Remove</button>
+                                                                                            <div
+                                                                                                class="dropify-preview">
+                                                                                                <span
+                                                                                                    class="dropify-render"></span>
+                                                                                                <div
+                                                                                                    class="dropify-infos">
+                                                                                                    <div
+                                                                                                        class="dropify-infos-inner">
+                                                                                                        <p
+                                                                                                            class="dropify-filename">
+                                                                                                            <span
+                                                                                                                class="file-icon"></span>
+                                                                                                            <span
+                                                                                                                class="dropify-filename-inner"></span>
+                                                                                                        </p>
+                                                                                                        <p
+                                                                                                            class="dropify-infos-message">
+                                                                                                            Drag
+                                                                                                            and drop or
+                                                                                                            click to
+                                                                                                            replace</p>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                    <div
+                                                                                        class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                                        <div class="px-3 mt-3">
+                                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                                                alt=""
+                                                                                                class="img-fluid"
+                                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="remove-photo-gallery px-1 p-0 m-0 ml-2">
+                                                                                    <i class="fas fa-minus-circle">
+                                                                                    </i>
+                                                                                </a>
+                                                                            </div>
+                                                                        @endforelse
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -482,7 +707,7 @@
 
                                             <h3>Additional Contents</h3>
                                             <section>
-                                                
+
                                                 <h4>Nav Logo</h4>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
