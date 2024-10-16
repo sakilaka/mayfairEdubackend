@@ -12,8 +12,8 @@
 
 <style>
     :root {
-        --primary_background: #e74c3c;
-        --secondary_background: #c34031;
+        --primary_background: #0c4493;
+        --secondary_background: #58b135;
         --tertiary_background: #c0392b;
 
         --btn_primary_color: var(--secondary_background);
