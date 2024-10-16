@@ -465,13 +465,8 @@
 
                                             <h3>Additional Contents</h3>
                                             <section>
-                                                <h4>Finish</h4>
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input class="checkbox" type="checkbox">
-                                                        I agree with the Terms and Conditions.
-                                                    </label>
-                                                </div>
+                                                <h4>Additional Contents</h4>
+                                                
                                             </section>
                                         </div>
                                     </form>
