@@ -31,14 +31,14 @@
                 </div>
                 <div>
                     <div>
-                        <p style="font-size: 16px; color:var(--secondary_background)" class="text-white mb-0">Organizer:
+                        <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Organizer:
                         </p>
                         <p class="location-text text-white">
                             <span class="text-style fw-bold">Guangzhou MalishaEdu Co. Ltd.</span>
                         </p>
                     </div>
                     <div>
-                        <p style="font-size: 16px; color:var(--secondary_background)" class="text-white mb-0">
+                        <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
                             Co-Organizer:</p>
                         <p class="location-text text-white">
                             <span class="text-style fw-bold">The Belt and Road Chinese Center (BRCC) and Easy

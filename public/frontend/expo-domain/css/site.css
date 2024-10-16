@@ -3,8 +3,20 @@ body {
 }
 
 :root {
-    --red-btn-color: #e74c3c;
-    --red-btn-hover-color: #c0392b;
+    --red-btn-color: var(--primary_background);
+    --red-btn-hover-color: var(--primary_background_hover);
+}
+
+.fw-600 {
+    font-weight: 600 !important;
+}
+
+.fw-700 {
+    font-weight: 700 !important;
+}
+
+.fw-800 {
+    font-weight: 800 !important;
 }
 
 a {
