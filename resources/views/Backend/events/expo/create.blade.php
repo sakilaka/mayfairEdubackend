@@ -461,7 +461,7 @@
                                                 </div>
                                             </section>
 
-                                            <h3>Finish</h3>
+                                            <h3>Additional Contents</h3>
                                             <section>
                                                 <h4>Finish</h4>
                                                 <div class="form-check">
