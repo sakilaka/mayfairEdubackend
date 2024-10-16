@@ -509,6 +509,7 @@
                                                             placeholder="Confirm password">
                                                     </div>
                                                 </section>
+
                                                 <h3 id="steps-uid-0-h-1" tabindex="-1" class="title">Profile</h3>
                                                 <section id="steps-uid-0-p-1" role="tabpanel"
                                                     aria-labelledby="steps-uid-0-h-1" class="body" aria-hidden="true"
@@ -530,6 +531,7 @@
                                                             placeholder="Profession">
                                                     </div>
                                                 </section>
+
                                                 <h3 id="steps-uid-0-h-2" tabindex="-1" class="title">Comments</h3>
                                                 <section id="steps-uid-0-p-2" role="tabpanel"
                                                     aria-labelledby="steps-uid-0-h-2" class="body"
@@ -540,6 +542,7 @@
                                                         <textarea class="form-control" rows="3"></textarea>
                                                     </div>
                                                 </section>
+
                                                 <h3 id="steps-uid-0-h-3" tabindex="-1" class="title">Finish</h3>
                                                 <section id="steps-uid-0-p-3" role="tabpanel"
                                                     aria-labelledby="steps-uid-0-h-3" class="body"
@@ -553,6 +556,7 @@
                                                     </div>
                                                 </section>
                                             </div>
+                                            
                                             <div class="actions clearfix">
                                                 <ul role="menu" aria-label="Pagination">
                                                     <li class="disabled" aria-disabled="true"><a href="#previous"
