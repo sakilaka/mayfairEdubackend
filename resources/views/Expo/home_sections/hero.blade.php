@@ -16,8 +16,8 @@
     <div class="bg-color"></div>
 
     <div style="width: 100%; height:100%;" class="d-flex justify-content-center align-items-center">
-        <div class="row justify-content-center align-items-center mb-md-5 pb-md-5">
-            <div class="col-12 p-4 pb-5" style="position: relative; z-index: 3;">
+        <div class="container row justify-content-center justify-content-md-around align-items-center mb-md-5 pb-md-5">
+            <div class="col-md-11 p-4 pb-5 pt-md-0" style="position: relative; z-index: 3;">
                 <div>
                     <h2 class="main-heading text-white fw-semibold">Biggest Expo In Bangladesh</h2>
                     <h1 class="main-title text-white fw-bold">{{ $expo['title'] }}</h1>
