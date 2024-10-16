@@ -162,7 +162,7 @@ h2 {
 
 .nav-link:hover,
 .nav-link.active {
-    background: rgba(231, 76, 60, 0.5);
+    background: #3a62a0;
     color: white;
 }
 
