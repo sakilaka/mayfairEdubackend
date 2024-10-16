@@ -21,25 +21,29 @@
             </div>
         </li> --}}
         <li class="nav-item">
-            <a class="nav-link" href="#" style="color: white;"
-                target="_blank">Schedule</a>
+            <a class="nav-link" href="#" style="color: white;" target="_blank">Schedule</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/about-us" style="color: white;"
-                target="_blank">About US</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
+                target="_blank">Exhibitors</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;"
-                target="_blank">Contact</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
+                target="_blank">Delegates</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
+                target="_blank">Testimonial</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="http://studyinchinaexhibition.com/gallery" style="color: white;"
                 target="_blank">Gallery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
-                target="_blank">Exhibitors</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;"
+                target="_blank">Join</a>
         </li>
+
         <li class="nav-item">
             <a class="nav-link registration-btn btn-danger-bg px-2"
                 href="http://studyinchinaexhibition.com/expo-sign-up" style="color: white;">Participate</a>
