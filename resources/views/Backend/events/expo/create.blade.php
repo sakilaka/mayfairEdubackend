@@ -33,7 +33,7 @@
                                 <div class="card-body">
                                     <form id="expo-form-wizard" action="#">
                                         <div>
-                                            <h3>Account</h3>
+                                            <h3>Expo Details</h3>
                                             <section>
                                                 <h4>Account</h4>
                                                 <div class="form-group">
@@ -52,34 +52,6 @@
                                                     <label>Confirm Password</label>
                                                     <input type="password" class="form-control"
                                                         placeholder="Confirm password">
-                                                </div>
-                                            </section>
-
-                                            <h3>Profile</h3>
-                                            <section>
-                                                <h4>Profile</h4>
-                                                <div class="form-group">
-                                                    <label>First name</label>
-                                                    <input type="email" class="form-control"
-                                                        aria-describedby="emailHelp" placeholder="Enter first name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Last name</label>
-                                                    <input type="password" class="form-control" placeholder="Last name">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Profession</label>
-                                                    <input type="password" class="form-control"
-                                                        placeholder="Profession">
-                                                </div>
-                                            </section>
-
-                                            <h3>Comments</h3>
-                                            <section>
-                                                <h4>Comments</h4>
-                                                <div class="form-group">
-                                                    <label>Comments</label>
-                                                    <textarea class="form-control" rows="3"></textarea>
                                                 </div>
                                             </section>
 
