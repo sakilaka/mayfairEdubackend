@@ -59,7 +59,7 @@
                     </p>
 
                     <div class="rectangle-3-copy-holder text-white">
-                        <a href="{{ route('expo_module.expo-form') }}"
+                        <a href="{{ route('expo.sign-up') }}"
                             class="btn btn-light fw-bold btn-responsive mb-2">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -103,7 +103,7 @@
                         Dashboard
                     </h4>
 
-                    <form action="{{ route('login.attempt') }}" class="mt-3" enctype="multipart/form-data"
+                    <form action="{{ route('expo.login.attempt') }}" class="mt-3" enctype="multipart/form-data"
                         method="post" accept-charset="utf-8">
                         @csrf
 
@@ -164,7 +164,7 @@
                     <div class="text-center mt-4 mb-5">
                         Don't have an account?
                         <strong>
-                            <a href="{{ route('expo_module.expo-form') }}" class="text-decoration-underline">
+                            <a href="{{ route('expo.sign-up') }}" class="text-decoration-underline">
                                 Create an Account
                             </a>
                         </strong>
