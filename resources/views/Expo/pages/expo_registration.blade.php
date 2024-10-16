@@ -224,8 +224,8 @@
                                     </h2>
                                 </div>
                                 <div class="col-4 text-end d-flex flex-column align-items-center">
-                                    <img src="{{ asset(asset('frontend/images/logo/cscse-color-2.png')) }}" alt=""
-                                        width="130" class="img-fluid" style="cursor: pointer";
+                                    <img src="{{ asset(asset('frontend/images/logo/cscse-color-2.png')) }}"
+                                        alt="" width="130" class="img-fluid" style="cursor: pointer";
                                         onclick="location.href='{{ route('home') }}'">
                                     <img src="{{ $header_logo }}" alt="" width="70" class="img-fluid mt-2"
                                         style="cursor: pointer";
@@ -234,7 +234,7 @@
                             </div>
 
                             <div class="card bg-transparent border-0">
-                                @if (!session()->has('success') && session('status') !== 'submitted')
+                                @if (session()->has('success') && session('status') === 'submitted')
                                     <div class="mt-4 d-flex flex-column justify-content-center align-items-center">
                                         <img src="{{ asset('frontend/images/done.png') }}" alt=""
                                             width="80px">
@@ -242,18 +242,18 @@
                                         </h5>
 
                                         <div class="d-flex">
-                                            <a href="{{-- {{ route('expo.expo-ticket', ['ticket_no' => session('expoData')['id']]) }} --}}"
+                                            <a href="{{ route('expo.expo-ticket', ['ticket_no' => session('expoData')['id']]) }}"
                                                 class="mt-2 me-2 btn btn-tertiary-bg" target="_blank">
                                                 View Ticket
                                             </a>
-                                            <a href="{{ route('expo.sign-up') }}"
-                                                class="mt-2 me-2 btn btn-primary-bg">
+                                            <a href="{{ route('expo.sign-up') }}" class="mt-2 me-2 btn btn-primary-bg">
                                                 Register Another
                                             </a>
-                                            <a href="{{ route('expo.login.page') }}" class="mt-2 me-2 btn btn-primary-bg">
+                                            <a href="{{ route('expo.login.page') }}"
+                                                class="mt-2 me-2 btn btn-primary-bg">
                                                 Login
                                             </a>
-                                            <a href="https://malishaedu.com" class="mt-2 btn btn-secondary-bg">
+                                            <a href="{{ route('home') }}" class="mt-2 btn btn-secondary-bg">
                                                 Explore Now
                                             </a>
                                         </div>
@@ -275,8 +275,8 @@
                                             </div>
                                         </div>
 
-                                        <form id="regForm" action="{{ route('expo.sign-up.submit') }}"
-                                            method="POST" enctype="multipart/form-data">
+                                        <form id="regForm" action="{{ route('expo.sign-up.submit') }}" method="POST"
+                                            enctype="multipart/form-data">
                                             @csrf
 
                                             <!-- Step 1 -->
@@ -616,7 +616,8 @@
                                                     <div class="col-6 text-end">
                                                         <button type="button"
                                                             class="btn btn-primary-bg prevBtn">Previous</button>
-                                                        <button type="submit" class="btn btn-secondary-bg">Submit</button>
+                                                        <button type="submit"
+                                                            class="btn btn-secondary-bg">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -638,8 +639,8 @@
 
     <script>
         /* $('select').select2({
-                    placeholder: 'Select an option'
-                }); */
+                        placeholder: 'Select an option'
+                    }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
