@@ -531,7 +531,17 @@
     @include('Backend.components.script')
     @include('Backend.components.ckeditor5-config')
 
-    <script src="{{ asset('backend/assets/js/wizard.js') }}"></script>
+    <script>
+        var form = $("#example-form");
+        form.children("div").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onFinished: function(event, currentIndex) {
+                alert("Submit done!");
+            }
+        });
+    </script>
 
     <script>
         $('.multipleSelect2Search').select2();
