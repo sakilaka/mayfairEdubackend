@@ -44,7 +44,11 @@ class ExpoController extends Controller
     {
         return $request->all();
         $request->validate([
-            
+            'title' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'place' => 'required',
+            'location' => 'required',
         ]);
 
         try {
