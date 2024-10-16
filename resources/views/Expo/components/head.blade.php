@@ -10,13 +10,6 @@
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Barlow+Condensed:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&amp;subset=latin,latin-ext,vietnamese">
 
-@if (Route::is('home'))
-    <link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/bootstrap.min.css') }}" crossorigin="anonymous">
-@else
-    @include('Expo.layouts.parts.header-link')
-@endif
-<link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/site.css') }}?v={{ rand() }}">
-
 <style>
     :root {
         --primary_background: #e74c3c;
@@ -69,6 +62,13 @@
         background-color: var(--btn_tertiary_hover_color) !important;
     }
 </style>
+
+@if (Route::is('home'))
+    <link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/bootstrap.min.css') }}" crossorigin="anonymous">
+@else
+    @include('Expo.layouts.parts.header-link')
+@endif
+<link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/site.css') }}?v={{ rand() }}">
 
 <style>
     .card-red-pattern-bg {
