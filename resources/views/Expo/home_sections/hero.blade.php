@@ -86,6 +86,9 @@
                         View Location
                     </a>
                 </div> --}}
+            </div>
+            
+            <div class="col-md-8">
                 <div class="d-flex align-items-center justify-content-center p-2 border"
                     style="background-color: #263C9D; color: white;">
                     <div class="d-flex align-items-center me-3">
@@ -97,8 +100,6 @@
                         <span class="ms-2">Guangzhou, China</span>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
