@@ -27,7 +27,7 @@
                         </nav>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-md-12 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
@@ -444,6 +444,126 @@
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="row">
+                        <div class="col-12 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">jquery-steps wizard</h4>
+                                    <form id="example-form" action="#">
+                                        <div role="application" class="wizard clearfix" id="steps-uid-0">
+                                            <div class="steps clearfix">
+                                                <ul role="tablist">
+                                                    <li role="tab" class="first current" aria-disabled="false"
+                                                        aria-selected="true"><a id="steps-uid-0-t-0"
+                                                            href="#steps-uid-0-h-0"
+                                                            aria-controls="steps-uid-0-p-0"><span
+                                                                class="current-info audible">current step: </span><span
+                                                                class="number">1.</span> Account</a></li>
+                                                    <li role="tab" class="done" aria-disabled="false"
+                                                        aria-selected="false"><a id="steps-uid-0-t-1"
+                                                            href="#steps-uid-0-h-1"
+                                                            aria-controls="steps-uid-0-p-1"><span
+                                                                class="number">2.</span> Profile</a></li>
+                                                    <li role="tab" class="done" aria-disabled="false"
+                                                        aria-selected="false"><a id="steps-uid-0-t-2"
+                                                            href="#steps-uid-0-h-2"
+                                                            aria-controls="steps-uid-0-p-2"><span
+                                                                class="number">3.</span> Comments</a></li>
+                                                    <li role="tab" class="last done" aria-disabled="false"
+                                                        aria-selected="false"><a id="steps-uid-0-t-3"
+                                                            href="#steps-uid-0-h-3"
+                                                            aria-controls="steps-uid-0-p-3"><span
+                                                                class="number">4.</span> Finish</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="content clearfix">
+                                                <h3 id="steps-uid-0-h-0" tabindex="-1" class="title current">Account
+                                                </h3>
+                                                <section id="steps-uid-0-p-0" role="tabpanel"
+                                                    aria-labelledby="steps-uid-0-h-0" class="body current"
+                                                    aria-hidden="false" style="left: 0px;">
+                                                    <h4>Account</h4>
+                                                    <div class="form-group">
+                                                        <label>Email address</label>
+                                                        <input type="email" class="form-control"
+                                                            aria-describedby="emailHelp" placeholder="Enter email">
+                                                        <small id="emailHelp" class="form-text text-muted">We'll never
+                                                            share your email with anyone
+                                                            else.</small>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Password</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="Password">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Confirm Password</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="Confirm password">
+                                                    </div>
+                                                </section>
+                                                <h3 id="steps-uid-0-h-1" tabindex="-1" class="title">Profile</h3>
+                                                <section id="steps-uid-0-p-1" role="tabpanel"
+                                                    aria-labelledby="steps-uid-0-h-1" class="body" aria-hidden="true"
+                                                    style="left: -1012.25px; display: none;">
+                                                    <h4>Profile</h4>
+                                                    <div class="form-group">
+                                                        <label>First name</label>
+                                                        <input type="email" class="form-control"
+                                                            aria-describedby="emailHelp" placeholder="Enter first name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Last name</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="Last name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label>Profession</label>
+                                                        <input type="password" class="form-control"
+                                                            placeholder="Profession">
+                                                    </div>
+                                                </section>
+                                                <h3 id="steps-uid-0-h-2" tabindex="-1" class="title">Comments</h3>
+                                                <section id="steps-uid-0-p-2" role="tabpanel"
+                                                    aria-labelledby="steps-uid-0-h-2" class="body"
+                                                    aria-hidden="true" style="left: -1012.25px; display: none;">
+                                                    <h4>Comments</h4>
+                                                    <div class="form-group">
+                                                        <label>Comments</label>
+                                                        <textarea class="form-control" rows="3"></textarea>
+                                                    </div>
+                                                </section>
+                                                <h3 id="steps-uid-0-h-3" tabindex="-1" class="title">Finish</h3>
+                                                <section id="steps-uid-0-p-3" role="tabpanel"
+                                                    aria-labelledby="steps-uid-0-h-3" class="body"
+                                                    aria-hidden="true" style="left: 1012.25px; display: none;">
+                                                    <h4>Finish</h4>
+                                                    <div class="form-check">
+                                                        <label class="form-check-label">
+                                                            <input class="checkbox" type="checkbox">
+                                                            I agree with the Terms and Conditions.
+                                                            <i class="input-helper"></i></label>
+                                                    </div>
+                                                </section>
+                                            </div>
+                                            <div class="actions clearfix">
+                                                <ul role="menu" aria-label="Pagination">
+                                                    <li class="disabled" aria-disabled="true"><a href="#previous"
+                                                            role="menuitem">Previous</a></li>
+                                                    <li aria-hidden="false" aria-disabled="false" class=""
+                                                        style=""><a href="#next" role="menuitem">Next</a>
+                                                    </li>
+                                                    <li aria-hidden="true" style="display: none;"><a href="#finish"
+                                                            role="menuitem">Finish</a></li>
+                                                </ul>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
