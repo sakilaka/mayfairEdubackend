@@ -22,7 +22,7 @@ class ExpoModuleController extends Controller
             ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
             ->orderBy('position_in_expo', 'asc')
             ->get();
-        return view('Frontend.home', $data);
+        return view('Expo.home', $data);
     }
 
     /**
@@ -44,7 +44,7 @@ class ExpoModuleController extends Controller
      */
     public function about_us()
     {
-        return view('Frontend.pages.about_us');
+        return view('Expo.pages.about_us');
     }
 
     /**
@@ -53,7 +53,7 @@ class ExpoModuleController extends Controller
     public function contact()
     {
         $data['page'] = ExpoModuleContent::where('key', 'contact')->first();
-        return view('Frontend.pages.contact', $data);
+        return view('Expo.pages.contact', $data);
     }
 
     /**
@@ -66,7 +66,7 @@ class ExpoModuleController extends Controller
             ->orderBy('position_in_expo', 'asc')
             ->get();
 
-        return view('Frontend.pages.exhibitors', $data);
+        return view('Expo.pages.exhibitors', $data);
     }
 
     /**
@@ -77,7 +77,7 @@ class ExpoModuleController extends Controller
         $data['galleries'] = ExpoModuleContent::where('key', 'gallery')->select('contents')->first();
         $data['videos'] = ExpoModuleContent::where('key', 'video')->select('contents')->first();
 
-        return view('Frontend.pages.gallery', $data);
+        return view('Expo.pages.gallery', $data);
     }
 
     /**
@@ -85,7 +85,7 @@ class ExpoModuleController extends Controller
      */
     public function expo_form()
     {
-        return view('Frontend.pages.expo_registration');
+        return view('Expo.pages.expo_registration');
     }
 
     /**
@@ -136,6 +136,6 @@ class ExpoModuleController extends Controller
         if (!$data['expoData']) {
             return redirect(route('expo_module.expo-form'))->with('error', 'Expo ticket not found! Registration now.');
         }
-        return view('Frontend.pages.expo_ticket', $data);
+        return view('Expo.pages.expo_ticket', $data);
     }
 }

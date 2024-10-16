@@ -276,7 +276,7 @@
                                             </div>
                                         </div>
 
-                                        <form id="regForm" action="{{ route('expo_module.expo-form.submit') }}"
+                                        <form id="regForm" action="{{ route('expo.sign-up.submit') }}"
                                             method="POST" enctype="multipart/form-data">
                                             @csrf
 

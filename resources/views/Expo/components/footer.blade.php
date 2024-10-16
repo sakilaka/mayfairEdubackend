@@ -56,7 +56,7 @@
 
 <div class="fixed-buttons" id="fixed-buttons">
     <a class="nav-link registration-btn rounded-0 btn-secondary-bg px-2"
-        href="{{ route('exposi') }}" style="color: white;">Participate</a>
+        href="{{ route('expo.sign-up') }}" style="color: white;">Participate</a>
 </div>
 <script>
     document.getElementById('btn-toggle').addEventListener('click', function() {

@@ -78,9 +78,9 @@ Route::get('expo/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name
 Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
 
-Route::get('/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo_module.expo-form');
-Route::post('/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo_module.expo-form.submit');
-Route::get('expo-ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo_module.expo-ticket');
+Route::get('/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
+Route::post('/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
+Route::get('expo-ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
 
 /**
  * Captcha Routes
