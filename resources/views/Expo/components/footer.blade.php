@@ -55,7 +55,7 @@
     </button> --}}
 
 <div class="fixed-buttons" id="fixed-buttons">
-    <a class="nav-link registration-btn btn-danger-bg px-2" id="btn-apply-now-fixed"
+    <a class="nav-link registration-btn btn-danger-bg px-2"
         href="http://studyinchinaexhibition.com/expo-sign-up" style="color: white;">Participate</a>
 </div>
 <script>
