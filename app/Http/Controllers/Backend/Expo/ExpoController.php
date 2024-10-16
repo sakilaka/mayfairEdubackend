@@ -49,6 +49,12 @@ class ExpoController extends Controller
             'time' => 'required',
             'place' => 'required',
             'location[]' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'date.required' => 'Please provide the date of the expo.',
+            'time.required' => 'The expo time is required.',
+            'place.required' => 'Please specify the place.',
+            'location[].required' => 'You need to select a location.',
         ]);
 
         if ($validator->fails()) {
@@ -163,6 +169,26 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'date' => 'required',
+            'time' => 'required',
+            'place' => 'required',
+            'location[]' => 'required',
+        ], [
+            'title.required' => 'The title field is required.',
+            'date.required' => 'Please provide the date of the expo.',
+            'time.required' => 'The expo time is required.',
+            'place.required' => 'Please specify the place.',
+            'location[].required' => 'You need to select a location.',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'Please fix the issue(s) first.')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
         $expo = Expo::find($id);
 
         if (!$expo) {
