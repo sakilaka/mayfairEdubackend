@@ -9,8 +9,8 @@
       alert("Submit done!");
     }
   });
-  
-  var validationForm = $("#example-validation-form");
+
+  /* var validationForm = $("#example-validation-form");
   validationForm.val({
     errorPlacement: function errorPlacement(error, element) {
       element.before(error);
@@ -40,9 +40,9 @@
     onFinished: function (event, currentIndex) {
       alert("Submitted!");
     }
-  });
+  }); */
 
-  var verticalForm = $("#example-vertical-wizard");
+  /* var verticalForm = $("#example-vertical-wizard");
   verticalForm.children("div").steps({
     headerTag: "h3",
     bodyTag: "section",
@@ -51,5 +51,5 @@
     onFinished: function (event, currentIndex) {
       alert("Submitted!");
     }
-  });
+  }); */
 })(jQuery);
