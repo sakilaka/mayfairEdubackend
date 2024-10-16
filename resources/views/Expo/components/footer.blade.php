@@ -55,8 +55,8 @@
     </button> --}}
 
 <div class="fixed-buttons" id="fixed-buttons">
-    <a href="{{ route('frontend.university_course_list') }}" class="btn btn-tertiary-bg" id="btn-apply-now-fixed">Apply
-        Now</a>
+    <a class="nav-link registration-btn btn-danger-bg px-2" id="btn-apply-now-fixed"
+        href="http://studyinchinaexhibition.com/expo-sign-up" style="color: white;">Participate</a>
 </div>
 <script>
     document.getElementById('btn-toggle').addEventListener('click', function() {
