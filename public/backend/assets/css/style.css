@@ -47643,7 +47643,7 @@ div.tagsinput span.tag a {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
-    border: 1px solid #e0e0ef;
+    /* border: 1px solid #e0e0ef; */
 }
 
 .wizard > .content > .title {
@@ -47656,7 +47656,7 @@ div.tagsinput span.tag a {
     /* position: absolute; */
     width: 95%;
     height: 95%;
-    padding: 2.5%;
+    padding: 2.5% 0;
 }
 
 .wizard > .content > .body ul {
