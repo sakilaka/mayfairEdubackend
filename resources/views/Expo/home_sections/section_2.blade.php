@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-6 col-xs-12">
                         <div class="col-16">
-                            <p class="text-5" style="font-size: 2.5rem; color: #e74c3c; font-weight: bold;">
+                            <p class="text-5" style="font-size: 2.5rem; color: var(--primary_background); font-weight: bold;">
                                 Why should Attend<br>this Exhibition?
                             </p>
                             <p class="text-6" style="font-size: 0.875rem; line-height: 1.2;">
