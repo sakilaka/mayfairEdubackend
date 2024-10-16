@@ -222,7 +222,7 @@
                                 alt="Logo" class="logo">
                         </a>
 
-                        @include('Frontend.components.navbar')
+                        @include('Expo.components.navbar')
                     </div>
                 </nav>
 

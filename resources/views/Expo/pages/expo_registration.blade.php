@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('Frontend.components.head')
+    @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Expo Registration</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -195,7 +195,7 @@
                             class="logo">
                     </a>
 
-                    @include('Frontend.components.navbar')
+                    @include('Expo.components.navbar')
                 </div>
             </nav>
         </div>
@@ -634,7 +634,7 @@
         </div>
     </div>
 
-    @include('Frontend.components.footer')
+    @include('Expo.components.footer')
 
     <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
 

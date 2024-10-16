@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('Frontend.components.head')
+    @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - About Us</title>
 </head>
 
@@ -17,7 +17,7 @@
                             class="logo">
                     </a>
 
-                    @include('Frontend.components.navbar')
+                    @include('Expo.components.navbar')
                 </div>
             </nav>
         </div>
@@ -116,8 +116,8 @@
         </div>
     </section>
 
-    @include('Frontend.home_sections.footer')
-    @include('Frontend.components.footer')
+    @include('Expo.home_sections.footer')
+    @include('Expo.components.footer')
 </body>
 
 </html>

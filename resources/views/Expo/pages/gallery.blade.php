@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('Frontend.components.head')
+    @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Gallery</title>
 
     <style>
@@ -106,7 +106,7 @@
                             class="logo">
                     </a>
 
-                    @include('Frontend.components.navbar')
+                    @include('Expo.components.navbar')
                 </div>
             </nav>
         </div>
@@ -213,8 +213,8 @@
 
     </section>
 
-    @include('Frontend.home_sections.footer')
-    @include('Frontend.components.footer')
+    @include('Expo.home_sections.footer')
+    @include('Expo.components.footer')
 
     <script src="{{ asset('frontend/justifiedGallery/jquery.justifiedGallery.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" crossorigin="anonymous"

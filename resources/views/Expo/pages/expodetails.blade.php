@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master-layout')
+@extends('Expo.layouts.master-layout')
 @section('title', ' - Expo Details')
 @section('head')
     <style>

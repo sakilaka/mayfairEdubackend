@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('Frontend.components.head')
+    @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Login to your Expo Dashboard</title>
 
     <style>
@@ -29,7 +29,7 @@
                             class="logo">
                     </a>
 
-                    @include('Frontend.components.navbar')
+                    @include('Expo.components.navbar')
                 </div>
             </nav>
         </div>
@@ -174,7 +174,7 @@
         </div>
     </div>
 
-    @include('Frontend.components.footer')
+    @include('Expo.components.footer')
 
     @if (session()->has('success') || session()->has('error'))
         <script>
