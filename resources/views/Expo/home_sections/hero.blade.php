@@ -26,19 +26,19 @@
                 </div>
                 <div>
                     <div>
-                        <p style="font-size: 18px;" class="text-white mb-0">Organizer:</p>
+                        <p style="font-size: 16px;" class="text-white mb-0">Organizer:</p>
                         <p class="location-text text-white">
                             <span class="text-style fw-bold">Guangzhou MalishaEdu Co. Ltd.</span>
                         </p>
                     </div>
                     <div>
-                        <p style="font-size: 18px;" class="text-white mb-0">Co-Organizer:</p>
+                        <p style="font-size: 16px;" class="text-white mb-0">Co-Organizer:</p>
                         <p class="location-text text-white">
                             <span class="text-style fw-bold">The Belt and Road Chinese Center (BRCC) and Easy Link</span>
                         </p>
                     </div>
                     <div>
-                        <p style="font-size: 18px;" class="text-white mb-0">Venue:</p>
+                        <p style="font-size: 16px;" class="text-white mb-0">Venue:</p>
                         <p class="location-text text-white">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
