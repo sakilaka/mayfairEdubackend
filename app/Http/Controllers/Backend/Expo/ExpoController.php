@@ -177,7 +177,6 @@ class ExpoController extends Controller
         }
 
         $data['universities'] = University::where('status', 1)->get();
-        // return $data['expo'];
         return view("Backend.events.expo.update", $data);
     }
 
