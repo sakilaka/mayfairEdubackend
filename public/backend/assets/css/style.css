@@ -47675,7 +47675,7 @@ div.tagsinput span.tag a {
 
 .wizard > .content > .body input {
     display: block;
-    border: 1px solid #e0e0ef;
+    /* border: 1px solid #e0e0ef; */
 }
 
 .wizard > .content > .body input[type="checkbox"] {
