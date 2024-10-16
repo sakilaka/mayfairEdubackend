@@ -918,7 +918,15 @@
             bodyTag: "section",
             transitionEffect: "slideLeft",
             onFinished: function(event, currentIndex) {
-                alert("Submit done!");
+                // Log the serialized form data
+                var formData = form.serialize();
+                console.log("Form Data: ", formData);
+
+                // Alternatively, you can log the form fields as an object
+                var formObject = form.serializeArray();
+                console.log("Form Fields: ", formObject);
+
+                alert("Form submission complete, check console for details.");
             }
         });
     </script>
