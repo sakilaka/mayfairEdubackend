@@ -583,13 +583,13 @@
 
     @include('Backend.components.script')
     @include('Backend.components.ckeditor5-config')
-
+    
+    {{-- <script src="{{ asset('backend/assets/js/wizard.js') }}"></script> --}}
 
     <script>
         $('.multipleSelect2Search').select2();
     </script>
 
-    <script src="{{ asset('backend/assets/js/wizard.js') }}"></script>
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
     <script>
         $(document).on('change', `.dropify`, function() {
