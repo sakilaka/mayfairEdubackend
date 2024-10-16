@@ -46,7 +46,8 @@
                         </p>
                     </div>
                     <div>
-                        <p style="font-size: 16px;" class="text-white mb-0">Venue:</p>
+                        <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Venue:
+                        </p>
                         <p class="location-text text-white">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
