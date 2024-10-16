@@ -913,6 +913,7 @@
     @include('Backend.components.script')
     @include('Backend.components.ckeditor5-config')
 
+    <script src="{{ asset('backend/assets/js/form-validation.js') }}"></script>
     <script>
         var form = $("#expo-form-wizard");
         form.children("div").steps({
