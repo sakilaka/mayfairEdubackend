@@ -923,7 +923,7 @@
                 var formObject = form.serializeArray();
                 console.log("Form Fields: ", formObject);
 
-                alert("Form submission complete, check console for details.");
+                form.submit();
             }
         });
     </script>
