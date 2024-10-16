@@ -43,7 +43,6 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
-        // return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -142,20 +141,19 @@ class ExpoController extends Controller
 
             if ($request->hasFile('additional_contents.nav_logo')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
-                // $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
+                $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
             }
             if ($request->hasFile('additional_contents.hero_bg')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
-                // $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
+                $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['hero_bg'] = url('upload/expo/' . $fileName);
             }
             if ($request->hasFile('additional_contents.why_should_attend')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
-                // $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
+                $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
-            return $data;
 
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
