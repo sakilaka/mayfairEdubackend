@@ -234,7 +234,7 @@
                             </div>
 
                             <div class="card bg-transparent border-0">
-                                @if (session()->has('success') && session('status') === 'submitted')
+                                @if (!session()->has('success') && session('status') !== 'submitted')
                                     <div class="mt-4 d-flex flex-column justify-content-center align-items-center">
                                         <img src="{{ asset('frontend/images/done.png') }}" alt=""
                                             width="80px">
@@ -242,11 +242,11 @@
                                         </h5>
 
                                         <div class="d-flex">
-                                            <a href="{{ route('expo_module.expo-ticket', ['ticket_no' => session('expoData')['id']]) }}"
+                                            <a href="{{-- {{ route('expo.expo-ticket', ['ticket_no' => session('expoData')['id']]) }} --}}"
                                                 class="mt-2 me-2 btn btn-tertiary-bg" target="_blank">
                                                 View Ticket
                                             </a>
-                                            <a href="{{ route('expo_module.expo-form') }}"
+                                            <a href="{{ route('expo.sign-up') }}"
                                                 class="mt-2 me-2 btn btn-primary-bg">
                                                 Register Another
                                             </a>
@@ -620,7 +620,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </form>
                                     </div>
                                 @endif
