@@ -8,18 +8,7 @@
             <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}"
                 style="color: white;">Home</a>
         </li>
-        {{-- <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="whyChinaDropdown"
-                aria-expanded="false">
-                <span class="mr-2">Why China</span>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown shadow" aria-labelledby="whyChinaDropdown">
-                <a class="dropdown-item" href="https://www.studyinchina.edu.cn/lxzgywz/414369/414371/index.html"
-                    target="_blank">
-                    10 Reasons for Study in China
-                </a>
-            </div>
-        </li> --}}
+        
         <li class="nav-item">
             <a class="nav-link" href="#" style="color: white;" target="_blank">Schedule</a>
         </li>
