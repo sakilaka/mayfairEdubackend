@@ -31,7 +31,9 @@
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <form id="expo-form-wizard" action="#">
+                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST">
+                                        @csrf
+
                                         <div>
                                             <h3>Expo Details</h3>
                                             <section>
@@ -918,11 +920,6 @@
             bodyTag: "section",
             transitionEffect: "slideLeft",
             onFinished: function(event, currentIndex) {
-                // Log the serialized form data
-                var formData = form.serialize();
-                console.log("Form Data: ", formData);
-
-                // Alternatively, you can log the form fields as an object
                 var formObject = form.serializeArray();
                 console.log("Form Fields: ", formObject);
 
