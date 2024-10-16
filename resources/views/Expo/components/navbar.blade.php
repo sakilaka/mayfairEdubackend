@@ -28,10 +28,5 @@
             <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;"
                 target="_blank">Join</a>
         </li>
-
-        <li class="nav-item">
-            <a class="nav-link registration-btn btn-danger-bg px-2"
-                href="http://studyinchinaexhibition.com/expo-sign-up" style="color: white;">Participate</a>
-        </li>
     </ul>
 </div>
