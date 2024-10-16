@@ -86,7 +86,7 @@
                         View Location
                     </a>
                 </div> --}}
-                <div class="d-flex align-items-center justify-content-center p-2 border rounded"
+                <div class="d-flex align-items-center justify-content-center p-2 border"
                     style="background-color: #263C9D; color: white;">
                     <div class="d-flex align-items-center me-3">
                         <i class="bi bi-calendar2-event" style="color: #4CAF50;"></i>
