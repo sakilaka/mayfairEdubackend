@@ -703,7 +703,10 @@
 
                                             <h3>Additional Contents</h3>
                                             <section>
-
+                                                @php
+                                                    $additional_contents =
+                                                        json_decode($expo['additional_contents'], true) ?? [];
+                                                @endphp
                                                 <h4>Nav Logo</h4>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
@@ -744,7 +747,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $additional_contents['nav_logo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
@@ -793,7 +796,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $additional_contents['hero_bg'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
@@ -842,7 +845,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $additional_contents['why_should_attend'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
