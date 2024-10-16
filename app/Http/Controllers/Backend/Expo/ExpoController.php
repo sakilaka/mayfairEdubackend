@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ExpoController extends Controller
@@ -42,13 +43,19 @@ class ExpoController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
             'time' => 'required',
             'place' => 'required',
-            'location' => 'required',
+            'location[]' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->with('error', 'Please fix the issue(s) first.')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         try {
             $data = [

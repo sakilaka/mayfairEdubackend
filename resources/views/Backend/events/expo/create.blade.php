@@ -96,6 +96,9 @@
                                                                 <input type="text" name="title"
                                                                     class="form-control" placeholder="Enter Expo Title"
                                                                     required>
+                                                                @error('title')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -107,6 +110,9 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="date" name="date"
                                                                     class="form-control" required>
+                                                                @error('date')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -118,6 +124,9 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="time" name="time"
                                                                     class="form-control" required>
+                                                                @error('time')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -130,6 +139,9 @@
                                                                 <input type="text" name="place"
                                                                     class="form-control" placeholder="Enter Address"
                                                                     required>
+                                                                @error('place')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -163,6 +175,10 @@
                                                                         <option value="china">China</option>
                                                                         <option value="overseas">Overseas</option>
                                                                     </select>
+                                                                    @error('location[]')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6 expo-country-container"
