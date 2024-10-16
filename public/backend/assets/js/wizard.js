@@ -9,6 +9,7 @@
       alert("Submit done!");
     }
   });
+  
   var validationForm = $("#example-validation-form");
   validationForm.val({
     errorPlacement: function errorPlacement(error, element) {
@@ -40,6 +41,7 @@
       alert("Submitted!");
     }
   });
+
   var verticalForm = $("#example-vertical-wizard");
   verticalForm.children("div").steps({
     headerTag: "h3",
