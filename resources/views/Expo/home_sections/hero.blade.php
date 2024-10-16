@@ -86,8 +86,8 @@
                         View Location
                     </a>
                 </div> --}}
-                <div class="d-flex mx-auto align-items-center justify-content-center p-2 border"
-                    style="background-color: #263C9D; color: white; width:fit-content">
+                <div
+                    class="d-flex mx-auto align-items-center justify-content-center p-2 border hero-bottom-location-container">
                     <div class="d-flex align-items-center me-3">
                         <i class="bi bi-calendar2-event" style="color: #4CAF50;"></i>
                         <span class="ms-2">21<sup>st</sup> & 22<sup>nd</sup> November, 2024</span>

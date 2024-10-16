@@ -265,6 +265,14 @@ h2 {
     transform: scale(1.05);
 }
 
-.location-text{
+.location-text {
     font-size: 18px;
+}
+
+.hero-bottom-location-container {
+    background-color: #263c9d;
+    color: white;
+    width: fit-content;
+    border-radius: 8px;
+    font-size: 16px;
 }
