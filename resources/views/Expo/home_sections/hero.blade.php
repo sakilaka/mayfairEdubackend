@@ -21,7 +21,7 @@
                 <div>
                     <h2 class="main-heading text-white fw-bold">The 2nd</h2>
                     <h1 class="main-title text-white fw-bold">
-                        Belt and Road Chinese
+                        Belt and Road Chinese University and Overseas Partner Exchange Conference
                     </h1>
                 </div>
                 <p class="location-text text-white">
