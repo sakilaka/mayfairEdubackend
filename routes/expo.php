@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
+use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Expo\ExpoModuleController;
+use App\Http\Controllers\Expo\ExpoUserController;
+use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
 /**
@@ -48,6 +51,23 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
 
+/**
+ * Expo Routes (User)
+ */
+Route::middleware(['accessLogin'])->group(function () {
+    Route::prefix('user')->middleware(['userCheck'])->group(function () {
+        Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('user.dashboard');
+        Route::get('/profile', [ExpoUserController::class, 'index'])->name('user.profile');
+        Route::get('/profile/{id}', [ExpoUserController::class, 'editUserInfo'])->name('user.edit_profile');
+        Route::post('/update/profile/{id}', [ExpoUserController::class, 'updateUserInfo'])->name('user.profile_info_update');
+
+        Route::post('/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('user.password_change');
+        Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('user.logout');
+
+        // tickets
+        Route::get('my-tickets', [ExpoUserController::class, 'my_tickets'])->name('user.my_tickets');
+    });
+});
 
 /**
  * Page Routes (Global)
@@ -57,3 +77,16 @@ Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo
 Route::get('expo/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
 Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
+
+Route::get('/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo_module.expo-form');
+Route::post('/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo_module.expo-form.submit');
+Route::get('expo-ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo_module.expo-ticket');
+
+/**
+ * Captcha Routes
+ */
+Route::get('/captcha', [CaptchaController::class, 'generateCaptcha']);
+Route::post('/verify-captcha', [CaptchaController::class, 'verifyCaptcha']);
+
+Route::post('/send-verification-email', [CaptchaController::class, 'sendVerificationEmail']);
+Route::post('/verify-code', [CaptchaController::class, 'verifyCode']);
