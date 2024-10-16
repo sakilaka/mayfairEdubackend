@@ -142,6 +142,12 @@ class ExpoController extends Controller
                 $data['photos'] = json_encode($galleryImages);
             }
 
+            if ($request->hasFile('additional_contents["nav_logo"]')) {
+                $fileName = rand() . time() . '.' . $request->additional_contents["nav_logo"]->getClientOriginalExtension();
+                $request->banner->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents["nav_logo"]'] = url('upload/expo/' . $fileName);
+            }
+
             // Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
