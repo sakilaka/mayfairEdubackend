@@ -21,7 +21,8 @@
     <div class="bg-color"></div>
 
     <div style="width: 100%; height:100%;" class="d-flex justify-content-center align-items-center">
-        <div class="container mx-auto row justify-content-center justify-content-md-around align-items-center mb-md-5 pb-md-5">
+        <div
+            class="container mx-auto row justify-content-center justify-content-md-around align-items-center mb-md-5 pb-md-5">
             <div class="col-md-12 p-4 pb-5 pt-md-0" style="position: relative; z-index: 3;">
                 <div>
                     <h2 class="main-heading text-white fw-bold">The 2nd</h2>
@@ -58,6 +59,7 @@
                             </span>
                             <span class="text-style fw-bold">BICC(Former Bangladesh-China Friendship Conference
                                 Center)</span>
+                            <br>
                             Agargaon, Sher-E-Bangla Nagar, Dhaka-1207, Bangladesh
                         </p>
                     </div>
