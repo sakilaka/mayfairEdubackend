@@ -254,13 +254,17 @@ h2 {
 }
 
 .university-card {
-    overflow: hidden; /* Prevent overflow of scaled image */
+    overflow: hidden;
 }
 
 .banner-image {
-    transition: transform 0.3s; /* Smooth transition for scaling */
+    transition: transform 0.3s;
 }
 
 .university-card:hover .banner-image {
-    transform: scale(1.05); /* Scale the image slightly on hover */
+    transform: scale(1.05);
+}
+
+.location-text{
+    font-size: 18px;
 }
