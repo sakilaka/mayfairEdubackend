@@ -35,7 +35,7 @@
                                         <div>
                                             <h3>Expo Details</h3>
                                             <section>
-                                                <h4>Expo Details</h4>
+                                                <h4 class="mb-3">Expo Details</h4>
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
