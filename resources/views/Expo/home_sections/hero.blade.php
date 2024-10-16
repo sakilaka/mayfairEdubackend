@@ -7,9 +7,8 @@
                         class="logo">
                 </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -61,8 +60,8 @@
                     </div>
                 </div>
 
-                <div class="rectangle-3-copy-holder text-white">
-                    {{-- <a href="http://studyinchinaexhibition.com/expo-sign-up"
+                {{-- <div class="text-white">
+                    <a href="http://studyinchinaexhibition.com/expo-sign-up"
                         class="btn btn-light fw-bold btn-responsive mb-2">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -85,8 +84,20 @@
                             </svg>
                         </span>
                         View Location
-                    </a> --}}
+                    </a>
+                </div> --}}
+                <div class="d-flex align-items-center justify-content-center p-2 border rounded"
+                    style="background-color: #263C9D; color: white;">
+                    <div class="d-flex align-items-center me-3">
+                        <i class="bi bi-calendar2-event" style="color: #4CAF50;"></i>
+                        <span class="ms-2">21<sup>st</sup> & 22<sup>nd</sup> November, 2024</span>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-geo-alt" style="color: #4CAF50;"></i>
+                        <span class="ms-2">Guangzhou, China</span>
+                    </div>
                 </div>
+
 
             </div>
         </div>
