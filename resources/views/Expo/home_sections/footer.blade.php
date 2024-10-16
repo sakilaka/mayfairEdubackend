@@ -52,7 +52,7 @@
                     }
 
                     div.footer_social_icons_container:hover {
-                        background-color: var(--primary_background);
+                        background-color: var(--primary_background_hover);
                         color: white;
                         transform: scale(1.05);
                     }
