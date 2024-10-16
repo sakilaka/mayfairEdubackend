@@ -20,7 +20,8 @@ class Expo extends Model
         'photos',
         'videos',
         'description',
-        'location'
+        'location',
+        'additional_contents'
     ];
 
     public function universities()
