@@ -190,13 +190,11 @@ class ExpoController extends Controller
             'date' => 'required',
             'time' => 'required',
             'place' => 'required',
-            'location[]' => 'required',
         ], [
             'title.required' => 'The title field is required.',
             'date.required' => 'Please provide the date of the expo.',
             'time.required' => 'The expo time is required.',
             'place.required' => 'Please specify the place.',
-            'location[].required' => 'You need to select a location.',
         ]);
 
         if ($validator->fails()) {
@@ -278,7 +276,6 @@ class ExpoController extends Controller
                     $mediaPartnerLogos[$key] = url('upload/expo/media_partner/' . $fileName);
                 }
             }
-
             $oldMediaPartnerLogos = $request->old_media_partner_logo ?? [];
             $mergedMediaPartnerLogos = $oldMediaPartnerLogos;
 
@@ -307,7 +304,6 @@ class ExpoController extends Controller
                     $galleryImages[$key] = url('upload/expo/gallery/' . $fileName);
                 }
             }
-
             $oldGalleryImages = $request->old_gallery_image ?? [];
             $mergedGalleryImages = $oldGalleryImages;
 
@@ -315,6 +311,23 @@ class ExpoController extends Controller
                 $mergedGalleryImages[$key] = $url;
             }
             $data['photos'] = json_encode($mergedGalleryImages);
+
+            // Handling additional images
+            if ($request->hasFile('additional_contents.nav_logo')) {
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
+                $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
+            }
+            if ($request->hasFile('additional_contents.hero_bg')) {
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
+                $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents']['hero_bg'] = url('upload/expo/' . $fileName);
+            }
+            if ($request->hasFile('additional_contents.why_should_attend')) {
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
+                $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
+            }
 
             $expo->update($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
