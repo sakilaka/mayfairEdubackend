@@ -31,7 +31,7 @@
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST" class="validate-form">
+                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST">
                                         @csrf
 
                                         <div>
@@ -913,7 +913,6 @@
     @include('Backend.components.script')
     @include('Backend.components.ckeditor5-config')
 
-    <script src="{{ asset('backend/assets/js/form-validation.js') }}"></script>
     <script>
         var form = $("#expo-form-wizard");
         form.children("div").steps({
@@ -924,7 +923,7 @@
                 var formObject = form.serializeArray();
                 console.log("Form Fields: ", formObject);
 
-                // form.submit();
+                form.submit();
             }
         });
     </script>
