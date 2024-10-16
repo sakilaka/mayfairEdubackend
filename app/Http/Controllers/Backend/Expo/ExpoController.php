@@ -139,6 +139,7 @@ class ExpoController extends Controller
                 $data['photos'] = json_encode($galleryImages);
             }
 
+            // Handling additional images
             if ($request->hasFile('additional_contents.nav_logo')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
                 $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
