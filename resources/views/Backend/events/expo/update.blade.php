@@ -40,6 +40,7 @@
                                             @php
                                                 $additional_contents =
                                                     json_decode($expo['additional_contents'], true) ?? [];
+                                                dd($additional_contents);
                                             @endphp
 
                                             <h3>Expo Details</h3>
@@ -983,7 +984,8 @@
                                                                 <span class="text-danger">*</span>
                                                                 Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="additional_contents[organizerDetails][name]"
+                                                                <input type="text"
+                                                                    name="additional_contents[organizerDetails][name]"
                                                                     class="form-control" value=""
                                                                     placeholder="Enter Organizer Name">
                                                                 @error('additional_contents[organizerDetails][name]')
@@ -1067,7 +1069,8 @@
                                                                 <span class="text-danger">*</span>
                                                                 Co-Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="additional_contents[co_organizerDetails][name]"
+                                                                <input type="text"
+                                                                    name="additional_contents[co_organizerDetails][name]"
                                                                     class="form-control" value=""
                                                                     placeholder="Enter Co-Organizer Name">
                                                                 @error('additional_contents[co_organizerDetails][name]')
