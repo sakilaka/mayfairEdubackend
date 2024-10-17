@@ -24,11 +24,6 @@
         <div
             class="container mx-auto row justify-content-center justify-content-md-around align-items-center mb-md-5 pb-md-5">
             <div class="col-md-12 p-4 pb-5 pt-md-0" style="position: relative; z-index: 3;">
-                @php
-                    $additional_contents = json_decode($expo->additional_contents, true) ?? [];
-                    $place = json_decode($expo->place, true) ?? [];
-                    $datetime = json_decode($expo->datetime, true) ?? [];
-                @endphp
                 <div>
                     @if ($additional_contents['pre_title'])
                         <h2 class="main-heading text-white fw-bold">{{ $additional_contents['pre_title'] }}</h2>
