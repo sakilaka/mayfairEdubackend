@@ -4,6 +4,8 @@
 <head>
     @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Details of {{ $expo['title'] }}</title>
+
+    <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
 </head>
 
 <body>

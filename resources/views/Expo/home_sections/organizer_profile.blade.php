@@ -7,7 +7,7 @@
         <div class="row justify-content-center mt-5">
             <div class="col-md-3">
                 <div class="d-flex flex-column justify-content-center align-items-center align-items-md-end">
-                    <img src="{{ asset('frontend/expo-domain/images/image_20240924085451.png') }}" alt=""
+                    <img src="{{ $additional_contents['organizerDetails']['logo'] ?? '' }}" alt=""
                         class="img-fluid" width="150">
                     <div class="text-center mt-4 me-md-3">
                         <a href="https://www.studyinchina.edu.cn/" class="btn btn-light mx-auto px-5 rounded-0"
@@ -17,7 +17,7 @@
             </div>
 
             <div class="col-md-8 mt-4 mt-md-0">
-                <p class="text-23 text-light"><strong class="fw700">Chinese Service Center for Scholarly
+                {{-- <p class="text-23 text-light"><strong class="fw700">Chinese Service Center for Scholarly
                         Exchange(CSCSE)</strong><br>CSCSE was founded on March 31st, 1989. It is a public
                     institution
                     affiliated to the Ministry of Education (MOE) of the People’s Republic of China. As a legal
@@ -31,7 +31,14 @@
                     to promoting the internationalization and capacity building of Chinese higher education
                     institutions, as well as introducing the best practice of education resources through
                     international
-                    exchanges and collaboration.</p>
+                    exchanges and collaboration.</p> --}}
+                <p class="text-light fs mb-2">
+                    <strong class="fw700">{{ $additional_contents['organizerDetails']['name'] ?? '' }}</strong>
+                </p>
+
+                <div class="ckeditor5-rendered text-light">
+                    {!! $additional_contents['organizerDetails']['details'] ?? '' !!}
+                </div>
             </div>
             <div class="col-md-1"></div>
         </div>
