@@ -888,7 +888,7 @@
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="additional_contents[why_should_attend]"
+                                                                            name="additional_contents[why_should_attend][logo]"
                                                                             accept="image/*">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
@@ -914,7 +914,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ $additional_contents['why_should_attend'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $additional_contents['why_should_attend']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
