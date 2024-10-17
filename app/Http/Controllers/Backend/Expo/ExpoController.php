@@ -367,80 +367,36 @@ class ExpoController extends Controller
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
+            $uploadPath = 'upload/expo/';
 
             if ($request->hasFile('additional_contents.nav_logo')) {
-                if (!empty($old_additional_contents['nav_logo'])) {
-                    $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
-                $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
+                $this->deleteOldFile($old_additional_contents['nav_logo']);
+                $data['additional_contents']['nav_logo'] = $this->handleFileUpload($request->file('additional_contents.nav_logo'), $uploadPath);
             }
 
             if ($request->hasFile('additional_contents.hero_bg')) {
-                if (!empty($old_additional_contents['hero_bg'])) {
-                    $oldFilePath = parse_url($old_additional_contents['hero_bg'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
-                $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['hero_bg'] = url('upload/expo/' . $fileName);
+                $this->deleteOldFile($old_additional_contents['hero_bg']);
+                $data['additional_contents']['hero_bg'] = $this->handleFileUpload($request->file('additional_contents.hero_bg'), $uploadPath);
             }
 
             if ($request->hasFile('additional_contents.why_should_attend')) {
-                if (!empty($old_additional_contents['why_should_attend'])) {
-                    $oldFilePath = parse_url($old_additional_contents['why_should_attend'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
-                $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
+                $this->deleteOldFile($old_additional_contents['why_should_attend']);
+                $data['additional_contents']['why_should_attend'] = $this->handleFileUpload($request->file('additional_contents.why_should_attend'), $uploadPath);
             }
 
             if ($request->hasFile('additional_contents.organizerDetails.logo')) {
-                if (!empty($old_additional_contents['organizerDetails']['logo'])) {
-                    $oldFilePath = parse_url($old_additional_contents['organizerDetails']['logo'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+                $this->deleteOldFile($old_additional_contents['organizerDetails']['logo']);
+                $data['additional_contents']['organizerDetails']['logo'] = $this->handleFileUpload($request->file('additional_contents.organizerDetails.logo'), $uploadPath);
             }
 
             if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
-                if (!empty($old_additional_contents['co_organizerDetails']['logo'])) {
-                    $oldFilePath = parse_url($old_additional_contents['co_organizerDetails']['logo'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+                $this->deleteOldFile($old_additional_contents['co_organizerDetails']['logo']);
+                $data['additional_contents']['co_organizerDetails']['logo'] = $this->handleFileUpload($request->file('additional_contents.co_organizerDetails.logo'), $uploadPath);
             }
 
+            // Handling other fields
             $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
             $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
-
             $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
             $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
 
@@ -451,10 +407,30 @@ class ExpoController extends Controller
 
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
 
+    // Helper method for deleting old files
+    private function deleteOldFile($fileUrl)
+    {
+        if (!empty($fileUrl)) {
+            $oldFilePath = parse_url($fileUrl, PHP_URL_PATH);
+            $oldFileFullPath = public_path($oldFilePath);
+            if (file_exists($oldFileFullPath)) {
+                unlink($oldFileFullPath);
+            }
+        }
+    }
+
+    // Helper method for handling file upload
+    private function handleFileUpload($file, $path)
+    {
+        $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path($path), $fileName);
+        return url($path . $fileName);
+    }
 
     /**
      * Remove the specified resource from storage.
