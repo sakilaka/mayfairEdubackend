@@ -191,6 +191,9 @@ class ExpoController extends Controller
             $data['additional_contents']['co_organizerDetails']['redirect_url'] = $request['additional_contents']['co_organizerDetails']['redirect_url'];
             $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
 
+            $data['additional_contents']['why_should_attend']['contents'] = $request['additional_contents']['why_should_attend']['contents'];
+            $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
+
             $data['additional_contents'] = json_encode($data['additional_contents']);
             Expo::create($data);
 
@@ -467,6 +470,7 @@ class ExpoController extends Controller
             $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
 
             $data['additional_contents']['why_should_attend']['contents'] = $request['additional_contents']['why_should_attend']['contents'];
+            $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
 
             $data['additional_contents'] = json_encode($data['additional_contents'] ?? asset('frontend/images/No-image.jpg'));
             $expo->update($data);

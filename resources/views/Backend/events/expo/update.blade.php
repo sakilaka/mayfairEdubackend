@@ -1151,7 +1151,7 @@
                                                         <div class="form-group">
                                                             <label class="form-control-label">
                                                                 <span class="text-danger">*</span>
-                                                                Write Schedule Contents:
+                                                                Write Schedule Page Contents:
                                                             </label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <textarea name="additional_contents[schedule]" class="form-control editor">{!! $additional_contents['schedule'] ?? '' !!}</textarea>
