@@ -316,24 +316,48 @@ class ExpoController extends Controller
             $old_additional_contents = json_decode($expo['additional_contents'], true);
 
             if ($request->hasFile('additional_contents.nav_logo')) {
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
-                // $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
+                if (!empty($old_additional_contents['nav_logo'])) {
+                    $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
 
-                return $old_additional_contents['nav_logo'];
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
+                $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
             }
+
             if ($request->hasFile('additional_contents.hero_bg')) {
+                if (!empty($old_additional_contents['hero_bg'])) {
+                    $oldFilePath = parse_url($old_additional_contents['hero_bg'], PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
+
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
                 $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['hero_bg'] = url('upload/expo/' . $fileName);
             }
+
             if ($request->hasFile('additional_contents.why_should_attend')) {
+                if (!empty($old_additional_contents['why_should_attend'])) {
+                    $oldFilePath = parse_url($old_additional_contents['why_should_attend'], PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
+
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
                 $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
+
             $data['additional_contents'] = json_encode($data['additional_contents']);
-return $data;
             $expo->update($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
