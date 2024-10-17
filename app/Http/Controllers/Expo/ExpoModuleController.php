@@ -70,8 +70,11 @@ class ExpoModuleController extends Controller
     /**
      * exhibitors page
      */
-    public function exhibitors()
+    public function exhibitors($expo_id)
     {
+        $expo = Expo::select('universities')->find($expo_id);
+        return $expo;
+
         $data['exhibitors'] = University::where('is_exhibitor', true)
             ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
             ->orderBy('position_in_expo', 'asc')
