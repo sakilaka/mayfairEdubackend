@@ -71,7 +71,7 @@ class ExpoController extends Controller
                 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
-return $data;
+
             $dateTime = [
                 'date' => date('d M, Y', strtotime($request->date)),
                 'time_from' => $request->time_from,
@@ -188,7 +188,7 @@ return $data;
             return redirect()->back()->with('error', 'Expo Not Found!');
         }
 
-        $data['universities'] = University::where('status', 1)->get();
+        $data['exhibitors'] = University::where('status', 1)->get();
         return view("Backend.events.expo.update", $data);
     }
 

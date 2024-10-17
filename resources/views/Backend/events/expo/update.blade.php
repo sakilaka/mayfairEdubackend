@@ -208,19 +208,19 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Participated Universities:</label>
+                                                            <label>Exhibitors:</label>
                                                             <select
                                                                 class="form-control form-control-lg multipleSelect2Search"
                                                                 name="universities[]" multiple>
-                                                                <option value="">Select University</option>
+                                                                <option value="">Select Exhibitor</option>
                                                                 @php
-                                                                    $selectedUniversities =
+                                                                    $selectedExhibitors =
                                                                         json_decode($expo->universities, true) ?? [];
                                                                 @endphp
-                                                                @foreach ($universities as $university)
-                                                                    <option value="{{ $university->id }}"
-                                                                        {{ in_array($university->id, $selectedUniversities) ? 'selected' : '' }}>
-                                                                        {{ $university->name }}
+                                                                @foreach ($exhibitors as $exhibitor)
+                                                                    <option value="{{ $exhibitor->id }}"
+                                                                        {{ in_array($exhibitor->id, $selectedExhibitors) ? 'selected' : '' }}>
+                                                                        {{ $exhibitor->name }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
@@ -280,7 +280,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-12">
+                                                    {{-- <div class="col-sm-12">
                                                         <div class="d-flex justify-content-between">
                                                             <h5 class="d-inline">Special Guest(s)</h5>
                                                             <a href="javascript:void(0)"
@@ -401,9 +401,9 @@
                                                                 @endforelse
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="col-sm-12 my-3">
+                                                    {{-- <div class="col-sm-12 my-3">
                                                         <div class="d-flex justify-content-between">
                                                             <h5 class="d-inline">Media Partner</h5>
                                                             <a href="javascript:void(0)"
@@ -538,9 +538,9 @@
                                                                 </div>
                                                             @endforelse
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="col-sm-12 mb-3">
+                                                    {{-- <div class="col-sm-12 mb-3">
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#gallery_image_gallery">
                                                             <h5 class="card-title mb-0 py-2">
@@ -764,7 +764,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </section>
 
