@@ -391,6 +391,7 @@ class ExpoController extends Controller
             }
 
             $data['additional_contents'] = json_encode($data['additional_contents']);
+            return $data;
             $expo->update($data);
 
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
