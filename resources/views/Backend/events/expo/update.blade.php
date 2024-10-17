@@ -95,6 +95,7 @@
                                                                 <input type="text"
                                                                     name="additional_contents[pre_title]"
                                                                     class="form-control"
+                                                                    value="{{ json_decode($expo->additional_contents, true)['pre_title'] }}"
                                                                     placeholder="Enter Expo Pre Title">
                                                                 @error('additional_contents[pre_title]')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -102,6 +103,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Expo Title:
@@ -169,16 +171,32 @@
 
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Place:
+                                                            <label class="form-control-label">Venue:
                                                                 <span class="text-danger"
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="place"
-                                                                    class="form-control" placeholder="Enter Address"
-                                                                    value="{{ $expo->place }}" required>
-                                                                @error('place')
+                                                                <input type="text" name="venue"
+                                                                    class="form-control" placeholder="Enter Venue"
+                                                                    value="" required>
+                                                                @error('venue')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Address:
+                                                                <span class="text-danger"
+                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text" name="address"
+                                                                    class="form-control" placeholder="Enter Venue Address"
+                                                                    value="" required>
+                                                                @error('address')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>

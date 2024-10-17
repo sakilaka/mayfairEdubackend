@@ -202,13 +202,15 @@ class ExpoController extends Controller
             'date' => 'required',
             'time_from' => 'required',
             'time_to' => 'required',
-            'place' => 'required',
+            'venue' => 'required',
+            'address' => 'required',
         ], [
             'title.required' => 'The title field is required.',
             'date.required' => 'Please provide the date of the expo.',
             'time_from.required' => 'The expo start time is required.',
             'time_to.required' => 'The expo end time is required.',
-            'place.required' => 'Please specify the place.',
+            'venue.required' => 'Please specify the venue.',
+            'address.required' => 'Please specify the venue location.',
         ]);
 
         if ($validator->fails()) {
@@ -226,7 +228,6 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                'place' => $request->place ?? '',
                 'universities' => json_encode($request->universities) ?? '',
                 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
@@ -238,6 +239,12 @@ class ExpoController extends Controller
                 'time_to' => $request->time_to,
             ];
             $data['datetime'] = json_encode($dateTime);
+            
+            $place = [
+                'venue' => $request->venue,
+                'address' => $request->address,
+            ];
+            $data['place'] = json_encode($place);
 
             if ($request->additional_contents['pre_title']) {
                 $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
