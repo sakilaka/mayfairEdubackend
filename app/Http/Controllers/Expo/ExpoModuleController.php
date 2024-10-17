@@ -72,23 +72,19 @@ class ExpoModuleController extends Controller
      */
     public function exhibitors($unique_id)
     {
-        // Fetch the universities field from the Expo based on the unique_id
-        $data['expo'] = $expo = Expo::where('unique_id', $unique_id)->select('universities')->first();
+        $data['expo'] = $expo = Expo::where('unique_id', $unique_id)->first();
 
         if ($expo && !empty($expo->universities)) {
-            // Decode the universities JSON array
             $universities = json_decode($expo->universities, true);
 
-            // Fetch exhibitors with sorting logic
             $data['exhibitors'] = University::whereIn('id', $universities)
                 ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
                 ->orderBy('position_in_expo', 'asc')
                 ->get();
         } else {
-            $data['exhibitors'] = collect(); // Empty collection if no universities found
+            $data['exhibitors'] = collect();
         }
 
-        // Return the view with exhibitors data
         return view('Expo.pages.exhibitors', $data);
     }
 
