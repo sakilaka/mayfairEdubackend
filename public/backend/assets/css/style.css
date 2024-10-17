@@ -47520,7 +47520,7 @@ div.tagsinput span.tag a {
 }
 
 .wizard > .steps > ul > li {
-    width: 25%;
+    /* width: 25%; */
     float: left;
     text-align: center;
 }
