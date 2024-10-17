@@ -519,7 +519,6 @@ class ExpoController extends Controller
      */
     public function exhibitor_update(Request $request, $exhibitor_id)
     {
-        return $request->all();
         $exhibitor = University::find($exhibitor_id);
 
         if (!$exhibitor) {
