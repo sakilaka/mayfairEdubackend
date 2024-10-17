@@ -189,7 +189,6 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -219,11 +218,11 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                'datetime' => [
+                'datetime' => json_encode([
                     'date' => date('d M, Y', strtotime($request->date)),
                     'time_from' => $request->time_from,
                     'time_to' => $request->time_to,
-                ],
+                ]),
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->universities) ?? '',
                 'description' => $request->description,
