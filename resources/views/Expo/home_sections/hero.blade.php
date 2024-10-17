@@ -91,22 +91,14 @@
                         <span class="ms-2">{{ $datetime['date'] ?? '' }}</span>
                     </div>
                     <div class="d-flex align-items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 70 70" viewBox="0 0 70 70"
-                            id="map" width="24" height="24" style="fill: var(--secondary_background)">
-                            <path d="M36.1,31.4v18.5l11-6.1V20.4l-4.7,2.5C40.4,26.5,37.2,30.2,36.1,31.4z"></path>
-                            <polygon points="22.9 46.3 33.9 50.2 33.9 39 22.9 36.7"></polygon>
-                            <polygon points="9.6 51.8 20.7 46.4 20.7 37.8 9.6 47.6"></polygon>
-                            <path
-                                d="M35,10c-4,0-7.2,3.2-7.2,7.2c0,3.1,4.7,9.1,7.2,12.1c2.6-3,7.2-9.1,7.2-12.1C42.2,13.2,39,10,35,10z M35,21.1
-                                c-2.1,0-3.8-1.7-3.8-3.8c0-2.1,1.7-3.8,3.8-3.8s3.8,1.7,3.8,3.8C38.8,19.4,37.1,21.1,35,21.1z">
-                            </path>
-                            <polygon points="36.1 60 47.1 54.1 47.1 46.3 36.1 52.4"></polygon>
-                            <polygon points="22.9 54.1 33.9 60 33.9 52.6 22.9 48.6"></polygon>
-                            <polygon points="9.6 60 20.7 54.1 20.7 48.9 9.6 54.3"></polygon>
-                            <path d="M22.9,20.4v14.1l11,2.3v-5.3c-1.1-1.2-4.3-4.9-6.4-8.6L22.9,20.4z"></path>
-                            <polygon points="49.3 20.3 49.3 54.1 60.4 60 60.4 26.2"></polygon>
-                            <polygon points="9.6 44.6 20.7 34.9 20.7 20.3 9.6 26.2"></polygon>
+                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            style="fill: var(--secondary_background)" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm11-4a1 1 0 1 0-2 0v4a1 1 0 0 0 .293.707l3 3a1 1 0 0 0 1.414-1.414L13 11.586V8Z"
+                                clip-rule="evenodd" />
                         </svg>
+
                         <span class="ms-2">{{ $datetime['time_from'] . ' to ' . $datetime['time_to'] }}</span>
                     </div>
                 </div>
