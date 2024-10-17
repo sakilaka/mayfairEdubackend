@@ -442,6 +442,15 @@ class ExpoController extends Controller
                 }
             }
 
+            // Delete additional contents images
+            $additionalContents = json_decode($expo->additional_contents, true) ?? [];
+            foreach ($additionalContents as $key => $image) {
+                $oldImagePath = public_path(parse_url($image, PHP_URL_PATH));
+                if (file_exists($oldImagePath)) {
+                    unlink($oldImagePath);
+                }
+            }
+
             // Delete the expo record
             $expo->delete();
 
