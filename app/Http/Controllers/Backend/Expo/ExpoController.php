@@ -69,7 +69,7 @@ class ExpoController extends Controller
                 'title' => $request->title,
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->exhibitors) ?? '',
-                'description' => $request->description,
+                // 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
 
@@ -252,7 +252,7 @@ class ExpoController extends Controller
             $data = [
                 'title' => $request->title,
                 'universities' => json_encode($request->universities) ?? '',
-                'description' => $request->description,
+                // 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
 
