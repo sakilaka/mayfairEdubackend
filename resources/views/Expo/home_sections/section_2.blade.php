@@ -9,8 +9,8 @@
                                 style="font-size: 2.5rem; color: var(--primary_background); font-weight: bold;">
                                 Why should Attend<br>this Exhibition?
                             </p>
-                            <p class="text-6 ckeditor5-rendered" style="font-size: 0.875rem; line-height: 1.2;">
-                                <strong class="fw700">1. One-to-One Communication</strong>:
+                            <p class="{{-- text-6 --}} ckeditor5-rendered" style="font-size: 0.875rem; line-height: 1.2;">
+                                {{-- <strong class="fw700">1. One-to-One Communication</strong>:
                                 Visitors can directly communicate with Chinese
                                 Universities’ delegates and admission officers.
                                 <br><br>
@@ -39,9 +39,9 @@
                                 <br><br>
                                 <strong class="fw700">7. Gifts & souvenirs</strong>:
                                 Visitors can get different kinds of gifts & souvenirs from Chinese
-                                Universities and MalishaEdu.
+                                Universities and MalishaEdu. --}}
 
-                                {{-- {!! $additional_contents['why_should_attend']['contents'] ?? '' !!} --}}
+                                {!! $additional_contents['why_should_attend']['contents'] ?? '' !!}
                             </p>
                         </div>
                     </div>
