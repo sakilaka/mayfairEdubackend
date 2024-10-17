@@ -19,7 +19,7 @@
                 <div class="col-md-4 col-lg-3 mb-4">
                     <div class="card university-card rounded-0 overflow-hidden" style="position: relative;">
                         <div class="card-body p-2"
-                            style="background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}');">
+                            style="background-color: var(--primary_background)">
                             <div class="bg-white">
                                 <div style="position: relative;" class="overflow-hidden">
                                     <!-- Banner Image -->

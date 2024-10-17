@@ -79,7 +79,7 @@ Route::get('exhibitor/{exhibitor_id}/details', [ExpoController::class, "exhibito
 
 Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
 Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
-Route::get('expo/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
+Route::get('expo/{expo_id}/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
 Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
 
