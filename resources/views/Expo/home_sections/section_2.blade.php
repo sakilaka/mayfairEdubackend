@@ -5,10 +5,11 @@
                 <div class="row">
                     <div class="col-md-6 col-xs-12">
                         <div class="col-16">
-                            <p class="text-5" style="font-size: 2.5rem; color: var(--primary_background); font-weight: bold;">
+                            <p class="text-5"
+                                style="font-size: 2.5rem; color: var(--primary_background); font-weight: bold;">
                                 Why should Attend<br>this Exhibition?
                             </p>
-                            <p class="text-6" style="font-size: 0.875rem; line-height: 1.2;">
+                            <p class="text-6 ckeditor5-rendered" style="font-size: 0.875rem; line-height: 1.2;">
                                 <strong class="fw700">1. One-to-One Communication</strong>:
                                 Visitors can directly communicate with Chinese
                                 Universities’ delegates and admission officers.
@@ -39,11 +40,14 @@
                                 <strong class="fw700">7. Gifts & souvenirs</strong>:
                                 Visitors can get different kinds of gifts & souvenirs from Chinese
                                 Universities and MalishaEdu.
+
+                                {{-- {!! $additional_contents['why_should_attend']['contents'] ?? '' !!} --}}
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12">
-                        <img class="rectangle-5" src="{{ $additional_contents['why_should_attend'] ?? asset('frontend/expo-domain/images/rectangle_5.jpg') }}"
+                        <img class="rectangle-5"
+                            src="{{ $additional_contents['why_should_attend']['image'] ?? asset('frontend/expo-domain/images/rectangle_5.jpg') }}"
                             alt="" style="width: 100%; height: auto; border-radius: 6px;">
                     </div>
                 </div>
