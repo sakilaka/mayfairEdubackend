@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Auth\SocialLoginController;
+use App\Http\Controllers\Backend\CKEditorUploadController;
 use App\Http\Controllers\Backend\GetConsultation\GetConsultationController;
 use App\Http\Controllers\Backend\Landing\LandingPageController;
 use App\Http\Controllers\Backend\Student_Appliction\StudentApplictionController;
@@ -292,3 +293,5 @@ Route::get('notice/{slug}', [LandingPageController::class, 'show_page'])->name('
 
 Route::get('get-free-consultation', [GetConsultationController::class, 'get_consul tation'])->name('frontend.get_consultation');
 Route::post('get-free-consultation', [GetConsultationController::class, 'get_consultation_store'])->name('frontend.get_consultation_store');
+
+Route::post('/ckeditor/upload', [CKEditorUploadController::class, 'uploadImage'])->name('ckeditor.upload');

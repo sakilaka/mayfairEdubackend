@@ -221,12 +221,12 @@
                         $('#char-count').text(stats.characters)
                     }
                 }
-                /* simpleUpload: {
-                    uploadUrl: '',
+                simpleUpload: {
+                    uploadUrl: '{{ route("ckeditor.upload") }}',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     }
-                } */
+                }
             })
             .then(editor => {
                 const editorKey = editorElement.getAttribute('name') || editorElement.id;
