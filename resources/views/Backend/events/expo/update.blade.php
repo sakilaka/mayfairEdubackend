@@ -131,7 +131,7 @@
                                                                 <span class="text-danger"
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="date" name="date"
+                                                                <input type="text" name="date"
                                                                     value="{{ json_decode($expo->datetime, true) ? date('Y-m-d', strtotime(json_decode($expo->datetime, true)['date'])) : '' }}"
                                                                     class="form-control" required>
                                                                 @error('date')
@@ -1001,7 +1001,8 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
                                                                     name="additional_contents[organizerDetails][redirect_url]"
-                                                                    class="form-control" value="{{ $additional_contents['organizerDetails']['redirect_url'] ?? '' }}"
+                                                                    class="form-control"
+                                                                    value="{{ $additional_contents['organizerDetails']['redirect_url'] ?? '' }}"
                                                                     placeholder="Enter Organizer Details Redirection URL">
                                                                 @error('additional_contents[organizerDetails][redirect_url]')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -1102,7 +1103,8 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
                                                                     name="additional_contents[co_organizerDetails][redirect_url]"
-                                                                    class="form-control" value="{{ $additional_contents['co_organizerDetails']['redirect_url'] ?? '' }}"
+                                                                    class="form-control"
+                                                                    value="{{ $additional_contents['co_organizerDetails']['redirect_url'] ?? '' }}"
                                                                     placeholder="Enter Co-Organizer Details Redirection URL">
                                                                 @error('additional_contents[co_organizerDetails][redirect_url]')
                                                                     <span class="text-danger">{{ $message }}</span>

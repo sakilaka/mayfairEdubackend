@@ -122,7 +122,7 @@
                                                                 <span class="text-danger"
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="date" name="date"
+                                                                <input type="text" name="date"
                                                                     class="form-control" required>
                                                                 @error('date')
                                                                     <span class="text-danger">{{ $message }}</span>
