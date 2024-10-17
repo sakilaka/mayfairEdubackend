@@ -7,6 +7,12 @@
 </head>
 
 <body>
+    @php
+        $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+        $place = json_decode($expo->place, true) ?? [];
+        $datetime = json_decode($expo->datetime, true) ?? [];
+    @endphp
+
     @include('Expo.home_sections.hero')
 
     @include('Expo.home_sections.section_2')
