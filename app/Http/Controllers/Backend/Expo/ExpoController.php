@@ -157,18 +157,32 @@ class ExpoController extends Controller
                 $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
             }
+
             if ($request->hasFile('additional_contents.hero_bg')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
                 $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['hero_bg'] = url('upload/expo/' . $fileName);
             }
+
             if ($request->hasFile('additional_contents.why_should_attend')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
                 $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
-            $data['additional_contents'] = json_encode($data['additional_contents']);
 
+            if ($request->hasFile('additional_contents.organizerDetails.logo')) {
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
+                $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
+                $additionalContents['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+            }
+
+            if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
+                $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
+                $additionalContents['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+            }
+
+            $data['additional_contents'] = json_encode($data['additional_contents']);
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
@@ -196,7 +210,6 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -395,6 +408,20 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
                 $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
+            }
+
+            if ($request->hasFile('additional_contents.organizerDetails.logo')) {
+                if (!empty($old_additional_contents['nav_logo'])) {
+                    $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
+
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
+                $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
+                $additionalContents['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             }
 
             $data['additional_contents'] = json_encode($data['additional_contents']);
