@@ -879,7 +879,7 @@
 
                                             <h3>Schedule</h3>
                                             <section>
-                                                <h4 class="mb-3">Schedule</h4>
+                                                <h4 class="mb-3">Schedule Page</h4>
 
                                                 <div class="row">
                                                     <div class="col-12">
