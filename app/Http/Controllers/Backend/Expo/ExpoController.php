@@ -238,174 +238,174 @@ class ExpoController extends Controller
             return redirect()->back()->with('error', 'Expo not found!');
         }
 
+        $data = [
+            'title' => $request->title,
+            'universities' => json_encode($request->universities) ?? '',
+            'description' => $request->description,
+            'location' => json_encode($request->location) ?? ''
+        ];
+
+        $dateTime = [
+            'date' => date('d M, Y', strtotime($request->date)),
+            'time_from' => $request->time_from,
+            'time_to' => $request->time_to,
+        ];
+        $data['datetime'] = json_encode($dateTime);
+
+        $place = [
+            'venue' => $request->venue,
+            'address' => $request->address,
+        ];
+        $data['place'] = json_encode($place);
+
+        if ($request->additional_contents['pre_title']) {
+            $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
+        }
+
+        if ($request->hasFile('banner')) {
+            if (!empty($expo->banner)) {
+                $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
+                $oldBannerFullPath = public_path($oldBannerPath);
+
+                if (file_exists($oldBannerFullPath)) {
+                    unlink($oldBannerFullPath);
+                }
+            }
+
+            $fileName = rand() . time() . '.' . $request->banner->getClientOriginalExtension();
+            $request->banner->move(public_path('upload/expo/'), $fileName);
+            $data['banner'] = url('upload/expo/' . $fileName);
+        }
+
+        // Handle guest information
+        /* $guests = [];
+        if ($request->guestName && $request->guestDesignation && $request->guestOrganization) {
+            $guestImages = [];
+            $imageKeys = [];
+            $guestKeys = [];
+
+            foreach (json_decode($expo->guests, true) as $key => $guest) {
+                $guestKeys[] = $key;
+            }
+
+            if ($request->hasFile('guestImage')) {
+                foreach ($request->file('guestImage') as $key => $file) {
+                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+                    $file->move(public_path('upload/expo/guest'), $fileName);
+                    $guestImages[$key] = url('upload/expo/guest/' . $fileName);
+                    $imageKeys[] = $key;
+                }
+            }
+
+            $oldGuestImages = $request->oldGuestImage ?? [];
+            $mergedGuestImages = $oldGuestImages;
+
+            foreach ($guestImages as $key => $url) {
+                $mergedGuestImages[$key] = $url;
+            }
+
+            $totalGuests = count($request->guestName);
+
+            for ($i = 0; $i < $totalGuests; $i++) {
+                $key = $guestKeys[$i] ?? null;
+
+                $guests[$key ?? rand(10000, 99999)] = [
+                    'name' => $request->guestName[$i],
+                    'designation' => $request->guestDesignation[$i],
+                    'organization' => $request->guestOrganization[$i],
+                    'image' => $mergedGuestImages[$key] ?? null
+                ];
+            }
+        }
+        $data['guests'] = json_encode($guests); */
+
+        // Handle new media partner logos from the request
+        /* $mediaPartnerLogos = [];
+        if ($request->hasFile('media_partner_logo')) {
+            foreach ($request->file('media_partner_logo') as $key => $file) {
+                $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('upload/expo/media_partner'), $fileName);
+                $mediaPartnerLogos[$key] = url('upload/expo/media_partner/' . $fileName);
+            }
+        }
+        $oldMediaPartnerLogos = $request->old_media_partner_logo ?? [];
+        $mergedMediaPartnerLogos = $oldMediaPartnerLogos;
+
+        foreach ($mediaPartnerLogos as $key => $url) {
+            $mergedMediaPartnerLogos[$key] = $url;
+        }
+        $data['media_partner'] = json_encode($mergedMediaPartnerLogos); */
+
+        // Handling video uploads
+        /* if ($request->hasFile('video')) {
+            $videos = [];
+            foreach ($request->file('video') as $file) {
+                $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('upload/expo/video'), $fileName);
+                $videos[] = url('upload/expo/video/' . $fileName);
+            }
+            $data['videos'] = json_encode($videos);
+        } */
+
+        // Handle new gallery images from the request
+        /* $galleryImages = [];
+        if ($request->hasFile('gallery_image')) {
+            foreach ($request->file('gallery_image') as $key => $file) {
+                $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('upload/expo/gallery'), $fileName);
+                $galleryImages[$key] = url('upload/expo/gallery/' . $fileName);
+            }
+        }
+        $oldGalleryImages = $request->old_gallery_image ?? [];
+        $mergedGalleryImages = $oldGalleryImages;
+
+        foreach ($galleryImages as $key => $url) {
+            $mergedGalleryImages[$key] = $url;
+        }
+        $data['photos'] = json_encode($mergedGalleryImages); */
+
+        // Handling additional contents
+        $old_additional_contents = json_decode($expo['additional_contents'], true);
+        $uploadPath = 'upload/expo/';
+
+        if ($request->hasFile('additional_contents.nav_logo')) {
+            $this->deleteOldFile($old_additional_contents['nav_logo']);
+            $data['additional_contents']['nav_logo'] = $this->handleFileUpload($request->file('additional_contents.nav_logo'), $uploadPath);
+        }
+
+        if ($request->hasFile('additional_contents.hero_bg')) {
+            $this->deleteOldFile($old_additional_contents['hero_bg']);
+            $data['additional_contents']['hero_bg'] = $this->handleFileUpload($request->file('additional_contents.hero_bg'), $uploadPath);
+        }
+
+        if ($request->hasFile('additional_contents.why_should_attend')) {
+            $this->deleteOldFile($old_additional_contents['why_should_attend']);
+            $data['additional_contents']['why_should_attend'] = $this->handleFileUpload($request->file('additional_contents.why_should_attend'), $uploadPath);
+        }
+
+        if ($request->hasFile('additional_contents.organizerDetails.logo')) {
+            $this->deleteOldFile($old_additional_contents['organizerDetails']['logo']);
+            $data['additional_contents']['organizerDetails']['logo'] = $this->handleFileUpload($request->file('additional_contents.organizerDetails.logo'), $uploadPath);
+        }
+
+        if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
+            $this->deleteOldFile($old_additional_contents['co_organizerDetails']['logo']);
+            $data['additional_contents']['co_organizerDetails']['logo'] = $this->handleFileUpload($request->file('additional_contents.co_organizerDetails.logo'), $uploadPath);
+        }
+
+        // Handling other fields
+        $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
+        $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
+        $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
+        $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
+
+        return $data['additional_contents'];
+
+        $data['additional_contents'] = json_encode($data['additional_contents'] ?? '');
+        $expo->update($data);
+
+        return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         try {
-            $data = [
-                'title' => $request->title,
-                'universities' => json_encode($request->universities) ?? '',
-                'description' => $request->description,
-                'location' => json_encode($request->location) ?? ''
-            ];
-
-            $dateTime = [
-                'date' => date('d M, Y', strtotime($request->date)),
-                'time_from' => $request->time_from,
-                'time_to' => $request->time_to,
-            ];
-            $data['datetime'] = json_encode($dateTime);
-
-            $place = [
-                'venue' => $request->venue,
-                'address' => $request->address,
-            ];
-            $data['place'] = json_encode($place);
-
-            if ($request->additional_contents['pre_title']) {
-                $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
-            }
-
-            if ($request->hasFile('banner')) {
-                if (!empty($expo->banner)) {
-                    $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
-                    $oldBannerFullPath = public_path($oldBannerPath);
-
-                    if (file_exists($oldBannerFullPath)) {
-                        unlink($oldBannerFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->banner->getClientOriginalExtension();
-                $request->banner->move(public_path('upload/expo/'), $fileName);
-                $data['banner'] = url('upload/expo/' . $fileName);
-            }
-
-            // Handle guest information
-            /* $guests = [];
-            if ($request->guestName && $request->guestDesignation && $request->guestOrganization) {
-                $guestImages = [];
-                $imageKeys = [];
-                $guestKeys = [];
-
-                foreach (json_decode($expo->guests, true) as $key => $guest) {
-                    $guestKeys[] = $key;
-                }
-
-                if ($request->hasFile('guestImage')) {
-                    foreach ($request->file('guestImage') as $key => $file) {
-                        $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('upload/expo/guest'), $fileName);
-                        $guestImages[$key] = url('upload/expo/guest/' . $fileName);
-                        $imageKeys[] = $key;
-                    }
-                }
-
-                $oldGuestImages = $request->oldGuestImage ?? [];
-                $mergedGuestImages = $oldGuestImages;
-
-                foreach ($guestImages as $key => $url) {
-                    $mergedGuestImages[$key] = $url;
-                }
-
-                $totalGuests = count($request->guestName);
-
-                for ($i = 0; $i < $totalGuests; $i++) {
-                    $key = $guestKeys[$i] ?? null;
-
-                    $guests[$key ?? rand(10000, 99999)] = [
-                        'name' => $request->guestName[$i],
-                        'designation' => $request->guestDesignation[$i],
-                        'organization' => $request->guestOrganization[$i],
-                        'image' => $mergedGuestImages[$key] ?? null
-                    ];
-                }
-            }
-            $data['guests'] = json_encode($guests); */
-
-            // Handle new media partner logos from the request
-            /* $mediaPartnerLogos = [];
-            if ($request->hasFile('media_partner_logo')) {
-                foreach ($request->file('media_partner_logo') as $key => $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/media_partner'), $fileName);
-                    $mediaPartnerLogos[$key] = url('upload/expo/media_partner/' . $fileName);
-                }
-            }
-            $oldMediaPartnerLogos = $request->old_media_partner_logo ?? [];
-            $mergedMediaPartnerLogos = $oldMediaPartnerLogos;
-
-            foreach ($mediaPartnerLogos as $key => $url) {
-                $mergedMediaPartnerLogos[$key] = $url;
-            }
-            $data['media_partner'] = json_encode($mergedMediaPartnerLogos); */
-
-            // Handling video uploads
-            /* if ($request->hasFile('video')) {
-                $videos = [];
-                foreach ($request->file('video') as $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/video'), $fileName);
-                    $videos[] = url('upload/expo/video/' . $fileName);
-                }
-                $data['videos'] = json_encode($videos);
-            } */
-
-            // Handle new gallery images from the request
-            /* $galleryImages = [];
-            if ($request->hasFile('gallery_image')) {
-                foreach ($request->file('gallery_image') as $key => $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/gallery'), $fileName);
-                    $galleryImages[$key] = url('upload/expo/gallery/' . $fileName);
-                }
-            }
-            $oldGalleryImages = $request->old_gallery_image ?? [];
-            $mergedGalleryImages = $oldGalleryImages;
-
-            foreach ($galleryImages as $key => $url) {
-                $mergedGalleryImages[$key] = $url;
-            }
-            $data['photos'] = json_encode($mergedGalleryImages); */
-
-            // Handling additional contents
-            $old_additional_contents = json_decode($expo['additional_contents'], true);
-            $uploadPath = 'upload/expo/';
-
-            if ($request->hasFile('additional_contents.nav_logo')) {
-                $this->deleteOldFile($old_additional_contents['nav_logo']);
-                $data['additional_contents']['nav_logo'] = $this->handleFileUpload($request->file('additional_contents.nav_logo'), $uploadPath);
-            }
-
-            if ($request->hasFile('additional_contents.hero_bg')) {
-                $this->deleteOldFile($old_additional_contents['hero_bg']);
-                $data['additional_contents']['hero_bg'] = $this->handleFileUpload($request->file('additional_contents.hero_bg'), $uploadPath);
-            }
-
-            if ($request->hasFile('additional_contents.why_should_attend')) {
-                $this->deleteOldFile($old_additional_contents['why_should_attend']);
-                $data['additional_contents']['why_should_attend'] = $this->handleFileUpload($request->file('additional_contents.why_should_attend'), $uploadPath);
-            }
-
-            if ($request->hasFile('additional_contents.organizerDetails.logo')) {
-                $this->deleteOldFile($old_additional_contents['organizerDetails']['logo']);
-                $data['additional_contents']['organizerDetails']['logo'] = $this->handleFileUpload($request->file('additional_contents.organizerDetails.logo'), $uploadPath);
-            }
-
-            if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
-                $this->deleteOldFile($old_additional_contents['co_organizerDetails']['logo']);
-                $data['additional_contents']['co_organizerDetails']['logo'] = $this->handleFileUpload($request->file('additional_contents.co_organizerDetails.logo'), $uploadPath);
-            }
-
-            // Handling other fields
-            $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
-            $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
-            $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
-            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
-
-            return $data['additional_contents'];
-
-            $data['additional_contents'] = json_encode($data['additional_contents'] ?? '');
-            $expo->update($data);
-
-            return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
             return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
