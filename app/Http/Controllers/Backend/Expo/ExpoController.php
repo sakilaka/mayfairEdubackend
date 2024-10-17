@@ -505,8 +505,30 @@ class ExpoController extends Controller
      */
     public function exhibitor_edit($exhibitor_id)
     {
+        $data['exhibitor'] = University::find($exhibitor_id);
+
+        if (!$data['exhibitor']) {
+            return back()->with('error', 'Exhibitor Not Found!');
+        }
+
+        return view('Backend.events.expo.exhibitor.exhibitor_edit', $data);
+    }
+
+    /**
+     * update exhibitor
+     */
+    public function exhibitor_update(Request $request, $exhibitor_id)
+    {
         $exhibitor = University::find($exhibitor_id);
-        return $exhibitor;
+
+        if (!$exhibitor) {
+            return back()->with('error', 'Exhibitor Not Found!');
+        }
+
+        $exhibitor->exhibitor_desc = $request->description;
+        $exhibitor->save();
+
+        return redirect(route('admin.expo.exhibitors.index'))->with('success', 'Exhibitor Description Has Been Updated!');
     }
 
     /**
