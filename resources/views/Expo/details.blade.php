@@ -37,6 +37,8 @@
 
     @include('Expo.home_sections.co_organizer_profile')
 
+    @include('Expo.home_sections.exhibitors')
+
     @include('Expo.home_sections.footer')
 
     @include('Expo.components.footer')
