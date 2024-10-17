@@ -145,8 +145,7 @@
                                                                     <div class="mg-t-10 mg-sm-t-0">
                                                                         <input type="text" name="time_from"
                                                                             class="form-control" placeholder="From"
-                                                                            value=""
-                                                                            required>
+                                                                            value="" required>
                                                                         @error('time_from')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
@@ -157,8 +156,7 @@
                                                                     <div class="mg-t-10 mg-sm-t-0">
                                                                         <input type="text" name="time_to"
                                                                             class="form-control" placeholder="To"
-                                                                            value=""
-                                                                            required>
+                                                                            value="" required>
                                                                         @error('time_to')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>

@@ -46,12 +46,14 @@ class ExpoController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
-            'time' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required',
             'place' => 'required',
         ], [
             'title.required' => 'The title field is required.',
             'date.required' => 'Please provide the date of the expo.',
-            'time.required' => 'The expo time is required.',
+            'time_from.required' => 'The expo start time is required.',
+            'time_to.required' => 'The expo end time is required.',
             'place.required' => 'Please specify the place.',
         ]);
 
@@ -64,12 +66,18 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                'datetime' => date('d M, Y', strtotime($request->date)) . ' ' . date('h:i A', strtotime($request->time)),
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->universities) ?? '',
                 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
+
+            $dateTime = [
+                'date' => date('d M, Y', strtotime($request->date)),
+                'time_from' => $request->time_from,
+                'time_to' => $request->time_to,
+            ];
+            $data['datetime'] = json_encode($dateTime);
 
             if ($request->additional_contents['pre_title']) {
                 $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
@@ -218,21 +226,23 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                'datetime' => json_encode([
-                    'date' => date('d M, Y', strtotime($request->date)),
-                    'time_from' => $request->time_from,
-                    'time_to' => $request->time_to,
-                ]),
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->universities) ?? '',
                 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
 
+            $dateTime = [
+                'date' => date('d M, Y', strtotime($request->date)),
+                'time_from' => $request->time_from,
+                'time_to' => $request->time_to,
+            ];
+            $data['datetime'] = json_encode($dateTime);
+
             if ($request->additional_contents['pre_title']) {
                 $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
             }
-            return $data;
+
             if ($request->hasFile('banner')) {
                 if (!empty($expo->banner)) {
                     $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
