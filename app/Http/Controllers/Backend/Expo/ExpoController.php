@@ -437,6 +437,13 @@ class ExpoController extends Controller
                 // $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             }
+
+            $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
+            $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
+
+            $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
+            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
+
             return $data['additional_contents'];
 
             $data['additional_contents'] = json_encode($data['additional_contents'] ?? '');
