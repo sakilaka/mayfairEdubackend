@@ -37,7 +37,7 @@
                                         <th>Title</th>
                                         <th>Place</th>
                                         <th>Date & Time</th>
-                                        <th>Universities</th>
+                                        <th>Exhibitors</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
