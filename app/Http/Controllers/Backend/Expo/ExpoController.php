@@ -420,7 +420,7 @@ class ExpoController extends Controller
                 }
 
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
+                // $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             }
 
@@ -434,7 +434,7 @@ class ExpoController extends Controller
                 }
 
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
+                // $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             }
             return $data['additional_contents'];
