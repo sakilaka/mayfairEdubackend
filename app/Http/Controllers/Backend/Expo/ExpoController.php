@@ -444,10 +444,14 @@ class ExpoController extends Controller
 
             // Delete additional contents images
             $additionalContents = json_decode($expo->additional_contents, true) ?? [];
-            foreach ($additionalContents as $key => $image) {
-                $oldImagePath = public_path(parse_url($image, PHP_URL_PATH));
-                if (file_exists($oldImagePath)) {
-                    unlink($oldImagePath);
+            $keysToDelete = ['nav_logo', 'hero_bg', 'why_should_attend'];
+
+            foreach ($keysToDelete as $key) {
+                if (isset($additionalContents[$key])) {
+                    $oldImagePath = public_path(parse_url($additionalContents[$key], PHP_URL_PATH));
+                    if (file_exists($oldImagePath)) {
+                        unlink($oldImagePath);
+                    }
                 }
             }
 
