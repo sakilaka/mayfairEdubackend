@@ -65,7 +65,7 @@ class ExpoController extends Controller
 
         try {
             $data = [
-                'unique_id' => uuid_create(),
+                'unique_id' => explode('-', uuid_create())[0],
                 'title' => $request->title,
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->exhibitors) ?? '',
@@ -248,6 +248,7 @@ class ExpoController extends Controller
 
         try {
             $data = [
+                'unique_id' => explode('-', uuid_create())[0],
                 'title' => $request->title,
                 'universities' => json_encode($request->universities) ?? '',
                 'description' => $request->description,
@@ -471,7 +472,6 @@ class ExpoController extends Controller
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
-
 
     /**
      * Remove the specified resource from storage.
