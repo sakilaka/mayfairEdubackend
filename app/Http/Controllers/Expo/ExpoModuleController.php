@@ -72,7 +72,18 @@ class ExpoModuleController extends Controller
      */
     public function exhibitors($unique_id)
     {
-        $expo = Expo::where('unique_id', $unique_id)->select('universities')->first();
+        $exhibitorsArray = Expo::where('unique_id', $unique_id)->select('universities')->first();
+
+        $data['exhibitors'] = [];
+        foreach (json_decode($exhibitorsArray, true) ?? [] as $exhibitor_id) {
+            $exhibitor = University::find($exhibitor_id);
+
+            if ($exhibitor) {
+                $data['exhibitors'][] = $exhibitor;
+            }
+        }
+
+        $data['exhibitors'] = collect($data['exhibitors']);
 
         $data['exhibitors'] = University::where('is_exhibitor', true)
             ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
