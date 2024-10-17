@@ -226,7 +226,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-12">
+                                                    {{-- <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label class="form-control-label">
                                                                 Expo Description:
@@ -235,7 +235,7 @@
                                                                 <textarea name="description" class="editor form-control"></textarea>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                     {{-- <div class="col-sm-12">
                                                         <div class="d-flex justify-content-between">
