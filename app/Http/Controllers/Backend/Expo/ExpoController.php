@@ -190,6 +190,7 @@ class ExpoController extends Controller
 
             $data['additional_contents'] = json_encode($data['additional_contents']);
             Expo::create($data);
+            
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
