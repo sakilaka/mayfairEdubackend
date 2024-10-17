@@ -37,7 +37,7 @@
                                                         <span class="text-danger">*</span>
                                                         Description:
                                                     </label>
-                                                    <textarea name="description" id="description" class="editor form-control"></textarea>
+                                                    <textarea name="description" id="description" class="editor form-control">{{ $exhibitor->exhibitor_desc }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
