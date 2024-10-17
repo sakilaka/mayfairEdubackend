@@ -101,7 +101,9 @@
                                 Expo
                             </a>
                             @php
-                                $expoArray = App\Models\Expo::select('id', 'title', 'location')->latest()->get();
+                                $expoArray = App\Models\Expo::select('id', 'unique_id', 'title', 'location')
+                                    ->latest()
+                                    ->get();
                                 $groupedExpos = [
                                     'china' => [],
                                     'overseas' => [],
@@ -135,19 +137,23 @@
                                         ];
                                     }
                                 }
+
+                                dd($groupedExpos);
                             @endphp
                             <ul class="dropdown-menu">
                                 <!-- Expo in China -->
                                 <li>
                                     <a class="dropdown-item dropdown-toggle" href="#">Expo In China</a>
-                                    <ul class="submenu dropdown-menu">
-                                        @foreach ($groupedExpos['china'] as $expo)
-                                            <li>
-                                                <a class="dropdown-item"
-                                                    href="{{ route('expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                    @if (!empty($groupedExpo['china']))
+                                        <ul class="submenu dropdown-menu">
+                                            @foreach ($groupedExpos['china'] as $expo)
+                                                <li>
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">{{ $expo['title'] }}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </li>
 
                                 <!-- Expo in Overseas -->
@@ -162,7 +168,7 @@
                                                 <ul class="submenu dropdown-menu">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('expo.details', ['id' => $expo['id']]) }}">{{ $expo['title'] }}</a>
+                                                            href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">{{ $expo['title'] }}</a>
                                                     </li>
                                                 </ul>
                                             </li>
