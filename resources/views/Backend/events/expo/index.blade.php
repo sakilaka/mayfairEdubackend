@@ -49,7 +49,7 @@
                                             $fullUniversityNames = implode(', ', $universityNames);
                                             $truncatedUniversityNames = Illuminate\Support\Str::limit(
                                                 $fullUniversityNames,
-                                                50,
+                                                80,
                                             );
                                         @endphp
 
