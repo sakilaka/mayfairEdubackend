@@ -542,7 +542,7 @@ class ExpoController extends Controller
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
-        $data['page_title'] = 
+        $data['page_title'] = 'Exhibitor Details of ' . $exhibitor->name;
         $data['content']['title'] = $exhibitor->name;
         $data['content']['description'] = $exhibitor->exhibitor_desc;
 
