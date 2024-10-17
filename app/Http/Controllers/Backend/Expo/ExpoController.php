@@ -220,6 +220,15 @@ class ExpoController extends Controller
             ];
 
             if ($request->hasFile('banner')) {
+                if (!empty($expo->banner)) {
+                    $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
+                    $oldBannerFullPath = public_path($oldBannerPath);
+
+                    if (file_exists($oldBannerFullPath)) {
+                        unlink($oldBannerFullPath);
+                    }
+                }
+
                 $fileName = rand() . time() . '.' . $request->banner->getClientOriginalExtension();
                 $request->banner->move(public_path('upload/expo/'), $fileName);
                 $data['banner'] = url('upload/expo/' . $fileName);
