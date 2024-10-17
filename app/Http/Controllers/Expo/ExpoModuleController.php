@@ -76,7 +76,10 @@ class ExpoModuleController extends Controller
 
         $data['exhibitors'] = [];
         foreach (json_decode($exhibitorsArray, true) ?? [] as $exhibitor_id) {
-            $exhibitor = University::find($exhibitor_id);
+            $exhibitor = University::find($exhibitor_id)
+                ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
+                ->orderBy('position_in_expo', 'asc')
+                ->get();
 
             if ($exhibitor) {
                 $data['exhibitors'][] = $exhibitor;
@@ -85,10 +88,10 @@ class ExpoModuleController extends Controller
 
         $data['exhibitors'] = collect($data['exhibitors']);
 
-        $data['exhibitors'] = University::where('is_exhibitor', true)
+        /* $data['exhibitors'] = University::where('is_exhibitor', true)
             ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
             ->orderBy('position_in_expo', 'asc')
-            ->get();
+            ->get(); */
 
         return view('Expo.pages.exhibitors', $data);
     }
