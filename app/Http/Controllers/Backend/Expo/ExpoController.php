@@ -373,7 +373,7 @@ class ExpoController extends Controller
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
-return $old_additional_contents;
+
             if ($request->hasFile('additional_contents.nav_logo')) {
                 if (!empty($old_additional_contents['nav_logo'])) {
                     $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
@@ -435,7 +435,7 @@ return $old_additional_contents;
                 $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             } else {
-                $data['additional_contents']['organizerDetails']['logo'] = $old_additional_contents['organizerDetails']['logo'];
+                $data['additional_contents']['organizerDetails']['logo'] = $old_additional_contents['organizerDetails']['logo'] ?? '';
             }
 
             if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
@@ -451,7 +451,7 @@ return $old_additional_contents;
                 $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             } else {
-                $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'];
+                $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
             }
 
             $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
@@ -460,7 +460,7 @@ return $old_additional_contents;
             $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
             $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
 
-            $data['additional_contents'] = json_encode($data['additional_contents'] ?? '');
+            $data['additional_contents'] = json_encode($data['additional_contents'] ?? asset('frontend/images/No-image.jpg'));
             $expo->update($data);
 
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
