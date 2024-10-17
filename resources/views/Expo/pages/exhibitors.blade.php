@@ -46,8 +46,7 @@
                     @endphp
                     <div class="col-md-4 col-lg-3 mb-4">
                         <div class="card university-card rounded-0 overflow-hidden" style="position: relative;">
-                            <div class="card-body p-2"
-                                style="background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}');">
+                            <div class="card-body p-2" style="background-color: var(--primary_background)">
                                 <div class="bg-white">
                                     <div style="position: relative;" class="overflow-hidden">
                                         <!-- Banner Image -->
@@ -63,11 +62,14 @@
                                         <div class="d-flex justify-content-center align-items-center mb-2 position-absolute w-100"
                                             style="bottom: 5px; left: 0; display: flex; justify-content: center; gap: 4px;">
                                             <div class="badge bg-primary"
-                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">Bachelor</div>
+                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                                Bachelor</div>
                                             <div class="badge bg-success"
-                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">Masters</div>
+                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                                Masters</div>
                                             <div class="badge bg-warning"
-                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">Phd</div>
+                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                                Phd</div>
                                             <div class="badge bg-info"
                                                 style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
                                                 Language</div>
@@ -181,8 +183,9 @@
                                             </span>
                                         </p>
                                         <div class="text-center">
-                                            <a href="{{ env('APP_MAIN_DOMAIN') . '/list/university-details/' . $exhibitor->id }}"
-                                                class="btn btn-danger mx-auto px-5 rounded-0">Details</a>
+                                            <a href="{{ env('APP_MAIN_DOMAIN') . '/exhibitor/' . $exhibitor->id . '/details' }}"
+                                                class="btn btn-primary-bg mx-auto px-5 rounded-0"
+                                                target="_blank">Details</a>
                                         </div>
                                     </div>
 
