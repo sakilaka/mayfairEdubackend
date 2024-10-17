@@ -127,7 +127,7 @@
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="date" name="date"
-                                                                    value="{{json_decode($expo->datetime, true) ? date('Y-m-d', strtotime(json_decode($expo->datetime, true)['date']) : '') }}"
+                                                                    value="{{ json_decode($expo->datetime, true) ? date('Y-m-d', strtotime(json_decode($expo->datetime, true)['date'])) : '' }}"
                                                                     class="form-control" required>
                                                                 @error('date')
                                                                     <span class="text-danger">{{ $message }}</span>
