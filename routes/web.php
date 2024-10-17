@@ -291,7 +291,7 @@ Route::get('get-city/{state_id}', [FrontendController::class, 'getCities'])->nam
 Route::get('notices', [LandingPageController::class, 'all_notice'])->name('landing_page.all_notice');
 Route::get('notice/{slug}', [LandingPageController::class, 'show_page'])->name('landing_page.show_page');
 
-Route::get('get-free-consultation', [GetConsultationController::class, 'get_consul tation'])->name('frontend.get_consultation');
+Route::get('get-free-consultation', [GetConsultationController::class, 'get_consultation'])->name('frontend.get_consultation');
 Route::post('get-free-consultation', [GetConsultationController::class, 'get_consultation_store'])->name('frontend.get_consultation_store');
 
 Route::post('/ckeditor/upload', [CKEditorUploadController::class, 'uploadImage'])->name('ckeditor.upload');
