@@ -35,7 +35,18 @@ class ExpoModuleController extends Controller
         if (!$data['expo']) {
             abort(404, 'Expo Not Found!');
         }
-        return json_decode($data['expo']->universities);
+
+        $data['exhibitors'] = [];
+        foreach (json_decode($data['expo']->universities) ?? [] as $exhibitor_id) {
+            $exhibitor = University::find($exhibitor_id);
+
+            if ($exhibitor) {
+                $data['exhibitors'][] = $exhibitor;
+            }
+        }
+
+        $data['exhibitors'] = collect($data['exhibitors']);
+
         return view('Expo.details', $data);
     }
 
