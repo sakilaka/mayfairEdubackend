@@ -1141,6 +1141,28 @@
                                                     </div>
                                                 </div>
                                             </section>
+
+                                            <h3>Schedule</h3>
+                                            <section>
+                                                <h4 class="mb-3">Schedule</h4>
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Write Schedule Contents:
+                                                            </label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <textarea name="additional_contents[schedule]" class="form-control editor">{!! $additional_contents['schedule'] ?? '' !!}</textarea>
+                                                                @error('additional_contents[schedule]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </div>
                                     </form>
                                 </div>
