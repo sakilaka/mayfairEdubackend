@@ -613,7 +613,7 @@
                                                     </div>
                                                 </div>
 
-                                                <h4>Why Should Attent... Image</h4>
+                                                <h4>Why Should Attend... Section</h4>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
                                                         <div class="row">
