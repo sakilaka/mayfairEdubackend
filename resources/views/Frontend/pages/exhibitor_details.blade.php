@@ -1,7 +1,7 @@
 @extends('Frontend.layouts.master-layout')
 @section('title', ' - Exhibitor Details of ' . $exhibitor->name)
 @section('head')
-
+    <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
 @endsection
 @section('main_content')
 
