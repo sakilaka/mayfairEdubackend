@@ -65,6 +65,7 @@ class ExpoController extends Controller
 
         try {
             $data = [
+                'unique_id' => uuid_create(),
                 'title' => $request->title,
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->exhibitors) ?? '',
