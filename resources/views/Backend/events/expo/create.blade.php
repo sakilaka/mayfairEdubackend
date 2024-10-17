@@ -627,7 +627,7 @@
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="additional_contents[why_should_attend]"
+                                                                            name="additional_contents[why_should_attend][image]"
                                                                             accept="image/*">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
@@ -657,6 +657,20 @@
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Contents:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <textarea name="additional_contents[why_should_attend][contents]" class="form-control editor"></textarea>
+                                                                @error('additional_contents[why_should_attend][contents]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
