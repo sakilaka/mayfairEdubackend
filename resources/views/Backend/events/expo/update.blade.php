@@ -95,7 +95,7 @@
                                                                 <input type="text"
                                                                     name="additional_contents[pre_title]"
                                                                     class="form-control"
-                                                                    value="{{ json_decode($expo->additional_contents, true)['pre_title'] }}"
+                                                                    value="{{ json_decode($expo->additional_contents, true)['pre_title'] ?? '' }}"
                                                                     placeholder="Enter Expo Pre Title">
                                                                 @error('additional_contents[pre_title]')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -127,7 +127,7 @@
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="date" name="date"
-                                                                    value="{{ date('Y-m-d', strtotime(json_decode($expo->datetime, true)['date'])) }}"
+                                                                    value="{{json_decode($expo->datetime, true) ?  date('Y-m-d', strtotime(json_decode($expo->datetime, true)['date'])) }}"
                                                                     class="form-control" required>
                                                                 @error('date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -180,7 +180,7 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text" name="venue"
                                                                     class="form-control" placeholder="Enter Venue"
-                                                                    value="{{ json_decode($expo->place, true)['venue'] }}"
+                                                                    value="{{ json_decode($expo->place, true)['venue'] ?? '' }}"
                                                                     required>
                                                                 @error('venue')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -197,7 +197,7 @@
                                                                 <input type="text" name="address"
                                                                     class="form-control"
                                                                     placeholder="Enter Venue Address"
-                                                                    value="{{ json_decode($expo->place, true)['address'] }}"
+                                                                    value="{{ json_decode($expo->place, true)['address'] ?? '' }}"
                                                                     required>
                                                                 @error('address')
                                                                     <span class="text-danger">{{ $message }}</span>
