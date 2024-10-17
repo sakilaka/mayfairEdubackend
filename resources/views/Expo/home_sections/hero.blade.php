@@ -24,10 +24,16 @@
         <div
             class="container mx-auto row justify-content-center justify-content-md-around align-items-center mb-md-5 pb-md-5">
             <div class="col-md-12 p-4 pb-5 pt-md-0" style="position: relative; z-index: 3;">
+                @php
+                    $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+                @endphp
                 <div>
-                    <h2 class="main-heading text-white fw-bold">The 2nd</h2>
+                    @if ($additional_contents['pre_title'])
+                        <h2 class="main-heading text-white fw-bold">{{ $additional_contents['pre_title'] }}</h2>
+                    @endif
+
                     <h1 class="main-title text-white fw-bold">
-                        Belt and Road Chinese University and Overseas Partner Exchange Conference
+                        {{ $expo->title }}
                     </h1>
                 </div>
                 <div>
@@ -35,15 +41,18 @@
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Organizer:
                         </p>
                         <p class="location-text text-white">
-                            <span class="text-style fw-bold">Guangzhou MalishaEdu Co. Ltd.</span>
+                            <span class="text-style fw-bold">
+                                {{ $additional_contents['organizerDetails']['name'] ?? '' }}
+                            </span>
                         </p>
                     </div>
                     <div>
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
                             Co-Organizer:</p>
                         <p class="location-text text-white">
-                            <span class="text-style fw-bold">The Belt and Road Chinese Center (BRCC) and Easy
-                                Link</span>
+                            <span class="text-style fw-bold">
+                                {{ $additional_contents['co_organizerDetails']['name'] ?? '' }}
+                            </span>
                         </p>
                     </div>
                     <div>
