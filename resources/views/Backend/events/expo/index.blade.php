@@ -56,7 +56,7 @@
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
-                                                <a href="{{ route('expo.details', ['id' => $expo->id]) }}"
+                                                <a href="{{ route('expo.details', ['id' => $expo->unique_id]) }}"
                                                     target="_blank" style="color: var(--primary_background)"
                                                     data-toggle="tooltip" data-original-title="{{ $expo->title }}"
                                                     data-placement="top">

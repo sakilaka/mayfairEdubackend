@@ -10,6 +10,7 @@ class Expo extends Model
     use HasFactory;
 
     protected $fillable = [
+        'unique_id',
         'title',
         'banner',
         'datetime',

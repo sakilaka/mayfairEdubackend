@@ -28,9 +28,9 @@ class ExpoModuleController extends Controller
     /**
      * expo details
      */
-    public function expoDetails($id)
+    public function expoDetails($unique_id)
     {
-        $data['expo'] = Expo::find($id);
+        $data['expo'] = Expo::where('unique_id', $unique_id)->first();
 
         if (!$data['expo']) {
             abort(404, 'Expo Not Found!');
