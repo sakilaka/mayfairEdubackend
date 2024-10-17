@@ -43,7 +43,8 @@
                         </div>
                     </div>
                     <div class="col-md-6 col-xs-12">
-                        <img class="rectangle-5" src="{{ asset('frontend/expo-domain/images/rectangle_5.jpg') }}"
+                        {{ dd($additional_contents['why_should_attend']) }}
+                        <img class="rectangle-5" src="{{ $additional_contents['why_should_attend'] ?? asset('frontend/expo-domain/images/rectangle_5.jpg') }}"
                             alt="" style="width: 100%; height: auto; border-radius: 6px;">
                     </div>
                 </div>
