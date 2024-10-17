@@ -14,7 +14,13 @@
 
                         <div class="row mx-0 align-items-center justify-content-center border-md rounded-3">
                             <div class="col-md-10 p-4 p-sm-5">
-                                {!! $exhibitor->exhibitor_desc ?? '' !!}
+                                @if ($exhibitor->exhibitor_desc)
+                                    {!! $exhibitor->exhibitor_desc !!}
+                                @else
+                                    <p class="text-center">
+                                        No Content Found
+                                    </p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -22,7 +28,6 @@
             </div>
         </div>
     </div>
-
 
     @include('Frontend.layouts.parts.news-letter')
 
