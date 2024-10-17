@@ -874,7 +874,7 @@
                                                     </div>
                                                 </div>
 
-                                                <h4>Why Should Attent... Image</h4>
+                                                <h4>Why Should Attend... Section</h4>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
                                                         <div class="row">
@@ -918,6 +918,20 @@
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Contents:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <textarea name="additional_contents[why_should_attend][contents]" class="form-control editor">{!! $additional_contents['why_should_attend']['contents'] ?? '' !!}</textarea>
+                                                                @error('additional_contents[why_should_attend][contents]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
