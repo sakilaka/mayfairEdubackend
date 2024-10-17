@@ -6,27 +6,25 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="#" style="color: white;" target="_blank">Schedule</a>
+            <a class="nav-link" href="{{ route('expo.schedule', ['unique_id' => $expo->unique_id]) }}"
+                style="color: white;">Schedule</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('expo.exhibitors', ['unique_id' => $expo->unique_id]) }}"
                 style="color: white;">Exhibitors</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
-                target="_blank">Delegates</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;">Delegates</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;"
-                target="_blank">Testimonial</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors"
+                style="color: white;">Testimonial</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/gallery" style="color: white;"
-                target="_blank">Gallery</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/gallery" style="color: white;">Gallery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;"
-                target="_blank">Join</a>
+            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;">Join</a>
         </li>
     </ul>
 </div>
