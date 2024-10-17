@@ -226,7 +226,7 @@ class ExpoController extends Controller
             if ($request->additional_contents['pre_title']) {
                 $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
             }
-            return $data;
+
             if ($request->hasFile('banner')) {
                 if (!empty($expo->banner)) {
                     $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
