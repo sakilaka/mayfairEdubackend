@@ -941,7 +941,7 @@
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="organizerDetails[logo]"
+                                                                            name="additional_contents[organizerDetails][logo]"
                                                                             accept="image/*">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
@@ -983,10 +983,10 @@
                                                                 <span class="text-danger">*</span>
                                                                 Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="organizerDetails[name]"
+                                                                <input type="text" name="additional_contents[organizerDetails][name]"
                                                                     class="form-control" value=""
                                                                     placeholder="Enter Organizer Name">
-                                                                @error('organizerDetails[name]')
+                                                                @error('additional_contents[organizerDetails][name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -998,8 +998,8 @@
                                                                 <span class="text-danger">*</span>
                                                                 Organizer Details:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <textarea name="organizerDetails[details]" class="form-control editor"></textarea>
-                                                                @error('organizerDetails[details]')
+                                                                <textarea name="additional_contents[organizerDetails][details]" class="form-control editor"></textarea>
+                                                                @error('additional_contents[organizerDetails][details]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -1025,7 +1025,7 @@
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="co_organizerDetails[logo]"
+                                                                            name="additional_contents[co_organizerDetails][logo]"
                                                                             accept="image/*">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
@@ -1067,10 +1067,10 @@
                                                                 <span class="text-danger">*</span>
                                                                 Co-Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="co_organizerDetails[name]"
+                                                                <input type="text" name="additional_contents[co_organizerDetails][name]"
                                                                     class="form-control" value=""
                                                                     placeholder="Enter Co-Organizer Name">
-                                                                @error('co_organizerDetails[name]')
+                                                                @error('additional_contents[co_organizerDetails][name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -1082,8 +1082,8 @@
                                                                 <span class="text-danger">*</span>
                                                                 Co-Organizer Details:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <textarea name="co_organizerDetails[details]" class="form-control editor"></textarea>
-                                                                @error('co_organizerDetails[details]')
+                                                                <textarea name="additional_contents[co_organizerDetails][details]" class="form-control editor"></textarea>
+                                                                @error('additional_contents[co_organizerDetails][details]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
