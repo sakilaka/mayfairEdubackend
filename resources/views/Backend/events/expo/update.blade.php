@@ -40,7 +40,6 @@
                                             @php
                                                 $additional_contents =
                                                     json_decode($expo['additional_contents'], true) ?? [];
-                                                dd($additional_contents);
                                             @endphp
 
                                             <h3>Expo Details</h3>
@@ -968,7 +967,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $additional_contents['organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
@@ -986,7 +985,8 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
                                                                     name="additional_contents[organizerDetails][name]"
-                                                                    class="form-control" value=""
+                                                                    class="form-control"
+                                                                    value="{{ $additional_contents['organizerDetails']['name'] ?? '' }}"
                                                                     placeholder="Enter Organizer Name">
                                                                 @error('additional_contents[organizerDetails][name]')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -1000,7 +1000,7 @@
                                                                 <span class="text-danger">*</span>
                                                                 Organizer Details:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <textarea name="additional_contents[organizerDetails][details]" class="form-control editor"></textarea>
+                                                                <textarea name="additional_contents[organizerDetails][details]" class="form-control editor">{!! $additional_contents['organizerDetails']['details'] ?? '' !!}</textarea>
                                                                 @error('additional_contents[organizerDetails][details]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -1053,7 +1053,7 @@
                                                             <div
                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3">
-                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                    <img src="{{ $additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                         alt="" class="img-fluid"
                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
@@ -1071,7 +1071,8 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
                                                                     name="additional_contents[co_organizerDetails][name]"
-                                                                    class="form-control" value=""
+                                                                    class="form-control"
+                                                                    value="{{ $additional_contents['co_organizerDetails']['name'] ?? '' }}"
                                                                     placeholder="Enter Co-Organizer Name">
                                                                 @error('additional_contents[co_organizerDetails][name]')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -1085,7 +1086,7 @@
                                                                 <span class="text-danger">*</span>
                                                                 Co-Organizer Details:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <textarea name="additional_contents[co_organizerDetails][details]" class="form-control editor"></textarea>
+                                                                <textarea name="additional_contents[co_organizerDetails][details]" class="form-control editor">{!! $additional_contents['co_organizerDetails']['details'] ?? '' !!}</textarea>
                                                                 @error('additional_contents[co_organizerDetails][details]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
