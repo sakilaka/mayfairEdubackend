@@ -5,7 +5,6 @@
 @endsection
 @section('main_content')
 
-{{ dd($content->title) }}
     <div class="content_search" style="margin-top:70px">
         <div class="" style="margin-top: 7rem; margin-bottom:3rem">
             <div class="container-lg">

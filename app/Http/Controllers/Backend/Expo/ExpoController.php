@@ -536,17 +536,13 @@ class ExpoController extends Controller
      */
     public function exhibitor_details($exhibitor_id)
     {
-        $exhibitor = University::find($exhibitor_id);
+        $data['exhibitor'] = University::find($exhibitor_id);
 
-        if (!$exhibitor) {
+        if (!$data['exhibitor']) {
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
-        $data['page_title'] = 'Exhibitor Details of ' . $exhibitor->name;
-        $data['content']['title'] = $exhibitor->name;
-        $data['content']['description'] = $exhibitor->exhibitor_desc;
-
-        return view('Frontend.pages.common-page', $data);
+        return view('Frontend.pages.exhibitor_details', $data);
     }
 
     /**
