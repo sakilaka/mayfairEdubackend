@@ -74,7 +74,7 @@ class ExpoController extends Controller
             ];
 
             $dateTime = [
-                'date' => date('d M, Y', strtotime($request->date)),
+                'date' => $request->date,
                 'time_from' => $request->time_from,
                 'time_to' => $request->time_to,
             ];
@@ -257,7 +257,7 @@ class ExpoController extends Controller
             ];
 
             $dateTime = [
-                'date' => date('d M, Y', strtotime($request->date)),
+                'date' => $request->date,
                 'time_from' => $request->time_from,
                 'time_to' => $request->time_to,
             ];
