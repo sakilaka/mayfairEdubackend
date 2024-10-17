@@ -459,9 +459,11 @@ class ExpoController extends Controller
             }
 
             $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
+            $data['additional_contents']['organizerDetails']['redirect_url'] = $request['additional_contents']['organizerDetails']['redirect_url'];
             $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
 
             $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
+            $data['additional_contents']['co_organizerDetails']['redirect_url'] = $request['additional_contents']['co_organizerDetails']['redirect_url'];
             $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
 
             $data['additional_contents'] = json_encode($data['additional_contents'] ?? asset('frontend/images/No-image.jpg'));

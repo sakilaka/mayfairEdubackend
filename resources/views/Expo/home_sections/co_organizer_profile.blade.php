@@ -10,7 +10,7 @@
                     <img src="{{ $additional_contents['co_organizerDetails']['logo'] ?? '' }}" alt=""
                         class="img-fluid" width="150">
                     <div class="text-center mt-4 me-md-3">
-                        <a href="https://www.malishaedu.com/" class="btn btn-primary-bg mx-auto px-5 rounded-0"
+                        <a href="{{ $additional_contents['co_organizerDetails']['redirect_url'] ?? '#' }}" class="btn btn-primary-bg mx-auto px-5 rounded-0"
                             target="_blank">Details</a>
                     </div>
                 </div>
