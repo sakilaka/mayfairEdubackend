@@ -90,7 +90,7 @@ class ExpoController extends Controller
             }
 
             // Handling guest information
-            $guests = [];
+            /* $guests = [];
             if ($request->guestName && $request->guestDesignation && $request->guestOrganization) {
                 $guestImages = [];
                 $imageKeys = [];
@@ -116,10 +116,10 @@ class ExpoController extends Controller
                     ];
                 }
             }
-            $data['guests'] = json_encode($guests);
+            $data['guests'] = json_encode($guests); */
 
             // Handling media partner logo
-            if ($request->hasFile('media_partner_logo')) {
+            /* if ($request->hasFile('media_partner_logo')) {
                 $mediaPartnerLogo = [];
                 foreach ($request->file('media_partner_logo') as $key => $file) {
                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
@@ -127,10 +127,10 @@ class ExpoController extends Controller
                     $mediaPartnerLogo[$key] = url('upload/expo/media_partner/' . $fileName);
                 }
                 $data['media_partner'] = json_encode($mediaPartnerLogo);
-            }
+            } */
 
             // Handling video uploads
-            if ($request->hasFile('video')) {
+            /* if ($request->hasFile('video')) {
                 $videos = [];
                 foreach ($request->file('video') as $file) {
                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
@@ -138,10 +138,10 @@ class ExpoController extends Controller
                     $videos[] = url('upload/expo/video/' . $fileName);
                 }
                 $data['videos'] = json_encode($videos);
-            }
+            } */
 
             // Handling gallery images
-            if ($request->hasFile('gallery_image')) {
+            /* if ($request->hasFile('gallery_image')) {
                 $galleryImages = [];
                 foreach ($request->file('gallery_image') as $key => $file) {
                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
@@ -149,7 +149,7 @@ class ExpoController extends Controller
                     $galleryImages[$key] = url('upload/expo/gallery/' . $fileName);
                 }
                 $data['photos'] = json_encode($galleryImages);
-            }
+            } */
 
             // Handling additional images
             if ($request->hasFile('additional_contents.nav_logo')) {
@@ -172,7 +172,6 @@ class ExpoController extends Controller
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
-            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
