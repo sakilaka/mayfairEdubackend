@@ -982,11 +982,11 @@
                                                                 Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
-                                                                    name="organizerDetails[title]"
+                                                                    name="organizerDetails[name]"
                                                                     class="form-control"
                                                                     value=""
                                                                     placeholder="Enter Organizer Name">
-                                                                @error('organizerDetails[title]')
+                                                                @error('organizerDetails[name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -1068,11 +1068,11 @@
                                                                 Co-Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
-                                                                    name="co_organizerDetails[title]"
+                                                                    name="co_organizerDetails[name]"
                                                                     class="form-control"
                                                                     value=""
-                                                                    placeholder="Enter Organizer Name">
-                                                                @error('co_organizerDetails[title]')
+                                                                    placeholder="Enter Co-Organizer Name">
+                                                                @error('co_organizerDetails[name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
