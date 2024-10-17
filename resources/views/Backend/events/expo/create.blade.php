@@ -89,6 +89,20 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
+                                                            <label class="form-control-label">Expo Pre Title:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[pre_title]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Expo Pre Title">
+                                                                @error('additional_contents[pre_title]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
                                                             <label class="form-control-label">Expo Title:
                                                                 <span class="text-danger"
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>

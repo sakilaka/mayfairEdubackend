@@ -90,6 +90,20 @@
                                                 <div class="row">
                                                     <div class="col-md-4">
                                                         <div class="form-group">
+                                                            <label class="form-control-label">Expo Pre Title:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[pre_title]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Expo Pre Title">
+                                                                @error('additional_contents[pre_title]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
                                                             <label class="form-control-label">Expo Title:
                                                                 <span class="text-danger"
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
@@ -97,6 +111,9 @@
                                                                 <input type="text" name="title"
                                                                     class="form-control" placeholder="Enter Expo Title"
                                                                     value="{{ $expo->title }}" required>
+                                                                @error('title')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -110,6 +127,9 @@
                                                                 <input type="date" name="date"
                                                                     value="{{ Carbon\Carbon::createFromFormat('d M Y h:i A', str_replace(',', '', $expo->datetime))->format('Y-m-d') }}"
                                                                     class="form-control" required>
+                                                                @error('date')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -124,6 +144,9 @@
                                                                     class="form-control"
                                                                     value="{{ Carbon\Carbon::createFromFormat('d M Y h:i A', str_replace(',', '', $expo->datetime))->format('H:i') }}"
                                                                     required>
+                                                                @error('time')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
@@ -136,6 +159,9 @@
                                                                 <input type="text" name="place"
                                                                     class="form-control" placeholder="Enter Address"
                                                                     value="{{ $expo->place }}" required>
+                                                                @error('place')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>

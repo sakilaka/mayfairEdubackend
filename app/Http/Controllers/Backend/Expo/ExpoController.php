@@ -71,6 +71,10 @@ class ExpoController extends Controller
                 'location' => json_encode($request->location) ?? ''
             ];
 
+            if ($request->additional_contents['pre_title']) {
+                $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
+            }
+
             if ($request->hasFile('banner')) {
                 $fileName = rand() . time() . '.' . $request->banner->getClientOriginalExtension();
                 $request->banner->move(public_path('upload/expo/'), $fileName);
@@ -219,6 +223,10 @@ class ExpoController extends Controller
                 'location' => json_encode($request->location) ?? ''
             ];
 
+            if ($request->additional_contents['pre_title']) {
+                $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
+            }
+            return $data;
             if ($request->hasFile('banner')) {
                 if (!empty($expo->banner)) {
                     $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
@@ -368,7 +376,7 @@ class ExpoController extends Controller
 
             $data['additional_contents'] = json_encode($data['additional_contents']);
             $expo->update($data);
-            
+
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
