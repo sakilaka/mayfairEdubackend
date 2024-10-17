@@ -239,7 +239,7 @@ class ExpoController extends Controller
                 'time_to' => $request->time_to,
             ];
             $data['datetime'] = json_encode($dateTime);
-            
+
             $place = [
                 'venue' => $request->venue,
                 'address' => $request->address,
@@ -498,6 +498,15 @@ class ExpoController extends Controller
         $data['exhibitors'] = $universities->where('is_exhibitor', true)->sortByDesc('created_at');
 
         return view('Backend.events.expo.exhibitor.index', $data);
+    }
+
+    /**
+     * edit exhibitor
+     */
+    public function exhibitor_edit($exhibitor_id)
+    {
+        $exhibitor = University::find($exhibitor_id);
+        return $exhibitor;
     }
 
     /**
