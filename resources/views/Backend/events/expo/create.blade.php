@@ -237,7 +237,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-sm-12">
+                                                    {{-- <div class="col-sm-12">
                                                         <div class="d-flex justify-content-between">
                                                             <h5 class="d-inline">Special Guest(s)</h5>
                                                             <a href="javascript:void(0)"
@@ -300,9 +300,9 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="col-sm-12 my-3">
+                                                    {{-- <div class="col-sm-12 my-3">
                                                         <div class="d-flex justify-content-between">
                                                             <h5 class="d-inline">Media Partner</h5>
                                                             <a href="javascript:void(0)"
@@ -367,9 +367,9 @@
                                                                 </a>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
-                                                    <div class="col-sm-12 mb-3">
+                                                    {{-- <div class="col-sm-12 mb-3">
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#gallery_image_gallery">
                                                             <h5 class="card-title mb-0 py-2">
@@ -509,7 +509,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </section>
 

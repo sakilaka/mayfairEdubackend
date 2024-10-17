@@ -266,7 +266,7 @@ class ExpoController extends Controller
             }
 
             // Handle guest information
-            $guests = [];
+            /* $guests = [];
             if ($request->guestName && $request->guestDesignation && $request->guestOrganization) {
                 $guestImages = [];
                 $imageKeys = [];
@@ -305,10 +305,10 @@ class ExpoController extends Controller
                     ];
                 }
             }
-            $data['guests'] = json_encode($guests);
+            $data['guests'] = json_encode($guests); */
 
             // Handle new media partner logos from the request
-            $mediaPartnerLogos = [];
+            /* $mediaPartnerLogos = [];
             if ($request->hasFile('media_partner_logo')) {
                 foreach ($request->file('media_partner_logo') as $key => $file) {
                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
@@ -322,10 +322,10 @@ class ExpoController extends Controller
             foreach ($mediaPartnerLogos as $key => $url) {
                 $mergedMediaPartnerLogos[$key] = $url;
             }
-            $data['media_partner'] = json_encode($mergedMediaPartnerLogos);
+            $data['media_partner'] = json_encode($mergedMediaPartnerLogos); */
 
             // Handling video uploads
-            if ($request->hasFile('video')) {
+            /* if ($request->hasFile('video')) {
                 $videos = [];
                 foreach ($request->file('video') as $file) {
                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
@@ -333,10 +333,10 @@ class ExpoController extends Controller
                     $videos[] = url('upload/expo/video/' . $fileName);
                 }
                 $data['videos'] = json_encode($videos);
-            }
+            } */
 
             // Handle new gallery images from the request
-            $galleryImages = [];
+            /* $galleryImages = [];
             if ($request->hasFile('gallery_image')) {
                 foreach ($request->file('gallery_image') as $key => $file) {
                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
@@ -350,7 +350,7 @@ class ExpoController extends Controller
             foreach ($galleryImages as $key => $url) {
                 $mergedGalleryImages[$key] = $url;
             }
-            $data['photos'] = json_encode($mergedGalleryImages);
+            $data['photos'] = json_encode($mergedGalleryImages); */
 
             // Handling additional images
             $old_additional_contents = json_decode($expo['additional_contents'], true);
