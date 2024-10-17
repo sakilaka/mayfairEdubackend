@@ -125,7 +125,7 @@
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="date" name="date"
-                                                                    value="{{ Carbon\Carbon::createFromFormat('d M Y h:i A', str_replace(',', '', $expo->datetime))->format('Y-m-d') }}"
+                                                                    value="{{ date('Y-m-d', strtotime(json_decode($expo->datetime, true)['date'])) }}"
                                                                     class="form-control" required>
                                                                 @error('date')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -145,7 +145,8 @@
                                                                     <div class="mg-t-10 mg-sm-t-0">
                                                                         <input type="text" name="time_from"
                                                                             class="form-control" placeholder="From"
-                                                                            value="" required>
+                                                                            value="{{ json_decode($expo->datetime, true)['time_from'] ?? '' }}"
+                                                                            required>
                                                                         @error('time_from')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
@@ -156,7 +157,8 @@
                                                                     <div class="mg-t-10 mg-sm-t-0">
                                                                         <input type="text" name="time_to"
                                                                             class="form-control" placeholder="To"
-                                                                            value="" required>
+                                                                            value="{{ json_decode($expo->datetime, true)['time_to'] ?? '' }}"
+                                                                            required>
                                                                         @error('time_to')
                                                                             <span
                                                                                 class="text-danger">{{ $message }}</span>
