@@ -63,7 +63,13 @@
                                                 </a>
                                             </td>
                                             <td>{{ Illuminate\Support\Str::limit($expo->place, 50, '...') }}</td>
-                                            <td>{{ $expo->datetime }}</td>
+                                            <td>
+                                                @php
+                                                    $datetime = json_decode($expo->datetime, true) ?? [];
+                                                @endphp
+
+                                                {{ $datetime['date'] }}
+                                            </td>
                                             <td data-toggle="tooltip" data-placement="top"
                                                 data-original-title="{{ $fullUniversityNames }}">
                                                 {{ $truncatedUniversityNames }}
