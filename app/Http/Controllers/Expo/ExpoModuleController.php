@@ -35,7 +35,7 @@ class ExpoModuleController extends Controller
         if (!$data['expo']) {
             abort(404, 'Expo Not Found!');
         }
-
+        return json_decode($data['expo']->universities);
         return view('Expo.details', $data);
     }
 
