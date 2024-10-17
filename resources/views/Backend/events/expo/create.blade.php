@@ -87,7 +87,7 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Expo Pre Title:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
@@ -101,7 +101,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Expo Title:
                                                                 <span class="text-danger"
@@ -116,7 +116,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Date:
                                                                 <span class="text-danger"
@@ -130,7 +130,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Time:
                                                                 <span class="text-danger"
@@ -144,7 +144,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Place:
                                                                 <span class="text-danger"
