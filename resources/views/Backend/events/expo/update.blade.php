@@ -88,7 +88,7 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Expo Pre Title:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
@@ -102,7 +102,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Expo Title:
                                                                 <span class="text-danger"
@@ -118,7 +118,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Date:
                                                                 <span class="text-danger"
@@ -134,7 +134,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-3">
                                                         <div class="form-group">
                                                             <label class="form-control-label">Time:
                                                                 <span class="text-danger"
@@ -163,6 +163,27 @@
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Participated Universities:</label>
+                                                            <select
+                                                                class="form-control form-control-lg multipleSelect2Search"
+                                                                name="universities[]" multiple>
+                                                                <option value="">Select University</option>
+                                                                @php
+                                                                    $selectedUniversities =
+                                                                        json_decode($expo->universities, true) ?? [];
+                                                                @endphp
+                                                                @foreach ($universities as $university)
+                                                                    <option value="{{ $university->id }}"
+                                                                        {{ in_array($university->id, $selectedUniversities) ? 'selected' : '' }}>
+                                                                        {{ $university->name }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                     </div>
 
@@ -216,27 +237,6 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <textarea name="description" class="editor form-control">{{ $expo->description }}</textarea>
                                                             </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group">
-                                                            <label>Participated Universities:</label>
-                                                            <select
-                                                                class="form-control form-control-lg multipleSelect2Search"
-                                                                name="universities[]" multiple>
-                                                                <option value="">Select University</option>
-                                                                @php
-                                                                    $selectedUniversities =
-                                                                        json_decode($expo->universities, true) ?? [];
-                                                                @endphp
-                                                                @foreach ($universities as $university)
-                                                                    <option value="{{ $university->id }}"
-                                                                        {{ in_array($university->id, $selectedUniversities) ? 'selected' : '' }}>
-                                                                        {{ $university->name }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
                                                         </div>
                                                     </div>
 
