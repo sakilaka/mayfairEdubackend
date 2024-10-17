@@ -182,6 +182,12 @@ class ExpoController extends Controller
                 $additionalContents['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             }
 
+            $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
+            $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
+
+            $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
+            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
+
             $data['additional_contents'] = json_encode($data['additional_contents']);
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
