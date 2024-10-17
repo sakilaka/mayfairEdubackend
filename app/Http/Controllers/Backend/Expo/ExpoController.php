@@ -367,7 +367,6 @@ class ExpoController extends Controller
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
-            return $old_additional_contents;
 
             if ($request->hasFile('additional_contents.nav_logo')) {
                 if (!empty($old_additional_contents['nav_logo'])) {
@@ -381,6 +380,8 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
                 $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
+            } else {
+                $data['additional_contents']['nav_logo'] = $old_additional_contents['nav_logo'];
             }
 
             if ($request->hasFile('additional_contents.hero_bg')) {
@@ -395,6 +396,8 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
                 $request->file('additional_contents.hero_bg')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['hero_bg'] = url('upload/expo/' . $fileName);
+            } else {
+                $data['additional_contents']['hero_bg'] = $old_additional_contents['hero_bg'];
             }
 
             if ($request->hasFile('additional_contents.why_should_attend')) {
@@ -409,6 +412,8 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
                 $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
+            } else {
+                $data['additional_contents']['why_should_attend'] = $old_additional_contents['why_should_attend'];
             }
 
             if ($request->hasFile('additional_contents.organizerDetails.logo')) {
@@ -444,8 +449,6 @@ class ExpoController extends Controller
 
             $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
             $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
-
-            return $data['additional_contents'];
 
             $data['additional_contents'] = json_encode($data['additional_contents'] ?? '');
             $expo->update($data);
