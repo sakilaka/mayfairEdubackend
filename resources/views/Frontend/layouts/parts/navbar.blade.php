@@ -146,13 +146,13 @@
                                 <!-- Expo in China -->
                                 <li>
                                     <a class="dropdown-item dropdown-toggle" href="#">Expo In China</a>
-                                    @if (!empty($groupedExpo['china']))
+                                    @if ($groupedExpos['china'])
                                         <ul class="submenu dropdown-menu">
                                             @foreach ($groupedExpos['china'] as $expo)
                                                 <li>
                                                     <a class="dropdown-item"
                                                         href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">
-                                                        {{ Illuminate\Suppport\Str::limit($expo['title'], 30, '...') }}
+                                                        {{ Illuminate\Support\Str::limit($expo['title'], 30, '...') }}
                                                     </a>
                                                 </li>
                                             @endforeach
@@ -163,23 +163,25 @@
                                 <!-- Expo in Overseas -->
                                 <li>
                                     <a href="#" class="dropdown-item dropdown-toggle">Expo In Overseas</a>
-                                    <ul class="submenu dropdown-menu">
-                                        @foreach ($groupedExpos['overseas'] as $expo)
-                                            <li>
-                                                <a class="dropdown-item dropdown-toggle" href="javascript:void(0)">
-                                                    {{ $expo['location'] }} &nbsp;
-                                                </a>
-                                                <ul class="submenu dropdown-menu">
-                                                    <li>
-                                                        <a class="dropdown-item"
-                                                            href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">
-                                                            {{ Illuminate\Suppport\Str::limit($expo['title'], 30, '...') }}
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                    @if ($groupedExpos['overseas'])
+                                        <ul class="submenu dropdown-menu">
+                                            @foreach ($groupedExpos['overseas'] as $expo)
+                                                <li>
+                                                    <a class="dropdown-item dropdown-toggle" href="javascript:void(0)">
+                                                        {{ $expo['location'] }} &nbsp;
+                                                    </a>
+                                                    <ul class="submenu dropdown-menu">
+                                                        <li>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">
+                                                                {{ Illuminate\Support\Str::limit($expo['title'], 30, '...') }}
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
                                 </li>
                             </ul>
                         </li>
