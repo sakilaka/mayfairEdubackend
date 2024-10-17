@@ -189,6 +189,7 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -218,7 +219,11 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                'datetime' => date('d M, Y', strtotime($request->date)) . ' ' . date('h:i A', strtotime($request->time)),
+                'datetime' => [
+                    'date' => date('d M, Y', strtotime($request->date)),
+                    'time_from' => $request->time_from,
+                    'time_to' => $request->time_to,
+                ],
                 'place' => $request->place ?? '',
                 'universities' => json_encode($request->universities) ?? '',
                 'description' => $request->description,
@@ -228,7 +233,7 @@ class ExpoController extends Controller
             if ($request->additional_contents['pre_title']) {
                 $data['additional_contents']['pre_title'] = $request->additional_contents['pre_title'];
             }
-
+            return $data;
             if ($request->hasFile('banner')) {
                 if (!empty($expo->banner)) {
                     $oldBannerPath = parse_url($expo->banner, PHP_URL_PATH);
