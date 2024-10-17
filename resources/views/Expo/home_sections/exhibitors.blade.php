@@ -149,7 +149,7 @@
                                     </p>
                                     <div class="text-center">
                                         <a href="{{ env('APP_MAIN_DOMAIN') . '/exhibitor/' . $exhibitor->id . '/details' }}"
-                                            class="btn btn-danger mx-auto px-5 rounded-0" target="_blank">Details</a>
+                                            class="btn btn-primary-bg mx-auto px-5 rounded-0" target="_blank">Details</a>
                                     </div>
                                 </div>
 
@@ -163,7 +163,7 @@
 
             @if (count($exhibitors) > 0)
                 <div class="text-center">
-                    <a href="{{ route('expo.exhibitors') }}" class="btn btn-danger mx-auto px-5 rounded-0">All
+                    <a href="{{ route('expo.exhibitors') }}" class="btn btn-primary-bg mx-auto px-5 rounded-0">All
                         Exhibitors</a>
                 </div>
             @endif
