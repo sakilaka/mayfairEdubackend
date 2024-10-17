@@ -26,6 +26,8 @@
             <div class="col-md-12 p-4 pb-5 pt-md-0" style="position: relative; z-index: 3;">
                 @php
                     $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+                    $place = json_decode($expo->place, true) ?? [];
+                    $datetime = json_decode($expo->datetime, true) ?? [];
                 @endphp
                 <div>
                     @if ($additional_contents['pre_title'])
@@ -66,10 +68,11 @@
                                         d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
                                 </svg>
                             </span>
-                            <span class="text-style fw-bold">BICC(Former Bangladesh-China Friendship Conference
-                                Center)</span>
+                            <span class="text-style fw-bold">
+                                {{ $place['venue'] ?? '' }}
+                            </span>
                             <br>
-                            Agargaon, Sher-E-Bangla Nagar, Dhaka-1207, Bangladesh
+                            {{ $place['address'] ?? '' }}
                         </p>
                     </div>
                 </div>
@@ -85,7 +88,7 @@
                                 clip-rule="evenodd" />
                         </svg>
 
-                        <span class="ms-2">21<sup>st</sup> & 22<sup>nd</sup> November, 2024</span>
+                        <span class="ms-2">{{ $datetime['date'] ?? '' }}</span>
                     </div>
                     <div class="d-flex align-items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 70 70" viewBox="0 0 70 70"
@@ -104,7 +107,7 @@
                             <polygon points="49.3 20.3 49.3 54.1 60.4 60 60.4 26.2"></polygon>
                             <polygon points="9.6 44.6 20.7 34.9 20.7 20.3 9.6 26.2"></polygon>
                         </svg>
-                        <span class="ms-2">Guangzhou, China</span>
+                        <span class="ms-2">{{ $datetime['time_from'] . ' to ' . $datetime['time_to'] }}</span>
                     </div>
                 </div>
             </div>
