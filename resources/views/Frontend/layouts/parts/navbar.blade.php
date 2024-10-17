@@ -119,12 +119,14 @@
                                         if ($locationData['type'] === 'china') {
                                             $groupedExpos['china'][] = [
                                                 'id' => $expo->id,
+                                                'unique_id' => $expo->unique_id,
                                                 'title' => $expo->title,
                                                 'location' => 'China',
                                             ];
                                         } elseif ($locationData['type'] === 'overseas') {
                                             $groupedExpos['overseas'][] = [
                                                 'id' => $expo->id,
+                                                'unique_id' => $expo->unique_id,
                                                 'title' => $expo->title,
                                                 'location' => $countryName,
                                             ];
@@ -132,14 +134,14 @@
                                     } else {
                                         $groupedExpos['undefined'][] = [
                                             'id' => $expo->id,
+                                            'unique_id' => $expo->unique_id,
                                             'title' => $expo->title,
                                             'location' => null,
                                         ];
                                     }
                                 }
-
-                                dd($groupedExpos);
                             @endphp
+
                             <ul class="dropdown-menu">
                                 <!-- Expo in China -->
                                 <li>
@@ -149,7 +151,9 @@
                                             @foreach ($groupedExpos['china'] as $expo)
                                                 <li>
                                                     <a class="dropdown-item"
-                                                        href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">{{ $expo['title'] }}</a>
+                                                        href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">
+                                                        {{ Illuminate\Suppport\Str::limit($expo['title'], 30, '...') }}
+                                                    </a>
                                                 </li>
                                             @endforeach
                                         </ul>
@@ -168,7 +172,9 @@
                                                 <ul class="submenu dropdown-menu">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">{{ $expo['title'] }}</a>
+                                                            href="{{ route('expo.details', ['id' => $expo['unique_id']]) }}">
+                                                            {{ Illuminate\Suppport\Str::limit($expo['title'], 30, '...') }}
+                                                        </a>
                                                     </li>
                                                 </ul>
                                             </li>
