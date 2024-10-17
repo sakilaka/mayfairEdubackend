@@ -75,6 +75,8 @@ Route::prefix('expo')->middleware(['accessLogin'])->group(function () {
 /**
  * Page Routes (Global)
  */
+Route::get('exhibitor/{exhibitor_id}/details', [ExpoController::class, "exhibitor_details"])->name('expo.exhibitor.details');
+
 Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
 Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
 Route::get('expo/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
