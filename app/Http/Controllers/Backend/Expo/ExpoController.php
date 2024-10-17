@@ -367,6 +367,7 @@ class ExpoController extends Controller
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
+            return $old_additional_contents;
 
             if ($request->hasFile('additional_contents.nav_logo')) {
                 if (!empty($old_additional_contents['nav_logo'])) {
