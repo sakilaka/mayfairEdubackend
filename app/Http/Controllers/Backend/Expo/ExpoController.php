@@ -373,7 +373,7 @@ class ExpoController extends Controller
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
-
+return $old_additional_contents;
             if ($request->hasFile('additional_contents.nav_logo')) {
                 if (!empty($old_additional_contents['nav_logo'])) {
                     $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
@@ -434,6 +434,8 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
                 $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+            } else {
+                $data['additional_contents']['organizerDetails']['logo'] = $old_additional_contents['organizerDetails']['logo'];
             }
 
             if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
@@ -448,6 +450,8 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
                 $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+            } else {
+                $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'];
             }
 
             $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
@@ -461,6 +465,7 @@ class ExpoController extends Controller
 
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
