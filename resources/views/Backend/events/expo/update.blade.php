@@ -31,7 +31,8 @@
                         <div class="col-12 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <form id="expo-form-wizard" action="{{ route('admin.expo.store') }}" method="POST"
+                                    <form id="expo-form-wizard"
+                                        action="{{ route('admin.expo.update', ['id' => $expo->id]) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
 
