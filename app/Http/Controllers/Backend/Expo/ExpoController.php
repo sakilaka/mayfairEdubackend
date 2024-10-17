@@ -190,7 +190,7 @@ class ExpoController extends Controller
 
             $data['additional_contents'] = json_encode($data['additional_contents']);
             Expo::create($data);
-            
+
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
@@ -540,6 +540,21 @@ class ExpoController extends Controller
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
                     }
+                }
+            }
+
+            // Delete organizer and co-organizer logos
+            if (isset($additionalContents['organizerDetails']['logo'])) {
+                $oldOrganizerLogoPath = public_path(parse_url($additionalContents['organizerDetails']['logo'], PHP_URL_PATH));
+                if (file_exists($oldOrganizerLogoPath)) {
+                    unlink($oldOrganizerLogoPath);
+                }
+            }
+
+            if (isset($additionalContents['co_organizerDetails']['logo'])) {
+                $oldCoOrganizerLogoPath = public_path(parse_url($additionalContents['co_organizerDetails']['logo'], PHP_URL_PATH));
+                if (file_exists($oldCoOrganizerLogoPath)) {
+                    unlink($oldCoOrganizerLogoPath);
                 }
             }
 
