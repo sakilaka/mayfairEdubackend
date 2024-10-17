@@ -180,7 +180,8 @@
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text" name="venue"
                                                                     class="form-control" placeholder="Enter Venue"
-                                                                    value="" required>
+                                                                    value="{{ json_decode($expo->place, true)['venue'] }}"
+                                                                    required>
                                                                 @error('venue')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -194,8 +195,10 @@
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text" name="address"
-                                                                    class="form-control" placeholder="Enter Venue Address"
-                                                                    value="" required>
+                                                                    class="form-control"
+                                                                    placeholder="Enter Venue Address"
+                                                                    value="{{ json_decode($expo->place, true)['address'] }}"
+                                                                    required>
                                                                 @error('address')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
