@@ -9,7 +9,7 @@
             <a class="nav-link" href="#" style="color: white;" target="_blank">Schedule</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('expo.exhibitors', ['expo_id' => $expo->unique_id]) }}"
+            <a class="nav-link" href="{{ route('expo.exhibitors', ['unique_id' => $expo->unique_id]) }}"
                 style="color: white;">Exhibitors</a>
         </li>
         <li class="nav-item">

@@ -163,7 +163,7 @@
 
             @if (count($exhibitors) > 0)
                 <div class="text-center">
-                    <a href="{{ route('expo.exhibitors', ['expo_id' => $expo->unique_id]) }}"
+                    <a href="{{ route('expo.exhibitors', ['unique_id' => $expo->unique_id]) }}"
                         class="btn btn-primary-bg mx-auto px-5 rounded-0">All
                         Exhibitors</a>
                 </div>
