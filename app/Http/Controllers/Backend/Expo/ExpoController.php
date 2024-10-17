@@ -34,7 +34,7 @@ class ExpoController extends Controller
      */
     public function create()
     {
-        $data['universities'] = University::where('status', 1)->get();
+        $data['exhibitors'] = University::where('status', 1)->get();
         return view("Backend.events.expo.create", $data);
     }
 
@@ -67,11 +67,11 @@ class ExpoController extends Controller
             $data = [
                 'title' => $request->title,
                 'place' => $request->place ?? '',
-                'universities' => json_encode($request->universities) ?? '',
+                'universities' => json_encode($request->exhibitors) ?? '',
                 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
-
+return $data;
             $dateTime = [
                 'date' => date('d M, Y', strtotime($request->date)),
                 'time_from' => $request->time_from,

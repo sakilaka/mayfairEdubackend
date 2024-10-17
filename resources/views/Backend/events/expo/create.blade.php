@@ -180,14 +180,14 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label>Participated Universities:</label>
+                                                            <label>Exhibitors:</label>
                                                             <select
                                                                 class="form-control form-control-lg multipleSelect2Search"
-                                                                name="universities[]" multiple>
-                                                                <option value="">Select University</option>
-                                                                @foreach ($universities as $university)
-                                                                    <option value="{{ $university->id }}">
-                                                                        {{ $university->name }}
+                                                                name="exhibitors[]" multiple>
+                                                                <option value="">Select Exhibitor</option>
+                                                                @foreach ($exhibitors as $exhibitor)
+                                                                    <option value="{{ $exhibitor->id }}">
+                                                                        {{ $exhibitor->name }}
                                                                     </option>
                                                                 @endforeach
                                                             </select>
