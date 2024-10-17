@@ -411,8 +411,8 @@ class ExpoController extends Controller
             }
 
             if ($request->hasFile('additional_contents.organizerDetails.logo')) {
-                if (!empty($old_additional_contents['nav_logo'])) {
-                    $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
+                if (!empty($old_additional_contents['organizerDetails']['logo'])) {
+                    $oldFilePath = parse_url($old_additional_contents['organizerDetails']['logo'], PHP_URL_PATH);
                     $oldFileFullPath = public_path($oldFilePath);
                     if (file_exists($oldFileFullPath)) {
                         unlink($oldFileFullPath);
@@ -421,8 +421,23 @@ class ExpoController extends Controller
 
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
                 $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $additionalContents['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+                $data['additional_contents']['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
             }
+            
+            if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
+                if (!empty($old_additional_contents['co_organizerDetails']['logo'])) {
+                    $oldFilePath = parse_url($old_additional_contents['co_organizerDetails']['logo'], PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
+
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
+                $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
+            }
+            return $data['additional_contents'];
 
             $data['additional_contents'] = json_encode($data['additional_contents']);
             $expo->update($data);
