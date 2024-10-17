@@ -58,7 +58,8 @@
                                             <td>
                                                 <a href="{{ route('expo.details', ['id' => $expo->id]) }}"
                                                     target="_blank" style="color: var(--primary_background)"
-                                                    data-toggle="tooltip" data-original-title="{{ $expo->title }}" data-placement="top">
+                                                    data-toggle="tooltip" data-original-title="{{ $expo->title }}"
+                                                    data-placement="top">
                                                     {{ Illuminate\Support\Str::limit($expo->title, 40, '...') }}
                                                 </a>
                                             </td>
@@ -68,7 +69,8 @@
                                                     $datetime = json_decode($expo->datetime, true) ?? [];
                                                 @endphp
 
-                                                {{ $datetime['date'] }}
+                                                {{ $datetime['date'] }};
+                                                {{ $datetime['time_from'] . ' to ' . $datetime['time_to'] }}
                                             </td>
                                             <td data-toggle="tooltip" data-placement="top"
                                                 data-original-title="{{ $fullUniversityNames }}">
