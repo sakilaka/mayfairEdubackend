@@ -220,7 +220,7 @@
                         $('#word-count').text(stats.words)
                         $('#char-count').text(stats.characters)
                     }
-                }
+                },
                 simpleUpload: {
                     uploadUrl: '{{ route("ckeditor.upload") }}',
                     headers: {

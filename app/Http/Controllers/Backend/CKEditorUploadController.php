@@ -24,8 +24,8 @@ class CKEditorUploadController extends Controller
         if ($request->hasFile('upload')) {
             $image = $request->file('upload');
             $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('uploads/ckeditor5'), $imageName);
-            $imageUrl = asset('uploads/ckeditor5/' . $imageName);
+            $image->move(public_path('upload/ckeditor5'), $imageName);
+            $imageUrl = asset('upload/ckeditor5/' . $imageName);
             
             return response()->json([
                 'uploaded' => true,
