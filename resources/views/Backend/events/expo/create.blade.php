@@ -725,8 +725,23 @@
                                                                 <input type="text"
                                                                     name="additional_contents[organizerDetails][name]"
                                                                     class="form-control" value=""
-                                                                    placeholder="Enter Organizer Name">
+                                                                    placeholder="Enter Organizer Name" required>
                                                                 @error('additional_contents[organizerDetails][name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                Redirect URL:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[organizerDetails][redirect_url]"
+                                                                    class="form-control" value=""
+                                                                    placeholder="Enter Organizer Details Redirection URL">
+                                                                @error('additional_contents[organizerDetails][redirect_url]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -810,8 +825,23 @@
                                                                 <input type="text"
                                                                     name="additional_contents[co_organizerDetails][name]"
                                                                     class="form-control" value=""
-                                                                    placeholder="Enter Co-Organizer Name">
+                                                                    placeholder="Enter Co-Organizer Name" required>
                                                                 @error('additional_contents[co_organizerDetails][name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                Redirect URL:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[co_organizerDetails][redirect_url]"
+                                                                    class="form-control" value=""
+                                                                    placeholder="Enter Co-Organizer Details Redirection URL">
+                                                                @error('additional_contents[co_organizerDetails][redirect_url]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>

@@ -997,6 +997,21 @@
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label class="form-control-label">
+                                                                Redirect URL:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[organizerDetails][redirect_url]"
+                                                                    class="form-control" value="{{ $additional_contents['organizerDetails']['redirect_url'] ?? '' }}"
+                                                                    placeholder="Enter Organizer Details Redirection URL">
+                                                                @error('additional_contents[organizerDetails][redirect_url]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
                                                                 <span class="text-danger">*</span>
                                                                 Organizer Details:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
@@ -1075,6 +1090,21 @@
                                                                     value="{{ $additional_contents['co_organizerDetails']['name'] ?? '' }}"
                                                                     placeholder="Enter Co-Organizer Name">
                                                                 @error('additional_contents[co_organizerDetails][name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                Redirect URL:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[co_organizerDetails][redirect_url]"
+                                                                    class="form-control" value="{{ $additional_contents['co_organizerDetails']['redirect_url'] ?? '' }}"
+                                                                    placeholder="Enter Co-Organizer Details Redirection URL">
+                                                                @error('additional_contents[co_organizerDetails][redirect_url]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
