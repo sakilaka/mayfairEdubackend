@@ -410,20 +410,20 @@ class ExpoController extends Controller
                 $data['additional_contents']['hero_bg'] = $old_additional_contents['hero_bg'];
             }
 
-            if ($request->hasFile('additional_contents.why_should_attend')) {
-                if (!empty($old_additional_contents['why_should_attend'])) {
-                    $oldFilePath = parse_url($old_additional_contents['why_should_attend'], PHP_URL_PATH);
+            if ($request->hasFile('additional_contents.why_should_attend.image')) {
+                if (!empty($old_additional_contents['why_should_attend']['image'])) {
+                    $oldFilePath = parse_url($old_additional_contents['why_should_attend']['image'], PHP_URL_PATH);
                     $oldFileFullPath = public_path($oldFilePath);
                     if (file_exists($oldFileFullPath)) {
                         unlink($oldFileFullPath);
                     }
                 }
 
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend')->getClientOriginalExtension();
-                $request->file('additional_contents.why_should_attend')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
+                $fileName = rand() . time() . '.' . $request->file('additional_contents.why_should_attend.image')->getClientOriginalExtension();
+                $request->file('additional_contents.why_should_attend.image')->move(public_path('upload/expo/'), $fileName);
+                $data['additional_contents']['why_should_attend']['image'] = url('upload/expo/' . $fileName);
             } else {
-                $data['additional_contents']['why_should_attend'] = $old_additional_contents['why_should_attend'];
+                $data['additional_contents']['why_should_attend']['image'] = $old_additional_contents['why_should_attend']['image'];
             }
 
             if ($request->hasFile('additional_contents.organizerDetails.logo')) {
