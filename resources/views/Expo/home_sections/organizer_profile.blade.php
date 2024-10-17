@@ -17,22 +17,7 @@
             </div>
 
             <div class="col-md-8 mt-4 mt-md-0">
-                {{-- <p class="text-23 text-light"><strong class="fw700">Chinese Service Center for Scholarly
-                        Exchange(CSCSE)</strong><br>CSCSE was founded on March 31st, 1989. It is a public
-                    institution
-                    affiliated to the Ministry of Education (MOE) of the People’s Republic of China. As a legal
-                    entity,
-                    CSCSE specializes in offering professional services for international scholarly exchanges,
-                    including
-                    Chinese students and scholars studying abroad, returnees from abroad, and international
-                    students and
-                    scholars studying in China.<br><span class="text-style-3">&nbsp;</span><br>CSCSE is also
-                    dedicated
-                    to promoting the internationalization and capacity building of Chinese higher education
-                    institutions, as well as introducing the best practice of education resources through
-                    international
-                    exchanges and collaboration.</p> --}}
-                <p class="text-light fs mb-2">
+                <p class="text-light fs-5 mb-2">
                     <strong class="fw700">{{ $additional_contents['organizerDetails']['name'] ?? '' }}</strong>
                 </p>
 
