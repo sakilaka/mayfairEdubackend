@@ -4,6 +4,10 @@
 <head>
     @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Exhibitors</title>
+
+    @php
+        $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+    @endphp
 </head>
 
 <body>
@@ -13,8 +17,7 @@
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ $ }}" alt="Logo"
-                            class="logo">
+                        <img src="{{ $additional_contents['nav_logo'] }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
