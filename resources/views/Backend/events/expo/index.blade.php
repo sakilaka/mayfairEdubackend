@@ -68,12 +68,15 @@
                                                     $place = json_decode($expo->place, true) ?? [];
                                                 @endphp
 
-                                                <span data-toggle="tooltip"
-                                                    data-original-title="{{ $place['venue'] . ' in ' . $place['address'] }}"
-                                                    data-placement="top">
-                                                    {{ Illuminate\Support\Str::limit($place['venue'], 30, '...') }} in
-                                                    {{ Illuminate\Support\Str::limit($place['address'], 30, '...') }}
-                                                </span>
+                                                @if ($place)
+                                                    <span data-toggle="tooltip"
+                                                        data-original-title="{{ $place['venue'] . ' in ' . $place['address'] }}"
+                                                        data-placement="top">
+                                                        {{ Illuminate\Support\Str::limit($place['venue'], 30, '...') }}
+                                                        in
+                                                        {{ Illuminate\Support\Str::limit($place['address'], 30, '...') }}
+                                                    </span>
+                                                @endif
                                             </td>
                                             <td>
                                                 @php
