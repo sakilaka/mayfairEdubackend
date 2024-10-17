@@ -7,7 +7,7 @@
                         <div class="col-16">
                             <p class="text-5"
                                 style="font-size: 2.5rem; color: var(--primary_background); font-weight: bold;">
-                                Why should Attend<br>this Exhibition?
+                                Why should attend<br>this Exhibition?
                             </p>
                             <p class="{{-- text-6 --}} ckeditor5-rendered" style="font-size: 0.875rem; line-height: 1.2;">
                                 {{-- <strong class="fw700">1. One-to-One Communication</strong>:
