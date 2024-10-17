@@ -37,6 +37,11 @@
                                         @csrf
 
                                         <div>
+                                            @php
+                                                $additional_contents =
+                                                    json_decode($expo['additional_contents'], true) ?? [];
+                                            @endphp
+
                                             <h3>Expo Details</h3>
                                             <section>
                                                 <h4 class="mb-3">Expo Details</h4>
@@ -770,10 +775,7 @@
 
                                             <h3>Additional Contents</h3>
                                             <section>
-                                                @php
-                                                    $additional_contents =
-                                                        json_decode($expo['additional_contents'], true) ?? [];
-                                                @endphp
+
                                                 <h4>Nav Logo</h4>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
@@ -981,10 +983,8 @@
                                                                 <span class="text-danger">*</span>
                                                                 Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="organizerDetails[name]"
-                                                                    class="form-control"
-                                                                    value=""
+                                                                <input type="text" name="organizerDetails[name]"
+                                                                    class="form-control" value=""
                                                                     placeholder="Enter Organizer Name">
                                                                 @error('organizerDetails[name]')
                                                                     <span class="text-danger">{{ $message }}</span>
@@ -1067,10 +1067,8 @@
                                                                 <span class="text-danger">*</span>
                                                                 Co-Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="co_organizerDetails[name]"
-                                                                    class="form-control"
-                                                                    value=""
+                                                                <input type="text" name="co_organizerDetails[name]"
+                                                                    class="form-control" value=""
                                                                     placeholder="Enter Co-Organizer Name">
                                                                 @error('co_organizerDetails[name]')
                                                                     <span class="text-danger">{{ $message }}</span>
