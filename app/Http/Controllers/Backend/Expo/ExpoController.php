@@ -314,11 +314,13 @@ class ExpoController extends Controller
 
             // Handling additional images
             $old_additional_contents = json_decode($expo['additional_contents'], true);
-            return $old_additional_contents;
+
             if ($request->hasFile('additional_contents.nav_logo')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
-                $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
+                // $request->file('additional_contents.nav_logo')->move(public_path('upload/expo/'), $fileName);
                 $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
+
+                return $old_additional_contents['nav_logo'];
             }
             if ($request->hasFile('additional_contents.hero_bg')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.hero_bg')->getClientOriginalExtension();
@@ -331,7 +333,7 @@ class ExpoController extends Controller
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
             $data['additional_contents'] = json_encode($data['additional_contents']);
-
+return $data;
             $expo->update($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
