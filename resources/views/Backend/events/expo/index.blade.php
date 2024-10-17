@@ -83,8 +83,10 @@
                                                     $datetime = json_decode($expo->datetime, true) ?? [];
                                                 @endphp
 
-                                                {{ $datetime['date'] }};
-                                                {{ $datetime['time_from'] . ' to ' . $datetime['time_to'] }}
+                                                @if ($datetime)
+                                                    {{ $datetime['date'] }};
+                                                    {{ $datetime['time_from'] . ' to ' . $datetime['time_to'] }}
+                                                @endif
                                             </td>
                                             <td data-toggle="tooltip" data-placement="top"
                                                 data-original-title="{{ $fullUniversityNames }}">
