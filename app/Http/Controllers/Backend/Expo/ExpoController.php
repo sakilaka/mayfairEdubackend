@@ -192,12 +192,14 @@ class ExpoController extends Controller
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
-            'time' => 'required',
+            'time_from' => 'required',
+            'time_to' => 'required',
             'place' => 'required',
         ], [
             'title.required' => 'The title field is required.',
             'date.required' => 'Please provide the date of the expo.',
-            'time.required' => 'The expo time is required.',
+            'time_from.required' => 'The expo start time is required.',
+            'time_to.required' => 'The expo end time is required.',
             'place.required' => 'Please specify the place.',
         ]);
 

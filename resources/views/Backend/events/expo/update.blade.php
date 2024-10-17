@@ -139,15 +139,34 @@
                                                             <label class="form-control-label">Time:
                                                                 <span class="text-danger"
                                                                     style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="time" name="time"
-                                                                    class="form-control"
-                                                                    value="{{ Carbon\Carbon::createFromFormat('d M Y h:i A', str_replace(',', '', $expo->datetime))->format('H:i') }}"
-                                                                    required>
-                                                                @error('time')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text" name="time_from"
+                                                                            class="form-control" placeholder="From"
+                                                                            value=""
+                                                                            required>
+                                                                        @error('time_from')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text" name="time_to"
+                                                                            class="form-control" placeholder="To"
+                                                                            value=""
+                                                                            required>
+                                                                        @error('time_to')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
                                                             </div>
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
