@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
     <ul class="navbar-nav ms-auto d-flex align-items-center custom-navbar-width">
         <li class="nav-item">
-            <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}"
+            <a class="nav-link" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}"
                 style="color: white;">Home</a>
         </li>
 
