@@ -1,4 +1,4 @@
-<section class="exhibitors-highlights mt-5">
+<section class="exhibitors-highlights my-5">
     <div class="container">
         <div class="text-center">
             <h2 class="section-title">Exhibitors</h2>
@@ -163,7 +163,7 @@
 
             @if (count($exhibitors) > 0)
                 <div class="text-center">
-                    <a href="{{ route('frontend.exhibitors') }}" class="btn btn-danger mx-auto px-5 rounded-0">All
+                    <a href="{{ route('expo.exhibitors') }}" class="btn btn-danger mx-auto px-5 rounded-0">All
                         Exhibitors</a>
                 </div>
             @endif
