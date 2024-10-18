@@ -20,6 +20,16 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('update/{id}', [ExpoController::class, "update"])->name('admin.expo.update');
     Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
 
+    Route::prefix('testimonials')->group(function () {
+        Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
+        Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo.exhibitors.store');
+        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_edit"])->name('admin.expo.exhibitor.edit');
+        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_update"])->name('admin.expo.exhibitor.update');
+        Route::post('delete', [ExpoController::class, "exhibitors_destroy"])->name('admin.expo.exhibitors.delete');
+        Route::get('toggle-show-in-expo/{id}', [ExpoController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo.exhibitors.toggle_show_in_expo');
+        Route::post('postion-in-expo', [ExpoController::class, "exhibitors_postion_in_expo"])->name('admin.expo.exhibitors.position_in_expo');
+    });
+
     Route::prefix('exhibitors')->group(function () {
         Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
         Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo.exhibitors.store');
