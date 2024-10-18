@@ -44,10 +44,13 @@
                     </div>
 
                     <div class="my-2 justify-content-end row" style="gap: 5px">
-                        <select class="filter_child col-md-4 col-lg-2 form-control form-control-lg"
+                        <select class="filter_child col-md-4 col-lg-3 form-control form-control-lg"
                             name="filter_participant">
                             <option value="">Select Expo</option>
                             <option value="all">All</option>
+                            @foreach ($expos as $expo)
+                                <option value="{{ $expo->unique_id }}">{{ $expo->title }}</option>
+                            @endforeach
                         </select>
                     </div>
 

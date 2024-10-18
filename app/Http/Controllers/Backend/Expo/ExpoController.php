@@ -735,6 +735,7 @@ class ExpoController extends Controller
             abort(404, 'Not Found');
         }
 
+        $data['expos'] = Expo::all();
         return view('Backend.events.expo.users.index', $data);
     }
 
