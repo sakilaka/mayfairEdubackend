@@ -253,14 +253,11 @@
                             <div class="col-7 d-flex flex-column justify-content-around">
                                 <div class="row align-items-center justify-content-between mt-3">
                                     <div class="col-6 d-flex align-items-center">
-                                        <img src="{{ asset('frontend/images/studyinchina-logo.png') }}" alt=""
-                                            class="img-fluid me-4" width="130">
-                                        <img src="{{ asset('frontend/images/logo/malishaedu-logo.png') }}"
-                                            alt="" class="img-fluid" width="90">
+                                        <img src="{{ $co_organizerDetails['logo'] }}" alt=""
+                                            class="img-fluid ms-2" width="80">
                                     </div>
-                                    <div class="col-6 text-end">
-                                        <img src="{{ asset('frontend/images/logo/study-in-china-exhibition-color.png') }}"
-                                            alt="" class="img-fluid me-5" width="170">
+                                    <div class="col-6 text-end border">
+                                        
                                     </div>
                                 </div>
 
