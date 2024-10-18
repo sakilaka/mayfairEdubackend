@@ -25,8 +25,8 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            {{ $testimonial ? 'Edit' : 'Add' }} Testimonial from
-                            {{ $testimonial ? "'" . e($testimonial['name']) . "'" : '' }}
+                            {{ $testimonial ? 'Edit' : 'Add' }} Testimonial
+                            {{ $testimonial ? "from '" . e($testimonial['name']) . "'" : '' }}
                         </h3>
 
                         <nav aria-label="breadcrumb">
