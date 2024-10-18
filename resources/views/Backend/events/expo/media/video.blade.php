@@ -26,6 +26,14 @@
                         <h3 class="page-title">
                             Video Page for '{{ $expo->title }}'
                         </h3>
+
+                        <nav aria-label="breadcrumb">
+                            <a href="{{ route('expo.video.page', ['unique_id' => $expo->unique_id]) }}"
+                                class="btn btn-primary btn-fw" target="_blank">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                View Page
+                            </a>
+                        </nav>
                     </div>
 
                     <div class="row">

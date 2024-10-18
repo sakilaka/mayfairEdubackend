@@ -28,9 +28,9 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id]) }}"
-                                class="btn btn-primary btn-fw">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            <a href="{{ route('expo.gallery.page', ['unique_id' => $expo->unique_id]) }}"
+                                class="btn btn-primary btn-fw" target="_blank">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
                                 View Page
                             </a>
                         </nav>

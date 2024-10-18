@@ -105,12 +105,12 @@ Route::prefix('expo')->middleware(['accessLogin'])->group(function () {
 Route::get('exhibitor/{exhibitor_id}/details', [ExpoController::class, "exhibitor_details"])->name('expo.exhibitor.details');
 
 Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
-Route::get('expo/{unique_id}/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
-Route::get('expo/{unique_id}/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
-Route::get('expo/{unique_id}/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
-Route::get('expo/{unique_id}/delegates', [ExpoModuleController::class, 'delegates'])->name('expo.delegates');
-Route::get('expo/{unique_id}/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery.page');
-Route::get('expo/{unique_id}/video', [ExpoModuleController::class, 'video'])->name('expo.video.page');
+Route::get('expo/{unique_id}/page/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
+Route::get('expo/{unique_id}/page/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
+Route::get('expo/{unique_id}/page/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
+Route::get('expo/{unique_id}/page/delegates', [ExpoModuleController::class, 'delegates'])->name('expo.delegates');
+Route::get('expo/{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery.page');
+Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video.page');
 
 
 Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
