@@ -34,11 +34,11 @@
         <div class="container">
             <div class="text-start">
                 <h2 class="section-title d-inline">Testimonials From</h2>
-                <h4 class="section-title d-inline" style="font-size: 16px">{{ $expo->title }}</h4>
+                <h4 class="section-title d-inline ms-2 fs-4">{{ $expo->title }}</h4>
             </div>
 
             <div class="row justify-content-center mt-5">
-
+                div.
             </div>
 
         </div>
