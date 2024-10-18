@@ -93,7 +93,7 @@ class ExpoModuleController extends Controller
      */
     public function schedule($unique_id)
     {
-        $data['expo'] = Expo::where('unique_id', $unique_id)->first();
+        $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents')->first();
         return view('Expo.pages.schedule', $data);
     }
 
@@ -102,30 +102,39 @@ class ExpoModuleController extends Controller
      */
     public function testimonials($unique_id)
     {
-        $data['expo'] = Expo::where('unique_id', $unique_id)->first();
+        $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'testimonials')->first();
         return view('Expo.pages.testimonials', $data);
     }
-    
+
     /**
      * delegates page
      */
     public function delegates($unique_id)
     {
-        $data['expo'] = Expo::where('unique_id', $unique_id)->first();
+        $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'delegates')->first();
         return view('Expo.pages.delegates', $data);
+    }
+
+    /**
+     * gallery page
+     */
+    public function gallery($unique_id)
+    {
+        $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'gallery')->first();
+        return view('Expo.pages.gallery', $data);
     }
 
 
     /**
      * gallery page
      */
-    public function gallery()
+    /* public function gallery()
     {
         $data['galleries'] = ExpoModuleContent::where('key', 'gallery')->select('contents')->first();
         $data['videos'] = ExpoModuleContent::where('key', 'video')->select('contents')->first();
 
         return view('Expo.pages.gallery', $data);
-    }
+    } */
 
     /**
      * expo form

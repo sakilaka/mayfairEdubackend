@@ -116,52 +116,46 @@
 
     <div class="container mt-5">
         <div class="text-center">
-            <h2 class="section-title">Gallery</h2>
+            <h2 class="section-title">Videos</h2>
         </div>
     </div>
 
     <section>
         @php
-            $gallery_contents = isset($galleries['gallery']) ? json_decode($galleries['gallery'], true) : [];
+            $video_contents = isset($videos['video']) ? json_decode($videos['video'], true) : [];
         @endphp
 
-        @forelse ($gallery_contents as $key => $gallery)
-            <div class="gallery-section py-5">
-                <h2 class="company-details-title py-2 fw-bold text-center ">
-                    {{ $gallery['title'] ?? '' }}
-                </h2>
+        <div class="gallery-section py-5">
+            <div class="container text-center">
+                @forelse ($video_contents ?? [] as $key => $video)
+                    <a class="single-gallery-video position-relative me-md-2 overflow-hidden" style="cursor: pointer">
+                        @if ($video['type'] === 'youtube')
+                            <!-- YouTube Embed Code -->
+                            {!! $video['url'] !!}
+                        @elseif ($video['type'] === 'upload')
+                            <!-- Video Preview -->
+                            <video class="img-fluid authorization_video" controls
+                                style="max-height: 200px; border-radius: 10px;">
+                                <source src="{{ $video['url'] }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        @endif
 
-                <div class="container text-center">
-                    <p class="text-muted mt-2 px-lg-5 details-text">
-                        {{ $gallery['description'] ?? '' }}
-                    </p>
+                        @if ($video['title'])
+                            <p class="video-title"
+                                style="width: 99%; margin:0 auto; bottom:3px; border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
+                                {{ $video['title'] ?? '' }}
+                            </p>
+                        @endif
+                    </a>
+                @empty
+                    <h4 class="company-details-title py-2 fw-bold text-center">
+                        No Video Found!
+                    </h4>
+                @endforelse
+            </div>
+        </div>
 
-                    <div class="image-gallery">
-                        @php
-                            $galleryImages = $gallery['images'] ?? [];
-                            $galleryImagesTitles = $gallery['image_titles'] ?? [];
-                        @endphp
-                        @foreach ($galleryImages as $key => $image)
-                            <a data-src="{{ $image }}" class="single-gallery-image" style="cursor: pointer">
-                                <img class="img-fluid authorization_image" src="{{ $image }}"
-                                    alt="{{ $galleryImagesTitles[$key] ?? '' }}">
-                                @if ($galleryImagesTitles[$key])
-                                    <p class="image-title">
-                                        {{ $galleryImagesTitles[$key] ?? '' }}
-                                    </p>
-                                @endif
-                            </a>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        @empty
-            <div class="gallery-section py-5">
-                <h2 class="company-details-title py-2 fw-bold text-center ">
-                    No Gallery Found!
-                </h2>
-            </div>
-        @endforelse
     </section>
 
     @include('Expo.home_sections.footer')
