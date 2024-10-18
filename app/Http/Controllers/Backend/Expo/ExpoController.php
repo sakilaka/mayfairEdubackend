@@ -581,7 +581,7 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_index($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'testimonials')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('title', 'unique_id', 'testimonials')->first();
 
         if (!$data['expo']) {
             return back()->with('error', 'Expo not found!');
