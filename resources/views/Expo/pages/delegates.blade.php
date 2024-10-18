@@ -156,38 +156,10 @@
                     $delegates = json_decode($expo->testimonials, true) ?? [];
                 @endphp
 
-                {{-- @foreach ($delegates as $delegate)
-                    <div class="col-md-6 px-md-3 mt-3">
-                        <div
-                            class="row align-items-start justify-content-center border border-success border-3 border-top-0 border-start-0 rounded">
-                            <div class="col-md-3">
-                                <img src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                    alt="" class="img-fluid rounded-circle border border-3 border-success"
-                                    width="150">
-                            </div>
-
-                            <div class="col-md-9 mt-3 mt-md-0">
-                                <blockquote class="blockquote border-start-0 mb-0 px-2">
-                                    <div class="mb-0 text-muted testimonial-description"
-                                        style="font-size: 16px; max-height: 120px; overflow-y:auto;">
-                                        {!! $delegate['description'] !!}
-                                    </div>
-                                    <footer class="blockquote-footer my-2" style="font-size: 16px">
-                                        <strong>{{ $delegate['name'] }}</strong>,
-                                        <cite title="{{ $delegate['designation'] }}">
-                                            {{ $delegate['designation'] }}
-                                        </cite>
-                                    </footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach --}}
-
                 <div class="col-12 mt-3">
                     <p class="text-center fw-bold"
                         style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
-                        What Our Partners Are Saying
+                        What Our Overseas Delegates Are Saying
                     </p>
                     <div class="row testimonial-cards-partners slick-slider">
                         @foreach ($delegates as $delegate)
