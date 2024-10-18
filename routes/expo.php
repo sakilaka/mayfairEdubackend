@@ -122,7 +122,7 @@ Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
 
 Route::get('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
 Route::post('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
-Route::get('expo-ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
+Route::get('expo/{unique_id}/ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
 
 /**
  * Captcha Routes

@@ -242,7 +242,7 @@
                                         </h5>
 
                                         <div class="d-flex">
-                                            <a href="{{ route('expo.expo-ticket', ['ticket_no' => session('expoData')['id']]) }}"
+                                            <a href="{{ route('expo.expo-ticket', ['unique_id' => $expo->unique_id, 'ticket_no' => session('expoData')['id']]) }}"
                                                 class="mt-2 me-2 btn btn-tertiary-bg" target="_blank">
                                                 View Ticket
                                             </a>
@@ -641,8 +641,8 @@
 
     <script>
         /* $('select').select2({
-                                placeholder: 'Select an option'
-                            }); */
+                                    placeholder: 'Select an option'
+                                }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
