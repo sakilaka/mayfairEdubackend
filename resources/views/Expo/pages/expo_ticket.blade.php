@@ -275,7 +275,7 @@
                                             {{ $expoData['nationality'] }}</p>
                                     </div>
 
-                                    <div class="col-4 qr-container ps-0 text-left mt-4">
+                                    <div class="col-4 qr-container ps-0 text-start mt-4">
                                         <div class="barcode text-left">
                                             @php
                                                 $qr_code_data = implode('; ', [
@@ -304,8 +304,8 @@
                             <div class="col-5">
                                 <div class="d-flex flex-column align-items-center">
                                     <div class="mt-3">
-                                        <img src="{{ asset('frontend/images/logo/cscse-color-2.png') }}" alt=""
-                                            class="img-fluid" width="380">
+                                        <img src="{{ $organizerDetails['logo'] }}" alt=""
+                                            class="img-fluid" width="80">
                                     </div>
                                     <div class="mt-5">
                                         <p class="text-dark text-center minimal-shadow">
