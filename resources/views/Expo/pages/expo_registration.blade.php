@@ -254,7 +254,8 @@
                                                 class="mt-2 me-2 btn btn-primary-bg">
                                                 Login
                                             </a>
-                                            <a href="{{ route('home') }}" class="mt-2 btn btn-secondary-bg">
+                                            <a href="{{ route('expo.details', ['id' => $expo->unique_id]) }}"
+                                                class="mt-2 btn btn-secondary-bg">
                                                 Explore Now
                                             </a>
                                         </div>
@@ -292,7 +293,7 @@
                                                             id="email" name="email" required
                                                             placeholder="Enter your email">
                                                         @error('email')
-                                                            <span class="text-danger">*</span>
+                                                            <span class="text-danger">{{ $message }}</span>
                                                         @enderror
                                                         <div class="invalid-feedback">
                                                             Please provide a valid email address.
@@ -644,8 +645,8 @@
 
     <script>
         /* $('select').select2({
-                                        placeholder: 'Select an option'
-                                    }); */
+                                                placeholder: 'Select an option'
+                                            }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
