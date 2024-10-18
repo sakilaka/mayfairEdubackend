@@ -47,11 +47,11 @@
                             </div>
                             <div class="col-md-9">
                                 <blockquote class="blockquote">
-                                    <p class="mb-0 text-muted">
+                                    <p class="mb-0 text-muted" style="font-size: 16px">
                                         Your testimonial text goes here.
                                     </p>
                                     <footer class="blockquote-footer mt-2">
-                                        — <strong>Anonymous</strong>,
+                                        <strong>Anonymous</strong>,
                                         <cite title="Designation">No Designation</cite>
                                     </footer>
                                 </blockquote>
