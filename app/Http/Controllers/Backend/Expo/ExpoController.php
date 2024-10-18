@@ -34,7 +34,7 @@ class ExpoController extends Controller
      */
     public function create()
     {
-        $data['exhibitors'] = University::where('status', 1)->get();
+        $data['exhibitors'] = University::where(['status' => 1, 'is_exhibitor' => true])->get();
         return view("Backend.events.expo.create", $data);
     }
 
@@ -214,7 +214,7 @@ class ExpoController extends Controller
             return redirect()->back()->with('error', 'Expo Not Found!');
         }
 
-        $data['exhibitors'] = University::where('status', 1)->get();
+        $data['exhibitors'] = University::where(['status' => 1, 'is_exhibitor' => true])->get();
         return view("Backend.events.expo.update", $data);
     }
 
