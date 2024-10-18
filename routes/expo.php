@@ -20,12 +20,15 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('update/{id}', [ExpoController::class, "update"])->name('admin.expo.update');
     Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
 
-    Route::prefix('testimonials')->group(function () {
-        Route::get('list/{exhibitor_id}', [ExpoController::class, "exhibitor_testimonial_index"])->name('admin.expo.exhibitors.testimonial.index');
-        Route::post('store/{exhibitor_id}', [ExpoController::class, "exhibitor_testimonial_store"])->name('admin.expo.exhibitors.testimonial.store');
-        Route::get('edit/{exhibitor_id}', [ExpoController::class, "exhibitor_testimonial_edit"])->name('admin.expo.exhibitor.testimonial.edit');
-        Route::post('edit/{exhibitor_id}', [ExpoController::class, "exhibitor_testimonial_update"])->name('admin.expo.exhibitor.testimonial.update');
-        Route::post('delete/{exhibitor_id}', [ExpoController::class, "exhibitor_testimonial_destroy"])->name('admin.expo.exhibitors.testimonial.delete');
+    Route::get('{exhibitor_id}', function () {
+        Route::prefix('testimonials')->group(function () {
+            Route::get('list', [ExpoController::class, "exhibitor_testimonial_index"])->name('admin.expo.exhibitors.testimonial.index');
+            Route::get('edit', [ExpoController::class, "exhibitor_testimonial_edit"])->name('admin.expo.exhibitor.testimonial.edit');
+            Route::post('store', [ExpoController::class, "exhibitor_testimonial_store"])->name('admin.expo.exhibitors.testimonial.store');
+            Route::get('edit', [ExpoController::class, "exhibitor_testimonial_edit"])->name('admin.expo.exhibitor.testimonial.edit');
+            Route::post('edit', [ExpoController::class, "exhibitor_testimonial_update"])->name('admin.expo.exhibitor.testimonial.update');
+            Route::post('delete', [ExpoController::class, "exhibitor_testimonial_destroy"])->name('admin.expo.exhibitors.testimonial.delete');
+        });
     });
 
     Route::prefix('exhibitors')->group(function () {
