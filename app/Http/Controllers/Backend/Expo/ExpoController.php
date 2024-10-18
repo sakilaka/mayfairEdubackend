@@ -636,7 +636,7 @@ class ExpoController extends Controller
                     if ($request->hasFile("{$key}.photo")) {
                         $photoFile = $request->file("{$key}.photo");
                         $photoName = 'user_' . uniqid() . '.' . $photoFile->getClientOriginalExtension();
-                        // $photoFile->move(public_path($testimonialPath), $photoName);
+                        $photoFile->move(public_path($testimonialPath), $photoName);
                         $testimonial['photo'] = asset($testimonialPath . $photoName);
                     }
 
@@ -649,7 +649,6 @@ class ExpoController extends Controller
             }
 
             $finalData = array_merge($existingTestimonials, $finalData);
-            return $finalData;
             $expo->testimonials = json_encode($finalData);
             $expo->save();
 
