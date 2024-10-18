@@ -17,7 +17,7 @@
             <a class="nav-link" href="http://studyinchinaexhibition.com/exhibitors" style="color: white;">Delegates</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('expo.testimonials', ['unique_id' => $expo->unique_id]) }}s"
+            <a class="nav-link" href="{{ route('expo.testimonials', ['unique_id' => $expo->unique_id]) }}"
                 style="color: white;">Testimonial</a>
         </li>
         <li class="nav-item">
