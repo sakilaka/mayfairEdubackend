@@ -181,6 +181,10 @@
             align-items: center;
         }
     </style>
+
+    @php
+        $contents = json_decode($expo['additional_contents'], true) ?? [];
+    @endphp
 </head>
 
 <body>
@@ -191,8 +195,7 @@
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('frontend/expo-domain/images/vector_smart_object_3.png') }}" alt="Logo"
-                            class="logo">
+                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -645,8 +648,8 @@
 
     <script>
         /* $('select').select2({
-                                                        placeholder: 'Select an option'
-                                                    }); */
+                                                                placeholder: 'Select an option'
+                                                            }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];

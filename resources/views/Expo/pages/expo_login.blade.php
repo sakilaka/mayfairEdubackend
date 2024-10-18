@@ -31,7 +31,7 @@
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ asset('frontend/expo-domain/images/vector_smart_object_3.png') }}" alt="Logo"
+                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo"
                             class="logo">
                     </a>
 
