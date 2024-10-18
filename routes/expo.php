@@ -24,7 +24,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('list', [ExpoController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
         Route::get('create', [ExpoController::class, "expo_testimonial_create"])->name('admin.expo.testimonial.create');
         Route::post('store', [ExpoController::class, "expo_testimonial_store"])->name('admin.expo.testimonial.store');
-        Route::get('edit', [ExpoController::class, "expo_testimonial_edit"])->name('admin.expo.testimonial.edit');
+        Route::get('edit/{key}', [ExpoController::class, "expo_testimonial_edit"])->name('admin.expo.testimonial.edit');
         Route::post('update', [ExpoController::class, "expo_testimonial_update"])->name('admin.expo.testimonial.update');
         Route::post('delete', [ExpoController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
     });

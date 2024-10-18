@@ -35,91 +35,37 @@
                                 <thead>
                                     <tr role="row">
                                         <th>SL</th>
-                                        <th>Title</th>
-                                        <th>Place</th>
-                                        <th>Date & Time</th>
-                                        <th>Exhibitors</th>
+                                        <th>Name</th>
+                                        <th>Designation</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($expos ?? [] as $expo)
-                                        @php
-                                            $universities = $expo->universities();
-                                            $universityNames = $universities->pluck('name')->toArray();
-                                            $fullUniversityNames = implode(', ', $universityNames);
-                                            $truncatedUniversityNames = Illuminate\Support\Str::limit(
-                                                $fullUniversityNames,
-                                                80,
-                                            );
-                                        @endphp
-
+                                    @php
+                                        $testimonials = json_decode($expo->testimonials, true) ?? [];
+                                    @endphp
+                                    @foreach ($testimonials ?? [] as $key => $testimonial)
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
-                                                <a href="{{ route('expo.details', ['id' => $expo->unique_id]) }}"
-                                                    target="_blank" style="color: var(--primary_background)"
-                                                    data-toggle="tooltip" data-original-title="{{ $expo->title }}"
-                                                    data-placement="top">
-                                                    {{ Illuminate\Support\Str::limit($expo->title, 40, '...') }}
-                                                </a>
+                                                {{ $testimonial['name'] }}
                                             </td>
                                             <td>
-                                                @php
-                                                    $place = json_decode($expo->place, true) ?? [];
-                                                @endphp
-
-                                                @if ($place)
-                                                    <span data-toggle="tooltip"
-                                                        data-original-title="{{ $place['venue'] . ' in ' . $place['address'] }}"
-                                                        data-placement="top">
-                                                        {{ Illuminate\Support\Str::limit($place['venue'], 30, '...') }}
-                                                        in
-                                                        {{ Illuminate\Support\Str::limit($place['address'], 30, '...') }}
-                                                    </span>
-                                                @endif
-                                            </td>
-                                            <td>
-                                                @php
-                                                    $datetime = json_decode($expo->datetime, true) ?? [];
-                                                @endphp
-
-                                                @if ($datetime)
-                                                    {{ $datetime['date'] }};
-                                                    {{ $datetime['time_from'] . ' to ' . $datetime['time_to'] }}
-                                                @endif
-                                            </td>
-                                            <td data-toggle="tooltip" data-placement="top"
-                                                data-original-title="{{ $fullUniversityNames }}">
-                                                {{ $truncatedUniversityNames }}
+                                                {{ $testimonial['designation'] }}
                                             </td>
 
                                             <td class="text-right">
-                                                <div class="dropdown dropdown-action">
-                                                    <a href="#" class="action-icon dropdown-toggle"
-                                                        data-toggle="dropdown" aria-expanded="false"><i
-                                                            class="fa fa-ellipsis-v text-primary"></i></a>
-                                                    <div class="dropdown-menu dropdown-menu-right">
-                                                        <div class="d-flex justify-content-end">
-                                                            <a href="{{ route('admin.expo.exhibitors.testimonial.index', ['expo_id' => $expo->unique_id]) }}"
-                                                                class="btn text-primary" data-toggle="tooltip"
-                                                                data-title="Manage Testimonials">
-                                                                <i class="fa fa-comments" aria-hidden="true"></i>
-                                                            </a>
-                                                            <a href="{{ route('admin.expo.edit', $expo->id) }}"
-                                                                class="btn text-primary" data-toggle="tooltip"
-                                                                data-title="Edit Expo">
-                                                                <i class="fa fa-edit" aria-hidden="true"></i>
-                                                            </a>
+                                                <a href="{{ route('admin.expo.testimonial.edit', ['expo_id' => $expo->unique_id, 'key' => $key]) }}"
+                                                    class="btn text-primary" data-toggle="tooltip"
+                                                    data-title="Manage Testimonials">
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                </a>
 
-                                                            <input type="hidden" value="{{ $expo->id }}">
-                                                            <a data-toggle="modal" data-target="#delete_modal_box"
-                                                                class="btn text-primary delete-item">
-                                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                <input type="hidden" value="{{ $key }}">
+                                                <a data-toggle="modal" data-target="#delete_modal_box"
+                                                    class="btn text-primary delete-item">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach
