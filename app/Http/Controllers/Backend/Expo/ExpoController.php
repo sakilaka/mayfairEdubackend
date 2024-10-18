@@ -609,6 +609,7 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_store(Request $request, $expo_id)
     {
+        return $request->all();
         $expo = Expo::where('unique_id', $expo_id)->first();
 
         $finalData = [];
@@ -629,7 +630,7 @@ class ExpoController extends Controller
                 if ($request->hasFile("{$key}.photo")) {
                     $photoFile = $request->file("{$key}.photo");
                     $photoName = uniqid() . '.' . $photoFile->getClientOriginalExtension();
-                    $photoFile->move(public_path($testimonialPath), $photoName);
+                    // $photoFile->move(public_path($testimonialPath), $photoName);
                     $testimonial['photo'] = asset($testimonialPath . $photoName);
                 }
 
