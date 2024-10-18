@@ -111,7 +111,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" name="testimonial_{{ $random }}[name]"
-                                                    class="form-control" value="{{ optional($testimonial['name']) }}"
+                                                    class="form-control" value="{{ $testimonial['name'] ?? '' }}"
                                                     placeholder="Enter Name" required>
                                             </div>
 
@@ -122,7 +122,7 @@
                                                 <input type="text"
                                                     name="testimonial_{{ $random }}[designation]"
                                                     class="form-control"
-                                                    value="{{ optional($testimonial['designation']) }}"
+                                                    value="{{ $testimonial['designation'] ?? '' }}"
                                                     placeholder="Enter Designation" required>
                                             </div>
 
@@ -130,7 +130,7 @@
                                                 <label class="col-form-label pt-0">Description
                                                 </label>
 
-                                                <textarea name="testimonial_{{ $random }}[description]" class="form-control editor"></textarea>
+                                                <textarea name="testimonial_{{ $random }}[description]" class="form-control editor">{!! $testimonial['description'] ?? '' !!}</textarea>
                                             </div>
                                         </div>
 
