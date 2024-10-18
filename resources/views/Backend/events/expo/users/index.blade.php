@@ -21,7 +21,8 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.add_participator') }}" class="btn btn-secondary-bg">
+                            <a href="{{ route('admin.expo.add_participator', ['type' => 'site']) }}"
+                                class="btn btn-secondary-bg">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Participator
                             </a>
@@ -41,6 +42,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Ticket No.</th>
+                                        <th>Expo</th>
                                         <th>ID Type</th>
                                         <th>ID No.</th>
                                         <th>Phone</th>
@@ -69,6 +71,14 @@
                                                     {{ $user->ticket_no }}
                                                 </a>
                                             </td>
+                                            @if ($user['expo_id'])
+                                                <td>
+                                                    <a href="{{ route('expo.details', ['id' => $user['expo_id']]) }}"
+                                                        style="color: var(--primary_background);" target="_blank">
+                                                        {{ strtoupper($user['expo_id']) }}
+                                                    </a>
+                                                </td>
+                                            @endif
                                             <td>{{ $user->id_type }}</td>
                                             <td>{{ $user->id_no }}</td>
                                             <td>{{ $user->phone }}</td>
