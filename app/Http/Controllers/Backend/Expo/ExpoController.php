@@ -610,9 +610,9 @@ class ExpoController extends Controller
     }
 
     /**
-     * store respective expo testimonial
+     * update or create respective expo testimonial
      */
-    public function expo_testimonial_store(Request $request, $expo_id)
+    public function expo_testimonial_update(Request $request, $expo_id)
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
