@@ -19,7 +19,7 @@ class ExpoUserController extends Controller
         $data['exhibitors'] = [];
         foreach (json_decode($data['expo']->universities) ?? [] as $exhibitor_id) {
             $exhibitor = University::find($exhibitor_id);
-return $exhibitor;
+
             if ($exhibitor) {
                 $data['exhibitors'][] = $exhibitor;
             }
