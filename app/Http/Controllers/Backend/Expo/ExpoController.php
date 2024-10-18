@@ -797,10 +797,7 @@ class ExpoController extends Controller
      */
     public function expo_view_participant(Request $request)
     {
-        return response([
-            'data' => $request->all()
-        ]);
-        /* $ticketNo = $request->input('ticket_no');
+        $ticketNo = $request->input('ticket_no');
 
         $participant = ExpoUser::where('ticket_no', $ticketNo)->first();
         if (!$participant) {
@@ -811,7 +808,7 @@ class ExpoController extends Controller
             return response()->json($participant);
         } else {
             return response()->json(['error' => 'Participant not found'], 404);
-        } */
+        }
     }
 
     /**
