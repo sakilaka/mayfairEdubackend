@@ -643,7 +643,7 @@
                     Route::is('admin.expo.index') ||
                     Route::is('admin.expo.exhibitors.index') ||
                     Route::is('admin.expo.users') ||
-                    Route::is('admin.expo.exhibitor.edit')
+                    Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.add_participator');
             @endphp
             <li class="nav-item {{ $is_active_expo_site_module ? 'active' : '' }}">
@@ -659,7 +659,7 @@
                             $is_expo_routes =
                                 Route::is('admin.expo.index') ||
                                 Route::is('admin.expo.create') ||
-                                Route::is('admin.expo.edit') ||;
+                                Route::is('admin.expo.edit');
                         @endphp
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.index') }}"
