@@ -57,7 +57,7 @@
                                             <td class="text-right">
                                                 <a href="{{ route('admin.expo.testimonial.edit', ['expo_id' => $expo->unique_id, 'key' => $key]) }}"
                                                     class="btn text-primary" data-toggle="tooltip"
-                                                    data-title="Manage Testimonials">
+                                                    data-title="Edit Testimonials">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
 
