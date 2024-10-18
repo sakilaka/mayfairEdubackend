@@ -25,6 +25,8 @@ class Expo extends Model
         'additional_contents',
         'testimonials',
         'delegates',
+        'gallery',
+        'video',
     ];
 
     public function universities()

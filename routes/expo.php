@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
+use App\Http\Controllers\Backend\Expo\ExpoMediaController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
 use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
 use App\Http\Controllers\Expo\CaptchaController;
@@ -37,8 +38,13 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
     
     Route::prefix('{expo_id}/gallery')->group(function () {
-        Route::get('gallery', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo.ui.gallery');
-        Route::post('gallery', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo.ui.gallery.update');
+        Route::get('/', [ExpoMediaController::class, 'expo_gallery_page'])->name('admin.expo.media.gallery');
+        Route::post('update', [ExpoMediaController::class, 'expo_gallery_page_update'])->name('admin.expo.media.gallery.update');
+    });
+    
+    Route::prefix('{expo_id}/video')->group(function () {
+        Route::get('/', [ExpoMediaController::class, 'expo_video_page'])->name('admin.expo.media.video');
+        Route::post('update', [ExpoMediaController::class, 'expo_video_page_update'])->name('admin.expo.media.video.update');
     });
 
     Route::prefix('exhibitors')->group(function () {

@@ -567,6 +567,8 @@
                     Route::is('admin.expo.testimonial.manage') ||
                     Route::is('admin.expo.delegate.index') ||
                     Route::is('admin.expo.delegate.manage') ||
+                    Route::is('admin.expo.media.gallery') ||
+                    Route::is('admin.expo.media.video') ||
                     Route::is('admin.expo.add_participator');
             @endphp
             <li class="nav-item {{ $is_active_expo_module ? 'active' : '' }}">
@@ -586,7 +588,9 @@
                                 Route::is('admin.expo.testimonial.index') ||
                                 Route::is('admin.expo.testimonial.manage') ||
                                 Route::is('admin.expo.delegate.index') ||
-                                Route::is('admin.expo.delegate.manage');
+                                Route::is('admin.expo.delegate.manage') ||
+                                Route::is('admin.expo.media.gallery') ||
+                                Route::is('admin.expo.media.video');
                         @endphp
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.index') }}"

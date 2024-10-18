@@ -105,6 +105,11 @@
                                                                 data-title="Manage Overseas Delegates">
                                                                 <i class="fa fa-users" aria-hidden="true"></i>
                                                             </a>
+                                                            <a href="{{ route('admin.expo.media.gallery', ['expo_id' => $expo->unique_id]) }}"
+                                                                class="btn text-primary" data-toggle="tooltip"
+                                                                data-title="Manage Gallery & Videos">
+                                                                <i class="fa fa-film" aria-hidden="true"></i>
+                                                            </a>
                                                             <a href="{{ route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"
                                                                 data-title="Manage Testimonials">
