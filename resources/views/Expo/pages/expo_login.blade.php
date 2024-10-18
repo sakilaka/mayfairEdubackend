@@ -49,7 +49,7 @@
                         <h2 class="main-heading text-white fw-semibold fs-3">{{ $contents['pre_title'] }}</h2>
                         <h1 class="main-title text-white fw-bold fs-2">{{ $expo->title }}</h1>
                     </div>
-                    <p class="location-text text-white">
+                    {{-- <p class="location-text text-white">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
                                 class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -60,7 +60,46 @@
                         <span class="text-style fw-bold">BICC(Former Bangladesh-China Friendship Conference
                             Center)</span><br>
                         Agargaon, Sher-E-Bangla Nagar, Dhaka-1207, Bangladesh
-                    </p>
+                    </p> --}}
+                    <div>
+                        <div>
+                            <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
+                                Organizer:
+                            </p>
+                            <p class="location-text text-white">
+                                <span class="text-style fw-bold">
+                                    {{ $contents['organizerDetails']['name'] ?? '' }}
+                                </span>
+                            </p>
+                        </div>
+                        <div>
+                            <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
+                                Co-Organizer:</p>
+                            <p class="location-text text-white">
+                                <span class="text-style fw-bold">
+                                    {{ $contents['co_organizerDetails']['name'] ?? '' }}
+                                </span>
+                            </p>
+                        </div>
+                        <div>
+                            <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Venue:
+                            </p>
+                            <p class="location-text text-white">
+                                <span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white"
+                                        class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                                    </svg>
+                                </span>
+                                <span class="text-style fw-bold">
+                                    {{ $place['venue'] ?? '' }}
+                                </span>
+                                <br>
+                                {{ $place['address'] ?? '' }}
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="rectangle-3-copy-holder text-white">
                         <a href="{{ route('expo.sign-up', ['unique_id' => $expo->unique_id]) }}"
