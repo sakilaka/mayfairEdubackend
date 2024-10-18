@@ -9,6 +9,7 @@ use App\Mail\SendExpoEmail;
 use App\Mail\SendExpoEmailAll;
 use App\Models\Expo;
 use App\Models\ExpoModule;
+use App\Models\ExpoUser;
 use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -576,7 +577,7 @@ class ExpoController extends Controller
         }
     }
 
-    
+
 
     /**
      * index of exhibitors
@@ -724,9 +725,16 @@ class ExpoController extends Controller
     /**
      * manage expo users
      */
-    public function expo_users()
+    public function expo_users($type)
     {
-        $data['expo_users'] = ExpoModule::latest()->paginate(50);
+        if ($type == 'main') {
+            $data['expo_users'] = ExpoUser::latest()->paginate(50);
+        } elseif ($type == 'site') {
+            $data['expo_users'] = ExpoModule::latest()->paginate(50);
+        } else {
+            abort(404, 'Not Found');
+        }
+
         return view('Backend.events.expo.users.index', $data);
     }
 

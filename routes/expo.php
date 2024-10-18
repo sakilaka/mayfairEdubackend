@@ -70,9 +70,9 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
 
     Route::prefix('users')->group(function () {
-        Route::get('/', [ExpoController::class, 'expo_users'])->name('admin.expo.users');
-        Route::get('add-participator', [ExpoController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
-        Route::post('add-participator', [ExpoController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
+        Route::get('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo.users');
+        Route::get('{type}/add-participator', [ExpoController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
+        Route::post('{type}/add-participator', [ExpoController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
 
         Route::get('view-participant', [ExpoController::class, 'expo_view_participant'])->name('admin.expo.view_participant');
     });
