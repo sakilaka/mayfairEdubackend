@@ -614,7 +614,7 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_update(Request $request, $expo_id, $testimonial_key = null)
     {
-        return $testimonial_key;
+        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
