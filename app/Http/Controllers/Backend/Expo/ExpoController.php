@@ -545,7 +545,7 @@ class ExpoController extends Controller
             $keysToDelete = ['nav_logo', 'hero_bg', 'why_should_attend'];
 
             foreach ($keysToDelete as $key) {
-                if (isset($additionalContents[$key])) {
+                if (isset($additionalContents[$key]) && is_string($additionalContents[$key])) {
                     $oldImagePath = public_path(parse_url($additionalContents[$key], PHP_URL_PATH));
                     if (file_exists($oldImagePath)) {
                         unlink($oldImagePath);
