@@ -39,7 +39,11 @@
 
             <div class="row justify-content-center mt-5">
                 <div class="col-md-6">
-                    div.
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{ asset('') }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
                 </div>
             </div>
 
