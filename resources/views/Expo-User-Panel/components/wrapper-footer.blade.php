@@ -14,8 +14,9 @@
             <div class="col-12">
                 <p class="text-light text-center" style="font-size: 1rem;"><span
                         style="font-weight: bold">Organizer:</span>
-                    Chinese Service Center for Scholarly Exchange I
-                    <span style="font-weight: bold">Co-Organizer:</span> MalishaEdu<br>
+                    {{ $organizerDetails['name'] }}
+                    <span style="font-weight: bold">Co-Organizer:</span>
+                    {{ $co_organizerDetails['name'] }}<br>
                     <span style="font-weight: bold">Supported by:</span>
                     Embassy of the People’s Republic of China in the People’s Republic of Bangladesh
                 </p>
