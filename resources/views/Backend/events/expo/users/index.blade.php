@@ -139,7 +139,8 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('admin.expo.send_mail') }}" method="POST">
+                            <form action="{{ route('admin.expo.send_mail', ['type' => request()->type]) }}"
+                                method="POST">
                                 @csrf
                                 <div class="modal-body">
                                     <!-- Participant's Email (Readonly) -->
@@ -175,7 +176,8 @@
                     aria-labelledby="sendMailToAllLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <form action="{{ route('admin.expo.send_mail_all') }}" method="POST">
+                            <form action="{{ route('admin.expo.send_mail_all', ['type' => request()->type]) }}"
+                                method="POST">
                                 @csrf
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="sendMailToAllLabel">Send Email to All Exhibitors</h5>
@@ -292,7 +294,7 @@
         let queue_status = @json(session('status'));
         if (queue_status === 'success') {
             $.ajax({
-                url: '{{ route('admin.expo.start_queue_mail') }}',
+                url: '{{ route('admin.expo.start_queue_mail', ['type' => request()->type]) }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}'
