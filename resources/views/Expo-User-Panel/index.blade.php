@@ -255,13 +255,14 @@
 
                         <div class="card-body p-2">
                             <div class="row justify-content-center justify-content-md-start">
-                                @forelse ($exhibitors as $exhibitor)
+                                @forelse ($exhibitors->take(4) as $exhibitor)
                                     @php
                                         $courses = App\Models\Course::where([
                                             'university_id' => $exhibitor->id,
                                             'status' => 1,
                                         ])->get();
-                                        $course_count = count($courses);
+
+                                        $course_count = count($courses) > 0 ? count($courses) : 100;
 
                                         $available_scholarship = json_decode($exhibitor->scholarships, true) ?? [];
                                     @endphp
@@ -269,7 +270,7 @@
                                         <div class="card university-card rounded-0 overflow-hidden"
                                             style="position: relative;">
                                             <div class="card-body p-2"
-                                                style="background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}');">
+                                                style="background-color: var(--primary_background)">
                                                 <div class="bg-white">
                                                     <div style="position: relative;" class="overflow-hidden">
                                                         <!-- Banner Image -->
@@ -285,27 +286,27 @@
 
                                                         <div class="d-flex justify-content-center align-items-center mb-2 position-absolute w-100"
                                                             style="bottom: 5px; left: 0; display: flex; justify-content: center; gap: 4px;">
-                                                            <div class="badge bg-primary text-white"
+                                                            <div class="badge bg-primary"
                                                                 style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
                                                                 Bachelor</div>
-                                                            <div class="badge bg-success text-white"
+                                                            <div class="badge bg-success"
                                                                 style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
                                                                 Masters</div>
-                                                            <div class="badge bg-warning text-white"
-                                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">Phd
-                                                            </div>
-                                                            <div class="badge bg-info text-white"
+                                                            <div class="badge bg-warning"
+                                                                style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
+                                                                Phd</div>
+                                                            <div class="badge bg-info"
                                                                 style="box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);">
                                                                 Language</div>
                                                         </div>
                                                     </div>
 
                                                     <div class="p-2">
-                                                        <h4 class="card-title mb-1"
+                                                        <h4 class="card-title"
                                                             style="font-size: 16px; font-weight: bold; min-height: 40px;">
                                                             {{ Illuminate\Support\Str::limit($exhibitor->name, 60, '...') }}
                                                         </h4>
-                                                        <p class="mb-1" style="font-size: 15px;">
+                                                        <p class="card-subtitle" style="font-size: 15px;">
                                                             <span>
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                     height="16" fill="currentColor"
@@ -348,21 +349,18 @@
                                                             {{ $uni_data['national_rank'] ?? 'N/A' }}<br>
 
                                                             {{-- <span class="me-2">
-                                                                <span>
-                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                        width="16" height="16"
-                                                                        fill="currentColor"
-                                                                        class="bi bi-mortarboard-fill"
-                                                                        viewBox="0 0 16 16">
-                                                                        <path
-                                                                            d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
-                                                                        <path
-                                                                            d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
-                                                                    </svg>
-                                                                </span>
-                                                                University type:
-                                                                {{ $uni_data['university_type'] ?? 'N/A' }} <br>
-                                                            </span> --}}
+                                            <span>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-mortarboard-fill"
+                                                    viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
+                                                    <path
+                                                        d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
+                                                </svg>
+                                            </span>
+                                            University type: {{ $uni_data['university_type'] ?? 'N/A' }} <br>
+                                        </span> --}}
                                                             <span class="me-2">
                                                                 <span>
                                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -373,7 +371,7 @@
                                                                             d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783" />
                                                                     </svg>
                                                                 </span>
-                                                                Program: {{ $course_count }}+ <br>
+                                                                Program: {{-- {{ $course_count }} --}} 50+ <br>
                                                             </span>
                                                             <span class="me-2">
                                                                 <span>
@@ -400,7 +398,7 @@
                                                                     </svg>
                                                                 </span>
                                                                 Total Students:
-                                                                {{ isset($uni_data['student_enrolled']) ? $uni_data['student_enrolled'] . '+' : 'N/A' }}
+                                                                {{ isset($uni_data['total_students']) ? $uni_data['total_students'] . '+' : 'N/A' }}
                                                                 <br>
                                                             </span>
                                                             <span class="me-2">
@@ -419,8 +417,9 @@
                                                             </span>
                                                         </p>
                                                         <div class="text-center">
-                                                            <a href="{{ env('APP_MAIN_DOMAIN') . '/list/university-details/' . $exhibitor->id }}"
-                                                                class="btn btn-secondary-bg mx-auto px-5 rounded-0">Details</a>
+                                                            <a href="{{ env('APP_MAIN_DOMAIN') . '/exhibitor/' . $exhibitor->id . '/details' }}"
+                                                                class="btn btn-primary-bg mx-auto px-5 rounded-0"
+                                                                target="_blank">Details</a>
                                                         </div>
                                                     </div>
 
