@@ -579,9 +579,15 @@ class ExpoController extends Controller
     /**
      * index of respective exhibitor testimonials
      */
-    public function exhibitor_testimonial_index($exhibitor_id)
+    public function exhibitor_testimonial_index($expo_id)
     {
-        return $exhibitor_id;
+        $data['expo'] = Expo::where('unique_id', $expo_id)->first();
+
+        if (!$data['expo']) {
+            return back()->with('error', 'Expo not found!');
+        }
+
+        return view('Backend.events.expo.testimonials.index', $data);
     }
 
     /**
