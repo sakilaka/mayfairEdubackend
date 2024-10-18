@@ -30,7 +30,7 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]) }}"
+                            <a href="{{ route('admin.expo.delegate.index', ['expo_id' => $expo->unique_id]) }}"
                                 class="btn btn-primary btn-fw">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View All</a>
@@ -43,12 +43,12 @@
                                 <div class="card-body">
                                     @php
                                         if ($delegate) {
-                                            $actionRoute = route('admin.expo.testimonial.update', [
+                                            $actionRoute = route('admin.expo.delegate.update', [
                                                 'expo_id' => $expo->unique_id,
                                                 'delegate_key' => $delegate_key,
                                             ]);
                                         } else {
-                                            $actionRoute = route('admin.expo.testimonial.update', [
+                                            $actionRoute = route('admin.expo.delegate.update', [
                                                 'expo_id' => $expo->unique_id,
                                             ]);
                                         }
