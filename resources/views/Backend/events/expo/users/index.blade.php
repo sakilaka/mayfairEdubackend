@@ -338,7 +338,7 @@
                     $('#modalProgram').text(response.program);
                     $('#modalDegree').text(response.degree);
                 },
-                error: function(xhr) {
+                error: function(xhr, ) {
                     alert('Failed to fetch participant data. Please try again.');
                 }
             });
