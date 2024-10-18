@@ -725,10 +725,15 @@ class ExpoController extends Controller
     /**
      * manage expo users
      */
-    public function expo_users($type)
+    public function expo_users(Request $request, $type)
     {
         if ($type == 'main') {
-            $data['expo_users'] = ExpoUser::latest()->paginate(50);
+
+            if (($request->has('filter_participant')) && ($request->filter_participant !== 'all')) {
+                $data['expo_users'] = ExpoUser::where('expo_id', $request->filter_participant)->latest()->paginate(50);
+            } else {
+                $data['expo_users'] = ExpoUser::latest()->paginate(50);
+            }
         } elseif ($type == 'site') {
             $data['expo_users'] = ExpoModule::latest()->paginate(50);
         } else {
