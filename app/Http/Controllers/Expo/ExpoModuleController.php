@@ -162,6 +162,10 @@ class ExpoModuleController extends Controller
      */
     public function expo_form_submit(Request $request, $expo_id)
     {
+        $request->validate([
+            'email' => 'unique:expo_users,email'
+        ]);
+
         try {
             $image_url = null;
             if ($request->hasFile('photo')) {
