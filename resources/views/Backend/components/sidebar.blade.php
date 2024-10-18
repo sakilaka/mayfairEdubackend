@@ -569,7 +569,7 @@
                     Route::is('admin.expo.media.gallery') ||
                     Route::is('admin.expo.media.video') ||
                     (Route::is('admin.expo.users') && request()->type == 'main') ||
-                    (Route::is('admin.expo.users') && request()->type == 'main') ||
+                    (Route::is('admin.expo.users.filter') && request()->type == 'main') ||
                     (Route::is('admin.expo.add_participator') && request()->type == 'main');
             @endphp
             <li class="nav-item {{ $is_active_expo_module ? 'active' : '' }}">
@@ -609,7 +609,7 @@
                         </li>
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.users', ['type' => 'main']) }}"
-                                class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.add_participator')) && request()->type == 'main' ? 'active' : '' }}">
+                                class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.users.filter') || Route::is('admin.expo.add_participator')) && request()->type == 'main' ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Participators
                             </a>
