@@ -59,7 +59,7 @@
                     </p>
 
                     <div class="rectangle-3-copy-holder text-white">
-                        <a href="{{ route('expo.sign-up') }}"
+                        <a href="{{ route('expo.sign-up', ['unique_id' => $expo->unique_id]) }}"
                             class="btn btn-light fw-bold btn-responsive mb-2">
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -84,7 +84,6 @@
                             View Location
                         </a>
                     </div>
-
                 </div>
 
                 <div class="col-md-4 border p-4 pt-0 bg-white shadow card-red-pattern-bg"
@@ -103,8 +102,8 @@
                         Dashboard
                     </h4>
 
-                    <form action="{{ route('expo.login.attempt') }}" class="mt-3" enctype="multipart/form-data"
-                        method="post" accept-charset="utf-8">
+                    <form action="{{ route('expo.login.attempt', ['unique_id' => $expo->unique_id]) }}" class="mt-3"
+                        enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         @csrf
 
                         <!-- Radio buttons to toggle between ID and Email -->
@@ -164,7 +163,8 @@
                     <div class="text-center mt-4 mb-5">
                         Don't have an account?
                         <strong>
-                            <a href="{{ route('expo.sign-up') }}" class="text-decoration-underline">
+                            <a href="{{ route('expo.sign-up', ['unique_id' => $expo->unique_id]) }}"
+                                class="text-decoration-underline">
                                 Create an Account
                             </a>
                         </strong>
