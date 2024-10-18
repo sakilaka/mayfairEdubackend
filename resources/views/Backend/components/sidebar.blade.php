@@ -631,6 +631,81 @@
             </li>
         @endif
 
+        @if (in_array('expo_module', $permissions ?? []))
+            {{-- expo website --}}
+            @php
+                $is_active_expo_site_module =
+                    Route::is('admin.expo.ui.contact') ||
+                    Route::is('admin.expo.ui.gallery') ||
+                    Route::is('admin.expo.ui.video') ||
+                    Route::is('admin.expo.create') ||
+                    Route::is('admin.expo.edit') ||
+                    Route::is('admin.expo.index') ||
+                    Route::is('admin.expo.exhibitors.index') ||
+                    Route::is('admin.expo.users') ||
+                    Route::is('admin.expo.exhibitor.edit') ||
+                    Route::is('admin.expo.testimonial.index') ||
+                    Route::is('admin.expo.testimonial.manage') ||
+                    Route::is('admin.expo.delegate.index') ||
+                    Route::is('admin.expo.delegate.manage') ||
+                    Route::is('admin.expo.media.gallery') ||
+                    Route::is('admin.expo.media.video') ||
+                    Route::is('admin.expo.add_participator');
+            @endphp
+            <li class="nav-item {{ $is_active_expo_site_module ? 'active' : '' }}">
+                <a class="nav-link" data-toggle="collapse" href="#expo-sidemenu" aria-expanded="false"
+                    aria-controls="blogs-events-sidemenu">
+                    <i class="fa fa-podcast menu-icon"></i>
+                    <span class="menu-title">Expo Site</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse {{ $is_active_expo_site_module ? 'show' : '' }}" id="expo-sidemenu">
+                    <ul class="nav flex-column sub-menu">
+                        @php
+                            $is_expo_routes =
+                                Route::is('admin.expo.index') ||
+                                Route::is('admin.expo.create') ||
+                                Route::is('admin.expo.edit') ||;
+                        @endphp
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="{{ route('admin.expo.index') }}"
+                                class="nav-link {{ $is_expo_routes ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
+                                Manage Expo
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="{{ route('admin.expo.exhibitors.index') }}"
+                                class="nav-link {{ Route::is('admin.expo.exhibitors.index') || Route::is('admin.expo.exhibitor.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
+                                Manage Exhibitors
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="{{ route('admin.expo.users') }}"
+                                class="nav-link {{ Route::is('admin.expo.users') || Route::is('admin.expo.add_participator') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
+                                Manage Participators
+                            </a>
+                        </li>
+                        @php
+                            $is_active_expo_site_module_contents =
+                                Route::is('admin.expo.ui.contact') ||
+                                Route::is('admin.expo.ui.gallery') ||
+                                Route::is('admin.expo.ui.video');
+                        @endphp
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="{{ route('admin.expo.ui.contact') }}"
+                                class="nav-link {{ $is_active_expo_site_module_contents ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
+                                Manage UI Contents
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        @endif
+
         @if (in_array('consultation_module', $permissions ?? []))
             {{-- get consultation --}}
             @php
