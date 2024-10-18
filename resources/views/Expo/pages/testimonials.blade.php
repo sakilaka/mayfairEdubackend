@@ -9,6 +9,12 @@
     @php
         $additional_contents = json_decode($expo->additional_contents, true) ?? [];
     @endphp
+
+    <style>
+        blockquote .testimonial-description::-webkit-scrollbar {
+            width: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,9 +57,10 @@
                                     alt="" class="img-fluid rounded-circle border border-3 border-success"
                                     width="150">
                             </div>
-                            <div class="col-md-9" style="max-height: 250px; overflow-y:auto;">
+                            <div class="col-md-9">
                                 <blockquote class="blockquote border-start-0 mb-0 px-2">
-                                    <div class="mb-0 text-muted" style="font-size: 16px">
+                                    <div class="mb-0 text-muted testimonial-description"
+                                        style="font-size: 16px; max-height: 120px; overflow-y:auto;">
                                         {!! $testimonial['description'] !!}
                                     </div>
                                     <footer class="blockquote-footer mt-2" style="font-size: 16px">
