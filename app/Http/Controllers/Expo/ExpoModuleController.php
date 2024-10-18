@@ -150,7 +150,7 @@ class ExpoModuleController extends Controller
      */
     public function expo_form($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'additional_contents')->first();
         if (!$data['expo']) {
             return back()->with('error', 'Expo Not Found!');
         }
