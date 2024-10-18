@@ -614,10 +614,11 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_update(Request $request, $expo_id, $testimonial_key = null)
     {
-        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
+            $existingTestimonials = json_decode($expo->testimonials, true) ?? [];
+            return $existingTestimonials;
             $finalData = [];
             $testimonialPrefix = 'testimonial_';
             $testimonialPath = 'expo/testimonial/';
@@ -649,7 +650,6 @@ class ExpoController extends Controller
 
             return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('success', 'Testimonial has beed added successfully!');
         } catch (\Exception $e) {
-            return $e->getMessage();
             return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('error', 'Something went wrong! Failed to add testimonial.');
         }
     }

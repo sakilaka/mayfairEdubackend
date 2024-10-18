@@ -57,9 +57,6 @@
                                         enctype="multipart/form-data">
                                         @csrf
 
-                                        {{-- @php
-                                            $random = $testimonial_key ?? explode('-', uuid_create())[0];
-                                        @endphp --}}
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="menu_type" class="col-form-label">Photo</label>
