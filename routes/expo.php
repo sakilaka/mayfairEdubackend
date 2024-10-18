@@ -21,12 +21,12 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
 
     Route::prefix('{expo_id}/testimonials')->group(function () {
-        Route::get('list/', [ExpoController::class, "exhibitor_testimonial_index"])->name('admin.expo.exhibitors.testimonial.index');
-        Route::get('edit/', [ExpoController::class, "exhibitor_testimonial_edit"])->name('admin.expo.exhibitor.testimonial.edit');
-        Route::post('store/', [ExpoController::class, "exhibitor_testimonial_store"])->name('admin.expo.exhibitors.testimonial.store');
-        Route::get('edit/', [ExpoController::class, "exhibitor_testimonial_edit"])->name('admin.expo.exhibitor.testimonial.edit');
-        Route::post('edit/', [ExpoController::class, "exhibitor_testimonial_update"])->name('admin.expo.exhibitor.testimonial.update');
-        Route::post('delete/', [ExpoController::class, "exhibitor_testimonial_destroy"])->name('admin.expo.exhibitors.testimonial.delete');
+        Route::get('list', [ExpoController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
+        Route::get('create', [ExpoController::class, "expo_testimonial_create"])->name('admin.expo.testimonial.create');
+        Route::post('store', [ExpoController::class, "expo_testimonial_store"])->name('admin.expo.testimonial.store');
+        Route::get('edit', [ExpoController::class, "expo_testimonial_edit"])->name('admin.expo.testimonial.edit');
+        Route::post('update', [ExpoController::class, "expo_testimonial_update"])->name('admin.expo.testimonial.update');
+        Route::post('delete', [ExpoController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
     });
 
     Route::prefix('exhibitors')->group(function () {

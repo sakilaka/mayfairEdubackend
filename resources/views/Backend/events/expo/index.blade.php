@@ -100,7 +100,7 @@
                                                             class="fa fa-ellipsis-v text-primary"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <div class="d-flex justify-content-end">
-                                                            <a href="{{ route('admin.expo.exhibitors.testimonial.index', ['expo_id' => $expo->unique_id]) }}"
+                                                            <a href="{{ route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"
                                                                 data-title="Manage Testimonials">
                                                                 <i class="fa fa-comments" aria-hidden="true"></i>

@@ -577,9 +577,9 @@ class ExpoController extends Controller
     }
 
     /**
-     * index of respective exhibitor testimonials
+     * index of respective expo testimonials
      */
-    public function exhibitor_testimonial_index($expo_id)
+    public function expo_testimonial_index($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->first();
 
@@ -589,6 +589,10 @@ class ExpoController extends Controller
 
         return view('Backend.events.expo.testimonials.index', $data);
     }
+
+    /**
+     * create 
+     */
 
     /**
      * index of exhibitors

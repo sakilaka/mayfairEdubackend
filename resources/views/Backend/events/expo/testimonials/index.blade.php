@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Manage Testimonials of {{ $expo->title }}</title>
+    <title>{{ env('APP_NAME') }} | Manage Testimonials of '{{ $expo->title }}'</title>
 </head>
 
 <body>
@@ -17,13 +17,13 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Manage Testimonials of {{ $expo->title }}
+                            Manage Testimonials of '{{ $expo->title }}'
                         </h3>
 
                         <nav aria-label="breadcrumb">
                             <a href="{{ route('admin.expo.create') }}" class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                Add Expo</a>
+                                Add Testimonial</a>
                         </nav>
                     </div>
 
@@ -42,7 +42,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($expos as $expo)
+                                    @foreach ($expos ?? [] as $expo)
                                         @php
                                             $universities = $expo->universities();
                                             $universityNames = $universities->pluck('name')->toArray();
