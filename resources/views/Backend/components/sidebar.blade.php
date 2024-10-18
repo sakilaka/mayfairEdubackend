@@ -638,8 +638,8 @@
                     Route::is('admin.expo.ui.contact') ||
                     Route::is('admin.expo.ui.gallery') ||
                     Route::is('admin.expo.ui.video') ||
-                    Route::is('admin.expo.users') ||
-                    Route::is('admin.expo.add_participator');
+                    (Route::is('admin.expo.users') && request()->type == 'site') ||
+                    (Route::is('admin.expo.add_participator') && request()->type == 'site');
             @endphp
             <li class="nav-item {{ $is_active_expo_site_module ? 'active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#expo-site-sidemenu" aria-expanded="false"
