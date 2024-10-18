@@ -291,6 +291,9 @@
                                                         <input type="email" class="form-control form-control-lg"
                                                             id="email" name="email" required
                                                             placeholder="Enter your email">
+                                                        @error('email')
+                                                            <span class="text-danger">*</span>
+                                                        @enderror
                                                         <div class="invalid-feedback">
                                                             Please provide a valid email address.
                                                         </div>
@@ -641,8 +644,8 @@
 
     <script>
         /* $('select').select2({
-                                    placeholder: 'Select an option'
-                                }); */
+                                        placeholder: 'Select an option'
+                                    }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
