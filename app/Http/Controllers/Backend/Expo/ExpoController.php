@@ -609,36 +609,43 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_store(Request $request, $expo_id)
     {
-        return $request->all();
-        $expo = Expo::where('unique_id', $expo_id)->first();
+        try {
+            $expo = Expo::where('unique_id', $expo_id)->first();
 
-        $finalData = [];
-        $testimonialPrefix = 'testimonial_';
-        $testimonialPath = 'expo/testimonial/';
+            $finalData = [];
+            $testimonialPrefix = 'testimonial_';
+            $testimonialPath = 'expo/testimonial/';
 
-        foreach ($request->all() as $key => $testimonialData) {
-            if (
-                strpos($key, $testimonialPrefix) === 0
-            ) {
-                $testimonial = [
-                    'name' => $testimonialData['name'] ?? null,
-                    'designation' => $testimonialData['designation'] ?? null,
-                    'description' => $testimonialData['description'] ?? null,
-                    'photo' => null,
-                ];
+            foreach ($request->all() as $key => $testimonialData) {
+                if (strpos($key, $testimonialPrefix) === 0) {
+                    $uuidPart = explode('_', $key)[1];
 
-                if ($request->hasFile("{$key}.photo")) {
-                    $photoFile = $request->file("{$key}.photo");
-                    $photoName = uniqid() . '.' . $photoFile->getClientOriginalExtension();
-                    // $photoFile->move(public_path($testimonialPath), $photoName);
-                    $testimonial['photo'] = asset($testimonialPath . $photoName);
+                    $testimonial = [
+                        'name' => $testimonialData['name'] ?? null,
+                        'designation' => $testimonialData['designation'] ?? null,
+                        'description' => $testimonialData['description'] ?? null,
+                        'photo' => null,
+                    ];
+
+                    if ($request->hasFile("{$key}.photo")) {
+                        $photoFile = $request->file("{$key}.photo");
+                        $photoName = uniqid() . '.' . $photoFile->getClientOriginalExtension();
+                        // $photoFile->move(public_path($testimonialPath), $photoName);
+                        $testimonial['photo'] = asset($testimonialPath . $photoName);
+                    }
+
+                    $finalData[$uuidPart] = $testimonial;
                 }
-
-                $finalData[$key] = $testimonial;
             }
-        }
 
-        return $expo->testimonials;
+            $expo->testimonials = json_encode($finalData);
+            $expo->save();
+
+            return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('success', 'Testimonial has beed added successfully!');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('error', 'Something went wrong! Failed to add testimonial.');
+        }
     }
 
     /**
