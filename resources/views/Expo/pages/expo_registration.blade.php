@@ -246,7 +246,8 @@
                                                 class="mt-2 me-2 btn btn-tertiary-bg" target="_blank">
                                                 View Ticket
                                             </a>
-                                            <a href="{{ route('expo.sign-up') }}" class="mt-2 me-2 btn btn-primary-bg">
+                                            <a href="{{ route('expo.sign-up', ['unique_id' => $expo->unique_id]) }}"
+                                                class="mt-2 me-2 btn btn-primary-bg">
                                                 Register Another
                                             </a>
                                             <a href="{{ route('expo.login.page') }}"
@@ -640,8 +641,8 @@
 
     <script>
         /* $('select').select2({
-                            placeholder: 'Select an option'
-                        }); */
+                                placeholder: 'Select an option'
+                            }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];

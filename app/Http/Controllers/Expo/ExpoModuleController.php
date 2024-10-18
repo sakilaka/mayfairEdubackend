@@ -187,7 +187,6 @@ class ExpoModuleController extends Controller
             $expoUser->institution = $request->institution;
             $expoUser->program = $request->program;
             $expoUser->degree = $request->degree;
-            return $expoUser;
             $expoUser->save();
 
             return back()->with(['success' => 'Expo registration has been successful!', 'status' => 'submitted', 'expoData' => $expoUser]);
