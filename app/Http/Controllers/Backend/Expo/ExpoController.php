@@ -629,7 +629,7 @@ class ExpoController extends Controller
 
                     if ($request->hasFile("{$key}.photo")) {
                         $photoFile = $request->file("{$key}.photo");
-                        $photoName = uniqid() . '.' . $photoFile->getClientOriginalExtension();
+                        $photoName = 'user_' . uniqid() . '.' . $photoFile->getClientOriginalExtension();
                         // $photoFile->move(public_path($testimonialPath), $photoName);
                         $testimonial['photo'] = asset($testimonialPath . $photoName);
                     }
