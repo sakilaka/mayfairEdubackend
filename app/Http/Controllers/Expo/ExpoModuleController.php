@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Expo;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expo;
-use App\Models\ExpoModule;
+use App\Models\ExpoUser;
 use App\Models\ExpoModuleContent;
 use App\Models\University;
 use Illuminate\Http\Request;
@@ -170,7 +170,7 @@ class ExpoModuleController extends Controller
                 $image_url = 'data:' . $request->file('photo')->getMimeType() . ';base64,' . $image;
             }
 
-            $expoModule = new ExpoModule();
+            $expoModule = new ExpoUser();
             $expoModule->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
             $expoModule->email = $request->email;
             $expoModule->password = Hash::make($request->password);
@@ -201,7 +201,7 @@ class ExpoModuleController extends Controller
      */
     public function expo_ticket($ticket_no)
     {
-        $data['expoData'] = ExpoModule::find($ticket_no);
+        $data['expoData'] = ExpoUser::find($ticket_no);
 
         if (!$data['expoData']) {
             return redirect(route('expo_module.expo-form'))->with('error', 'Expo ticket not found! Registration now.');
