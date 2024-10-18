@@ -1,6 +1,7 @@
 <style>
     .red-section-bg {
-        background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}');
+        /* background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}'); */
+        background-color: var(--primary_background);
         background-size: cover;
         background-position: center;
         position: relative;

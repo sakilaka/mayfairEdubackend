@@ -161,8 +161,7 @@
     }
 
     .bg-color {
-        /* background-color: rgba(156, 16, 0, 0.303); */
-        background-color: rgba(231, 76, 60, 0.22);
+        /* background-color: rgba(231, 76, 60, 0.22); */
         height: 100%;
         position: absolute;
         top: 0;
