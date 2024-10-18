@@ -77,9 +77,9 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('{type}/show-participant', [ExpoController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
     });
 
-    Route::post('send-mail', [ExpoController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
-    Route::post('send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
-    Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
+    Route::post('{type}/send-mail', [ExpoController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
+    Route::post('{type}/send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
+    Route::post('{type}/start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
 
 /**
