@@ -170,26 +170,27 @@ class ExpoModuleController extends Controller
                 $image_url = 'data:' . $request->file('photo')->getMimeType() . ';base64,' . $image;
             }
 
-            $expoModule = new ExpoUser();
-            $expoModule->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
-            $expoModule->email = $request->email;
-            $expoModule->password = Hash::make($request->password);
-            // $expoModule->id_type = $request->id_type;
-            // $expoModule->id_no = $request->id_no;
-            $expoModule->first_name = $request->first_name;
-            $expoModule->last_name = $request->last_name;
-            $expoModule->photo = $image_url;
-            $expoModule->nationality = $request->nationality;
-            $expoModule->sex = $request->sex;
-            $expoModule->dob = $request->dob;
-            $expoModule->phone = $request->phone;
-            $expoModule->profession = $request->profession;
-            $expoModule->institution = $request->institution;
-            $expoModule->program = $request->program;
-            $expoModule->degree = $request->degree;
-            $expoModule->save();
+            $expoUser = new ExpoUser();
+            $expoUser->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
+            $expoUser->email = $request->email;
+            $expoUser->password = Hash::make($request->password);
+            // $expoUser->id_type = $request->id_type;
+            // $expoUser->id_no = $request->id_no;
+            $expoUser->first_name = $request->first_name;
+            $expoUser->last_name = $request->last_name;
+            $expoUser->photo = $image_url;
+            $expoUser->nationality = $request->nationality;
+            $expoUser->sex = $request->sex;
+            $expoUser->dob = $request->dob;
+            $expoUser->phone = $request->phone;
+            $expoUser->profession = $request->profession;
+            $expoUser->institution = $request->institution;
+            $expoUser->program = $request->program;
+            $expoUser->degree = $request->degree;
+            return $expoUser;
+            $expoUser->save();
 
-            return back()->with(['success' => 'Expo registration has been successful!', 'status' => 'submitted', 'expoData' => $expoModule]);
+            return back()->with(['success' => 'Expo registration has been successful!', 'status' => 'submitted', 'expoData' => $expoUser]);
         } catch (\Exception $e) {
             return $e->getMessage();
             return back()->with(['error' => 'Something Went Wrong!']);
