@@ -39,10 +39,22 @@
 
             <div class="row justify-content-between mt-5">
                 <div class="col-md-6 px-3">
-                    <div class="row border border-3 border-primary">
+                    <div class="row align-items-center border border-3 border-primary rounded">
                         <div class="col-md-3">
-                            <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt=""
-                                class="img-fluid rounded-circle border border-3 border-primary" width="130">
+                            <img src="{{ asset('frontend/images/no-profile.jpg') }}"
+                                alt="" class="img-fluid rounded-circle border border-3 border-success p-1"
+                                width="100">
+                        </div>
+                        <div class="col-md-9">
+                            <blockquote class="blockquote">
+                                <p class="mb-0 text-muted">
+                                    Your testimonial text goes here.
+                                </p>
+                                <footer class="blockquote-footer mt-2">
+                                    — <strong>Anonymous</strong>,
+                                    <cite title="Designation">No Designation</cite>
+                                </footer>
+                            </blockquote>
                         </div>
                     </div>
                 </div>
