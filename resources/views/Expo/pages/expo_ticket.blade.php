@@ -256,8 +256,8 @@
                                         <img src="{{ $co_organizerDetails['logo'] }}" alt=""
                                             class="img-fluid ms-2" width="80">
                                     </div>
-                                    <div class="col-6 text-end border">
-                                        
+                                    <div class="col-6 text-end">
+                                        <h3 class="wrapper-title text-center" style="font-size: 16px">{{ $expo->title }}</h3>
                                     </div>
                                 </div>
 
