@@ -36,12 +36,12 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::post('update/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_update"])->name('admin.expo.delegate.update');
         Route::get('delete/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_destroy"])->name('admin.expo.delegate.delete');
     });
-    
+
     Route::prefix('{expo_id}/gallery')->group(function () {
         Route::get('/', [ExpoMediaController::class, 'expo_gallery_page'])->name('admin.expo.media.gallery');
         Route::post('update', [ExpoMediaController::class, 'expo_gallery_page_update'])->name('admin.expo.media.gallery.update');
     });
-    
+
     Route::prefix('{expo_id}/video')->group(function () {
         Route::get('/', [ExpoMediaController::class, 'expo_video_page'])->name('admin.expo.media.video');
         Route::post('update', [ExpoMediaController::class, 'expo_video_page_update'])->name('admin.expo.media.video.update');
@@ -120,8 +120,8 @@ Route::get('expo-login', [ExpoLoginController::class, 'login_page'])->name('expo
 Route::post('expo-login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
 Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
 
-Route::get('/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
-Route::post('/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
+Route::get('expo/{unique_id}/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
+Route::post('expo/{unique_id}/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
 Route::get('expo-ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
 
 /**
