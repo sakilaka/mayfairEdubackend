@@ -593,7 +593,8 @@ class ExpoController extends Controller
     /**
      * create respective expo testimonial
      */
-    public function expo_testimonial_create($expo_id){
+    public function expo_testimonial_create($expo_id)
+    {
         $data['expo'] = Expo::where('unique_id', $expo_id)->first();
 
         if (!$data['expo']) {
@@ -601,6 +602,14 @@ class ExpoController extends Controller
         }
 
         return view('Backend.events.expo.testimonials.create', $data);
+    }
+
+    /**
+     * store respective expo testimonial
+     */
+    public function expo_testimonial_store(Request $request, $expo_id)
+    {
+        return $request->all();
     }
 
     /**
