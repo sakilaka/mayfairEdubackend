@@ -40,7 +40,7 @@
 
             <div class="row justify-content-between align-items-center mt-5 mx-auto">
                 @php
-                    $delegates = json_decode($expo->testimonials, true) ?? [];
+                    $delegates = json_decode($expo->delegates, true) ?? [];
                 @endphp
 
                 <div class="col-12 mt-2">
