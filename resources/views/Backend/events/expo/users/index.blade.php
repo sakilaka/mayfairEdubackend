@@ -314,7 +314,7 @@
 
             clearModalContent();
             $.ajax({
-                url: '{{ url('users/show-participant') }}',
+                url: '{{ route('admin.expo.show_participant') }}',
                 method: 'GET',
                 data: {
                     ticket_no: ticketNo
