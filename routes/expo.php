@@ -35,6 +35,11 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::post('update/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_update"])->name('admin.expo.delegate.update');
         Route::get('delete/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_destroy"])->name('admin.expo.delegate.delete');
     });
+    
+    Route::prefix('{expo_id}/gallery')->group(function () {
+        Route::get('gallery', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo.ui.gallery');
+        Route::post('gallery', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo.ui.gallery.update');
+    });
 
     Route::prefix('exhibitors')->group(function () {
         Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
