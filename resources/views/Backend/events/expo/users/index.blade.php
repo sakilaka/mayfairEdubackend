@@ -294,7 +294,7 @@
         let queue_status = @json(session('status'));
         if (queue_status === 'success') {
             $.ajax({
-                url: '{{ route('admin.expo.start_queue_mail', ['type' => request()->type]) }}',
+                url: '{{ route('admin.expo.start_queue_mail') }}',
                 type: 'POST',
                 data: {
                     _token: '{{ csrf_token() }}'
