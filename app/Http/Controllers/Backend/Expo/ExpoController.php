@@ -633,6 +633,8 @@ class ExpoController extends Controller
                         'photo' => null,
                     ];
 
+                    $existingPhoto = null;
+                    $existingPhotoPath = '';
 
                     if ($testimonial_key && isset($existingTestimonials[$testimonial_key])) {
                         $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
@@ -640,13 +642,11 @@ class ExpoController extends Controller
                         if ($existingPhoto) {
                             $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
                             $existingPhotoPath = public_path($existingPhotoPath);
-                        } else {
-                            $existingPhotoPath = '';
                         }
                     }
 
                     if ($request->hasFile("{$key}.photo")) {
-                        if (file_exists($existingPhotoPath)) {
+                        if ($existingPhotoPath && file_exists($existingPhotoPath)) {
                             unlink($existingPhotoPath);
                         }
 
