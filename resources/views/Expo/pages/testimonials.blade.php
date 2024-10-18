@@ -79,15 +79,6 @@
                     /* Ensure the image is on top of the border */
                 }
 
-                .testimonial-image img {
-                    border: 2px solid #006400;
-                    /* Matching dark green border around the image */
-                    padding: 5px;
-                    /* Add padding around the image inside the border */
-                    border-radius: 50%;
-                    /* Ensures the image stays circular */
-                }
-
                 .testimonial-content {
                     padding-left: 20px;
                     flex-grow: 1;
@@ -106,26 +97,30 @@
                 }
             </style>
             <div class="row justify-content-center mt-5">
-                <div class="col-md-8">
-                    <div class="testimonial-box d-flex p-3">
-                        <div class="testimonial-image">
-                            <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                alt="" class="img-fluid rounded-circle" width="100">
-                        </div>
-                        <div class="testimonial-content ps-3">
-                            <blockquote class="blockquote">
-                                <p class="mb-0 text-muted">
-                                    "{{ $testimonial['description'] ?? 'Your testimonial text goes here.' }}"
-                                </p>
-                                <footer class="blockquote-footer mt-2">
-                                    — <strong>{{ $testimonial['name'] ?? 'Anonymous' }}</strong>,
-                                    <cite
-                                        title="Designation">{{ $testimonial['designation'] ?? 'No Designation' }}</cite>
-                                </footer>
-                            </blockquote>
+
+                @for ($i = 0; $i < 6; $i++)
+                    <div class="col-md-6">
+                        <div class="testimonial-box d-flex">
+                            <div class="testimonial-image">
+                                <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
+                                    alt="" class="img-fluid border border-3 border-primary rounded-circle"
+                                    width="130">
+                            </div>
+                            <div class="testimonial-content ps-3">
+                                <blockquote class="blockquote">
+                                    <p class="mb-0 text-muted">
+                                        "{{ $testimonial['description'] ?? 'Your testimonial text goes here.' }}"
+                                    </p>
+                                    <footer class="blockquote-footer mt-2">
+                                        — <strong>{{ $testimonial['name'] ?? 'Anonymous' }}</strong>,
+                                        <cite
+                                            title="Designation">{{ $testimonial['designation'] ?? 'No Designation' }}</cite>
+                                    </footer>
+                                </blockquote>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endfor
             </div>
 
 
