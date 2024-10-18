@@ -125,7 +125,7 @@
             $gallery_contents = isset($expo['gallery']) ? json_decode($expo['gallery'], true) : [];
         @endphp
 
-        @forelse ($gallery_contents as $key => $gallery)
+        @forelse ($gallery_contents ?? [] as $key => $gallery)
             <div class="gallery-section py-5">
                 <h2 class="company-details-title py-2 fw-bold text-center ">
                     {{ $gallery['title'] ?? '' }}
