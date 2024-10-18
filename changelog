@@ -1,7 +1,0 @@
-expos-> unique_id (varchar)
-expos-> testimonials (longText)
-expos-> delegates (longText)
-expos-> gallery (longText)
-expos-> video (longText)
-
-expo_users (new table)
