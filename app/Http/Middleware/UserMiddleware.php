@@ -15,11 +15,14 @@ class UserMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() === false) {
-            return redirect('/sign-in')->with('message', 'Please login first.');
-        } elseif (auth('expo')->check() === false) {
+        if (auth('expo')->check() === false) {
             return back()->with('message', 'Please login first.');
         }
+
+        if (auth()->check() === false) {
+            return redirect('/sign-in')->with('message', 'Please login first.');
+        }
+
         return $next($request);
     }
 }
