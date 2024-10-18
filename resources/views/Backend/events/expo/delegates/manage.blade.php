@@ -71,7 +71,7 @@
                                                                 <ul></ul>
                                                             </div>
                                                             <input type="file" class="dropify"
-                                                                name="testimonial_{{ $delegate_key }}[photo]"
+                                                                name="delegate_{{ $delegate_key }}[photo]"
                                                                 accept="image/*" id="photo">
                                                             <button type="button" class="dropify-clear">Remove</button>
                                                             <div class="dropify-preview">
@@ -107,7 +107,7 @@
                                                 <label class="col-form-label pt-0">Name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" name="testimonial_{{ $delegate_key }}[name]"
+                                                <input type="text" name="delegate_{{ $delegate_key }}[name]"
                                                     class="form-control" value="{{ $delegate['name'] ?? '' }}"
                                                     placeholder="Enter Name" required>
                                             </div>
@@ -116,8 +116,7 @@
                                                 <label class="col-form-label pt-0">Designation
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text"
-                                                    name="testimonial_{{ $delegate_key }}[designation]"
+                                                <input type="text" name="delegate_{{ $delegate_key }}[designation]"
                                                     class="form-control" value="{{ $delegate['designation'] ?? '' }}"
                                                     placeholder="Enter Designation" required>
                                             </div>
@@ -126,7 +125,7 @@
                                                 <label class="col-form-label pt-0">Description
                                                 </label>
 
-                                                <textarea name="testimonial_{{ $delegate_key }}[description]" class="form-control editor">{!! $delegate['description'] ?? '' !!}</textarea>
+                                                <textarea name="delegate_{{ $delegate_key }}[description]" class="form-control editor">{!! $delegate['description'] ?? '' !!}</textarea>
                                             </div>
                                         </div>
 

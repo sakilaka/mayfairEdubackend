@@ -49,27 +49,27 @@ class ExpoDelegatesController extends Controller
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
-            $existingTestimonials = json_decode($expo->delegates, true) ?? [];
+            $existingDelegates = json_decode($expo->delegates, true) ?? [];
             $finalData = [];
-            $testimonialPrefix = 'testimonial_';
-            $testimonialPath = 'expo/testimonial/';
+            $delegatePrefix = 'delegate';
+            $delegatePath = 'expo/delegate/';
 
-            foreach ($request->all() as $key => $testimonialData) {
-                if (strpos($key, $testimonialPrefix) === 0) {
+            foreach ($request->all() as $key => $delegateData) {
+                if (strpos($key, $delegatePrefix) === 0) {
                     $uuidPart = explode('_', $key)[1];
 
-                    $testimonial = [
-                        'name' => $testimonialData['name'] ?? null,
-                        'designation' => $testimonialData['designation'] ?? null,
-                        'description' => $testimonialData['description'] ?? null,
+                    $delegate = [
+                        'name' => $delegateData['name'] ?? null,
+                        'designation' => $delegateData['designation'] ?? null,
+                        'description' => $delegateData['description'] ?? null,
                         'photo' => null,
                     ];
 
                     $existingPhoto = null;
                     $existingPhotoPath = '';
 
-                    if ($delegate_key && isset($existingTestimonials[$delegate_key])) {
-                        $existingPhoto = $existingTestimonials[$delegate_key]['photo'] ?? null;
+                    if ($delegate_key && isset($existingDelegates[$delegate_key])) {
+                        $existingPhoto = $existingDelegates[$delegate_key]['photo'] ?? null;
 
                         if ($existingPhoto) {
                             $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
@@ -84,27 +84,27 @@ class ExpoDelegatesController extends Controller
 
                         $photoFile = $request->file("{$key}.photo");
                         $photoName = 'user_' . uniqid() . '.' . $photoFile->getClientOriginalExtension();
-                        $photoFile->move(public_path($testimonialPath), $photoName);
-                        $testimonial['photo'] = asset($testimonialPath . $photoName);
+                        $photoFile->move(public_path($delegatePath), $photoName);
+                        $delegate['photo'] = asset($delegatePath . $photoName);
                     } else {
-                        $testimonial['photo'] = $existingPhoto;
+                        $delegate['photo'] = $existingPhoto;
                     }
 
                     if ($delegate_key && $uuidPart === $delegate_key) {
-                        $existingTestimonials[$uuidPart] = array_merge($existingTestimonials[$uuidPart] ?? [], $testimonial);
+                        $existingDelegates[$uuidPart] = array_merge($existingDelegates[$uuidPart] ?? [], $delegate);
                     } else {
-                        $finalData[$uuidPart] = $testimonial;
+                        $finalData[$uuidPart] = $delegate;
                     }
                 }
             }
 
-            $finalData = array_merge($existingTestimonials, $finalData);
+            $finalData = array_merge($existingDelegates, $finalData);
             $expo->delegates = json_encode($finalData);
             $expo->save();
 
-            return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('success', 'Testimonial has beed added successfully!');
+            return redirect(route('admin.expo.delegate.index', ['expo_id' => $expo->unique_id]))->with('success', 'Delegate has beed added successfully!');
         } catch (\Exception $e) {
-            return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('error', 'Something went wrong! Failed to add testimonial.');
+            return redirect(route('admin.expo.delegate.index', ['expo_id' => $expo->unique_id]))->with('error', 'Something went wrong! Failed to add delegate.');
         }
     }
 
@@ -119,10 +119,10 @@ class ExpoDelegatesController extends Controller
                 return redirect()->back()->with('error', 'Expo not found.');
             }
 
-            $existingTestimonials = json_decode($expo->delegates, true) ?? [];
+            $existingDelegates = json_decode($expo->delegates, true) ?? [];
 
-            if (isset($existingTestimonials[$delegate_key])) {
-                $existingPhoto = $existingTestimonials[$delegate_key]['photo'] ?? null;
+            if (isset($existingDelegates[$delegate_key])) {
+                $existingPhoto = $existingDelegates[$delegate_key]['photo'] ?? null;
                 if ($existingPhoto) {
                     $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
                     $existingPhotoPath = public_path($existingPhotoPath);
@@ -132,9 +132,9 @@ class ExpoDelegatesController extends Controller
                     }
                 }
 
-                unset($existingTestimonials[$delegate_key]);
+                unset($existingDelegates[$delegate_key]);
 
-                $expo->delegates = json_encode($existingTestimonials);
+                $expo->delegates = json_encode($existingDelegates);
                 $expo->save();
 
                 return redirect()->back()->with('success', 'Testimonial has been deleted successfully!');
