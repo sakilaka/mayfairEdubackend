@@ -21,13 +21,20 @@
             <a class="nav-link" href="{{ route('expo.testimonials', ['unique_id' => $expo->unique_id]) }}"
                 style="color: white;">Testimonial</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('expo.gallery', ['unique_id' => $expo->unique_id]) }}"
-                style="color: white;">Gallery</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="{{ route('expo.video', ['unique_id' => $expo->unique_id]) }}"
-                style="color: white;">Video</a>
+        <li class="nav-item nav-profile dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="whyChinaDropdown"
+                aria-expanded="false">
+                <span class="mr-2">Media</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown shadow" aria-labelledby="whyChinaDropdown">
+                <a class="dropdown-item" href="{{ route('expo.gallery', ['unique_id' => $expo->unique_id]) }}">
+                    Gallery
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('expo.video', ['unique_id' => $expo->unique_id]) }}">
+                    Video
+                </a>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;">Join</a>

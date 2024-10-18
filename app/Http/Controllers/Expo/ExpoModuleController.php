@@ -123,6 +123,15 @@ class ExpoModuleController extends Controller
         $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'gallery')->first();
         return view('Expo.pages.gallery', $data);
     }
+    
+    /**
+     * video page
+     */
+    public function video($unique_id)
+    {
+        $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'video')->first();
+        return view('Expo.pages.video', $data);
+    }
 
 
     /**
