@@ -112,7 +112,6 @@ Route::get('expo/{unique_id}/page/delegates', [ExpoModuleController::class, 'del
 Route::get('expo/{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video');
 
-
 // Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
 // Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
 // Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
