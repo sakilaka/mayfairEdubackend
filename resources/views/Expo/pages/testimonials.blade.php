@@ -33,7 +33,7 @@
     <section class="university-highlights my-5">
         <div class="container">
             <div class="text-center">
-                <h2 class="section-title">Schedule</h2>
+                <h2 class="section-title">Testimonials</h2>
             </div>
 
             <div class="row justify-content-center mt-5">
