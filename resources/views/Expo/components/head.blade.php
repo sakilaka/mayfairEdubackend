@@ -135,23 +135,23 @@
 
     @media screen and (max-width:767px) {
         .testimonial-user-img {
-            width: 8em !important;
-            height: 8em !important;
+            width: 4em !important;
+            height: 4em !important;
 
         }
     }
 
     @media screen and (max-width:991px) {
         .testimonial-user-img {
-            width: 10em !important;
-            height: 10em !important;
+            width: 7em !important;
+            height: 7em !important;
         }
     }
 
     @media screen and (min-width:992px) {
         .testimonial-user-img {
-            width: 13em !important;
-            height: 13em !important;
+            width: 10em !important;
+            height: 10em !important;
         }
     }
 
@@ -171,7 +171,7 @@
 
     .testimonial-content {
         position: relative;
-        height: 250px;
+        height: 150px;
         overflow-y: auto !important;
     }
 
