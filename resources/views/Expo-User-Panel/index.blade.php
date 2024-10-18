@@ -405,7 +405,7 @@
                                                         </p>
                                                         <div class="text-center">
                                                             <a href="{{ env('APP_MAIN_DOMAIN') . '/exhibitor/' . $exhibitor->id . '/details' }}"
-                                                                class="btn btn-primary-bg mx-auto px-5 rounded-0"
+                                                                class="btn btn-secondary-bg mx-auto px-5 rounded-0"
                                                                 target="_blank">Details</a>
                                                         </div>
                                                     </div>
