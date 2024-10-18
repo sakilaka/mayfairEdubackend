@@ -123,7 +123,7 @@ class ExpoModuleController extends Controller
         $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'gallery')->first();
         return view('Expo.pages.gallery', $data);
     }
-    
+
     /**
      * video page
      */
@@ -148,15 +148,19 @@ class ExpoModuleController extends Controller
     /**
      * expo form
      */
-    public function expo_form()
+    public function expo_form($expo_id)
     {
-        return view('Expo.pages.expo_registration');
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title')->first();
+        if (!$data['expo']) {
+            return back()->with('error', 'Expo Not Found!');
+        }
+        return view('Expo.pages.expo_registration', $data);
     }
 
     /**
      * expo form submit
      */
-    public function expo_form_submit(Request $request)
+    public function expo_form_submit(Request $request, $expo_id)
     {
         try {
             $image_url = null;

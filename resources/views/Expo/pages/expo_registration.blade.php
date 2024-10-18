@@ -275,8 +275,9 @@
                                             </div>
                                         </div>
 
-                                        <form id="regForm" action="{{ route('expo.sign-up.submit') }}" method="POST"
-                                            enctype="multipart/form-data">
+                                        <form id="regForm"
+                                            action="{{ route('expo.sign-up.submit', ['unique_id' => $expo->unique_id]) }}"
+                                            method="POST" enctype="multipart/form-data">
                                             @csrf
 
                                             <!-- Step 1 -->
@@ -639,8 +640,8 @@
 
     <script>
         /* $('select').select2({
-                        placeholder: 'Select an option'
-                    }); */
+                            placeholder: 'Select an option'
+                        }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
