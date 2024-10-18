@@ -136,7 +136,7 @@
                         <h3 class="page-title">
                             Dashboard
                         </h3>
-                        <a href="{{ route('expo_module.expo-ticket', ['ticket_no' => $userData['id']]) }}?download"
+                        <a href="{{ route('expo.expo-ticket', ['unique_id' => $expo->unique_id, 'ticket_no' => $userData['id']]) }}?download"
                             class="btn btn-sm btn-primary-bg d-md-none" target="_blank">
                             <i class="fa fa-address-book"></i>
                             Download Ticket
@@ -150,8 +150,8 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-12 col-lg-3">
-                                    <img src="{{ $userData->photo ?? asset('frontend/images/no-profile.jpg') }}" alt="{{ $userData->name }}" width="200"
-                                        style="border-radius: 8px">
+                                    <img src="{{ $userData->photo ?? asset('frontend/images/no-profile.jpg') }}"
+                                        alt="{{ $userData->name }}" width="200" style="border-radius: 8px">
                                     <div class="mt-2">
                                         <p class="pr-3" style="font-size: 1rem !important">
                                             {{ $userData->description }}
