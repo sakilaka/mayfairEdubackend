@@ -23,9 +23,9 @@ class ExpoDelegatesController extends Controller
     }
 
     /**
-     * create or update page for respective expo testimonial
+     * create or update page for respective expo delegate
      */
-    public function expo_delegate_manage($expo_id, $testimonial_key = null)
+    public function expo_delegate_manage($expo_id, $delegate_key = null)
     {
         $data['expo'] = $expo = Expo::where('unique_id', $expo_id)->first();
 
@@ -33,18 +33,18 @@ class ExpoDelegatesController extends Controller
             return back()->with('error', 'Expo not found!');
         }
 
-        $data['testimonial_key'] = explode('-', uuid_create())[0];
-        if ($testimonial_key) {
-            $data['testimonial_key'] = $testimonial_key;
+        $data['delegate_key'] = explode('-', uuid_create())[0];
+        if ($delegate_key) {
+            $data['delegate_key'] = $delegate_key;
         }
 
         return view('Backend.events.expo.delegates.manage', $data);
     }
 
     /**
-     * update or create respective expo testimonial
+     * update or create respective expo delegate
      */
-    public function expo_delegate_update(Request $request, $expo_id, $testimonial_key = null)
+    public function expo_delegate_update(Request $request, $expo_id, $delegate_key = null)
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
@@ -68,8 +68,8 @@ class ExpoDelegatesController extends Controller
                     $existingPhoto = null;
                     $existingPhotoPath = '';
 
-                    if ($testimonial_key && isset($existingTestimonials[$testimonial_key])) {
-                        $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
+                    if ($delegate_key && isset($existingTestimonials[$delegate_key])) {
+                        $existingPhoto = $existingTestimonials[$delegate_key]['photo'] ?? null;
 
                         if ($existingPhoto) {
                             $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
@@ -90,7 +90,7 @@ class ExpoDelegatesController extends Controller
                         $testimonial['photo'] = $existingPhoto;
                     }
 
-                    if ($testimonial_key && $uuidPart === $testimonial_key) {
+                    if ($delegate_key && $uuidPart === $delegate_key) {
                         $existingTestimonials[$uuidPart] = array_merge($existingTestimonials[$uuidPart] ?? [], $testimonial);
                     } else {
                         $finalData[$uuidPart] = $testimonial;
@@ -109,9 +109,9 @@ class ExpoDelegatesController extends Controller
     }
 
     /**
-     * delete testimonial of respective expo
+     * delete delegate of respective expo
      */
-    public function expo_delegate_destroy($expo_id, $testimonial_key)
+    public function expo_delegate_destroy($expo_id, $delegate_key)
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
@@ -121,8 +121,8 @@ class ExpoDelegatesController extends Controller
 
             $existingTestimonials = json_decode($expo->delegates, true) ?? [];
 
-            if (isset($existingTestimonials[$testimonial_key])) {
-                $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
+            if (isset($existingTestimonials[$delegate_key])) {
+                $existingPhoto = $existingTestimonials[$delegate_key]['photo'] ?? null;
                 if ($existingPhoto) {
                     $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
                     $existingPhotoPath = public_path($existingPhotoPath);
@@ -132,7 +132,7 @@ class ExpoDelegatesController extends Controller
                     }
                 }
 
-                unset($existingTestimonials[$testimonial_key]);
+                unset($existingTestimonials[$delegate_key]);
 
                 $expo->delegates = json_encode($existingTestimonials);
                 $expo->save();

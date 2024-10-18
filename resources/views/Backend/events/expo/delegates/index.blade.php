@@ -23,7 +23,7 @@
                         <nav aria-label="breadcrumb">
                             <a href="{{ route('admin.expo.delegate.manage', ['expo_id' => $expo->unique_id]) }}"
                                 class="btn btn-primary btn-fw">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                <i class="fa fa-user-plus" aria-hidden="true"></i>
                                 Add Delegate</a>
                         </nav>
                     </div>

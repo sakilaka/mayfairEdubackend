@@ -5,13 +5,13 @@
     @include('Backend.components.head')
 
     @php
-        $testimonial = [];
-        if ($testimonial_key) {
-            $testimonial = json_decode($expo->testimonials, true)[$testimonial_key] ?? [];
+        $delegate = [];
+        if ($delegate_key) {
+            $delegate = json_decode($expo->delegates, true)[$delegate_key] ?? [];
         }
     @endphp
 
-    <title>{{ env('APP_NAME') }} | {{ $testimonial ? 'Edit' : 'Add' }} Testimonial</title>
+    <title>{{ env('APP_NAME') }} | {{ $delegate ? 'Edit' : 'Add' }} Delegate</title>
 </head>
 
 <body>
@@ -25,8 +25,8 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            {{ $testimonial ? 'Edit' : 'Add' }} Testimonial
-                            {{ $testimonial ? "from '" . e($testimonial['name']) . "'" : '' }}
+                            {{ $delegate ? 'Edit' : 'Add' }} Delegate
+                            {{ $delegate ? "from '" . e($delegate['name']) . "'" : '' }}
                         </h3>
 
                         <nav aria-label="breadcrumb">
@@ -42,10 +42,10 @@
                             <div class="card">
                                 <div class="card-body">
                                     @php
-                                        if ($testimonial) {
+                                        if ($delegate) {
                                             $actionRoute = route('admin.expo.testimonial.update', [
                                                 'expo_id' => $expo->unique_id,
-                                                'testimonial_key' => $testimonial_key,
+                                                'delegate_key' => $delegate_key,
                                             ]);
                                         } else {
                                             $actionRoute = route('admin.expo.testimonial.update', [
@@ -71,7 +71,7 @@
                                                                 <ul></ul>
                                                             </div>
                                                             <input type="file" class="dropify"
-                                                                name="testimonial_{{ $testimonial_key }}[photo]"
+                                                                name="testimonial_{{ $delegate_key }}[photo]"
                                                                 accept="image/*" id="photo">
                                                             <button type="button" class="dropify-clear">Remove</button>
                                                             <div class="dropify-preview">
@@ -92,7 +92,7 @@
                                                     <div
                                                         class="col-sm-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center">
                                                         <div class="px-3">
-                                                            <img src="{{ $testimonial['photo'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                            <img src="{{ $delegate['photo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                 alt="" class="img-fluid"
                                                                 style="border-radius: 10px; max-height: 200px !important;"
                                                                 id="thumbnail_preview">
@@ -107,8 +107,8 @@
                                                 <label class="col-form-label pt-0">Name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" name="testimonial_{{ $testimonial_key }}[name]"
-                                                    class="form-control" value="{{ $testimonial['name'] ?? '' }}"
+                                                <input type="text" name="testimonial_{{ $delegate_key }}[name]"
+                                                    class="form-control" value="{{ $delegate['name'] ?? '' }}"
                                                     placeholder="Enter Name" required>
                                             </div>
 
@@ -117,9 +117,8 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text"
-                                                    name="testimonial_{{ $testimonial_key }}[designation]"
-                                                    class="form-control"
-                                                    value="{{ $testimonial['designation'] ?? '' }}"
+                                                    name="testimonial_{{ $delegate_key }}[designation]"
+                                                    class="form-control" value="{{ $delegate['designation'] ?? '' }}"
                                                     placeholder="Enter Designation" required>
                                             </div>
 
@@ -127,7 +126,7 @@
                                                 <label class="col-form-label pt-0">Description
                                                 </label>
 
-                                                <textarea name="testimonial_{{ $testimonial_key }}[description]" class="form-control editor">{!! $testimonial['description'] ?? '' !!}</textarea>
+                                                <textarea name="testimonial_{{ $delegate_key }}[description]" class="form-control editor">{!! $delegate['description'] ?? '' !!}</textarea>
                                             </div>
                                         </div>
 
