@@ -601,6 +601,7 @@ class ExpoController extends Controller
             return back()->with('error', 'Expo not found!');
         }
 
+        $data['testimonial_key'] = '';
         if ($testimonial_key) {
             $data['testimonial_key'] = $testimonial_key;
         }
