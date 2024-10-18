@@ -16,7 +16,7 @@ class ExpoUserController extends Controller
         $data['userData'] = auth()->guard('expo')->user();
         $data['exhibitors'] = University::where('is_exhibitor', true)->latest()->get();
 
-        return view('User-Backend.index', $data);
+        return view('Expo-User-Panel.index', $data);
     }
 
     public function index()
@@ -28,7 +28,7 @@ class ExpoUserController extends Controller
     {
         $data['userData'] = auth()->guard('expo')->user();
 
-        return view('User-Backend.profile.profile_edit', $data);
+        return view('Expo-User-Panel.profile.profile_edit', $data);
     }
 
     public function updateUserInfo(Request $request, $id)
@@ -67,6 +67,6 @@ class ExpoUserController extends Controller
     public function my_tickets()
     {
         $data['userData'] = auth()->guard('expo')->user();
-        return view('User-Backend.tickets', $data);
+        return view('Expo-User-Panel.tickets', $data);
     }
 }
