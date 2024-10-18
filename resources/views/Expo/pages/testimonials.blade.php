@@ -37,11 +37,20 @@
                 <h4 class="section-title d-inline ms-2 fs-4">{{ $expo->title }}</h4>
             </div>
 
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6">
+            <div class="row justify-content-between mt-5">
+                <div class="col-md-6 border">
                     <div class="row">
                         <div class="col-md-3">
-                            <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt="" class="img-fluid rounded-circle border border" width="150">
+                            <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt=""
+                                class="img-fluid rounded-circle border border-3 border-primary" width="130">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 border">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt=""
+                                class="img-fluid rounded-circle border border-3 border-primary" width="130">
                         </div>
                     </div>
                 </div>
