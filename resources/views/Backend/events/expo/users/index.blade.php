@@ -98,7 +98,7 @@
                                             <td>{{ $user->email }}</td>
 
                                             <td class="text-end d-flex justify-content-end">
-                                                <a href="javascript:void(0)" class="btn text-primary"
+                                                <a href="javascript:void(0)" class="btn text-primary show-participant"
                                                     data-toggle="tooltip" data-placement="top"
                                                     title="View Participant's Data"
                                                     data-ticket-no="{{ $user->ticket_no }}">
@@ -310,7 +310,7 @@
     </script>
 
     <script>
-        $('.btn.text-primary').on('click', function() {
+        $('.show-participant').on('click', function() {
             var ticketNo = $(this).data('ticket-no');
             var noProfileImage = '{{ asset('frontend/images/no-profile.jpg') }}';
 
