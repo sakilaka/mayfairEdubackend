@@ -320,6 +320,8 @@
                     ticket_no: ticketNo
                 },
                 success: function(response) {
+                    console.log(response);
+                    
                     $('#participantModal').modal('show');
 
                     $('#modalPhoto').attr('src', response.photo ? response.photo : noProfileImage);
