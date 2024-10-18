@@ -49,7 +49,7 @@
                                                             <div class="dropify-errors-container">
                                                                 <ul></ul>
                                                             </div>
-                                                            <input type="file" class="dropify" name="photo"
+                                                            <input type="file" class="dropify" name="testimonial[photo]"
                                                                 accept="image/*" id="photo">
                                                             <button type="button" class="dropify-clear">Remove</button>
                                                             <div class="dropify-preview">
@@ -85,15 +85,23 @@
                                                 <label class="col-form-label pt-0">Name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" name="name" class="form-control"
-                                                    placeholder="Enter Employee Name" required>
+                                                <input type="text" name="testimonial[name]" class="form-control"
+                                                    placeholder="Enter Name" required>
+                                            </div>
+                                            
+                                            <div class="form-group col-md-6">
+                                                <label class="col-form-label pt-0">Designation
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" name="testimonial[designation]" class="form-control"
+                                                    placeholder="Enter Designation" required>
                                             </div>
 
                                             <div class="form-group col-md-12">
                                                 <label class="col-form-label pt-0">Description
                                                 </label>
 
-                                                <textarea name="" class="form-control editor"></textarea>
+                                                <textarea name="testimonial[description]" class="form-control editor"></textarea>
                                             </div>
                                         </div>
 
