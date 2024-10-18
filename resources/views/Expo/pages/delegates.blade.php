@@ -95,23 +95,23 @@
                         What Our Partners Are Saying
                     </p>
                     <div class="row testimonial-cards-partners slick-slider">
-                        @foreach ($testimonials_partner as $testimonial)
+                        @foreach ($delegates as $delegate)
                             <div class="d-lg-flex flex-lg-column col-md-6 col-lg-4 justify-content-center p-2">
                                 <div class="testimonial-single-card bg-white p-3">
                                     <div class="d-flex justify-content-center">
                                         <img class="testimonial-user-img"
-                                            src="{{ $testimonial->image_show ?? asset('frontend/images/New-Rectangle-2.webp') }}"
+                                            src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
                                             alt="" style="border-radius:10px;">
                                     </div>
 
                                     <div style="height: 70px">
                                         <p class="mb-0 fw-bold mt-2 text-center"
                                             style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
-                                            {{ $testimonial->name }}
+                                            {{ $delegate['name'] }}
                                         </p>
                                         <p class="mb-0 text-center"
                                             style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {{ $testimonial->designation }}
+                                            {{ $delegate['designation'] }}
                                         </p>
                                     </div>
 
@@ -121,11 +121,11 @@
                                     </div>
                                     <div class="testimonial-content">
                                         @php
-                                            $comment = strip_tags($testimonial->comment);
+                                            $description = strip_tags($delegate['description']);
                                         @endphp
                                         <p class="mb-0 ckeditor5-rendered testimonial-comment"
-                                            data-full-comment="{{ $comment }}">
-                                            {!! $comment !!}
+                                            data-full-comment="{{ $description }}">
+                                            {!! $description !!}
                                         </p>
                                     </div>
                                 </div>
