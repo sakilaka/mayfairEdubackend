@@ -4,6 +4,16 @@
 <head>
     @include('Backend.components.head')
     <title>{{ env('APP_NAME') }} | Expo Participants</title>
+
+    <style>
+        .select2-container--default .select2-selection--single {
+            padding: 12px 5px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 7px;
+        }
+    </style>
 </head>
 
 <body>
@@ -31,6 +41,14 @@
                                 Send email to all
                             </button>
                         </nav>
+                    </div>
+
+                    <div class="my-2 justify-content-end row" style="gap: 5px">
+                        <select class="filter_child col-md-4 col-lg-2 form-control form-control-lg"
+                            name="filter_participant">
+                            <option value="">Select Expo</option>
+                            <option value="all">All</option>
+                        </select>
                     </div>
 
                     <div class="row card">
@@ -276,6 +294,11 @@
     </div>
 
     @include('Backend.components.script')
+
+    <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
+    <script>
+        $('select').select2();
+    </script>
 
     <script>
         $('#emailModal').on('show.bs.modal', function(event) {
