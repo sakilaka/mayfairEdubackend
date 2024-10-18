@@ -21,7 +21,8 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.create') }}" class="btn btn-primary btn-fw">
+                            <a href="{{ route('admin.expo.testimonial.create', ['expo_id' => $expo->unique_id]) }}"
+                                class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Testimonial</a>
                         </nav>
