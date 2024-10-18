@@ -50,7 +50,9 @@
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
                                                 <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                                    alt="" class="rounded-circle">
+                                                    alt="{{ $testimonial['name'] }}" width="75" height="75"
+                                                    class="rounded-circle">
+                                                &nbsp;
                                                 {{ $testimonial['name'] }}
                                             </td>
                                             <td>
