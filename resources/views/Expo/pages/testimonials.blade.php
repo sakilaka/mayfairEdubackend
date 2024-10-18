@@ -100,13 +100,13 @@
 
                 @for ($i = 0; $i < 6; $i++)
                     <div class="col-md-6">
-                        <div class="testimonial-box d-flex">
-                            <div class="testimonial-image">
+                        <div class="testimonial-box row">
+                            <div class="testimonial-image col-md-3">
                                 <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
                                     alt="" class="img-fluid border border-3 border-primary rounded-circle"
                                     width="130">
                             </div>
-                            <div class="testimonial-content ps-3">
+                            <div class="testimonial-content col-md-9 ps-3">
                                 <blockquote class="blockquote">
                                     <p class="mb-0 text-muted">
                                         "{{ $testimonial['description'] ?? 'Your testimonial text goes here.' }}"
