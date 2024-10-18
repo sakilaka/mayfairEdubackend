@@ -609,17 +609,16 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_store(Request $request, $expo_id)
     {
-        // return $request->all();
+        $expo = Expo::where('unique_id', $expo_id)->first();
 
         $finalData = [];
         $testimonialPrefix = 'testimonial_';
         $testimonialPath = 'expo/testimonial/';
 
-        // Iterate through the request data to find testimonial keys
         foreach ($request->all() as $key => $testimonialData) {
-            if (strpos($key, $testimonialPrefix) === 0
+            if (
+                strpos($key, $testimonialPrefix) === 0
             ) {
-                // Extract the testimonial data
                 $testimonial = [
                     'name' => $testimonialData['name'] ?? null,
                     'designation' => $testimonialData['designation'] ?? null,
@@ -627,26 +626,18 @@ class ExpoController extends Controller
                     'photo' => null,
                 ];
 
-                // Check if photo exists
                 if ($request->hasFile("{$key}.photo")) {
                     $photoFile = $request->file("{$key}.photo");
-
-                    // Generate a unique name for the photo file
                     $photoName = uniqid() . '.' . $photoFile->getClientOriginalExtension();
-
-                    // Save the photo to the desired directory
-                    // $photoFile->move(public_path($testimonialPath), $photoName);
-
-                    // Add the full URL of the photo to the testimonial data
-                    $testimonial['photo'] = asset($testimonialPath . $photoName); // Using asset() to generate the full URL
+                    $photoFile->move(public_path($testimonialPath), $photoName);
+                    $testimonial['photo'] = asset($testimonialPath . $photoName);
                 }
 
-                // Store testimonial data under its respective dynamic key (e.g., testimonial_xxx)
                 $finalData[$key] = $testimonial;
             }
         }
 
-        return $finalData;
+        return $expo->testimonials;
     }
 
     /**

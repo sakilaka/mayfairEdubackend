@@ -1,1 +1,2 @@
 expos-> unique_id (varchar)
+expos-> testimonials (longText)
