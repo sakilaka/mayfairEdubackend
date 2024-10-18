@@ -42,7 +42,7 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Ticket No.</th>
-                                        @if (request()->has('type') && request()->type == 'main')
+                                        @if (request()->type === 'main')
                                             <th>Expo</th>
                                         @endif
                                         <th>ID Type</th>
@@ -84,7 +84,7 @@
                                                     {{ $user->ticket_no }}
                                                 </a>
                                             </td>
-                                            @if ($user['expo_id'])
+                                            @if (request()->type === 'main' && $user['expo_id'])
                                                 <td>
                                                     <a href="{{ route('expo.details', ['id' => $user['expo_id']]) }}"
                                                         style="color: var(--primary_background);" target="_blank">
