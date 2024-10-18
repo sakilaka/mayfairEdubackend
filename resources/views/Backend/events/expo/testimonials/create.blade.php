@@ -38,7 +38,7 @@
                                         @csrf
 
                                         @php
-                                            $random = rand();
+                                            $random = explode('-', uuid_create())[0];
                                         @endphp
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
