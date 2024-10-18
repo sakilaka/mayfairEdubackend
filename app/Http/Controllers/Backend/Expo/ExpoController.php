@@ -593,7 +593,7 @@ class ExpoController extends Controller
     /**
      * create respective expo testimonial
      */
-    public function expo_testimonial_create($expo_id)
+    public function expo_testimonial_create($expo_id, $testimonial_key = null)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->first();
 
