@@ -41,9 +41,20 @@
                         <div class="col-md-10 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample"
-                                        action="{{ route('admin.expo.testimonial.store', ['expo_id' => $expo->unique_id]) }}"
-                                        method="POST" enctype="multipart/form-data">
+                                    @php
+                                        if ($testimonial) {
+                                            $actionRoute = route('admin.expo.testimonial.update', [
+                                                'expo_id' => $expo->unique_id,
+                                                'testimonial_key' => $testimonial_key,
+                                            ]);
+                                        } else {
+                                            $actionRoute = route('admin.expo.testimonial.update', [
+                                                'expo_id' => $expo->unique_id,
+                                            ]);
+                                        }
+                                    @endphp
+                                    <form class="forms-sample" action="{{ $actionRoute }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
 
                                         @php
@@ -84,7 +95,7 @@
                                                     <div
                                                         class="col-sm-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center">
                                                         <div class="px-3">
-                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                            <img src="{{ $testimonial['photo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                 alt="" class="img-fluid"
                                                                 style="border-radius: 10px; max-height: 200px !important;"
                                                                 id="thumbnail_preview">
@@ -100,7 +111,8 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" name="testimonial_{{ $random }}[name]"
-                                                    class="form-control" placeholder="Enter Name" required>
+                                                    class="form-control" value="{{ optional($testimonial['name']) }}"
+                                                    placeholder="Enter Name" required>
                                             </div>
 
                                             <div class="form-group col-md-6">
@@ -109,7 +121,9 @@
                                                 </label>
                                                 <input type="text"
                                                     name="testimonial_{{ $random }}[designation]"
-                                                    class="form-control" placeholder="Enter Designation" required>
+                                                    class="form-control"
+                                                    value="{{ optional($testimonial['designation']) }}"
+                                                    placeholder="Enter Designation" required>
                                             </div>
 
                                             <div class="form-group col-md-12">
