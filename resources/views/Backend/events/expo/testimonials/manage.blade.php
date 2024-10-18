@@ -5,14 +5,13 @@
     @include('Backend.components.head')
 
     @php
-        $testimonial = json_decode($expo->testimonials, true) ?? [];
-
+        $testimonial = [];
         if ($testimonial_key) {
-            dd($testimonial);
+            $testimonial = json_decode($expo->testimonials, true)[$testimonial_key];
         }
     @endphp
 
-    <title>{{ env('APP_NAME') }} | Add Testimonial</title>
+    <title>{{ env('APP_NAME') }} | {{ $testimonial ? 'Edit' : 'Add' }} Testimonial</title>
 </head>
 
 <body>
@@ -26,7 +25,8 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Add Testimonial
+                            {{ $testimonial ? 'Edit' : 'Add' }} Testimonial from
+                            {{ $testimonial ? "'" . e($testimonial['name']) . "'" : '' }}
                         </h3>
 
                         <nav aria-label="breadcrumb">
