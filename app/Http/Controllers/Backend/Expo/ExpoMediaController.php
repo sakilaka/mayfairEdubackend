@@ -13,7 +13,7 @@ class ExpoMediaController extends Controller
      */
     public function expo_gallery_page($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'gallery')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'gallery')->first();
         return view('Backend.events.expo.media.gallery', $data);
     }
 
@@ -109,7 +109,7 @@ class ExpoMediaController extends Controller
      */
     public function expo_video_page($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'video')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'video')->first();
         return view('Backend.events.expo.media.video', $data);
     }
 
@@ -145,7 +145,6 @@ class ExpoMediaController extends Controller
                     if (isset($videoUploads[$key])) {
                         $file = $videoUploads[$key];
                         if ($file) {
-                            // Delete the old video file if it exists
                             if (isset($oldPhotoGalleryImages[$key]) && $oldPhotoGalleryImages[$key]) {
                                 $oldVideoPath = public_path('upload/expo/video/' . basename($oldPhotoGalleryImages[$key]));
                                 if (file_exists($oldVideoPath)) {
@@ -153,9 +152,8 @@ class ExpoMediaController extends Controller
                                 }
                             }
 
-                            // Move the new video upload
                             $fileName = 'expo/video-' . rand() . time() . '.' . $file->getClientOriginalExtension();
-                            // $file->move(public_path('upload/expo/video'), $fileName);
+                            $file->move(public_path('upload/expo/video'), $fileName);
                             $videoContents[$key] = [
                                 'type' => 'upload',
                                 'url' => url('upload/expo/video/' . $fileName),
@@ -187,8 +185,8 @@ class ExpoMediaController extends Controller
             foreach ($videoContents as $key => $content) {
                 $finalVideoContents[$key] = $content;
             }
-return $finalVideoContents;
-            $expo->contents = json_encode($finalVideoContents);
+
+            $expo->video = json_encode($finalVideoContents);
             $expo->save();
 
             return redirect(route('admin.expo.media.video', ['expo_id' => $expo->unique_id]))->with('success', 'Video Page Updated!');

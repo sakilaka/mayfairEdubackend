@@ -24,8 +24,16 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Expo Gallery Page
+                            Gallery Page for '{{ $expo->title }}'
                         </h3>
+
+                        <nav aria-label="breadcrumb">
+                            <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id]) }}"
+                                class="btn btn-primary btn-fw">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                View Page
+                            </a>
+                        </nav>
                     </div>
 
                     <div class="row">

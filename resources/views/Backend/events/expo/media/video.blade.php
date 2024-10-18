@@ -24,7 +24,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Expo Video Page
+                            Video Page for '{{ $expo->title }}'
                         </h3>
                     </div>
 
