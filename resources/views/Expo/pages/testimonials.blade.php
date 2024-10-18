@@ -38,28 +38,35 @@
             </div>
 
             <div class="row justify-content-between mt-5">
-                @for ($i = 0; $i < 6; $i++)
+                @php
+                    $testimonials = json_decode($expo->testimonials, true) ?? [];
+                @endphp
+
+                @foreach ($testimonials as $testimonial)
                     <div class="col-md-6 px-3 mt-3">
                         <div
                             class="row align-items-center border border-success border-3 border-top-0 border-start-0 rounded">
                             <div class="col-md-3">
-                                <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt=""
-                                    class="img-fluid rounded-circle border border-3 border-success" width="100">
+                                <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
+                                    alt="" class="img-fluid rounded-circle border border-3 border-success"
+                                    width="100">
                             </div>
                             <div class="col-md-9">
                                 <blockquote class="blockquote border-start-0 mb-0 px-2">
-                                    <p class="mb-0 text-muted" style="font-size: 16px">
-                                        Your testimonial text goes here.
-                                    </p>
+                                    <div class="mb-0 text-muted" style="font-size: 16px">
+                                        {!! $testimonial['description'] !!}
+                                    </div>
                                     <footer class="blockquote-footer mt-2" style="font-size: 16px">
-                                        <strong>Anonymous</strong>,
-                                        <cite title="Designation">No Designation</cite>
+                                        <strong>{{ $testimonial['name'] }}</strong>,
+                                        <cite title="{{ $testimonial['designation'] }}">
+                                            {{ $testimonial['designation'] }}
+                                        </cite>
                                     </footer>
                                 </blockquote>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
 
         </div>
