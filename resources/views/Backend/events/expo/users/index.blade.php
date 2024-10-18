@@ -308,6 +308,12 @@
     </script>
 
     <script>
+        $('#filter_participant').on('change', function() {
+            $(this).closest('form').submit();
+        });
+    </script>
+
+    <script>
         $('#emailModal').on('show.bs.modal', function(event) {
             var modal = $(this);
             modal.find('.modal-title').text('');
