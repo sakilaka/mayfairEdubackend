@@ -61,7 +61,7 @@
                     $delegates = json_decode($expo->testimonials, true) ?? [];
                 @endphp
 
-                @foreach ($delegates as $delegate)
+                {{-- @foreach ($delegates as $delegate)
                     <div class="col-md-6 px-md-3 mt-3">
                         <div
                             class="row align-items-start justify-content-center border border-success border-3 border-top-0 border-start-0 rounded">
@@ -87,7 +87,52 @@
                             </div>
                         </div>
                     </div>
-                @endforeach
+                @endforeach --}}
+
+                <div class="col-12 mt-3">
+                    <p class="text-center fw-bold"
+                        style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
+                        What Our Partners Are Saying
+                    </p>
+                    <div class="row testimonial-cards-partners slick-slider">
+                        @foreach ($testimonials_partner as $testimonial)
+                            <div class="d-lg-flex flex-lg-column col-md-6 col-lg-4 justify-content-center p-2">
+                                <div class="testimonial-single-card bg-white p-3">
+                                    <div class="d-flex justify-content-center">
+                                        <img class="testimonial-user-img"
+                                            src="{{ $testimonial->image_show ?? asset('frontend/images/New-Rectangle-2.webp') }}"
+                                            alt="" style="border-radius:10px;">
+                                    </div>
+
+                                    <div style="height: 70px">
+                                        <p class="mb-0 fw-bold mt-2 text-center"
+                                            style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
+                                            {{ $testimonial->name }}
+                                        </p>
+                                        <p class="mb-0 text-center"
+                                            style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+                                            {{ $testimonial->designation }}
+                                        </p>
+                                    </div>
+
+                                    <div class="my-2 mt-3">
+                                        <img src="{{ asset('frontend/images/left-quotes-sign.png') }}" alt=""
+                                            style="width:1rem">
+                                    </div>
+                                    <div class="testimonial-content">
+                                        @php
+                                            $comment = strip_tags($testimonial->comment);
+                                        @endphp
+                                        <p class="mb-0 ckeditor5-rendered testimonial-comment"
+                                            data-full-comment="{{ $comment }}">
+                                            {!! $comment !!}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
             </div>
 
         </div>
