@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Expo;
 use App\Http\Controllers\Controller;
 use App\Models\Expo;
 use App\Models\ExpoModule;
+use App\Models\ExpoUser;
 use App\Models\University;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -46,7 +47,7 @@ class ExpoUserController extends Controller
     public function updateUserInfo(Request $request, $id)
     {
         try {
-            $expoModule = ExpoModule::findOrFail($id);
+            $expoModule = ExpoUser::findOrFail($id);
 
             $expoModule->id_type = $request->id_type;
             $expoModule->id_no = $request->id_no;

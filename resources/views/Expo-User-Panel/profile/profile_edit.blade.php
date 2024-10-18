@@ -28,7 +28,7 @@
                             <h4 class="card-title mb-0"><b>Personal Information</b></h4>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('user.profile_info_update', Auth::guard('expo')->user()->id) }}" method="POST"
+                            <form action="{{ route('expo.user.profile_info_update', Auth::guard('expo')->user()->id) }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
 
