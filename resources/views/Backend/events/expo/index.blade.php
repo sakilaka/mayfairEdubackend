@@ -92,16 +92,31 @@
                                                 data-original-title="{{ $fullUniversityNames }}">
                                                 {{ $truncatedUniversityNames }}
                                             </td>
-                                            <td class="text-right d-flex">
-                                                <a href="{{ route('admin.expo.edit', $expo->id) }}"
-                                                    class="btn text-primary">
-                                                    <i class="fa fa-edit" aria-hidden="true"></i>
-                                                </a>
-                                                <input type="hidden" value="{{ $expo->id }}">
-                                                <a data-toggle="modal" data-target="#delete_modal_box"
-                                                    class="btn text-primary delete-item">
-                                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a>
+
+                                            <td class="text-right">
+                                                <div class="dropdown dropdown-action">
+                                                    <a href="#" class="action-icon dropdown-toggle"
+                                                        data-toggle="dropdown" aria-expanded="false"><i
+                                                            class="fa fa-ellipsis-v text-primary"></i></a>
+                                                    <div class="dropdown-menu dropdown-menu-right">
+                                                        <div class="d-flex justify-content-end">
+                                                            <a href="{{ route('admin.expo.edit', $expo->id) }}"
+                                                                class="btn text-primary" data-toggle="tooltip" data-title="Edit Expo">
+                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                            </a>
+                                                            <a href="{{ route('admin.expo.edit', $expo->id) }}"
+                                                                class="btn text-primary" data-toggle="tooltip" data-title="Edit Expo">
+                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                            </a>
+
+                                                            <input type="hidden" value="{{ $expo->id }}">
+                                                            <a data-toggle="modal" data-target="#delete_modal_box"
+                                                                class="btn text-primary delete-item">
+                                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
