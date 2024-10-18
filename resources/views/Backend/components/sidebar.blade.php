@@ -620,13 +620,6 @@
                                 Route::is('admin.expo.ui.gallery') ||
                                 Route::is('admin.expo.ui.video');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.ui.contact') }}"
-                                class="nav-link {{ $is_active_expo_module_contents ? 'active' : '' }}">
-                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
-                                Manage UI Contents
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </li>

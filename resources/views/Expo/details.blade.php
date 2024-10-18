@@ -12,7 +12,7 @@
         $datetime = json_decode($expo->datetime, true) ?? [];
     @endphp
 
-    @if ($additional_contents['hero_bg'])
+    @if (isset($additional_contents['hero_bg']) && $additional_contents['hero_bg'])
         <style>
             .bg-section {
                 background-image: url('{{ $additional_contents['hero_bg'] }}');
