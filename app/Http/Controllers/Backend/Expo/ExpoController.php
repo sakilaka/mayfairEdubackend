@@ -601,6 +601,10 @@ class ExpoController extends Controller
             return back()->with('error', 'Expo not found!');
         }
 
+        if ($testimonial_key) {
+            $data['testimonial_key'] = $testimonial_key;
+        }
+
         return view('Backend.events.expo.testimonials.manage', $data);
     }
 
