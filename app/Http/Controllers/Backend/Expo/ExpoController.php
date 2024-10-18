@@ -638,6 +638,7 @@ class ExpoController extends Controller
 
                         if ($existingPhoto) {
                             $existingPhotoPath = public_path($existingPhoto);
+                            return $existingPhotoPath;
                             if (file_exists($existingPhotoPath)) {
                                 return true;
                                 unlink($existingPhotoPath);
