@@ -41,7 +41,7 @@
                 <div class="col-md-6">
                     <div class="row">
                         <div class="col-md-3">
-                            <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt="" class="img-fluid rounded-circle border border" width="150">
                         </div>
                     </div>
                 </div>
