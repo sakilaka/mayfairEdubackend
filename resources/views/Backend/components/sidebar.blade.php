@@ -638,36 +638,20 @@
                     Route::is('admin.expo.ui.contact') ||
                     Route::is('admin.expo.ui.gallery') ||
                     Route::is('admin.expo.ui.video') ||
-                    Route::is('admin.expo.create') ||
-                    Route::is('admin.expo.edit') ||
-                    Route::is('admin.expo.index') ||
                     Route::is('admin.expo.exhibitors.index') ||
                     Route::is('admin.expo.users') ||
                     Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.add_participator');
             @endphp
             <li class="nav-item {{ $is_active_expo_site_module ? 'active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#expo-sidemenu" aria-expanded="false"
+                <a class="nav-link" data-toggle="collapse" href="#expo-site-sidemenu" aria-expanded="false"
                     aria-controls="blogs-events-sidemenu">
                     <i class="fa fa-podcast menu-icon"></i>
                     <span class="menu-title">Expo Site</span>
                     <i class="menu-arrow"></i>
                 </a>
-                <div class="collapse {{ $is_active_expo_site_module ? 'show' : '' }}" id="expo-sidemenu">
+                <div class="collapse {{ $is_active_expo_site_module ? 'show' : '' }}" id="expo-site-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        @php
-                            $is_expo_routes =
-                                Route::is('admin.expo.index') ||
-                                Route::is('admin.expo.create') ||
-                                Route::is('admin.expo.edit');
-                        @endphp
-                        <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.index') }}"
-                                class="nav-link {{ $is_expo_routes ? 'active' : '' }}">
-                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
-                                Manage Expo
-                            </a>
-                        </li>
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.exhibitors.index') }}"
                                 class="nav-link {{ Route::is('admin.expo.exhibitors.index') || Route::is('admin.expo.exhibitor.edit') ? 'active' : '' }}">
