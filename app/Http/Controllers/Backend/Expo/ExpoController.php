@@ -645,7 +645,7 @@ class ExpoController extends Controller
                             }
                         }
                     }
-                    return $testimonial;
+
                     if ($request->hasFile("{$key}.photo")) {
                         $photoFile = $request->file("{$key}.photo");
                         $photoName = 'user_' . uniqid() . '.' . $photoFile->getClientOriginalExtension();
