@@ -15,7 +15,17 @@ class ExpoUserController extends Controller
     {
         $data['userData'] = auth()->guard('expo')->user();
         $data['expo'] = Expo::where('unique_id', $data['userData']['expo_id'])->select('unique_id', 'title', 'additional_contents')->first();
-        $data['exhibitors'] = University::where('is_exhibitor', true)->latest()->get();
+
+        $data['exhibitors'] = [];
+        foreach (json_decode($data['expo']->universities) ?? [] as $exhibitor_id) {
+            $exhibitor = University::find($exhibitor_id);
+return $exhibitor;
+            if ($exhibitor) {
+                $data['exhibitors'][] = $exhibitor;
+            }
+        }
+
+        $data['exhibitors'] = collect($data['exhibitors']);
 
         return view('Expo-User-Panel.index', $data);
     }
