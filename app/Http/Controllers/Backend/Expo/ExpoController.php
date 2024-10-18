@@ -727,14 +727,14 @@ class ExpoController extends Controller
      */
     public function expo_users($type)
     {
-        /* if ($type == 'main') {
+        if ($type == 'main') {
             $data['expo_users'] = ExpoUser::latest()->paginate(50);
         } elseif ($type == 'site') {
             $data['expo_users'] = ExpoModule::latest()->paginate(50);
         } else {
-            // abort(404, 'Not Found');
-        } */
-        $data['expo_users'] = ExpoUser::latest()->paginate(50);
+            abort(404, 'Not Found');
+        }
+
         return view('Backend.events.expo.users.index', $data);
     }
 
