@@ -684,25 +684,19 @@ class ExpoController extends Controller
 
             $existingTestimonials = json_decode($expo->testimonials, true) ?? [];
 
-            // Check if the testimonial key exists
             if (isset($existingTestimonials[$testimonial_key])) {
-                // Get the existing photo path
                 $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
                 if ($existingPhoto) {
-                    // Extract the path from the URL
-                    $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH); // Gets the path portion of the URL
-                    $existingPhotoPath = public_path($existingPhotoPath); // Combine with public_path
+                    $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
+                    $existingPhotoPath = public_path($existingPhotoPath);
 
-                    // Check if the file exists and delete it
                     if (file_exists($existingPhotoPath)) {
                         unlink($existingPhotoPath);
                     }
                 }
 
-                // Remove the testimonial from the array
                 unset($existingTestimonials[$testimonial_key]);
 
-                // Update the testimonials field
                 $expo->testimonials = json_encode($existingTestimonials);
                 $expo->save();
 
