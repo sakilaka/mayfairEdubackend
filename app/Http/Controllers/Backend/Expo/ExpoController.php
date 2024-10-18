@@ -799,7 +799,10 @@ class ExpoController extends Controller
     {
         $ticketNo = $request->input('ticket_no');
 
-        $participant = ExpoModule::where('ticket_no', $ticketNo)->first();
+        $participant = ExpoUser::where('ticket_no', $ticketNo)->first();
+        if (!$participant) {
+            $participant = ExpoModule::where('ticket_no', $ticketNo)->first();
+        }
 
         if ($participant) {
             return response()->json($participant);
