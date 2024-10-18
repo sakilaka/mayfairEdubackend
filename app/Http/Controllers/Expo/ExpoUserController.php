@@ -15,7 +15,7 @@ class ExpoUserController extends Controller
     {
         $data['userData'] = auth()->guard('expo')->user();
         $data['exhibitors'] = University::where('is_exhibitor', true)->latest()->get();
-return $data['expoData'];
+        
         return view('Expo-User-Panel.index', $data);
     }
 
