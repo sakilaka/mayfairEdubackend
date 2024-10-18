@@ -42,7 +42,7 @@ class ExpoModuleContentsController extends Controller
     public function ui_gallery_page()
     {
         $data['page'] = ExpoModuleContent::where('key', 'gallery')->first();
-        return view('Backend.events.expo.ui-contents.gallery', $data);
+        // return view('Backend.events.expo.ui-contents.gallery', $data);
     }
 
     /**
