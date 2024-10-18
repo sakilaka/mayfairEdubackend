@@ -72,6 +72,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
         ],
+        'expo_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ExpoUser::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
