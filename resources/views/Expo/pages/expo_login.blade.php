@@ -19,6 +19,8 @@
 
     @php
         $contents = json_decode($expo['additional_contents'], true) ?? [];
+        $place = json_decode($expo->place, true) ?? [];
+        $datetime = json_decode($expo->datetime, true) ?? [];
     @endphp
 </head>
 

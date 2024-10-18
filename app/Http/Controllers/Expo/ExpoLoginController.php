@@ -47,7 +47,7 @@ class ExpoLoginController extends Controller
 
     public function login_page($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'additional_contents')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'additional_contents', 'place', 'datetime')->first();
         if (!$data['expo']) {
             return back()->with('error', 'Expo Not Found!');
         }
