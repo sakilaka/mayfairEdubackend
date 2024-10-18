@@ -42,7 +42,9 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Ticket No.</th>
-                                        <th>Expo</th>
+                                        @if (request()->has('type') && request()->type == 'main')
+                                            <th>Expo</th>
+                                        @endif
                                         <th>ID Type</th>
                                         <th>ID No.</th>
                                         <th>Phone</th>
@@ -74,7 +76,7 @@
                                                         ]);
                                                     } else {
                                                         $ticket_url =
-                                                            env('APP_EXPO_DOMAIN') . '/expo-ticket\'' . $user->id;
+                                                            env('APP_EXPO_DOMAIN') . '/expo-ticket' . '/' . $user->id;
                                                     }
                                                 @endphp
                                                 <a href="{{ $ticket_url }}" style="color: var(--primary_background);"
