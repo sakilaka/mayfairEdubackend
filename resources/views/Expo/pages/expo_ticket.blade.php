@@ -212,9 +212,9 @@
 
     @php
         $contents = json_decode($expo['additional_contents'], true) ?? [];
-        
-        $organizerDetails = $contents['organizerDetails'];
-        $co_organizerDetails = $contents['co_organizerDetails'];
+
+        $organizerDetails = $contents['organizerDetails'] ?? [];
+        $co_organizerDetails = $contents['co_organizerDetails'] ?? [];
     @endphp
 </head>
 
