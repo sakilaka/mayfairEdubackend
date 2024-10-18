@@ -113,3 +113,99 @@
         --bs-dropdown-zindex: 9000;
     }
 </style>
+
+<link rel="stylesheet"
+    href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/slick-theme.min.css') }}">
+<link rel="stylesheet"
+    href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/slick.css') }}">
+
+<style>
+    @media screen and (min-width:1199px) {
+        .testimonial-title-border {
+            position: relative;
+        }
+    }
+
+    .testimonial-user-img {
+        border-radius: 50% !important;
+        object-position: center !important;
+        padding: 3px;
+        background-color: var(--primary_background);
+    }
+
+    @media screen and (max-width:767px) {
+        .testimonial-user-img {
+            width: 8em !important;
+            height: 8em !important;
+
+        }
+    }
+
+    @media screen and (max-width:991px) {
+        .testimonial-user-img {
+            width: 10em !important;
+            height: 10em !important;
+        }
+    }
+
+    @media screen and (min-width:992px) {
+        .testimonial-user-img {
+            width: 13em !important;
+            height: 13em !important;
+        }
+    }
+
+    .testimonial-cards.slick-slide {
+        margin: 0 20px !important;
+        text-align: center !important;
+    }
+
+    .testimonial-single-card {
+        background-color: #f2f8f19e;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px -3px rgba(54, 54, 54, 0.5);
+        /* height: 575px; */
+        /* overflow: auto; */
+        /* position: relative; */
+    }
+
+    .testimonial-content {
+        position: relative;
+        height: 250px;
+        overflow-y: auto !important;
+    }
+
+    .testimonial-content::-webkit-scrollbar {
+        width: 3px;
+    }
+
+    .testimonial-content::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    .testimonial-content::-webkit-scrollbar-thumb {
+        background-color: #ddd;
+        border-radius: 10px;
+    }
+
+    .testimonial-content .more-text {
+        display: none;
+        color: #333;
+    }
+
+    .see-more-btn-container {
+        background-color: #f2f8f19e;
+        border-radius: 0 0 10px 10px;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .see-more-btn {
+        background-color: transparent;
+        border: none;
+        color: var(--secondary_background);
+        cursor: pointer;
+        font-size: 1rem;
+        font-family: 'DM Sans', sans-serif;
+    }
+</style>

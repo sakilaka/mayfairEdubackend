@@ -5,124 +5,11 @@
     @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Overseas Delegates of '{{ $expo->title }}'</title>
     <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/slick-theme.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/slick.css') }}">
+
 
     @php
         $additional_contents = json_decode($expo->additional_contents, true) ?? [];
     @endphp
-
-    <style>
-        blockquote .testimonial-description::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        blockquote .testimonial-description::-webkit-scrollbar-track {
-            background: #e0e0e0;
-        }
-
-        blockquote .testimonial-description::-webkit-scrollbar-thumb {
-            background-color: #28a74648;
-            border-radius: 10px;
-        }
-
-        blockquote .testimonial-description::-webkit-scrollbar-thumb:hover {
-            background-color: #218838;
-        }
-    </style>
-
-    <style>
-        @media screen and (min-width:1199px) {
-            .testimonial-title-border {
-                position: relative;
-            }
-        }
-
-        .testimonial-user-img {
-            border-radius: 50% !important;
-            object-position: center !important;
-            padding: 3px;
-            background-color: var(--primary_background);
-        }
-
-        @media screen and (max-width:767px) {
-            .testimonial-user-img {
-                width: 8em !important;
-                height: 8em !important;
-
-            }
-        }
-
-        @media screen and (max-width:991px) {
-            .testimonial-user-img {
-                width: 10em !important;
-                height: 10em !important;
-            }
-        }
-
-        @media screen and (min-width:992px) {
-            .testimonial-user-img {
-                width: 13em !important;
-                height: 13em !important;
-            }
-        }
-
-        .testimonial-cards.slick-slide {
-            margin: 0 20px !important;
-            text-align: center !important;
-        }
-
-        .testimonial-single-card {
-            background-color: #f2f8f19e;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px -3px rgba(54, 54, 54, 0.5);
-            /* height: 575px; */
-            /* overflow: auto; */
-            /* position: relative; */
-        }
-
-        .testimonial-content {
-            position: relative;
-            height: 250px;
-            overflow-y: auto !important;
-        }
-
-        .testimonial-content::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .testimonial-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-
-        .testimonial-content::-webkit-scrollbar-thumb {
-            background-color: #ddd;
-            border-radius: 10px;
-        }
-
-        .testimonial-content .more-text {
-            display: none;
-            color: #333;
-        }
-
-        .see-more-btn-container {
-            background-color: #f2f8f19e;
-            border-radius: 0 0 10px 10px;
-            text-align: center;
-            padding: 0.5rem;
-        }
-
-        .see-more-btn {
-            background-color: transparent;
-            border: none;
-            color: var(--secondary_background);
-            cursor: pointer;
-            font-size: 1rem;
-            font-family: 'DM Sans', sans-serif;
-        }
-    </style>
 </head>
 
 <body>
@@ -207,32 +94,6 @@
 
     @include('Expo.home_sections.footer')
     @include('Expo.components.footer')
-
-    <script src="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/js/slick-slider.min.js') }}">
-    </script>
-    <script>
-        $('.testimonial-cards-partners').slick({
-            slidesToShow: 3,
-            slidesToScroll: 2,
-            autoplay: true,
-            autoplaySpeed: 2000,
-            responsive: [{
-                    breakpoint: 992,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 2
-                    }
-                },
-                {
-                    breakpoint: 576,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-    </script>
 </body>
 
 </html>

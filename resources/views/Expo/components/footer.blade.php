@@ -55,8 +55,8 @@
 </button> --}}
 
 <div class="fixed-buttons" id="fixed-buttons">
-    <a class="nav-link registration-btn rounded-0 btn-secondary-bg px-2"
-        href="{{ route('expo.sign-up') }}" style="color: white;">Participate</a>
+    <a class="nav-link registration-btn rounded-0 btn-secondary-bg px-2" href="{{ route('expo.sign-up') }}"
+        style="color: white;">Participate</a>
 </div>
 <script>
     document.getElementById('btn-toggle').addEventListener('click', function() {
@@ -70,5 +70,31 @@
         } else {
             toggleButton.style.right = '115px';
         }
+    });
+</script>
+
+<script src="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/js/slick-slider.min.js') }}">
+</script>
+<script>
+    $('.testimonial-cards-partners').slick({
+        slidesToShow: 3,
+        slidesToScroll: 2,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        responsive: [{
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     });
 </script>
