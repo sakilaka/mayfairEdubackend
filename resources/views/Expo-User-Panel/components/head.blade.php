@@ -74,7 +74,7 @@
     }
 
     .navbar {
-        background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}');
+        /* background-image: url('{{ asset('frontend/expo-domain/images/rectangle_1.png') }}'); */
     }
 
     .navbar.default-layout-navbar .navbar-brand-wrapper,
