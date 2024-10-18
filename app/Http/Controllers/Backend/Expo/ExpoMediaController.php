@@ -13,6 +13,7 @@ class ExpoMediaController extends Controller
      */
     public function expo_gallery_page($expo_id)
     {
+        return true;
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'gallery')->first();
         return view('Backend.events.expo.media.gallery', $data);
     }
