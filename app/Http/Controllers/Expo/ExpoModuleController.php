@@ -205,7 +205,7 @@ class ExpoModuleController extends Controller
      */
     public function expo_ticket($expo_id, $ticket_no)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'additional_contents')->first();
         if (!$data['expo']) {
             return back()->with('error', 'Expo Not Found!');
         }

@@ -305,6 +305,7 @@
                                             class="img-fluid" width="380">
                                     </div>
                                     <div class="mt-5">
+                                        {{ dd($expo['additional_contents']) }}
                                         <p class="text-dark text-center minimal-shadow">
                                             <span class="fw600">Organizer:</span> Chinese Service Center for Scholarly
                                             Exchange<br>
