@@ -82,16 +82,6 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
 
-Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(
-    function () {
-        Route::prefix('users')->group(function () {
-            Route::get('/', [ExpoSiteController::class, 'expo_users'])->name('admin.expo-site.users');
-            Route::get('add-participator', [ExpoSiteController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
-            Route::post('add-participator', [ExpoSiteController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
-        });
-    }
-);
-
 /**
  * Expo Routes (User)
  */
