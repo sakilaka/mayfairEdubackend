@@ -337,7 +337,7 @@
 
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
-                                                        <a href="{{ route('expo.login.page') }}"
+                                                        <a href="{{ route('expo.login.page', ['unique_id' => $expo->unique_id]) }}"
                                                             class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
@@ -581,7 +581,7 @@
                                                 <!-- Navigation Buttons -->
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
-                                                        <a href="{{ route('expo.login.page') }}"
+                                                        <a href="{{ route('expo.login.page', ['unique_id' => $expo->unique_id]) }}"
                                                             class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
@@ -616,7 +616,7 @@
                                                 <!-- Navigation Buttons -->
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
-                                                        <a href="{{ route('expo.login.page') }}"
+                                                        <a href="{{ route('expo.login.page', ['unique_id' => $expo->unique_id]) }}"
                                                             class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
@@ -645,8 +645,8 @@
 
     <script>
         /* $('select').select2({
-                                                    placeholder: 'Select an option'
-                                                }); */
+                                                        placeholder: 'Select an option'
+                                                    }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
