@@ -341,8 +341,7 @@
                     $('#modalDegree').text(response.degree);
                 },
                 error: function(xhr) {
-                    // alert('Failed to fetch participant data. Please try again.');
-                    alert(xhr.statusText);
+                    alert('Failed to fetch participant data. Please try again.');
                 }
             });
 
