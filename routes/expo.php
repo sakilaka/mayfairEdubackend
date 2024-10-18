@@ -86,16 +86,16 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
  */
 Route::prefix('expo')->middleware(['accessLogin'])->group(function () {
     Route::prefix('user')->middleware(['userCheck'])->group(function () {
-        Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('user.dashboard');
-        Route::get('/profile', [ExpoUserController::class, 'index'])->name('user.profile');
-        Route::get('/profile/{id}', [ExpoUserController::class, 'editUserInfo'])->name('user.edit_profile');
-        Route::post('/update/profile/{id}', [ExpoUserController::class, 'updateUserInfo'])->name('user.profile_info_update');
+        Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('expo.user.dashboard');
+        Route::get('/profile', [ExpoUserController::class, 'index'])->name('expo.user.profile');
+        Route::get('/profile/{id}', [ExpoUserController::class, 'editUserInfo'])->name('expo.user.edit_profile');
+        Route::post('/update/profile/{id}', [ExpoUserController::class, 'updateUserInfo'])->name('expo.user.profile_info_update');
 
-        Route::post('/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('user.password_change');
-        Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('user.logout');
+        Route::post('/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('expo.user.password_change');
+        Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('expo.user.logout');
 
         // tickets
-        Route::get('my-tickets', [ExpoUserController::class, 'my_tickets'])->name('user.my_tickets');
+        Route::get('my-tickets', [ExpoUserController::class, 'my_tickets'])->name('expo.user.my_tickets');
     });
 });
 

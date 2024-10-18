@@ -53,7 +53,7 @@ class ExpoLoginController extends Controller
         }
 
         if (auth()->check()) {
-            return redirect()->route('user.dashboard')->with('success', 'You are already logged in!');
+            return redirect()->route('expo.user.dashboard')->with('success', 'You are already logged in!');
         }
 
         return view('Expo.pages.expo_login', $data);
@@ -82,7 +82,7 @@ class ExpoLoginController extends Controller
         }
 
         if (auth()->guard('expo')->attempt($credentials)) {
-            return redirect(route('user.dashboard'))->with('success', 'Logged in successfully!');
+            return redirect(route('expo.user.dashboard'))->with('success', 'Logged in successfully!');
         } else {
             return back()->with('error', 'Your ID/Email or password is incorrect.');
         }
