@@ -1,46 +1,3 @@
-{{-- <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar shadow">
-    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="{{ route('home') }}">
-            <img src="{{ asset('frontend/expo-domain/images/vector_smart_object_3.png') }}" alt="logo">
-        </a>
-        <a class="navbar-brand brand-logo-mini" href="{{ route('home') }}">
-            <img src="{{ asset('frontend/expo-domain/images/vector_smart_object_3.png') }}" alt="logo">
-        </a>
-    </div>
-    <div class="navbar-menu-wrapper d-flex justify-content-between align-items-stretch">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="fas fa-bars text-primary"></span>
-        </button>
-
-        <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item nav-profile dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown"
-                    aria-expanded="false">
-                    <span class="mr-2 d-none d-md-inline">{{ Auth::user()->name ?? '' }}</span>
-                    <img src="{{ $userData->photo ?? asset('frontend/images/no-profile.jpg') }}"
-                        alt="{{ Auth::user()->name ?? '' }}">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="{{ route('user.edit_profile', ['id' => Auth::user()->id]) }}">
-                        <i class="fa fa-user text-primary"></i>
-                        Edit Profile
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ route('user.logout') }}">
-                        <i class="fas fa-power-off text-primary"></i>
-                        Logout
-                    </a>
-                </div>
-            </li>
-        </ul>
-
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
-            data-toggle="offcanvas">
-            <span class="fas fa-bars"></span>
-        </button>
-    </div>
-</nav> --}}
-
 <style>
     :root {
         --red-btn-color: #e74c3c;
@@ -301,7 +258,8 @@
                         <li class="nav-item nav-profile dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                 id="profileDropdown" aria-expanded="false">
-                                <span class="mr-2 d-none d-md-inline">{{ Auth::guard('expo')->user()->name ?? '' }}</span>
+                                <span
+                                    class="mr-2 d-none d-md-inline">{{ Auth::guard('expo')->user()->name ?? '' }}</span>
                                 <img src="{{ $userData->photo ?? asset('frontend/images/no-profile.jpg') }}"
                                     alt="{{ Auth::guard('expo')->user()->name ?? '' }}" width="50"
                                     style="border-radius: 50%; margin-left:5px;">
