@@ -22,10 +22,10 @@
                 style="color: white;">Testimonial</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/gallery" style="color: white;">Gallery</a>
+            <a class="nav-link" href="{{ route('expo.testimonials', ['unique_id' => $expo->unique_id]) }" style="color: white;">Gallery</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;">Join</a>
+            <a class="nav-link" href="{{ route('expo.testimonials', ['unique_id' => $expo->unique_id]) }" style="color: white;">Join</a>
         </li>
     </ul>
 </div>

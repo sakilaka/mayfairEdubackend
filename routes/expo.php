@@ -109,8 +109,8 @@ Route::get('expo/{unique_id}/page/exhibitors', [ExpoModuleController::class, 'ex
 Route::get('expo/{unique_id}/page/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
 Route::get('expo/{unique_id}/page/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
 Route::get('expo/{unique_id}/page/delegates', [ExpoModuleController::class, 'delegates'])->name('expo.delegates');
-Route::get('expo/{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery.page');
-Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video.page');
+Route::get('expo/{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
+Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video');
 
 
 // Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
