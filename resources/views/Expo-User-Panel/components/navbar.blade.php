@@ -234,7 +234,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                {{-- <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav ms-auto d-flex align-items-center custom-navbar-width">
                         <li class="nav-item">
                             <a class="nav-link {{ Route::is('home') ? 'active' : '' }}" href="{{ route('home') }}"
@@ -256,6 +256,7 @@
                             <a class="nav-link px-2 {{ Route::is('frontend.exhibitors') ? 'active' : '' }}"
                                 href="{{ route('frontend.exhibitors') }}" style="color: white;">Exhibitors</a>
                         </li>
+
                         <li class="nav-item nav-profile dropdown">
                             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                                 id="profileDropdown" aria-expanded="false">
@@ -283,11 +284,9 @@
                             <a class="nav-link registration-btn btn-danger-bg px-2" href="{{ route('logout') }}"
                                 style="color: white;">Logout</a>
                         </li>
-
-
                     </ul>
 
-                </div> --}}
+                </div>
             </div>
         </nav>
     </div>

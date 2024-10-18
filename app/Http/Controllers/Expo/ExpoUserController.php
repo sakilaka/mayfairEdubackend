@@ -14,8 +14,9 @@ class ExpoUserController extends Controller
     public function dashboard()
     {
         $data['userData'] = auth()->guard('expo')->user();
+        $data['expo'] = Expo::where('unique_id', $data['userData']['expo_id'])->select('unique_id', 'title', 'additional_contents')->first();
         $data['exhibitors'] = University::where('is_exhibitor', true)->latest()->get();
-        
+
         return view('Expo-User-Panel.index', $data);
     }
 
