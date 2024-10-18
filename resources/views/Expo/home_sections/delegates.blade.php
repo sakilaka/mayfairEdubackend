@@ -4,7 +4,7 @@
             <h2 class="section-title">Overseas Delegates</h2>
         </div>
 
-        <div class="row justify-content-center mt-3">
+        <div class="row justify-content-center mt-2">
             @php
                 $delegates = json_decode($expo->testimonials, true) ?? [];
             @endphp
@@ -14,7 +14,7 @@
                     style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
                     What Our Overseas Delegates Are Saying
                 </p>
-                <div class="row testimonial-cards-partners slick-slider">
+                <div class="row delegates-slick-carousel slick-slider">
                     @foreach ($delegates as $delegate)
                         <div class="d-lg-flex flex-lg-column col-md-6 col-lg-4 justify-content-center p-2">
                             <div class="testimonial-single-card bg-white p-3">

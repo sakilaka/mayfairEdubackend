@@ -76,7 +76,7 @@
 <script src="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/js/slick-slider.min.js') }}">
 </script>
 <script>
-    $('.testimonial-cards-partners').slick({
+    $('.delegates-slick-carousel').slick({
         slidesToShow: 3,
         slidesToScroll: 2,
         autoplay: true,
