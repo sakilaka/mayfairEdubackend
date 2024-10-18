@@ -114,15 +114,15 @@
         <div class="bg-color"></div>
     </div>
 
-    <div class="container mt-5">
+    {{-- <div class="container mt-5">
         <div class="text-center">
             <h2 class="section-title">Gallery</h2>
         </div>
-    </div>
+    </div> --}}
 
     <section>
         @php
-            $gallery_contents = isset($galleries['gallery']) ? json_decode($galleries['gallery'], true) : [];
+            $gallery_contents = isset($expo['gallery']) ? json_decode($expo['gallery'], true) : [];
         @endphp
 
         @forelse ($gallery_contents as $key => $gallery)
