@@ -137,12 +137,12 @@ class ExpoDelegatesController extends Controller
                 $expo->delegates = json_encode($existingDelegates);
                 $expo->save();
 
-                return redirect()->back()->with('success', 'Testimonial has been deleted successfully!');
+                return redirect()->back()->with('success', 'Delegate has been deleted successfully!');
             } else {
-                return redirect()->back()->with('error', 'Testimonial not found.');
+                return redirect()->back()->with('error', 'Delegate not found.');
             }
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Something went wrong! Failed to delete testimonial.');
+            return redirect()->back()->with('error', 'Something went wrong! Failed to delete delegate.');
         }
     }
 }
