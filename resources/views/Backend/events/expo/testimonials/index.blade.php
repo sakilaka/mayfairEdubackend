@@ -21,7 +21,7 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.testimonial.create', ['expo_id' => $expo->unique_id]) }}"
+                            <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id]) }}"
                                 class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Testimonial</a>
@@ -55,7 +55,7 @@
                                             </td>
 
                                             <td class="text-right">
-                                                <a href="{{ route('admin.expo.testimonial.edit', ['expo_id' => $expo->unique_id, 'key' => $key]) }}"
+                                                <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id, 'testimonial_key' => $key]) }}"
                                                     class="btn text-primary" data-toggle="tooltip"
                                                     data-title="Edit Testimonials">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>

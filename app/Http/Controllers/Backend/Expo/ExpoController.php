@@ -591,17 +591,21 @@ class ExpoController extends Controller
     }
 
     /**
-     * create respective expo testimonial
+     * create or update page for respective expo testimonial
      */
-    public function expo_testimonial_create($expo_id, $testimonial_key = null)
+    public function expo_testimonial_manage($expo_id, $testimonial_key = null)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->first();
+        $data['expo'] = $expo = Expo::where('unique_id', $expo_id)->first();
 
         if (!$data['expo']) {
             return back()->with('error', 'Expo not found!');
         }
 
-        return view('Backend.events.expo.testimonials.create', $data);
+        if ($testimonial_key) {
+            return $testimonial_key;
+        }
+
+        return view('Backend.events.expo.testimonials.manage', $data);
     }
 
     /**

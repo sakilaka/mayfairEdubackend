@@ -564,8 +564,7 @@
                     Route::is('admin.expo.users') ||
                     Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.testimonial.index') ||
-                    Route::is('admin.expo.testimonial.create') ||
-                    Route::is('admin.expo.testimonial.edit') ||
+                    Route::is('admin.expo.testimonial.manage') ||
                     Route::is('admin.expo.add_participator');
             @endphp
             <li class="nav-item {{ $is_active_expo_module ? 'active' : '' }}">
@@ -583,8 +582,7 @@
                                 Route::is('admin.expo.create') ||
                                 Route::is('admin.expo.edit') ||
                                 Route::is('admin.expo.testimonial.index') ||
-                                Route::is('admin.expo.testimonial.create') ||
-                                Route::is('admin.expo.testimonial.edit');
+                                Route::is('admin.expo.testimonial.manage');
                         @endphp
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.index') }}"
