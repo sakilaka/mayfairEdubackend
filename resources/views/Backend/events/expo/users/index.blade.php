@@ -21,7 +21,7 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.add_participator', ['type' => 'site']) }}"
+                            <a href="{{ route('admin.expo.add_participator', ['type' => request()->type]) }}"
                                 class="btn btn-secondary-bg">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Participator
