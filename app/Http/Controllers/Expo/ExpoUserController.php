@@ -80,6 +80,8 @@ class ExpoUserController extends Controller
     public function my_tickets()
     {
         $data['userData'] = auth()->guard('expo')->user();
+        $data['expo'] = Expo::where('unique_id', $data['userData']['expo_id'])->select('unique_id', 'title', 'additional_contents', 'universities')->first();
+
         return view('Expo-User-Panel.tickets', $data);
     }
 }
