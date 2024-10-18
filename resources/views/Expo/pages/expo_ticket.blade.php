@@ -252,9 +252,9 @@
 
                             <div class="col-7 d-flex flex-column justify-content-around">
                                 <div class="row align-items-center justify-content-between mt-3">
-                                    <div class="col-6 d-flex align-items-center">
-                                        <img src="{{ $co_organizerDetails['logo'] }}" alt=""
-                                            class="img-fluid ms-2" width="80">
+                                    <div class="col-6 {{-- d-flex align-items-center --}}">
+                                        <img src="{{ $organizerDetails['logo'] }}" alt=""
+                                            class="img-fluid" width="130">
                                     </div>
                                     <div class="col-6 text-end">
                                         <h3 class="wrapper-title text-center" style="font-size: 16px">{{ $expo->title }}</h3>
@@ -304,7 +304,7 @@
                             <div class="col-5">
                                 <div class="d-flex flex-column align-items-center">
                                     <div class="mt-3">
-                                        <img src="{{ $organizerDetails['logo'] }}" alt=""
+                                        <img src="{{ $co_organizerDetails['logo'] }}" alt=""
                                             class="img-fluid" width="80">
                                     </div>
                                     <div class="mt-5">
