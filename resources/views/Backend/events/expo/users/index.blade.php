@@ -43,16 +43,20 @@
                         </nav>
                     </div>
 
-                    <div class="my-2 justify-content-end row" style="gap: 5px">
-                        <select class="filter_child col-md-4 col-lg-3 form-control form-control-lg"
-                            name="filter_participant">
-                            <option value="">Select Expo</option>
-                            <option value="all">All</option>
-                            @foreach ($expos as $expo)
-                                <option value="{{ $expo->unique_id }}">{{ $expo->title }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    <form action="{{ route('admin.expo.users.filter', ['type' => request()->type]) }}" method="POST">
+                        @csrf
+
+                        <div class="my-2 justify-content-end row" style="gap: 5px">
+                            <select class="filter_child col-md-4 col-lg-3 form-control form-control-lg"
+                                name="filter_participant" id="filter_participant">
+                                <option value="">Select Expo</option>
+                                <option value="all">All</option>
+                                @foreach ($expos as $expo)
+                                    <option value="{{ $expo->unique_id }}">{{ $expo->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </form>
 
                     <div class="row card">
                         <div class="col-sm-12 card-body table-responsive">
