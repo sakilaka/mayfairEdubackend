@@ -47,7 +47,7 @@
 
         a.single-gallery-image p.image-title,
         .video-title {
-            background-color: #fe00007f;
+            background-color: #0050fe7f;
             width: 100%;
             position: absolute;
             left: 0;
@@ -114,15 +114,15 @@
         <div class="bg-color"></div>
     </div>
 
-    <div class="container mt-5">
+    {{-- <div class="container mt-5">
         <div class="text-center">
             <h2 class="section-title">Videos</h2>
         </div>
-    </div>
+    </div> --}}
 
     <section>
         @php
-            $video_contents = isset($videos['video']) ? json_decode($videos['video'], true) : [];
+            $video_contents = isset($expo['video']) ? json_decode($expo['video'], true) : [];
         @endphp
 
         <div class="gallery-section py-5">

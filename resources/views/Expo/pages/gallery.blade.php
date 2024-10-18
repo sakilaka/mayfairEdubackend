@@ -47,7 +47,7 @@
 
         a.single-gallery-image p.image-title,
         .video-title {
-            background-color: #fe00007f;
+            background-color: #0050fe7f;
             width: 100%;
             position: absolute;
             left: 0;
