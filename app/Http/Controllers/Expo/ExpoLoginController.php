@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Expo;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expo;
 use App\Models\ExpoModule;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -44,17 +45,22 @@ class ExpoLoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login_page()
+    public function login_page($expo_id)
     {
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title')->first();
+        if (!$data['expo']) {
+            return back()->with('error', 'Expo Not Found!');
+        }
+
         if (auth()->check()) {
             return redirect()->route('user.dashboard')->with('success', 'You are already logged in!');
         }
 
-        return view('Expo.pages.expo_login');
+        return view('Expo.pages.expo_login', $data);
     }
 
 
-    public function attempt_login(Request $request)
+    public function attempt_login(Request $request, $expo_id)
     {
         $this->validate($request, [
             'password' => 'required|min:6',
