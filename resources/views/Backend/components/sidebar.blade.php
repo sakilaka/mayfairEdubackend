@@ -607,7 +607,7 @@
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.users') }}"
+                            <a href="{{ route('admin.expo.users', ['type' => 'main']) }}"
                                 class="nav-link {{ Route::is('admin.expo.users') || Route::is('admin.expo.add_participator') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Participators
