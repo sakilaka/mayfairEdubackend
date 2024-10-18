@@ -62,13 +62,13 @@
                                             <td class="text-right">
                                                 <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id, 'testimonial_key' => $key]) }}"
                                                     class="btn text-primary" data-toggle="tooltip"
-                                                    data-title="Edit Testimonials">
+                                                    data-title="Edit Testimonial">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
 
-                                                <input type="hidden" value="{{ $key }}">
-                                                <a data-toggle="modal" data-target="#delete_modal_box"
-                                                    class="btn text-primary delete-item">
+                                                <a href="{{ route('admin.expo.testimonial.delete', ['expo_id' => $expo->unique_id, 'testimonial_key' => $key]) }}"
+                                                    data-toggle="tooltip"
+                                                    data-title="Delete Testimonial" class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>
@@ -76,30 +76,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Item delete modal --}}
-                <div id="delete_modal_box" class="modal fade delete-modal" role="dialog">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-body text-center">
-                                <img src="{{ asset('backend/assets/images/warning.png') }}" alt=""
-                                    width="50" height="46">
-                                <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
-                                <div class="m-t-20 flex">
-                                    <form action="{{ route('admin.expo.delete') }}" method="POST" id="deleteForm">
-                                        @csrf
-                                        <input type="hidden" name="expo_id" id="modal_item_id" value="">
-                                    </form>
-                                    <div class="mt-3">
-                                        <a href="#" class="btn btn-success" data-dismiss="modal">Cancel</a>
-                                        <a class="btn btn-danger"
-                                            onclick="document.getElementById('deleteForm').submit()">Confirm</a>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

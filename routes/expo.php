@@ -24,7 +24,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('list', [ExpoController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
         Route::get('manage/{testimonial_key?}', [ExpoController::class, "expo_testimonial_manage"])->name('admin.expo.testimonial.manage');
         Route::post('update/{testimonial_key?}', [ExpoController::class, "expo_testimonial_update"])->name('admin.expo.testimonial.update');
-        Route::post('delete', [ExpoController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
+        Route::get('delete/{testimonial_key?}', [ExpoController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
     });
 
     Route::prefix('exhibitors')->group(function () {

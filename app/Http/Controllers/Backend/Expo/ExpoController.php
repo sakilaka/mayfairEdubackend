@@ -672,6 +672,13 @@ class ExpoController extends Controller
     }
 
     /**
+     * delete testimonial of respective expo
+     */
+    public function expo_testimonial_destroy($expo_id, $testimonial_key){
+        return $testimonial_key;
+    }
+
+    /**
      * index of exhibitors
      */
     public function exhibitors_index()
