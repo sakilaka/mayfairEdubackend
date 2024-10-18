@@ -797,6 +797,9 @@ class ExpoController extends Controller
      */
     public function expo_view_participant(Request $request)
     {
+        return response([
+            'data' => $request->all()
+        ]);
         /* $ticketNo = $request->input('ticket_no');
 
         $participant = ExpoUser::where('ticket_no', $ticketNo)->first();
