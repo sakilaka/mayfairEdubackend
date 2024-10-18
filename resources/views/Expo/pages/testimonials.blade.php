@@ -11,7 +11,6 @@
     @endphp
 
     <style>
-        /* Custom scrollbar styling */
         blockquote .testimonial-description::-webkit-scrollbar {
             width: 3px;
         }
@@ -65,19 +64,20 @@
                 @foreach ($testimonials as $testimonial)
                     <div class="col-md-6 px-3 mt-3">
                         <div
-                            class="row align-items-start border border-success border-3 border-top-0 border-start-0 rounded">
+                            class="row align-items-start justify-content-center border border-success border-3 border-top-0 border-start-0 rounded">
                             <div class="col-md-3">
                                 <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
                                     alt="" class="img-fluid rounded-circle border border-3 border-success"
                                     width="150">
                             </div>
+
                             <div class="col-md-9">
                                 <blockquote class="blockquote border-start-0 mb-0 px-2">
                                     <div class="mb-0 text-muted testimonial-description"
                                         style="font-size: 16px; max-height: 120px; overflow-y:auto;">
                                         {!! $testimonial['description'] !!}
                                     </div>
-                                    <footer class="blockquote-footer mt-2" style="font-size: 16px">
+                                    <footer class="blockquote-footer my-2" style="font-size: 16px">
                                         <strong>{{ $testimonial['name'] }}</strong>,
                                         <cite title="{{ $testimonial['designation'] }}">
                                             {{ $testimonial['designation'] }}
