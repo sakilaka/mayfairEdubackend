@@ -32,10 +32,14 @@
                         <div class="col-md-10 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample" action="#" method="POST"
-                                        enctype="multipart/form-data">
+                                    <form class="forms-sample"
+                                        action="{{ route('admin.expo.testimonial.store', ['expo_id' => $expo->unique_id]) }}"
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
 
+                                        @php
+                                            $random = rand();
+                                        @endphp
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="menu_type" class="col-form-label">Photo</label>
@@ -49,7 +53,8 @@
                                                             <div class="dropify-errors-container">
                                                                 <ul></ul>
                                                             </div>
-                                                            <input type="file" class="dropify" name="testimonial[photo]"
+                                                            <input type="file" class="dropify"
+                                                                name="testimonial_{{ $random }}[photo]"
                                                                 accept="image/*" id="photo">
                                                             <button type="button" class="dropify-clear">Remove</button>
                                                             <div class="dropify-preview">
@@ -60,7 +65,7 @@
                                                                             <span class="file-icon"></span>
                                                                             <span class="dropify-filename-inner"></span>
                                                                         </p>
-                                                                            Drag and drop or click to replace
+                                                                        Drag and drop or click to replace
                                                                         </p>
                                                                     </div>
                                                                 </div>
@@ -85,23 +90,24 @@
                                                 <label class="col-form-label pt-0">Name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" name="testimonial[name]" class="form-control"
-                                                    placeholder="Enter Name" required>
+                                                <input type="text" name="testimonial_{{ $random }}[name]"
+                                                    class="form-control" placeholder="Enter Name" required>
                                             </div>
-                                            
+
                                             <div class="form-group col-md-6">
                                                 <label class="col-form-label pt-0">Designation
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" name="testimonial[designation]" class="form-control"
-                                                    placeholder="Enter Designation" required>
+                                                <input type="text"
+                                                    name="testimonial_{{ $random }}[designation]"
+                                                    class="form-control" placeholder="Enter Designation" required>
                                             </div>
 
                                             <div class="form-group col-md-12">
                                                 <label class="col-form-label pt-0">Description
                                                 </label>
 
-                                                <textarea name="testimonial[description]" class="form-control editor"></textarea>
+                                                <textarea name="testimonial_{{ $random }}[description]" class="form-control editor"></textarea>
                                             </div>
                                         </div>
 
