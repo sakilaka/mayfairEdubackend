@@ -151,7 +151,8 @@
     }
 
     .bg-section {
-        background-image: url("{{ asset('frontend/expo-domain/images/rectangle_1.png') }}");
+        /* background-image: url("{{ asset('frontend/expo-domain/images/rectangle_1.png') }}"); */
+        background-color: var(--primary_background);
         height: 100vh;
         width: 100%;
         background-size: cover;
