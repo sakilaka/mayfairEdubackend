@@ -7,7 +7,7 @@
     @php
         $testimonial = [];
         if ($testimonial_key) {
-            $testimonial = json_decode($expo->testimonials, true)[$testimonial_key];
+            $testimonial = json_decode($expo->testimonials, true)[$testimonial_key] ?? [];
         }
     @endphp
 
@@ -57,9 +57,9 @@
                                         enctype="multipart/form-data">
                                         @csrf
 
-                                        @php
+                                        {{-- @php
                                             $random = $testimonial_key ?? explode('-', uuid_create())[0];
-                                        @endphp
+                                        @endphp --}}
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="menu_type" class="col-form-label">Photo</label>
@@ -74,7 +74,7 @@
                                                                 <ul></ul>
                                                             </div>
                                                             <input type="file" class="dropify"
-                                                                name="testimonial_{{ $random }}[photo]"
+                                                                name="testimonial_{{ $testimonial_key }}[photo]"
                                                                 accept="image/*" id="photo">
                                                             <button type="button" class="dropify-clear">Remove</button>
                                                             <div class="dropify-preview">
@@ -110,7 +110,7 @@
                                                 <label class="col-form-label pt-0">Name
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" name="testimonial_{{ $random }}[name]"
+                                                <input type="text" name="testimonial_{{ $testimonial_key }}[name]"
                                                     class="form-control" value="{{ $testimonial['name'] ?? '' }}"
                                                     placeholder="Enter Name" required>
                                             </div>
@@ -120,7 +120,7 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text"
-                                                    name="testimonial_{{ $random }}[designation]"
+                                                    name="testimonial_{{ $testimonial_key }}[designation]"
                                                     class="form-control"
                                                     value="{{ $testimonial['designation'] ?? '' }}"
                                                     placeholder="Enter Designation" required>
@@ -130,7 +130,7 @@
                                                 <label class="col-form-label pt-0">Description
                                                 </label>
 
-                                                <textarea name="testimonial_{{ $random }}[description]" class="form-control editor">{!! $testimonial['description'] ?? '' !!}</textarea>
+                                                <textarea name="testimonial_{{ $testimonial_key }}[description]" class="form-control editor">{!! $testimonial['description'] ?? '' !!}</textarea>
                                             </div>
                                         </div>
 
