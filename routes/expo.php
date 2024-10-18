@@ -120,8 +120,8 @@ Route::get('expo-login', [ExpoLoginController::class, 'login_page'])->name('expo
 Route::post('expo-login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
 Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
 
-Route::get('expo/{unique_id}/expo-sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
-Route::post('expo/{unique_id}/expo-sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
+Route::get('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
+Route::post('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
 Route::get('expo-ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
 
 /**
