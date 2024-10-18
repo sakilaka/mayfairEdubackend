@@ -633,24 +633,29 @@ class ExpoController extends Controller
                         'photo' => null,
                     ];
 
+
                     if ($testimonial_key && isset($existingTestimonials[$testimonial_key])) {
                         $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
 
                         if ($existingPhoto) {
                             $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
                             $existingPhotoPath = public_path($existingPhotoPath);
-
-                            if (file_exists($existingPhotoPath)) {
-                                unlink($existingPhotoPath);
-                            }
+                        } else {
+                            $existingPhotoPath = '';
                         }
                     }
 
                     if ($request->hasFile("{$key}.photo")) {
+                        if (file_exists($existingPhotoPath)) {
+                            unlink($existingPhotoPath);
+                        }
+
                         $photoFile = $request->file("{$key}.photo");
                         $photoName = 'user_' . uniqid() . '.' . $photoFile->getClientOriginalExtension();
                         $photoFile->move(public_path($testimonialPath), $photoName);
                         $testimonial['photo'] = asset($testimonialPath . $photoName);
+                    } else {
+                        $testimonial['photo'] = $existingPhoto;
                     }
 
                     if ($testimonial_key && $uuidPart === $testimonial_key) {
