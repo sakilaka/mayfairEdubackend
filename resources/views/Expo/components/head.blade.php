@@ -129,6 +129,7 @@
     .testimonial-user-img {
         border-radius: 50% !important;
         object-position: center !important;
+        object-fit: cover !important;
         padding: 3px;
         background-color: var(--primary_background);
     }

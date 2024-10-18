@@ -6,7 +6,7 @@
 
         <div class="row justify-content-center mt-2">
             @php
-                $delegates = json_decode($expo->testimonials, true) ?? [];
+                $delegates = json_decode($expo->delegates, true) ?? [];
             @endphp
 
             <div class="col-12">
@@ -21,7 +21,8 @@
                                 <div class="d-flex justify-content-center">
                                     <img class="testimonial-user-img"
                                         src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                        alt="" style="border-radius:10px;">
+                                        alt=""
+                                        style="border-radius:10px;">
                                 </div>
 
                                 <div style="height: 70px">
