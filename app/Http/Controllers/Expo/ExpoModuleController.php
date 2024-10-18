@@ -105,6 +105,15 @@ class ExpoModuleController extends Controller
         $data['expo'] = Expo::where('unique_id', $unique_id)->first();
         return view('Expo.pages.testimonials', $data);
     }
+    
+    /**
+     * delegates page
+     */
+    public function delegates($unique_id)
+    {
+        $data['expo'] = Expo::where('unique_id', $unique_id)->first();
+        return view('Expo.pages.delegates', $data);
+    }
 
 
     /**
