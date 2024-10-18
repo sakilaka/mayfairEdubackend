@@ -44,11 +44,13 @@
                                     @php
                                         $testimonials = json_decode($expo->testimonials, true) ?? [];
                                     @endphp
-                                    
+
                                     @foreach ($testimonials ?? [] as $key => $testimonial)
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
+                                                <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
+                                                    alt="" class="rounded-circle">
                                                 {{ $testimonial['name'] }}
                                             </td>
                                             <td>
