@@ -113,9 +113,9 @@ Route::get('expo/{unique_id}/page/gallery', [ExpoModuleController::class, 'galle
 Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video.page');
 
 
-Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
-Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
-Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
+// Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
+// Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
+// Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 
 Route::get('expo-login', [ExpoLoginController::class, 'login_page'])->name('expo.login.page');
 Route::post('expo-login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');

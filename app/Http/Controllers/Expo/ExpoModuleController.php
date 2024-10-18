@@ -53,19 +53,19 @@ class ExpoModuleController extends Controller
     /**
      * about us page
      */
-    public function about_us()
+    /* public function about_us()
     {
         return view('Expo.pages.about_us');
-    }
+    } */
 
     /**
      * contact page
      */
-    public function contact()
+    /* public function contact()
     {
         $data['page'] = ExpoModuleContent::where('key', 'contact')->first();
         return view('Expo.pages.contact', $data);
-    }
+    } */
 
     /**
      * exhibitors page
