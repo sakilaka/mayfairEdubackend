@@ -609,7 +609,38 @@ class ExpoController extends Controller
      */
     public function expo_testimonial_store(Request $request, $expo_id)
     {
-        return $request->all();
+        // return $request->all();
+
+        $finalData = [];
+        $testimonialPrefix = 'testimonial_';
+        $testimonialPath = 'expo/testimonial/';
+
+        foreach ($request->all() as $key => $testimonialData) {
+            if (strpos($key, $testimonialPrefix) === 0
+            ) {
+                $testimonial = [
+                    'name' => $testimonialData['name'] ?? null,
+                    'designation' => $testimonialData['designation'] ?? null,
+                    'description' => $testimonialData['description'] ?? null,
+                    'photo' => null,
+                ];
+
+                if ($request->hasFile("{$key}.photo")) {
+                    $photoFile = $request->file("{$key}.photo");
+
+                    $photoName = uniqid() . '.' . $photoFile->getClientOriginalExtension();
+
+                    // $photoFile->move(public_path($testimonialPath), $photoName);
+
+                    // Add the photo path to the testimonial data
+                    $testimonial['photo'] = $testimonialPath . $photoName;
+                }
+
+                $finalData[] = $testimonial;
+            }
+        }
+
+        return $finalData;
     }
 
     /**
