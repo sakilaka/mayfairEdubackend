@@ -62,13 +62,13 @@
                                             <td class="text-right">
                                                 <a href="{{ route('admin.expo.delegate.manage', ['expo_id' => $expo->unique_id, 'delegate_key' => $key]) }}"
                                                     class="btn text-primary" data-toggle="tooltip"
-                                                    data-title="Edit Testimonial">
+                                                    data-title="Edit Delegate">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
 
                                                 <a href="{{ route('admin.expo.delegate.delete', ['expo_id' => $expo->unique_id, 'delegate_key' => $key]) }}"
                                                     data-toggle="tooltip"
-                                                    data-title="Delete Testimonial" class="btn text-primary delete-item">
+                                                    data-title="Delete Delegate" class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>
