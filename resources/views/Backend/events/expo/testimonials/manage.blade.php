@@ -3,6 +3,12 @@
 
 <head>
     @include('Backend.components.head')
+
+    @php
+        $testimonial = json_decode($expo->testimonials, true) ?? [];
+        
+    @endphp
+
     <title>{{ env('APP_NAME') }} | Add Testimonial</title>
 </head>
 
