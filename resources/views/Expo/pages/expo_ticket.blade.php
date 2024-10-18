@@ -233,8 +233,7 @@
         <div class="container-wrapper d-flex flex-column align-items-center justify-content-center">
             @if (!request()->has('print'))
                 <div class="d-flex">
-                    <button id="download-pdf" class="btn btn-primary-bg mb-3 me-2"
-                        style="z-index: 3">Download</button>
+                    <button id="download-pdf" class="btn btn-primary-bg mb-3 me-2" style="z-index: 3">Download</button>
                     <button id="print-pdf" class="btn btn-primary-bg mb-3" style="z-index: 3">Print</button>
                 </div>
             @endif
@@ -305,11 +304,14 @@
                                             class="img-fluid" width="380">
                                     </div>
                                     <div class="mt-5">
-                                        {{ dd($expo['additional_contents']) }}
                                         <p class="text-dark text-center minimal-shadow">
-                                            <span class="fw600">Organizer:</span> Chinese Service Center for Scholarly
-                                            Exchange<br>
-                                            <span class="fw600">Co-Organizer:</span> MalishaEdu<br>
+                                            <span class="fw600">Organizer:</span>
+                                            {{ $organizerDetails['name'] }}
+                                            <br>
+                                            <span class="fw600">Co-Organizer:</span>
+                                            {{ $co_organizerDetails['name'] }}
+                                            <br>
+
                                             <span class="fw600">Supported by:</span>
                                             Embassy of the People’s Republic of China in the People’s Republic of
                                             Bangladesh
@@ -327,7 +329,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
-    
+
     <script>
         function generatePdf() {
             var element = document.getElementById('ticket-page');
