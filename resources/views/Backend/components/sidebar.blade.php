@@ -608,7 +608,7 @@
                         </li>
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.users', ['type' => 'main']) }}"
-                                class="nav-link {{ request()->type == 'main' ? 'active' : '' }}">
+                                class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.add_participator')) && request()->type == 'main' ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Participators
                             </a>
@@ -652,7 +652,7 @@
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.users', ['type' => 'site']) }}"
-                                class="nav-link {{ Route::is('admin.expo.users', ['type' => 'site']) || Route::is('admin.expo.add_participator', ['type' => 'site']) ? 'active' : '' }}">
+                                class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.add_participator')) && request()->type == 'site' ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Participators
                             </a>
