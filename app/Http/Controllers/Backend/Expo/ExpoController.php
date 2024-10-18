@@ -637,10 +637,10 @@ class ExpoController extends Controller
                         $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
 
                         if ($existingPhoto) {
-                            $existingPhotoPath = public_path($existingPhoto);
-                            return $existingPhotoPath;
+                            $existingPhotoPath = parse_url($existingPhoto, PHP_URL_PATH);
+                            $existingPhotoPath = public_path($existingPhotoPath);
+
                             if (file_exists($existingPhotoPath)) {
-                                return true;
                                 unlink($existingPhotoPath);
                             }
                         }
