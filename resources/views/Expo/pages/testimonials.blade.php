@@ -51,7 +51,7 @@
                                     alt="" class="img-fluid rounded-circle border border-3 border-success"
                                     width="150">
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-9" style="max-height: 250px; overflow-y:auto;">
                                 <blockquote class="blockquote border-start-0 mb-0 px-2">
                                     <div class="mb-0 text-muted" style="font-size: 16px">
                                         {!! $testimonial['description'] !!}
