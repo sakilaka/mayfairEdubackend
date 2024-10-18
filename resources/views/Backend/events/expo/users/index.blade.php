@@ -66,8 +66,19 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="{{ route('expo.expo-ticket', ['unique_id'=>$user['expo']]) }}"
-                                                    style="color: var(--primary_background);" target="_blank">
+                                                @php
+                                                    if ($user['expo_id']) {
+                                                        $ticket_url = route('expo.expo-ticket', [
+                                                            'unique_id' => $user['expo_id'],
+                                                            'ticket_no' => $user->id,
+                                                        ]);
+                                                    } else {
+                                                        $ticket_url =
+                                                            env('APP_EXPO_DOMAIN') . '/expo-ticket\'' . $user->id;
+                                                    }
+                                                @endphp
+                                                <a href="{{ $ticket_url }}" style="color: var(--primary_background);"
+                                                    target="_blank">
                                                     {{ $user->ticket_no }}
                                                 </a>
                                             </td>
