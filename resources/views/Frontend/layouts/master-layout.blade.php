@@ -14,7 +14,6 @@
     $custom_html = json_decode($custom_html->option_value);
     $custom_js = json_decode($custom_js->option_value);
     $metadata = json_decode($theme_seo->option_value);
-
 @endphp
 
 <head>

@@ -10,6 +10,56 @@
 <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Barlow+Condensed:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic&amp;subset=latin,latin-ext,vietnamese">
 
+@php
+    $results = \App\Models\Tp_option::where('option_name', 'theme_custom_css')->first();
+    $custom_html = \App\Models\Tp_option::where('option_name', 'theme_custom_html')->first();
+    $custom_js = \App\Models\Tp_option::where('option_name', 'theme_custom_js')->first();
+    $theme_seo = \App\Models\Tp_option::where('option_name', 'theme_options_seo')->first();
+    $title = \App\Models\Tp_option::where('option_name', 'theme_option_header')->first();
+    $logo = \App\Models\Tp_option::where('option_name', 'theme_logo')->first();
+
+    $customCss = json_decode($results->option_value);
+    $custom_html = json_decode($custom_html->option_value);
+    $custom_js = json_decode($custom_js->option_value);
+    $metadata = json_decode($theme_seo->option_value);
+@endphp
+
+<link rel="shortcut icon" href="{{ @$logo->favicon_show }}" type="image/x-icon">
+@php
+    $titles = '';
+    $keywords = '';
+@endphp
+@foreach ($metadata->og_title as $k => $item)
+    @php
+        if (count($metadata->og_title) - 1 == $k) {
+            $titles .= $item;
+        } else {
+            $titles .= $item . ',';
+        }
+    @endphp
+@endforeach
+<meta property="og:title" content="{{ $titles }}" />
+
+@foreach ($metadata->og_keywords as $k => $item)
+    @php
+        if (count($metadata->og_keywords) - 1 == $k) {
+            $keywords .= $item;
+        } else {
+            $keywords .= $item . ',';
+        }
+    @endphp
+@endforeach
+<meta property="keywords" content="{{ $keywords }}" />
+
+{{-- open graph --}}
+<meta property="og:site_name" content="{{ $title->company_name }}" />
+<meta property="og:description" content="{{ $metadata->og_description }}" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="{{ url()->current() }}" />
+<meta property="og:image" content="{{ asset('upload/seo/' . $metadata->og_image) }}" />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="315" />
+
 <style>
     :root {
         --primary_background: #0c4493;
