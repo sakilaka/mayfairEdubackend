@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    @include('User-Backend.components.head')
+    @include('Expo-User-Panel.components.head')
     <title>{{ env('APP_NAME') }} | Dashboard</title>
 
     <style>
@@ -125,10 +125,10 @@
 
 <body>
     <div class="container-scroller">
-        @include('User-Backend.components.navbar')
+        @include('Expo-User-Panel.components.navbar')
 
         <div class="container-fluid page-body-wrapper">
-            @include('User-Backend.components.sidebar')
+            @include('Expo-User-Panel.components.sidebar')
 
             <div class="main-panel">
                 <div class="content-wrapper p-2 pd-md-3 pt-3">
@@ -540,15 +540,15 @@
                     </div>
                 </div>
 
-                @include('User-Backend.components.footer')
+                @include('Expo-User-Panel.components.footer')
             </div>
 
         </div>
 
-        @include('User-Backend.components.wrapper-footer')
+        @include('Expo-User-Panel.components.wrapper-footer')
     </div>
 
-    @include('User-Backend.components.script')
+    @include('Expo-User-Panel.components.script')
 </body>
 
 </html>

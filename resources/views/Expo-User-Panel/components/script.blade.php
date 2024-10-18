@@ -20,7 +20,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-@include('User-Backend.components.message')
+@include('Expo-User-Panel.components.message')
 
 <script>
     $('.delete-item').click(function() {
