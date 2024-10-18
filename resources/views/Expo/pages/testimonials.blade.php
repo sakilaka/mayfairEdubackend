@@ -11,8 +11,27 @@
     @endphp
 
     <style>
+        /* Custom scrollbar styling */
         blockquote .testimonial-description::-webkit-scrollbar {
-            width: 5px;
+            width: 3px;
+        }
+
+        blockquote .testimonial-description::-webkit-scrollbar-track {
+            background: #e0e0e0;
+        }
+
+        /* Handle (scrollbar thumb) */
+        blockquote .testimonial-description::-webkit-scrollbar-thumb {
+            background-color: #28a745;
+            /* Green for the thumb */
+            border-radius: 10px;
+            /* Rounded edges for the thumb */
+        }
+
+        /* Optional: Thumb hover effect */
+        blockquote .testimonial-description::-webkit-scrollbar-thumb:hover {
+            background-color: #218838;
+            /* Darker green on hover */
         }
     </style>
 </head>
