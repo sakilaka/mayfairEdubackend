@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\Expo\ExpoController;
+use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
+use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
 use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
@@ -21,17 +23,17 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
 
     Route::prefix('{expo_id}/testimonials')->group(function () {
-        Route::get('list', [ExpoController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
-        Route::get('manage/{testimonial_key?}', [ExpoController::class, "expo_testimonial_manage"])->name('admin.expo.testimonial.manage');
-        Route::post('update/{testimonial_key?}', [ExpoController::class, "expo_testimonial_update"])->name('admin.expo.testimonial.update');
-        Route::get('delete/{testimonial_key?}', [ExpoController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
+        Route::get('list', [ExpoTestimonialsController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
+        Route::get('manage/{testimonial_key?}', [ExpoTestimonialsController::class, "expo_testimonial_manage"])->name('admin.expo.testimonial.manage');
+        Route::post('update/{testimonial_key?}', [ExpoTestimonialsController::class, "expo_testimonial_update"])->name('admin.expo.testimonial.update');
+        Route::get('delete/{testimonial_key?}', [ExpoTestimonialsController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
     });
 
     Route::prefix('{expo_id}/overseas-delegates')->group(function () {
-        Route::get('list', [ExpoController::class, "expo_delegate_index"])->name('admin.expo.delegate.index');
-        Route::get('manage/{deletegate_key?}', [ExpoController::class, "expo_delegate_manage"])->name('admin.expo.delegate.manage');
-        Route::post('update/{deletegate_key?}', [ExpoController::class, "expo_delegate_update"])->name('admin.expo.delegate.update');
-        Route::get('delete/{deletegate_key?}', [ExpoController::class, "expo_delegate_destroy"])->name('admin.expo.delegate.delete');
+        Route::get('list', [ExpoDelegatesController::class, "expo_delegate_index"])->name('admin.expo.delegate.index');
+        Route::get('manage/{deletegate_key?}', [ExpoDelegatesController::class, "expo_delegate_manage"])->name('admin.expo.delegate.manage');
+        Route::post('update/{deletegate_key?}', [ExpoDelegatesController::class, "expo_delegate_update"])->name('admin.expo.delegate.update');
+        Route::get('delete/{deletegate_key?}', [ExpoDelegatesController::class, "expo_delegate_destroy"])->name('admin.expo.delegate.delete');
     });
 
     Route::prefix('exhibitors')->group(function () {
