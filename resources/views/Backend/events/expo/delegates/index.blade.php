@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Manage Testimonials for '{{ $expo->title }}'</title>
+    <title>{{ env('APP_NAME') }} | Manage Overseas Delegates for '{{ $expo->title }}'</title>
 </head>
 
 <body>
@@ -17,14 +17,14 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Manage Testimonials for '{{ $expo->title }}'
+                            Manage Overseas Delegates for '{{ $expo->title }}'
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id]) }}"
+                            <a href="{{ route('admin.expo.delegate.manage', ['expo_id' => $expo->unique_id]) }}"
                                 class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                Add Testimonial</a>
+                                Add Delegate</a>
                         </nav>
                     </div>
 
@@ -42,31 +42,31 @@
                                 </thead>
                                 <tbody>
                                     @php
-                                        $testimonials = json_decode($expo->testimonials, true) ?? [];
+                                        $delegates = json_decode($expo->delegates, true) ?? [];
                                     @endphp
 
-                                    @foreach ($testimonials ?? [] as $key => $testimonial)
+                                    @foreach ($delegates ?? [] as $key => $delegate)
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
-                                                <img src="{{ $testimonial['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                                    alt="{{ $testimonial['name'] }}" width="75" height="75"
+                                                <img src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
+                                                    alt="{{ $delegate['name'] }}" width="75" height="75"
                                                     class="rounded-circle">
                                                 &nbsp;
-                                                {{ $testimonial['name'] }}
+                                                {{ $delegate['name'] }}
                                             </td>
                                             <td>
-                                                {{ $testimonial['designation'] }}
+                                                {{ $delegate['designation'] }}
                                             </td>
 
                                             <td class="text-right">
-                                                <a href="{{ route('admin.expo.testimonial.manage', ['expo_id' => $expo->unique_id, 'testimonial_key' => $key]) }}"
+                                                <a href="{{ route('admin.expo.delegate.manage', ['expo_id' => $expo->unique_id, 'delegate_key' => $key]) }}"
                                                     class="btn text-primary" data-toggle="tooltip"
                                                     data-title="Edit Testimonial">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
 
-                                                <a href="{{ route('admin.expo.testimonial.delete', ['expo_id' => $expo->unique_id, 'testimonial_key' => $key]) }}"
+                                                <a href="{{ route('admin.expo.delegate.delete', ['expo_id' => $expo->unique_id, 'delegate_key' => $key]) }}"
                                                     data-toggle="tooltip"
                                                     data-title="Delete Testimonial" class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>

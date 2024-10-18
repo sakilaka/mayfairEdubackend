@@ -1,2 +1,3 @@
 expos-> unique_id (varchar)
 expos-> testimonials (longText)
+expos-> delegates (longText)

@@ -100,6 +100,11 @@
                                                             class="fa fa-ellipsis-v text-primary"></i></a>
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <div class="d-flex justify-content-end">
+                                                            <a href="{{ route('admin.expo.delegate.index', ['expo_id' => $expo->unique_id]) }}"
+                                                                class="btn text-primary" data-toggle="tooltip"
+                                                                data-title="Manage Overseas Delegates">
+                                                                <i class="fa fa-users" aria-hidden="true"></i>
+                                                            </a>
                                                             <a href="{{ route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"
                                                                 data-title="Manage Testimonials">

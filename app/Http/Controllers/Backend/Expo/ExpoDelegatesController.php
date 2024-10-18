@@ -9,23 +9,23 @@ use Illuminate\Http\Request;
 class ExpoDelegatesController extends Controller
 {
     /**
-     * index of respective expo testimonials
+     * index of respective expo delegates
      */
-    public function expo_testimonial_index($expo_id)
+    public function expo_delegate_index($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('title', 'unique_id', 'testimonials')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('title', 'unique_id', 'delegates')->first();
 
         if (!$data['expo']) {
             return back()->with('error', 'Expo not found!');
         }
 
-        return view('Backend.events.expo.testimonials.index', $data);
+        return view('Backend.events.expo.delegates.index', $data);
     }
 
     /**
      * create or update page for respective expo testimonial
      */
-    public function expo_testimonial_manage($expo_id, $testimonial_key = null)
+    public function expo_delegate_manage($expo_id, $testimonial_key = null)
     {
         $data['expo'] = $expo = Expo::where('unique_id', $expo_id)->first();
 
@@ -38,18 +38,18 @@ class ExpoDelegatesController extends Controller
             $data['testimonial_key'] = $testimonial_key;
         }
 
-        return view('Backend.events.expo.testimonials.manage', $data);
+        return view('Backend.events.expo.delegates.manage', $data);
     }
 
     /**
      * update or create respective expo testimonial
      */
-    public function expo_testimonial_update(Request $request, $expo_id, $testimonial_key = null)
+    public function expo_delegate_update(Request $request, $expo_id, $testimonial_key = null)
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
-            $existingTestimonials = json_decode($expo->testimonials, true) ?? [];
+            $existingTestimonials = json_decode($expo->delegates, true) ?? [];
             $finalData = [];
             $testimonialPrefix = 'testimonial_';
             $testimonialPath = 'expo/testimonial/';
@@ -99,7 +99,7 @@ class ExpoDelegatesController extends Controller
             }
 
             $finalData = array_merge($existingTestimonials, $finalData);
-            $expo->testimonials = json_encode($finalData);
+            $expo->delegates = json_encode($finalData);
             $expo->save();
 
             return redirect(route('admin.expo.testimonial.index', ['expo_id' => $expo->unique_id]))->with('success', 'Testimonial has beed added successfully!');
@@ -111,7 +111,7 @@ class ExpoDelegatesController extends Controller
     /**
      * delete testimonial of respective expo
      */
-    public function expo_testimonial_destroy($expo_id, $testimonial_key)
+    public function expo_delegate_destroy($expo_id, $testimonial_key)
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
@@ -119,7 +119,7 @@ class ExpoDelegatesController extends Controller
                 return redirect()->back()->with('error', 'Expo not found.');
             }
 
-            $existingTestimonials = json_decode($expo->testimonials, true) ?? [];
+            $existingTestimonials = json_decode($expo->delegates, true) ?? [];
 
             if (isset($existingTestimonials[$testimonial_key])) {
                 $existingPhoto = $existingTestimonials[$testimonial_key]['photo'] ?? null;
@@ -134,7 +134,7 @@ class ExpoDelegatesController extends Controller
 
                 unset($existingTestimonials[$testimonial_key]);
 
-                $expo->testimonials = json_encode($existingTestimonials);
+                $expo->delegates = json_encode($existingTestimonials);
                 $expo->save();
 
                 return redirect()->back()->with('success', 'Testimonial has been deleted successfully!');
