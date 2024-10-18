@@ -252,7 +252,7 @@
 
                             <div class="col-7 d-flex flex-column justify-content-around">
                                 <div class="row align-items-center justify-content-between mt-3">
-                                    <div class="col-6 {{-- d-flex align-items-center --}}">
+                                    <div class="col-6 ps-4 d-flex align-items-center">
                                         <img src="{{ $organizerDetails['logo'] }}" alt=""
                                             class="img-fluid" width="130">
                                     </div>
@@ -305,7 +305,7 @@
                                 <div class="d-flex flex-column align-items-center">
                                     <div class="mt-3">
                                         <img src="{{ $co_organizerDetails['logo'] }}" alt=""
-                                            class="img-fluid" width="80">
+                                            class="img-fluid" width="200">
                                     </div>
                                     <div class="mt-5">
                                         <p class="text-dark text-center minimal-shadow">
