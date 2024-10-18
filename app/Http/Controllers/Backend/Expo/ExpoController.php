@@ -618,7 +618,6 @@ class ExpoController extends Controller
             $expo = Expo::where('unique_id', $expo_id)->first();
 
             $existingTestimonials = json_decode($expo->testimonials, true) ?? [];
-            return $existingTestimonials;
             $finalData = [];
             $testimonialPrefix = 'testimonial_';
             $testimonialPath = 'expo/testimonial/';
