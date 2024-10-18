@@ -66,7 +66,7 @@
                                                 </span>
                                             </td>
                                             <td>
-                                                <a href="{{ env('APP_EXPO_DOMAIN') }}/expo-ticket/{{ $user->id }}"
+                                                <a href="{{ route('expo.expo-ticket', ['unique_id'=>$user['expo']]) }}"
                                                     style="color: var(--primary_background);" target="_blank">
                                                     {{ $user->ticket_no }}
                                                 </a>
