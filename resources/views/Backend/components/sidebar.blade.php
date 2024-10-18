@@ -561,7 +561,7 @@
                     Route::is('admin.expo.edit') ||
                     Route::is('admin.expo.index') ||
                     Route::is('admin.expo.exhibitors.index') ||
-                    Route::is('admin.expo.users') ||
+                    (Route::is('admin.expo.users') && request()->type == 'main') ||
                     Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.testimonial.index') ||
                     Route::is('admin.expo.testimonial.manage') ||
@@ -569,7 +569,7 @@
                     Route::is('admin.expo.delegate.manage') ||
                     Route::is('admin.expo.media.gallery') ||
                     Route::is('admin.expo.media.video') ||
-                    Route::is('admin.expo.add_participator');
+                    (Route::is('admin.expo.add_participator') && request()->type == 'main');
             @endphp
             <li class="nav-item {{ $is_active_expo_module ? 'active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#expo-sidemenu" aria-expanded="false"
