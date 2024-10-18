@@ -38,7 +38,9 @@
             </div>
 
             <div class="row justify-content-center mt-5">
-                div.
+                <div class="col-md-6">
+                    div.
+                </div>
             </div>
 
         </div>
