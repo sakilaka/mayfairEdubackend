@@ -3,7 +3,7 @@
 
 <head>
     @include('Expo.components.head')
-    <title>{{ env('APP_NAME') }} - Schedule</title>
+    <title>{{ env('APP_NAME') }} - Schedule of '{{ $expo->title }}'</title>
     <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
 
     @php
