@@ -560,8 +560,6 @@
                     Route::is('admin.expo.create') ||
                     Route::is('admin.expo.edit') ||
                     Route::is('admin.expo.index') ||
-                    Route::is('admin.expo.exhibitors.index') ||
-                    Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.testimonial.index') ||
                     Route::is('admin.expo.testimonial.manage') ||
                     Route::is('admin.expo.delegate.index') ||
@@ -601,13 +599,6 @@
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.exhibitors.index') }}"
-                                class="nav-link {{ Route::is('admin.expo.exhibitors.index') || Route::is('admin.expo.exhibitor.edit') ? 'active' : '' }}">
-                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
-                                Manage Exhibitors
-                            </a>
-                        </li>
-                        <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.users', ['type' => 'main']) }}"
                                 class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.users.filter') || Route::is('admin.expo.add_participator')) && request()->type == 'main' ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -629,6 +620,8 @@
             {{-- expo website --}}
             @php
                 $is_active_expo_site_module =
+                    Route::is('admin.expo.exhibitors.index') ||
+                    Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.ui.contact') ||
                     Route::is('admin.expo.ui.gallery') ||
                     Route::is('admin.expo.ui.video') ||
@@ -644,6 +637,13 @@
                 </a>
                 <div class="collapse {{ $is_active_expo_site_module ? 'show' : '' }}" id="expo-site-sidemenu">
                     <ul class="nav flex-column sub-menu">
+                        <li class="nav-item d-none d-lg-block">
+                            <a href="{{ route('admin.expo.exhibitors.index') }}"
+                                class="nav-link {{ Route::is('admin.expo.exhibitors.index') || Route::is('admin.expo.exhibitor.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
+                                Manage Exhibitors
+                            </a>
+                        </li>
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.users', ['type' => 'site']) }}"
                                 class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.add_participator')) && request()->type == 'site' ? 'active' : '' }}">
