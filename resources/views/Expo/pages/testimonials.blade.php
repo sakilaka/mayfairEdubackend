@@ -39,7 +39,7 @@
 
             <div class="row justify-content-between mt-5">
                 <div class="col-md-6 px-3">
-                    <div class="row border">
+                    <div class="row border border-3 border-primary">
                         <div class="col-md-3">
                             <img src="{{ asset('frontend/images/no-profile.jpg') }}" alt=""
                                 class="img-fluid rounded-circle border border-3 border-primary" width="130">
