@@ -162,7 +162,6 @@ class ExpoModuleController extends Controller
      */
     public function expo_form_submit(Request $request, $expo_id)
     {
-        return $expo_id;
         try {
             $image_url = null;
             if ($request->hasFile('photo')) {
@@ -172,6 +171,7 @@ class ExpoModuleController extends Controller
 
             $expoUser = new ExpoUser();
             $expoUser->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
+            $expoUser->expo_id = $expo_id;
             $expoUser->email = $request->email;
             $expoUser->password = Hash::make($request->password);
             // $expoUser->id_type = $request->id_type;
