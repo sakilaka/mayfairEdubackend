@@ -319,9 +319,7 @@
                 data: {
                     ticket_no: ticketNo
                 },
-                success: function(response) {
-                    console.log(response);
-                    
+                success: function(response) {                    
                     $('#participantModal').modal('show');
 
                     $('#modalPhoto').attr('src', response.photo ? response.photo : noProfileImage);
