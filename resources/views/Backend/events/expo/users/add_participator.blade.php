@@ -21,7 +21,8 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.users') }}" class="btn btn-primary btn-fw">
+                            <a href="{{ route('admin.expo.users', ['type' => request()->type]) }}"
+                                class="btn btn-primary btn-fw">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View All Participator</a>
                         </nav>
@@ -32,8 +33,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="forms-sample"
-                                        action="{{ route('admin.expo.add_participator.store') }}" method="POST"
-                                        enctype="multipart/form-data">
+                                        action="{{ route('admin.expo.add_participator.store', ['type' => request()->type]) }}"
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row">
