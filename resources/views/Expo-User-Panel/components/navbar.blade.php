@@ -305,7 +305,7 @@
                             </div>
                         </li>
                         <li class="nav-item mt-1 mt-md-0">
-                            <a class="nav-link registration-btn btn-danger-bg px-2" href="{{ route('logout') }}"
+                            <a class="nav-link registration-btn btn-secondary-bg px-2" href="{{ route('logout') }}"
                                 style="color: white;">Logout</a>
                         </li>
                     </ul>
