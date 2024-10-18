@@ -293,12 +293,12 @@
                             <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                                 aria-labelledby="profileDropdown">
                                 <a class="dropdown-item"
-                                    href="{{ route('user.edit_profile', ['id' => Auth::guard('expo')->user()->id]) }}">
+                                    href="{{ route('expo.user.edit_profile', ['id' => Auth::guard('expo')->user()->id]) }}">
                                     <i class="fa fa-user text-primary"></i>
                                     Edit Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('user.logout') }}">
+                                <a class="dropdown-item" href="{{ route('expo.user.logout') }}">
                                     <i class="fas fa-power-off text-primary"></i>
                                     Logout
                                 </a>
