@@ -101,8 +101,8 @@
                                                     <div class="dropdown-menu dropdown-menu-right">
                                                         <div class="d-flex justify-content-end">
                                                             <a href="{{ route('admin.expo.edit', $expo->id) }}"
-                                                                class="btn text-primary" data-toggle="tooltip" data-title="Edit Expo">
-                                                                <i class="fa fa-edit" aria-hidden="true"></i>
+                                                                class="btn text-primary" data-toggle="tooltip" data-title="Manage Testimonials">
+                                                                <i class="fa fa-graduation" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="{{ route('admin.expo.edit', $expo->id) }}"
                                                                 class="btn text-primary" data-toggle="tooltip" data-title="Edit Expo">
