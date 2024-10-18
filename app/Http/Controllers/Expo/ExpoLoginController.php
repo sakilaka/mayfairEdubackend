@@ -60,7 +60,7 @@ class ExpoLoginController extends Controller
     }
 
 
-    public function attempt_login(Request $request, $expo_id)
+    public function attempt_login(Request $request)
     {
         $this->validate($request, [
             'password' => 'required|min:6',
