@@ -115,7 +115,8 @@
         opacity: 0.5;
     }
 
-    .card-red-pattern-bg .card-title, .card-red-pattern-bg .card-body {
+    .card-red-pattern-bg .card-title,
+    .card-red-pattern-bg .card-body {
         position: relative;
         z-index: 2;
     }
