@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
 use App\Http\Controllers\Backend\Expo\ExpoMediaController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
+use App\Http\Controllers\Backend\Expo\ExpoSiteController;
 use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
 use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Expo\ExpoLoginController;
@@ -80,6 +81,16 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
+
+Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(
+    function () {
+        Route::prefix('users')->group(function () {
+            Route::get('/', [ExpoSiteController::class, 'expo_users'])->name('admin.expo-site.users');
+            Route::get('add-participator', [ExpoSiteController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
+            Route::post('add-participator', [ExpoSiteController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
+        });
+    }
+);
 
 /**
  * Expo Routes (User)
