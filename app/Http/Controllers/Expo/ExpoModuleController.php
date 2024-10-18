@@ -87,7 +87,7 @@ class ExpoModuleController extends Controller
 
         return view('Expo.pages.exhibitors', $data);
     }
-    
+
     /**
      * schedule page
      */
@@ -95,6 +95,15 @@ class ExpoModuleController extends Controller
     {
         $data['expo'] = Expo::where('unique_id', $unique_id)->first();
         return view('Expo.pages.schedule', $data);
+    }
+
+    /**
+     * testimonials page
+     */
+    public function testimonials($unique_id)
+    {
+        $data['expo'] = Expo::where('unique_id', $unique_id)->first();
+        return view('Expo.pages.testimonials', $data);
     }
 
 
