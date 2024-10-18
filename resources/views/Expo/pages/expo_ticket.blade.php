@@ -21,8 +21,8 @@
 
     <style>
         :root {
-            --primary_background: #e74c3c;
-            --secondary_background: #c34031;
+            --primary_background: #0c4493;
+            --secondary_background: #58b135;
             --tertiary_background: #c0392b;
 
             --btn_primary_color: var(--secondary_background);
@@ -233,9 +233,9 @@
         <div class="container-wrapper d-flex flex-column align-items-center justify-content-center">
             @if (!request()->has('print'))
                 <div class="d-flex">
-                    <button id="download-pdf" class="btn btn-secondary-bg mb-3 me-2"
+                    <button id="download-pdf" class="btn btn-primary-bg mb-3 me-2"
                         style="z-index: 3">Download</button>
-                    <button id="print-pdf" class="btn btn-secondary-bg mb-3" style="z-index: 3">Print</button>
+                    <button id="print-pdf" class="btn btn-primary-bg mb-3" style="z-index: 3">Print</button>
                 </div>
             @endif
 
