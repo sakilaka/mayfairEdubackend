@@ -102,7 +102,7 @@
                                                         <div class="d-flex justify-content-end">
                                                             <a href="{{ route('admin.expo.edit', $expo->id) }}"
                                                                 class="btn text-primary" data-toggle="tooltip" data-title="Manage Testimonials">
-                                                                <i class="fa fa-graduation" aria-hidden="true"></i>
+                                                                <i class="fa fa-comments" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="{{ route('admin.expo.edit', $expo->id) }}"
                                                                 class="btn text-primary" data-toggle="tooltip" data-title="Edit Expo">
