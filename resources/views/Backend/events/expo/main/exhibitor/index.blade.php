@@ -111,7 +111,7 @@
                                             </td>
                                             <td class="text-end d-flex justify-content-end">
                                                 <a class="btn text-primary"
-                                                    href="{{ route('admin.expo-site.exhibitor.edit', ['exhibitor_id' => $exhibitor->id]) }}">
+                                                    href="{{ route('admin.expo.exhibitor.edit', ['expo_id' => $expo->unique_id, 'exhibitor_id' => $exhibitor->id]) }}">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
 

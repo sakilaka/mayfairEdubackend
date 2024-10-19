@@ -29,7 +29,7 @@ class ExpoMainExhibitorController extends Controller
     /**
      * edit exhibitor
      */
-    public function exhibitor_edit($exhibitor_id)
+    public function exhibitor_edit($exhibitor_id, $expo_id)
     {
         $data['exhibitor'] = University::find($exhibitor_id);
 
