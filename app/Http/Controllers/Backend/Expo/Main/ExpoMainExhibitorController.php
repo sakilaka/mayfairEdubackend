@@ -61,7 +61,7 @@ class ExpoMainExhibitorController extends Controller
         }
 
         $data['exhibitor'] = $exhibitor;
-        $data['university'] = University::select('id', 'name')->find($exhibitor_id);
+        $data['university'] = University::select('id', 'name', 'exhibitor_desc')->find($exhibitor_id);
         return view('Backend.events.expo.main.exhibitor.edit', $data);
     }
 
