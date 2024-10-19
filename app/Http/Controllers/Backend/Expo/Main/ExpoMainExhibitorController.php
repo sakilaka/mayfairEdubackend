@@ -20,11 +20,15 @@ class ExpoMainExhibitorController extends Controller
         $expo_exhibitors = json_decode($data['expo']->exhibitors, true) ?? [];
         $exhibitor_ids = array_column($expo_exhibitors, 'exhibitor');
 
-        $data['exhibitors'] = $universities->whereIn('id', $exhibitor_ids)->select('id', 'name', 'address', 'position_in_expo')->sortByDesc('created_at')->map(function ($university) use ($expo_exhibitors) {
-            $exhibitor_data = collect($expo_exhibitors)->firstWhere('exhibitor', $university->id);
-            $university->show_on_home = $exhibitor_data['show_on_home'] ?? false;
-            return $university;
-        });
+        $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)
+            ->select('id', 'name', 'address', 'position_in_expo')
+            ->orderByDesc('created_at')
+            ->get()
+            ->map(function ($university) use ($expo_exhibitors) {
+                $exhibitor_data = collect($expo_exhibitors)->firstWhere('exhibitor', $university->id);
+                $university->show_on_home = $exhibitor_data['show_on_home'] ?? false;
+                return $university;
+            });
         return $data['exhibitors'];
         $data['available_universities'] = $universities->whereNotIn('id', $exhibitor_ids)->sortByDesc('created_at');
 
