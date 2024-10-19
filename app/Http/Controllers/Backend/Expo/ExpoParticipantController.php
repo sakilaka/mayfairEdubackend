@@ -50,7 +50,7 @@ class ExpoParticipantController extends Controller
     /**
      * store expo participator
      */
-    public function expo_add_participator_store(Request $request)
+    public function expo_add_participator_store(Request $request, $type)
     {
         return $request->all();
         try {
