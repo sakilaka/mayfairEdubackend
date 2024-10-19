@@ -23,13 +23,13 @@
 
                     <div class="row">
                         <div class="col-2">
-                            @include('Backend.events.expo.ui-contents.expo-ui-manage-nav')
+                            @include('Backend.events.expo.external.ui-contents.expo-ui-manage-nav')
                         </div>
 
                         <div class="col-10">
                             <div class="card">
                                 <div class="card-body">
-                                    <form method="post" action="{{ route('admin.expo.ui.contact.update') }}"
+                                    <form method="post" action="{{ route('admin.expo-site.ui.contact.update') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 

@@ -30,7 +30,7 @@
 
                     <div class="row">
                         <div class="col-2">
-                            @include('Backend.events.expo.ui-contents.expo-ui-manage-nav')
+                            @include('Backend.events.expo.external.ui-contents.expo-ui-manage-nav')
                         </div>
 
                         <div class="col-10">
@@ -38,7 +38,7 @@
                                 <div class="tab-pane fade show active" id="program-info-tab-content" role="tabpanel"
                                     aria-labelledby="home-tab-vertical">
 
-                                    <form method="post" action="{{ route('admin.expo.ui.gallery.update') }}"
+                                    <form method="post" action="{{ route('admin.expo-site.ui.gallery.update') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
