@@ -22,7 +22,6 @@ class ExpoJoinController extends Controller
      */
     public function expo_join_page_update(Request $request, $expo_id)
     {
-        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
@@ -38,12 +37,12 @@ class ExpoJoinController extends Controller
             if ($request->hasFile('qr_code')) {
                 $qrCodeFile = $request->file('qr_code');
                 $qrFileName = 'general-qr-code_' . rand() . time() . '.' . $qrCodeFile->getClientOriginalExtension();
-                $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
+                // $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
                 $joinPageContents['qr_code'] = url('upload/expo/qr_codes/' . $qrFileName);
             } else {
                 $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
             }
-
+return $joinPageContents;
             $joinContents = $request->join_contents ?? [];
             $allJoinContents = [];
 
@@ -64,7 +63,7 @@ class ExpoJoinController extends Controller
                         if ($request->hasFile("join_contents.$joinKey.reference.$refKey.image")) {
                             $qrFile = $request->file("join_contents.$joinKey.reference.$refKey.image");
                             $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
-                            $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
+                            // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
                             $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
                         } else {
                             $refData['image'] = $reference['image'] ?? '';
@@ -100,6 +99,7 @@ class ExpoJoinController extends Controller
             }
 
             $joinPageContents['join_contents'] = $allJoinContents;
+            return $joinPageContents;
             $expo->update(['join_page_contents' => json_encode($joinPageContents)]);
 
             return redirect(route('admin.expo.join.index', ['expo_id' => $expo->unique_id]))->with('success', 'Join Page Updated!');

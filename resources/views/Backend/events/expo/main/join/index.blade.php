@@ -187,7 +187,6 @@
                                             </div>
                                             <div class="col-12 row" id="join_contents-container"
                                                 style="padding-right: 0">
-
                                                 @forelse ($contents['join_contents'] ?? [] as $key => $content)
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
                                                         <div class="card-header" data-toggle="collapse"
@@ -422,10 +421,6 @@
                                                     </div>
                                                 @empty
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
-                                                        @php
-                                                            $random = rand();
-                                                        @endphp
-
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#activity_single_collapse_{{ $random }}">
                                                             <div class="d-flex justify-content-between">
@@ -572,7 +567,6 @@
                                                         </div>
                                                     </div>
                                                 @endforelse
-
                                             </div>
 
                                             <div class="col-12 mt-4">
