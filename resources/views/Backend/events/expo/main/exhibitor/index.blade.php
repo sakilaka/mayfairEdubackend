@@ -34,14 +34,16 @@
                             Exhibitors of '{{ $expo->title }}'
                         </h3>
 
-                        <nav aria-label="breadcrumb" class="d-flex">
-                            <a href="{{ route('admin.expo.index') }}" class="btn btn-primary btn-fw">
-                                <i class="fa fa-view" aria-hidden="true"></i> View Expo
+                        <nav aria-label="breadcrumb" class="d-flex justcon">
+                            <a href="{{ route('admin.expo.index') }}" class="btn btn-secondary-bg" style="margin-right:5px;">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                View Expo
                             </a>
-                            <a href="javascript:void(0);" class="btn btn-primary btn-fw" data-toggle="modal"
+                            <button class="btn btn-primary-bg" data-toggle="modal"
                                 data-target="#manage_exhibitors_modal_box">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Add Exhibitor
-                            </a>
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Add Exhibitor
+                            </button>
                         </nav>
                     </div>
 
