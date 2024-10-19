@@ -113,6 +113,7 @@ class ExpoJoinController extends Controller
             $joinPageContents = [];
             $oldJoinPageContents = json_decode($expo->join_page_contents, true) ?? [];
 
+            // Initialize join page contents with steps and deadline
             $stepTitles = $request->step_title ?? [];
             $deadline = $request->deadline;
 
@@ -134,84 +135,92 @@ class ExpoJoinController extends Controller
                 $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
             }
 
+            // Check if there are any join contents in the request
             $joinContents = $request->join_contents ?? [];
-            $allJoinContents = [];
 
-            // Process existing and new join contents
-            foreach ($oldJoinPageContents['join_contents'] ?? [] as $oldJoinKey => $oldJoinContent) {
-                // Check if there's a corresponding new entry
-                if (isset($joinContents[$oldJoinKey])) {
-                    $joinContent = $joinContents[$oldJoinKey];
+            if (!empty($joinContents)) {
+                // Process existing and new join contents
+                $allJoinContents = [];
 
-                    // Update join content with new data
-                    $allJoinContents[$oldJoinKey] = [
-                        'name' => $joinContent['name'],
-                        'email' => $joinContent['email'],
-                        'phone' => $joinContent['phone'],
-                        'reference' => []
-                    ];
+                foreach ($oldJoinPageContents['join_contents'] ?? [] as $oldJoinKey => $oldJoinContent) {
+                    // Check if there's a corresponding new entry
+                    if (isset($joinContents[$oldJoinKey])) {
+                        $joinContent = $joinContents[$oldJoinKey];
 
-                    // Process references
-                    foreach ($joinContent['reference'] ?? [] as $refKey => $reference) {
-                        $refData = [
-                            'qr_code_type' => $reference['qr_code_type'] ?? '',
+                        // Update join content with new data
+                        $allJoinContents[$oldJoinKey] = [
+                            'name' => $joinContent['name'],
+                            'email' => $joinContent['email'],
+                            'phone' => $joinContent['phone'],
+                            'reference' => []
                         ];
 
-                        // Handle new image upload for reference
-                        if ($request->hasFile("join_contents.$oldJoinKey.reference.$refKey.image")) {
-                            // Delete old image if it exists
-                            if (!empty($oldJoinContent['reference'][$refKey]['image'])) {
-                                $this->deleteFile($oldJoinContent['reference'][$refKey]['image']);
+                        // Process references
+                        foreach ($joinContent['reference'] ?? [] as $refKey => $reference) {
+                            $refData = [
+                                'qr_code_type' => $reference['qr_code_type'] ?? '',
+                            ];
+
+                            // Handle new image upload for reference
+                            if ($request->hasFile("join_contents.$oldJoinKey.reference.$refKey.image")) {
+                                // Delete old image if it exists
+                                if (!empty($oldJoinContent['reference'][$refKey]['image'])) {
+                                    $this->deleteFile($oldJoinContent['reference'][$refKey]['image']);
+                                }
+
+                                $qrFile = $request->file("join_contents.$oldJoinKey.reference.$refKey.image");
+                                $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
+                                // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
+                                $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
+                            } else {
+                                // Use the old image if no new image is uploaded
+                                $refData['image'] = $oldJoinContent['reference'][$refKey]['image'] ?? '';
                             }
 
-                            $qrFile = $request->file("join_contents.$oldJoinKey.reference.$refKey.image");
-                            $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
-                            // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
-                            $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
-                        } else {
-                            // Use the old image if no new image is uploaded
-                            $refData['image'] = $oldJoinContent['reference'][$refKey]['image'] ?? '';
+                            $allJoinContents[$oldJoinKey]['reference'][$refKey] = $refData;
                         }
-
-                        $allJoinContents[$oldJoinKey]['reference'][$refKey] = $refData;
+                    } else {
+                        // If no new content, delete old content and its images
+                        $this->deleteContentAndImages($oldJoinKey, $oldJoinContent);
                     }
-                } else {
-                    // If no new content, delete old content and its images
-                    $this->deleteContentAndImages($oldJoinKey, $oldJoinContent);
                 }
-            }
 
-            // Handle new join contents that are not in old contents
-            foreach ($joinContents as $joinKey => $joinContent) {
-                if (!isset($oldJoinPageContents['join_contents'][$joinKey])) {
-                    $allJoinContents[$joinKey] = [
-                        'name' => $joinContent['name'],
-                        'email' => $joinContent['email'],
-                        'phone' => $joinContent['phone'],
-                        'reference' => []
-                    ];
-
-                    // Process references
-                    foreach ($joinContent['reference'] ?? [] as $refKey => $reference) {
-                        $refData = [
-                            'qr_code_type' => $reference['qr_code_type'] ?? '',
-                            'image' => ''
+                // Handle new join contents that are not in old contents
+                foreach ($joinContents as $joinKey => $joinContent) {
+                    if (!isset($oldJoinPageContents['join_contents'][$joinKey])) {
+                        $allJoinContents[$joinKey] = [
+                            'name' => $joinContent['name'],
+                            'email' => $joinContent['email'],
+                            'phone' => $joinContent['phone'],
+                            'reference' => []
                         ];
 
-                        // Handle new image upload for reference
-                        if ($request->hasFile("join_contents.$joinKey.reference.$refKey.image")) {
-                            $qrFile = $request->file("join_contents.$joinKey.reference.$refKey.image");
-                            $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
-                            // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
-                            $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
-                        }
+                        // Process references
+                        foreach ($joinContent['reference'] ?? [] as $refKey => $reference) {
+                            $refData = [
+                                'qr_code_type' => $reference['qr_code_type'] ?? '',
+                                'image' => ''
+                            ];
 
-                        $allJoinContents[$joinKey]['reference'][$refKey] = $refData;
+                            // Handle new image upload for reference
+                            if ($request->hasFile("join_contents.$joinKey.reference.$refKey.image")) {
+                                $qrFile = $request->file("join_contents.$joinKey.reference.$refKey.image");
+                                $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
+                                // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
+                                $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
+                            }
+
+                            $allJoinContents[$joinKey]['reference'][$refKey] = $refData;
+                        }
                     }
                 }
+
+                $joinPageContents['join_contents'] = $allJoinContents;
+            } else {
+                // No join contents in the request, delete all old contents and images
+                $this->deleteAllContentsAndImages($oldJoinPageContents);
             }
 
-            $joinPageContents['join_contents'] = $allJoinContents;
             return $joinPageContents;
             $expo->update(['join_page_contents' => json_encode($joinPageContents)]);
 
@@ -237,6 +246,19 @@ class ExpoJoinController extends Controller
             if (!empty($oldReference['image'])) {
                 $this->deleteFile($oldReference['image']);
             }
+        }
+    }
+
+    // Helper method to delete all contents and their images
+    private function deleteAllContentsAndImages($oldJoinPageContents)
+    {
+        foreach ($oldJoinPageContents['join_contents'] ?? [] as $oldJoinKey => $oldJoinContent) {
+            $this->deleteContentAndImages($oldJoinKey, $oldJoinContent);
+        }
+
+        // Also delete the old QR code if it exists
+        if (!empty($oldJoinPageContents['qr_code'])) {
+            $this->deleteFile($oldJoinPageContents['qr_code']);
         }
     }
 }
