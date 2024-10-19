@@ -1404,11 +1404,11 @@ $("#uploadFile").on("click", function (e) {
         });
     } else {
         e.preventDefault();
-        $.wnoty({
+        /* $.wnoty({
             type: "error",
             message:
                 "Please add a document title and select a document to upload.",
-        });
+        }); */
     }
 });
 $(document.body).on("click", ".receipt-file-upload", function (e) {
