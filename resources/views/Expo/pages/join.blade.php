@@ -27,11 +27,16 @@
             font-size: 18px;
             margin-right: 5px;
             border-radius: 50%;
-            background-color: red;
+            background-color: var(--secondary_background);
             width: 35px;
             height: 35px;
             text-align: center;
             color: white;
+            border: 2px solid var(--primary_background);
+        }
+
+        .custom-text {
+            margin-left: 5px;
         }
 
         .reference-card {
