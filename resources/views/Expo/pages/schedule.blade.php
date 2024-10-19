@@ -9,6 +9,15 @@
     @php
         $additional_contents = json_decode($expo->additional_contents, true) ?? [];
     @endphp
+
+    <style>
+        .university-highlights{
+            background-image: url('{{ asset("frontend/images/expo-page-white-bg.jpeg") }}');
+            background-position: top;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 
 <body>
@@ -30,7 +39,7 @@
         <div class="bg-color"></div>
     </div>
 
-    <section class="university-highlights my-5">
+    <section class="university-highlights py-5 ">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Schedule</h2>
