@@ -62,7 +62,7 @@
                                                             <div class="dropify-errors-container">
                                                                 <ul></ul>
                                                             </div>
-                                                            <input type="file" class="dropify" name=""
+                                                            <input type="file" class="dropify" name="qr_code"
                                                                 accept="image/*">
                                                             <button type="button" class="dropify-clear">Remove</button>
                                                             <div class="dropify-preview">
@@ -116,7 +116,7 @@
                                                                 Step Title
                                                                 <span class="text-danger">*</span>
                                                             </label>
-                                                            <input type="text" class="form-control" name=""
+                                                            <input type="text" class="form-control" name="step_title"
                                                                 placeholder="Enter Step Title" value="" required>
                                                         </div>
                                                         <div class="col-1 mt-3">
