@@ -413,23 +413,38 @@
                                                             <div class="card-body">
                                                                 <div class="col-sm-12 mt-3">
                                                                     <div class="row px-0">
-                                                                        <div class="col-md-12 px-0 mb-2"
+                                                                        <div class="col-md-4 px-0 mb-2"
                                                                             style="padding-right: 5px !important;">
                                                                             <label class="form-label">
-                                                                                Title
+                                                                                Name
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
                                                                             <input type="text" class="form-control"
-                                                                                name="galleries[{{ $random }}][gallery_title]"
+                                                                                name="galleries[{{ $random }}][name]"
                                                                                 placeholder="Enter Gallery Title"
                                                                                 required>
                                                                         </div>
-                                                                        <div class="col-sm-12 px-0">
+                                                                        <div class="col-md-4 px-0 mb-2"
+                                                                            style="padding-right: 5px !important;">
                                                                             <label class="form-label">
-                                                                                Description
+                                                                                Email
+                                                                                <span class="text-danger">*</span>
                                                                             </label>
-                                                                            <textarea class="form-control form-control-lg" rows="4"
-                                                                                name="galleries[{{ $random }}][gallery_description]" placeholder="Write Gallery Description"></textarea>
+                                                                            <input type="text" class="form-control"
+                                                                                name="galleries[{{ $random }}][email]"
+                                                                                placeholder="Enter Gallery Title"
+                                                                                required>
+                                                                        </div>
+                                                                        <div class="col-md-4 px-0 mb-2"
+                                                                            style="padding-right: 5px !important;">
+                                                                            <label class="form-label">
+                                                                                Phone
+                                                                                <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="galleries[{{ $random }}][phone]"
+                                                                                placeholder="Enter Gallery Title"
+                                                                                required>
                                                                         </div>
                                                                     </div>
 
