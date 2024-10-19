@@ -5,7 +5,7 @@
     @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Join With Us</title>
     <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
-    
+
     @php
         $additional_contents = json_decode($expo->additional_contents, true) ?? [];
     @endphp
@@ -13,23 +13,17 @@
     <style>
         .custom-numbered-list {
             line-height: 1.6;
-            /* Adjust line height for spacing */
+        }
+
+        .custom-item {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 8px;
         }
 
         .custom-number {
             font-weight: bold;
-            /* Make the number bold */
-            display: inline-block;
-            /* Align number and text */
-            width: 30px;
-            /* Set a width for alignment */
-        }
-
-        .custom-text {
-            display: inline-block;
-            /* Keep text inline with numbers */
-            margin-left: 5px;
-            /* Space between number and text */
+            margin-right: 5px;
         }
     </style>
 </head>
@@ -64,22 +58,28 @@
                     <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid"
                         width="250">
                 </div>
+
                 <div class="col-md-6 order-md-1" style="font-size: 18px;">
                     <div class="custom-numbered-list">
-                        <div class="custom-number">1.</div>
-                        <div class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-                            dolor sit amet consectetur, adipisicing elit. Alias, impedit.</div>
+                        <div class="custom-item">
+                            <span class="custom-number">1.</span>
+                            <span class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
+                                ipsum dolor sit amet consectetur, adipisicing elit. Alias, impedit.</span>
+                        </div>
 
-                        <div class="custom-number">2.</div>
-                        <div class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-                            dolor sit amet consectetur, adipisicing elit. Alias, impedit.</div>
+                        <div class="custom-item">
+                            <span class="custom-number">2.</span>
+                            <span class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
+                                ipsum dolor sit amet consectetur, adipisicing elit. Alias, impedit.</span>
+                        </div>
 
-                        <div class="custom-number">3.</div>
-                        <div class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
-                            dolor sit amet consectetur, adipisicing elit. Alias, impedit.</div>
+                        <div class="custom-item">
+                            <span class="custom-number">3.</span>
+                            <span class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
+                                ipsum dolor sit amet consectetur, adipisicing elit. Alias, impedit.</span>
+                        </div>
                     </div>
                 </div>
-
             </div>
 
         </div>
