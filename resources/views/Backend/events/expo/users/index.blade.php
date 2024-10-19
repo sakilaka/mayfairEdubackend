@@ -61,7 +61,9 @@
                                     <option value="">Select Expo</option>
                                     <option value="all">All</option>
                                     @foreach ($expos as $expo)
-                                        <option value="{{ $expo->unique_id }}">{{ $expo->title }}</option>
+                                        <option value="{{ $expo->unique_id }}"
+                                            {{ isset($filtered_expo) && $filtered_expo === $expo->unique_id ? 'selected' : '' }}>
+                                            {{ $expo->title }}</option>
                                     @endforeach
                                 </select>
                             </div>

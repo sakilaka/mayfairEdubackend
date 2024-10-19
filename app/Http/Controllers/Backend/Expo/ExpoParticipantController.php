@@ -25,12 +25,13 @@ class ExpoParticipantController extends Controller
         if ($type == 'main') {
 
             if (($request->has('filter_participant')) && ($request->filter_participant !== 'all')) {
+                $data['filtered_expo'] = $request->filter_participant;
                 $data['expo_users'] = ExpoUser::where('expo_id', $request->filter_participant)->latest()->paginate(50);
             } else {
-                $data['expo_users'] = ExpoUser::latest()->paginate(50);
+                $data['expo_users'] = ExpoUser::latest()->paginate(25);
             }
         } elseif ($type == 'site') {
-            $data['expo_users'] = ExpoModule::latest()->paginate(50);
+            $data['expo_users'] = ExpoModule::latest()->paginate(25);
         } else {
             abort(404, 'Not Found');
         }
