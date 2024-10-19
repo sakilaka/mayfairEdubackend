@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Expo;
+namespace App\Http\Controllers\Backend\Expo\External;
 
 use App\Http\Controllers\Controller;
 use App\Models\ExpoModuleContent;
 use Illuminate\Http\Request;
 
-class ExpoModuleContentsController extends Controller
+class ExpoExternalModuleContentsController extends Controller
 {
     /**
      * manage ui -> contact - page
@@ -14,7 +14,7 @@ class ExpoModuleContentsController extends Controller
     public function ui_contact_page()
     {
         $data['contents'] = ExpoModuleContent::where('key', 'contact')->first();
-        return view('Backend.events.expo.ui-contents.contact', $data);
+        return view('Backend.events.expo.external.ui-contents.contact', $data);
     }
 
     /**
@@ -42,7 +42,7 @@ class ExpoModuleContentsController extends Controller
     public function ui_gallery_page()
     {
         $data['page'] = ExpoModuleContent::where('key', 'gallery')->first();
-        return view('Backend.events.expo.ui-contents.gallery', $data);
+        return view('Backend.events.expo.external.ui-contents.gallery', $data);
     }
 
     /**
@@ -144,7 +144,7 @@ class ExpoModuleContentsController extends Controller
     public function ui_video_page()
     {
         $data['page'] = ExpoModuleContent::where('key', 'video')->first();
-        return view('Backend.events.expo.ui-contents.video', $data);
+        return view('Backend.events.expo.external.ui-contents.video', $data);
     }
 
     /**

@@ -3,13 +3,15 @@
 use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
 use App\Http\Controllers\Backend\Expo\ExpoMediaController;
-use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
-use App\Http\Controllers\Backend\Expo\ExpoSiteController;
 use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
-use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
 use App\Http\Controllers\Expo\ExpoUserController;
+
+use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
+use App\Http\Controllers\Backend\Expo\External\ExpoExternalController;
+
+use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,24 +74,24 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
  */
 Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
     Route::prefix('exhibitors')->group(function () {
-        Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo-site.exhibitors.index');
-        Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo-site.exhibitors.store');
-        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_edit"])->name('admin.expo-site.exhibitor.edit');
-        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_update"])->name('admin.expo-site.exhibitor.update');
-        Route::post('delete', [ExpoController::class, "exhibitors_destroy"])->name('admin.expo-site.exhibitors.delete');
-        Route::get('toggle-show-in-expo/{id}', [ExpoController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo-site.exhibitors.toggle_show_in_expo');
-        Route::post('postion-in-expo', [ExpoController::class, "exhibitors_postion_in_expo"])->name('admin.expo-site.exhibitors.position_in_expo');
+        Route::get('list', [ExpoExternalController::class, "exhibitors_index"])->name('admin.expo-site.exhibitors.index');
+        Route::post('store', [ExpoExternalController::class, "exhibitors_store"])->name('admin.expo-site.exhibitors.store');
+        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoExternalController::class, "exhibitor_edit"])->name('admin.expo-site.exhibitor.edit');
+        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoExternalController::class, "exhibitor_update"])->name('admin.expo-site.exhibitor.update');
+        Route::post('delete', [ExpoExternalController::class, "exhibitors_destroy"])->name('admin.expo-site.exhibitors.delete');
+        Route::get('toggle-show-in-expo/{id}', [ExpoExternalController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo-site.exhibitors.toggle_show_in_expo');
+        Route::post('postion-in-expo', [ExpoExternalController::class, "exhibitors_postion_in_expo"])->name('admin.expo-site.exhibitors.position_in_expo');
     });
 
     Route::prefix('manage-ui-contents')->group(function () {
-        Route::get('contacts', [ExpoModuleContentsController::class, 'ui_contact_page'])->name('admin.expo-site.ui.contact');
-        Route::post('contacts', [ExpoModuleContentsController::class, 'ui_contact_page_update'])->name('admin.expo-site.ui.contact.update');
+        Route::get('contacts', [ExpoExternalModuleContentsController::class, 'ui_contact_page'])->name('admin.expo-site.ui.contact');
+        Route::post('contacts', [ExpoExternalModuleContentsController::class, 'ui_contact_page_update'])->name('admin.expo-site.ui.contact.update');
 
-        Route::get('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo-site.ui.gallery');
-        Route::post('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo-site.ui.gallery.update');
+        Route::get('galleries', [ExpoExternalModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo-site.ui.gallery');
+        Route::post('galleries', [ExpoExternalModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo-site.ui.gallery.update');
 
-        Route::get('videos', [ExpoModuleContentsController::class, 'ui_video_page'])->name('admin.expo-site.ui.video');
-        Route::post('videos', [ExpoModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo-site.ui.video.update');
+        Route::get('videos', [ExpoExternalModuleContentsController::class, 'ui_video_page'])->name('admin.expo-site.ui.video');
+        Route::post('videos', [ExpoExternalModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo-site.ui.video.update');
     });
 
     Route::prefix('users')->group(function () {

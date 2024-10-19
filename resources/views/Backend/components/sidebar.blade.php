@@ -617,7 +617,7 @@
         @endif
 
         @if (in_array('expo_module', $permissions ?? []))
-            {{-- expo website --}}
+            {{-- expo website (external) --}}
             @php
                 $is_active_expo_site_module =
                     Route::is('admin.expo.exhibitors.index') ||
