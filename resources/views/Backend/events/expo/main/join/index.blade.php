@@ -263,16 +263,15 @@
 
                                                                     <div class="gallery-image-container">
                                                                         @forelse ($content['reference'] as $imageKey => $image)
-                                                                        {{ dd($image) }}
                                                                             <div class="row align-items-center mt-2">
                                                                                 <div class="col-12 mt-3">
                                                                                     <div class="form-group">
-                                                                                        <label>Image Title</label>
+                                                                                        <label>QR Code Type</label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg"
-                                                                                            placeholder="Enter image alt title"
-                                                                                            name="join_contents[{{ $key }}][image_title][{{ $imageKey }}]"
-                                                                                            value="{{ $content['image_titles'][$imageKey] ?? '' }}">
+                                                                                            placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
+                                                                                            name="join_contents[{{ $key }}][reference][{{ $imageKey }}][qr_code_type]"
+                                                                                            value="{{ $image['qr_code_type'] ?? '' }}">
                                                                                     </div>
                                                                                 </div>
 
@@ -280,7 +279,7 @@
                                                                                     class="col-sm-12 col-md-5 img-upload-container">
                                                                                     <label
                                                                                         class="form-control-label">Upload
-                                                                                        Image:</label>
+                                                                                        QR Code:</label>
                                                                                     <div class="dropify-wrapper"
                                                                                         style="border: none">
                                                                                         <div class="dropify-loader">
@@ -291,11 +290,8 @@
                                                                                         </div>
                                                                                         <input type="file"
                                                                                             class="dropify"
-                                                                                            name="join_contents[{{ $key }}][gallery_image][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $key }}][reference][{{ $imageKey }}][image]"
                                                                                             accept="image/*">
-                                                                                        <input type="hidden"
-                                                                                            name="join_contents[{{ $key }}][old_gallery_image][{{ $imageKey }}]"
-                                                                                            value="{{ $image }}">
                                                                                         <button type="button"
                                                                                             class="dropify-clear">Remove</button>
                                                                                         <div class="dropify-preview">
@@ -326,7 +322,7 @@
                                                                                 <div
                                                                                     class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                                                                                     <div class="px-3 mt-3">
-                                                                                        <img src="{{ $image ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                        <img src="{{ $image['image'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                                             alt=""
                                                                                             class="img-fluid"
                                                                                             style="border-radius: 10px; max-height: 200px !important;">
@@ -346,20 +342,20 @@
                                                                             <div class="row align-items-center mt-2">
                                                                                 <div class="col-12 mt-3">
                                                                                     <div class="form-group">
-                                                                                        <label>Image Title</label>
+                                                                                        <label>QR Code Type</label>
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg"
-                                                                                            placeholder="Enter image alt title"
-                                                                                            name="join_contents[{{ $key }}][image_title][{{ $random }}]"
+                                                                                            placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
+                                                                                            name="join_contents[{{ $random }}][reference][{{ rand() }}][qr_code_type]"
                                                                                             value="">
                                                                                     </div>
                                                                                 </div>
 
                                                                                 <div
-                                                                                    class="col-sm-12 col-md-5 mt-3 img-upload-container">
+                                                                                    class="col-sm-12 col-md-5 img-upload-container">
                                                                                     <label
                                                                                         class="form-control-label">Upload
-                                                                                        Image:</label>
+                                                                                        QR Code:</label>
                                                                                     <div class="dropify-wrapper"
                                                                                         style="border: none">
                                                                                         <div class="dropify-loader">
@@ -370,7 +366,7 @@
                                                                                         </div>
                                                                                         <input type="file"
                                                                                             class="dropify"
-                                                                                            name="join_contents[{{ $key }}][gallery_image][{{ $random }}]"
+                                                                                            name="join_contents[{{ $random }}][reference][{{ rand() }}][image]"
                                                                                             accept="image/*">
                                                                                         <button type="button"
                                                                                             class="dropify-clear">Remove</button>
