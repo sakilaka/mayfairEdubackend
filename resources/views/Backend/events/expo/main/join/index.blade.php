@@ -57,7 +57,7 @@
                                             if ($expo && $expo['join_page_contents']) {
                                                 $contents = json_decode($expo->join_page_contents, true);
                                             }
-dd($contents);
+
                                             $random = rand();
                                         @endphp
 
