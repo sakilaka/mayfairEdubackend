@@ -5,11 +5,33 @@
     @include('Expo.components.head')
     <title>{{ env('APP_NAME') }} - Join With Us</title>
     <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
-
-
+    
     @php
         $additional_contents = json_decode($expo->additional_contents, true) ?? [];
     @endphp
+
+    <style>
+        .custom-numbered-list {
+            line-height: 1.6;
+            /* Adjust line height for spacing */
+        }
+
+        .custom-number {
+            font-weight: bold;
+            /* Make the number bold */
+            display: inline-block;
+            /* Align number and text */
+            width: 30px;
+            /* Set a width for alignment */
+        }
+
+        .custom-text {
+            display: inline-block;
+            /* Keep text inline with numbers */
+            margin-left: 5px;
+            /* Space between number and text */
+        }
+    </style>
 </head>
 
 <body>
@@ -39,18 +61,25 @@
 
             <div class="row justify-content-between align-items-center mt-5 mx-auto">
                 <div class="col-md-6 order-md-2 text-end">
-                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid" width="250">
+                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid"
+                        width="250">
                 </div>
-                <div class="col-md-6 order-md-1">
-                    <ol class="list-decimal list-inside" style="font-size: 18px;">
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-                            consectetur, adipisicing elit. Alias, impedit.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-                            consectetur, adipisicing elit. Alias, impedit.</li>
-                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
-                            consectetur, adipisicing elit. Alias, impedit.</li>
-                    </ol>
+                <div class="col-md-6 order-md-1" style="font-size: 18px;">
+                    <div class="custom-numbered-list">
+                        <div class="custom-number">1.</div>
+                        <div class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
+                            dolor sit amet consectetur, adipisicing elit. Alias, impedit.</div>
+
+                        <div class="custom-number">2.</div>
+                        <div class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
+                            dolor sit amet consectetur, adipisicing elit. Alias, impedit.</div>
+
+                        <div class="custom-number">3.</div>
+                        <div class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum
+                            dolor sit amet consectetur, adipisicing elit. Alias, impedit.</div>
+                    </div>
                 </div>
+
             </div>
 
         </div>
