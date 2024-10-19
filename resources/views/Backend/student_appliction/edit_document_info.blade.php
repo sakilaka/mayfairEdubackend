@@ -59,10 +59,9 @@
                                                             <div class="col-md-8">
                                                                 <input type="file" class="mt-3 mb-3 form-control"
                                                                     name="old_document_file[{{ $document->id }}]"
-                                                                    value="{{ $document->document_file }}"/>
+                                                                    value="{{ $document->document_file }}" />
                                                             </div>
-                                                            <div
-                                                                class="col-md-4">
+                                                            <div class="col-md-4">
                                                                 <a class="btn btn-primary btn-sm text-light"
                                                                     data-toggle="modal"
                                                                     data-target="#certificateModal{{ $k }}">
@@ -124,7 +123,8 @@
                                         </div>
                                     </form>
 
-                                    <form method="POST" action="" enctype="multipart/form-data" id="uploadForm">
+                                    <form method="POST" action="" enctype="multipart/form-data" id="uploadForm"
+                                        data-application-id="{{ $s_appliction->id }}">
                                         @csrf
                                         <input type="hidden" name="order" id="current_order">
                                         <div class="row align-items-center mt-5">

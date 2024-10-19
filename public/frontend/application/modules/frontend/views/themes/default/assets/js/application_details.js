@@ -1370,8 +1370,11 @@ $("#uploadFile").on("click", function (e) {
         $("#uploadForm #email").val(jQuery("#email").val());
         $("#uploadForm #code").val(location.search.split("=")[1]);
         let data = new FormData($("#uploadForm")[0]);
-        var url = "/add-attachment/upload/";
+        let application_id = $("#uploadForm").data('application-id');
+        console.log(application_id);
         
+        var url = "/add-attachment/upload/";
+
         /* $.wnoty({
             type: "info",
             message: "Uploading file",
