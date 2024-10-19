@@ -21,12 +21,13 @@ class ExpoMainExhibitorController extends Controller
         $exhibitor_ids = array_column($expo_exhibitors, 'exhibitor');
 
         $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)
-            ->select('id', 'name', 'address', 'position_in_expo')
+            ->select('id', 'name', 'address')
             ->orderByDesc('created_at')
             ->get()
             ->map(function ($university) use ($expo_exhibitors) {
                 $exhibitor_data = collect($expo_exhibitors)->firstWhere('exhibitor', $university->id);
                 $university->show_in_expo = $exhibitor_data['show_on_home'] ?? false;
+                $university->position_in_expo = $exhibitor_data['position_in_expo'] ?? null;
                 return $university;
             });
 
