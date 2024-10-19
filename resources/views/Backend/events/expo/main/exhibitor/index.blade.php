@@ -79,19 +79,19 @@
                                             </td>
                                             <td class="text-left">{{ $exhibitor->address }}</td>
                                             <td class="text-center">
-                                                @if ($exhibitor->show_on_home == true)
+                                                @if ($exhibitor->show_in_expo == true)
                                                     <a
                                                         href="{{ route('admin.expo.exhibitors.toggle_show_in_expo', ['expo_id' => $expo->unique_id, 'id' => $exhibitor->id, 'status' => 0]) }}">
                                                         <span class="badge badge-success" data-toggle="tooltip"
                                                             data-placement="top"
-                                                            data-original-title="Hide this exhibitor from expo">Showing</span>
+                                                            data-original-title="Hide this exhibitor in expo">Showing</span>
                                                     </a>
-                                                @elseif($exhibitor->show_on_home == false)
+                                                @elseif($exhibitor->show_in_expo == false)
                                                     <a
                                                         href="{{ route('admin.expo.exhibitors.toggle_show_in_expo', ['expo_id' => $expo->unique_id, 'id' => $exhibitor->id, 'status' => 1]) }}">
                                                         <span class="badge badge-danger" data-toggle="tooltip"
                                                             data-placement="top"
-                                                            data-original-title="Show this exhibitor from expo">Hidden</span>
+                                                            data-original-title="Show this exhibitor in expo">Hidden</span>
                                                     </a>
                                                 @endif
                                             </td>

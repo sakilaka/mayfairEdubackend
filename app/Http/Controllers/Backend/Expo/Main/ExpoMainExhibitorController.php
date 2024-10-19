@@ -26,7 +26,7 @@ class ExpoMainExhibitorController extends Controller
             ->get()
             ->map(function ($university) use ($expo_exhibitors) {
                 $exhibitor_data = collect($expo_exhibitors)->firstWhere('exhibitor', $university->id);
-                $university->show_on_home = $exhibitor_data['show_on_home'] ?? false;
+                $university->show_in_expo = $exhibitor_data['show_on_home'] ?? false;
                 return $university;
             });
 // return $data['exhibitors'];
@@ -191,7 +191,7 @@ class ExpoMainExhibitorController extends Controller
         if (!$found) {
             return back()->with('error', 'Exhibitor not found in the expo list!');
         }
-return $exhibitors;
+
         $expo->update(['exhibitors' => json_encode($exhibitors)]);
         return redirect()->back()->with('success', $message);
     }
