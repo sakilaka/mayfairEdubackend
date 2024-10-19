@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend\Expo\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Expo;
 use App\Models\University;
 use Illuminate\Http\Request;
 
@@ -13,6 +14,7 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitors_index($expo_id)
     {
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'exhibitors')->first();
         $universities = University::all();
 
         $data['available_universities'] = $universities->where('is_exhibitor', false)->sortByDesc('created_at');

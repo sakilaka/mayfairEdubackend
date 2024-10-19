@@ -557,6 +557,8 @@
                     Route::is('admin.expo.create') ||
                     Route::is('admin.expo.edit') ||
                     Route::is('admin.expo.index') ||
+                    Route::is('admin.expo.exhibitors.index') ||
+                    Route::is('admin.expo.exhibitor.edit') ||
                     Route::is('admin.expo.testimonial.index') ||
                     Route::is('admin.expo.testimonial.manage') ||
                     Route::is('admin.expo.delegate.index') ||
@@ -581,6 +583,8 @@
                                 Route::is('admin.expo.index') ||
                                 Route::is('admin.expo.create') ||
                                 Route::is('admin.expo.edit') ||
+                                Route::is('admin.expo.exhibitors.index') ||
+                                Route::is('admin.expo.exhibitor.edit') ||
                                 Route::is('admin.expo.testimonial.index') ||
                                 Route::is('admin.expo.testimonial.manage') ||
                                 Route::is('admin.expo.delegate.index') ||

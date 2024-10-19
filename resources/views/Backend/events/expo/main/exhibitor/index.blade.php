@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | All Exhibitors</title>
+    <title>{{ env('APP_NAME') }} | Exhibitors of '{{ $expo->title }}'</title>
 
     <style>
         .select2-container {
@@ -31,7 +31,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            All Exhibitors
+                            Exhibitors of '{{ $expo->title }}'
                         </h3>
 
                         <nav aria-label="breadcrumb">

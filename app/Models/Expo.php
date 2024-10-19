@@ -27,6 +27,7 @@ class Expo extends Model
         'delegates',
         'gallery',
         'video',
+        'exhibitors',
     ];
 
     public function universities()
