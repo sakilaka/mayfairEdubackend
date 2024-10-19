@@ -34,8 +34,7 @@
     <section class="university-highlights my-5">
         <div class="container">
             <div class="text-start">
-                <h2 class="section-title d-inline">Join With </h2>
-                <h4 class="section-title d-inline ms-2 fs-4">{{ $expo->title }}</h4>
+                <h2 class="section-title d-inline">How to join us:</h2>
             </div>
 
             <div class="row justify-content-between align-items-center mt-5 mx-auto">
