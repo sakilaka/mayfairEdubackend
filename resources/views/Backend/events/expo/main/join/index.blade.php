@@ -137,7 +137,7 @@
                                                         <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg"
                                                             id="add-gallery">
                                                             <i class="fa fa-plus"></i>
-                                                            Add
+                                                            Add Reference
                                                         </a>
                                                     </div>
                                                 </div>
