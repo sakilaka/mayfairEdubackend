@@ -159,8 +159,8 @@
                                             <div class="col-12 row" id="galleries-container" style="padding-right: 0">
                                                 @php
                                                     $contents = [];
-                                                    if ($expo && $expo['gallery']) {
-                                                        $contents = json_decode($expo->gallery, true);
+                                                    if ($expo && $expo['join_page_contents']) {
+                                                        $contents = json_decode($expo->join_page_contents, true);
                                                     }
                                                 @endphp
 
