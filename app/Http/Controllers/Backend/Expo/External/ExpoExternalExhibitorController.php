@@ -17,7 +17,7 @@ class ExpoExternalExhibitorController extends Controller
 
         $data['available_universities'] = $universities->where('is_exhibitor', false)->sortByDesc('created_at');
         $data['exhibitors'] = $universities->where('is_exhibitor', true)->sortByDesc('created_at');
-
+return $data;
         return view('Backend.events.expo.external.exhibitor.index', $data);
     }
 
