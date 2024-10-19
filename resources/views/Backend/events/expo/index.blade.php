@@ -103,7 +103,7 @@
                                                             <a href="{{ route('admin.expo.exhibitors.index', ['expo_id' => $expo->unique_id]) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"
                                                                 data-title="Manage Exhibitors">
-                                                                <i class="fa fa-rss" aria-hidden="true"></i>
+                                                                <i class="fa fa-podcast" aria-hidden="true"></i>
                                                             </a>
                                                             <a href="{{ route('admin.expo.delegate.index', ['expo_id' => $expo->unique_id]) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"
