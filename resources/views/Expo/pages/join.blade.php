@@ -27,7 +27,7 @@
             font-size: 18px;
             margin-right: 5px;
             border-radius: 50%;
-            background-image: linear-gradient(to right, var(--secondary_background), var(--primary_background));
+            background-image: linear-gradient(to bottom left, var(--secondary_background), var(--primary_background));
             width: 35px;
             height: 35px;
             text-align: center;
