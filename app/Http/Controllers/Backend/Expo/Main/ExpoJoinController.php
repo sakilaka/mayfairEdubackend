@@ -27,7 +27,7 @@ class ExpoJoinController extends Controller
 
             $joinPageContents = [];
             $oldJoinPageContents = json_decode($expo->join_page_contents, true) ?? [];
-
+return $oldJoinPageContents;
             $stepTitles = $request->step_title ?? [];
             $deadline = $request->deadline;
 
