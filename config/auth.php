@@ -48,6 +48,10 @@ return [
             'driver' => 'session',
             'provider' => 'expo_users',
         ],
+        'expo_site' => [
+            'driver' => 'session',
+            'provider' => 'expo_site_users',
+        ],
     ],
 
     /*
@@ -75,6 +79,10 @@ return [
         'expo_users' => [
             'driver' => 'eloquent',
             'model' => App\Models\ExpoUser::class,
+        ],
+        'expo_site_users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\ExpoModule::class,
         ],
 
         // 'users' => [
