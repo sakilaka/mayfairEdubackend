@@ -115,6 +115,7 @@
                         <div class="card reference-card">
                             <div class="card-body">
                                 <div class="row justify-content-between">
+                                    {{ dd($content['reference']) }}
                                     @foreach ($content['reference'] ?? [] as $reference)
                                         <div class="col-6 d-flex flex-column align-items-center">
                                             <img src="{{ $reference['image'] ?? '' }}" alt="" class="img-fluid">
