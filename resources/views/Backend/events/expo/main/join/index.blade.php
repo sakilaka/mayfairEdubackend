@@ -156,7 +156,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 row" id="galleries-container" style="padding-right: 0">
+                                            <div class="col-12 row" id="join_contents-container" style="padding-right: 0">
                                                 @php
                                                     $contents = [];
                                                     if ($expo && $expo['join_page_contents']) {
@@ -198,7 +198,7 @@
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
                                                                             <input type="text" class="form-control"
-                                                                                name="galleries[{{ $galleryKey }}][gallery_title]"
+                                                                                name="join_contents[{{ $galleryKey }}][gallery_title]"
                                                                                 placeholder="Enter Gallery Title"
                                                                                 value="{{ $content['title'] }}"
                                                                                 required>
@@ -208,14 +208,14 @@
                                                                                 Description
                                                                             </label>
                                                                             <textarea class="form-control form-control-lg" rows="4"
-                                                                                name="galleries[{{ $galleryKey }}][gallery_description]" placeholder="Write Gallery Description">{{ $content['description'] }}</textarea>
+                                                                                name="join_contents[{{ $galleryKey }}][gallery_description]" placeholder="Write Gallery Description">{{ $content['description'] }}</textarea>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="d-flex justify-content-between mt-4">
                                                                         <h5 class="d-inline">Gallery Image</h5>
                                                                         <a href="javascript:void(0)"
-                                                                            class="btn btn-sm btn-primary add-gallery-image"
+                                                                            class="btn btn-sm btn-primary add-reference-image"
                                                                             data-gallery-key="{{ $galleryKey }}">
                                                                             <i class="fa fa-plus"></i>
                                                                             Add
@@ -232,7 +232,7 @@
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg"
                                                                                             placeholder="Enter image alt title"
-                                                                                            name="galleries[{{ $galleryKey }}][image_title][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $galleryKey }}][image_title][{{ $imageKey }}]"
                                                                                             value="{{ $content['image_titles'][$imageKey] ?? '' }}">
                                                                                     </div>
                                                                                 </div>
@@ -252,10 +252,10 @@
                                                                                         </div>
                                                                                         <input type="file"
                                                                                             class="dropify"
-                                                                                            name="galleries[{{ $galleryKey }}][gallery_image][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $galleryKey }}][gallery_image][{{ $imageKey }}]"
                                                                                             accept="image/*">
                                                                                         <input type="hidden"
-                                                                                            name="galleries[{{ $galleryKey }}][old_gallery_image][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $galleryKey }}][old_gallery_image][{{ $imageKey }}]"
                                                                                             value="{{ $image }}">
                                                                                         <button type="button"
                                                                                             class="dropify-clear">Remove</button>
@@ -311,7 +311,7 @@
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg"
                                                                                             placeholder="Enter image alt title"
-                                                                                            name="galleries[{{ $galleryKey }}][image_title][{{ $random }}]"
+                                                                                            name="join_contents[{{ $galleryKey }}][image_title][{{ $random }}]"
                                                                                             value="">
                                                                                     </div>
                                                                                 </div>
@@ -331,7 +331,7 @@
                                                                                         </div>
                                                                                         <input type="file"
                                                                                             class="dropify"
-                                                                                            name="galleries[{{ $galleryKey }}][gallery_image][{{ $random }}]"
+                                                                                            name="join_contents[{{ $galleryKey }}][gallery_image][{{ $random }}]"
                                                                                             accept="image/*">
                                                                                         <button type="button"
                                                                                             class="dropify-clear">Remove</button>
@@ -419,7 +419,7 @@
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
                                                                             <input type="text" class="form-control"
-                                                                                name="galleries[{{ $random }}][name]"
+                                                                                name="join_contents[{{ $random }}][name]"
                                                                                 placeholder="Enter Name" required>
                                                                         </div>
                                                                         <div class="col-md-4 px-0 mb-2"
@@ -429,7 +429,7 @@
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
                                                                             <input type="text" class="form-control"
-                                                                                name="galleries[{{ $random }}][email]"
+                                                                                name="join_contents[{{ $random }}][email]"
                                                                                 placeholder="Enter Name" required>
                                                                         </div>
                                                                         <div class="col-md-4 px-0 mb-2"
@@ -439,19 +439,20 @@
                                                                                 <span class="text-danger">*</span>
                                                                             </label>
                                                                             <input type="text" class="form-control"
-                                                                                name="galleries[{{ $random }}][phone]"
+                                                                                name="join_contents[{{ $random }}][phone]"
                                                                                 placeholder="Enter Phone" required>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="d-flex justify-content-between mt-4">
                                                                         <h5 class="d-inline">Reference Social QR Code
+                                                                            (Max: 2)
                                                                         </h5>
                                                                         <a href="javascript:void(0)"
-                                                                            class="btn btn-sm btn-primary add-gallery-image"
+                                                                            class="btn btn-sm btn-primary-bg add-reference-image"
                                                                             data-gallery-key="{{ $random }}">
                                                                             <i class="fa fa-plus"></i>
-                                                                            Add
+                                                                            Add QR Code
                                                                         </a>
                                                                     </div>
 
@@ -464,7 +465,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control form-control-lg"
                                                                                         placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
-                                                                                        name="galleries[{{ $random }}][image_title][{{ $random }}]"
+                                                                                        name="join_contents[{{ $random }}][image_title][{{ $random }}]"
                                                                                         value="">
                                                                                 </div>
                                                                             </div>
@@ -483,7 +484,7 @@
                                                                                     </div>
                                                                                     <input type="file"
                                                                                         class="dropify"
-                                                                                        name="galleries[{{ $random }}][gallery_image][{{ $random }}]"
+                                                                                        name="join_contents[{{ $random }}][gallery_image][{{ $random }}]"
                                                                                         accept="image/*">
                                                                                     <button type="button"
                                                                                         class="dropify-clear">Remove</button>
@@ -583,7 +584,7 @@
         });
 
         /* add gallery image */
-        $(document).on('click', '.add-gallery-image', function() {
+        $(document).on('click', '.add-reference-image', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
             let activityKey = $(this).data('gallery-key');
 
@@ -595,7 +596,7 @@
                             <input type="text"
                                 class="form-control form-control-lg"
                                 placeholder="Enter image alt title"
-                                name="galleries[${activityKey}][image_title][${randomNumber}]"
+                                name="join_contents[${activityKey}][image_title][${randomNumber}]"
                                 value="">
                         </div>
                     </div>
@@ -611,7 +612,7 @@
                                 <ul></ul>
                             </div>
                             <input type="file" class="dropify"
-                                name="galleries[${activityKey}][gallery_image][${randomNumber}]"
+                                name="join_contents[${activityKey}][gallery_image][${randomNumber}]"
                                 accept="image/*">
                             <button type="button"
                                 class="dropify-clear">Remove</button>
@@ -695,7 +696,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" class="form-control"
-                                            name="galleries[${randomNumber}][name]"
+                                            name="join_contents[${randomNumber}][name]"
                                             placeholder="Enter Name"
                                             required>
                                     </div>
@@ -706,7 +707,7 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" class="form-control"
-                                            name="galleries[${randomNumber}][email]"
+                                            name="join_contents[${randomNumber}][email]"
                                             placeholder="Enter Name"
                                             required>
                                     </div>
@@ -717,19 +718,19 @@
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" class="form-control"
-                                            name="galleries[${randomNumber}][phone]"
+                                            name="join_contents[${randomNumber}][phone]"
                                             placeholder="Enter Phone"
                                             required>
                                     </div>
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-4">
-                                    <h5 class="d-inline">Reference Social QR Code</h5>
+                                    <h5 class="d-inline">Reference Social QR Code (Max: 2)</h5>
                                     <a href="javascript:void(0)"
-                                        class="btn btn-sm btn-primary add-gallery-image"
+                                        class="btn btn-sm btn-primary add-reference-image"
                                         data-gallery-key="${randomNumber}">
                                         <i class="fa fa-plus"></i>
-                                        Add
+                                        Add QR Code
                                     </a>
                                 </div>
 
@@ -742,7 +743,7 @@
                                                 <input type="text"
                                                     class="form-control form-control-lg"
                                                     placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
-                                                    name="galleries[${randomNumber}][image_title][${randomNumber}]"
+                                                    name="join_contents[${randomNumber}][image_title][${randomNumber}]"
                                                     value="">
                                             </div>
                                         </div>
@@ -761,7 +762,7 @@
                                                 </div>
                                                 <input type="file"
                                                     class="dropify"
-                                                    name="galleries[${randomNumber}][gallery_image][${randomNumber}]"
+                                                    name="join_contents[${randomNumber}][gallery_image][${randomNumber}]"
                                                     accept="image/*">
                                                 <button type="button"
                                                     class="dropify-clear">Remove</button>
@@ -816,7 +817,7 @@
                 </div>
             `;
 
-            $('#galleries-container').prepend(myvar);
+            $('#join_contents-container').prepend(myvar);
             $(`.dropify`).dropify();
         });
 
