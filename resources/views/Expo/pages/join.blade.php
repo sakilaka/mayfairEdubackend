@@ -37,19 +37,9 @@
                 <h2 class="section-title d-inline">How to join us:</h2>
             </div>
 
-            <div class="row justify-content-between align-items-center mt-5 mx-auto">
-                @php
-                    $delegates = json_decode($expo->delegates, true) ?? [];
-                @endphp
-
-                <div class="col-12 mt-2">
-                    <p class="text-center fw-bold"
-                        style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
-                        What Our Overseas Delegates Are Saying
-                    </p>
-                    <div class="row delegates-slick-carousel slick-slider">
-                        
-                    </div>
+            <div class="row justify-content-between align-items-center flex-row-reverse flex-md-row mt-5 mx-auto">
+                <div class="col-md-9">
+                    
                 </div>
             </div>
 
