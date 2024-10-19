@@ -43,9 +43,11 @@ class ExpoModuleController extends Controller
 
         $data['exhibitors'] = $universities->map(function ($university) use ($exhibitor_data) {
             $exhibitor_info = collect($exhibitor_data)->firstWhere('exhibitor', $university->id);
-            $university->show_in_expo = $exhibitor_info['show_in_expo'] ?? false;
+            $university->show_in_expo = $exhibitor_info['show_on_home'] ?? false;
             $university->position_in_expo = $exhibitor_info['position_in_expo'] ?? null;
             return $university;
+        })->filter(function ($university) {
+            return $university->show_in_expo;
         })->sortBy(function ($university) {
             return $university->position_in_expo ?? PHP_INT_MAX;
         })->values();
