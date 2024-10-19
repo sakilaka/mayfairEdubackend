@@ -577,9 +577,6 @@ class ExpoController extends Controller
         }
     }
 
-    
-
-
     /**
      * manage expo users
      */
