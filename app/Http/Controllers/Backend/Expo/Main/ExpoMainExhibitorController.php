@@ -61,17 +61,16 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitor_update(Request $request, $expo_id, $exhibitor_id)
     {
-        $exhibitor = University::find($exhibitor_id);
+        $exhibitor = University::select('exhibitor_desc')->find($exhibitor_id);
 
         if (!$exhibitor) {
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
         $exhibitor->exhibitor_desc = $request->description;
-        return $exhibitor;
         $exhibitor->save();
 
-        return redirect(route('admin.expo.exhibitors.index'))->with('success', 'Exhibitor Description Has Been Updated!');
+        return redirect(route('admin.expo.exhibitors.index', ['expo_id' => $expo_id]))->with('success', 'Exhibitor Description Has Been Updated!');
     }
 
     /**
@@ -125,7 +124,7 @@ class ExpoMainExhibitorController extends Controller
     /**
      * delete exhibitor
      */
-    public function exhibitors_destroy(Request $request)
+    public function exhibitors_destroy(Request $request, $expo_id)
     {
         try {
             $university = University::find($request->exhibitor_id);

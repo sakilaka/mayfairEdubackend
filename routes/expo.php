@@ -34,6 +34,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('edit-exhibitor/{exhibitor_id}', [ExpoMainExhibitorController::class, "exhibitor_edit"])->name('admin.expo.exhibitor.edit');
         Route::post('edit-exhibitor/{exhibitor_id}', [ExpoMainExhibitorController::class, "exhibitor_update"])->name('admin.expo.exhibitor.update');
         Route::post('delete', [ExpoMainExhibitorController::class, "exhibitors_destroy"])->name('admin.expo.exhibitors.delete');
+        
         Route::get('toggle-show-in-expo/{id}', [ExpoMainExhibitorController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo.exhibitors.toggle_show_in_expo');
         Route::post('postion-in-expo', [ExpoMainExhibitorController::class, "exhibitors_postion_in_expo"])->name('admin.expo.exhibitors.position_in_expo');
     });
