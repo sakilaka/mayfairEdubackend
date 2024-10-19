@@ -165,14 +165,15 @@
                                                     }
                                                 @endphp
 
-                                                @forelse ($contents as $galleryKey => $content)
+                                                @forelse ($contents as $key => $content)
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
                                                         @php
+                                                        dd($key);
                                                             $random = rand();
                                                         @endphp
 
                                                         <div class="card-header" data-toggle="collapse"
-                                                            data-target="#activity_single_collapse_{{ $galleryKey }}">
+                                                            data-target="#activity_single_collapse_{{ $key }}">
                                                             <div class="d-flex justify-content-between">
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
                                                                     <i class="fa fa-camera" aria-hidden="true"></i>
@@ -192,25 +193,43 @@
                                                             <div class="card-body">
                                                                 <div class="col-sm-12 mt-3">
                                                                     <div class="row px-0">
-                                                                        <div class="col-md-12 px-0 mb-2"
+                                                                        <div class="col-md-4 px-0 mb-2"
                                                                             style="padding-right: 5px !important;">
-                                                                            <label class="form-label">
-                                                                                Title
-                                                                                <span class="text-danger">*</span>
-                                                                            </label>
+                                                                            <label class="form-label">Name <span
+                                                                                    class="text-danger">*</span></label>
                                                                             <input type="text" class="form-control"
-                                                                                name="join_contents[{{ $galleryKey }}][gallery_title]"
-                                                                                placeholder="Enter Gallery Title"
-                                                                                value="{{ $content['title'] }}"
-                                                                                required>
+                                                                                name="join_contents[{{ $random }}][name]"
+                                                                                value="{{ $content['name'] ?? '' }}"
+                                                                                placeholder="Enter Name" required>
                                                                         </div>
-                                                                        <div class="col-sm-12 px-0">
-                                                                            <label class="form-label">
-                                                                                Description
-                                                                            </label>
-                                                                            <textarea class="form-control form-control-lg" rows="4"
-                                                                                name="join_contents[{{ $galleryKey }}][gallery_description]" placeholder="Write Gallery Description">{{ $content['description'] }}</textarea>
+                                                                        <div class="col-md-4 px-0 mb-2"
+                                                                            style="padding-right: 5px !important;">
+                                                                            <label class="form-label">Email <span
+                                                                                    class="text-danger">*</span></label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="join_contents[{{ $random }}][email]"
+                                                                                value="{{ $content['email'] ?? '' }}"
+                                                                                placeholder="Enter Email" required>
                                                                         </div>
+                                                                        <div class="col-md-4 px-0 mb-2"
+                                                                            style="padding-right: 5px !important;">
+                                                                            <label class="form-label">Phone <span
+                                                                                    class="text-danger">*</span></label>
+                                                                            <input type="text" class="form-control"
+                                                                                name="join_contents[{{ $random }}][phone]"
+                                                                                value="{{ $content['phone'] ?? '' }}"
+                                                                                placeholder="Enter Phone" required>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="d-flex justify-content-between mt-4">
+                                                                        <h5 class="d-inline">Reference Social QR Code
+                                                                            (Max: 2)</h5>
+                                                                        <a href="javascript:void(0)"
+                                                                            class="btn btn-sm btn-primary-bg add-reference-image"
+                                                                            data-gallery-key="{{ $random }}">
+                                                                            <i class="fa fa-plus"></i> Add QR Code
+                                                                        </a>
                                                                     </div>
 
                                                                     <div class="d-flex justify-content-between mt-4">
