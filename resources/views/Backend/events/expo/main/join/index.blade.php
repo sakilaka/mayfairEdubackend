@@ -53,6 +53,11 @@
                                         @csrf
 
                                         @php
+                                            $contents = [];
+                                            if ($expo && $expo['join_page_contents']) {
+                                                $contents = json_decode($expo->join_page_contents, true);
+                                            }
+
                                             $random = rand();
                                         @endphp
 
@@ -90,7 +95,7 @@
                                                     <div
                                                         class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                                                         <div class="px-3 mt-3">
-                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                            <img src="{{ $contents['qr_code'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                 alt="" class="img-fluid"
                                                                 style="border-radius: 10px; max-height: 200px !important;">
                                                         </div>
@@ -158,17 +163,10 @@
                                             </div>
                                             <div class="col-12 row" id="join_contents-container"
                                                 style="padding-right: 0">
-                                                @php
-                                                    $contents = [];
-                                                    if ($expo && $expo['join_page_contents']) {
-                                                        $contents = json_decode($expo->join_page_contents, true);
-                                                    }
-                                                @endphp
 
                                                 @forelse ($contents as $key => $content)
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
                                                         @php
-                                                        dd($key);
                                                             $random = rand();
                                                         @endphp
 
@@ -189,7 +187,7 @@
                                                         </div>
 
                                                         <div class="collapse"
-                                                            id="activity_single_collapse_{{ $galleryKey }}">
+                                                            id="activity_single_collapse_{{ $key }}">
                                                             <div class="card-body">
                                                                 <div class="col-sm-12 mt-3">
                                                                     <div class="row px-0">
@@ -224,7 +222,8 @@
 
                                                                     <div class="d-flex justify-content-between mt-4">
                                                                         <h5 class="d-inline">Reference Social QR Code
-                                                                            (Max: 2)</h5>
+                                                                            (Max: 2)
+                                                                        </h5>
                                                                         <a href="javascript:void(0)"
                                                                             class="btn btn-sm btn-primary-bg add-reference-image"
                                                                             data-gallery-key="{{ $random }}">
@@ -236,7 +235,7 @@
                                                                         <h5 class="d-inline">Gallery Image</h5>
                                                                         <a href="javascript:void(0)"
                                                                             class="btn btn-sm btn-primary add-reference-image"
-                                                                            data-gallery-key="{{ $galleryKey }}">
+                                                                            data-gallery-key="{{ $key }}">
                                                                             <i class="fa fa-plus"></i>
                                                                             Add
                                                                         </a>
@@ -252,7 +251,7 @@
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg"
                                                                                             placeholder="Enter image alt title"
-                                                                                            name="join_contents[{{ $galleryKey }}][image_title][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $key }}][image_title][{{ $imageKey }}]"
                                                                                             value="{{ $content['image_titles'][$imageKey] ?? '' }}">
                                                                                     </div>
                                                                                 </div>
@@ -272,10 +271,10 @@
                                                                                         </div>
                                                                                         <input type="file"
                                                                                             class="dropify"
-                                                                                            name="join_contents[{{ $galleryKey }}][gallery_image][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $key }}][gallery_image][{{ $imageKey }}]"
                                                                                             accept="image/*">
                                                                                         <input type="hidden"
-                                                                                            name="join_contents[{{ $galleryKey }}][old_gallery_image][{{ $imageKey }}]"
+                                                                                            name="join_contents[{{ $key }}][old_gallery_image][{{ $imageKey }}]"
                                                                                             value="{{ $image }}">
                                                                                         <button type="button"
                                                                                             class="dropify-clear">Remove</button>
@@ -331,7 +330,7 @@
                                                                                         <input type="text"
                                                                                             class="form-control form-control-lg"
                                                                                             placeholder="Enter image alt title"
-                                                                                            name="join_contents[{{ $galleryKey }}][image_title][{{ $random }}]"
+                                                                                            name="join_contents[{{ $key }}][image_title][{{ $random }}]"
                                                                                             value="">
                                                                                     </div>
                                                                                 </div>
@@ -351,7 +350,7 @@
                                                                                         </div>
                                                                                         <input type="file"
                                                                                             class="dropify"
-                                                                                            name="join_contents[{{ $galleryKey }}][gallery_image][{{ $random }}]"
+                                                                                            name="join_contents[{{ $key }}][gallery_image][{{ $random }}]"
                                                                                             accept="image/*">
                                                                                         <button type="button"
                                                                                             class="dropify-clear">Remove</button>
