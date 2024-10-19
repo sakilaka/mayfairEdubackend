@@ -1371,9 +1371,7 @@ $("#uploadFile").on("click", function (e) {
         $("#uploadForm #code").val(location.search.split("=")[1]);
         let data = new FormData($("#uploadForm")[0]);
         let application_id = $("#uploadForm").data('application-id');
-        console.log(application_id);
-        
-        var url = "/add-attachment/upload/";
+        var url = "/add-attachment/upload/" + application_id;
 
         /* $.wnoty({
             type: "info",
