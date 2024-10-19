@@ -186,7 +186,7 @@
                                             </span>
                                         </p>
                                         <div class="text-center">
-                                            <a href="{{ env('APP_MAIN_DOMAIN') . '/exhibitor/' . $exhibitor->id . '/details' }}"
+                                            <a href="{{ route('expo.exhibitor.details', ['unique_id' => $expo->unique_id, 'exhibitor_id' => $exhibitor->id]) }}"
                                                 class="btn btn-primary-bg mx-auto px-5 rounded-0"
                                                 target="_blank">Details</a>
                                         </div>
