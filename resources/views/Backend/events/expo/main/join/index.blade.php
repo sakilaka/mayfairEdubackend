@@ -421,7 +421,7 @@
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="galleries[{{ $random }}][name]"
-                                                                                placeholder="Enter Gallery Title"
+                                                                                placeholder="Enter Name"
                                                                                 required>
                                                                         </div>
                                                                         <div class="col-md-4 px-0 mb-2"
@@ -432,7 +432,7 @@
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="galleries[{{ $random }}][email]"
-                                                                                placeholder="Enter Gallery Title"
+                                                                                placeholder="Enter Name"
                                                                                 required>
                                                                         </div>
                                                                         <div class="col-md-4 px-0 mb-2"
@@ -443,7 +443,7 @@
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="galleries[{{ $random }}][phone]"
-                                                                                placeholder="Enter Gallery Title"
+                                                                                placeholder="Enter Phone"
                                                                                 required>
                                                                         </div>
                                                                     </div>
