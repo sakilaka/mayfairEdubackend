@@ -51,11 +51,3 @@ Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video']
 // Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
 // Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
 // Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
-
-Route::get('expo/{unique_id}/login', [ExpoLoginController::class, 'login_page'])->name('expo.login.page');
-Route::post('expo/{unique_id}/login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
-Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
-
-Route::get('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
-Route::post('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
-Route::get('expo/{unique_id}/ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
