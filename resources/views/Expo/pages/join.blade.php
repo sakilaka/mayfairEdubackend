@@ -104,8 +104,7 @@
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="fw-700 mt-2"
-                                        style="color: greenyellow; font-size:16px;">WeChat</span>
+                                    <span class="fw-700 mt-2" style="color: greenyellow; font-size:16px;">WeChat</span>
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
@@ -116,8 +115,8 @@
 
                                 <div class="col-12 text-center mt-4">
                                     <h4 class="text-white fw-800">John Doe</h4>
-                                    <p>Lorem, ipsum dolor.</p>
-                                    <p></p>
+                                    <p class="text-white mb-0" style="font-size: 16px;">Lorem, ipsum dolor. Lorem ipsum dolo</p>
+                                    <p class="text-white mb-0" style="font-size: 16px;">Lorem, ipsum dolor.</p>
                                 </div>
                             </div>
                         </div>
