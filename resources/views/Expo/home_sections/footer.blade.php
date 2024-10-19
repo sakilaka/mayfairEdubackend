@@ -14,20 +14,23 @@
             <div class="row justify-content-center align-items-center mt-3">
                 <div class="col-md-3">
                     <div class="text-center">
-                        <a href="https://studyinchina.edu.cn" target="_blank" class="text-decoration-none">
-                            <img class="vector-smart-object-3 img-fluid" width="100"
-                                src="{{ asset('frontend/expo-domain/images/vector_smart_object_2.png') }}"
-                                alt="">
-                            <p class="text-light mt-2">www.studyinchina.edu.cn</p>
+                        <a href="{{ $additional_contents['organizerDetails']['redirect_url'] }}" target="_blank"
+                            class="text-decoration-none">
+                            <img class="vector-smart-object-3 img-fluid" width="150"
+                                src="{{ $additional_contents['organizerDetails']['logo'] }}" alt="">
+                            <p class="text-light mt-2">{{ $additional_contents['organizerDetails']['redirect_url'] }}
+                            </p>
                         </a>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">
-                        <a href="https://malishaedu.com" target="_blank" class="text-decoration-none">
-                            <img class="vector-smart-object-2 img-fluid" width="160"
-                                src="{{ asset('frontend/expo-domain/images/vector_smart_object.png') }}" alt="">
-                            <p class="text-light mt-2">www.malishaedu.com</p>
+                        <a href="{{ $additional_contents['co_organizerDetails']['redirect_url'] }}" target="_blank"
+                            class="text-decoration-none">
+                            <img class="vector-smart-object-3 img-fluid" width="150"
+                                src="{{ $additional_contents['co_organizerDetails']['logo'] }}" alt="">
+                            <p class="text-light mt-2">{{ $additional_contents['co_organizerDetails']['redirect_url'] }}
+                            </p>
                         </a>
                     </div>
                 </div>
