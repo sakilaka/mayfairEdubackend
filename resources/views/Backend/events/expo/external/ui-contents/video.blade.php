@@ -30,7 +30,7 @@
 
                     <div class="row">
                         <div class="col-2">
-                            @include('Backend.events.expo.ui-contents.expo-ui-manage-nav')
+                            @include('Backend.events.expo.external.ui-contents.expo-ui-manage-nav')
                         </div>
 
                         <div class="col-10">
@@ -38,7 +38,7 @@
                                 <div class="tab-pane fade show active" id="program-info-tab-content" role="tabpanel"
                                     aria-labelledby="home-tab-vertical">
 
-                                    <form method="post" action="{{ route('admin.expo.ui.video.update') }}"
+                                    <form method="post" action="{{ route('admin.expo-site.ui.video.update') }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
@@ -47,7 +47,6 @@
                                             if ($page && $page['contents']) {
                                                 $contents = json_decode($page->contents, true);
                                             }
-                                            // dd($contents);
                                         @endphp
 
                                         <div class="row">
