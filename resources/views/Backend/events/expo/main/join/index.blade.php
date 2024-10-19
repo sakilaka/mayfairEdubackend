@@ -190,17 +190,13 @@
 
                                                 @forelse ($contents['join_contents'] ?? [] as $key => $content)
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
-                                                        @php
-                                                            dd($content);
-                                                        @endphp
-
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#activity_single_collapse_{{ $key }}">
                                                             <div class="d-flex justify-content-between">
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
                                                                     <i class="fa fa-camera" aria-hidden="true"></i>
                                                                     &nbsp;
-                                                                    {{ $content['title'] ?? 'Gallery' }}
+                                                                    {{ $content['name'] ? 'Reference of\'' . $content['name'] . '\'' : 'Reference' }}
                                                                 </h5>
 
                                                                 <a href="javascript:void(0)"
@@ -220,7 +216,7 @@
                                                                             <label class="form-label">Name <span
                                                                                     class="text-danger">*</span></label>
                                                                             <input type="text" class="form-control"
-                                                                                name="join_contents[{{ $random }}][name]"
+                                                                                name="join_contents[{{ $key }}][name]"
                                                                                 value="{{ $content['name'] ?? '' }}"
                                                                                 placeholder="Enter Name" required>
                                                                         </div>
@@ -229,7 +225,7 @@
                                                                             <label class="form-label">Email <span
                                                                                     class="text-danger">*</span></label>
                                                                             <input type="text" class="form-control"
-                                                                                name="join_contents[{{ $random }}][email]"
+                                                                                name="join_contents[{{ $key }}][email]"
                                                                                 value="{{ $content['email'] ?? '' }}"
                                                                                 placeholder="Enter Email" required>
                                                                         </div>
