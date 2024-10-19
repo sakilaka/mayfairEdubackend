@@ -42,6 +42,7 @@
                                     ]);
                                 }
                             @endphp
+
                             <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Participator
@@ -54,6 +55,18 @@
                     </div>
 
                     @if (request()->type === 'main')
+                        @php
+                            if (request()->type === 'main') {
+                                $add_participant_route = route('admin.expo.users.filter', [
+                                    'type' => request()->type,
+                                ]);
+                            } elseif (request()->type === 'site') {
+                                $add_participant_route = route('admin.expo-site.users.filter', [
+                                    'type' => request()->type,
+                                ]);
+                            }
+                        @endphp
+
                         <form action="{{ route('admin.expo.users.filter', ['type' => request()->type]) }}"
                             method="POST">
                             @csrf
