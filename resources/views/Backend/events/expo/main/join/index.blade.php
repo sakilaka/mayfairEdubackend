@@ -59,10 +59,10 @@
                                                     <h4 class="d-inline">Contact References</h4>
 
                                                     <div class="d-flex">
-                                                        <button type="submit" class="btn blue-btn btn-primary"
+                                                        <button type="submit" class="btn blue-btn btn-secondary-bg"
                                                             style="margin-right: 8px">Save</button>
 
-                                                        <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                        <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg"
                                                             id="add-gallery">
                                                             <i class="fa fa-plus"></i>
                                                             Add
