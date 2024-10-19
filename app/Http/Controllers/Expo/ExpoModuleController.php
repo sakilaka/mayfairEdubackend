@@ -36,9 +36,17 @@ class ExpoModuleController extends Controller
             abort(404, 'Expo Not Found!');
         }
 
-        $exhibitor_ids = json_decode($data['expo']->exhibitors) ?? [];
-return $exhibitor_ids;
-        $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)->get();
+        $exhibitor_data = json_decode($data['expo']->exhibitors, true) ?? [];
+        $exhibitor_ids = array_column($exhibitor_data, 'exhibitor');
+
+        $universities = University::whereIn('id', $exhibitor_ids)->get();
+
+        $data['exhibitors'] = $universities->map(function ($university) use ($exhibitor_data) {
+            $exhibitor_info = collect($exhibitor_data)->firstWhere('exhibitor', $university->id);
+            $university->show_on_home = $exhibitor_info['show_on_home'] ?? false;
+            $university->position_in_expo = $exhibitor_info['position_in_expo'] ?? null;
+            return $university;
+        });
 
         return view('Expo.details', $data);
     }
@@ -69,11 +77,18 @@ return $exhibitor_ids;
 
         if ($expo && !empty($expo->universities)) {
             $universities = json_decode($expo->universities, true);
+            $university_ids = array_column($universities, 'exhibitor'); // Assuming 'universities' contains exhibitor data
 
-            $data['exhibitors'] = University::whereIn('id', $universities)
+            $data['exhibitors'] = University::whereIn('id', $university_ids)
                 ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
                 ->orderBy('position_in_expo', 'asc')
-                ->get();
+                ->get()
+                ->map(function ($university) use ($universities) {
+                    $exhibitor_info = collect($universities)->firstWhere('exhibitor', $university->id);
+                    $university->show_on_home = $exhibitor_info['show_on_home'] ?? false;
+                    $university->position_in_expo = $exhibitor_info['position_in_expo'] ?? null;
+                    return $university;
+                });
         } else {
             $data['exhibitors'] = collect();
         }
