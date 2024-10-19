@@ -669,7 +669,7 @@
         $(document).on('click', '#add-gallery', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            var myvar = `
+            /* var myvar = `
                 <div class="col-sm-12 mb-3" style="padding-right: 0;">
                     <div class="card-header" data-toggle="collapse"
                         data-target="#activity_single_collapse_${randomNumber}">
@@ -794,7 +794,7 @@
                         </div>
                     </div>
                 </div>
-            `;
+            `; */
 
             $('#galleries-container').prepend(myvar);
             $(`.dropify`).dropify();
