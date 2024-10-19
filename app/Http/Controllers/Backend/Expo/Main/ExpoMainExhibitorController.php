@@ -93,7 +93,7 @@ class ExpoMainExhibitorController extends Controller
     public function exhibitors_store(Request $request, $expo_id)
     {
         try {
-            $expo = Expo::where('unique_id', $expo_id)/* ->select('exhibitors') */->first();
+            $expo = Expo::where('unique_id', $expo_id)->first();
             $existing_exhibitors = json_decode($expo->exhibitors, true) ?? [];
 
             foreach ($request->university_id as $university_id) {
@@ -127,10 +127,23 @@ class ExpoMainExhibitorController extends Controller
     public function exhibitors_destroy(Request $request, $expo_id)
     {
         try {
-            $university = University::find($request->exhibitor_id);
+            $expo = Expo::where('unique_id', $expo_id)->first();
 
+            if (!$expo) {
+                return back()->with('error', 'Expo not found!');
+            }
+
+            $exhibitors = json_decode($expo->exhibitors, true) ?? [];
+
+            $updated_exhibitors = array_filter($exhibitors, function ($exhibitor) use ($request) {
+                return $exhibitor['exhibitor'] != $request->exhibitor_id;
+            });
+
+            $expo->update(['exhibitors' => json_encode(array_values($updated_exhibitors))]);
+
+            $university = University::find($request->exhibitor_id);
             if ($university) {
-                $university->is_exhibitor = null;
+                $university->exhibitor_desc = null;
                 $university->save();
 
                 return back()->with('success', $university->name . ' has been removed from exhibitors list!');
@@ -145,7 +158,7 @@ class ExpoMainExhibitorController extends Controller
     /**
      * toggle show in expo
      */
-    public function exhibitors_toggle_show_in_expo($exhibitor_id)
+    public function exhibitors_toggle_show_in_expo($expo_id, $exhibitor_id)
     {
         $exhibitor = University::find($exhibitor_id);
 
