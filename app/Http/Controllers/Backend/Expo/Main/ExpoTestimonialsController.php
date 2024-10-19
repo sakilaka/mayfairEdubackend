@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Expo;
+namespace App\Http\Controllers\Backend\Expo\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expo;
@@ -19,7 +19,7 @@ class ExpoTestimonialsController extends Controller
             return back()->with('error', 'Expo not found!');
         }
 
-        return view('Backend.events.expo.testimonials.index', $data);
+        return view('Backend.events.expo.main.testimonials.index', $data);
     }
 
     /**
@@ -38,7 +38,7 @@ class ExpoTestimonialsController extends Controller
             $data['testimonial_key'] = $testimonial_key;
         }
 
-        return view('Backend.events.expo.testimonials.manage', $data);
+        return view('Backend.events.expo.main.testimonials.manage', $data);
     }
 
     /**

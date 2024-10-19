@@ -1,14 +1,16 @@
 <?php
 
+use App\Http\Controllers\Expo\ExpoModuleController;
 use App\Http\Controllers\Backend\Expo\ExpoAuthController;
 use App\Http\Controllers\Backend\Expo\ExpoCaptchaController;
-use App\Http\Controllers\Expo\ExpoModuleController;
-use App\Http\Controllers\Expo\ExpoUserController;
-
 use App\Http\Controllers\Backend\Expo\ExpoController;
-use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
-use App\Http\Controllers\Backend\Expo\ExpoMediaController;
-use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
+use App\Http\Controllers\Backend\Expo\ExpoParticipantController;
+use App\Http\Controllers\Backend\Expo\ExpoUserPanelController;
+
+use App\Http\Controllers\Backend\Expo\Main\ExpoTestimonialsController;
+use App\Http\Controllers\Backend\Expo\Main\ExpoDelegatesController;
+use App\Http\Controllers\Backend\Expo\Main\ExpoMediaController;
+
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalController;
 
@@ -51,13 +53,13 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
 
     Route::prefix('users')->group(function () {
-        Route::get('{type}', [ExpoUserController::class, 'expo_users'])->name('admin.expo.users');
-        Route::post('{type}', [ExpoUserController::class, 'expo_users'])->name('admin.expo.users.filter');
+        Route::get('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo.users');
+        Route::post('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo.users.filter');
 
-        Route::get('{type}/add-participator', [ExpoUserController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
-        Route::post('{type}/add-participator', [ExpoUserController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
+        Route::get('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
+        Route::post('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
 
-        Route::get('{type}/show-participant', [ExpoUserController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
+        Route::get('{type}/show-participant', [ExpoParticipantController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
     });
 });
 /**
@@ -91,13 +93,13 @@ Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
     });
 
     Route::prefix('users')->group(function () {
-        Route::get('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo-site.users');
-        Route::post('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo-site.users.filter');
+        Route::get('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo-site.users');
+        Route::post('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo-site.users.filter');
 
-        Route::get('{type}/add-participator', [ExpoController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
-        Route::post('{type}/add-participator', [ExpoController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
+        Route::get('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
+        Route::post('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
 
-        Route::get('{type}/show-participant', [ExpoController::class, 'expo_view_participant'])->name('admin.expo-site.show_participant');
+        Route::get('{type}/show-participant', [ExpoParticipantController::class, 'expo_view_participant'])->name('admin.expo-site.show_participant');
     });
 });
 /**
@@ -108,16 +110,16 @@ Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
  * Expo Routes (User)
  */
 Route::prefix('expo-user')->middleware(['accessLogin', 'userCheck'])->group(function () {
-    Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('expo.user.dashboard');
-    Route::get('/profile', [ExpoUserController::class, 'index'])->name('expo.user.profile');
-    Route::get('/profile/{id}', [ExpoUserController::class, 'editUserInfo'])->name('expo.user.edit_profile');
-    Route::post('/update/profile/{id}', [ExpoUserController::class, 'updateUserInfo'])->name('expo.user.profile_info_update');
+    Route::get('/dashboard', [ExpoUserPanelController::class, 'dashboard'])->name('expo.user.dashboard');
+    Route::get('/profile', [ExpoUserPanelController::class, 'index'])->name('expo.user.profile');
+    Route::get('/profile/{id}', [ExpoUserPanelController::class, 'editUserInfo'])->name('expo.user.edit_profile');
+    Route::post('/update/profile/{id}', [ExpoUserPanelController::class, 'updateUserInfo'])->name('expo.user.profile_info_update');
 
     Route::post('/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('expo.user.password_change');
     Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('expo.user.logout');
 
     // tickets
-    Route::get('my-tickets', [ExpoUserController::class, 'my_tickets'])->name('expo.user.my_tickets');
+    Route::get('my-tickets', [ExpoUserPanelController::class, 'my_tickets'])->name('expo.user.my_tickets');
 });
 
 /**
@@ -155,6 +157,6 @@ Route::post('/verify-captcha', [ExpoCaptchaController::class, 'verifyCaptcha']);
 Route::post('/send-verification-email', [ExpoCaptchaController::class, 'sendVerificationEmail']);
 Route::post('/verify-code', [ExpoCaptchaController::class, 'verifyCode']);
 
-Route::post('{type}/send-mail', [ExpoUserController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
-Route::post('{type}/send-mail-all', [ExpoUserController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
-Route::post('start-queue-mail', [ExpoUserController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
+Route::post('{type}/send-mail', [ExpoParticipantController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
+Route::post('{type}/send-mail-all', [ExpoParticipantController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
+Route::post('start-queue-mail', [ExpoParticipantController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
-class ExpoUserController extends Controller
+class ExpoParticipantController extends Controller
 {
     /**
      * manage expo users

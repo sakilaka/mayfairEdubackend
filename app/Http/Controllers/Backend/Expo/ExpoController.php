@@ -565,6 +565,4 @@ class ExpoController extends Controller
             return back()->with('error', 'Something Went Wrong!');
         }
     }
-
-    
 }

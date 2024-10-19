@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Expo;
+namespace App\Http\Controllers\Backend\Expo\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expo;
@@ -19,7 +19,7 @@ class ExpoDelegatesController extends Controller
             return back()->with('error', 'Expo not found!');
         }
 
-        return view('Backend.events.expo.delegates.index', $data);
+        return view('Backend.events.expo.main.delegates.index', $data);
     }
 
     /**
@@ -38,7 +38,7 @@ class ExpoDelegatesController extends Controller
             $data['delegate_key'] = $delegate_key;
         }
 
-        return view('Backend.events.expo.delegates.manage', $data);
+        return view('Backend.events.expo.main.delegates.manage', $data);
     }
 
     /**

@@ -25,7 +25,6 @@ class ExpoUserPanelController extends Controller
         }
 
         $data['exhibitors'] = collect($data['exhibitors']);
-
         return view('Expo-User-Panel.index', $data);
     }
 

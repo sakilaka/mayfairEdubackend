@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Expo;
+namespace App\Http\Controllers\Backend\Expo\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Expo;
@@ -14,7 +14,7 @@ class ExpoMediaController extends Controller
     public function expo_gallery_page($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'gallery')->first();
-        return view('Backend.events.expo.media.gallery', $data);
+        return view('Backend.events.expo.main.media.gallery', $data);
     }
 
     /**
@@ -110,7 +110,7 @@ class ExpoMediaController extends Controller
     public function expo_video_page($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'video')->first();
-        return view('Backend.events.expo.media.video', $data);
+        return view('Backend.events.expo.main.media.video', $data);
     }
 
     /**
