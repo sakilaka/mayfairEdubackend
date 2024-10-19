@@ -146,7 +146,7 @@
                                         </span>
                                     </p>
                                     <div class="text-center">
-                                        <a href="{{ route('expo.exhibitor.details', ['unique_id' => $expo->unique_id, 'exhibitor_id' => $exhibitor->id]) }}"
+                                        <a href="{{ route('expo.exhibitor.details', ['type' => 'main', 'exhibitor_id' => $exhibitor->id]) }}"
                                             class="btn btn-primary-bg mx-auto px-5 rounded-0"
                                             target="_blank">Details</a>
                                     </div>

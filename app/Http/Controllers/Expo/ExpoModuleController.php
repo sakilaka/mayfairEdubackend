@@ -14,18 +14,6 @@ use Illuminate\Support\Str;
 class ExpoModuleController extends Controller
 {
     /**
-     * expo site - home
-     */
-    public function index(Request $request)
-    {
-        $data['exhibitors'] = University::where(['is_exhibitor' => true, 'show_in_expo' => true])
-            ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
-            ->orderBy('position_in_expo', 'asc')
-            ->get();
-        return view('Expo.home', $data);
-    }
-
-    /**
      * expo details
      */
     public function expoDetails($unique_id)

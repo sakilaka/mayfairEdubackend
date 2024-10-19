@@ -18,10 +18,6 @@
                                     {!! $exhibitor->exhibitor_desc !!}
                                 @elseif ($type === 'site')
                                     {!! $exhibitor->exhibitor_site_desc !!}
-                                @else
-                                    <p class="text-center">
-                                        No Content Found
-                                    </p>
                                 @endif
                             </div>
                         </div>
