@@ -1371,11 +1371,11 @@ $("#uploadFile").on("click", function (e) {
         $("#uploadForm #code").val(location.search.split("=")[1]);
         let data = new FormData($("#uploadForm")[0]);
         var url = "/add-attachment/upload/";
-        $.wnoty({
+        /* $.wnoty({
             type: "info",
             message: "Uploading file",
             autohide: false,
-        });
+        }); */
         $.ajax({
             type: "post",
             url: url,
@@ -1388,12 +1388,12 @@ $("#uploadFile").on("click", function (e) {
                 file_uploaded($("#uploadForm #documentTitle").val());
                 $("#uploadForm")[0].reset();
                 $(document.body).trigger("refreshUpload");
-                $(".wnoty-info").remove();
+                // $(".wnoty-info").remove();
 
-                $.wnoty({
+                /* $.wnoty({
                     type: "success",
                     message: "Upload successful",
-                });
+                }); */
             },
             error: function (err) {
                 $(".upload-status").text("Upload document");
