@@ -164,7 +164,7 @@
                                             <div class="col-12 row" id="join_contents-container"
                                                 style="padding-right: 0">
 
-                                                @forelse ($contents as $key => $content)
+                                                @forelse ([] as $key => $content)
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
                                                         @php
                                                             $random = rand();
