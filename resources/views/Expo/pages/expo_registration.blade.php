@@ -227,22 +227,22 @@
 
                         <div class="col-md-10 col-lg-7 col-xl-6 co p-4 my-5 bg-white shadow form-container card-red-pattern-bg"
                             style="border-radius: 15px">
-                            <div class="row justify-content-between">
-                                <div class="col-4">
+                            <div class="row justify-content-between align-items-center">
+                                <div class="col-2">
                                     <img src="{{ $contents['organizerDetails']['logo'] }}" alt="" width="80"
                                         class="img-fluid mt-2" style="cursor: pointer";
                                         onclick="location.href='{{ $contents['organizerDetails']['redirect_url'] }}'">
 
                                 </div>
-                                <div class="col-4">
+                                <div class="col-8">
                                     {{-- <h2 class="h3 text-center" style="font-weight: bold">
                                         <img src="{{ asset('frontend/images/logo/study-in-china-exhibition-color.png') }}"
                                             alt="" width="150" class="img-fluid">
                                     </h2> --}}
-                                    <h3 class="wrapper-title text-center" style="font-size: 16px">
+                                    <h3 class="wrapper-title text-center fw-bold" style="font-size: 16px">
                                         {{ $expo->title }}</h3>
                                 </div>
-                                <div class="col-4 text-end">
+                                <div class="col-2 text-end">
                                     <img src="{{ $contents['co_organizerDetails']['logo'] }}" alt=""
                                         width="100" class="img-fluid mt-2" style="cursor: pointer";
                                         onclick="location.href='{{ $contents['co_organizerDetails']['redirect_url'] }}'">
@@ -660,8 +660,8 @@
 
     <script>
         /* $('select').select2({
-                                                                            placeholder: 'Select an option'
-                                                                        }); */
+                                                                                placeholder: 'Select an option'
+                                                                            }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
