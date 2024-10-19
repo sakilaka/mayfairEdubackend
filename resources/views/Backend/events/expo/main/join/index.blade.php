@@ -118,7 +118,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="steps-container">
-                                                    @forelse ($contents['steps'] as $step_key => $step)
+                                                    @forelse ($contents['steps'] ?? [] as $step_key => $step)
                                                         <div
                                                             class="row justify-content-between align-items-center step-row">
                                                             <div class="col-11 px-3 mb-2">

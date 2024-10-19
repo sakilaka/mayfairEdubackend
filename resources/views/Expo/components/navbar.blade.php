@@ -40,7 +40,8 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://studyinchinaexhibition.com/contact" style="color: white;">Join</a>
+            <a class="nav-link {{ Route::is('expo.join') ? 'active' : '' }}"
+                href="{{ route('expo.join', ['unique_id' => $expo->unique_id]) }}" style="color: white;">Join</a>
         </li>
     </ul>
 </div>
