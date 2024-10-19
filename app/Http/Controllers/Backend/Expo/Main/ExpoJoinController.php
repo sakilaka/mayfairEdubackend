@@ -42,7 +42,7 @@ class ExpoJoinController extends Controller
             } else {
                 $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
             }
-return $joinPageContents;
+
             $joinContents = $request->join_contents ?? [];
             $allJoinContents = [];
 
