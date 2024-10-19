@@ -34,7 +34,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('edit-exhibitor/{exhibitor_id}', [ExpoMainExhibitorController::class, "exhibitor_edit"])->name('admin.expo.exhibitor.edit');
         Route::post('edit-exhibitor/{exhibitor_id}', [ExpoMainExhibitorController::class, "exhibitor_update"])->name('admin.expo.exhibitor.update');
         Route::post('delete', [ExpoMainExhibitorController::class, "exhibitors_destroy"])->name('admin.expo.exhibitors.delete');
-        
+
         Route::get('toggle-show-in-expo/{id}', [ExpoMainExhibitorController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo.exhibitors.toggle_show_in_expo');
         Route::post('postion-in-expo', [ExpoMainExhibitorController::class, "exhibitors_postion_in_expo"])->name('admin.expo.exhibitors.position_in_expo');
     });
@@ -61,6 +61,11 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::prefix('{expo_id}/video')->group(function () {
         Route::get('/', [ExpoMediaController::class, 'expo_video_page'])->name('admin.expo.media.video');
         Route::post('update', [ExpoMediaController::class, 'expo_video_page_update'])->name('admin.expo.media.video.update');
+    });
+
+    Route::prefix('{expo_id}/join')->group(function () {
+        Route::get('/', [ExpoMediaController::class, 'expo_join_page'])->name('admin.expo.media.join');
+        Route::post('update', [ExpoMediaController::class, 'expo_join_page_update'])->name('admin.expo.media.join.update');
     });
 
     Route::prefix('users')->group(function () {
@@ -139,7 +144,7 @@ Route::prefix('expo-user')->middleware(['accessLogin', 'userCheck'])->group(func
 Route::prefix('expo')->group(function () {
     Route::get('details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
     Route::get('exhibitor/{exhibitor_id}/details', [ExpoModuleController::class, "exhibitor_details"])->name('expo.exhibitor.details');
-    
+
     Route::get('{unique_id}/page/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
     Route::get('{unique_id}/page/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
     Route::get('{unique_id}/page/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
