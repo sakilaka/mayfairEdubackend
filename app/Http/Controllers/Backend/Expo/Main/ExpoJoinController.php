@@ -25,11 +25,9 @@ class ExpoJoinController extends Controller
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
-            // Initialize new contents
             $joinPageContents = [];
             $oldJoinPageContents = json_decode($expo->join_page_contents, true) ?? [];
 
-            // Handle step titles and deadline
             $stepTitles = $request->step_title ?? [];
             $deadline = $request->deadline;
 
@@ -39,13 +37,12 @@ class ExpoJoinController extends Controller
             if ($request->hasFile('qr_code')) {
                 $qrCodeFile = $request->file('qr_code');
                 $qrFileName = 'general-qr-code_' . rand() . time() . '.' . $qrCodeFile->getClientOriginalExtension();
-                // $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
+                $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
                 $joinPageContents['qr_code'] = url('upload/expo/qr_codes/' . $qrFileName);
             } else {
                 $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
             }
 
-            // Handle join contents
             $joinContents = $request->join_contents ?? [];
             $allJoinContents = [];
 
@@ -56,7 +53,6 @@ class ExpoJoinController extends Controller
                     'phone' => $joinContent['phone'],
                 ];
 
-                // Process references
                 $referenceData = [];
                 if (isset($joinContent['reference'])) {
                     foreach ($joinContent['reference'] as $refKey => $reference) {
@@ -64,11 +60,10 @@ class ExpoJoinController extends Controller
                             'qr_code_type' => $reference['qr_code_type'] ?? '',
                         ];
 
-                        // Handle QR code image upload
                         if ($request->hasFile("join_contents.$joinKey.reference.$refKey.image")) {
                             $qrFile = $request->file("join_contents.$joinKey.reference.$refKey.image");
                             $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
-                            // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
+                            $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
                             $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
                         } else {
                             $refData['image'] = $reference['image'] ?? '';
@@ -105,7 +100,6 @@ class ExpoJoinController extends Controller
             }
 
             $joinPageContents['join_contents'] = $allJoinContents;
-            return $joinPageContents['join_contents'];
             $expo->update(['join_page_contents' => json_encode($joinPageContents)]);
 
             return redirect(route('admin.expo.media.join', ['expo_id' => $expo->unique_id]))->with('success', 'Join Page Updated!');
