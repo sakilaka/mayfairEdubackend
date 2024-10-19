@@ -167,25 +167,25 @@ class ExpoMainExhibitorController extends Controller
         }
 
         $exhibitors = json_decode($expo->exhibitors, true) ?? [];
-        return $exhibitors;
 
-        if ($exhibitor) {
-            $current_status = $exhibitor->show_in_expo;
-
-            if ($current_status != 1) {
-                $exhibitor->show_in_expo = 1;
-                $message = $exhibitor->name . ' is now being shown in the expo.';
-            } else {
-                $exhibitor->show_in_expo = 0;
-                $message = $exhibitor->name . ' is no longer being shown in the expo.';
+        $found = false;
+        foreach ($exhibitors as &$exhibitor) {
+            if ($exhibitor['exhibitor'] == $exhibitor_id) {
+                $exhibitor['show_on_home'] = !$exhibitor['show_on_home'];
+                $message = $exhibitor['show_on_home']
+                    ? 'Exhibitor is now being shown in the expo.'
+                    : 'Exhibitor is no longer being shown in the expo.';
+                $found = true;
+                break;
             }
-
-            $exhibitor->save();
-
-            return redirect()->back()->with('success', $message);
-        } else {
-            return redirect()->back()->with('error', 'Exhibitor not found or something went wrong!');
         }
+
+        if (!$found) {
+            return back()->with('error', 'Exhibitor not found in the expo list!');
+        }
+
+        $expo->update(['exhibitors'=> json_encode($exhibitors)]);
+        return redirect()->back()->with('success', $message);
     }
 
     /**
