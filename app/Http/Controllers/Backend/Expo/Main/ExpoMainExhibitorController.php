@@ -77,7 +77,7 @@ class ExpoMainExhibitorController extends Controller
     public function exhibitors_store(Request $request, $expo_id)
     {
         try {
-            $expo = Expo::where('unique_id', $expo_id)->select('unique_id', 'exhibitors')->first();
+            $expo = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
 
             $exhibitors = [];
 
