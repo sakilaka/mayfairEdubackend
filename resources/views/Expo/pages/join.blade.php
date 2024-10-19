@@ -104,12 +104,12 @@
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="text-danger fs-5 text-success">WeChat</span>
+                                    <span class="text-success fw-700" style="color: greenyellow">WeChat</span>
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="text-danger fs-5">Whatsapp</span>
+                                    <span class="text-success fw-700" style="color: greenyellow">Whatsapp</span>
                                 </div>
                             </div>
                         </div>
