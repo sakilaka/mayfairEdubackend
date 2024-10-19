@@ -72,15 +72,13 @@ class ExpoJoinController extends Controller
                 $joinData['reference'] = $referenceData;
                 $allJoinContents[$joinKey] = $joinData;
             }
-return $allJoinContents;
+
             // Merge old join contents if they exist
             if (isset($oldJoinPageContents['join_contents'])) {
                 foreach ($oldJoinPageContents['join_contents'] as $oldJoinKey => $oldJoinContent) {
                     if (isset($allJoinContents[$oldJoinKey])) {
-                        // Merge old references with new references
                         $mergedReferences = array_merge($oldJoinContent['reference'], $allJoinContents[$oldJoinKey]['reference']);
 
-                        // Handle removing old images that are no longer present in the new data
                         foreach ($oldJoinContent['reference'] as $refKey => $oldReference) {
                             if (!isset($mergedReferences[$refKey]['image'])) {
                                 $imagePath = public_path('upload/expo/qr_codes/' . basename($oldReference['image']));
@@ -90,17 +88,16 @@ return $allJoinContents;
                             }
                         }
 
-                        // Merge old content with new
                         $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, $allJoinContents[$oldJoinKey]);
                     } else {
-                        // If no new content exists for this key, retain old content
+                        return true;
                         $allJoinContents[$oldJoinKey] = $oldJoinContent;
                     }
                 }
             }
 
             $joinPageContents['join_contents'] = $allJoinContents;
-
+return $joinPageContents;
             // Handle general QR code upload
             if ($request->hasFile('qr_code')) {
                 $qrCodeFile = $request->file('qr_code');
