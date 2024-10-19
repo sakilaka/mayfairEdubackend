@@ -64,7 +64,7 @@
                                                 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
                                                 <img src="{{ $exhibitor->image_show }}" alt="" width="30px"
                                                     height="30px" style="margin-right: 8px">
-                                                <a href="{{-- {{ route('expo.exhibitor.details', ['unique_id' => $expo->unique_id, 'exhibitor_id' => $exhibitor->id]) }} --}}"
+                                                <a href="{{ route('expo.details', ['exhibitor_id' => $exhibitor->id]) }}"
                                                     target="_blank" style="color: var(--primary_background);"
                                                     data-toggle="tooltip" data-placement="top"
                                                     data-original-title="{{ $exhibitor->name }}">
