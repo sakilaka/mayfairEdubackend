@@ -14,7 +14,7 @@ use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
 /**
- * Expo Routes (Admin)
+ * Expo Routes (Admin) - start --------------------------
  */
 Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
     Route::get('list', [ExpoController::class, "index"])->name('admin.expo.index');
@@ -83,23 +83,24 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::post('{type}/send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
     Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
 });
+/**
+ * Expo Routes (Admin) - end --------------------------
+ */
 
 /**
  * Expo Routes (User)
  */
-Route::prefix('expo')->middleware(['accessLogin'])->group(function () {
-    Route::prefix('user')->middleware(['userCheck'])->group(function () {
-        Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('expo.user.dashboard');
-        Route::get('/profile', [ExpoUserController::class, 'index'])->name('expo.user.profile');
-        Route::get('/profile/{id}', [ExpoUserController::class, 'editUserInfo'])->name('expo.user.edit_profile');
-        Route::post('/update/profile/{id}', [ExpoUserController::class, 'updateUserInfo'])->name('expo.user.profile_info_update');
+Route::prefix('expo-user')->middleware(['accessLogin', 'userCheck'])->group(function () {
+    Route::get('/dashboard', [ExpoUserController::class, 'dashboard'])->name('expo.user.dashboard');
+    Route::get('/profile', [ExpoUserController::class, 'index'])->name('expo.user.profile');
+    Route::get('/profile/{id}', [ExpoUserController::class, 'editUserInfo'])->name('expo.user.edit_profile');
+    Route::post('/update/profile/{id}', [ExpoUserController::class, 'updateUserInfo'])->name('expo.user.profile_info_update');
 
-        Route::post('/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('expo.user.password_change');
-        Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('expo.user.logout');
+    Route::post('/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('expo.user.password_change');
+    Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('expo.user.logout');
 
-        // tickets
-        Route::get('my-tickets', [ExpoUserController::class, 'my_tickets'])->name('expo.user.my_tickets');
-    });
+    // tickets
+    Route::get('my-tickets', [ExpoUserController::class, 'my_tickets'])->name('expo.user.my_tickets');
 });
 
 /**
