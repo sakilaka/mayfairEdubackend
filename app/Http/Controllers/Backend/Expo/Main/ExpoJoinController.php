@@ -9,18 +9,18 @@ use Illuminate\Http\Request;
 class ExpoJoinController extends Controller
 {
     /**
-     * manage media -> gallery - page
+     * manage media -> join - page
      */
-    public function expo_gallery_page($expo_id)
+    public function expo_join_page($expo_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'gallery')->first();
-        return view('Backend.events.expo.main.media.gallery', $data);
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'join_page_contents')->first();
+        return view('Backend.events.expo.main.join.index', $data);
     }
 
     /**
-     * manage media -> gallery - page (update)
+     * manage media -> join - page (update)
      */
-    public function expo_gallery_page_update(Request $request, $expo_id)
+    public function expo_join_page_update(Request $request, $expo_id)
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
