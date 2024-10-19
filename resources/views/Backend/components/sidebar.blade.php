@@ -616,8 +616,8 @@
                     Route::is('admin.expo-site.ui.contact') ||
                     Route::is('admin.expo-site.ui.gallery') ||
                     Route::is('admin.expo-site.ui.video') ||
-                    (Route::is('admin.expo.users') && request()->type == 'site') ||
-                    (Route::is('admin.expo.add_participator') && request()->type == 'site');
+                    Route::is('admin.expo-site.users') ||
+                    Route::is('admin.expo-site.add_participator');
             @endphp
             <li class="nav-item {{ $is_active_expo_site_module ? 'active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#expo-site-sidemenu" aria-expanded="false"
@@ -636,8 +636,8 @@
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.users', ['type' => 'site']) }}"
-                                class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.add_participator')) && request()->type == 'site' ? 'active' : '' }}">
+                            <a href="{{ route('admin.expo-site.users', ['type' => 'site']) }}"
+                                class="nav-link {{ Route::is('admin.expo-site.users') || Route::is('admin.expo-site.add_participator') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Participators
                             </a>
