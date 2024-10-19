@@ -106,7 +106,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.35)),
-                url('{{ asset('frontend/images/logo/bottom-objects.png') }}');
+                url('{{ asset('frontend/images/logo/bottom-objects-blue.webp') }}');
             background-position: bottom;
             background-repeat: no-repeat;
             background-size: cover;
