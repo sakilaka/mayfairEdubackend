@@ -73,14 +73,19 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitors_store(Request $request, $expo_id)
     {
-        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->select('unique_id', 'exhibitors')->first();
+
+            $exhibitors = [];
+
             foreach ($request->university_id as $university_id) {
-                return $university_id;
+                $exhibitors[] = [
+                    'exhibitor' => $university_id,
+                    'show_on_home' => false,
+                ];
             }
 
-            return $expo;
+            $expo->exhibitors = json_encode($exhibitors);
             return back()->with('success', 'Selected universities have been marked as exhibitors!');
         } catch (\Exception $e) {
             return back()->with('error', 'Something went wrong!');
