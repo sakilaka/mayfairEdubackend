@@ -96,32 +96,36 @@
                 <h3 class="section-title d-inline fs-2">Deadline of Applying: 30 September, 2024</h3>
             </div>
 
-            <div class="row justify-content-start align-items-center">
-                <div class="col-md-4">
-                    <div class="card reference-card">
-                        <div class="card-body">
-                            <div class="row justify-content-between">
-                                <div class="col-6 d-flex flex-column align-items-center">
-                                    <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
-                                        class="img-fluid">
-                                    <span class="fw-700 mt-2" style="color: greenyellow; font-size:16px;">WeChat</span>
-                                </div>
-                                <div class="col-6 d-flex flex-column align-items-center">
-                                    <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
-                                        class="img-fluid">
-                                    <span class="fw-700 mt-2"
-                                        style="color: greenyellow; font-size:16px;">Whatsapp</span>
-                                </div>
+            <div class="row justify-content-start align-items-center mt-4">
+                @for ($i = 0; $i < 5; $i++)
+                    <div class="col-md-4 mt-3">
+                        <div class="card reference-card">
+                            <div class="card-body">
+                                <div class="row justify-content-between">
+                                    <div class="col-6 d-flex flex-column align-items-center">
+                                        <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
+                                            class="img-fluid">
+                                        <span class="fw-700 mt-2"
+                                            style="color: greenyellow; font-size:16px;">WeChat</span>
+                                    </div>
+                                    <div class="col-6 d-flex flex-column align-items-center">
+                                        <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
+                                            class="img-fluid">
+                                        <span class="fw-700 mt-2"
+                                            style="color: greenyellow; font-size:16px;">Whatsapp</span>
+                                    </div>
 
-                                <div class="col-12 text-center mt-4">
-                                    <h4 class="text-white fw-800">John Doe</h4>
-                                    <p class="text-white mb-0" style="font-size: 16px;">Lorem, ipsum dolor. Lorem ipsum dolo</p>
-                                    <p class="text-white mb-0" style="font-size: 16px;">Lorem, ipsum dolor.</p>
+                                    <div class="col-12 text-center mt-4">
+                                        <h4 class="text-white fw-800">John Doe</h4>
+                                        <p class="text-white my-0" style="font-size: 16px;">Lorem, ipsum dolor. Lorem
+                                            ipsum dolo</p>
+                                        <p class="text-white my-0" style="font-size: 16px;">Lorem, ipsum dolor.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endfor
             </div>
 
         </div>
