@@ -229,24 +229,23 @@
                             style="border-radius: 15px">
                             <div class="row justify-content-between">
                                 <div class="col-4">
-                                    <img src="{{ asset('frontend/images/studyinchina-logo.png') }}" alt=""
-                                        width="160" class="img-fluid mt-2" style="cursor: pointer";
-                                        onclick="location.href='{{ route('home') }}'">
+                                    <img src="{{ $contents['organizerDetails']['logo'] }}" alt="" width="80"
+                                        class="img-fluid mt-2" style="cursor: pointer";
+                                        onclick="location.href='{{ $contents['organizerDetails']['redirect_url'] }}'">
 
                                 </div>
                                 <div class="col-4">
-                                    <h2 class="h3 text-center" style="font-weight: bold">
+                                    {{-- <h2 class="h3 text-center" style="font-weight: bold">
                                         <img src="{{ asset('frontend/images/logo/study-in-china-exhibition-color.png') }}"
                                             alt="" width="150" class="img-fluid">
-                                    </h2>
+                                    </h2> --}}
+                                    <h3 class="wrapper-title text-center" style="font-size: 16px">
+                                        {{ $expo->title }}</h3>
                                 </div>
-                                <div class="col-4 text-end d-flex flex-column align-items-center">
-                                    <img src="{{ asset(asset('frontend/images/logo/cscse-color-2.png')) }}"
-                                        alt="" width="130" class="img-fluid" style="cursor: pointer";
-                                        onclick="location.href='{{ route('home') }}'">
-                                    <img src="{{ $header_logo }}" alt="" width="70" class="img-fluid mt-2"
-                                        style="cursor: pointer";
-                                        onclick="location.href='{{ env('APP_MAIN_DOMAIN') }}'">
+                                <div class="col-4 text-end">
+                                    <img src="{{ $contents['co_organizerDetails']['logo'] }}" alt=""
+                                        width="100" class="img-fluid mt-2" style="cursor: pointer";
+                                        onclick="location.href='{{ $contents['co_organizerDetails']['redirect_url'] }}'">
                                 </div>
                             </div>
 
@@ -324,8 +323,7 @@
                                                         Captcha:</label>
                                                     <div class="col-md-6">
                                                         <input type="text" class="form-control form-control-lg"
-                                                            id="verificationImage" required
-                                                            placeholder="Enter CAPTCHA">
+                                                            id="verificationImage" required placeholder="Enter CAPTCHA">
                                                         <div class="invalid-feedback">
                                                             Please fill the CAPTCHA code
                                                         </div>
@@ -662,8 +660,8 @@
 
     <script>
         /* $('select').select2({
-                                                                    placeholder: 'Select an option'
-                                                                }); */
+                                                                            placeholder: 'Select an option'
+                                                                        }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
