@@ -118,7 +118,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="steps-container">
-                                                    @forelse ($contents['steps'] as $step)
+                                                    @forelse ($contents['steps'] as $step_key => $step)
                                                         <div
                                                             class="row justify-content-between align-items-center step-row">
                                                             <div class="col-11 px-3 mb-2">
@@ -127,9 +127,9 @@
                                                                     <span class="text-danger">*</span>
                                                                 </label>
                                                                 <input type="text" class="form-control"
-                                                                    name="step_title[{{ $random }}]"
-                                                                    placeholder="Enter Step Title" value="{{ $step }}"
-                                                                    required>
+                                                                    name="step_title[{{ $step_key }}]"
+                                                                    placeholder="Enter Step Title"
+                                                                    value="{{ $step ?? '' }}" required>
                                                             </div>
                                                             <div class="col-1 mt-3">
                                                                 <a href="javascript:void(0)"
@@ -168,7 +168,8 @@
                                                     <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" class="form-control" name="deadline"
-                                                    placeholder="Enter Deadline" required>
+                                                    placeholder="Enter Deadline"
+                                                    value="{{ $contents['deadline'] ?? '' }}" required>
                                             </div>
 
                                             <div class="col-12 mt-4 mb-2 px-4">
