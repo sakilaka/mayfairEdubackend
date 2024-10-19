@@ -577,8 +577,6 @@ class ExpoController extends Controller
         }
     }
 
-
-
     /**
      * index of exhibitors
      */
