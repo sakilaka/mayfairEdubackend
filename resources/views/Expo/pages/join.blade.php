@@ -104,14 +104,20 @@
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="fw-700"
-                                        style="color: greenyellow; font-size:18px;">WeChat</span>
+                                    <span class="fw-700 mt-2"
+                                        style="color: greenyellow; font-size:16px;">WeChat</span>
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="fw-700"
-                                        style="color: greenyellow; font-size:18px;">Whatsapp</span>
+                                    <span class="fw-700 mt-2"
+                                        style="color: greenyellow; font-size:16px;">Whatsapp</span>
+                                </div>
+
+                                <div class="col-12 text-center mt-4">
+                                    <h4 class="text-white fw-800">John Doe</h4>
+                                    <p>Lorem, ipsum dolor.</p>
+                                    <p></p>
                                 </div>
                             </div>
                         </div>
