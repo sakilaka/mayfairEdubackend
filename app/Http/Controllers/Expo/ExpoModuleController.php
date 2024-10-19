@@ -75,16 +75,16 @@ class ExpoModuleController extends Controller
     {
         $data['expo'] = $expo = Expo::where('unique_id', $unique_id)->first();
 
-        if ($expo && !empty($expo->universities)) {
-            $universities = json_decode($expo->universities, true);
-            $university_ids = array_column($universities, 'exhibitor'); // Assuming 'universities' contains exhibitor data
+        if ($expo && !empty($expo->exhibitors)) {
+            $exhibitors = json_decode($expo->exhibitors, true);
+            $exhibitor_ids = array_column($exhibitors, 'exhibitor'); // Extract exhibitor IDs
 
-            $data['exhibitors'] = University::whereIn('id', $university_ids)
+            $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)
                 ->orderByRaw('CASE WHEN position_in_expo IS NULL THEN 1 ELSE 0 END')
                 ->orderBy('position_in_expo', 'asc')
                 ->get()
-                ->map(function ($university) use ($universities) {
-                    $exhibitor_info = collect($universities)->firstWhere('exhibitor', $university->id);
+                ->map(function ($university) use ($exhibitors) {
+                    $exhibitor_info = collect($exhibitors)->firstWhere('exhibitor', $university->id);
                     $university->show_on_home = $exhibitor_info['show_on_home'] ?? false;
                     $university->position_in_expo = $exhibitor_info['position_in_expo'] ?? null;
                     return $university;
@@ -95,6 +95,7 @@ class ExpoModuleController extends Controller
 
         return view('Expo.pages.exhibitors', $data);
     }
+
 
     /**
      * exhibitor details
