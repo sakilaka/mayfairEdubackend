@@ -229,16 +229,15 @@ class ExpoJoinController extends Controller
         }
     }
 
-    // Helper method to delete files
     private function deleteFile($filePath)
     {
-        dd($filePath);
-        if (file_exists(public_path($filePath))) {
-            unlink(public_path($filePath));
+        $relativePath = parse_url($filePath, PHP_URL_PATH);
+        
+        if (file_exists(public_path($relativePath))) {
+            unlink(public_path($relativePath));
         }
     }
 
-    // Helper method to delete content and its images
     private function deleteContentAndImages($joinKey, $oldJoinContent)
     {
         foreach ($oldJoinContent['reference'] as $refKey => $oldReference) {
@@ -248,7 +247,6 @@ class ExpoJoinController extends Controller
         }
     }
 
-    // Helper method to delete all contents and their images
     private function deleteAllContentsAndImages($oldJoinPageContents)
     {
         foreach ($oldJoinPageContents['join_contents'] ?? [] as $oldJoinKey => $oldJoinContent) {
