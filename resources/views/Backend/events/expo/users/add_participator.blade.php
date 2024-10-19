@@ -32,9 +32,19 @@
                         <div class="col-md-10 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample"
-                                        action="{{ route('admin.expo.add_participator.store', ['type' => request()->type]) }}"
-                                        method="POST" enctype="multipart/form-data">
+                                    @php
+                                        $store_participant_route = match (request()->type) {
+                                            'main' => route('admin.expo.add_participator.store', [
+                                                'type' => request()->type,
+                                            ]),
+                                            'site' => route('admin.expo-site.add_participator.store', [
+                                                'type' => request()->type,
+                                            ]),
+                                            default => '#',
+                                        };
+                                    @endphp
+                                    <form class="forms-sample" action="{{ $store_participant_route }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="form-group row">

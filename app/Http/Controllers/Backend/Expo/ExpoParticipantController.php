@@ -52,8 +52,8 @@ class ExpoParticipantController extends Controller
      */
     public function expo_add_participator_store(Request $request)
     {
+        return $request->all();
         try {
-            // Create an user account
             $user = User::create([
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
