@@ -78,17 +78,26 @@ class ExpoMainExhibitorController extends Controller
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
-
-            $exhibitors = [];
+            $existing_exhibitors = json_decode($expo->exhibitors, true) ?? [];
 
             foreach ($request->university_id as $university_id) {
-                $exhibitors[] = [
-                    'exhibitor' => $university_id,
-                    'show_on_home' => false,
-                ];
+                $exists = false;
+                foreach ($existing_exhibitors as $exhibitor) {
+                    if ($exhibitor['exhibitor'] == $university_id) {
+                        $exists = true;
+                        break;
+                    }
+                }
+
+                if (!$exists) {
+                    $existing_exhibitors[] = [
+                        'exhibitor' => $university_id,
+                        'show_on_home' => false,
+                    ];
+                }
             }
 
-            $expo->exhibitors = json_encode($exhibitors);
+            $expo->exhibitors = json_encode($existing_exhibitors);
             $expo->save();
 
             return back()->with('success', 'Selected universities have been marked as exhibitors!');
