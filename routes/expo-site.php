@@ -1,11 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\Expo\ExpoController;
-use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
-use App\Http\Controllers\Backend\Expo\ExpoMediaController;
 use App\Http\Controllers\Backend\Expo\ExpoModuleContentsController;
-use App\Http\Controllers\Backend\Expo\ExpoSiteController;
-use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
 use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
@@ -16,38 +12,7 @@ use Illuminate\Support\Facades\Route;
 /**
  * Expo Routes (Admin)
  */
-Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
-    Route::get('list', [ExpoController::class, "index"])->name('admin.expo.index');
-    Route::get('create', [ExpoController::class, "create"])->name('admin.expo.create');
-    Route::post('store', [ExpoController::class, "store"])->name('admin.expo.store');
-    Route::get('edit/{id}', [ExpoController::class, "edit"])->name('admin.expo.edit');
-    Route::post('update/{id}', [ExpoController::class, "update"])->name('admin.expo.update');
-    Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
-
-    Route::prefix('{expo_id}/testimonials')->group(function () {
-        Route::get('list', [ExpoTestimonialsController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
-        Route::get('manage/{testimonial_key?}', [ExpoTestimonialsController::class, "expo_testimonial_manage"])->name('admin.expo.testimonial.manage');
-        Route::post('update/{testimonial_key?}', [ExpoTestimonialsController::class, "expo_testimonial_update"])->name('admin.expo.testimonial.update');
-        Route::get('delete/{testimonial_key?}', [ExpoTestimonialsController::class, "expo_testimonial_destroy"])->name('admin.expo.testimonial.delete');
-    });
-
-    Route::prefix('{expo_id}/overseas-delegates')->group(function () {
-        Route::get('list', [ExpoDelegatesController::class, "expo_delegate_index"])->name('admin.expo.delegate.index');
-        Route::get('manage/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_manage"])->name('admin.expo.delegate.manage');
-        Route::post('update/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_update"])->name('admin.expo.delegate.update');
-        Route::get('delete/{delegate_key?}', [ExpoDelegatesController::class, "expo_delegate_destroy"])->name('admin.expo.delegate.delete');
-    });
-
-    Route::prefix('{expo_id}/gallery')->group(function () {
-        Route::get('/', [ExpoMediaController::class, 'expo_gallery_page'])->name('admin.expo.media.gallery');
-        Route::post('update', [ExpoMediaController::class, 'expo_gallery_page_update'])->name('admin.expo.media.gallery.update');
-    });
-
-    Route::prefix('{expo_id}/video')->group(function () {
-        Route::get('/', [ExpoMediaController::class, 'expo_video_page'])->name('admin.expo.media.video');
-        Route::post('update', [ExpoMediaController::class, 'expo_video_page_update'])->name('admin.expo.media.video.update');
-    });
-
+Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
     Route::prefix('exhibitors')->group(function () {
         Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
         Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo.exhibitors.store');
