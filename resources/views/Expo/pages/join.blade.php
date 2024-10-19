@@ -37,8 +37,11 @@
                 <h2 class="section-title d-inline">How to join us:</h2>
             </div>
 
-            <div class="row justify-content-between align-items-center flex-row-reverse flex-md-row mt-5 mx-auto">
-                <div class="col-md-9">
+            <div class="row justify-content-between align-items-center mt-5 mx-auto">
+                <div class="col-md-6 order-md-2">
+                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid">
+                </div>
+                <div class="col-md-6 order-md-1">
                     <ol class="list-decimal list-inside" style="font-size: 18px;">
                         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
                             consectetur, adipisicing elit. Alias, impedit.</li>
@@ -47,10 +50,6 @@
                         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
                             consectetur, adipisicing elit. Alias, impedit.</li>
                     </ol>
-                </div>
-                
-                <div class="col-md-6">
-                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid">
                 </div>
             </div>
 
