@@ -24,7 +24,7 @@ class ExpoJoinController extends Controller
     {
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
-return $expo;
+
             // Initialize new contents
             $joinPageContents = [];
             $oldJoinPageContents = json_decode($expo->join_page_contents, true) ?? [];
@@ -68,7 +68,7 @@ return $expo;
                         $referenceData[$refKey] = $refData;
                     }
                 }
-
+return $referenceData;
                 $joinData['reference'] = $referenceData;
                 $allJoinContents[$joinKey] = $joinData;
             }
@@ -112,6 +112,7 @@ return $expo;
                 $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
             }
 
+            return $joinPageContents;
             // Save the updated join page contents
             $expo->join_page_contents = json_encode($joinPageContents);
             $expo->save();
