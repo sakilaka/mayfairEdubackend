@@ -27,6 +27,14 @@
         blockquote .testimonial-description::-webkit-scrollbar-thumb:hover {
             background-color: #218838;
         }
+
+        .university-highlights {
+            background-image: url('{{ asset('frontend/images/expo-page-white-bg.jpeg') }}');
+            background-position: top;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 10rem 0;
+        }
     </style>
 </head>
 
@@ -49,7 +57,7 @@
         <div class="bg-color"></div>
     </div>
 
-    <section class="university-highlights my-5">
+    <section class="university-highlights">
         <div class="container">
             <div class="text-start">
                 <h2 class="section-title d-inline">Testimonials From</h2>

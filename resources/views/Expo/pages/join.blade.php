@@ -49,6 +49,14 @@
         .reference-card img {
             border-radius: 8px;
         }
+
+        .university-highlights {
+            background-image: url('{{ asset('frontend/images/expo-page-white-bg.jpeg') }}');
+            background-position: top;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 10rem 0;
+        }
     </style>
 </head>
 
@@ -71,8 +79,8 @@
         <div class="bg-color"></div>
     </div>
 
-    <section class="university-highlights my-5">
-        <div class="container">
+    <section class="university-highlights">
+        <div class="container mt-4">
             <div class="text-start">
                 <h2 class="section-title d-inline">How to join us:</h2>
             </div>
