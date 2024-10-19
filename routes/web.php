@@ -272,7 +272,7 @@ Route::post('application/education/{id}', [StudentApplicationController::class, 
 Route::post('application/work_experience/{id}', [StudentApplicationController::class, 'applicationWorkExperience'])->name('application.work_experience');
 Route::post('application/family_finance/{id}', [StudentApplicationController::class, 'applicationFamilyFinance'])->name('application.family_finance');
 Route::post('application/optional_service/{id}', [StudentApplicationController::class, 'applicationOptionalService'])->name('application.optional_service');
-Route::post('add-attachment/upload/{id}', [StudentApplicationController::class, 'applicationAttachmentUpload'])->name('application.add-attachment.upload');
+Route::post('add-attachment/upload/{id?}', [StudentApplicationController::class, 'applicationAttachmentUpload'])->name('application.add-attachment.upload');
 Route::get('get-attachments/{id}', [StudentApplicationController::class, 'applicationGetAttachments'])->name('application.get-attachments');
 Route::post('attachment/download/{id}', [StudentApplicationController::class, 'attachmentDownload'])->name('application.attachments.download');
 Route::post('attachment/delete/{id}', [StudentApplicationController::class, 'attachmentDelete'])->name('application.attachment.delete');
