@@ -53,35 +53,33 @@
                                         @csrf
 
                                         <div class="row">
-                                            <div class="col-12 mb-3 px-4">
+                                            <div class="col-12 px-4">
                                                 <div class="row justify-content-between">
                                                     <h5 class="d-inline">How to join (Steps)</h5>
+
+                                                    <div class="d-flex justify-content-end">
+                                                        <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg"
+                                                            id="add-step">
+                                                            <i class="fa fa-plus"></i>
+                                                            Add Step
+                                                        </a>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="row">
-                                                    <div class="col-md-12 px-3 mb-2"
-                                                        style="padding-right: 5px !important;">
+                                                <div class="row steps-container">
+                                                    <div class="col-md-12 px-3 mb-2">
                                                         <label class="form-label">
-                                                            Title
+                                                            Step Title
                                                             <span class="text-danger">*</span>
                                                         </label>
-                                                        <input type="text" class="form-control"
-                                                            name=""
-                                                            placeholder="Enter Gallery Title"
-                                                            value="" required>
-                                                    </div>
-                                                    <div class="col-sm-12 px-3">
-                                                        <label class="form-label">
-                                                            Description
-                                                        </label>
-                                                        <textarea class="form-control form-control-lg" rows="4" name=""
-                                                            placeholder="Write Gallery Description"></textarea>
+                                                        <input type="text" class="form-control" name=""
+                                                            placeholder="Enter Step Title" value="" required>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 mb-3 px-4">
+                                            <div class="col-12 mt-3 mb-2 px-4">
                                                 <div class="row justify-content-between align-self-center">
                                                     <h5 class="d-inline">Contact References</h5>
 
