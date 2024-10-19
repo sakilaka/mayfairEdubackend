@@ -25,6 +25,16 @@
             font-weight: bold;
             margin-right: 5px;
         }
+
+        .reference-card {
+            border: 0;
+            background-color: var(--primary_background);
+            border-radius: 12px;
+        }
+
+        .reference-card img{
+            border-radius: 8px;
+        }
     </style>
 </head>
 
@@ -88,16 +98,16 @@
 
             <div class="row justify-content-start align-items-center">
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card reference-card">
                         <div class="card-body">
                             <div class="row justify-content-between">
                                 <div class="col-6 d-flex flex-column align-items-center">
-                                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt=""
+                                    <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="text-danger fs-5">WeChat</span>
+                                    <span class="text-danger fs-5" >WeChat</span>
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
-                                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt=""
+                                    <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
                                         class="img-fluid">
                                     <span class="text-danger fs-5">Whatsapp</span>
                                 </div>
