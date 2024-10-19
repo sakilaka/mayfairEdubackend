@@ -51,14 +51,6 @@
                     </div>
 
                     @if (request()->type === 'main')
-                        @php
-                            $add_participant_route = match (request()->type) {
-                                'main' => route('admin.expo.users.filter', ['type' => request()->type]),
-                                'site' => route('admin.expo-site.users.filter', ['type' => request()->type]),
-                                default => '#',
-                            };
-                        @endphp
-
                         <form action="{{ route('admin.expo.users.filter', ['type' => request()->type]) }}"
                             method="POST">
                             @csrf
