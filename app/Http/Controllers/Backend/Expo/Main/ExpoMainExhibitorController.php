@@ -59,8 +59,9 @@ class ExpoMainExhibitorController extends Controller
     /**
      * update exhibitor
      */
-    public function exhibitor_update(Request $request, $exhibitor_id)
+    public function exhibitor_update(Request $request, $expo_id, $exhibitor_id)
     {
+        return $request->all();
         $exhibitor = University::find($exhibitor_id);
 
         if (!$exhibitor) {
