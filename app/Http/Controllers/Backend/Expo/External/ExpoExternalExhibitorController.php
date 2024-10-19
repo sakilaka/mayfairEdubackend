@@ -46,7 +46,7 @@ class ExpoExternalExhibitorController extends Controller
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
-        $exhibitor->exhibitor_desc = $request->description;
+        $exhibitor->exhibitor_site_desc = $request->description;
         $exhibitor->save();
 
         return redirect(route('admin.expo.exhibitors.index'))->with('success', 'Exhibitor Description Has Been Updated!');
