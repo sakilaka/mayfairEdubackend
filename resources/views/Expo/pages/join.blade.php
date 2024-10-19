@@ -38,8 +38,8 @@
             </div>
 
             <div class="row justify-content-between align-items-center mt-5 mx-auto">
-                <div class="col-md-6 order-md-2">
-                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid">
+                <div class="col-md-6 order-md-2 text-end">
+                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid" width="250">
                 </div>
                 <div class="col-md-6 order-md-1">
                     <ol class="list-decimal list-inside" style="font-size: 18px;">
