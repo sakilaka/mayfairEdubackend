@@ -15,9 +15,9 @@
                         <div class="row mx-0 align-items-center justify-content-center rounded-3">
                             <div class="col-md-10 {{-- p-4 p-sm-5 --}} ckeditor5-rendered">
                                 @if ($type === 'main')
-                                    {!! $exhibitor->exhibitor_desc !!}
+                                    {!! $exhibitor->exhibitor_desc ?? 'No Content Found!' !!}
                                 @elseif ($type === 'site')
-                                    {!! $exhibitor->exhibitor_site_desc !!}
+                                    {!! $exhibitor->exhibitor_site_desc ?? 'No Content Found!' !!}
                                 @endif
                             </div>
                         </div>
