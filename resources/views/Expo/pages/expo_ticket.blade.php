@@ -212,10 +212,23 @@
 
     @php
         $contents = json_decode($expo['additional_contents'], true) ?? [];
-
         $organizerDetails = $contents['organizerDetails'] ?? [];
         $co_organizerDetails = $contents['co_organizerDetails'] ?? [];
     @endphp
+
+    @if (isset($contents['hero_bg']) && $contents['hero_bg'])
+        <style>
+            .bg-section {
+                background-image: url('{{ $contents['hero_bg'] }}');
+            }
+        </style>
+    @else
+        <style>
+            .bg-section {
+                background-color: var(--primary_background);
+            }
+        </style>
+    @endif
 </head>
 
 <body>
@@ -253,11 +266,12 @@
                             <div class="col-7 d-flex flex-column justify-content-around">
                                 <div class="row align-items-center justify-content-between mt-3">
                                     <div class="col-6 ps-4 d-flex align-items-center">
-                                        <img src="{{ $organizerDetails['logo'] }}" alt=""
-                                            class="img-fluid" width="130">
+                                        <img src="{{ $organizerDetails['logo'] }}" alt="" class="img-fluid"
+                                            width="130">
                                     </div>
                                     <div class="col-6 text-end">
-                                        <h3 class="wrapper-title text-center" style="font-size: 16px">{{ $expo->title }}</h3>
+                                        <h3 class="wrapper-title text-center" style="font-size: 16px">
+                                            {{ $expo->title }}</h3>
                                     </div>
                                 </div>
 
@@ -304,8 +318,8 @@
                             <div class="col-5">
                                 <div class="d-flex flex-column align-items-center">
                                     <div class="mt-3">
-                                        <img src="{{ $co_organizerDetails['logo'] }}" alt=""
-                                            class="img-fluid" width="200">
+                                        <img src="{{ $co_organizerDetails['logo'] }}" alt="" class="img-fluid"
+                                            width="200">
                                     </div>
                                     <div class="mt-5">
                                         <p class="text-dark text-center minimal-shadow">
