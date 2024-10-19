@@ -1371,14 +1371,13 @@ $("#uploadFile").on("click", function (e) {
         $("#uploadForm #code").val(location.search.split("=")[1]);
         let data = new FormData($("#uploadForm")[0]);
         var url = "/add-attachment/upload/";
-        console.log(url);
         
         /* $.wnoty({
             type: "info",
             message: "Uploading file",
             autohide: false,
         }); */
-        /* $.ajax({
+        $.ajax({
             type: "post",
             url: url,
             processData: false,
@@ -1402,7 +1401,7 @@ $("#uploadFile").on("click", function (e) {
                 $(".spinner").toggleClass("d-none");
                 $("#uploadForm")[0].reset();
             },
-        }); */
+        });
     } else {
         e.preventDefault();
         $.wnoty({
