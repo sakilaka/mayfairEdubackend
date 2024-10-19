@@ -48,6 +48,10 @@
                             consectetur, adipisicing elit. Alias, impedit.</li>
                     </ol>
                 </div>
+                
+                <div class="col-md-6">
+                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid">
+                </div>
             </div>
 
         </div>
