@@ -22,6 +22,20 @@
         $place = json_decode($expo->place, true) ?? [];
         $datetime = json_decode($expo->datetime, true) ?? [];
     @endphp
+
+    @if (isset($contents['hero_bg']) && $contents['hero_bg'])
+        <style>
+            .bg-section {
+                background-image: url('{{ $contents['hero_bg'] }}');
+            }
+        </style>
+    @else
+        <style>
+            .bg-section {
+                background-color: var(--primary_background);
+            }
+        </style>
+    @endif
 </head>
 
 <body>
@@ -31,8 +45,7 @@
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
                     <a class="navbar-brand" href="{{ route('home') }}">
-                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo"
-                            class="logo">
+                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
