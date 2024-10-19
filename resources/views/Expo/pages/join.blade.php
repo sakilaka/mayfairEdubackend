@@ -63,9 +63,9 @@
                 <h2 class="section-title d-inline">How to join us:</h2>
             </div>
 
-            <div class="row justify-content-between align-items-center mt-5 mx-auto">
+            <div class="row justify-content-between align-items-center mx-auto">
                 <div class="col-md-6 order-md-2 text-end">
-                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt="" class="img-fluid"
+                    <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt="" class="img-fluid"
                         width="250">
                 </div>
 
@@ -128,6 +128,9 @@
                 @endfor
             </div>
 
+            <div class="row justify-content-center align-items-center">
+                <img src="{{ asset('') }}" alt="" class="img-fluid">
+            </div>
         </div>
     </section>
 
