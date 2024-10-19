@@ -55,6 +55,7 @@ class ExpoParticipantController extends Controller
     {
         return $request->all();
         try {
+            
             $user = User::create([
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
