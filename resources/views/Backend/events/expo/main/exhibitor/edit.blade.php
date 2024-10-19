@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Edit Exhibitor - {{ $exhibitor->name }}</title>
+    <title>{{ env('APP_NAME') }} | Edit Exhibitor - {{ $university['name'] }}</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Edit Exhibitor - {{ $exhibitor->name }}
+                            Edit Exhibitor - {{ $university['name'] }}
                         </h3>
                     </div>
 
@@ -26,7 +26,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="forms-sample"
-                                        action="{{ route('admin.expo-site.exhibitor.update', ['exhibitor_id' => $exhibitor->id]) }}"
+                                        action="{{ route('admin.expo.exhibitor.update', ['expo_id' => $expo->unique_id, 'exhibitor_id' => $university['id']]) }}"
                                         method="POST" enctype="multipart/form-data">
                                         @csrf
 
@@ -37,7 +37,7 @@
                                                         <span class="text-danger">*</span>
                                                         Description:
                                                     </label>
-                                                    <textarea name="description" id="description" class="editor form-control">{{ $exhibitor->exhibitor_desc }}</textarea>
+                                                    <textarea name="description" id="description" class="editor form-control">{{ $university['exhibitor_desc'] }}</textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -31,13 +31,13 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitor_edit($expo_id, $exhibitor_id)
     {
-        $expo = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
 
-        if (!$expo) {
+        if (!$data['expo']) {
             return back()->with('error', 'Expo Not Found!');
         }
 
-        $exhibitors = json_decode($expo->exhibitors, true) ?? [];
+        $exhibitors = json_decode($data['expo']->exhibitors, true) ?? [];
 
         $exhibitor = null;
         foreach ($exhibitors as $exhibitorData) {
@@ -52,7 +52,7 @@ class ExpoMainExhibitorController extends Controller
         }
 
         $data['exhibitor'] = $exhibitor;
-        $data['university'] = University::find($exhibitor_id)->select('id', 'name');
+        $data['university'] = University::select('id', 'name')->find($exhibitor_id);
 
         return view('Backend.events.expo.main.exhibitor.edit', $data);
     }
