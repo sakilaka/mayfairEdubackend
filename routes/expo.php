@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\Expo\Main\ExpoMediaController;
 
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalExhibitorController;
+use App\Http\Controllers\Backend\Expo\Main\ExpoJoinController;
 use App\Http\Controllers\Backend\Expo\Main\ExpoMainExhibitorController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
@@ -64,8 +65,8 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
 
     Route::prefix('{expo_id}/join')->group(function () {
-        Route::get('/', [ExpoMediaController::class, 'expo_join_page'])->name('admin.expo.join.index');
-        Route::post('update', [ExpoMediaController::class, 'expo_join_page_update'])->name('admin.expo.join.update');
+        Route::get('/', [ExpoJoinController::class, 'expo_join_page'])->name('admin.expo.join.index');
+        Route::post('update', [ExpoJoinController::class, 'expo_join_page_update'])->name('admin.expo.join.update');
     });
 
     Route::prefix('users')->group(function () {
