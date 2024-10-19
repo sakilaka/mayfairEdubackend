@@ -123,10 +123,12 @@
                                         </div>
                                     </form>
 
-                                    <form method="POST" action="" enctype="multipart/form-data" id="uploadForm"
-                                        data-application-id="{{ $s_appliction->id }}">
+                                    <form method="POST" action="" enctype="multipart/form-data" id="uploadForm">
                                         @csrf
                                         <input type="hidden" name="order" id="current_order">
+                                        <input type="hidden" id="currentApplicationID"
+                                            value="{{ $s_appliction->id }}">
+                                            
                                         <div class="row align-items-center mt-5">
                                             <div class="form-group col-md-8">
                                                 <input type="text" class="form-control" required=""
