@@ -80,18 +80,17 @@ class ExpoJoinController extends Controller
             if (isset($oldJoinPageContents['join_contents'])) {
                 foreach ($oldJoinPageContents['join_contents'] as $oldJoinKey => $oldJoinContent) {
                     if (isset($allJoinContents[$oldJoinKey])) {
-                        $mergedReferences = array_merge($oldJoinContent['reference'], $allJoinContents[$oldJoinKey]['reference']);
+                        $mergedReferences = $oldJoinContent['reference'];
 
-                        foreach ($oldJoinContent['reference'] as $refKey => $oldReference) {
-                            if (!isset($mergedReferences[$refKey]['image'])) {
-                                $imagePath = public_path('upload/expo/qr_codes/' . basename($oldReference['image']));
-                                if (file_exists($imagePath)) {
-                                    unlink($imagePath);
-                                }
+                        foreach ($allJoinContents[$oldJoinKey]['reference'] as $refKey => $newReference) {
+                            if (isset($mergedReferences[$refKey])) {
+                                $mergedReferences[$refKey] = array_merge($mergedReferences[$refKey], $newReference);
+                            } else {
+                                $mergedReferences[$refKey] = $newReference;
                             }
                         }
 
-                        $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, $allJoinContents[$oldJoinKey]);
+                        $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, ['reference' => $mergedReferences]);
                     } else {
                         $allJoinContents[$oldJoinKey] = $oldJoinContent;
                     }
