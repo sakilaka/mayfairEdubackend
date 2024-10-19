@@ -677,9 +677,9 @@ class StudentApplicationController extends Controller
             $message = 'You have successfully submitted the application form, please wait, we will respond as soon as possible. Thank you.';
 
             if ($partner_ref_id && !auth()->check()) {
-                return redirect()->route('frontend.my_application_list', ['application' => $application->id, 'partner_ref_id' => $partner_ref_id])->with('message', $message);
+                return redirect()->route('frontend.my_application_list', ['application' => $application->id, 'partner_ref_id' => $partner_ref_id])->with('success', $message);
             } else {
-                return redirect()->route('user.order_list', $partner_ref_id ? ['partner_ref_id' => $partner_ref_id] : [])->with('message', $message);
+                return redirect()->route('user.order_list', $partner_ref_id ? ['partner_ref_id' => $partner_ref_id] : [])->with('success', $message);
             }
         }
 
