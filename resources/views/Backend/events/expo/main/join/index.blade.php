@@ -94,7 +94,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 px-4">
+                                            <div class="col-12 mt-3 px-4">
                                                 <div class="row justify-content-between">
                                                     <h5 class="d-inline">How to join (Steps)</h5>
 
@@ -107,11 +107,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 px-4">
+                                            <div class="col-12">
                                                 <div class="steps-container">
                                                     <div
                                                         class="row justify-content-between align-items-center step-row">
-                                                        <div class="col-11 mb-2">
+                                                        <div class="col-11 px-3 mb-2">
                                                             <label class="form-label">
                                                                 Step Title
                                                                 <span class="text-danger">*</span>
@@ -129,7 +129,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 mt-3 mb-2 px-4">
+                                            <div class="col-12 mt-4 mb-2 px-4">
                                                 <div class="row justify-content-between align-self-center">
                                                     <h5 class="d-inline">Contact References</h5>
 
@@ -513,7 +513,7 @@
 
                                             </div>
 
-                                            <div class="col-12 mt-3">
+                                            <div class="col-12 mt-4">
                                                 <div class="d-flex justify-content-center">
                                                     <button type="submit" class="btn blue-btn btn-secondary-bg"
                                                         style="margin-right: 8px">Save</button>
