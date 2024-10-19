@@ -27,12 +27,13 @@
             font-size: 18px;
             margin-right: 5px;
             border-radius: 50%;
-            background-color: var(--secondary_background);
+            background-image: linear-gradient(to right, var(--secondary_background), var(--primary_background));
             width: 35px;
             height: 35px;
             text-align: center;
             color: white;
             border: 2px solid var(--primary_background);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .custom-text {
