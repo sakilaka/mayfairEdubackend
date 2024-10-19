@@ -459,8 +459,7 @@ function getReqDocs(method) {
             let i = -1;
             for (let category in categories) {
                 $("#required-attachments").append(
-                    `<h6 class="mt-4">${
-                        category ? category : "Other Documents"
+                    `<h6 class="mt-4">${category ? category : "Other Documents"
                     }</h6>`
                 );
 
@@ -485,29 +484,25 @@ function getReqDocs(method) {
                         <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLongTitle">Upload ${
-                                  doc["title"]
-                              }</h5>
+                              <h5 class="modal-title" id="exampleModalLongTitle">Upload ${doc["title"]
+                            }</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                               </button>
                             </div>
                             <div class="modal-body d-md-flex justify-content-between">
                             <div class="col-md-6">
-                            ${
-                                doc["video"] !== ""
-                                    ? `<smartvideo src="${doc["video"]}"  class="swarm-fluid" controls=""></smartvideo>`
-                                    : ""
+                            ${doc["video"] !== ""
+                                ? `<smartvideo src="${doc["video"]}"  class="swarm-fluid" controls=""></smartvideo>`
+                                : ""
                             }
-                            ${
-                                doc["image"] === ""
-                                    ? ""
-                                    : `<div style="text-align: center;"><image src="${doc["image"]}" style="max-width: 100%;"></image></div>`
+                            ${doc["image"] === ""
+                                ? ""
+                                : `<div style="text-align: center;"><image src="${doc["image"]}" style="max-width: 100%;"></image></div>`
                             }
-                            ${
-                                doc["university"] === ""
-                                    ? ""
-                                    : `<p>* This is required for ${doc["university"]}</p>`
+                            ${doc["university"] === ""
+                                ? ""
+                                : `<p>* This is required for ${doc["university"]}</p>`
                             }
                             <div class="doc-instruction">
                             <h5 class="multisteps-form__title">Instructions</h5>
@@ -521,9 +516,8 @@ function getReqDocs(method) {
 
                             <form class="dropzone col-md-6 d-flex justify-content-center" data-container="#doc-container${i}" method="post" action="/add-attachment/upload/">
 
-                                <input type="hidden" name="title" value="${
-                                    doc["title"]
-                                }">
+                                <input type="hidden" name="title" value="${doc["title"]
+                            }">
                                 <input id="code" type="hidden" name="code" value="${code}">
                                 <input id="email" type="hidden" name="email" value="${email}">
 
@@ -732,13 +726,11 @@ var getOptionalServices = function getOptionalServices(selected_srv) {
           data-total=${data.total}
           data-name="${data.code}"
           id="${data.code}"
-        name="optional_service" class="custom-control-input" value="${
-            data.id
-        }" ${data.code == selected_srv ? "checked" : ""}>
+        name="optional_service" class="custom-control-input" value="${data.id
+            }" ${data.code == selected_srv ? "checked" : ""}>
         <label class="custom-control-label" for="${data.code}"><strong>
-        ${data.code == "none" ? "No, thanks (Basic Service)" : data.title} - $${
-            data.total
-        }
+        ${data.code == "none" ? "No, thanks (Basic Service)" : data.title} - $${data.total
+            }
         </strong></label>
         <small>
            ${data.description}
@@ -831,7 +823,7 @@ var generatePayment = function generatePayment(
                                     app_submitted(order_total, optionName);
                                     const submit = submitData(
                                         "/api/application/submit/" +
-                                            location.search
+                                        location.search
                                     );
                                     submit.then(function (response) {
                                         if (response.code == -1) {
@@ -921,7 +913,7 @@ var generatePayment = function generatePayment(
 
                                     const submit = submitData(
                                         "/api/application/submit/" +
-                                            location.search
+                                        location.search
                                     );
                                     submit.then(function (response) {
                                         if (response.code == -1) {
@@ -1368,7 +1360,7 @@ $(document.body).on("refreshUpload", function () {
 });
 
 $("#uploadFile").on("click", function (e) {
-   
+
     if ($("#uploadForm")[0].checkValidity()) {
         e.preventDefault();
         $(".spinner").toggleClass("d-none");
@@ -1487,7 +1479,7 @@ $(document.body).on("syncApp", function () {
         type: "post",
         data: data,
         url: "/api/application/sync/" + location.search + "&to_profile=1",
-        success: function (response) {},
+        success: function (response) { },
     });
 });
 
@@ -1527,16 +1519,6 @@ var _updateProfile = function () {
     // console.log($("#aboutyou"));
     // return false;
     return new Promise((resolve, reject) => {
-        // $.ajax({
-        //     type: "post",
-        //     url: base_url + "/application/contact/" + application_id,
-        //     data: $("#aboutyou").serialize(),
-        //     dataType: "json",
-        //     success: function (response) {},
-        //     error: function (error) {
-        //         reject(error);
-        //     },
-        // }).then(function () {
         $.ajax({
             type: "post",
             url: base_url + "/application/personal/" + application_id,
@@ -1553,7 +1535,6 @@ var _updateProfile = function () {
                 reject(error);
             },
         });
-        // });
     });
 };
 var _updateAddress = function () {
