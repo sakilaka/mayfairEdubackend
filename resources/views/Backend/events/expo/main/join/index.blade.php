@@ -48,11 +48,52 @@
                                     aria-labelledby="home-tab-vertical">
 
                                     <form method="post"
-                                        action="{{ route('admin.expo.media.gallery.update', ['expo_id' => $expo->unique_id]) }}"
+                                        action="{{ route('admin.expo.join.update', ['expo_id' => $expo->unique_id]) }}"
                                         enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="row">
+                                            <div class="col-12">
+                                                <div class="col-sm-12 col-md-5 img-upload-container">
+                                                    <label class="form-control-label">Upload
+                                                        Image:</label>
+                                                    <div class="dropify-wrapper" style="border: none">
+                                                        <div class="dropify-loader"></div>
+                                                        <div class="dropify-errors-container">
+                                                            <ul></ul>
+                                                        </div>
+                                                        <input type="file" class="dropify"
+                                                            name=""
+                                                            accept="image/*">
+                                                        <button type="button" class="dropify-clear">Remove</button>
+                                                        <div class="dropify-preview">
+                                                            <span class="dropify-render"></span>
+                                                            <div class="dropify-infos">
+                                                                <div class="dropify-infos-inner">
+                                                                    <p class="dropify-filename">
+                                                                        <span class="file-icon"></span>
+                                                                        <span class="dropify-filename-inner"></span>
+                                                                    </p>
+                                                                    <p class="dropify-infos-message">
+                                                                        Drag
+                                                                        and drop or click to
+                                                                        replace</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div
+                                                    class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                    <div class="px-3 mt-3">
+                                                        <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                            alt="" class="img-fluid"
+                                                            style="border-radius: 10px; max-height: 200px !important;">
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="col-12 px-4">
                                                 <div class="row justify-content-between">
                                                     <h5 class="d-inline">How to join (Steps)</h5>
@@ -68,7 +109,8 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="steps-container">
-                                                    <div class="row justify-content-between align-items-center step-row">
+                                                    <div
+                                                        class="row justify-content-between align-items-center step-row">
                                                         <div class="col-11 px-3 mb-2">
                                                             <label class="form-label">
                                                                 Step Title
