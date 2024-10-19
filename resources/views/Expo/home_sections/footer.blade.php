@@ -1,3 +1,6 @@
+@php
+    $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+@endphp
 <section class="red-section-bg py-5">
     <div class="container">
         <div class="row justify-content-center">
