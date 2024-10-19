@@ -262,7 +262,8 @@
                                                                     </div>
 
                                                                     <div class="gallery-image-container">
-                                                                        @forelse ($content['images'] as $imageKey => $image)
+                                                                        @forelse ($content['reference'] as $imageKey => $image)
+                                                                        {{ dd($image) }}
                                                                             <div class="row align-items-center mt-2">
                                                                                 <div class="col-12 mt-3">
                                                                                     <div class="form-group">
@@ -418,7 +419,6 @@
 
                                                                             </div>
                                                                         @endforelse
-
                                                                     </div>
                                                                 </div>
                                                             </div>
