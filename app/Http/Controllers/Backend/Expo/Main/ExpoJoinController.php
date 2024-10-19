@@ -66,7 +66,11 @@ class ExpoJoinController extends Controller
                             // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
                             $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
                         } else {
-                            $refData['image'] = $reference['image'] ?? '';
+                            if (isset($oldJoinPageContents['join_contents'][$joinKey]['reference'][$refKey]['image'])) {
+                                $refData['image'] = $oldJoinPageContents['join_contents'][$joinKey]['reference'][$refKey]['image'];
+                            } else {
+                                $refData['image'] = '';
+                            }
                         }
 
                         $referenceData[$refKey] = $refData;
@@ -80,17 +84,12 @@ class ExpoJoinController extends Controller
             if (isset($oldJoinPageContents['join_contents'])) {
                 foreach ($oldJoinPageContents['join_contents'] as $oldJoinKey => $oldJoinContent) {
                     if (isset($allJoinContents[$oldJoinKey])) {
-                        $mergedReferences = $oldJoinContent['reference'];
-
-                        foreach ($allJoinContents[$oldJoinKey]['reference'] as $refKey => $newReference) {
-                            if (isset($mergedReferences[$refKey])) {
-                                $mergedReferences[$refKey] = array_merge($mergedReferences[$refKey], $newReference);
-                            } else {
-                                $mergedReferences[$refKey] = $newReference;
+                        foreach ($oldJoinContent['reference'] as $refKey => $oldReference) {
+                            if (!isset($allJoinContents[$oldJoinKey]['reference'][$refKey]['image']) || empty($allJoinContents[$oldJoinKey]['reference'][$refKey]['image'])) {
+                                $allJoinContents[$oldJoinKey]['reference'][$refKey]['image'] = $oldReference['image'];
                             }
                         }
-
-                        $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, ['reference' => $mergedReferences]);
+                        $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, $allJoinContents[$oldJoinKey]);
                     } else {
                         $allJoinContents[$oldJoinKey] = $oldJoinContent;
                     }
