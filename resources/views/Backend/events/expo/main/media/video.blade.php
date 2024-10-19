@@ -38,7 +38,7 @@
 
                     <div class="row">
                         <div class="col-2">
-                            @include('Backend.events.expo.media.expo-ui-manage-nav')
+                            @include('Backend.events.expo.main.media.expo-ui-manage-nav')
                         </div>
 
                         <div class="col-10">
@@ -188,7 +188,8 @@
                                                                             </option>
                                                                             <option value="youtube">Youtube Embed Code
                                                                             </option>
-                                                                            <option value="upload">Video Upload</option>
+                                                                            <option value="upload">Video Upload
+                                                                            </option>
                                                                         </select>
                                                                     </div>
                                                                 </div>

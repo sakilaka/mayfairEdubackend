@@ -38,7 +38,7 @@
 
                     <div class="row">
                         <div class="col-2">
-                            @include('Backend.events.expo.media.expo-ui-manage-nav')
+                            @include('Backend.events.expo.main.media.expo-ui-manage-nav')
                         </div>
 
                         <div class="col-10">
