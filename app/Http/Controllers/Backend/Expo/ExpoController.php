@@ -603,7 +603,7 @@ class ExpoController extends Controller
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
-        return view('Backend.events.expo.external.exhibitor.exhibitor_edit', $data);
+        return view('Backend.events.expo.external.exhibitor.edit', $data);
     }
 
     /**
