@@ -95,8 +95,9 @@
                     <div class="custom-numbered-list">
                         @foreach ($join_page_contents['steps'] ?? [] as $step)
                             <div class="custom-item">
-                                <span
-                                    class="custom-number d-flex justify-content-center align-items-center">{{ $loop->iteration }}</span>
+                                <div class="custom-number d-flex justify-content-center align-items-center">
+                                    <span>{{ $loop->iteration }}</span>
+                                </div>
                                 <span class="custom-text">{{ $step ?? '' }}</span>
                             </div>
                         @endforeach
