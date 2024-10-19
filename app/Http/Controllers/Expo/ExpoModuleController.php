@@ -47,8 +47,8 @@ class ExpoModuleController extends Controller
             $university->position_in_expo = $exhibitor_info['position_in_expo'] ?? null;
             return $university;
         })->sortBy(function ($university) {
-            return $university->position_in_expo ?? PHP_INT_MAX; // Use a large number for null positions
-        })->values(); // Re-index the collection
+            return $university->position_in_expo ?? PHP_INT_MAX;
+        })->values();
 
         return view('Expo.details', $data);
     }
