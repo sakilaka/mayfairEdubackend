@@ -89,9 +89,10 @@ class ExpoModuleController extends Controller
     /**
      * exhibitor details
      */
-    public function exhibitor_details($exhibitor_id)
+    public function exhibitor_details($type, $exhibitor_id)
     {
         $data['exhibitor'] = University::find($exhibitor_id);
+        $data['type'] = $type;
 
         if (!$data['exhibitor']) {
             return back()->with('error', 'Exhibitor Not Found!');
