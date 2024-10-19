@@ -82,14 +82,14 @@ Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
     });
 
     Route::prefix('manage-ui-contents')->group(function () {
-        Route::get('contacts', [ExpoModuleContentsController::class, 'ui_contact_page'])->name('admin.expo.ui.contact');
-        Route::post('contacts', [ExpoModuleContentsController::class, 'ui_contact_page_update'])->name('admin.expo.ui.contact.update');
+        Route::get('contacts', [ExpoModuleContentsController::class, 'ui_contact_page'])->name('admin.expo-site.ui.contact');
+        Route::post('contacts', [ExpoModuleContentsController::class, 'ui_contact_page_update'])->name('admin.expo-site.ui.contact.update');
 
-        Route::get('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo.ui.gallery');
-        Route::post('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo.ui.gallery.update');
+        Route::get('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo-site.ui.gallery');
+        Route::post('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo-site.ui.gallery.update');
 
-        Route::get('videos', [ExpoModuleContentsController::class, 'ui_video_page'])->name('admin.expo.ui.video');
-        Route::post('videos', [ExpoModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo.ui.video.update');
+        Route::get('videos', [ExpoModuleContentsController::class, 'ui_video_page'])->name('admin.expo-site.ui.video');
+        Route::post('videos', [ExpoModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo-site.ui.video.update');
     });
 
     Route::prefix('users')->group(function () {
