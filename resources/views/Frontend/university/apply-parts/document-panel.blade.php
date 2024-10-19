@@ -286,7 +286,7 @@
                     <h5 class=" mt-2">Add More Documents</h5>
 
                     <div class="">
-                        <form method="POST" action="" enctype="multipart/form-data" id="uploadForm">
+                        <form method="POST" action="" enctype="multipart/form-data" id="uploadForm" data-application-id="">
                             <input type="hidden" name="csrfmiddlewaretoken" value="D2ErfFCeK4gtXZUv3v4SjLY9WSVz4gQZq25sUGHqf5RqPokv5UyB0HdnCvAiyHUo">
                             <input id="code" type="hidden" name="code" value="">
                             <input id="email" type="hidden" name="email" value="">
