@@ -28,6 +28,7 @@ class Expo extends Model
         'gallery',
         'video',
         'exhibitors',
+        'join_page_contents'
     ];
 
     public function universities()

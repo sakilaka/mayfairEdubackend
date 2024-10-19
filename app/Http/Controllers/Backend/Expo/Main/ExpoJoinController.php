@@ -27,7 +27,7 @@ class ExpoJoinController extends Controller
             $expo = Expo::where('unique_id', $expo_id)->first();
 
             $allGalleries = [];
-            $oldGalleries = json_decode($expo->gallery, true);
+            $oldGalleries = json_decode($expo->join_page_contents, true);
 
             if ($request->galleries) {
                 $galleries = $request->galleries;
@@ -96,7 +96,8 @@ class ExpoJoinController extends Controller
                 }
             }
 
-            $expo->gallery = json_encode($allGalleries);
+            return $allGalleries;
+            $expo->join_page_contents = json_encode($allGalleries);
             $expo->save();
 
             return redirect(route('admin.expo.media.gallery', ['expo_id' => $expo->unique_id]))->with('success', 'Gallery Page Updated!');
