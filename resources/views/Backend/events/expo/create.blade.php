@@ -40,7 +40,7 @@
                                             <section>
                                                 <h4 class="mb-3">Expo Details</h4>
 
-                                                <div class="row mb-3">
+                                                {{-- <div class="row mb-3">
                                                     <div class="col-sm-12 col-md-6 col-lg-8">
                                                         <div class="row">
                                                             <div class="col-sm-6 img-upload-container">
@@ -84,7 +84,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
                                                 <div class="row">
                                                     <div class="col-md-6">
@@ -178,7 +178,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
+                                                    {{-- <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Exhibitors:</label>
                                                             <select
@@ -192,7 +192,7 @@
                                                                 @endforeach
                                                             </select>
                                                         </div>
-                                                    </div>
+                                                    </div> --}}
 
                                                     <div class="col-md-6">
                                                         <div class="row expo-location-container">
