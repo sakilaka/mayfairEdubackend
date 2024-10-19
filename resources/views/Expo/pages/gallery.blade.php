@@ -130,7 +130,7 @@
         @endphp
 
         @forelse ($gallery_contents ?? [] as $key => $gallery)
-            <div class="gallery-section py-5 my-3">
+            <div class="gallery-section py-5 {{ !$loop->last() ? 'mb-5' : '' }}">
                 <h2 class="company-details-title py-2 fw-bold text-center ">
                     {{ $gallery['title'] ?? '' }}
                 </h2>
