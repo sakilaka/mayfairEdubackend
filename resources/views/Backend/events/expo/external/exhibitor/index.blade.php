@@ -75,14 +75,14 @@
                                             <td class="text-center">
                                                 @if ($exhibitor->show_in_expo == true)
                                                     <a
-                                                        href="{{ route('admin.expo.exhibitors.toggle_show_in_expo', ['id' => $exhibitor->id, 'status' => 0]) }}">
+                                                        href="{{ route('admin.expo-site.exhibitors.toggle_show_in_expo', ['id' => $exhibitor->id, 'status' => 0]) }}">
                                                         <span class="badge badge-success" data-toggle="tooltip"
                                                             data-placement="top"
                                                             data-original-title="Hide this exhibitor from expo">Showing</span>
                                                     </a>
                                                 @elseif($exhibitor->show_in_expo == false)
                                                     <a
-                                                        href="{{ route('admin.expo.exhibitors.toggle_show_in_expo', ['id' => $exhibitor->id, 'status' => 1]) }}">
+                                                        href="{{ route('admin.expo-site.exhibitors.toggle_show_in_expo', ['id' => $exhibitor->id, 'status' => 1]) }}">
                                                         <span class="badge badge-danger" data-toggle="tooltip"
                                                             data-placement="top"
                                                             data-original-title="Show this exhibitor from expo">Hidden</span>
@@ -105,7 +105,7 @@
                                             </td>
                                             <td class="text-end d-flex justify-content-end">
                                                 <a class="btn text-primary"
-                                                    href="{{ route('admin.expo.exhibitor.edit', ['exhibitor_id' => $exhibitor->id]) }}">
+                                                    href="{{ route('admin.expo-site.exhibitor.edit', ['exhibitor_id' => $exhibitor->id]) }}">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
 
@@ -132,7 +132,7 @@
                                     width="50" height="46">
                                 <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
                                 <div class="m-t-20 flex">
-                                    <form action="{{ route('admin.expo.exhibitors.delete') }}" method="POST"
+                                    <form action="{{ route('admin.expo-site.exhibitors.delete') }}" method="POST"
                                         id="deleteForm">
                                         @csrf
                                         <input type="hidden" name="exhibitor_id" id="modal_item_id" value="">
@@ -155,7 +155,7 @@
                             <div class="modal-body">
                                 <h5 class="mt-3 mb-4">Select an university to mark as an Exhibitor</h5>
                                 <div class="m-t-20">
-                                    <form action="{{ route('admin.expo.exhibitors.store') }}" method="POST"
+                                    <form action="{{ route('admin.expo-site.exhibitors.store') }}" method="POST"
                                         id="manageExhibitorsForm">
                                         @csrf
                                         <div class="form-group">
@@ -192,7 +192,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('admin.expo.exhibitors.position_in_expo') }}" method="POST">
+                            <form action="{{ route('admin.expo-site.exhibitors.position_in_expo') }}" method="POST">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
