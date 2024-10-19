@@ -61,7 +61,6 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitor_update(Request $request, $expo_id, $exhibitor_id)
     {
-        return $request->all();
         $exhibitor = University::find($exhibitor_id);
 
         if (!$exhibitor) {
@@ -69,6 +68,7 @@ class ExpoMainExhibitorController extends Controller
         }
 
         $exhibitor->exhibitor_desc = $request->description;
+        return $exhibitor;
         $exhibitor->save();
 
         return redirect(route('admin.expo.exhibitors.index'))->with('success', 'Exhibitor Description Has Been Updated!');
