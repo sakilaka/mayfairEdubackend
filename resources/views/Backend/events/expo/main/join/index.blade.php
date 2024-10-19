@@ -139,8 +139,7 @@
                                                     Deadline
                                                     <span class="text-danger">*</span>
                                                 </label>
-                                                <input type="text" class="form-control"
-                                                    name="deadline"
+                                                <input type="text" class="form-control" name="deadline"
                                                     placeholder="Enter Deadline" required>
                                             </div>
 
@@ -421,8 +420,7 @@
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="galleries[{{ $random }}][name]"
-                                                                                placeholder="Enter Name"
-                                                                                required>
+                                                                                placeholder="Enter Name" required>
                                                                         </div>
                                                                         <div class="col-md-4 px-0 mb-2"
                                                                             style="padding-right: 5px !important;">
@@ -432,8 +430,7 @@
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="galleries[{{ $random }}][email]"
-                                                                                placeholder="Enter Name"
-                                                                                required>
+                                                                                placeholder="Enter Name" required>
                                                                         </div>
                                                                         <div class="col-md-4 px-0 mb-2"
                                                                             style="padding-right: 5px !important;">
@@ -443,13 +440,13 @@
                                                                             </label>
                                                                             <input type="text" class="form-control"
                                                                                 name="galleries[{{ $random }}][phone]"
-                                                                                placeholder="Enter Phone"
-                                                                                required>
+                                                                                placeholder="Enter Phone" required>
                                                                         </div>
                                                                     </div>
 
                                                                     <div class="d-flex justify-content-between mt-4">
-                                                                        <h5 class="d-inline">Reference Social QR Code</h5>
+                                                                        <h5 class="d-inline">Reference Social QR Code
+                                                                        </h5>
                                                                         <a href="javascript:void(0)"
                                                                             class="btn btn-sm btn-primary add-gallery-image"
                                                                             data-gallery-key="{{ $random }}">
@@ -670,13 +667,140 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             /* var myvar = `
+            <div class="col-sm-12 mb-3" style="padding-right: 0;">
+                <div class="card-header" data-toggle="collapse"
+                    data-target="#activity_single_collapse_${randomNumber}">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title mb-0 py-2 gallery-title">
+                            <i class="fa fa-camera" aria-hidden="true"></i>&nbsp;
+                            Gallery
+                        </h5>
+
+                        <a href="javascript:void(0)"
+                            class="btn btn-sm btn-danger remove-gallery">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="collapse"
+                    id="activity_single_collapse_${randomNumber}">
+                    <div class="card-body">
+                        <div class="col-sm-12 mt-3">
+                            <div class="row px-0">
+                                <div class="col-md-12 px-0 mb-2" style="padding-right: 5px !important;">
+                                    <label class="form-label">
+                                        Title
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <input type="text" class="form-control"
+                                        name="galleries[${randomNumber}][gallery_title]"
+                                        placeholder="Enter Gallery Title" required>
+                                </div>
+                                <div class="col-sm-12 px-0">
+                                    <label class="form-label">
+                                        Description
+                                    </label>
+                                    <textarea class="form-control form-control-lg" rows="4"
+                                        name="galleries[${randomNumber}][gallery_description]" placeholder="Write Gallery Description"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="d-flex justify-content-between mt-4">
+                                <h5 class="d-inline">Gallery Image</h5>
+                                <a href="javascript:void(0)"
+                                    class="btn btn-sm btn-primary add-gallery-image"
+                                    data-gallery-key="${randomNumber}">
+                                    <i class="fa fa-plus"></i>
+                                    Add
+                                </a>
+                            </div>
+
+                            <div class="gallery-image-container">
+
+                                <div class="row align-items-center mt-2">
+                                    <div class="col-12 mt-3">
+                                        <div class="form-group">
+                                            <label>Image Title</label>
+                                            <input type="text"
+                                                class="form-control form-control-lg"
+                                                placeholder="Enter image alt title"
+                                                name="galleries[${randomNumber}][image_title][${randomNumber}]"
+                                                value="">
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="col-sm-12 col-md-5 img-upload-container">
+                                        <label class="form-control-label">Upload
+                                            Image:</label>
+                                        <div class="dropify-wrapper"
+                                            style="border: none">
+                                            <div class="dropify-loader"></div>
+                                            <div class="dropify-errors-container">
+                                                <ul></ul>
+                                            </div>
+                                            <input type="file" class="dropify"
+                                                name="galleries[${randomNumber}][gallery_image][${randomNumber}]"
+                                                accept="image/*">
+                                            <button type="button"
+                                                class="dropify-clear">Remove</button>
+                                            <div class="dropify-preview">
+                                                <span class="dropify-render"></span>
+                                                <div class="dropify-infos">
+                                                    <div
+                                                        class="dropify-infos-inner">
+                                                        <p class="dropify-filename">
+                                                            <span
+                                                                class="file-icon"></span>
+                                                            <span
+                                                                class="dropify-filename-inner"></span>
+                                                        </p>
+                                                        <p
+                                                            class="dropify-infos-message">
+                                                            Drag
+                                                            and drop or click to
+                                                            replace</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                        <div class="px-3 mt-3">
+                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                alt="" class="img-fluid"
+                                                style="border-radius: 10px; max-height: 200px !important;">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-1">
+                                        <a href="javascript:void(0)"
+                                            class="remove-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                            <i class="fas fa-minus-circle">
+                                            </i>
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `; */
+
+            var myvar = `
                 <div class="col-sm-12 mb-3" style="padding-right: 0;">
                     <div class="card-header" data-toggle="collapse"
                         data-target="#activity_single_collapse_${randomNumber}">
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title mb-0 py-2 gallery-title">
-                                <i class="fa fa-camera" aria-hidden="true"></i>&nbsp;
-                                Gallery
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                Reference
                             </h5>
 
                             <a href="javascript:void(0)"
@@ -691,26 +815,43 @@
                         <div class="card-body">
                             <div class="col-sm-12 mt-3">
                                 <div class="row px-0">
-                                    <div class="col-md-12 px-0 mb-2" style="padding-right: 5px !important;">
+                                    <div class="col-md-4 px-0 mb-2"
+                                        style="padding-right: 5px !important;">
                                         <label class="form-label">
-                                            Title
+                                            Name
                                             <span class="text-danger">*</span>
                                         </label>
                                         <input type="text" class="form-control"
-                                            name="galleries[${randomNumber}][gallery_title]"
-                                            placeholder="Enter Gallery Title" required>
+                                            name="galleries[${randomNumber}][name]"
+                                            placeholder="Enter Name"
+                                            required>
                                     </div>
-                                    <div class="col-sm-12 px-0">
+                                    <div class="col-md-4 px-0 mb-2"
+                                        style="padding-right: 5px !important;">
                                         <label class="form-label">
-                                            Description
+                                            Email
+                                            <span class="text-danger">*</span>
                                         </label>
-                                        <textarea class="form-control form-control-lg" rows="4"
-                                            name="galleries[${randomNumber}][gallery_description]" placeholder="Write Gallery Description"></textarea>
+                                        <input type="text" class="form-control"
+                                            name="galleries[${randomNumber}][email]"
+                                            placeholder="Enter Name"
+                                            required>
+                                    </div>
+                                    <div class="col-md-4 px-0 mb-2"
+                                        style="padding-right: 5px !important;">
+                                        <label class="form-label">
+                                            Phone
+                                            <span class="text-danger">*</span>
+                                        </label>
+                                        <input type="text" class="form-control"
+                                            name="galleries[${randomNumber}][phone]"
+                                            placeholder="Enter Phone"
+                                            required>
                                     </div>
                                 </div>
 
                                 <div class="d-flex justify-content-between mt-4">
-                                    <h5 class="d-inline">Gallery Image</h5>
+                                    <h5 class="d-inline">Reference Social QR Code</h5>
                                     <a href="javascript:void(0)"
                                         class="btn btn-sm btn-primary add-gallery-image"
                                         data-gallery-key="${randomNumber}">
@@ -724,10 +865,10 @@
                                     <div class="row align-items-center mt-2">
                                         <div class="col-12 mt-3">
                                             <div class="form-group">
-                                                <label>Image Title</label>
+                                                <label>QR Code Type</label>
                                                 <input type="text"
                                                     class="form-control form-control-lg"
-                                                    placeholder="Enter image alt title"
+                                                    placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
                                                     name="galleries[${randomNumber}][image_title][${randomNumber}]"
                                                     value="">
                                             </div>
@@ -735,25 +876,30 @@
 
                                         <div
                                             class="col-sm-12 col-md-5 img-upload-container">
-                                            <label class="form-control-label">Upload
-                                                Image:</label>
+                                            <label
+                                                class="form-control-label">Upload
+                                                QR Code:</label>
                                             <div class="dropify-wrapper"
                                                 style="border: none">
                                                 <div class="dropify-loader"></div>
-                                                <div class="dropify-errors-container">
+                                                <div
+                                                    class="dropify-errors-container">
                                                     <ul></ul>
                                                 </div>
-                                                <input type="file" class="dropify"
+                                                <input type="file"
+                                                    class="dropify"
                                                     name="galleries[${randomNumber}][gallery_image][${randomNumber}]"
                                                     accept="image/*">
                                                 <button type="button"
                                                     class="dropify-clear">Remove</button>
                                                 <div class="dropify-preview">
-                                                    <span class="dropify-render"></span>
+                                                    <span
+                                                        class="dropify-render"></span>
                                                     <div class="dropify-infos">
                                                         <div
                                                             class="dropify-infos-inner">
-                                                            <p class="dropify-filename">
+                                                            <p
+                                                                class="dropify-filename">
                                                                 <span
                                                                     class="file-icon"></span>
                                                                 <span
@@ -774,7 +920,8 @@
                                             class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                                             <div class="px-3 mt-3">
                                                 <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                    alt="" class="img-fluid"
+                                                    alt=""
+                                                    class="img-fluid"
                                                     style="border-radius: 10px; max-height: 200px !important;">
                                             </div>
                                         </div>
@@ -794,7 +941,7 @@
                         </div>
                     </div>
                 </div>
-            `; */
+            `;
 
             $('#galleries-container').prepend(myvar);
             $(`.dropify`).dropify();
