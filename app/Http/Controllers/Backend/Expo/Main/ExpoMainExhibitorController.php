@@ -199,8 +199,9 @@ class ExpoMainExhibitorController extends Controller
     /**
      * change exhibitor position in expo
      */
-    public function exhibitors_postion_in_expo(Request $request)
+    public function exhibitors_postion_in_expo(Request $request, $expo_id)
     {
+        return $request->all();
         try {
             $exhibitor = University::where(['id' => $request->exhibitor_id, 'is_exhibitor' => true])->first();
             $exhibitor->position_in_expo = $request->current_position;
