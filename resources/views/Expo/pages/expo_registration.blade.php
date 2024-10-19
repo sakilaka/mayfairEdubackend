@@ -185,6 +185,20 @@
     @php
         $contents = json_decode($expo['additional_contents'], true) ?? [];
     @endphp
+
+    @if (isset($contents['hero_bg']) && $contents['hero_bg'])
+        <style>
+            .bg-section {
+                background-image: url('{{ $contents['hero_bg'] }}');
+            }
+        </style>
+    @else
+        <style>
+            .bg-section {
+                background-color: var(--primary_background);
+            }
+        </style>
+    @endif
 </head>
 
 <body>
@@ -648,8 +662,8 @@
 
     <script>
         /* $('select').select2({
-                                                                placeholder: 'Select an option'
-                                                            }); */
+                                                                    placeholder: 'Select an option'
+                                                                }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
