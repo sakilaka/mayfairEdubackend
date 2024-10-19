@@ -12,20 +12,20 @@
 
 <ul class="nav nav-tabs nav-tabs-vertical theme-option-appearance">
     <li class="nav-item">
-        <a class="nav-link {{ Route::is('admin.expo.ui.contact') ? 'active border-bottom-primary' : '' }}"
-            href="{{ route('admin.expo.ui.contact') }}">
+        <a class="nav-link {{ Route::is('admin.expo-site.ui.contact') ? 'active border-bottom-primary' : '' }}"
+            href="{{ route('admin.expo-site.ui.contact') }}">
             Contact
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ Route::is('admin.expo.ui.gallery') ? 'active border-bottom-primary' : '' }}"
-            href="{{ route('admin.expo.ui.gallery') }}">
+        <a class="nav-link {{ Route::is('admin.expo-site.ui.gallery') ? 'active border-bottom-primary' : '' }}"
+            href="{{ route('admin.expo-site.ui.gallery') }}">
             Gallery
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ Route::is('admin.expo.ui.video') ? 'active border-bottom-primary' : '' }}"
-            href="{{ route('admin.expo.ui.video') }}">
+        <a class="nav-link {{ Route::is('admin.expo-site.ui.video') ? 'active border-bottom-primary' : '' }}"
+            href="{{ route('admin.expo-site.ui.video') }}">
             Video
         </a>
     </li>
