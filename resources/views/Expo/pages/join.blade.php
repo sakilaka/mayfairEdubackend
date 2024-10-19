@@ -82,6 +82,10 @@
                 </div>
             </div>
 
+            <div class="text-center mt-5">
+                <h3 class="section-title d-inline fs-2">Deadline of Applying: 30 September, 2024</h3>
+            </div>
+
         </div>
     </section>
 
