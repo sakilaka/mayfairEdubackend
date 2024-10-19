@@ -52,13 +52,13 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
 
     Route::prefix('users')->group(function () {
-        Route::get('{type}', [ExpoUserController::class, 'expo_users'])->name('admin.expo.users');
-        Route::post('{type}', [ExpoUserController::class, 'expo_users'])->name('admin.expo.users.filter');
+        Route::get('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo.users');
+        Route::post('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo.users.filter');
 
-        Route::get('{type}/add-participator', [ExpoUserController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
-        Route::post('{type}/add-participator', [ExpoUserController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
+        Route::get('{type}/add-participator', [ExpoController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
+        Route::post('{type}/add-participator', [ExpoController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
 
-        Route::get('{type}/show-participant', [ExpoUserController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
+        Route::get('{type}/show-participant', [ExpoController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
     });
 });
 /**
