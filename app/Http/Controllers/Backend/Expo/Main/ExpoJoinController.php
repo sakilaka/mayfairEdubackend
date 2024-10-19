@@ -217,7 +217,6 @@ class ExpoJoinController extends Controller
 
                 $joinPageContents['join_contents'] = $allJoinContents;
             } else {
-                // No join contents in the request, delete all old contents and images
                 $this->deleteAllContentsAndImages($oldJoinPageContents);
             }
 
@@ -253,6 +252,7 @@ class ExpoJoinController extends Controller
     private function deleteAllContentsAndImages($oldJoinPageContents)
     {
         foreach ($oldJoinPageContents['join_contents'] ?? [] as $oldJoinKey => $oldJoinContent) {
+            return $oldJoinContent;
             $this->deleteContentAndImages($oldJoinKey, $oldJoinContent);
         }
 
