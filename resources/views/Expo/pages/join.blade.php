@@ -128,8 +128,10 @@
                 @endfor
             </div>
 
-            <div class="row justify-content-center align-items-center">
-                <img src="{{ asset('') }}" alt="" class="img-fluid">
+            <div class="row justify-content-center align-items-center mt-5">
+                <div class="col-md-10">
+                    <img src="{{ asset('frontend/images/join-page-contact.png') }}" alt="" class="img-fluid">
+                </div>
             </div>
         </div>
     </section>
