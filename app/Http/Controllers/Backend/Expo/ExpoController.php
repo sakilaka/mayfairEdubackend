@@ -58,7 +58,7 @@ class ExpoController extends Controller
                 'unique_id' => explode('-', uuid_create())[0],
                 'title' => $request->title,
                 'place' => $request->place ?? '',
-                'universities' => json_encode($request->exhibitors) ?? '',
+                // 'universities' => json_encode($request->exhibitors) ?? '',
                 // 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
@@ -244,7 +244,7 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                'universities' => json_encode($request->universities) ?? '',
+                // 'universities' => json_encode($request->universities) ?? '',
                 // 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
