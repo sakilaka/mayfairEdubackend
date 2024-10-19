@@ -52,6 +52,10 @@
                                         enctype="multipart/form-data">
                                         @csrf
 
+                                        @php
+                                            $random = rand();
+                                        @endphp
+
                                         <div class="row">
                                             <div class="col-12">
                                                 <div class="row px-2">
@@ -82,7 +86,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-    
+
                                                     <div
                                                         class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
                                                         <div class="px-3 mt-3">
@@ -116,8 +120,9 @@
                                                                 Step Title
                                                                 <span class="text-danger">*</span>
                                                             </label>
-                                                            <input type="text" class="form-control" name="step_title"
-                                                                placeholder="Enter Step Title" value="" required>
+                                                            <input type="text" class="form-control"
+                                                                name="step_title[{{ $random }}]" placeholder="Enter Step Title"
+                                                                value="" required>
                                                         </div>
                                                         <div class="col-1 mt-3">
                                                             <a href="javascript:void(0)"
