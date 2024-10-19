@@ -465,7 +465,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control form-control-lg"
                                                                                         placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
-                                                                                        name="join_contents[{{ $random }}][reference][{{ $random }}]"
+                                                                                        name="join_contents[{{ $random }}][reference][{{ $random }}][qr_code_type]"
                                                                                         value="">
                                                                                 </div>
                                                                             </div>
@@ -484,7 +484,7 @@
                                                                                     </div>
                                                                                     <input type="file"
                                                                                         class="dropify"
-                                                                                        name="join_contents[{{ $random }}][gallery_image][{{ $random }}]"
+                                                                                        name="join_contents[{{ $random }}][reference][{{ $random }}][image]"
                                                                                         accept="image/*">
                                                                                     <button type="button"
                                                                                         class="dropify-clear">Remove</button>
