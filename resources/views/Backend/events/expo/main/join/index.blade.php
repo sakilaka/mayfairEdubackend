@@ -465,7 +465,7 @@
                                                                                     <input type="text"
                                                                                         class="form-control form-control-lg"
                                                                                         placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
-                                                                                        name="join_contents[{{ $random }}][image_title][{{ $random }}]"
+                                                                                        name="join_contents[{{ $random }}][reference][{{ $random }}]"
                                                                                         value="">
                                                                                 </div>
                                                                             </div>
