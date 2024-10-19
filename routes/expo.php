@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Backend\Expo\ExpoAuthController;
 use App\Http\Controllers\Backend\Expo\ExpoCaptchaController;
-use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
 use App\Http\Controllers\Expo\ExpoUserController;
 
@@ -10,11 +9,9 @@ use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
 use App\Http\Controllers\Backend\Expo\ExpoMediaController;
 use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
-use App\Http\Controllers\Backend\Expo\ExpoUserController as ExpoExpoUserController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalController;
 
-use App\Http\Controllers\Expo\CaptchaController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -158,6 +155,6 @@ Route::post('/verify-captcha', [ExpoCaptchaController::class, 'verifyCaptcha']);
 Route::post('/send-verification-email', [ExpoCaptchaController::class, 'sendVerificationEmail']);
 Route::post('/verify-code', [ExpoCaptchaController::class, 'verifyCode']);
 
-Route::post('{type}/send-mail', [ExpoController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
-Route::post('{type}/send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
-Route::post('start-queue-mail', [ExpoController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
+Route::post('{type}/send-mail', [ExpoUserController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
+Route::post('{type}/send-mail-all', [ExpoUserController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
+Route::post('start-queue-mail', [ExpoUserController::class, 'expo_start_queue_mail'])->name('admin.expo.start_queue_mail');
