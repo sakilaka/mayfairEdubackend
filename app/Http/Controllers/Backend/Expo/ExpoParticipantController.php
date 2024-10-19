@@ -53,18 +53,24 @@ class ExpoParticipantController extends Controller
      */
     public function expo_add_participator_store(Request $request, $type)
     {
-        return $request->all();
         try {
-
             $image_url = null;
             if ($request->hasFile('photo')) {
                 $image = base64_encode(file_get_contents($request->file('photo')->path()));
                 $image_url = 'data:' . $request->file('photo')->getMimeType() . ';base64,' . $image;
             }
 
-            $expoUser = new ExpoModule();
+            if ($type === 'main') {
+                $expoUser = new ExpoUser();
+                $expoUser->expo_id = $request->expo_id;
+            } elseif ($type === 'site') {
+                $expoUser = new ExpoModule();
+            } else {
+                abort(500, 'Server Error');
+            }
+
+
             $expoUser->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
-            $expoUser->user_id = $user->id;
             $expoUser->id_type = $request->id_type;
             $expoUser->id_no = $request->id_no;
             $expoUser->first_name = $request->first_name;
@@ -79,6 +85,7 @@ class ExpoParticipantController extends Controller
             $expoUser->institution = $request->institution;
             $expoUser->program = $request->program;
             $expoUser->degree = $request->degree;
+            return $expoUser;
             $expoUser->save();
 
             return redirect(route('admin.expo.users'))->with(['success' => 'Expo registration has been successful!']);
