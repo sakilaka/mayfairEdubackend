@@ -104,10 +104,12 @@
                 </div>
             </div>
 
-            <div class="text-center mt-5">
-                <h3 class="section-title d-inline fs-2">Deadline of Applying:
-                    {{ $join_page_contents['deadline'] ?? '' }}</h3>
-            </div>
+            @if ($join_page_contents['deadline'])
+                <div class="text-center mt-5">
+                    <h3 class="section-title d-inline fs-2">Deadline of Applying:
+                        {{ $join_page_contents['deadline'] ?? '' }}</h3>
+                </div>
+            @endif
 
             <div class="row justify-content-start align-items-center mt-4">
                 @foreach ($join_page_contents['join_contents'] ?? [] as $content)
