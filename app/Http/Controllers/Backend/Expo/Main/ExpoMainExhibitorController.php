@@ -89,6 +89,7 @@ class ExpoMainExhibitorController extends Controller
             }
 
             $expo->exhibitors = json_encode($exhibitors);
+            return $expo;
             $expo->save();
 
             return back()->with('success', 'Selected universities have been marked as exhibitors!');
