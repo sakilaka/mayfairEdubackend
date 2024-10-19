@@ -96,7 +96,7 @@
                                             <div class="form-group col-md-12">
                                                 <label class="col-form-label pt-0">Expo<span
                                                         class="text-danger">*</span></label>
-                                                <select name="id_type" class="form-control form-control-lg" required>
+                                                <select name="expo_id" class="form-control form-control-lg" required>
                                                     <option value="">Select an expo</option>
                                                     @foreach ($expos as $expo)
                                                         <option value="{{ $expo->unique_id }}">{{ $expo->title }}
