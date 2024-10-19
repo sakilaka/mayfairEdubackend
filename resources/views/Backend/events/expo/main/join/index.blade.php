@@ -188,10 +188,10 @@
                                             <div class="col-12 row" id="join_contents-container"
                                                 style="padding-right: 0">
 
-                                                @forelse ([] as $key => $content)
+                                                @forelse ($contents['join_contents'] ?? [] as $key => $content)
                                                     <div class="col-sm-12 mb-3" style="padding-right: 0;">
                                                         @php
-                                                            $random = rand();
+                                                            dd($content);
                                                         @endphp
 
                                                         <div class="card-header" data-toggle="collapse"
