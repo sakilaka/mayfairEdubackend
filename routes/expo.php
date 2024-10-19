@@ -106,27 +106,28 @@ Route::prefix('expo-user')->middleware(['accessLogin', 'userCheck'])->group(func
 /**
  * Page Routes (Global)
  */
-Route::get('exhibitor/{exhibitor_id}/details', [ExpoController::class, "exhibitor_details"])->name('expo.exhibitor.details');
+Route::prefix('expo')->group(function () {
+    Route::get('exhibitor/{exhibitor_id}/details', [ExpoController::class, "exhibitor_details"])->name('expo.exhibitor.details');
+    Route::get('details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
+    Route::get('{unique_id}/page/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
+    Route::get('{unique_id}/page/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
+    Route::get('{unique_id}/page/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
+    Route::get('{unique_id}/page/delegates', [ExpoModuleController::class, 'delegates'])->name('expo.delegates');
+    Route::get('{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
+    Route::get('{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video');
 
-Route::get('expo/details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
-Route::get('expo/{unique_id}/page/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
-Route::get('expo/{unique_id}/page/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
-Route::get('expo/{unique_id}/page/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
-Route::get('expo/{unique_id}/page/delegates', [ExpoModuleController::class, 'delegates'])->name('expo.delegates');
-Route::get('expo/{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
-Route::get('expo/{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video');
+    // Route::get('about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
+    // Route::get('contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
+    // Route::get('gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 
-// Route::get('expo/about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
-// Route::get('expo/contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
-// Route::get('expo/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
+    Route::get('{unique_id}/login', [ExpoLoginController::class, 'login_page'])->name('expo.login.page');
+    Route::post('{unique_id}/login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
+    Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
 
-Route::get('expo/{unique_id}/login', [ExpoLoginController::class, 'login_page'])->name('expo.login.page');
-Route::post('expo/{unique_id}/login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
-Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
-
-Route::get('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
-Route::post('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
-Route::get('expo/{unique_id}/ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
+    Route::get('{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
+    Route::post('{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
+    Route::get('{unique_id}/ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
+});
 
 /**
  * Captcha Routes
