@@ -12,11 +12,11 @@
 
     <style>
         .university-highlights {
-            background-image: url('{{ asset('frontend/images/expo-page-white-bg.jpeg') }}');
+            background-image: url('{{ asset('frontend/images/expo-page-white-bg-blank.jpeg') }}');
             background-position: top;
             background-size: 100% 100%;
             background-repeat: no-repeat;
-            padding: 10rem 0;
+            padding: 5rem 0;
         }
     </style>
 </head>
