@@ -59,12 +59,3 @@ Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
 Route::get('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
 Route::post('expo/{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
 Route::get('expo/{unique_id}/ticket/{ticket_no}', [ExpoModuleController::class, 'expo_ticket'])->name('expo.expo-ticket');
-
-/**
- * Captcha Routes
- */
-Route::get('/captcha', [CaptchaController::class, 'generateCaptcha']);
-Route::post('/verify-captcha', [CaptchaController::class, 'verifyCaptcha']);
-
-Route::post('/send-verification-email', [CaptchaController::class, 'sendVerificationEmail']);
-Route::post('/verify-code', [CaptchaController::class, 'verifyCode']);
