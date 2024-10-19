@@ -171,7 +171,7 @@
                                                 name="university_id[]" multiple required>
                                                 <option value=""></option>
                                                 @foreach ($available_universities as $university)
-                                                    <option value="{{ $university->id }}">{{ $university->name }}
+                                                    <option value="{{ $university['id'] }}">{{ $university['name'] }}
                                                     </option>
                                                 @endforeach
                                             </select>
