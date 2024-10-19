@@ -120,6 +120,12 @@
                                                                 data-title="Manage Testimonials">
                                                                 <i class="fa fa-comments" aria-hidden="true"></i>
                                                             </a>
+                                                            <a href="{{ route('admin.expo.join.index', ['expo_id' => $expo->unique_id]) }}"
+                                                                class="btn text-primary" data-toggle="tooltip"
+                                                                data-title="Manage Join Page">
+                                                                <i class="fa fa-link" aria-hidden="true"></i>
+                                                            </a>
+
                                                             <a href="{{ route('admin.expo.edit', $expo->id) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"
                                                                 data-title="Edit Expo">

@@ -64,8 +64,8 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
 
     Route::prefix('{expo_id}/join')->group(function () {
-        Route::get('/', [ExpoMediaController::class, 'expo_join_page'])->name('admin.expo.media.join');
-        Route::post('update', [ExpoMediaController::class, 'expo_join_page_update'])->name('admin.expo.media.join.update');
+        Route::get('/', [ExpoMediaController::class, 'expo_join_page'])->name('admin.expo.join.index');
+        Route::post('update', [ExpoMediaController::class, 'expo_join_page_update'])->name('admin.expo.join.update');
     });
 
     Route::prefix('users')->group(function () {
