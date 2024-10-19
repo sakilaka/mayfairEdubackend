@@ -15,11 +15,14 @@ class ExpoMainExhibitorController extends Controller
     public function exhibitors_index($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'exhibitors')->first();
+
         $universities = University::all();
         $expo_exhibitors = json_decode($data['expo']->exhibitors, true) ?? [];
         $exhibitor_ids = array_column($expo_exhibitors, 'exhibitor');
+
         $data['exhibitors'] = $universities->whereIn('id', $exhibitor_ids)->sortByDesc('created_at');
         $data['available_universities'] = $universities->whereNotIn('id', $exhibitor_ids)->sortByDesc('created_at');
+
         return view('Backend.events.expo.main.exhibitor.index', $data);
     }
 
@@ -86,6 +89,8 @@ class ExpoMainExhibitorController extends Controller
             }
 
             $expo->exhibitors = json_encode($exhibitors);
+            $expo->save();
+
             return back()->with('success', 'Selected universities have been marked as exhibitors!');
         } catch (\Exception $e) {
             return back()->with('error', 'Something went wrong!');
