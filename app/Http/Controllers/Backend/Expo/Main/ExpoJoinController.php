@@ -232,6 +232,7 @@ class ExpoJoinController extends Controller
     // Helper method to delete files
     private function deleteFile($filePath)
     {
+        dd($filePath);
         if (file_exists(public_path($filePath))) {
             unlink(public_path($filePath));
         }
@@ -241,7 +242,6 @@ class ExpoJoinController extends Controller
     private function deleteContentAndImages($joinKey, $oldJoinContent)
     {
         foreach ($oldJoinContent['reference'] as $refKey => $oldReference) {
-            // Delete old images for each reference
             if (!empty($oldReference['image'])) {
                 $this->deleteFile($oldReference['image']);
             }
@@ -252,11 +252,9 @@ class ExpoJoinController extends Controller
     private function deleteAllContentsAndImages($oldJoinPageContents)
     {
         foreach ($oldJoinPageContents['join_contents'] ?? [] as $oldJoinKey => $oldJoinContent) {
-            return $oldJoinContent;
             $this->deleteContentAndImages($oldJoinKey, $oldJoinContent);
         }
 
-        // Also delete the old QR code if it exists
         if (!empty($oldJoinPageContents['qr_code'])) {
             $this->deleteFile($oldJoinPageContents['qr_code']);
         }
