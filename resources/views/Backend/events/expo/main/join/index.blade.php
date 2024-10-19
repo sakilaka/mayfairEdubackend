@@ -829,15 +829,11 @@
         `;
         }
 
-        // Add step handler
         $('#add-step').on('click', function() {
-            // Append the new step to the steps-container
             $('.steps-container').append(getStepHtml());
         });
 
-        // Remove step handler (using event delegation)
         $(document).on('click', '.remove-step', function() {
-            // Remove the specific step row
             $(this).closest('.step-row').remove();
         });
     </script>
