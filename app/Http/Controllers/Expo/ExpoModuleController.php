@@ -36,16 +36,9 @@ class ExpoModuleController extends Controller
             abort(404, 'Expo Not Found!');
         }
 
-        $data['exhibitors'] = [];
-        foreach (json_decode($data['expo']->universities) ?? [] as $exhibitor_id) {
-            $exhibitor = University::find($exhibitor_id);
-
-            if ($exhibitor) {
-                $data['exhibitors'][] = $exhibitor;
-            }
-        }
-
-        $data['exhibitors'] = collect($data['exhibitors']);
+        $exhibitor_ids = json_decode($data['expo']->exhibitors) ?? [];
+return $exhibitor_ids;
+        $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)->get();
 
         return view('Expo.details', $data);
     }
