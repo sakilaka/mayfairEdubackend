@@ -31,7 +31,7 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitor_edit($expo_id, $exhibitor_id)
     {
-        $data['expo'] = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
+        $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'exhibitors')->first();
 
         if (!$data['expo']) {
             return back()->with('error', 'Expo Not Found!');
@@ -53,7 +53,6 @@ class ExpoMainExhibitorController extends Controller
 
         $data['exhibitor'] = $exhibitor;
         $data['university'] = University::select('id', 'name')->find($exhibitor_id);
-
         return view('Backend.events.expo.main.exhibitor.edit', $data);
     }
 
