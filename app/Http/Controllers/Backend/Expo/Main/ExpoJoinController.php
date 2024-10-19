@@ -232,8 +232,8 @@ class ExpoJoinController extends Controller
     private function deleteFile($filePath)
     {
         $relativePath = parse_url($filePath, PHP_URL_PATH);
-        
         if (file_exists(public_path($relativePath))) {
+            dd(true);
             unlink(public_path($relativePath));
         }
     }
