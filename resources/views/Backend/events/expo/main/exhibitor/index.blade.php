@@ -64,6 +64,7 @@
                                 </thead>
                                 <tbody>
                                     @foreach ($exhibitors as $exhibitor)
+                                    {{ dd($exhibitor) }}
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td
