@@ -68,6 +68,10 @@
             transform: scale(1.025) !important;
         }
 
+         .gallery-section {
+                padding: 0 80px;
+            }
+
         @media screen and (min-width:768px) {
             .gallery-section {
                 padding: 0 80px;
@@ -126,7 +130,7 @@
         @endphp
 
         @forelse ($gallery_contents ?? [] as $key => $gallery)
-            <div class="gallery-section py-5">
+            <div class="gallery-section py-5 my-3">
                 <h2 class="company-details-title py-2 fw-bold text-center ">
                     {{ $gallery['title'] ?? '' }}
                 </h2>
