@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Expo\ExpoLoginController;
+use App\Http\Controllers\Expo\ExpoModuleController;
+use App\Http\Controllers\Expo\ExpoUserController;
+
 use App\Http\Controllers\Backend\Expo\ExpoController;
 use App\Http\Controllers\Backend\Expo\ExpoDelegatesController;
 use App\Http\Controllers\Backend\Expo\ExpoMediaController;
 use App\Http\Controllers\Backend\Expo\ExpoTestimonialsController;
-use App\Http\Controllers\Expo\ExpoLoginController;
-use App\Http\Controllers\Expo\ExpoModuleController;
-use App\Http\Controllers\Expo\ExpoUserController;
 
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalController;
