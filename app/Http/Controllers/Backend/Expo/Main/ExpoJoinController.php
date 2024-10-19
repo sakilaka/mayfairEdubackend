@@ -22,7 +22,6 @@ class ExpoJoinController extends Controller
      */
     public function expo_join_page_update(Request $request, $expo_id)
     {
-        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
@@ -67,7 +66,6 @@ class ExpoJoinController extends Controller
                             // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
                             $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
                         } else {
-                            return $reference;
                             $refData['image'] = $reference['image'] ?? '';
                         }
 
