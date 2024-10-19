@@ -71,8 +71,9 @@ class ExpoMainExhibitorController extends Controller
     /**
      * add exhibitor
      */
-    public function exhibitors_store(Request $request)
+    public function exhibitors_store(Request $request, $expo_id)
     {
+        return $request->all();
         try {
             foreach ($request->university_id as $university_id) {
                 $university = University::find($university_id);
