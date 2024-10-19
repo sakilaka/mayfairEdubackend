@@ -81,7 +81,7 @@
                                             <td class="text-center">
                                                 @if ($exhibitor->show_on_home == true)
                                                     <a
-                                                        href="{{ route('admin.expo-site.exhibitors.toggle_show_in_expo', ['id' => $exhibitor->id, 'status' => 0]) }}">
+                                                        href="{{ route('admin.expo.exhibitors.toggle_show_in_expo', ['expo_id' => $expo->unique_id, 'id' => $exhibitor->id, 'status' => 0]) }}">
                                                         <span class="badge badge-success" data-toggle="tooltip"
                                                             data-placement="top"
                                                             data-original-title="Hide this exhibitor from expo">Showing</span>
