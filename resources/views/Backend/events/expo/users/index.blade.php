@@ -32,15 +32,11 @@
 
                         <nav aria-label="breadcrumb">
                             @php
-                                if (request()->type === 'main') {
-                                    $add_participant_route = route('admin.expo.add_participator', [
-                                        'type' => request()->type,
-                                    ]);
-                                } elseif (request()->type === 'site') {
-                                    $add_participant_route = route('admin.expo-site.add_participator', [
-                                        'type' => request()->type,
-                                    ]);
-                                }
+                                $add_participant_route = match (request()->type) {
+                                    'main' => route('admin.expo.add_participator', ['type' => request()->type]),
+                                    'site' => route('admin.expo-site.add_participator', ['type' => request()->type]),
+                                    default => '#',
+                                };
                             @endphp
 
                             <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
@@ -56,15 +52,11 @@
 
                     @if (request()->type === 'main')
                         @php
-                            if (request()->type === 'main') {
-                                $add_participant_route = route('admin.expo.users.filter', [
-                                    'type' => request()->type,
-                                ]);
-                            } elseif (request()->type === 'site') {
-                                $add_participant_route = route('admin.expo-site.users.filter', [
-                                    'type' => request()->type,
-                                ]);
-                            }
+                            $add_participant_route = match (request()->type) {
+                                'main' => route('admin.expo.users.filter', ['type' => request()->type]),
+                                'site' => route('admin.expo-site.users.filter', ['type' => request()->type]),
+                                default => '#',
+                            };
                         @endphp
 
                         <form action="{{ route('admin.expo.users.filter', ['type' => request()->type]) }}"
