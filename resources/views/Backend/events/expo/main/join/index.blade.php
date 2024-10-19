@@ -194,7 +194,7 @@
                                                             data-target="#activity_single_collapse_{{ $key }}">
                                                             <div class="d-flex justify-content-between">
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
-                                                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                                                    <i class="fa fa-user" aria-hidden="true"></i>
                                                                     &nbsp;
                                                                     {{ $content['name'] ? 'Reference of\'' . $content['name'] . '\'' : 'Reference' }}
                                                                 </h5>
@@ -262,7 +262,6 @@
                                                                     </div>
 
                                                                     <div class="gallery-image-container">
-                                                                        {{ dd($content) }}
                                                                         @forelse ($content['images'] as $imageKey => $image)
                                                                             <div class="row align-items-center mt-2">
                                                                                 <div class="col-12 mt-3">
