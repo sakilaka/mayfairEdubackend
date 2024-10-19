@@ -11,8 +11,9 @@ class ExpoMainExhibitorController extends Controller
     /**
      * index of exhibitors
      */
-    public function exhibitors_index()
+    public function exhibitors_index($expo_id)
     {
+        return $expo_id;
         $universities = University::all();
 
         $data['available_universities'] = $universities->where('is_exhibitor', false)->sortByDesc('created_at');
