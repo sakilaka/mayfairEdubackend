@@ -137,8 +137,9 @@ Route::prefix('expo-user')->middleware(['accessLogin', 'userCheck'])->group(func
  * Page Routes (Global)
  */
 Route::prefix('expo')->group(function () {
-    Route::get('exhibitor/{exhibitor_id}/details', [ExpoController::class, "exhibitor_details"])->name('expo.exhibitor.details');
     Route::get('details/{id}', [ExpoModuleController::class, 'expoDetails'])->name('expo.details');
+    Route::get('exhibitor/{exhibitor_id}/details', [ExpoModuleController::class, "exhibitor_details"])->name('expo.exhibitor.details');
+    
     Route::get('{unique_id}/page/exhibitors', [ExpoModuleController::class, 'exhibitors'])->name('expo.exhibitors');
     Route::get('{unique_id}/page/schedule', [ExpoModuleController::class, 'schedule'])->name('expo.schedule');
     Route::get('{unique_id}/page/testimonials', [ExpoModuleController::class, 'testimonials'])->name('expo.testimonials');
