@@ -14,6 +14,7 @@ class ExpoJoinController extends Controller
     public function expo_join_page($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'join_page_contents')->first();
+        return $data['expo'];
         return view('Backend.events.expo.main.join.index', $data);
     }
 
@@ -77,7 +78,6 @@ class ExpoJoinController extends Controller
                 $allJoinContents[$joinKey] = $joinData;
             }
 
-            // Merge old join contents if they exist
             if (isset($oldJoinPageContents['join_contents'])) {
                 foreach ($oldJoinPageContents['join_contents'] as $oldJoinKey => $oldJoinContent) {
                     if (isset($allJoinContents[$oldJoinKey])) {
@@ -102,7 +102,7 @@ class ExpoJoinController extends Controller
             $joinPageContents['join_contents'] = $allJoinContents;
             $expo->update(['join_page_contents' => json_encode($joinPageContents)]);
 
-            return redirect(route('admin.expo.media.join', ['expo_id' => $expo->unique_id]))->with('success', 'Join Page Updated!');
+            return redirect(route('admin.expo.join.index', ['expo_id' => $expo->unique_id]))->with('success', 'Join Page Updated!');
         } catch (\Exception $e) {
             return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
