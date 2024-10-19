@@ -67,7 +67,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="row justify-content-between align-items-center steps-container">
+                                                <div
+                                                    class="row justify-content-between align-items-center steps-container">
                                                     <div class="col-11 px-3 mb-2">
                                                         <label class="form-label">
                                                             Step Title
@@ -728,6 +729,39 @@
 
         $(document).on('click', '.remove-gallery', function() {
             $(this).parent().parent().parent().remove();
+        });
+    </script>
+
+    <script>
+        function getStepHtml() {
+            return `
+            <div class="row justify-content-between align-items-center step-row">
+                <div class="col-11 px-3 mb-2">
+                    <label class="form-label">
+                        Step Title
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" class="form-control" name="step_titles[]" placeholder="Enter Step Title" required>
+                </div>
+                <div class="col-1 mt-3">
+                    <a href="javascript:void(0)" class="btn btn-sm btn-danger remove-step">
+                        <i class="fa fa-minus"></i>
+                    </a>
+                </div>
+            </div>
+        `;
+        }
+
+        // Add step handler
+        $('#add-step').on('click', function() {
+            // Append the new step to the steps-container
+            $('.steps-container').append(getStepHtml());
+        });
+
+        // Remove step handler (using event delegation)
+        $(document).on('click', '.remove-step', function() {
+            // Remove the specific step row
+            $(this).closest('.step-row').remove();
         });
     </script>
 </body>
