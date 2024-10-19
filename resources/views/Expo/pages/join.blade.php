@@ -86,6 +86,27 @@
                 <h3 class="section-title d-inline fs-2">Deadline of Applying: 30 September, 2024</h3>
             </div>
 
+            <div class="row justify-content-start align-items-center">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row justify-content-between">
+                                <div class="col-6 d-flex flex-column align-items-center">
+                                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt=""
+                                        class="img-fluid">
+                                    <span class="text-danger fs-5">WeChat</span>
+                                </div>
+                                <div class="col-6 d-flex flex-column align-items-center">
+                                    <img src="{{ asset('frontend/images/No-image.jpg') }}" alt=""
+                                        class="img-fluid">
+                                    <span class="text-danger fs-5">Whatsapp</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
