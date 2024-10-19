@@ -14,7 +14,6 @@ class ExpoJoinController extends Controller
     public function expo_join_page($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'join_page_contents')->first();
-        return json_decode($data['expo']->join_page_contents, true);
         return view('Backend.events.expo.main.join.index', $data);
     }
 
