@@ -31,8 +31,18 @@
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('admin.expo.add_participator', ['type' => request()->type]) }}"
-                                class="btn btn-secondary-bg">
+                            @php
+                                if (request()->type === 'main') {
+                                    $add_participant_route = route('admin.expo.add_participator', [
+                                        'type' => request()->type,
+                                    ]);
+                                } elseif (request()->type === 'site') {
+                                    $add_participant_route = route('admin.expo-site.add_participator', [
+                                        'type' => request()->type,
+                                    ]);
+                                }
+                            @endphp
+                            <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Participator
                             </a>
