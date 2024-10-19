@@ -554,9 +554,6 @@
             {{-- expo --}}
             @php
                 $is_active_expo_module =
-                    Route::is('admin.expo.ui.contact') ||
-                    Route::is('admin.expo.ui.gallery') ||
-                    Route::is('admin.expo.ui.video') ||
                     Route::is('admin.expo.create') ||
                     Route::is('admin.expo.edit') ||
                     Route::is('admin.expo.index') ||
@@ -605,12 +602,6 @@
                                 Manage Participators
                             </a>
                         </li>
-                        @php
-                            $is_active_expo_module_contents =
-                                Route::is('admin.expo.ui.contact') ||
-                                Route::is('admin.expo.ui.gallery') ||
-                                Route::is('admin.expo.ui.video');
-                        @endphp
                     </ul>
                 </div>
             </li>
@@ -620,11 +611,11 @@
             {{-- expo website (external) --}}
             @php
                 $is_active_expo_site_module =
-                    Route::is('admin.expo.exhibitors.index') ||
-                    Route::is('admin.expo.exhibitor.edit') ||
-                    Route::is('admin.expo.ui.contact') ||
-                    Route::is('admin.expo.ui.gallery') ||
-                    Route::is('admin.expo.ui.video') ||
+                    Route::is('admin.expo-site.exhibitors.index') ||
+                    Route::is('admin.expo-site.exhibitor.edit') ||
+                    Route::is('admin.expo-site.ui.contact') ||
+                    Route::is('admin.expo-site.ui.gallery') ||
+                    Route::is('admin.expo-site.ui.video') ||
                     (Route::is('admin.expo.users') && request()->type == 'site') ||
                     (Route::is('admin.expo.add_participator') && request()->type == 'site');
             @endphp
@@ -638,8 +629,8 @@
                 <div class="collapse {{ $is_active_expo_site_module ? 'show' : '' }}" id="expo-site-sidemenu">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.exhibitors.index') }}"
-                                class="nav-link {{ Route::is('admin.expo.exhibitors.index') || Route::is('admin.expo.exhibitor.edit') ? 'active' : '' }}">
+                            <a href="{{ route('admin.expo-site.exhibitors.index') }}"
+                                class="nav-link {{ Route::is('admin.expo-site.exhibitors.index') || Route::is('admin.expo-site.exhibitor.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Exhibitors
                             </a>
@@ -653,12 +644,12 @@
                         </li>
                         @php
                             $is_active_expo_site_module_contents =
-                                Route::is('admin.expo.ui.contact') ||
-                                Route::is('admin.expo.ui.gallery') ||
-                                Route::is('admin.expo.ui.video');
+                                Route::is('admin.expo-site.ui.contact') ||
+                                Route::is('admin.expo-site.ui.gallery') ||
+                                Route::is('admin.expo-site.ui.video');
                         @endphp
                         <li class="nav-item d-none d-lg-block">
-                            <a href="{{ route('admin.expo.ui.contact') }}"
+                            <a href="{{ route('admin.expo-site.ui.contact') }}"
                                 class="nav-link {{ $is_active_expo_site_module_contents ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage UI Contents
