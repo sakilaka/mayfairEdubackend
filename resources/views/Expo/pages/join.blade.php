@@ -28,8 +28,8 @@
             margin-right: 5px;
             border-radius: 50%;
             background-image: linear-gradient(to bottom left, var(--secondary_background), var(--primary_background));
-            width: 35px;
-            height: 35px;
+            width: 35px !important;
+            height: 35px !important;
             text-align: center;
             color: white;
             border: 2px solid var(--primary_background);
