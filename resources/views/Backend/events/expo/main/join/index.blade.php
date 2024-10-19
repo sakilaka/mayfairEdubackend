@@ -234,7 +234,7 @@
                                                                             <label class="form-label">Phone <span
                                                                                     class="text-danger">*</span></label>
                                                                             <input type="text" class="form-control"
-                                                                                name="join_contents[{{ $random }}][phone]"
+                                                                                name="join_contents[{{ $key }}][phone]"
                                                                                 value="{{ $content['phone'] ?? '' }}"
                                                                                 placeholder="Enter Phone" required>
                                                                         </div>
@@ -246,7 +246,7 @@
                                                                         </h5>
                                                                         <a href="javascript:void(0)"
                                                                             class="btn btn-sm btn-primary-bg add-reference-image"
-                                                                            data-gallery-key="{{ $random }}">
+                                                                            data-gallery-key="{{ $key }}">
                                                                             <i class="fa fa-plus"></i> Add QR Code
                                                                         </a>
                                                                     </div>
@@ -262,7 +262,7 @@
                                                                     </div>
 
                                                                     <div class="gallery-image-container">
-
+                                                                        {{ dd($content) }}
                                                                         @forelse ($content['images'] as $imageKey => $image)
                                                                             <div class="row align-items-center mt-2">
                                                                                 <div class="col-12 mt-3">
