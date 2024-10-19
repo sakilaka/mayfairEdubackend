@@ -105,10 +105,8 @@ class ExpoJoinController extends Controller
             }
 
             $joinPageContents['join_contents'] = $allJoinContents;
-
-            return $joinPageContents;
-            $expo->join_page_contents = json_encode($joinPageContents);
-            $expo->save();
+            return $joinPageContents['join_contents'];
+            $expo->update(['join_page_contents' => json_encode($joinPageContents)]);
 
             return redirect(route('admin.expo.media.join', ['expo_id' => $expo->unique_id]))->with('success', 'Join Page Updated!');
         } catch (\Exception $e) {
