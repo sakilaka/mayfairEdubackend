@@ -36,6 +36,15 @@ class ExpoJoinController extends Controller
             $joinPageContents['steps'] = $stepTitles;
             $joinPageContents['deadline'] = $deadline;
 
+            if ($request->hasFile('qr_code')) {
+                $qrCodeFile = $request->file('qr_code');
+                $qrFileName = 'general-qr-code_' . rand() . time() . '.' . $qrCodeFile->getClientOriginalExtension();
+                // $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
+                $joinPageContents['qr_code'] = url('upload/expo/qr_codes/' . $qrFileName);
+            } else {
+                $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
+            }
+
             // Handle join contents
             $joinContents = $request->join_contents ?? [];
             $allJoinContents = [];
@@ -90,27 +99,14 @@ class ExpoJoinController extends Controller
 
                         $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, $allJoinContents[$oldJoinKey]);
                     } else {
-                        return true;
                         $allJoinContents[$oldJoinKey] = $oldJoinContent;
                     }
                 }
             }
 
             $joinPageContents['join_contents'] = $allJoinContents;
-return $joinPageContents;
-            // Handle general QR code upload
-            if ($request->hasFile('qr_code')) {
-                $qrCodeFile = $request->file('qr_code');
-                $qrFileName = 'general-qr-code_' . rand() . time() . '.' . $qrCodeFile->getClientOriginalExtension();
-                // $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
-                $joinPageContents['qr_code'] = url('upload/expo/qr_codes/' . $qrFileName);
-            } else {
-                // Retain old QR code if no new file is uploaded
-                $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
-            }
 
             return $joinPageContents;
-            // Save the updated join page contents
             $expo->join_page_contents = json_encode($joinPageContents);
             $expo->save();
 
