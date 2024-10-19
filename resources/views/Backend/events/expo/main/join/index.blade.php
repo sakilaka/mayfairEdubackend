@@ -134,6 +134,16 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-md-12 px-3 mt-3 mb-2">
+                                                <label class="form-label">
+                                                    Deadline
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" class="form-control"
+                                                    name="deadline"
+                                                    placeholder="Enter Deadline" required>
+                                            </div>
+
                                             <div class="col-12 mt-4 mb-2 px-4">
                                                 <div class="row justify-content-between align-self-center">
                                                     <h5 class="d-inline">Contact References</h5>
@@ -388,7 +398,7 @@
                                                             <div class="d-flex justify-content-between">
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
                                                                     <i class="fa fa-camera" aria-hidden="true"></i>
-                                                                    Gallery
+                                                                    Reference
                                                                 </h5>
 
                                                                 <a href="javascript:void(0)"
