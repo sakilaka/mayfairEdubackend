@@ -49,7 +49,7 @@ class ExpoExternalExhibitorController extends Controller
         $exhibitor->exhibitor_site_desc = $request->description;
         $exhibitor->save();
 
-        return redirect(route('admin.expo.exhibitors.index'))->with('success', 'Exhibitor Description Has Been Updated!');
+        return redirect(route('admin.expo-site.exhibitors.index'))->with('success', 'Exhibitor Description Has Been Updated!');
     }
 
     /**
