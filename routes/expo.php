@@ -48,27 +48,6 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::post('update', [ExpoMediaController::class, 'expo_video_page_update'])->name('admin.expo.media.video.update');
     });
 
-    Route::prefix('exhibitors')->group(function () {
-        Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
-        Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo.exhibitors.store');
-        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_edit"])->name('admin.expo.exhibitor.edit');
-        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_update"])->name('admin.expo.exhibitor.update');
-        Route::post('delete', [ExpoController::class, "exhibitors_destroy"])->name('admin.expo.exhibitors.delete');
-        Route::get('toggle-show-in-expo/{id}', [ExpoController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo.exhibitors.toggle_show_in_expo');
-        Route::post('postion-in-expo', [ExpoController::class, "exhibitors_postion_in_expo"])->name('admin.expo.exhibitors.position_in_expo');
-    });
-
-    Route::prefix('manage-ui-contents')->group(function () {
-        Route::get('contacts', [ExpoModuleContentsController::class, 'ui_contact_page'])->name('admin.expo.ui.contact');
-        Route::post('contacts', [ExpoModuleContentsController::class, 'ui_contact_page_update'])->name('admin.expo.ui.contact.update');
-
-        Route::get('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo.ui.gallery');
-        Route::post('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo.ui.gallery.update');
-
-        Route::get('videos', [ExpoModuleContentsController::class, 'ui_video_page'])->name('admin.expo.ui.video');
-        Route::post('videos', [ExpoModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo.ui.video.update');
-    });
-
     Route::prefix('users')->group(function () {
         Route::get('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo.users');
         Route::post('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo.users.filter');
@@ -91,8 +70,27 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
 /**
  * Expo-Site (External) Routes (Admin) - start --------------------------
  */
-Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(function(){
+Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
+    Route::prefix('exhibitors')->group(function () {
+        Route::get('list', [ExpoController::class, "exhibitors_index"])->name('admin.expo.exhibitors.index');
+        Route::post('store', [ExpoController::class, "exhibitors_store"])->name('admin.expo.exhibitors.store');
+        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_edit"])->name('admin.expo.exhibitor.edit');
+        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoController::class, "exhibitor_update"])->name('admin.expo.exhibitor.update');
+        Route::post('delete', [ExpoController::class, "exhibitors_destroy"])->name('admin.expo.exhibitors.delete');
+        Route::get('toggle-show-in-expo/{id}', [ExpoController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo.exhibitors.toggle_show_in_expo');
+        Route::post('postion-in-expo', [ExpoController::class, "exhibitors_postion_in_expo"])->name('admin.expo.exhibitors.position_in_expo');
+    });
 
+    Route::prefix('manage-ui-contents')->group(function () {
+        Route::get('contacts', [ExpoModuleContentsController::class, 'ui_contact_page'])->name('admin.expo.ui.contact');
+        Route::post('contacts', [ExpoModuleContentsController::class, 'ui_contact_page_update'])->name('admin.expo.ui.contact.update');
+
+        Route::get('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page'])->name('admin.expo.ui.gallery');
+        Route::post('galleries', [ExpoModuleContentsController::class, 'ui_gallery_page_update'])->name('admin.expo.ui.gallery.update');
+
+        Route::get('videos', [ExpoModuleContentsController::class, 'ui_video_page'])->name('admin.expo.ui.video');
+        Route::post('videos', [ExpoModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo.ui.video.update');
+    });
 });
 /**
  * Expo-Site (External) Routes (Admin) - end --------------------------
