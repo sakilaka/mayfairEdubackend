@@ -56,23 +56,6 @@ class ExpoModuleController extends Controller
     }
 
     /**
-     * about us page
-     */
-    /* public function about_us()
-    {
-        return view('Expo.pages.about_us');
-    } */
-
-    /**
-     * contact page
-     */
-    /* public function contact()
-    {
-        $data['page'] = ExpoModuleContent::where('key', 'contact')->first();
-        return view('Expo.pages.contact', $data);
-    } */
-
-    /**
      * exhibitors page
      */
     public function exhibitors($unique_id)
@@ -162,17 +145,15 @@ class ExpoModuleController extends Controller
         return view('Expo.pages.video', $data);
     }
 
-
     /**
-     * gallery page
+     * video page
      */
-    /* public function gallery()
+    public function join($unique_id)
     {
-        $data['galleries'] = ExpoModuleContent::where('key', 'gallery')->select('contents')->first();
-        $data['videos'] = ExpoModuleContent::where('key', 'video')->select('contents')->first();
+        $data['expo'] = Expo::where('unique_id', $unique_id)->select('unique_id', 'title', 'additional_contents', 'join_page_contents')->first();
+        return view('Expo.pages.join', $data);
+    }
 
-        return view('Expo.pages.gallery', $data);
-    } */
 
     /**
      * expo form

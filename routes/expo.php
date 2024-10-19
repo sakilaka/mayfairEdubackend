@@ -152,11 +152,9 @@ Route::prefix('expo')->group(function () {
     Route::get('{unique_id}/page/delegates', [ExpoModuleController::class, 'delegates'])->name('expo.delegates');
     Route::get('{unique_id}/page/gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
     Route::get('{unique_id}/page/video', [ExpoModuleController::class, 'video'])->name('expo.video');
+    Route::get('{unique_id}/page/join', [ExpoModuleController::class, 'join'])->name('expo.join');
 
-    // Route::get('about-us', [ExpoModuleController::class, 'about_us'])->name('expo.about_us');
-    // Route::get('contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
-    // Route::get('gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
-
+    // Auth Routes
     Route::get('{unique_id}/login', [ExpoAuthController::class, 'login_page'])->name('expo.login.page');
     Route::post('{unique_id}/login', [ExpoAuthController::class, 'attempt_login'])->name('expo.login.attempt');
     Route::get('logout', [ExpoAuthController::class, 'destroy'])->name('logout');

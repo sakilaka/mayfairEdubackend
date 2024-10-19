@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Expo Gallery Page</title>
+    <title>{{ env('APP_NAME') }} | Expo Join Page for '{{ $expo->title }}'</title>
 
     <style>
         .form-label {
@@ -24,11 +24,11 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Gallery Page for '{{ $expo->title }}'
+                            Join Page for '{{ $expo->title }}'
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('expo.gallery', ['unique_id' => $expo->unique_id]) }}"
+                            <a href="{{ route('expo.join', ['unique_id' => $expo->unique_id]) }}"
                                 class="btn btn-primary btn-fw" target="_blank">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View Page
