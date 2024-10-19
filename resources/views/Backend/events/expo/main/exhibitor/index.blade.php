@@ -34,8 +34,9 @@
                             Exhibitors of '{{ $expo->title }}'
                         </h3>
 
-                        <nav aria-label="breadcrumb" class="d-flex justcon">
-                            <a href="{{ route('admin.expo.index') }}" class="btn btn-secondary-bg" style="margin-right:5px;">
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-around align-items-center">
+                            <a href="{{ route('admin.expo.index') }}" class="btn btn-secondary-bg"
+                                style="margin-right:5px;">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View Expo
                             </a>
@@ -137,8 +138,9 @@
                                     width="50" height="46">
                                 <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
                                 <div class="m-t-20 flex">
-                                    <form action="{{ route('admin.expo-site.exhibitors.delete') }}" method="POST"
-                                        id="deleteForm">
+                                    <form
+                                        action="{{ route('admin.expo.exhibitors.delete', ['expo_id' => $expo->unique_id]) }}"
+                                        method="POST" id="deleteForm">
                                         @csrf
                                         <input type="hidden" name="exhibitor_id" id="modal_item_id" value="">
                                     </form>
@@ -160,8 +162,9 @@
                             <div class="modal-body">
                                 <h5 class="mt-3 mb-4">Select an university to mark as an Exhibitor</h5>
                                 <div class="m-t-20">
-                                    <form action="{{ route('admin.expo-site.exhibitors.store') }}" method="POST"
-                                        id="manageExhibitorsForm">
+                                    <form
+                                        action="{{ route('admin.expo.exhibitors.store', ['expo_id' => $expo->unique_id]) }}"
+                                        method="POST" id="manageExhibitorsForm">
                                         @csrf
                                         <div class="form-group">
                                             <select class="form-control form-control-lg" id="university_select"
@@ -197,7 +200,9 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form action="{{ route('admin.expo-site.exhibitors.position_in_expo') }}" method="POST">
+                            <form
+                                action="{{ route('admin.expo.exhibitors.position_in_expo', ['expo_id' => $expo->unique_id]) }}"
+                                method="POST">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="form-group">
