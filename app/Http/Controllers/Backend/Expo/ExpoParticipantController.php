@@ -56,13 +56,6 @@ class ExpoParticipantController extends Controller
         return $request->all();
         try {
 
-            $user = User::create([
-                'name' => $request->first_name . ' ' . $request->last_name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'mobile' => $request->mobile,
-            ]);
-
             $image_url = null;
             if ($request->hasFile('photo')) {
                 $image = base64_encode(file_get_contents($request->file('photo')->path()));

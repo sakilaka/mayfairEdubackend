@@ -50,7 +50,7 @@ class ExpoAuthController extends Controller
             'login_method' => 'required',
         ]);
 
-        if ($request->login_method === 'id') {
+        if ($request->login_method == 'id') {
             $this->validate($request, [
                 'id_no' => 'required',
             ]);
