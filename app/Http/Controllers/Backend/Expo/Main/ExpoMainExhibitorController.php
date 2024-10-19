@@ -19,7 +19,7 @@ class ExpoMainExhibitorController extends Controller
         $universities = University::all();
         $expo_exhibitors = json_decode($data['expo']->exhibitors, true) ?? [];
         $exhibitor_ids = array_column($expo_exhibitors, 'exhibitor');
-return $expo_exhibitors;
+
         $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)
             ->select('id', 'name', 'address')
             ->orderByDesc('created_at')
@@ -30,7 +30,7 @@ return $expo_exhibitors;
                 $university->position_in_expo = $exhibitor_data['position_in_expo'] ?? null;
                 return $university;
             });
-return $data['exhibitors'];
+
         $data['available_universities'] = $universities->whereNotIn('id', $exhibitor_ids)->select('id', 'name')->sortByDesc('created_at');
         return view('Backend.events.expo.main.exhibitor.index', $data);
     }
@@ -203,7 +203,7 @@ return $data['exhibitors'];
     public function exhibitors_postion_in_expo(Request $request, $expo_id)
     {
         try {
-            $expo = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
+            $expo = Expo::where('unique_id', $expo_id)->first();
 
             if (!$expo) {
                 return back()->with('error', 'Expo not found!');
