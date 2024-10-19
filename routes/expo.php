@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\Expo\ExpoAuthController;
 use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
 use App\Http\Controllers\Expo\ExpoUserController;
@@ -138,9 +139,9 @@ Route::prefix('expo')->group(function () {
     // Route::get('contact', [ExpoModuleController::class, 'contact'])->name('expo.contact');
     // Route::get('gallery', [ExpoModuleController::class, 'gallery'])->name('expo.gallery');
 
-    Route::get('{unique_id}/login', [ExpoLoginController::class, 'login_page'])->name('expo.login.page');
-    Route::post('{unique_id}/login', [ExpoLoginController::class, 'attempt_login'])->name('expo.login.attempt');
-    Route::get('logout', [ExpoLoginController::class, 'destroy'])->name('logout');
+    Route::get('{unique_id}/login', [ExpoAuthController::class, 'login_page'])->name('expo.login.page');
+    Route::post('{unique_id}/login', [ExpoAuthController::class, 'attempt_login'])->name('expo.login.attempt');
+    Route::get('logout', [ExpoAuthController::class, 'destroy'])->name('logout');
 
     Route::get('{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form'])->name('expo.sign-up');
     Route::post('{unique_id}/sign-up', [ExpoModuleController::class, 'expo_form_submit'])->name('expo.sign-up.submit');
