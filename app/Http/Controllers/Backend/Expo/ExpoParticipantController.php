@@ -85,10 +85,13 @@ class ExpoParticipantController extends Controller
             $expoUser->institution = $request->institution;
             $expoUser->program = $request->program;
             $expoUser->degree = $request->degree;
-            return $expoUser;
             $expoUser->save();
 
-            return redirect(route('admin.expo.users'))->with(['success' => 'Expo registration has been successful!']);
+            return redirect(match ($type) {
+                'main' => route('admin.expo.users'),
+                'site' => route('admin.expo-site.users'),
+                default => back(),
+            })->with(['success' => 'Expo registration has been successful!']);
         } catch (\Exception $e) {
             return $e->getMessage();
             return back()->with(['error' => 'Something Went Wrong!']);
