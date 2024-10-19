@@ -131,36 +131,39 @@
 
         <div class="gallery-section py-5">
             <div class="container text-center">
-                @forelse ($video_contents ?? [] as $key => $video)
-                    <a class="single-gallery-video position-relative me-md-2 overflow-hidden" style="cursor: pointer">
-                        @if ($video['type'] === 'youtube')
-                            <!-- YouTube Embed Code -->
-                            {!! $video['url'] !!}
-                        @elseif ($video['type'] === 'upload')
-                            <!-- Video Preview -->
-                            <video class="img-fluid authorization_video" controls
-                                style="max-height: 200px; border-radius: 10px;">
-                                <source src="{{ $video['url'] }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        @endif
-
-                        @if ($video['title'])
-                            <p class="video-title"
-                                style="width: 99%; margin:0 auto; bottom:3px; border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
-                                {{ $video['title'] ?? '' }}
-                            </p>
-                        @endif
-                    </a>
-                @empty
+                @if (empty($video_contents))
                     <h4 class="company-details-title py-2 fw-bold text-center">
                         No Video Found!
                     </h4>
-                @endforelse
+                @else
+                    @foreach ($video_contents as $video)
+                        <a class="single-gallery-video position-relative me-md-2 overflow-hidden"
+                            style="cursor: pointer">
+                            @if ($video['type'] === 'youtube')
+                                <!-- YouTube Embed Code -->
+                                {!! $video['url'] !!}
+                            @elseif ($video['type'] === 'upload')
+                                <!-- Video Preview -->
+                                <video class="img-fluid authorization_video" controls
+                                    style="max-height: 200px; border-radius: 10px;">
+                                    <source src="{{ $video['url'] }}" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            @endif
+
+                            @if ($video['title'])
+                                <p class="video-title"
+                                    style="width: 99%; margin:0 auto; bottom:3px; border-bottom-left-radius:10px; border-bottom-right-radius:10px;">
+                                    {{ $video['title'] ?? '' }}
+                                </p>
+                            @endif
+                        </a>
+                    @endforeach
+                @endif
             </div>
         </div>
-
     </section>
+
 
     @include('Expo.home_sections.footer')
     @include('Expo.components.footer')
