@@ -68,9 +68,9 @@
             transform: scale(1.025) !important;
         }
 
-         .gallery-section {
-                padding: 0 80px;
-            }
+        .gallery-section {
+            background-color: #0050fe1d;
+        }
 
         @media screen and (min-width:768px) {
             .gallery-section {
