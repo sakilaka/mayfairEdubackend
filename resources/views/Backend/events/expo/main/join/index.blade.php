@@ -51,7 +51,7 @@
 
                                             <div class="col-12 mb-3 px-4">
                                                 <div class="row justify-content-between">
-                                                    <h4 class="d-inline">Galleries</h4>
+                                                    <h4 class="d-inline">Contact References</h4>
 
                                                     <div class="d-flex">
                                                         <button type="submit" class="btn blue-btn btn-primary"
