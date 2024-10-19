@@ -8,6 +8,7 @@
 
     @php
         $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+        $join_page_contents = json_decode($expo->join_page_contents, true) ?? [];
     @endphp
 
     <style>
@@ -65,67 +66,56 @@
 
             <div class="row justify-content-between align-items-center mx-auto">
                 <div class="col-md-6 order-md-2 text-end">
-                    <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt="" class="img-fluid"
+                    <img src="{{ $join_page_contents['qr_code'] ?? '' }}" alt="" class="img-fluid"
                         width="250">
                 </div>
 
                 <div class="col-md-6 order-md-1" style="font-size: 18px;">
                     <div class="custom-numbered-list">
-                        <div class="custom-item">
-                            <span class="custom-number">1.</span>
-                            <span class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
-                                ipsum dolor sit amet consectetur, adipisicing elit. Alias, impedit.</span>
-                        </div>
-
-                        <div class="custom-item">
-                            <span class="custom-number">2.</span>
-                            <span class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
-                                ipsum dolor sit amet consectetur, adipisicing elit. Alias, impedit.</span>
-                        </div>
-
-                        <div class="custom-item">
-                            <span class="custom-number">3.</span>
-                            <span class="custom-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem
-                                ipsum dolor sit amet consectetur, adipisicing elit. Alias, impedit.</span>
-                        </div>
+                        @foreach ($join_page_contents['steps'] ?? [] as $step)
+                            <div class="custom-item">
+                                <span class="custom-number">{{ $loop->iteration }}.</span>
+                                <span class="custom-text">{{ $step ?? '' }}</span>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
 
             <div class="text-center mt-5">
-                <h3 class="section-title d-inline fs-2">Deadline of Applying: 30 September, 2024</h3>
+                <h3 class="section-title d-inline fs-2">Deadline of Applying:
+                    {{ $join_page_contents['deadline'] ?? '' }}</h3>
             </div>
 
             <div class="row justify-content-start align-items-center mt-4">
-                @for ($i = 0; $i < 5; $i++)
+                @foreach ($join_page_contents['join_contents'] ?? [] as $content)
                     <div class="col-md-4 mt-3">
                         <div class="card reference-card">
                             <div class="card-body">
                                 <div class="row justify-content-between">
-                                    <div class="col-6 d-flex flex-column align-items-center">
-                                        <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
-                                            class="img-fluid">
-                                        <span class="fw-700 mt-2"
-                                            style="color: greenyellow; font-size:16px;">WeChat</span>
-                                    </div>
-                                    <div class="col-6 d-flex flex-column align-items-center">
-                                        <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
-                                            class="img-fluid">
-                                        <span class="fw-700 mt-2"
-                                            style="color: greenyellow; font-size:16px;">Whatsapp</span>
-                                    </div>
+                                    @foreach ($content['reference'] ?? [] as $reference)
+                                        <div class="col-6 d-flex flex-column align-items-center">
+                                            <img src="{{ $reference['image'] ?? '' }}" alt="" class="img-fluid">
+                                            <span class="fw-700 mt-2" style="color: greenyellow; font-size:16px;">
+                                                {{ $reference['qr_code_type'] ?? '' }}
+                                            </span>
+                                        </div>
+                                    @endforeach
 
                                     <div class="col-12 text-center mt-4">
-                                        <h4 class="text-white fw-800">John Doe</h4>
-                                        <p class="text-white my-0" style="font-size: 16px;">Lorem, ipsum dolor. Lorem
-                                            ipsum dolo</p>
-                                        <p class="text-white my-0" style="font-size: 16px;">Lorem, ipsum dolor.</p>
+                                        <h4 class="text-white fw-800">{{ $content['name'] ?? '' }}</h4>
+                                        <p class="text-white my-0" style="font-size: 16px;">
+                                            {{ $content['email'] ?? '' }}
+                                        </p>
+                                        <p class="text-white my-0" style="font-size: 16px;">
+                                            {{ $content['phone'] ?? '' }}
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
 
             <div class="row justify-content-center align-items-center mt-5">
