@@ -201,12 +201,23 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitors_postion_in_expo(Request $request, $expo_id)
     {
-        return $request->all();
         try {
-            $exhibitor = University::where(['id' => $request->exhibitor_id, 'is_exhibitor' => true])->first();
-            $exhibitor->position_in_expo = $request->current_position;
-            $exhibitor->save();
+            $expo = Expo::where('unique_id', $expo_id)->select('exhibitors')->first();
 
+            if (!$expo) {
+                return back()->with('error', 'Expo not found!');
+            }
+
+            $exhibitors = json_decode($expo->exhibitors, true) ?? [];
+
+            foreach ($exhibitors as &$exhibitor) {
+                if ($exhibitor['exhibitor'] == $request->exhibitor_id) {
+                    $exhibitor['position_in_expo'] = $request->current_position;
+                    break;
+                }
+            }
+
+            $expo->update(['exhibitors' => json_encode($exhibitors)]);
             return redirect()->back()->with('success', 'Exhibitor position has changed!');
         } catch (\Exception $e) {
             return redirect()->back()->with('success', 'Something Went Wrong!');
