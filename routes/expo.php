@@ -91,6 +91,16 @@ Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
         Route::get('videos', [ExpoModuleContentsController::class, 'ui_video_page'])->name('admin.expo.ui.video');
         Route::post('videos', [ExpoModuleContentsController::class, 'ui_video_page_update'])->name('admin.expo.ui.video.update');
     });
+
+    Route::prefix('users')->group(function () {
+        Route::get('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo-site.users');
+        Route::post('{type}', [ExpoController::class, 'expo_users'])->name('admin.expo-site.users.filter');
+
+        Route::get('{type}/add-participator', [ExpoController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
+        Route::post('{type}/add-participator', [ExpoController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
+
+        Route::get('{type}/show-participant', [ExpoController::class, 'expo_view_participant'])->name('admin.expo-site.show_participant');
+    });
 });
 /**
  * Expo-Site (External) Routes (Admin) - end --------------------------
