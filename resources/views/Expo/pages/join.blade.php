@@ -24,7 +24,14 @@
 
         .custom-number {
             font-weight: bold;
+            font-size: 18px;
             margin-right: 5px;
+            border-radius: 50%;
+            background-color: red;
+            width: 35px;
+            height: 35px;
+            text-align: center;
+            color: white;
         }
 
         .reference-card {
@@ -74,7 +81,8 @@
                     <div class="custom-numbered-list">
                         @foreach ($join_page_contents['steps'] ?? [] as $step)
                             <div class="custom-item">
-                                <span class="custom-number">{{ $loop->iteration }}.</span>
+                                <span
+                                    class="custom-number d-flex justify-content-center align-items-center">{{ $loop->iteration }}</span>
                                 <span class="custom-text">{{ $step ?? '' }}</span>
                             </div>
                         @endforeach
