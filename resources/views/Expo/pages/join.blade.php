@@ -94,11 +94,15 @@
                 <div class="col-md-6 order-md-1" style="font-size: 18px;">
                     <div class="custom-numbered-list">
                         @foreach ($join_page_contents['steps'] ?? [] as $step)
-                            <div class="custom-item">
-                                <div class="custom-number d-flex justify-content-center align-items-center">
-                                    <span>{{ $loop->iteration }}</span>
+                            <div class="custom-item d-flex align-items-start">
+                                <div>
+                                    <div class="custom-number d-flex justify-content-center align-items-center">
+                                        <span>{{ $loop->iteration }}</span>
+                                    </div>
                                 </div>
-                                <span class="custom-text">{{ $step ?? '' }}</span>
+                                <div>
+                                    <span class="custom-text">{{ $step ?? '' }}</span>
+                                </div>
                             </div>
                         @endforeach
                     </div>
