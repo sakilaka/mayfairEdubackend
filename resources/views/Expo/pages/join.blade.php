@@ -32,7 +32,7 @@
             border-radius: 12px;
         }
 
-        .reference-card img{
+        .reference-card img {
             border-radius: 8px;
         }
     </style>
@@ -104,12 +104,14 @@
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_malishaedu.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="text-success fw-700" style="color: greenyellow">WeChat</span>
+                                    <span class="fw-700"
+                                        style="color: greenyellow; font-size:18px;">WeChat</span>
                                 </div>
                                 <div class="col-6 d-flex flex-column align-items-center">
                                     <img src="{{ asset('frontend/images/qrcode_whatsapp.jpg') }}" alt=""
                                         class="img-fluid">
-                                    <span class="text-success fw-700" style="color: greenyellow">Whatsapp</span>
+                                    <span class="fw-700"
+                                        style="color: greenyellow; font-size:18px;">Whatsapp</span>
                                 </div>
                             </div>
                         </div>
