@@ -63,7 +63,6 @@
                                     <!-- Black border as divider -->
                                     <hr class="my-2" style="border-top: 2px solid black;">
 
-
                                     <p class="card-text">
                                         @php
                                             $uni_data = json_decode($exhibitor->display_data, true) ?? [];
