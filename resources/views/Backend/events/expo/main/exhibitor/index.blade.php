@@ -88,7 +88,7 @@
                                                     </a>
                                                 @elseif($exhibitor->show_in_expo == false)
                                                     <a
-                                                        href="{{ route('admin.expo-site.exhibitors.toggle_show_in_expo', ['id' => $exhibitor->id, 'status' => 1]) }}">
+                                                        href="{{ route('admin.expo.exhibitors.toggle_show_in_expo', ['expo_id' => $expo->unique_id, 'id' => $exhibitor->id, 'status' => 1]) }}">
                                                         <span class="badge badge-danger" data-toggle="tooltip"
                                                             data-placement="top"
                                                             data-original-title="Show this exhibitor from expo">Hidden</span>

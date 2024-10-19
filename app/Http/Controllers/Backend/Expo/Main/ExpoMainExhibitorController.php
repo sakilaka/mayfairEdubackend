@@ -160,7 +160,14 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitors_toggle_show_in_expo($expo_id, $exhibitor_id)
     {
-        $exhibitor = University::find($exhibitor_id);
+        $expo = Expo::where('unique_id', $expo_id)->first();
+
+        if (!$expo) {
+            return back()->with('error', 'Expo not found!');
+        }
+
+        $exhibitors = json_decode($expo->exhibitors, true) ?? [];
+        return $exhibitors;
 
         if ($exhibitor) {
             $current_status = $exhibitor->show_in_expo;
