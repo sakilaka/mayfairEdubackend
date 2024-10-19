@@ -593,11 +593,11 @@
                 <div class="row align-items-center mt-2">
                     <div class="col-12 mt-3">
                         <div class="form-group">
-                            <label>Image Title</label>
+                            <label>QR Code Type</label>
                             <input type="text"
                                 class="form-control form-control-lg"
-                                placeholder="Enter image alt title"
-                                name="join_contents[${activityKey}][image_title][${randomNumber}]"
+                                placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
+                                name="join_contents[${activityKey}][reference][${randomNumber}][qr_code_type]"
                                 value="">
                         </div>
                     </div>
@@ -613,7 +613,7 @@
                                 <ul></ul>
                             </div>
                             <input type="file" class="dropify"
-                                name="join_contents[${activityKey}][gallery_image][${randomNumber}]"
+                                name="join_contents[${activityKey}][reference][${randomNumber}][image]"
                                 accept="image/*">
                             <button type="button"
                                 class="dropify-clear">Remove</button>
