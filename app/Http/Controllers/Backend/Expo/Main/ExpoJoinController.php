@@ -22,86 +22,103 @@ class ExpoJoinController extends Controller
      */
     public function expo_join_page_update(Request $request, $expo_id)
     {
-        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
+return $expo;
+            // Initialize new contents
+            $joinPageContents = [];
+            $oldJoinPageContents = json_decode($expo->join_page_contents, true) ?? [];
 
-            $allGalleries = [];
-            $oldGalleries = json_decode($expo->join_page_contents, true);
+            // Handle step titles and deadline
+            $stepTitles = $request->step_title ?? [];
+            $deadline = $request->deadline;
 
-            if ($request->galleries) {
-                $galleries = $request->galleries;
+            $joinPageContents['steps'] = $stepTitles;
+            $joinPageContents['deadline'] = $deadline;
 
-                foreach ($galleries as $galleryKey => $gallery) {
-                    $galleryData = [
-                        'title' => $gallery['gallery_title'],
-                        'description' => $gallery['gallery_description'],
-                    ];
+            // Handle join contents
+            $joinContents = $request->join_contents ?? [];
+            $allJoinContents = [];
 
-                    $galleryImages = [];
-                    $galleryImageKeys = array_keys($gallery['gallery_image'] ?? []);
+            foreach ($joinContents as $joinKey => $joinContent) {
+                $joinData = [
+                    'name' => $joinContent['name'],
+                    'email' => $joinContent['email'],
+                    'phone' => $joinContent['phone'],
+                ];
 
-                    foreach ($galleryImageKeys as $imageKey) {
-                        if ($request->hasFile("galleries.$galleryKey.gallery_image.$imageKey")) {
-                            $file = $request->file("galleries.$galleryKey.gallery_image.$imageKey");
-                            $fileName = 'gallery-image_' . rand() . time() . '.' . $file->getClientOriginalExtension();
-                            $file->move(public_path('upload/expo/gallery'), $fileName);
-                            $galleryImages[$imageKey] = url('upload/expo/gallery/' . $fileName);
+                // Process references
+                $referenceData = [];
+                if (isset($joinContent['reference'])) {
+                    foreach ($joinContent['reference'] as $refKey => $reference) {
+                        $refData = [
+                            'qr_code_type' => $reference['qr_code_type'] ?? '',
+                        ];
+
+                        // Handle QR code image upload
+                        if ($request->hasFile("join_contents.$joinKey.reference.$refKey.image")) {
+                            $qrFile = $request->file("join_contents.$joinKey.reference.$refKey.image");
+                            $fileName = 'qr-code_' . rand() . time() . '.' . $qrFile->getClientOriginalExtension();
+                            // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
+                            $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
+                        } else {
+                            $refData['image'] = $reference['image'] ?? ''; // Retain the old image if not updated
                         }
+
+                        $referenceData[$refKey] = $refData;
                     }
-
-                    $oldGalleryImages = $gallery['old_gallery_image'] ?? [];
-                    $mergedGalleryImages = $oldGalleryImages;
-
-                    foreach ($galleryImages as $imageKey => $url) {
-                        if (isset($mergedGalleryImages[$imageKey]) && file_exists(public_path('upload/expo/gallery/' . basename($mergedGalleryImages[$imageKey])))) {
-                            unlink(public_path('upload/expo/gallery/' . basename($mergedGalleryImages[$imageKey])));
-                        }
-
-                        $mergedGalleryImages[$imageKey] = $url;
-                    }
-
-                    $galleryData['images'] = $mergedGalleryImages;
-                    $galleryData['image_titles'] = $gallery['image_title'] ?? '';
-
-                    $allGalleries[$galleryKey] = $galleryData;
                 }
 
-                if (isset($oldGalleries)) {
-                    foreach ($oldGalleries as $oldGalleryKey => $oldGallery) {
-                        if (isset($allGalleries[$oldGalleryKey])) {
-                            $removedImages = array_diff_key($oldGallery['images'], $allGalleries[$oldGalleryKey]['images']);
+                $joinData['reference'] = $referenceData;
+                $allJoinContents[$joinKey] = $joinData;
+            }
 
-                            foreach ($removedImages as $imageKey => $imageUrl) {
-                                $imagePath = public_path('upload/expo/gallery/' . basename($imageUrl));
+            // Merge old join contents if they exist
+            if (isset($oldJoinPageContents['join_contents'])) {
+                foreach ($oldJoinPageContents['join_contents'] as $oldJoinKey => $oldJoinContent) {
+                    if (isset($allJoinContents[$oldJoinKey])) {
+                        // Merge old references with new references
+                        $mergedReferences = array_merge($oldJoinContent['reference'], $allJoinContents[$oldJoinKey]['reference']);
 
+                        // Handle removing old images that are no longer present in the new data
+                        foreach ($oldJoinContent['reference'] as $refKey => $oldReference) {
+                            if (!isset($mergedReferences[$refKey]['image'])) {
+                                $imagePath = public_path('upload/expo/qr_codes/' . basename($oldReference['image']));
                                 if (file_exists($imagePath)) {
                                     unlink($imagePath);
                                 }
                             }
+                        }
 
-                            $allGalleries[$oldGalleryKey] = array_merge($oldGallery, $allGalleries[$oldGalleryKey]);
-                        } else {
-                            $allGalleries[$oldGalleryKey] = $oldGallery;
-                        }
-                    }
-                }
-            } else {
-                foreach ($oldGalleries as $key => $gallery) {
-                    foreach ($gallery['images'] as $key => $image) {
-                        if (isset($image) && file_exists(public_path('upload/expo/gallery/' . basename($image)))) {
-                            unlink(public_path('upload/expo/gallery/' . basename($image)));
-                        }
+                        // Merge old content with new
+                        $allJoinContents[$oldJoinKey] = array_merge($oldJoinContent, $allJoinContents[$oldJoinKey]);
+                    } else {
+                        // If no new content exists for this key, retain old content
+                        $allJoinContents[$oldJoinKey] = $oldJoinContent;
                     }
                 }
             }
 
-            return $allGalleries;
-            $expo->join_page_contents = json_encode($allGalleries);
+            $joinPageContents['join_contents'] = $allJoinContents;
+
+            // Handle general QR code upload
+            if ($request->hasFile('qr_code')) {
+                $qrCodeFile = $request->file('qr_code');
+                $qrFileName = 'general-qr-code_' . rand() . time() . '.' . $qrCodeFile->getClientOriginalExtension();
+                // $qrCodeFile->move(public_path('upload/expo/qr_codes'), $qrFileName);
+                $joinPageContents['qr_code'] = url('upload/expo/qr_codes/' . $qrFileName);
+            } else {
+                // Retain old QR code if no new file is uploaded
+                $joinPageContents['qr_code'] = $oldJoinPageContents['qr_code'] ?? '';
+            }
+
+            // Save the updated join page contents
+            $expo->join_page_contents = json_encode($joinPageContents);
             $expo->save();
 
-            return redirect(route('admin.expo.media.gallery', ['expo_id' => $expo->unique_id]))->with('success', 'Gallery Page Updated!');
+            return redirect(route('admin.expo.media.join', ['expo_id' => $expo->unique_id]))->with('success', 'Join Page Updated!');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
