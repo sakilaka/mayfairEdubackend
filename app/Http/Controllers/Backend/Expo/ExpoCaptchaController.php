@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Expo;
+namespace App\Http\Controllers\Backend\Expo;
 
 use App\Http\Controllers\Controller;
-use App\Mail\EmailVerificationCustom;
 use Illuminate\Http\Request;
+use App\Mail\EmailVerificationCustom;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
-class CaptchaController extends Controller
+class ExpoCaptchaController extends Controller
 {
     public function generateCaptcha()
     {
@@ -97,5 +97,4 @@ class CaptchaController extends Controller
             return response()->json(['success' => false, 'message' => 'Invalid verification code']);
         }
     }
-
 }

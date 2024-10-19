@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\Expo\ExpoAuthController;
+use App\Http\Controllers\Backend\Expo\ExpoCaptchaController;
 use App\Http\Controllers\Expo\ExpoLoginController;
 use App\Http\Controllers\Expo\ExpoModuleController;
 use App\Http\Controllers\Expo\ExpoUserController;
@@ -151,11 +152,11 @@ Route::prefix('expo')->group(function () {
 /**
  * Captcha Routes
  */
-Route::get('/captcha', [CaptchaController::class, 'generateCaptcha']);
-Route::post('/verify-captcha', [CaptchaController::class, 'verifyCaptcha']);
+Route::get('/captcha', [ExpoCaptchaController::class, 'generateCaptcha']);
+Route::post('/verify-captcha', [ExpoCaptchaController::class, 'verifyCaptcha']);
 
-Route::post('/send-verification-email', [CaptchaController::class, 'sendVerificationEmail']);
-Route::post('/verify-code', [CaptchaController::class, 'verifyCode']);
+Route::post('/send-verification-email', [ExpoCaptchaController::class, 'sendVerificationEmail']);
+Route::post('/verify-code', [ExpoCaptchaController::class, 'verifyCode']);
 
 Route::post('{type}/send-mail', [ExpoController::class, 'expo_send_mail'])->name('admin.expo.send_mail');
 Route::post('{type}/send-mail-all', [ExpoController::class, 'expo_send_mail_all'])->name('admin.expo.send_mail_all');
