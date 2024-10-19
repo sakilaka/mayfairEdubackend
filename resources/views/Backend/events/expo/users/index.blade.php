@@ -59,7 +59,9 @@
                                 <select class="filter_child col-md-4 col-lg-3 form-control form-control-lg"
                                     name="filter_participant" id="filter_participant">
                                     <option value="">Select Expo</option>
-                                    <option value="all">All</option>
+                                    <option value="all"
+                                        {{ isset($filtered_expo) && $filtered_expo === 'all' ? 'selected' : '' }}>All
+                                    </option>
                                     @foreach ($expos as $expo)
                                         <option value="{{ $expo->unique_id }}"
                                             {{ isset($filtered_expo) && $filtered_expo === $expo->unique_id ? 'selected' : '' }}>
