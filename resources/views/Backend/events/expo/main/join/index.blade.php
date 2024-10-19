@@ -195,7 +195,7 @@
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
                                                                     <i class="fa fa-user" aria-hidden="true"></i>
                                                                     &nbsp;
-                                                                    {{ $content['name'] ? 'Reference of\'' . $content['name'] . '\'' : 'Reference' }}
+                                                                    {{ $content['name'] ? 'Reference of \'' . $content['name'] . '\'' : 'Reference' }}
                                                                 </h5>
 
                                                                 <a href="javascript:void(0)"
