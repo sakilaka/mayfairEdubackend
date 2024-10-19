@@ -125,13 +125,20 @@
     </div> --}}
 
     <section>
-        @php
-            $gallery_contents = isset($expo['gallery']) ? json_decode($expo['gallery'], true) : [];
-        @endphp
+    @php
+        $gallery_contents = isset($expo['gallery']) ? json_decode($expo['gallery'], true) : [];
+    @endphp
 
-        @forelse ($gallery_contents ?? [] as $key => $gallery)
-            <div class="gallery-section py-5 {{ !$loop->last() ? 'mb-5' : '' }}">
-                <h2 class="company-details-title py-2 fw-bold text-center ">
+    @if (empty($gallery_contents))
+        <div class="gallery-section py-5">
+            <h2 class="company-details-title py-2 fw-bold text-center">
+                No Gallery Found!
+            </h2>
+        </div>
+    @else
+        @foreach ($gallery_contents as $key => $gallery)
+            <div class="gallery-section py-5 {{ $key < count($gallery_contents) - 1 ? 'mb-5' : '' }}">
+                <h2 class="company-details-title py-2 fw-bold text-center">
                     {{ $gallery['title'] ?? '' }}
                 </h2>
 
@@ -145,13 +152,13 @@
                             $galleryImages = $gallery['images'] ?? [];
                             $galleryImagesTitles = $gallery['image_titles'] ?? [];
                         @endphp
-                        @foreach ($galleryImages as $key => $image)
+                        @foreach ($galleryImages as $index => $image)
                             <a data-src="{{ $image }}" class="single-gallery-image" style="cursor: pointer">
                                 <img class="img-fluid authorization_image" src="{{ $image }}"
-                                    alt="{{ $galleryImagesTitles[$key] ?? '' }}">
-                                @if ($galleryImagesTitles[$key])
+                                     alt="{{ $galleryImagesTitles[$index] ?? '' }}">
+                                @if ($galleryImagesTitles[$index])
                                     <p class="image-title">
-                                        {{ $galleryImagesTitles[$key] ?? '' }}
+                                        {{ $galleryImagesTitles[$index] ?? '' }}
                                     </p>
                                 @endif
                             </a>
@@ -159,14 +166,10 @@
                     </div>
                 </div>
             </div>
-        @empty
-            <div class="gallery-section py-5">
-                <h2 class="company-details-title py-2 fw-bold text-center ">
-                    No Gallery Found!
-                </h2>
-            </div>
-        @endforelse
-    </section>
+        @endforeach
+    @endif
+</section>
+
 
     @include('Expo.home_sections.footer')
     @include('Expo.components.footer')
