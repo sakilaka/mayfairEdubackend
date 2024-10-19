@@ -81,6 +81,7 @@ class ExpoParticipantController extends Controller
             $expoUser->dob = $request->dob;
             $expoUser->phone = $request->mobile;
             $expoUser->email = $request->email;
+            $expoUser->password = Hash::make($request->password);
             $expoUser->profession = $request->profession;
             $expoUser->institution = $request->institution;
             $expoUser->program = $request->program;
@@ -88,8 +89,8 @@ class ExpoParticipantController extends Controller
             $expoUser->save();
 
             return redirect(match ($type) {
-                'main' => route('admin.expo.users'),
-                'site' => route('admin.expo-site.users'),
+                'main' => route('admin.expo.users', ['type' => $type]),
+                'site' => route('admin.expo-site.users', ['type' => $type]),
                 default => back(),
             })->with(['success' => 'Expo registration has been successful!']);
         } catch (\Exception $e) {
