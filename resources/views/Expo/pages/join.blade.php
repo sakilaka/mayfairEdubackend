@@ -39,7 +39,14 @@
 
             <div class="row justify-content-between align-items-center flex-row-reverse flex-md-row mt-5 mx-auto">
                 <div class="col-md-9">
-                    
+                    <ul>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Alias, impedit.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Alias, impedit.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet
+                            consectetur, adipisicing elit. Alias, impedit.</li>
+                    </ul>
                 </div>
             </div>
 
