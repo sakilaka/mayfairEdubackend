@@ -29,8 +29,8 @@ class ExpoMainExhibitorController extends Controller
                 $university->show_in_expo = $exhibitor_data['show_on_home'] ?? false;
                 return $university;
             });
-// return $data['exhibitors'];
-        $data['available_universities'] = $universities->whereNotIn('id', $exhibitor_ids)->sortByDesc('created_at');
+
+        $data['available_universities'] = $universities->whereNotIn('id', $exhibitor_ids)->select('id', 'name')->sortByDesc('created_at');
         return view('Backend.events.expo.main.exhibitor.index', $data);
     }
 
