@@ -156,7 +156,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 row" id="join_contents-container" style="padding-right: 0">
+                                            <div class="col-12 row" id="join_contents-container"
+                                                style="padding-right: 0">
                                                 @php
                                                     $contents = [];
                                                     if ($expo && $expo['join_page_contents']) {
@@ -743,7 +744,7 @@
                                                 <input type="text"
                                                     class="form-control form-control-lg"
                                                     placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
-                                                    name="join_contents[${randomNumber}][image_title][${randomNumber}]"
+                                                    name="join_contents[{{ $random }}][reference][{{ $random }}][qr_code_type]"
                                                     value="">
                                             </div>
                                         </div>
@@ -762,7 +763,7 @@
                                                 </div>
                                                 <input type="file"
                                                     class="dropify"
-                                                    name="join_contents[${randomNumber}][gallery_image][${randomNumber}]"
+                                                    name="join_contents[{{ $random }}][reference][{{ $random }}][image]"
                                                     accept="image/*">
                                                 <button type="button"
                                                     class="dropify-clear">Remove</button>
