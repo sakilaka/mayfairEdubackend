@@ -667,6 +667,7 @@
         /* add gallery */
         $(document).on('click', '#add-gallery', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
+            var randomNumber2 = Math.floor(100000 + Math.random() * 900000);
 
             var myvar = `
                 <div class="col-sm-12 mb-3" style="padding-right: 0;">
@@ -744,7 +745,7 @@
                                                 <input type="text"
                                                     class="form-control form-control-lg"
                                                     placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
-                                                    name="join_contents[{{ $random }}][reference][{{ $random }}][qr_code_type]"
+                                                    name="join_contents[${randomNumber}][reference][${randomNumber2}][qr_code_type]"
                                                     value="">
                                             </div>
                                         </div>
@@ -763,7 +764,7 @@
                                                 </div>
                                                 <input type="file"
                                                     class="dropify"
-                                                    name="join_contents[{{ $random }}][reference][{{ $random }}][image]"
+                                                    name="join_contents[${randomNumber}][reference][${randomNumber2}][image]"
                                                     accept="image/*">
                                                 <button type="button"
                                                     class="dropify-clear">Remove</button>
