@@ -12,8 +12,7 @@ use App\Http\Controllers\Backend\Expo\Main\ExpoDelegatesController;
 use App\Http\Controllers\Backend\Expo\Main\ExpoMediaController;
 
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
-use App\Http\Controllers\Backend\Expo\External\ExpoExternalController;
-
+use App\Http\Controllers\Backend\Expo\External\ExpoExternalExhibitorController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -72,13 +71,13 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
  */
 Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
     Route::prefix('exhibitors')->group(function () {
-        Route::get('list', [ExpoExternalController::class, "exhibitors_index"])->name('admin.expo-site.exhibitors.index');
-        Route::post('store', [ExpoExternalController::class, "exhibitors_store"])->name('admin.expo-site.exhibitors.store');
-        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoExternalController::class, "exhibitor_edit"])->name('admin.expo-site.exhibitor.edit');
-        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoExternalController::class, "exhibitor_update"])->name('admin.expo-site.exhibitor.update');
-        Route::post('delete', [ExpoExternalController::class, "exhibitors_destroy"])->name('admin.expo-site.exhibitors.delete');
-        Route::get('toggle-show-in-expo/{id}', [ExpoExternalController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo-site.exhibitors.toggle_show_in_expo');
-        Route::post('postion-in-expo', [ExpoExternalController::class, "exhibitors_postion_in_expo"])->name('admin.expo-site.exhibitors.position_in_expo');
+        Route::get('list', [ExpoExternalExhibitorController::class, "exhibitors_index"])->name('admin.expo-site.exhibitors.index');
+        Route::post('store', [ExpoExternalExhibitorController::class, "exhibitors_store"])->name('admin.expo-site.exhibitors.store');
+        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoExternalExhibitorController::class, "exhibitor_edit"])->name('admin.expo-site.exhibitor.edit');
+        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoExternalExhibitorController::class, "exhibitor_update"])->name('admin.expo-site.exhibitor.update');
+        Route::post('delete', [ExpoExternalExhibitorController::class, "exhibitors_destroy"])->name('admin.expo-site.exhibitors.delete');
+        Route::get('toggle-show-in-expo/{id}', [ExpoExternalExhibitorController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo-site.exhibitors.toggle_show_in_expo');
+        Route::post('postion-in-expo', [ExpoExternalExhibitorController::class, "exhibitors_postion_in_expo"])->name('admin.expo-site.exhibitors.position_in_expo');
     });
 
     Route::prefix('manage-ui-contents')->group(function () {

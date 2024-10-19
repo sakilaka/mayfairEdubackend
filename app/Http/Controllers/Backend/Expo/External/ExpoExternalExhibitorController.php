@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\University;
 use Illuminate\Http\Request;
 
-class ExpoExternalController extends Controller
+class ExpoExternalExhibitorController extends Controller
 {
     /**
      * index of exhibitors
