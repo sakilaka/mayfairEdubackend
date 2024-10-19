@@ -66,6 +66,7 @@ class ExpoJoinController extends Controller
                             // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
                             $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
                         } else {
+                            return $reference;
                             $refData['image'] = $reference['image'] ?? '';
                         }
 
