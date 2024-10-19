@@ -22,6 +22,7 @@ class ExpoJoinController extends Controller
      */
     public function expo_join_page_update(Request $request, $expo_id)
     {
+        return $request->all();
         try {
             $expo = Expo::where('unique_id', $expo_id)->first();
 
