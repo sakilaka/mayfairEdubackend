@@ -589,7 +589,7 @@ class ExpoController extends Controller
         $data['available_universities'] = $universities->where('is_exhibitor', false)->sortByDesc('created_at');
         $data['exhibitors'] = $universities->where('is_exhibitor', true)->sortByDesc('created_at');
 
-        return view('Backend.events.expo.exhibitor.index', $data);
+        return view('Backend.events.expo.external.exhibitor.index', $data);
     }
 
     /**
@@ -603,7 +603,7 @@ class ExpoController extends Controller
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
-        return view('Backend.events.expo.exhibitor.exhibitor_edit', $data);
+        return view('Backend.events.expo.external.exhibitor.exhibitor_edit', $data);
     }
 
     /**
