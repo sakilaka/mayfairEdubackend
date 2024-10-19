@@ -13,6 +13,7 @@ use App\Http\Controllers\Backend\Expo\Main\ExpoMediaController;
 
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalExhibitorController;
+use App\Http\Controllers\Backend\Expo\External\ExpoMainExhibitorController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,16 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     Route::get('edit/{id}', [ExpoController::class, "edit"])->name('admin.expo.edit');
     Route::post('update/{id}', [ExpoController::class, "update"])->name('admin.expo.update');
     Route::post('delete', [ExpoController::class, "destroy"])->name('admin.expo.delete');
+
+    Route::prefix('{expo_id}/exhibitors')->group(function () {
+        Route::get('list', [ExpoMainExhibitorController::class, "exhibitors_index"])->name('admin.expo-site.exhibitors.index');
+        Route::post('store', [ExpoMainExhibitorController::class, "exhibitors_store"])->name('admin.expo-site.exhibitors.store');
+        Route::get('edit-exhibitor/{exhibitor_id}', [ExpoMainExhibitorController::class, "exhibitor_edit"])->name('admin.expo-site.exhibitor.edit');
+        Route::post('edit-exhibitor/{exhibitor_id}', [ExpoMainExhibitorController::class, "exhibitor_update"])->name('admin.expo-site.exhibitor.update');
+        Route::post('delete', [ExpoMainExhibitorController::class, "exhibitors_destroy"])->name('admin.expo-site.exhibitors.delete');
+        Route::get('toggle-show-in-expo/{id}', [ExpoMainExhibitorController::class, "exhibitors_toggle_show_in_expo"])->name('admin.expo-site.exhibitors.toggle_show_in_expo');
+        Route::post('postion-in-expo', [ExpoMainExhibitorController::class, "exhibitors_postion_in_expo"])->name('admin.expo-site.exhibitors.position_in_expo');
+    });
 
     Route::prefix('{expo_id}/testimonials')->group(function () {
         Route::get('list', [ExpoTestimonialsController::class, "expo_testimonial_index"])->name('admin.expo.testimonial.index');
