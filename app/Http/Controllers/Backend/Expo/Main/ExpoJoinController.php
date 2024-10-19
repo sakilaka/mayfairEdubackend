@@ -62,17 +62,17 @@ class ExpoJoinController extends Controller
                             // $qrFile->move(public_path('upload/expo/qr_codes'), $fileName);
                             $refData['image'] = url('upload/expo/qr_codes/' . $fileName);
                         } else {
-                            $refData['image'] = $reference['image'] ?? ''; // Retain the old image if not updated
+                            $refData['image'] = $reference['image'] ?? '';
                         }
 
                         $referenceData[$refKey] = $refData;
                     }
                 }
-return $referenceData;
+
                 $joinData['reference'] = $referenceData;
                 $allJoinContents[$joinKey] = $joinData;
             }
-
+return $allJoinContents;
             // Merge old join contents if they exist
             if (isset($oldJoinPageContents['join_contents'])) {
                 foreach ($oldJoinPageContents['join_contents'] as $oldJoinKey => $oldJoinContent) {
