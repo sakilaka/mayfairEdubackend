@@ -449,7 +449,7 @@
                                                                     </div>
 
                                                                     <div class="d-flex justify-content-between mt-4">
-                                                                        <h5 class="d-inline">Gallery Image</h5>
+                                                                        <h5 class="d-inline">Reference Social QR Code</h5>
                                                                         <a href="javascript:void(0)"
                                                                             class="btn btn-sm btn-primary add-gallery-image"
                                                                             data-gallery-key="{{ $random }}">
@@ -463,10 +463,10 @@
                                                                         <div class="row align-items-center mt-2">
                                                                             <div class="col-12 mt-3">
                                                                                 <div class="form-group">
-                                                                                    <label>Image Title</label>
+                                                                                    <label>QR Code Type</label>
                                                                                     <input type="text"
                                                                                         class="form-control form-control-lg"
-                                                                                        placeholder="Enter image alt title"
+                                                                                        placeholder="e.g: Wechat/Whatsapp/LinkedIn etc..."
                                                                                         name="galleries[{{ $random }}][image_title][{{ $random }}]"
                                                                                         value="">
                                                                                 </div>
@@ -476,7 +476,7 @@
                                                                                 class="col-sm-12 col-md-5 img-upload-container">
                                                                                 <label
                                                                                     class="form-control-label">Upload
-                                                                                    Image:</label>
+                                                                                    QR Code:</label>
                                                                                 <div class="dropify-wrapper"
                                                                                     style="border: none">
                                                                                     <div class="dropify-loader"></div>
