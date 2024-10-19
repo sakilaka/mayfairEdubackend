@@ -118,24 +118,47 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="steps-container">
-                                                    <div
-                                                        class="row justify-content-between align-items-center step-row">
-                                                        <div class="col-11 px-3 mb-2">
-                                                            <label class="form-label">
-                                                                Step Title
-                                                                <span class="text-danger">*</span>
-                                                            </label>
-                                                            <input type="text" class="form-control"
-                                                                name="step_title[{{ $random }}]"
-                                                                placeholder="Enter Step Title" value="" required>
+                                                    @forelse ($contents['steps'] as $step)
+                                                        <div
+                                                            class="row justify-content-between align-items-center step-row">
+                                                            <div class="col-11 px-3 mb-2">
+                                                                <label class="form-label">
+                                                                    Step Title {{ $loop->iteration }}
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" class="form-control"
+                                                                    name="step_title[{{ $random }}]"
+                                                                    placeholder="Enter Step Title" value="{{ $step }}"
+                                                                    required>
+                                                            </div>
+                                                            <div class="col-1 mt-3">
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-sm btn-danger remove-step">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-1 mt-3">
-                                                            <a href="javascript:void(0)"
-                                                                class="btn btn-sm btn-danger remove-step">
-                                                                <i class="fa fa-minus"></i>
-                                                            </a>
+                                                    @empty
+                                                        <div
+                                                            class="row justify-content-between align-items-center step-row">
+                                                            <div class="col-11 px-3 mb-2">
+                                                                <label class="form-label">
+                                                                    Step Title
+                                                                    <span class="text-danger">*</span>
+                                                                </label>
+                                                                <input type="text" class="form-control"
+                                                                    name="step_title[{{ $random }}]"
+                                                                    placeholder="Enter Step Title" value=""
+                                                                    required>
+                                                            </div>
+                                                            <div class="col-1 mt-3">
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-sm btn-danger remove-step">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                    </div>
+                                                    @endforelse
                                                 </div>
                                             </div>
 
