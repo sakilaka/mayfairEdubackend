@@ -27,9 +27,14 @@
                             Join Page for '{{ $expo->title }}'
                         </h3>
 
-                        <nav aria-label="breadcrumb">
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-around align-items-center">
+                            <a href="{{ route('admin.expo.index') }}" class="btn btn-secondary-bg btn-fw"
+                                style="margin-right: 5px">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                View Expo
+                            </a>
                             <a href="{{ route('expo.join', ['unique_id' => $expo->unique_id]) }}"
-                                class="btn btn-primary btn-fw" target="_blank">
+                                class="btn btn-primary-bg btn-fw" target="_blank">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View Page
                             </a>
@@ -118,8 +123,8 @@
                                                                             <label class="form-label">
                                                                                 Description
                                                                             </label>
-                                                                            <textarea class="form-control form-control-lg" rows="4" name="galleries[{{ $galleryKey }}][gallery_description]"
-                                                                                placeholder="Write Gallery Description">{{ $content['description'] }}</textarea>
+                                                                            <textarea class="form-control form-control-lg" rows="4"
+                                                                                name="galleries[{{ $galleryKey }}][gallery_description]" placeholder="Write Gallery Description">{{ $content['description'] }}</textarea>
                                                                         </div>
                                                                     </div>
 
