@@ -54,25 +54,34 @@
 
                                         <div class="row">
 
-                                            <div class="col-12 mb-3 px-4">
-                                                <div class="row justify-content-between">
-                                                    <h4 class="d-inline">Contact References</h4>
+                                            <div class="col-12">
+                                                <div class="d-flex justify-content-end">
+                                                    <button type="submit" class="btn blue-btn btn-secondary-bg"
+                                                        style="margin-right: 8px">Save</button>
 
-                                                    <div class="d-flex">
-                                                        <button type="submit" class="btn blue-btn btn-secondary-bg"
-                                                            style="margin-right: 8px">Save</button>
-
-                                                        <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg"
-                                                            id="add-gallery">
-                                                            <i class="fa fa-plus"></i>
-                                                            Add
-                                                        </a>
-                                                    </div>
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg"
+                                                        id="add-gallery">
+                                                        <i class="fa fa-plus"></i>
+                                                        Add
+                                                    </a>
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 row" id="galleries-container" style="padding-right: 0">
+                                            <div class="col-12 mb-3 px-4">
+                                                <div class="row justify-content-between">
+                                                    <h4 class="d-inline">Contact References</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                
+                                            </div>
 
+                                            <div class="col-12 mb-3 px-4">
+                                                <div class="row justify-content-between">
+                                                    <h4 class="d-inline">Contact References</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 row" id="galleries-container" style="padding-right: 0">
                                                 @php
                                                     $contents = [];
                                                     if ($expo && $expo['gallery']) {
