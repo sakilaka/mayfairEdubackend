@@ -87,6 +87,17 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
  * Expo Routes (Admin) - end --------------------------
  */
 
+
+/**
+ * Expo-Site (External) Routes (Admin) - start --------------------------
+ */
+Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(function(){
+
+});
+/**
+ * Expo-Site (External) Routes (Admin) - end --------------------------
+ */
+
 /**
  * Expo Routes (User)
  */
