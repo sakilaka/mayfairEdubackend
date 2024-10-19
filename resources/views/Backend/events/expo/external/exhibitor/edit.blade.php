@@ -26,7 +26,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="forms-sample"
-                                        action="{{ route('admin.expo.exhibitor.update', ['exhibitor_id' => $exhibitor->id]) }}"
+                                        action="{{ route('admin.expo-site.exhibitor.update', ['exhibitor_id' => $exhibitor->id]) }}"
                                         method="POST" enctype="multipart/form-data">
                                         @csrf
 
