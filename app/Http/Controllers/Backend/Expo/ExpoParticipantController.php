@@ -55,7 +55,7 @@ class ExpoParticipantController extends Controller
     {
         return $request->all();
         try {
-            
+
             $user = User::create([
                 'name' => $request->first_name . ' ' . $request->last_name,
                 'email' => $request->email,
@@ -69,24 +69,24 @@ class ExpoParticipantController extends Controller
                 $image_url = 'data:' . $request->file('photo')->getMimeType() . ';base64,' . $image;
             }
 
-            $expoModule = new ExpoModule();
-            $expoModule->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
-            $expoModule->user_id = $user->id;
-            $expoModule->id_type = $request->id_type;
-            $expoModule->id_no = $request->id_no;
-            $expoModule->first_name = $request->first_name;
-            $expoModule->last_name = $request->last_name;
-            $expoModule->photo = $image_url;
-            $expoModule->nationality = $request->nationality;
-            $expoModule->sex = $request->sex;
-            $expoModule->dob = $request->dob;
-            $expoModule->phone = $request->mobile;
-            $expoModule->email = $request->email;
-            $expoModule->profession = $request->profession;
-            $expoModule->institution = $request->institution;
-            $expoModule->program = $request->program;
-            $expoModule->degree = $request->degree;
-            $expoModule->save();
+            $expoUser = new ExpoModule();
+            $expoUser->ticket_no = strtoupper(substr((string) Str::uuid(), 0, 8));
+            $expoUser->user_id = $user->id;
+            $expoUser->id_type = $request->id_type;
+            $expoUser->id_no = $request->id_no;
+            $expoUser->first_name = $request->first_name;
+            $expoUser->last_name = $request->last_name;
+            $expoUser->photo = $image_url;
+            $expoUser->nationality = $request->nationality;
+            $expoUser->sex = $request->sex;
+            $expoUser->dob = $request->dob;
+            $expoUser->phone = $request->mobile;
+            $expoUser->email = $request->email;
+            $expoUser->profession = $request->profession;
+            $expoUser->institution = $request->institution;
+            $expoUser->program = $request->program;
+            $expoUser->degree = $request->degree;
+            $expoUser->save();
 
             return redirect(route('admin.expo.users'))->with(['success' => 'Expo registration has been successful!']);
         } catch (\Exception $e) {
