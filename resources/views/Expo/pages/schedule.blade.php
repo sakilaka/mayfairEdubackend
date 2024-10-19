@@ -16,6 +16,7 @@
             background-position: top;
             background-size: cover;
             background-repeat: no-repeat;
+            padding: 5rem 0;
         }
     </style>
 </head>
@@ -39,7 +40,7 @@
         <div class="bg-color"></div>
     </div>
 
-    <section class="university-highlights py-5 ">
+    <section class="university-highlights {{-- py-5 --}}">
         <div class="container">
             <div class="text-center">
                 <h2 class="section-title">Schedule</h2>
