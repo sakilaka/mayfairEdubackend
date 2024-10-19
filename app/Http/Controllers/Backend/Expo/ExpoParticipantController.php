@@ -44,7 +44,8 @@ class ExpoParticipantController extends Controller
      */
     public function expo_add_participator()
     {
-        return view('Backend.events.expo.users.add_participator');
+        $data['expos'] = Expo::all();
+        return view('Backend.events.expo.users.add_participator', $data);
     }
 
     /**
