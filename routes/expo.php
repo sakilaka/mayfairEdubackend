@@ -13,7 +13,7 @@ use App\Http\Controllers\Backend\Expo\Main\ExpoMediaController;
 
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsController;
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalExhibitorController;
-use App\Http\Controllers\Backend\Expo\External\ExpoMainExhibitorController;
+use App\Http\Controllers\Backend\Expo\Main\ExpoMainExhibitorController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend\Expo\External;
+namespace App\Http\Controllers\Backend\Expo\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\University;
@@ -13,7 +13,6 @@ class ExpoMainExhibitorController extends Controller
      */
     public function exhibitors_index($expo_id)
     {
-        return $expo_id;
         $universities = University::all();
 
         $data['available_universities'] = $universities->where('is_exhibitor', false)->sortByDesc('created_at');
