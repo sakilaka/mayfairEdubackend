@@ -71,6 +71,7 @@
     @else
         <title>{{ $title->company_name }} @yield('title')</title>
     @endif
+    <link rel="canonical" href="{{ url()->current() }}">
 
     @if ($customCss)
         <style>
