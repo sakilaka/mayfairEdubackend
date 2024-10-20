@@ -63,7 +63,7 @@
         {{-- </html> --}}
     @endif
 
-    <title>{{ @$title->company_name }} @yield('title')</title>
+    <title>{{ $titles ?? $title->company_name }} @yield('title')</title>
 
     @if ($customCss)
         <style>
