@@ -64,7 +64,9 @@
     @endif
 
     @if (Route::is('home'))
-        <title>test</title>
+        <title>MalishaEdu | Study in China | Higher Education Consulting Services</title>
+        <meta name="description"
+            content="Prism Science Academy - The Most Powerful & Comprehensive E-Learning System built for educators and students with Bootstrap 5 technology!" />
     @else
         <title>{{ $title->company_name }} @yield('title')</title>
     @endif
