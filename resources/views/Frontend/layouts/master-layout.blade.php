@@ -63,7 +63,11 @@
         {{-- </html> --}}
     @endif
 
-    <title>{{ $titles ?? $title->company_name }} @yield('title')</title>
+    @if (Route::is('home'))
+        <title>test</title>
+    @else
+        <title>{{ $title->company_name }} @yield('title')</title>
+    @endif
 
     @if ($customCss)
         <style>
