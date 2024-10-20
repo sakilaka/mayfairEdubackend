@@ -66,7 +66,7 @@
     @if (Route::is('home'))
         <title>MalishaEdu | Study in China | Higher Education Consulting Services</title>
         <meta name="description"
-            content="MalishaEdu is an impressive international education consultancy that has a history of partnering with Chinese universities. They have demonstrated dedication to making international educational opportunities available to students across the world. l&#039;m incredibly impressed with the work that MalishaEdu has done to make global education opportunities a reality. They’ve built a successful and reliable platform for students, universities, and educators to achieve their aspirations. Study in China | Higher Education Consulting Service" />
+            content="MalishaEdu is an impressive international education consultancy that has a history of partnering with Chinese universities. They have demonstrated dedication to making international educationa...  Study in China | Higher Education Consulting Service" />
         <meta name="keywords" content="Study in China | Higher Education Consulting Service">
     @else
         <title>{{ $title->company_name }} @yield('title')</title>
