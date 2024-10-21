@@ -671,14 +671,6 @@
             `;
             $('.services-large-container').prepend(myvar);
             $(`.dropify`).dropify();
-
-            const editorKey = 'long_description';
-            if (!window.editorInstances || !window.editorInstances[editorKey]) {
-                console.error(`Editor instance for '${editorKey}' not found.`);
-            } else {
-                const editorInstance = window.editorInstances[editorKey];
-                editorInstance.setData('');
-            }
         });
 
         $(document).on('click', '.remove-services-large', function() {
