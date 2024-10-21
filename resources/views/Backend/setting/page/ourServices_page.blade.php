@@ -248,7 +248,8 @@
                                                     <div class="card-body">
                                                         <div class="col-sm-12 {{-- mt-3 --}}">
                                                             <div class="d-flex justify-content-between">
-                                                                <h5 class="d-inline">Our Services {{-- (Large) --}}</h5>
+                                                                <h5 class="d-inline">Our Services {{-- (Large) --}}
+                                                                </h5>
                                                                 <a href="javascript:void(0)"
                                                                     class="btn btn-sm btn-primary"
                                                                     id="add-services-large">
@@ -321,8 +322,7 @@
                                                                                 class="img-preview-container col-sm-11 col-md-5 d-flex justify-content-center align-items-center">
                                                                                 <div class="px-3 mt-3">
                                                                                     <img src="{{ $service['image'] ?? asset('frontend/images/No-image.jpg') }}"
-                                                                                        alt=""
-                                                                                        class="img-fluid"
+                                                                                        alt="" class="img-fluid"
                                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                                 </div>
                                                                             </div>
@@ -671,6 +671,14 @@
             `;
             $('.services-large-container').prepend(myvar);
             $(`.dropify`).dropify();
+
+            const editorKey = 'long_description';
+            if (!window.editorInstances || !window.editorInstances[editorKey]) {
+                console.error(`Editor instance for '${editorKey}' not found.`);
+            } else {
+                const editorInstance = window.editorInstances[editorKey];
+                editorInstance.setData('');
+            }
         });
 
         $(document).on('click', '.remove-services-large', function() {
