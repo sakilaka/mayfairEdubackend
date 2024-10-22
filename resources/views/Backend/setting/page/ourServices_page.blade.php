@@ -514,73 +514,73 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var myvar = `
-                <div class="row align-items-center mt-2">
-                    <div
-                        class="col-sm-12 col-md-6 mt-3 img-upload-container">
-                        <label class="form-control-label">Add
-                            Image:</label>
-                        <div class="dropify-wrapper"
-                            style="border: none">
-                            <div class="dropify-loader"></div>
-                            <div class="dropify-errors-container">
-                                <ul></ul>
-                            </div>
-                            <input type="file" class="dropify"
-                                name="services_mini_image[${randomNumber}]"
-                                accept="image/*">
-                            <button type="button"
-                                class="dropify-clear">Remove</button>
-                            <div class="dropify-preview">
-                                <span class="dropify-render"></span>
-                                <div class="dropify-infos">
-                                    <div class="dropify-infos-inner">
-                                        <p class="dropify-filename">
-                                            <span
-                                                class="file-icon"></span>
-                                            <span
-                                                class="dropify-filename-inner"></span>
-                                        </p>
-                                        <p
-                                            class="dropify-infos-message">
-                                            Drag
-                                            and drop or click to
-                                            replace</p>
-                                    </div>
-                                </div>
+        <div class="row align-items-center mt-2">
+            <div
+                class="col-sm-12 col-md-6 mt-3 img-upload-container">
+                <label class="form-control-label">Add
+                    Image:</label>
+                <div class="dropify-wrapper"
+                    style="border: none">
+                    <div class="dropify-loader"></div>
+                    <div class="dropify-errors-container">
+                        <ul></ul>
+                    </div>
+                    <input type="file" class="dropify"
+                        name="services_mini_image[${randomNumber}]"
+                        accept="image/*">
+                    <button type="button"
+                        class="dropify-clear">Remove</button>
+                    <div class="dropify-preview">
+                        <span class="dropify-render"></span>
+                        <div class="dropify-infos">
+                            <div class="dropify-infos-inner">
+                                <p class="dropify-filename">
+                                    <span
+                                        class="file-icon"></span>
+                                    <span
+                                        class="dropify-filename-inner"></span>
+                                </p>
+                                <p
+                                    class="dropify-infos-message">
+                                    Drag
+                                    and drop or click to
+                                    replace</p>
                             </div>
                         </div>
                     </div>
-
-                    <div
-                        class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
-                        <div class="px-3 mt-3">
-                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                alt="" class="img-fluid"
-                                style="border-radius: 10px; max-height: 200px !important;">
-                        </div>
-                    </div>
-
-                    <div class="col-11 mt-2">
-                        <div class="form-group">
-                            <label class="form-label">Description
-                                (7-8 Words)
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text"
-                                class="form-control form-control-lg"
-                                name="service_mini_description[]" required>
-                        </div>
-                    </div>
-                    <div class="col-1">
-                        <a href="javascript:void(0)"
-                            class="remove-services-mini btn btn-danger btn-sm m-0 ml-2">
-                            <i class="fas fa-minus-circle"> </i>
-                        </a>
-                    </div>
-
-                    <div class="col-12 border-top"></div>
                 </div>
-            `;
+            </div>
+
+            <div
+                class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                <div class="px-3 mt-3">
+                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                        alt="" class="img-fluid"
+                        style="border-radius: 10px; max-height: 200px !important;">
+                </div>
+            </div>
+
+            <div class="col-11 mt-2">
+                <div class="form-group">
+                    <label class="form-label">Description
+                        (7-8 Words)
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text"
+                        class="form-control form-control-lg"
+                        name="service_mini_description[]" required>
+                </div>
+            </div>
+            <div class="col-1">
+                <a href="javascript:void(0)"
+                    class="remove-services-mini btn btn-danger btn-sm m-0 ml-2">
+                    <i class="fas fa-minus-circle"> </i>
+                </a>
+            </div>
+
+            <div class="col-12 border-top"></div>
+        </div>
+    `;
             $('.services-mini-container').prepend(myvar);
             $(`.dropify`).dropify();
         });
@@ -592,6 +592,14 @@
         /* add service large */
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
+
+            const editorKey = 'service_large_description';
+            if (!window.editorInstances || !window.editorInstances[editorKey]) {
+                console.error(`Editor instance for '${editorKey}' not found.`);
+            } else {
+                const editorInstance = window.editorInstances[editorKey];
+                editorInstance.setData('');
+            }
 
             var myvar = `
                 <div class="row align-items-center mt-2">
