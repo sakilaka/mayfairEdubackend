@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsControl
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalExhibitorController;
 use App\Http\Controllers\Backend\Expo\Main\ExpoJoinController;
 use App\Http\Controllers\Backend\Expo\Main\ExpoMainExhibitorController;
+use App\Http\Controllers\Backend\Expo\Main\ExpoThemeColorsController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,8 +71,8 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
     });
 
     Route::prefix('{expo_id}/theme-colors')->group(function () {
-        Route::get('/', [ExpoMediaController::class, 'expo_theme_colors'])->name('admin.expo.theme_colors.index');
-        Route::post('update', [ExpoMediaController::class, 'expo_theme_colors_update'])->name('admin.expo.theme_colors.update');
+        Route::get('/', [ExpoThemeColorsController::class, 'expo_theme_colors'])->name('admin.expo.theme_colors.index');
+        Route::post('update', [ExpoThemeColorsController::class, 'expo_theme_colors_update'])->name('admin.expo.theme_colors.update');
     });
 
     Route::prefix('users')->group(function () {
