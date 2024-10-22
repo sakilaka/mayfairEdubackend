@@ -331,11 +331,10 @@
         $('select').select2();
 
         $('#download-data-excel-btn').on('click', function(e) {
-            e.preventDefault(); 
-
             $.ajax({
                 url: '{{ $download_data_excel_route }}',
                 method: 'GET',
+                data:
                 success: function(response) {
                     
                 },
