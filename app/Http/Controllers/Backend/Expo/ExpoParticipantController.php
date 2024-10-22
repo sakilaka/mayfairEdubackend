@@ -124,10 +124,12 @@ class ExpoParticipantController extends Controller
                 'degree',
             ])->get();
 
-            $expo_title = Expo::where('unique_id', $expoUser->first()->expo_id)->select('title')->first();
+            // Fetch expo titles based on unique expo IDs
+            $expoIds = $expoUser->pluck('expo_id')->unique(); // Get unique expo IDs
+            $expoTitles = Expo::whereIn('unique_id', $expoIds)->pluck('title', 'unique_id'); // Key by unique_id
 
             foreach ($expoUser as $user) {
-                $user->expo_title = $expo_title ? $expo_title->title : null;
+                $user->expo_title = $expoTitles->get($user->expo_id); // Assign the title based on expo_id
             }
         } elseif ($type === 'site') {
             $expoUser = ExpoModule::select([
