@@ -365,7 +365,7 @@
                                                                                     Description
                                                                                     <span class="text-danger">*</span>
                                                                                 </label>
-                                                                                <textarea name="long_description" class="form-control editor"></textarea>
+                                                                                <textarea name="service_large_description[]" class="form-control editor"></textarea>
                                                                             </div>
                                                                         </div>
 
@@ -510,7 +510,7 @@
         });
 
         /* add service mini */
-        $('#add-services-mini').on('click', function() {
+        /* $('#add-services-mini').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var myvar = `
@@ -587,7 +587,7 @@
 
         $(document).on('click', '.remove-services-mini', function() {
             $(this).parent().parent().remove();
-        });
+        }); */
 
         /* add service large */
         $('#add-services-large').on('click', function() {
@@ -652,7 +652,7 @@
                         </div>
                     </div>
 
-                    <div class="col-11 mt-2">
+                    <div class="col-12 mt-2">
                         <div class="form-group">
                             <label class="form-label fw-bold">Title
                                 (2-3 Words)
@@ -671,6 +671,13 @@
                             <input type="text"
                                 class="form-control form-control-lg"
                                 name="service_large_description[]" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label fw-bold">Long
+                                Description
+                                <span class="text-danger">*</span>
+                            </label>
+                            <textarea name="service_large_description[]" class="form-control editor"></textarea>
                         </div>
                     </div>
 
