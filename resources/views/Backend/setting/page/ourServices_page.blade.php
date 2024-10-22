@@ -365,7 +365,7 @@
                                                                                     Description
                                                                                     <span class="text-danger">*</span>
                                                                                 </label>
-                                                                                <textarea name="service_large_long_description[]" class="form-control editor">{{ $service['service_large_description'] ?? '' }}</textarea>
+                                                                                <textarea name="service_large_long_description[]" class="form-control editor">{{ $service['service_large_long_description'] ?? '' }}</textarea>
                                                                             </div>
                                                                         </div>
 
@@ -604,7 +604,7 @@
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
-                const editorInstance = window.editorInstances[editorKey];                
+                const editorInstance = window.editorInstances[editorKey];
                 editorInstance.setData('');
             }
 
