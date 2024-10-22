@@ -14,7 +14,7 @@ class ExpoUsersExport implements FromCollection, WithHeadings
     public function __construct($expoUser, $type)
     {
         $this->expoUser = $expoUser;
-        $this->type = $type;
+        $this->type = $type; // Store the type to decide headings
     }
 
     public function collection()
@@ -28,7 +28,7 @@ class ExpoUsersExport implements FromCollection, WithHeadings
             return [
                 'Ticket Number',
                 'Expo ID',
-                'Expo Title',
+                'Expo Title', // Make sure this is here
                 'Email',
                 'First Name',
                 'Last Name',
@@ -61,11 +61,12 @@ class ExpoUsersExport implements FromCollection, WithHeadings
 
     public function map($expoUser): array
     {
+        // Ensure expo_title is returned in the correct order for the 'main' type
         if ($this->type === 'main') {
             return [
                 $expoUser->ticket_no,
                 $expoUser->expo_id,
-                $expoUser->expo_title,
+                $expoUser->expo_title, // Ensure this is in the correct position
                 $expoUser->email,
                 $expoUser->first_name,
                 $expoUser->last_name,
