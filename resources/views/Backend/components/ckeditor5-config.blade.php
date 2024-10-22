@@ -230,6 +230,8 @@
             })
             .then(editor => {
                 const editorKey = editorElement.getAttribute('name') || editorElement.id;
+                console.log(editorKey);
+                
                 window.editorInstances[editorKey] = editor;
             })
             .catch(error => {
