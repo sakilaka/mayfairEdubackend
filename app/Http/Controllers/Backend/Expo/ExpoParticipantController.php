@@ -122,9 +122,8 @@ class ExpoParticipantController extends Controller
                 'degree',
             ])->get();
         } elseif ($type === 'site') {
-            /* $expoUser = ExpoModule::select([
+            $expoUser = ExpoModule::select([
                 'ticket_no',
-                'expo_id',
                 'email',
                 'first_name',
                 'last_name',
@@ -136,8 +135,7 @@ class ExpoParticipantController extends Controller
                 'institution',
                 'program',
                 'degree',
-            ])->get(); */
-            $expoUser = ExpoModule::all();
+            ])->get();
         } else {
             abort(500, 'Server Error');
         }
