@@ -304,6 +304,16 @@
     @include('Backend.components.ckeditor5-config')
 
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
+
+    <script type="importmap">
+{
+    "imports": {
+        "ckeditor5": "{{ asset('backend/lib/ckeditor5/ckeditor5.js') }}",
+        "ckeditor5/": "{{ asset('backend/lib/ckeditor5/') }}"
+    }
+}
+</script>
+
     <script>
         $(document).on('change', `.dropify`, function() {
             var fileInput = $(this)[0];
@@ -339,6 +349,54 @@
             if (!window.editorInstances[editorKey]) {
                 const newEditorElement = document.querySelector(`textarea[name="${editorKey}"]`);
                 console.log(newEditorElement);
+
+                import {
+        ClassicEditor,
+        Essentials,
+        Heading,
+        Paragraph,
+        Clipboard,
+        Bold,
+        Italic,
+        Link,
+        Alignment,
+        Font,
+        Indent,
+        IndentBlock,
+        BlockQuote,
+        List,
+        ImageUpload,
+        Image,
+        ImageInsert,
+        ImageToolbar,
+        LinkImage,
+        ImageCaption,
+        ImageResize,
+        ImageStyle,
+        AutoImage,
+        Base64UploadAdapter /* SimpleUploadAdapter */ ,
+        CodeBlock,
+        Autoformat,
+        FindAndReplace,
+        Highlight,
+        HorizontalLine,
+        TodoList,
+        MediaEmbed,
+        RemoveFormat,
+        ShowBlocks,
+        SourceEditing,
+        SpecialCharacters,
+        SpecialCharactersEssentials,
+        Table,
+        TableToolbar,
+        TableCellProperties,
+        TableProperties,
+        TableColumnResize,
+        TableCaption,
+        WordCount
+    } from 'ckeditor5';
+
+    window.editorInstances = {};
 
                 ClassicEditor
                     .create(newEditorElement, {})
