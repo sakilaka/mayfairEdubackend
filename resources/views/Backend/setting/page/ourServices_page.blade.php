@@ -327,7 +327,7 @@
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            const editorKey = `description[]`;
+            const editorKey = `service_large_long_description[]`;
 
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
@@ -420,7 +420,7 @@
                                 Description
                                 <span class="text-danger">*</span>
                             </label>
-                            <textarea name="description[]" class="form-control editor"></textarea>
+                            <textarea name="service_large_long_description[]" class="form-control editor"></textarea>
                         </div>
                     </div>
 
