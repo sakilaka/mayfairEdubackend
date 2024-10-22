@@ -120,12 +120,23 @@
                                                     class="form-control" value="{{ $delegate['designation'] ?? '' }}"
                                                     placeholder="Enter Designation" required>
                                             </div>
-
-                                            <div class="form-group col-md-12">
-                                                <label class="col-form-label pt-0">Description
+                                            
+                                            <div class="form-group col-md-6">
+                                                <label class="col-form-label pt-0">Organization Name
+                                                    <span class="text-danger">*</span>
                                                 </label>
+                                                <input type="text" name="delegate_{{ $delegate_key }}[organization_name]"
+                                                    class="form-control" value="{{ $delegate['organization_name'] ?? '' }}"
+                                                    placeholder="Enter Organization Name" required>
+                                            </div>
 
-                                                <textarea name="delegate_{{ $delegate_key }}[description]" class="form-control editor">{!! $delegate['description'] ?? '' !!}</textarea>
+                                            <div class="form-group col-md-6">
+                                                <label class="col-form-label pt-0">Country
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <input type="text" name="delegate_{{ $delegate_key }}[country]"
+                                                    class="form-control" value="{{ $delegate['country'] ?? '' }}"
+                                                    placeholder="Enter Country" required>
                                             </div>
                                         </div>
 
