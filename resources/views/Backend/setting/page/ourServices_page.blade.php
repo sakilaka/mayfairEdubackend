@@ -327,17 +327,18 @@
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            const editorKey = 'service_large_long[]';
+            const editorKey = 'service_large_long_description[]';
 
             if (!window.editorInstances) {
                 window.editorInstances = {};
             }
-            console.log(window.editorInstances);
 
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
                 const editorInstance = window.editorInstances[editorKey];
+                console.log(editorInstance);
+
                 editorInstance.setData('');
             }
 
@@ -425,7 +426,7 @@
                                 Description
                                 <span class="text-danger">*</span>
                             </label>
-                            <textarea name="service_large_long[]" class="form-control editor"></textarea>
+                            <textarea name="service_large_long_description[]" class="form-control editor"></textarea>
                         </div>
                     </div>
 
