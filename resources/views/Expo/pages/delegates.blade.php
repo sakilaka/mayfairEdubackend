@@ -64,7 +64,7 @@
                                     <div class="d-flex justify-content-center">
                                         <img class="testimonial-user-img"
                                             src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                            alt="" style="border-radius:10px;">
+                                            alt="" style="border-radius:10px; background-color:var(--secondary_background)">
                                     </div>
 
                                     <div {{-- style="height: 70px" --}}>
