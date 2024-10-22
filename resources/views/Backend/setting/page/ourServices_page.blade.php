@@ -360,6 +360,13 @@
                                                                                     value="{{ $service['description'] }}"
                                                                                     required>
                                                                             </div>
+                                                                            <div class="form-group">
+                                                                                <label class="form-label fw-bold">Long
+                                                                                    Description
+                                                                                    <span class="text-danger">*</span>
+                                                                                </label>
+                                                                                <textarea name="long_description" class="form-control editor"></textarea>
+                                                                            </div>
                                                                         </div>
 
                                                                         <div class="col-12 border-top"></div>
@@ -480,7 +487,8 @@
     </div>
 
     @include('Backend.components.script')
-
+    @include('Backend.components.ckeditor5-config')
+    
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
     <script>
         $(document).on('change', `.dropify`, function() {
