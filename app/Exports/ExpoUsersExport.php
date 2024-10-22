@@ -7,11 +7,15 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 
 class ExpoUsersExport implements FromCollection
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
+    protected $expoUser;
+
+    public function __construct($expoUser)
+    {
+        $this->expoUser = $expoUser;
+    }
+
     public function collection()
     {
-        return ExpoUser::all();
+        return $this->expoUser;
     }
 }

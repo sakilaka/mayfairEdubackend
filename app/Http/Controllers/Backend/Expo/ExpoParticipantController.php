@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend\Expo;
 
+use App\Exports\ExpoUsersExport;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailsJob;
 use App\Mail\SendExpoEmail;
@@ -14,6 +15,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ExpoParticipantController extends Controller
 {
@@ -140,7 +142,7 @@ class ExpoParticipantController extends Controller
             abort(500, 'Server Error');
         }
 
-        return $expoUser;
+        return Excel::download(new ExpoUsersExport($expoUser), 'expo_participators.xlsx');
     }
 
     /**
