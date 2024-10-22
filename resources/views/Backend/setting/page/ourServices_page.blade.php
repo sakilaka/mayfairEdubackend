@@ -701,19 +701,6 @@
             `;
             $('.services-large-container').prepend(myvar);
             $(`.dropify`).dropify();
-
-            $('.editor').each(function() {
-                if (!this.ckeditorInstance) {
-                    ClassicEditor
-                        .create(this)
-                        .then(editor => {
-                            this.ckeditorInstance = editor;
-                        })
-                        .catch(error => {
-                            console.error('There was a problem initializing CKEditor:', error);
-                        });
-                }
-            });
         });
 
         $(document).on('click', '.remove-services-large', function() {
