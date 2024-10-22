@@ -304,16 +304,6 @@
     @include('Backend.components.ckeditor5-config')
 
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
-
-    <script type="importmap">
-{
-    "imports": {
-        "ckeditor5": "{{ asset('backend/lib/ckeditor5/ckeditor5.js') }}",
-        "ckeditor5/": "{{ asset('backend/lib/ckeditor5/') }}"
-    }
-}
-</script>
-
     <script>
         $(document).on('change', `.dropify`, function() {
             var fileInput = $(this)[0];
@@ -337,79 +327,13 @@
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            const editorKey = `service_large_long_description[${randomNumber}]`;
+            const editorKey = `service_large_long_description[]`;
 
-            /* if (!window.editorInstances || !window.editorInstances[editorKey]) {
+            if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
                 const editorInstance = window.editorInstances[editorKey];
                 editorInstance.setData('');
-            } */
-
-            if (!window.editorInstances[editorKey]) {
-                const newEditorElement = document.querySelector(`textarea[name="${editorKey}"]`);
-                console.log(newEditorElement);
-
-                import {
-        ClassicEditor,
-        Essentials,
-        Heading,
-        Paragraph,
-        Clipboard,
-        Bold,
-        Italic,
-        Link,
-        Alignment,
-        Font,
-        Indent,
-        IndentBlock,
-        BlockQuote,
-        List,
-        ImageUpload,
-        Image,
-        ImageInsert,
-        ImageToolbar,
-        LinkImage,
-        ImageCaption,
-        ImageResize,
-        ImageStyle,
-        AutoImage,
-        Base64UploadAdapter /* SimpleUploadAdapter */ ,
-        CodeBlock,
-        Autoformat,
-        FindAndReplace,
-        Highlight,
-        HorizontalLine,
-        TodoList,
-        MediaEmbed,
-        RemoveFormat,
-        ShowBlocks,
-        SourceEditing,
-        SpecialCharacters,
-        SpecialCharactersEssentials,
-        Table,
-        TableToolbar,
-        TableCellProperties,
-        TableProperties,
-        TableColumnResize,
-        TableCaption,
-        WordCount
-    } from 'ckeditor5';
-
-    window.editorInstances = {};
-
-                ClassicEditor
-                    .create(newEditorElement, {})
-                    .then(editor => {
-                        // Store the instance in the global editorInstances object
-                        window.editorInstances[editorKey] = editor;
-                        console.log(`New CKEditor instance created for '${editorKey}'.`);
-                    })
-                    .catch(error => {
-                        console.error('There was a problem initializing CKEditor for the new textarea:', error);
-                    });
-            } else {
-                console.log(`Editor instance for '${editorKey}' already exists.`);
             }
 
             var myvar = `
