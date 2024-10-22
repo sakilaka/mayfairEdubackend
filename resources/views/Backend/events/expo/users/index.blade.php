@@ -331,31 +331,16 @@
         $('select').select2();
 
         $('#download-data-excel-btn').on('click', function(e) {
-            e.preventDefault(); // Prevent default link behavior
+            e.preventDefault(); 
 
             $.ajax({
                 url: '{{ $download_data_excel_route }}',
                 method: 'GET',
-                xhrFields: {
-                    responseType: 'blob'
-                },
                 success: function(response) {
-                    var blob = new Blob([response], {
-                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                    });
-
-                    var link = document.createElement('a');
-                    link.href = window.URL.createObjectURL(blob);
-                    link.download = 'expo_users.xlsx';
-
-                    document.body.appendChild(link);
-                    link.click();
-
-                    document.body.removeChild(link);
+                    
                 },
                 error: function(error) {
                     console.error('Download failed:', error);
-                    alert('Error downloading the file. Please try again.');
                 }
             });
         });
