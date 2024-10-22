@@ -604,7 +604,7 @@
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
-                const editorInstance = window.editorInstances[editorKey];
+                const editorInstance = window.editorInstances[editorKey];                
                 editorInstance.setData('');
             }
 
