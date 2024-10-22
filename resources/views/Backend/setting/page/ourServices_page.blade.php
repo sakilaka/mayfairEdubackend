@@ -365,7 +365,7 @@
                                                                                     Description
                                                                                     <span class="text-danger">*</span>
                                                                                 </label>
-                                                                                <textarea name="service_large_description[]" class="form-control editor"></textarea>
+                                                                                <textarea name="service_large_description[]" class="form-control editor">{{ $service['service_large_description'] }}</textarea>
                                                                             </div>
                                                                         </div>
 
@@ -434,7 +434,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-11 mt-2">
+                                                                        <div class="col-12 mt-2">
                                                                             <div class="form-group">
                                                                                 <label class="form-label fw-bold">Title
                                                                                     (2-3 Words)
@@ -455,6 +455,13 @@
                                                                                     class="form-control form-control-lg"
                                                                                     name="service_large_description[]"
                                                                                     required>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label class="form-label fw-bold">Long
+                                                                                    Description
+                                                                                    <span class="text-danger">*</span>
+                                                                                </label>
+                                                                                <textarea name="service_large_description[]" class="form-control editor"></textarea>
                                                                             </div>
                                                                         </div>
 
