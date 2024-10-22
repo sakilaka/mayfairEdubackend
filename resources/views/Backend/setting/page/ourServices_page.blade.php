@@ -332,8 +332,6 @@
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
                 const editorInstance = window.editorInstances[editorKey];
-                console.log('new instance ' + editorInstance);
-
                 editorInstance.setData('');
             }
 
