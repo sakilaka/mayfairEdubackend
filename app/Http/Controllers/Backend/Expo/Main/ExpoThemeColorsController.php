@@ -14,7 +14,7 @@ class ExpoThemeColorsController extends Controller
     public function expo_theme_colors($expo_id)
     {
         $data['expo'] = Expo::where('unique_id', $expo_id)->select('unique_id', 'title', 'theme_colors')->first();
-        return view('Backend.events.expo.main.join.index', $data);
+        return view('Backend.events.expo.main.theme_colors.index', $data);
     }
 
     /**
