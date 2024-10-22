@@ -40,6 +40,11 @@
                             @endphp
 
                             <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                                Download Data (Excel)
+                            </a>
+                            
+                            <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
                                 Add Participator
                             </a>
