@@ -60,13 +60,15 @@
 <meta property="og:image:width" content="600" />
 <meta property="og:image:height" content="315" />
 
+@php
+    $theme_colors = json_decode($expo->theme_colors, true);
+@endphp
 <style>
     :root {
-        --primary_background: #0c4493;
+        --primary_background: {{ $theme_colors['primary_color'] ?? '#0c4493' }};
         --primary_background_hover: #3a62a0;
-        --secondary_background: #58b135;
+        --secondary_background: {{ $theme_colors['secondary_color'] ?? '#58b135' }};
         --secondary_background_hover: #357e61;
-        --tertiary_background: #c0392b;
 
         --btn_primary_color: var(--primary_background);
         --btn_primary_hover_color: var(--primary_background_hover);
