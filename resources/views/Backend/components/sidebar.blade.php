@@ -566,6 +566,7 @@
                     Route::is('admin.expo.media.gallery') ||
                     Route::is('admin.expo.media.video') ||
                     Route::is('admin.expo.join.index') ||
+                    Route::is('admin.expo.theme_colors.index') ||
                     (Route::is('admin.expo.users') && request()->type == 'main') ||
                     (Route::is('admin.expo.users.filter') && request()->type == 'main') ||
                     (Route::is('admin.expo.add_participator') && request()->type == 'main');
@@ -592,7 +593,8 @@
                                 Route::is('admin.expo.delegate.manage') ||
                                 Route::is('admin.expo.media.gallery') ||
                                 Route::is('admin.expo.media.video') ||
-                                Route::is('admin.expo.join.index');
+                                Route::is('admin.expo.join.index') ||
+                                Route::is('admin.expo.theme_colors.index');
                         @endphp
                         <li class="nav-item d-none d-lg-block">
                             <a href="{{ route('admin.expo.index') }}"
