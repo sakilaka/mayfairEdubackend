@@ -334,7 +334,6 @@
                 const editorInstance = window.editorInstances[editorKey];
                 editorInstance.setData('');
             }
-console.log(editorKey);
 
             var myvar = `
                 <div class="row align-items-center mt-2">
