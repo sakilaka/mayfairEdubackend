@@ -28,6 +28,7 @@ class ExpoUsersExport implements FromCollection, WithHeadings
             return [
                 'Ticket Number',
                 'Expo ID',
+                'Expo Title',
                 'Email',
                 'First Name',
                 'Last Name',
@@ -54,6 +55,43 @@ class ExpoUsersExport implements FromCollection, WithHeadings
                 'Institution',
                 'Program',
                 'Degree',
+            ];
+        }
+    }
+
+    public function map($expoUser): array
+    {
+        if ($this->type === 'main') {
+            return [
+                $expoUser->ticket_no,
+                $expoUser->expo_id,
+                $expoUser->expo_title,
+                $expoUser->email,
+                $expoUser->first_name,
+                $expoUser->last_name,
+                $expoUser->nationality,
+                $expoUser->sex,
+                $expoUser->dob,
+                $expoUser->phone,
+                $expoUser->profession,
+                $expoUser->institution,
+                $expoUser->program,
+                $expoUser->degree,
+            ];
+        } elseif ($this->type === 'site') {
+            return [
+                $expoUser->ticket_no,
+                $expoUser->email,
+                $expoUser->first_name,
+                $expoUser->last_name,
+                $expoUser->nationality,
+                $expoUser->sex,
+                $expoUser->dob,
+                $expoUser->phone,
+                $expoUser->profession,
+                $expoUser->institution,
+                $expoUser->program,
+                $expoUser->degree,
             ];
         }
     }
