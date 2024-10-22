@@ -105,7 +105,44 @@ class ExpoParticipantController extends Controller
      */
     public function expo_download_data_excel(Request $request, $type)
     {
-        return $type;
+        if ($type === 'main') {
+            $expoUser = ExpoUser::select([
+                'ticket_no',
+                'expo_id',
+                'email',
+                'first_name',
+                'last_name',
+                'nationality',
+                'sex',
+                'dob',
+                'phone',
+                'profession',
+                'institution',
+                'program',
+                'degree',
+            ])->get();
+        } elseif ($type === 'site') {
+            /* $expoUser = ExpoModule::select([
+                'ticket_no',
+                'expo_id',
+                'email',
+                'first_name',
+                'last_name',
+                'nationality',
+                'sex',
+                'dob',
+                'phone',
+                'profession',
+                'institution',
+                'program',
+                'degree',
+            ])->get(); */
+            $expoUser = ExpoModule::all();
+        } else {
+            abort(500, 'Server Error');
+        }
+
+        return $expoUser;
     }
 
     /**
