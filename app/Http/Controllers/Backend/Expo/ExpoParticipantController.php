@@ -123,6 +123,8 @@ class ExpoParticipantController extends Controller
                 'program',
                 'degree',
             ])->get();
+
+            $expo_title = Expo::where('unique_id', $expoUser['expo_id'])->select('title')->first();
         } elseif ($type === 'site') {
             $expoUser = ExpoModule::select([
                 'ticket_no',
