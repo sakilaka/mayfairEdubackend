@@ -327,13 +327,31 @@
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            const editorKey = `service_large_long_description_${randomNumber}`;
+            const editorKey = `service_large_long_description[${randomNumber}]`;
 
-            if (!window.editorInstances || !window.editorInstances[editorKey]) {
+            /* if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
                 const editorInstance = window.editorInstances[editorKey];
                 editorInstance.setData('');
+            } */
+
+            if (!window.editorInstances[editorKey]) {
+                const newEditorElement = document.querySelector(`textarea[name="${editorKey}"]`);
+                console.log(newEditorElement);
+
+                ClassicEditor
+                    .create(newEditorElement, {})
+                    .then(editor => {
+                        // Store the instance in the global editorInstances object
+                        window.editorInstances[editorKey] = editor;
+                        console.log(`New CKEditor instance created for '${editorKey}'.`);
+                    })
+                    .catch(error => {
+                        console.error('There was a problem initializing CKEditor for the new textarea:', error);
+                    });
+            } else {
+                console.log(`Editor instance for '${editorKey}' already exists.`);
             }
 
             var myvar = `
@@ -429,25 +447,6 @@
             `;
             $('.services-large-container').prepend(myvar);
             $(`.dropify`).dropify();
-
-            if (!window.editorInstances[editorKey]) {
-                const newEditorElement = document.querySelector(`textarea[name="${editorKey}"]`);
-console.log(newEditorElement);
-
-                ClassicEditor
-                    .create(newEditorElement, {
-                    })
-                    .then(editor => {
-                        // Store the instance in the global editorInstances object
-                        window.editorInstances[editorKey] = editor;
-                        console.log(`New CKEditor instance created for '${editorKey}'.`);
-                    })
-                    .catch(error => {
-                        console.error('There was a problem initializing CKEditor for the new textarea:', error);
-                    });
-            } else {
-                console.log(`Editor instance for '${editorKey}' already exists.`);
-            }
         });
 
         $(document).on('click', '.remove-services-large', function() {
