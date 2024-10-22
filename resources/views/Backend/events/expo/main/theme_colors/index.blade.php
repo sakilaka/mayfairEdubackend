@@ -40,6 +40,9 @@
                                         data-validate="parsley" id="DataEntry_formId" enctype="multipart/form-data">
                                         @csrf
 
+                                        @php
+                                            $theme_colors = json_decode($expo->theme_colors, true);
+                                        @endphp
                                         <div class="row">
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="form-group">
@@ -48,7 +51,7 @@
                                                         <div class="asColorPicker-wrap">
                                                             <input type="text" name="primary_color"
                                                                 class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['primary_color'] ?? '#0c4493' }}">
+                                                                value="{{ $theme_colors['primary_color'] ?? '#0c4493' }}">
                                                         </div>
                                                 </div>
                                             </div>
@@ -59,11 +62,11 @@
                                                         <div class="asColorPicker-wrap">
                                                             <input type="text" name="primary_hover_color"
                                                                 class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['primary_hover_color'] ?? '#3a62a0' }}">
+                                                                value="{{ $theme_colors['primary_hover_color'] ?? '#3a62a0' }}">
                                                         </div>
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="col-md-6 col-lg-3">
                                                 <div class="form-group">
                                                     <label class="font-weight-bold text-muted">
@@ -71,7 +74,7 @@
                                                         <div class="asColorPicker-wrap">
                                                             <input type="text" name="secondary_color"
                                                                 class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['secondary_color'] ?? '#58b135' }}">
+                                                                value="{{ $theme_colors['secondary_color'] ?? '#58b135' }}">
                                                         </div>
                                                 </div>
                                             </div>
@@ -82,7 +85,7 @@
                                                         <div class="asColorPicker-wrap">
                                                             <input type="text" name="secondary_hover_color"
                                                                 class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['secondary_hover_color'] ?? '#357e61' }}">
+                                                                value="{{ $theme_colors['secondary_hover_color'] ?? '#357e61' }}">
                                                         </div>
                                                 </div>
                                             </div>

@@ -62,7 +62,6 @@
 
 @php
     $theme_colors = json_decode($expo->theme_colors, true);
-    dd($theme_colors);
 @endphp
 <style>
     :root {
