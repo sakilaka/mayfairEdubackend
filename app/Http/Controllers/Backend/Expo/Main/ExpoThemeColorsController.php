@@ -33,9 +33,9 @@ class ExpoThemeColorsController extends Controller
                 'theme_colors' => json_encode($request->except('_token'))
             ]);
 
-            return redirect(route('admin.expo.index'))->with('success', 'Theme colors has been updated for expo - ' . $expo->title);
+            return redirect()->back()->with('success', 'Theme colors has been updated for expo - ' . $expo->title);
         } catch (\Exception $e) {
-            return redirect(route('admin.expo.index'))->with('error', 'Something Went Wrong!');
+            return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
 }

@@ -57,7 +57,7 @@
                                                     <label class="font-weight-bold text-muted">
                                                         Primary Hover Color
                                                         <div class="asColorPicker-wrap">
-                                                            <input type="text" name="primary_color"
+                                                            <input type="text" name="primary_hover_color"
                                                                 class="form-control color-picker asColorPicker-input"
                                                                 value="{{ $theme_color['primary_hover_color'] ?? '#3a62a0' }}">
                                                         </div>
@@ -80,7 +80,7 @@
                                                     <label class="font-weight-bold text-muted">
                                                         Secondary Hover Color
                                                         <div class="asColorPicker-wrap">
-                                                            <input type="text" name="secondary_color"
+                                                            <input type="text" name="secondary_hover_color"
                                                                 class="form-control color-picker asColorPicker-input"
                                                                 value="{{ $theme_color['secondary_hover_color'] ?? '#357e61' }}">
                                                         </div>
