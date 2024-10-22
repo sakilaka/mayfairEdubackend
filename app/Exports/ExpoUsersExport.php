@@ -28,7 +28,6 @@ class ExpoUsersExport implements FromCollection, WithHeadings
             return [
                 'Ticket Number',
                 'Expo ID',
-                'Expo Title', // Make sure this is here
                 'Email',
                 'First Name',
                 'Last Name',
@@ -40,6 +39,7 @@ class ExpoUsersExport implements FromCollection, WithHeadings
                 'Institution',
                 'Program',
                 'Degree',
+                'Expo Title',
             ];
         } elseif ($this->type === 'site') {
             return [
@@ -61,12 +61,10 @@ class ExpoUsersExport implements FromCollection, WithHeadings
 
     public function map($expoUser): array
     {
-        // Ensure expo_title is returned in the correct order for the 'main' type
         if ($this->type === 'main') {
             return [
                 $expoUser->ticket_no,
                 $expoUser->expo_id,
-                $expoUser->expo_title, // Ensure this is in the correct position
                 $expoUser->email,
                 $expoUser->first_name,
                 $expoUser->last_name,
@@ -78,6 +76,7 @@ class ExpoUsersExport implements FromCollection, WithHeadings
                 $expoUser->institution,
                 $expoUser->program,
                 $expoUser->degree,
+                $expoUser->expo_title,
             ];
         } elseif ($this->type === 'site') {
             return [
