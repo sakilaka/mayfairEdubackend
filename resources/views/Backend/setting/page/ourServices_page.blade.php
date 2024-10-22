@@ -518,9 +518,9 @@
 
         /* add service mini */
         /* $('#add-services-mini').on('click', function() {
-            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+                var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            var myvar = `
+                var myvar = `
         <div class="row align-items-center mt-2">
             <div
                 class="col-sm-12 col-md-6 mt-3 img-upload-container">
@@ -588,13 +588,13 @@
             <div class="col-12 border-top"></div>
         </div>
     `;
-            $('.services-mini-container').prepend(myvar);
-            $(`.dropify`).dropify();
-        });
+                $('.services-mini-container').prepend(myvar);
+                $(`.dropify`).dropify();
+            });
 
-        $(document).on('click', '.remove-services-mini', function() {
-            $(this).parent().parent().remove();
-        }); */
+            $(document).on('click', '.remove-services-mini', function() {
+                $(this).parent().parent().remove();
+            }); */
 
         /* add service large */
         $('#add-services-large').on('click', function() {
@@ -701,6 +701,19 @@
             `;
             $('.services-large-container').prepend(myvar);
             $(`.dropify`).dropify();
+
+            $('.editor').each(function() {
+                if (!this.ckeditorInstance) {
+                    ClassicEditor
+                        .create(this)
+                        .then(editor => {
+                            this.ckeditorInstance = editor;
+                        })
+                        .catch(error => {
+                            console.error('There was a problem initializing CKEditor:', error);
+                        });
+                }
+            });
         });
 
         $(document).on('click', '.remove-services-large', function() {
