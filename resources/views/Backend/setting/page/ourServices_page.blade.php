@@ -336,7 +336,7 @@
                                                                             </div>
                                                                         </div>
 
-                                                                        <div class="col-11 mt-2">
+                                                                        <div class="col-12 mt-2">
                                                                             <div class="form-group">
                                                                                 <label class="form-label fw-bold">Title
                                                                                     (2-3 Words)
@@ -488,7 +488,7 @@
 
     @include('Backend.components.script')
     @include('Backend.components.ckeditor5-config')
-    
+
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
     <script>
         $(document).on('change', `.dropify`, function() {
