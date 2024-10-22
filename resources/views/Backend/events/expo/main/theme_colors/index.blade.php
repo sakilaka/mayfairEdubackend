@@ -19,6 +19,14 @@
                         <h3 class="page-title">
                             {{ __('Theme Color') }}
                         </h3>
+
+                        <nav aria-label="breadcrumb" class="d-flex justify-content-around align-items-center">
+                            <a href="{{ route('admin.expo.index') }}" class="btn btn-secondary-bg"
+                                style="margin-right:5px;">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                View All Expo
+                            </a>
+                        </nav>
                     </div>
 
                     <div class="row">
@@ -28,8 +36,8 @@
                                     aria-labelledby="home-tab-vertical">
 
                                     <form novalidate="" method="post"
-                                        action="{{ route('backend.theme-options-color-save') }}" data-validate="parsley"
-                                        id="DataEntry_formId" enctype="multipart/form-data">
+                                        action="{{ route('admin.expo.theme_colors.update', ['expo_id' => $expo->unique_id]) }}"
+                                        data-validate="parsley" id="DataEntry_formId" enctype="multipart/form-data">
                                         @csrf
 
                                         <div class="row">

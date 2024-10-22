@@ -22,6 +22,6 @@ class ExpoThemeColorsController extends Controller
      */
     public function expo_theme_colors_update(Request $request, $expo_id)
     {
-        
+        return $request->all();
     }
 }
