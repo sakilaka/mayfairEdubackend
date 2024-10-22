@@ -105,7 +105,7 @@ class ExpoParticipantController extends Controller
     /**
      * download excel data
      */
-    public function expo_download_data_excel(Request $request, $type)
+    public function expo_download_data_excel($type)
     {
         if ($type === 'main') {
             $expoUser = ExpoUser::select([
@@ -142,7 +142,7 @@ class ExpoParticipantController extends Controller
             abort(500, 'Server Error');
         }
 
-        return Excel::download(new ExpoUsersExport($expoUser), 'expo_participators.xlsx');
+        return Excel::download(new ExpoUsersExport($expoUser, $type), 'expo_participators.xlsx');
     }
 
     /**
