@@ -22,6 +22,20 @@ class ExpoThemeColorsController extends Controller
      */
     public function expo_theme_colors_update(Request $request, $expo_id)
     {
-        return $request->all();
+        $expo = Expo::where('unique_id', $expo_id)->first();
+
+        if (!$expo) {
+            redirect(route('admin.expo.index'))->with('error', 'Something Wrong With Expo');
+        }
+
+        try {
+            $expo->update([
+                'theme_colors' => json_encode($request->except('_token'))
+            ]);
+
+            return redirect(route('admin.expo.index'))->with('success', 'Theme colors has been updated for expo - ' . $expo->title);
+        } catch (\Exception $e) {
+            return redirect(route('admin.expo.index'))->with('error', 'Something Went Wrong!');
+        }
     }
 }
