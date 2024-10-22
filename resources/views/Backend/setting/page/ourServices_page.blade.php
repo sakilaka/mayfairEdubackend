@@ -328,6 +328,11 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             const editorKey = 'service_large_long[]';
+
+            if (!window.editorInstances) {
+                window.editorInstances = {};
+            }
+
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
