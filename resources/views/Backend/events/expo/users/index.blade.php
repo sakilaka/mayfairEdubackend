@@ -334,9 +334,9 @@
             $.ajax({
                 url: '{{ $download_data_excel_route }}',
                 method: 'GET',
-                data:
+                data: '',
                 success: function(response) {
-                    
+
                 },
                 error: function(error) {
                     console.error('Download failed:', error);
