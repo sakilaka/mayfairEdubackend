@@ -123,20 +123,18 @@
                                             
                                             <div class="form-group col-md-6">
                                                 <label class="col-form-label pt-0">Organization Name
-                                                    <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" name="delegate_{{ $delegate_key }}[organization_name]"
                                                     class="form-control" value="{{ $delegate['organization_name'] ?? '' }}"
-                                                    placeholder="Enter Organization Name" required>
+                                                    placeholder="Enter Organization Name">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label class="col-form-label pt-0">Country
-                                                    <span class="text-danger">*</span>
                                                 </label>
                                                 <input type="text" name="delegate_{{ $delegate_key }}[country]"
                                                     class="form-control" value="{{ $delegate['country'] ?? '' }}"
-                                                    placeholder="Enter Country" required>
+                                                    placeholder="Enter Country">
                                             </div>
                                         </div>
 
