@@ -69,6 +69,11 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::post('update', [ExpoJoinController::class, 'expo_join_page_update'])->name('admin.expo.join.update');
     });
 
+    Route::prefix('{expo_id}/theme-colors')->group(function () {
+        Route::get('/', [ExpoMediaController::class, 'expo_theme_colors'])->name('admin.expo.theme_colors.index');
+        Route::post('update', [ExpoMediaController::class, 'expo_theme_colors_update'])->name('admin.expo.theme_colors.update');
+    });
+
     Route::prefix('users')->group(function () {
         Route::get('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo.users');
         Route::post('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo.users.filter');
