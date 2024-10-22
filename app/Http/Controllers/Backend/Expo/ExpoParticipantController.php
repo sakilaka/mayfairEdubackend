@@ -101,6 +101,14 @@ class ExpoParticipantController extends Controller
     }
 
     /**
+     * download excel data
+     */
+    public function expo_download_data_excel(Request $request, $type)
+    {
+        return $type;
+    }
+
+    /**
      * view expo participant data
      */
     public function expo_view_participant(Request $request)
