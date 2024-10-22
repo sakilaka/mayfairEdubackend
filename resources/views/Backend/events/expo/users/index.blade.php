@@ -45,7 +45,7 @@
                             @endphp
 
 
-                            <a href="{{ $download_data_excel_route }}" class="btn btn-secondary-bg">
+                            <a href="javascript:void(0);" id="download-data-excel-btn" class="btn btn-secondary-bg">
                                 <i class="fa fa-download" aria-hidden="true"></i>
                                 Download Data (Excel)
                             </a>
@@ -329,6 +329,36 @@
     <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
     <script>
         $('select').select2();
+
+        $('#download-data-excel-btn').on('click', function(e) {
+            e.preventDefault(); // Prevent default link behavior
+
+            $.ajax({
+                url: '{{ $download_data_excel_route }}',
+                method: 'GET',
+                xhrFields: {
+                    responseType: 'blob'
+                },
+                success: function(response) {
+                    var blob = new Blob([response], {
+                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                    });
+
+                    var link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.download = 'expo_users.xlsx';
+
+                    document.body.appendChild(link);
+                    link.click();
+
+                    document.body.removeChild(link);
+                },
+                error: function(error) {
+                    console.error('Download failed:', error);
+                    alert('Error downloading the file. Please try again.');
+                }
+            });
+        });
     </script>
 
     <script>
