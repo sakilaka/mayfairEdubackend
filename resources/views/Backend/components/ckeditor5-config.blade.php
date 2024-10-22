@@ -229,7 +229,9 @@
                 } */
             })
             .then(editor => {
-                const editorKey = editorElement.getAttribute('name') || editorElement.id || editorElement.classList.contains('editor');                
+                const editorKey = editorElement.getAttribute('name') || editorElement.id || editorElement.classList.contains('editor');    
+                console.log(editorKey);
+                            
                 window.editorInstances[editorKey] = editor;
             })
             .catch(error => {
