@@ -429,6 +429,25 @@
             `;
             $('.services-large-container').prepend(myvar);
             $(`.dropify`).dropify();
+
+            if (!window.editorInstances[editorKey]) {
+                const newEditorElement = document.querySelector(`textarea[name="${editorKey}"]`);
+console.log(newEditorElement);
+
+                ClassicEditor
+                    .create(newEditorElement, {
+                    })
+                    .then(editor => {
+                        // Store the instance in the global editorInstances object
+                        window.editorInstances[editorKey] = editor;
+                        console.log(`New CKEditor instance created for '${editorKey}'.`);
+                    })
+                    .catch(error => {
+                        console.error('There was a problem initializing CKEditor for the new textarea:', error);
+                    });
+            } else {
+                console.log(`Editor instance for '${editorKey}' already exists.`);
+            }
         });
 
         $(document).on('click', '.remove-services-large', function() {
