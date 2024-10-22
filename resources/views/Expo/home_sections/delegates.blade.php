@@ -14,39 +14,34 @@
                     style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
                     What Our Overseas Delegates Are Saying
                 </p>
-                <div class="row delegates-slick-carousel slick-slider">
+
+                <div class="row {{-- delegates-slick-carousel slick-slider --}}">
                     @foreach ($delegates as $delegate)
-                        <div class="d-lg-flex flex-lg-column col-md-6 col-lg-4 justify-content-center p-2">
+                        <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
                             <div class="testimonial-single-card bg-white p-3">
                                 <div class="d-flex justify-content-center">
                                     <img class="testimonial-user-img"
                                         src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
                                         alt=""
-                                        style="border-radius:10px;">
+                                        style="border-radius:10px; background-color:var(--secondary_background)">
                                 </div>
 
-                                <div style="height: 70px">
+                                <div {{-- style="height: 70px" --}}>
                                     <p class="mb-0 fw-bold mt-2 text-center"
                                         style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
-                                        {{ $delegate['name'] }}
+                                        {!! $delegate['name'] ?? '&nbsp;' !!}
                                     </p>
                                     <p class="mb-0 text-center"
                                         style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                        {{ $delegate['designation'] }}
+                                        {!! $delegate['designation'] ?? '&nbsp;' !!}
                                     </p>
-                                </div>
-
-                                <div class="my-2 mt-3">
-                                    <img src="{{ asset('frontend/images/left-quotes-sign.png') }}" alt=""
-                                        style="width:1rem">
-                                </div>
-                                <div class="testimonial-content">
-                                    @php
-                                        $description = strip_tags($delegate['description']);
-                                    @endphp
-                                    <p class="mb-0 ckeditor5-rendered testimonial-comment"
-                                        data-full-comment="{{ $description }}">
-                                        {!! $description !!}
+                                    <p class="mb-0 text-center"
+                                        style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+                                        {!! $delegate['organization_name'] ?? '&nbsp;' !!}
+                                    </p>
+                                    <p class="mb-0 text-center"
+                                        style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
+                                        {!! $delegate['country'] ?? '&nbsp;' !!}
                                     </p>
                                 </div>
                             </div>

@@ -55,17 +55,6 @@
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label class="font-weight-bold text-muted">
-                                                        Tertiary Color
-                                                        <div class="asColorPicker-wrap">
-                                                            <input type="text" name="tertiary_color"
-                                                                class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['tertiary_color'] ?? '#f40000' }}">
-                                                        </div>
-                                                </div>
-                                            </div>
                                         </div>
 
                                         <div class="row tabs-footer mt-15">
