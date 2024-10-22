@@ -41,25 +41,48 @@
                                         @csrf
 
                                         <div class="row">
-                                            <div class="col-md-4">
+                                            <div class="col-md-6 col-lg-3">
                                                 <div class="form-group">
                                                     <label class="font-weight-bold text-muted">
                                                         Primary Color
                                                         <div class="asColorPicker-wrap">
                                                             <input type="text" name="primary_color"
                                                                 class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['primary_color'] ?? '#068b76' }}">
+                                                                value="{{ $theme_color['primary_color'] ?? '#0c4493' }}">
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            <div class="col-md-6 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold text-muted">
+                                                        Primary Hover Color
+                                                        <div class="asColorPicker-wrap">
+                                                            <input type="text" name="primary_color"
+                                                                class="form-control color-picker asColorPicker-input"
+                                                                value="{{ $theme_color['primary_hover_color'] ?? '#3a62a0' }}">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-md-6 col-lg-3">
                                                 <div class="form-group">
                                                     <label class="font-weight-bold text-muted">
                                                         Secondary Color
                                                         <div class="asColorPicker-wrap">
                                                             <input type="text" name="secondary_color"
                                                                 class="form-control color-picker asColorPicker-input"
-                                                                value="{{ $theme_color['secondary_color'] ?? '#1e565c' }}">
+                                                                value="{{ $theme_color['secondary_color'] ?? '#58b135' }}">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-lg-3">
+                                                <div class="form-group">
+                                                    <label class="font-weight-bold text-muted">
+                                                        Secondary Hover Color
+                                                        <div class="asColorPicker-wrap">
+                                                            <input type="text" name="secondary_color"
+                                                                class="form-control color-picker asColorPicker-input"
+                                                                value="{{ $theme_color['secondary_hover_color'] ?? '#357e61' }}">
                                                         </div>
                                                 </div>
                                             </div>
