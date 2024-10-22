@@ -70,19 +70,19 @@
                                     <div {{-- style="height: 70px" --}}>
                                         <p class="mb-0 fw-bold mt-2 text-center"
                                             style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
-                                            {{ $delegate['name'] ?? '&nbsp;' }}
+                                            {!! $delegate['name'] ?? '&nbsp;' !!}
                                         </p>
                                         <p class="mb-0 text-center"
                                             style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {{ $delegate['designation'] ?? '&nbsp;' }}
+                                            {!! $delegate['designation'] ?? '&nbsp;' !!}
                                         </p>
                                         <p class="mb-0 text-center"
                                             style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {{ $delegate['organization_name'] ?? '&nbsp;' }}
+                                            {!! $delegate['organization_name'] ?? '&nbsp;' !!}
                                         </p>
                                         <p class="mb-0 text-center"
                                             style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {{ $delegate['country'] ?? '&nbsp;' }}
+                                            {!! $delegate['country'] ?? '&nbsp;' !!}
                                         </p>
                                     </div>
                                 </div>
