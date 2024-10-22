@@ -365,7 +365,7 @@
                                                                                     Description
                                                                                     <span class="text-danger">*</span>
                                                                                 </label>
-                                                                                <textarea name="service_large_description[]" class="form-control editor">{{ $service['service_large_description'] }}</textarea>
+                                                                                <textarea name="service_large_long_description[]" class="form-control editor">{{ $service['service_large_description'] }}</textarea>
                                                                             </div>
                                                                         </div>
 
@@ -461,7 +461,7 @@
                                                                                     Description
                                                                                     <span class="text-danger">*</span>
                                                                                 </label>
-                                                                                <textarea name="service_large_description[]" class="form-control editor"></textarea>
+                                                                                <textarea name="service_large_long_description[]" class="form-control editor"></textarea>
                                                                             </div>
                                                                         </div>
 
@@ -600,7 +600,7 @@
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            const editorKey = 'service_large_description[]';
+            const editorKey = 'service_large_long_description[]';
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
             } else {
@@ -692,7 +692,7 @@
                                 Description
                                 <span class="text-danger">*</span>
                             </label>
-                            <textarea name="service_large_description[]" class="form-control editor"></textarea>
+                            <textarea name="service_large_long_description[]" class="form-control editor"></textarea>
                         </div>
                     </div>
 
