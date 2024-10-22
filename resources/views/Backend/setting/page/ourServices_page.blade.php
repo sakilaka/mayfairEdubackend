@@ -332,6 +332,7 @@
             if (!window.editorInstances) {
                 window.editorInstances = {};
             }
+            console.log(window.editorInstances);
 
             if (!window.editorInstances || !window.editorInstances[editorKey]) {
                 console.error(`Editor instance for '${editorKey}' not found.`);
