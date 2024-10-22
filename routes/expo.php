@@ -76,6 +76,7 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
         Route::post('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
 
+        Route::get('{type}/download-data-excel', [ExpoParticipantController::class, 'expo_download_data_excel'])->name('admin.expo.download_data_excel');
         Route::get('{type}/show-participant', [ExpoParticipantController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
     });
 });
@@ -116,6 +117,7 @@ Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
         Route::get('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
         Route::post('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
 
+        Route::get('{type}/download-data-excel', [ExpoParticipantController::class, 'expo_download_data_excel'])->name('admin.expo-site.download_data_excel');
         Route::get('{type}/show-participant', [ExpoParticipantController::class, 'expo_view_participant'])->name('admin.expo-site.show_participant');
     });
 });

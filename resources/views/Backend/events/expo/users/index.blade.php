@@ -37,21 +37,26 @@
                                     'site' => route('admin.expo-site.add_participator', ['type' => request()->type]),
                                     default => '#',
                                 };
+                                $download_data_excel_route = match (request()->type) {
+                                    'main' => route('admin.expo.download_data_excel', ['type' => request()->type]),
+                                    'site' => route('admin.expo-site.download_data_excel', ['type' => request()->type]),
+                                    default => '#',
+                                };
                             @endphp
 
-                            <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
+
+                            <a href="{{ $download_data_excel_route }}" class="btn btn-secondary-bg">
                                 <i class="fa fa-download" aria-hidden="true"></i>
                                 Download Data (Excel)
                             </a>
-                            
-                            <a href="{{ $add_participant_route }}" class="btn btn-secondary-bg">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                Add Participator
-                            </a>
-                            <button class="btn btn-primary-bg" data-toggle="modal" data-target="#sendMailToAllModal">
+                            <button class="btn btn-secondary-bg" data-toggle="modal" data-target="#sendMailToAllModal">
                                 <i class="fa fa-envelope" aria-hidden="true"></i>
                                 Send email to all
                             </button>
+                            <a href="{{ $add_participant_route }}" class="btn btn-primary-bg">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Add Participator
+                            </a>
                         </nav>
                     </div>
 
@@ -190,8 +195,8 @@
                                     <!-- Participant's Email (Readonly) -->
                                     <div class="form-group">
                                         <label for="participantEmail">Email</label>
-                                        <input type="email" class="form-control" id="participantEmail" name="email"
-                                            readonly>
+                                        <input type="email" class="form-control" id="participantEmail"
+                                            name="email" readonly>
                                     </div>
                                     <!-- Email Subject -->
                                     <div class="form-group">
