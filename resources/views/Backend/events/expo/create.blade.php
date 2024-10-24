@@ -951,9 +951,10 @@
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <h4 class="mb-3">Social Contents</h4>
 
-                                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg">
-                                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                                                Add
+                                                            <a href="javascript:void(0)"
+                                                                class="btn btn-primary-bg btn-sm m-0 ml-2">
+                                                                <i class="fas fa-plus">
+                                                                </i>
                                                             </a>
                                                         </div>
 
