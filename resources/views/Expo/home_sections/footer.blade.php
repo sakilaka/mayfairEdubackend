@@ -6,17 +6,23 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10">
-                <p class="text-light text-center mb-0">
-                    <span class="fw600">Organizer:</span> {{ $footer_contents['organizer_name'] ?? '' }}
-                </p>
+                @if ($footer_contents['organizer_name'])
+                    <p class="text-light text-center mb-0">
+                        <span class="fw600">Organizer:</span> {{ $footer_contents['organizer_name'] ?? '' }}
+                    </p>
+                @endif
 
-                <p class="text-light text-center mb-0">
-                    <span class="fw600">Co-Organizer:</span> {{ $footer_contents['co_organizer_name'] ?? '' }}
-                </p>
+                @if ($footer_contents['co_organizer_name'])
+                    <p class="text-light text-center mb-0">
+                        <span class="fw600">Co-Organizer:</span> {{ $footer_contents['co_organizer_name'] ?? '' }}
+                    </p>
+                @endif
 
-                <p class="text-light text-center mb-0">
-                    <span class="fw600">Supported by:</span> {{ $footer_contents['supported_by'] ?? '' }}
-                </p>
+                @if ($footer_contents['supported_by'])
+                    <p class="text-light text-center mb-0">
+                        <span class="fw600">Supported by:</span> {{ $footer_contents['supported_by'] ?? '' }}
+                    </p>
+                @endif
 
             </div>
 
