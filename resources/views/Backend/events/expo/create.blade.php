@@ -899,9 +899,9 @@
                                                 </div>
                                             </section>
 
-                                            <h3>Expo Details</h3>
+                                            <h3>Footer Contents</h3>
                                             <section>
-                                                <h4 class="mb-3">Expo Details</h4>
+                                                <h4 class="mb-3">Footer Contents</h4>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
