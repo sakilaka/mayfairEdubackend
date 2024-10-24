@@ -214,6 +214,42 @@ class ExpoController extends Controller
     public function update(Request $request, string $id)
     {
         return $request->footer_contents;
+
+        $footerContents = [];
+
+        // Organizer, co-organizer, and supported_by fields
+        $footerContents['organizer_name'] = $request->input('organizer_name');
+        $footerContents['co_organizer_name'] = $request->input('co_organizer_name');
+        $footerContents['supported_by'] = $request->input('supported_by');
+
+        // Social media contents (type, title, url)
+        $socialTypes = $request->input('footer_contents.social.type');
+        $socialTitles = $request->input('footer_contents.social.title');
+        $socialUrls = $request->input('footer_contents.social.url');
+
+        // Combine the social media data into an array
+        $footerContents['social'] = [
+            'type' => $socialTypes,
+            'title' => $socialTitles,
+            'url' => $socialUrls
+        ];
+
+        // Store organizer logo if provided
+        if ($request->hasFile('organizerLogo')) {
+            $organizerLogo = $request->file('organizerLogo');
+            $organizerLogoName = time() . '_organizer.' . $organizerLogo->getClientOriginalExtension();
+            // $organizerLogo->move(public_path('uploads/logos'), $organizerLogoName);
+            $footerContents['organizerLogo'] = $organizerLogoName;
+        }
+
+        // Store co-organizer logo if provided
+        if ($request->hasFile('co_organizerLogo')) {
+            $coOrganizerLogo = $request->file('co_organizerLogo');
+            $coOrganizerLogoName = time() . '_co_organizer.' . $coOrganizerLogo->getClientOriginalExtension();
+            // $coOrganizerLogo->move(public_path('uploads/logos'), $coOrganizerLogoName);
+            $footerContents['co_organizerLogo'] = $coOrganizerLogoName;
+        }
+return $footerContents;
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
