@@ -948,7 +948,7 @@
                                                     </div>
 
                                                     <div class="col-md-12 mt-4">
-                                                        <div class="d-flex justify-content-between">
+                                                        <div class="d-flex justify-content-between align-items-center">
                                                             <h4 class="mb-3">Social Contents</h4>
 
                                                             <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg">
