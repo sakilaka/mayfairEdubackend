@@ -68,7 +68,7 @@
         --primary_background: {{ $theme_colors['primary_color'] ?? '#0c4493' }};
         --primary_background_hover: {{ $theme_colors['primary_hover_color'] ?? '#3a62a0' }};
         --secondary_background: {{ $theme_colors['secondary_color'] ?? '#58b135' }};
-        --secondary_background_hover: {{ $theme_colors['primary_hover_color'] ?? '#357e61' }};
+        --secondary_background_hover: {{ $theme_colors['secondary_hover_color'] ?? '#357e61' }};
 
         --btn_primary_color: var(--primary_background);
         --btn_primary_hover_color: var(--primary_background_hover);
