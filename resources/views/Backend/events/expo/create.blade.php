@@ -901,7 +901,6 @@
                                             <h3>Footer Contents</h3>
                                             <section>
                                                 <h4 class="mb-3">Footer Contents</h4>
-
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -946,7 +945,124 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
 
+                                                <div class="row mb-3">
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6 img-upload-container">
+                                                                        <div class="form-group">
+                                                                            <label class="form-control-label">Upload Organizer
+                                                                                Logo</label>
+                                                                            <div class="dropify-wrapper"
+                                                                                style="border: none">
+                                                                                <div class="dropify-loader"></div>
+                                                                                <div class="dropify-errors-container">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                                <input type="file" class="dropify"
+                                                                                    name="footer_contents[organizerLogo]"
+                                                                                    accept="image/*">
+                                                                                <button type="button"
+                                                                                    class="dropify-clear">Remove</button>
+                                                                                <div class="dropify-preview">
+                                                                                    <span
+                                                                                        class="dropify-render"></span>
+                                                                                    <div class="dropify-infos">
+                                                                                        <div
+                                                                                            class="dropify-infos-inner">
+                                                                                            <p
+                                                                                                class="dropify-filename">
+                                                                                                <span
+                                                                                                    class="file-icon"></span>
+                                                                                                <span
+                                                                                                    class="dropify-filename-inner"></span>
+                                                                                            </p>
+                                                                                            <p
+                                                                                                class="dropify-infos-message">
+                                                                                                Drag and drop or click
+                                                                                                to
+                                                                                                replace
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
+                                                                        <div class="px-3">
+                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                                alt="" class="img-fluid"
+                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6 img-upload-container">
+                                                                        <div class="form-group">
+                                                                            <label class="form-control-label">Upload Co-Organizer
+                                                                                Logo</label>
+                                                                            <div class="dropify-wrapper"
+                                                                                style="border: none">
+                                                                                <div class="dropify-loader"></div>
+                                                                                <div class="dropify-errors-container">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                                <input type="file" class="dropify"
+                                                                                    name="footer_contents[co_organizerLogo]"
+                                                                                    accept="image/*">
+                                                                                <button type="button"
+                                                                                    class="dropify-clear">Remove</button>
+                                                                                <div class="dropify-preview">
+                                                                                    <span
+                                                                                        class="dropify-render"></span>
+                                                                                    <div class="dropify-infos">
+                                                                                        <div
+                                                                                            class="dropify-infos-inner">
+                                                                                            <p
+                                                                                                class="dropify-filename">
+                                                                                                <span
+                                                                                                    class="file-icon"></span>
+                                                                                                <span
+                                                                                                    class="dropify-filename-inner"></span>
+                                                                                            </p>
+                                                                                            <p
+                                                                                                class="dropify-infos-message">
+                                                                                                Drag and drop or click
+                                                                                                to
+                                                                                                replace
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
+                                                                        <div class="px-3">
+                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                                alt="" class="img-fluid"
+                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
                                                     <div class="col-md-12 mt-4">
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <h4 class="mb-3">Social Contents</h4>
@@ -985,7 +1101,6 @@
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label>Tooltip Title:
-                                                                            <span class="text-danger">*</span>
                                                                         </label>
                                                                         <input type="text"
                                                                             name="footer_contents[social][title][{{ $random }}]"
@@ -1001,7 +1116,7 @@
                                                                         <input type="text"
                                                                             name="footer_contents[social][url][{{ $random }}]"
                                                                             class="form-control"
-                                                                            placeholder="Enter Social URL">
+                                                                            placeholder="Enter Social URL" required>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1">
@@ -1305,7 +1420,6 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Tooltip Title:
-                                <span class="text-danger">*</span>
                             </label>
                             <input type="text" name="footer_contents[social][title][${randomNumber}]" class="form-control" placeholder="Enter Tooltip Title">
                         </div>
@@ -1315,7 +1429,7 @@
                             <label>URL:
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" name="footer_contents[social][url][${randomNumber}]" class="form-control" placeholder="Enter Social URL">
+                            <input type="text" name="footer_contents[social][url][${randomNumber}]" class="form-control" placeholder="Enter Social URL" required>
                         </div>
                     </div>
                     <div class="col-md-1">
