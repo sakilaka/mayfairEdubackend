@@ -510,7 +510,7 @@ class ExpoController extends Controller
                 'url' => $socialUrls
             ];
 
-            $existing_footer_organizer_logo = $expo->footer_contents['organizerLogo'];
+            $existing_footer_organizer_logo = json_decode($expo->footer_contents, true)['organizerLogo'] ?? '';
             if ($request->hasFile('footer_contents.organizerLogo')) {
                 if (!empty($existing_footer_organizer_logo)) {
                     $oldFilePath = parse_url($existing_footer_organizer_logo, PHP_URL_PATH);
@@ -527,7 +527,7 @@ class ExpoController extends Controller
                 $footerContents['organizerLogo'] = $existing_footer_organizer_logo ?? asset('frontend/images/No-image.jpg');
             }
 
-            $existing_footer_co_organizer_logo = $expo->footer_contents['co_organizerLogo'];
+            $existing_footer_co_organizer_logo = json_decode($expo->footer_contents, true)['co_organizerLogo'] ?? '';
             if ($request->hasFile('footer_contents.co_organizerLogo')) {
                 if (!empty($existing_footer_co_organizer_logo)) {
                     $oldFilePath = parse_url($existing_footer_co_organizer_logo, PHP_URL_PATH);
