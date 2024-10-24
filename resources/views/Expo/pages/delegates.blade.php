@@ -53,10 +53,7 @@
                 @endphp
 
                 <div class="col-12 mt-2">
-                    {{-- <p class="text-center fw-bold"
-                        style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
-                        What Our Overseas Delegates Are Saying
-                    </p> --}}
+                    
                     <div class="row {{-- delegates-slick-carousel slick-slider --}} mt-3">
                         @foreach ($delegates as $delegate)
                             <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
