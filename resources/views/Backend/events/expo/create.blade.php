@@ -898,6 +898,136 @@
                                                     </div>
                                                 </div>
                                             </section>
+
+                                            <h3>Expo Details</h3>
+                                            <section>
+                                                <h4 class="mb-3">Expo Details</h4>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Expo Pre Title:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[pre_title]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Expo Pre Title">
+                                                                @error('additional_contents[pre_title]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Expo Title:
+                                                                <span class="text-danger"
+                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text" name="title"
+                                                                    class="form-control" placeholder="Enter Expo Title"
+                                                                    required>
+                                                                @error('title')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Date:
+                                                                <span class="text-danger"
+                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text" name="date"
+                                                                    class="form-control" required>
+                                                                @error('date')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Time:
+                                                                <span class="text-danger"
+                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text" name="time_from"
+                                                                            class="form-control" placeholder="From"
+                                                                            value="" required>
+                                                                        @error('time_from')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text" name="time_to"
+                                                                            class="form-control" placeholder="To"
+                                                                            value="" required>
+                                                                        @error('time_to')
+                                                                            <span
+                                                                                class="text-danger">{{ $message }}</span>
+                                                                        @enderror
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Place:
+                                                                <span class="text-danger"
+                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text" name="place"
+                                                                    class="form-control" placeholder="Enter Address"
+                                                                    required>
+                                                                @error('place')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row expo-location-container">
+                                                            <div class="col-md-12 expo-location-select-container">
+                                                                <div class="form-group">
+                                                                    <label>Expo Location:
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <select class="form-control form-control-lg"
+                                                                        name="location[type]" id="expoLocationSelect"
+                                                                        required>
+                                                                        <option value="">Select Location</option>
+                                                                        <option value="china">China</option>
+                                                                        <option value="overseas">Overseas</option>
+                                                                    </select>
+                                                                    @error('location[]')
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
+                                                                    @enderror
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 expo-country-container"
+                                                                style="display:none;">
+                                                                <div class="form-group">
+                                                                    <label>Country:</label>
+                                                                    <input type="text" class="form-control"
+                                                                        name="location[country]"
+                                                                        placeholder="Enter Country Name">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </div>
                                     </form>
                                 </div>
