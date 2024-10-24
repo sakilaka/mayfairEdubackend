@@ -1,17 +1,25 @@
 @php
     $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+    $footer_contents = json_decode($expo->footer_contents, true) ?? [];
+    dd($footer_contents);
 @endphp
 <section class="red-section-bg py-5">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-10">
-                <p class="text-light text-center"><span class="fw600">Organizer:</span> Chinese Service Center
-                    for Scholarly
-                    Exchange I
-                    <span class="fw600">Co-Organizer:</span> MalishaEdu<br><span class="fw600">Supported
-                        by:</span>
-                    Embassy of the People’s Republic of China in the People’s Republic of Bangladesh
+                <p class="text-light text-center mb-0">
+                    <span class="fw600">Organizer:</span> {{ $footer_contents['organizer_name'] }}
                 </p>
+
+                <p class="text-light text-center mb-0">
+                    <span class="fw600">Co-Organizer:</span> {{ $footer_contents['co_organizer_name'] }}
+                </p>
+
+                <p class="text-light text-center mb-0">
+                    <span class="fw600">Supported by:</span> Embassy of the People’s Republic of China in the People’s
+                    Republic of Bangladesh
+                </p>
+
             </div>
 
             <div class="row justify-content-center align-items-center mt-3">
