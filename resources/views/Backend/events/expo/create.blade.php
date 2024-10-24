@@ -952,7 +952,7 @@
                                                             <h4 class="mb-3">Social Contents</h4>
 
                                                             <a href="javascript:void(0)"
-                                                                class="btn btn-primary-bg btn-sm m-0 ml-2">
+                                                                class="btn btn-primary-bg add-social-item btn-sm m-0 ml-2">
                                                                 <i class="fas fa-plus">
                                                                 </i>
                                                             </a>
@@ -1280,7 +1280,7 @@
         });
 
         /* social items */
-        $('.btn-primary-bg').on('click', function () {
+        $(document).on('click', '.add-social-item', function() {
             var newRow = `
             <div class="row align-items-center social-row">
                 <div class="col-md-3">
