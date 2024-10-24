@@ -27,7 +27,7 @@
                         <a href="{{ $additional_contents['organizerDetails']['redirect_url'] }}" target="_blank"
                             class="text-decoration-none">
                             <img class="vector-smart-object-3 img-fluid" width="150"
-                                src="{{ $footer_contents['supported_by'] ?? '' }}" alt="">
+                                src="{{ $footer_contents['organizerLogo'] ?? '' }}" alt="">
                             <p class="text-light mt-2">{{ $additional_contents['organizerDetails']['redirect_url'] }}
                             </p>
                         </a>
@@ -38,7 +38,7 @@
                         <a href="{{ $additional_contents['co_organizerDetails']['redirect_url'] }}" target="_blank"
                             class="text-decoration-none">
                             <img class="vector-smart-object-3 img-fluid" width="150"
-                                src="{{ $additional_contents['co_organizerDetails']['logo'] ?? '' }}" alt="">
+                                src="{{ $footer_contents['co_organizerLogo'] ?? '' }}" alt="">
                             <p class="text-light mt-2">{{ $additional_contents['co_organizerDetails']['redirect_url'] }}
                             </p>
                         </a>
