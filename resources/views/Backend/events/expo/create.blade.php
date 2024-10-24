@@ -962,7 +962,7 @@
                                                             $random = rand();
                                                         @endphp
                                                         <div class="social-container">
-                                                            <div class="row align-items-center">
+                                                            <div class="row align-items-center social-item-row">
                                                                 <div class="col-md-3">
                                                                     <div class="form-group">
                                                                         <label>Social Type:
@@ -1287,7 +1287,7 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var newRow = `
-            <div class="row align-items-center social-row">
+            <div class="row align-items-center social-item-row">
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Social Type:
@@ -1321,7 +1321,7 @@
                 <div class="col-md-1">
                     <div class="form-group mb-0">
                         <label>&nbsp;</label>
-                        <a href="javascript:void(0)" class="btn btn-danger btn-sm m-0 ml-2 remove-row">
+                        <a href="javascript:void(0)" class="btn btn-danger btn-sm m-0 ml-2 remove-social-row">
                             <i class="fas fa-minus-circle"></i>
                         </a>
                     </div>
@@ -1332,8 +1332,8 @@
         });
 
         // Remove the respective row
-        $(document).on('click', '.remove-row', function() {
-            $(this).closest('.social-row').remove();
+        $(document).on('click', '.remove-social-row', function() {
+            $(this).closest('.social-item-row').remove();
         });
     </script>
 
