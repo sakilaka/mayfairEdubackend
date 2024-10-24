@@ -236,24 +236,18 @@ class ExpoController extends Controller
 
         // Store organizer logo if provided
         if ($request->hasFile('footer_contents.organizerLogo')) {
-            $organizerLogo = $request->file('footer_contents.organizerLogo');
-            $organizerLogoName = time() . '_organizer.' . $organizerLogo->getClientOriginalExtension();
-            // $organizerLogo->move(public_path('uploads/logos'), $organizerLogoName);
-            $footerContents['organizerLogo'] = $organizerLogoName;
-
-            $fileName = rand() . time() . '.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
-            $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
-            $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
+            $fileName = rand() . '_organizer.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
+            // $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
+            $footerContents['organizerLogo'] = url('upload/expo/' . $fileName);
         }
 
         // Store co-organizer logo if provided
         if ($request->hasFile('footer_contents.co_organizerLogo')) {
-            $coOrganizerLogo = $request->file('footer_contents.co_organizerLogo');
-            $coOrganizerLogoName = time() . '_co_organizer.' . $coOrganizerLogo->getClientOriginalExtension();
-            // $coOrganizerLogo->move(public_path('uploads/logos'), $coOrganizerLogoName);
-            $footerContents['co_organizerLogo'] = $coOrganizerLogoName;
+            $fileName = rand() . '_co_organizer.' . $request->file('footer_contents.co_organizerLogo')->getClientOriginalExtension();
+            // $request->file('footer_contents.co_organizerLogo')->move(public_path('upload/expo/'), $fileName);
+            $footerContents['co_organizerLogo'] = url('upload/expo/' . $fileName);
         }
-return $footerContents;
+        return $footerContents;
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
