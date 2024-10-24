@@ -987,7 +987,11 @@
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-1">
-                                                                <a href="javascript:void(0)" class="btn btn-danger"></a>
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-danger btn-sm m-0 ml-2">
+                                                                    <i class="fas fa-minus-circle">
+                                                                    </i>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
