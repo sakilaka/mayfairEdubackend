@@ -7,15 +7,15 @@
         <div class="row justify-content-center">
             <div class="col-10">
                 <p class="text-light text-center mb-0">
-                    <span class="fw600">Organizer:</span> {{ $footer_contents['organizer_name'] }}
+                    <span class="fw600">Organizer:</span> {{ $footer_contents['organizer_name'] ?? '' }}
                 </p>
 
                 <p class="text-light text-center mb-0">
-                    <span class="fw600">Co-Organizer:</span> {{ $footer_contents['co_organizer_name'] }}
+                    <span class="fw600">Co-Organizer:</span> {{ $footer_contents['co_organizer_name'] ?? '' }}
                 </p>
 
                 <p class="text-light text-center mb-0">
-                    <span class="fw600">Supported by:</span> {{ $footer_contents['supported_by'] }}
+                    <span class="fw600">Supported by:</span> {{ $footer_contents['supported_by'] ?? '' }}
                 </p>
 
             </div>
