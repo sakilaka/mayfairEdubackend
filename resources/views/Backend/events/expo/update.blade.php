@@ -1163,6 +1163,128 @@
                                                     </div>
                                                 </div>
                                             </section>
+
+                                            <h3>Footer Contents</h3>
+                                            <section>
+                                                <h4 class="mb-3">Footer Contents</h4>
+
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Organizer Name:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="footer_contents[organizer_name]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Organizer Name">
+                                                                @error('footer_contents[organizer_name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Co-Organizer
+                                                                Name:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="footer_contents[co_organizer_name]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Co-Organizer Name">
+                                                                @error('footer_contents[co_organizer_name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">Supported By:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="footer_contents[supported_by]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Name of Support">
+                                                                @error('footer_contents[supported_by]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-12 mt-4">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <h4 class="mb-3">Social Contents</h4>
+
+                                                            <a href="javascript:void(0)"
+                                                                class="btn btn-primary-bg add-social-item btn-sm m-0 ml-2">
+                                                                <i class="fas fa-plus">
+                                                                </i>
+                                                            </a>
+                                                        </div>
+
+                                                        @php
+                                                            $random = rand();
+                                                        @endphp
+                                                        <div class="social-container">
+                                                            <div class="row align-items-center social-item-row">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label>Social Type:
+                                                                            <span class="text-danger">*</span>
+                                                                        </label>
+                                                                        <select class="form-control form-control-lg"
+                                                                            name="footer_contents[social][type][{{ $random }}]"
+                                                                            required>
+                                                                            <option value="">Select Social Type
+                                                                            </option>
+                                                                            <option value="facebook">Facebook</option>
+                                                                            <option value="instagram">Instagram
+                                                                            </option>
+                                                                            <option value="linkedin">Linked In</option>
+                                                                            <option value="twitter">X (Twitter)
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label>Tooltip Title:
+                                                                            <span class="text-danger">*</span>
+                                                                        </label>
+                                                                        <input type="text"
+                                                                            name="footer_contents[social][title][{{ $random }}]"
+                                                                            class="form-control"
+                                                                            placeholder="Enter Tooltip Title">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group">
+                                                                        <label>URL:
+                                                                            <span class="text-danger">*</span>
+                                                                        </label>
+                                                                        <input type="text"
+                                                                            name="footer_contents[social][url][{{ $random }}]"
+                                                                            class="form-control"
+                                                                            placeholder="Enter Social URL">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-1">
+                                                                    <div class="form-group mb-0">
+                                                                        <label>&nbsp;</label>
+                                                                        <a href="javascript:void(0)"
+                                                                            class="btn btn-danger btn-sm m-0 remove-social-row ml-2">
+                                                                            <i class="fas fa-minus-circle">
+                                                                            </i>
+                                                                        </a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
                                         </div>
                                     </form>
                                 </div>
