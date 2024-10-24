@@ -215,7 +215,7 @@ class ExpoController extends Controller
             }
 
             $data['footer_contents'] = json_encode($footerContents);
-            
+
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
@@ -510,16 +510,38 @@ class ExpoController extends Controller
                 'url' => $socialUrls
             ];
 
+            $existing_footer_organizer_logo = $expo->footer_contents['organizerLogo'];
             if ($request->hasFile('footer_contents.organizerLogo')) {
+                if (!empty($existing_footer_organizer_logo)) {
+                    $oldFilePath = parse_url($existing_footer_organizer_logo, PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
+
                 $fileName = rand() . '_organizer.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
                 $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
                 $footerContents['organizerLogo'] = url('upload/expo/' . $fileName);
+            } else {
+                $footerContents['organizerLogo'] = $existing_footer_organizer_logo ?? asset('frontend/images/No-image.jpg');
             }
 
+            $existing_footer_co_organizer_logo = $expo->footer_contents['co_organizerLogo'];
             if ($request->hasFile('footer_contents.co_organizerLogo')) {
+                if (!empty($existing_footer_co_organizer_logo)) {
+                    $oldFilePath = parse_url($existing_footer_co_organizer_logo, PHP_URL_PATH);
+                    $oldFileFullPath = public_path($oldFilePath);
+                    if (file_exists($oldFileFullPath)) {
+                        unlink($oldFileFullPath);
+                    }
+                }
+
                 $fileName = rand() . '_co_organizer.' . $request->file('footer_contents.co_organizerLogo')->getClientOriginalExtension();
                 $request->file('footer_contents.co_organizerLogo')->move(public_path('upload/expo/'), $fileName);
                 $footerContents['co_organizerLogo'] = url('upload/expo/' . $fileName);
+            } else {
+                $footerContents['co_organizerLogo'] = $existing_footer_co_organizer_logo ?? asset('frontend/images/No-image.jpg');
             }
 
             $data['footer_contents'] = json_encode($footerContents);
