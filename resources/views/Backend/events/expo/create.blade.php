@@ -946,21 +946,46 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label>Social Type:
-                                                                <span class="text-danger">*</span>
-                                                            </label>
-                                                            <select class="form-control form-control-lg"
-                                                                name="location[type]" id="expoLocationSelect"
-                                                                required>
-                                                                <option value="">Select Location</option>
-                                                                <option value="china">Facebook</option>
-                                                                <option value="overseas">Instagram</option>
-                                                            </select>
-                                                            @error('location[]')
-                                                                <span class="text-danger">{{ $message }}</span>
-                                                            @enderror
+
+                                                    <div class="social-container col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label>Social Type:
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <select class="form-control form-control-lg"
+                                                                        name="footer_contents[social][type]" required>
+                                                                        <option value="">Select Location</option>
+                                                                        <option value="facebook">Facebook</option>
+                                                                        <option value="instagram">Instagram</option>
+                                                                        <option value="linkedin">Linked In</option>
+                                                                        <option value="twitter">X (Twitter)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label>Tooltip Title:
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <input type="text"
+                                                                        name="footer_contents[social][title]"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Tooltip Title">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label>URL:
+                                                                        <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <input type="text"
+                                                                        name="footer_contents[social][url]"
+                                                                        class="form-control"
+                                                                        placeholder="Enter Social URL">
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
