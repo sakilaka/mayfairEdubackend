@@ -235,16 +235,20 @@ class ExpoController extends Controller
         ];
 
         // Store organizer logo if provided
-        if ($request->hasFile('organizerLogo')) {
-            $organizerLogo = $request->file('organizerLogo');
+        if ($request->hasFile('footer_contents.organizerLogo')) {
+            $organizerLogo = $request->file('footer_contents.organizerLogo');
             $organizerLogoName = time() . '_organizer.' . $organizerLogo->getClientOriginalExtension();
             // $organizerLogo->move(public_path('uploads/logos'), $organizerLogoName);
             $footerContents['organizerLogo'] = $organizerLogoName;
+
+            $fileName = rand() . time() . '.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
+            $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
+            $data['additional_contents']['nav_logo'] = url('upload/expo/' . $fileName);
         }
 
         // Store co-organizer logo if provided
-        if ($request->hasFile('co_organizerLogo')) {
-            $coOrganizerLogo = $request->file('co_organizerLogo');
+        if ($request->hasFile('footer_contents.co_organizerLogo')) {
+            $coOrganizerLogo = $request->file('footer_contents.co_organizerLogo');
             $coOrganizerLogoName = time() . '_co_organizer.' . $coOrganizerLogo->getClientOriginalExtension();
             // $coOrganizerLogo->move(public_path('uploads/logos'), $coOrganizerLogoName);
             $footerContents['co_organizerLogo'] = $coOrganizerLogoName;
