@@ -16,8 +16,7 @@
                 </p>
 
                 <p class="text-light text-center mb-0">
-                    <span class="fw600">Supported by:</span> Embassy of the People’s Republic of China in the People’s
-                    Republic of Bangladesh
+                    <span class="fw600">Supported by:</span> {{ $footer_contents['supported_by'] }}
                 </p>
 
             </div>
@@ -28,7 +27,7 @@
                         <a href="{{ $additional_contents['organizerDetails']['redirect_url'] }}" target="_blank"
                             class="text-decoration-none">
                             <img class="vector-smart-object-3 img-fluid" width="150"
-                                src="{{ $additional_contents['organizerDetails']['logo'] ?? '' }}" alt="">
+                                src="{{ $footer_contents['supported_by'] ?? '' }}" alt="">
                             <p class="text-light mt-2">{{ $additional_contents['organizerDetails']['redirect_url'] }}
                             </p>
                         </a>
