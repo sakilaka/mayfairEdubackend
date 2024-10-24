@@ -10,15 +10,15 @@
             @endphp
 
             <div class="col-12">
-                <p class="text-center fw-bold"
+                {{-- <p class="text-center fw-bold"
                     style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
                     What Our Overseas Delegates Are Saying
-                </p>
+                </p> --}}
 
                 <div class="row {{-- delegates-slick-carousel slick-slider --}}">
                     @foreach ($delegates as $delegate)
                         <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
-                            <div class="testimonial-single-card bg-white p-3">
+                            <div class="testimonial-single-card p-3 ">
                                 <div class="d-flex justify-content-center">
                                     <img class="testimonial-user-img"
                                         src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
