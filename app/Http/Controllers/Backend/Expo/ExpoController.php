@@ -213,14 +213,14 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request->footer_contents;
+        // return $request->footer_contents;
 
         $footerContents = [];
 
         // Organizer, co-organizer, and supported_by fields
-        $footerContents['organizer_name'] = $request->input('organizer_name');
-        $footerContents['co_organizer_name'] = $request->input('co_organizer_name');
-        $footerContents['supported_by'] = $request->input('supported_by');
+        $footerContents['organizer_name'] = $request->input('footer_contents.organizer_name');
+        $footerContents['co_organizer_name'] = $request->input('footer_contents.co_organizer_name');
+        $footerContents['supported_by'] = $request->input('footer_contents.supported_by');
 
         // Social media contents (type, title, url)
         $socialTypes = $request->input('footer_contents.social.type');
