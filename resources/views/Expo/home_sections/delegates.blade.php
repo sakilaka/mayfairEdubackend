@@ -18,7 +18,7 @@
                 <div class="row {{-- delegates-slick-carousel slick-slider --}}">
                     @foreach ($delegates as $delegate)
                         <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
-                            <div class="testimonial-single-card p-3 ">
+                            <div class="testimonial-single-card p-3">
                                 <div class="d-flex justify-content-center">
                                     <img class="testimonial-user-img"
                                         src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
