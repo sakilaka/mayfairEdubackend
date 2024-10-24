@@ -229,7 +229,6 @@ class ExpoController extends Controller
     public function edit(string $id)
     {
         $data['expo'] = Expo::find($id);
-        // return json_decode($data['expo']->footer_contents, true);
 
         if (!$data['expo']) {
             return redirect()->back()->with('error', 'Expo Not Found!');
