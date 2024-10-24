@@ -1425,6 +1425,59 @@
         $(document).on('click', '.remove-photo-gallery', function() {
             $(this).parent().remove();
         });
+
+        /* social items */
+        $(document).on('click', '.add-social-item', function() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+
+            var newRow = `
+                <div class="row align-items-center social-item-row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Social Type:
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-control form-control-lg" name="footer_contents[social][type][${randomNumber}]" required>
+                                <option value="">Select Social Type</option>
+                                <option value="facebook">Facebook</option>
+                                <option value="instagram">Instagram</option>
+                                <option value="linkedin">Linked In</option>
+                                <option value="twitter">X (Twitter)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Tooltip Title:
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="footer_contents[social][title][${randomNumber}]" class="form-control" placeholder="Enter Tooltip Title">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>URL:
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="footer_contents[social][url][${randomNumber}]" class="form-control" placeholder="Enter Social URL">
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div class="form-group mb-0">
+                            <label>&nbsp;</label>
+                            <a href="javascript:void(0)" class="btn btn-danger btn-sm m-0 ml-2 remove-social-row">
+                                <i class="fas fa-minus-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>`;
+
+            $('.social-container').append(newRow);
+        });
+
+        $(document).on('click', '.remove-social-row', function() {
+            $(this).parent().parent().parent().remove();
+        });
     </script>
 
     <script>
