@@ -209,8 +209,7 @@
                                                                         <option value="overseas">Overseas</option>
                                                                     </select>
                                                                     @error('location[]')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
+                                                                        <span class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
@@ -920,7 +919,8 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Co-Organizer Name:</label>
+                                                            <label class="form-control-label">Co-Organizer
+                                                                Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
                                                                     name="footer_contents[co_organizer_name]"
@@ -947,34 +947,20 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <div class="row expo-location-container">
-                                                            <div class="col-md-12 expo-location-select-container">
-                                                                <div class="form-group">
-                                                                    <label>Expo Location:
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <select class="form-control form-control-lg"
-                                                                        name="location[type]" id="expoLocationSelect"
-                                                                        required>
-                                                                        <option value="">Select Location</option>
-                                                                        <option value="china">China</option>
-                                                                        <option value="overseas">Overseas</option>
-                                                                    </select>
-                                                                    @error('location[]')
-                                                                        <span
-                                                                            class="text-danger">{{ $message }}</span>
-                                                                    @enderror
-                                                                </div>
-                                                            </div>
-                                                            <div class="col-md-6 expo-country-container"
-                                                                style="display:none;">
-                                                                <div class="form-group">
-                                                                    <label>Country:</label>
-                                                                    <input type="text" class="form-control"
-                                                                        name="location[country]"
-                                                                        placeholder="Enter Country Name">
-                                                                </div>
-                                                            </div>
+                                                        <div class="form-group">
+                                                            <label>Social Type:
+                                                                <span class="text-danger">*</span>
+                                                            </label>
+                                                            <select class="form-control form-control-lg"
+                                                                name="location[type]" id="expoLocationSelect"
+                                                                required>
+                                                                <option value="">Select Location</option>
+                                                                <option value="china">Facebook</option>
+                                                                <option value="overseas">Instagram</option>
+                                                            </select>
+                                                            @error('location[]')
+                                                                <span class="text-danger">{{ $message }}</span>
+                                                            @enderror
                                                         </div>
                                                     </div>
                                                 </div>
