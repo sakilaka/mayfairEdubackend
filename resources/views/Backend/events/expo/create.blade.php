@@ -975,7 +975,7 @@
                                                                         placeholder="Enter Tooltip Title">
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-6">
+                                                            <div class="col-md-5">
                                                                 <div class="form-group">
                                                                     <label>URL:
                                                                         <span class="text-danger">*</span>
@@ -985,6 +985,9 @@
                                                                         class="form-control"
                                                                         placeholder="Enter Social URL">
                                                                 </div>
+                                                            </div>
+                                                            <div class="col-md-1">
+                                                                <a href="javascript:void(0)" class="btn btn-danger"></a>
                                                             </div>
                                                         </div>
                                                     </div>
