@@ -220,7 +220,7 @@
     .testimonial-single-card {
         background-color: #e0e9ff9e;
         border-radius: 10px;
-        box-shadow: 0 2px 5px -3px rgba(54, 54, 54, 0.5);
+        box-shadow: 0 2px 10px -5px rgba(54, 54, 54, 0.75);
         /* height: 575px; */
         /* overflow: auto; */
         /* position: relative; */
