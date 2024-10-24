@@ -1214,6 +1214,10 @@
                                                 </div>
 
                                                 <div class="row">
+                                                    
+                                                </div>
+
+                                                <div class="row">
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <h4 class="mb-3">Social Contents</h4>
 
