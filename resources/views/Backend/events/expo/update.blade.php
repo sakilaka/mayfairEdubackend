@@ -1222,7 +1222,8 @@
                                                                         <div class="form-group">
                                                                             <label class="form-control-label">Upload
                                                                                 Logo</label>
-                                                                            <div class="dropify-wrapper" style="border: none">
+                                                                            <div class="dropify-wrapper"
+                                                                                style="border: none">
                                                                                 <div class="dropify-loader"></div>
                                                                                 <div class="dropify-errors-container">
                                                                                     <ul></ul>
@@ -1233,16 +1234,22 @@
                                                                                 <button type="button"
                                                                                     class="dropify-clear">Remove</button>
                                                                                 <div class="dropify-preview">
-                                                                                    <span class="dropify-render"></span>
+                                                                                    <span
+                                                                                        class="dropify-render"></span>
                                                                                     <div class="dropify-infos">
-                                                                                        <div class="dropify-infos-inner">
-                                                                                            <p class="dropify-filename">
-                                                                                                <span class="file-icon"></span>
+                                                                                        <div
+                                                                                            class="dropify-infos-inner">
+                                                                                            <p
+                                                                                                class="dropify-filename">
+                                                                                                <span
+                                                                                                    class="file-icon"></span>
                                                                                                 <span
                                                                                                     class="dropify-filename-inner"></span>
                                                                                             </p>
-                                                                                            <p class="dropify-infos-message">
-                                                                                                Drag and drop or click to
+                                                                                            <p
+                                                                                                class="dropify-infos-message">
+                                                                                                Drag and drop or click
+                                                                                                to
                                                                                                 replace
                                                                                             </p>
                                                                                         </div>
@@ -1271,7 +1278,8 @@
                                                                         <div class="form-group">
                                                                             <label class="form-control-label">Upload
                                                                                 Logo</label>
-                                                                            <div class="dropify-wrapper" style="border: none">
+                                                                            <div class="dropify-wrapper"
+                                                                                style="border: none">
                                                                                 <div class="dropify-loader"></div>
                                                                                 <div class="dropify-errors-container">
                                                                                     <ul></ul>
@@ -1282,16 +1290,22 @@
                                                                                 <button type="button"
                                                                                     class="dropify-clear">Remove</button>
                                                                                 <div class="dropify-preview">
-                                                                                    <span class="dropify-render"></span>
+                                                                                    <span
+                                                                                        class="dropify-render"></span>
                                                                                     <div class="dropify-infos">
-                                                                                        <div class="dropify-infos-inner">
-                                                                                            <p class="dropify-filename">
-                                                                                                <span class="file-icon"></span>
+                                                                                        <div
+                                                                                            class="dropify-infos-inner">
+                                                                                            <p
+                                                                                                class="dropify-filename">
+                                                                                                <span
+                                                                                                    class="file-icon"></span>
                                                                                                 <span
                                                                                                     class="dropify-filename-inner"></span>
                                                                                             </p>
-                                                                                            <p class="dropify-infos-message">
-                                                                                                Drag and drop or click to
+                                                                                            <p
+                                                                                                class="dropify-infos-message">
+                                                                                                Drag and drop or click
+                                                                                                to
                                                                                                 replace
                                                                                             </p>
                                                                                         </div>
@@ -1315,17 +1329,18 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <h4 class="mb-3">Social Contents</h4>
-
-                                                        <a href="javascript:void(0)"
-                                                            class="btn btn-primary-bg add-social-item btn-sm m-0 ml-2">
-                                                            <i class="fas fa-plus">
-                                                            </i>
-                                                        </a>
-                                                    </div>
 
                                                     <div class="col-md-12 mt-4">
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <h4 class="mb-3">Social Contents</h4>
+
+                                                            <a href="javascript:void(0)"
+                                                                class="btn btn-primary-bg add-social-item btn-sm m-0 ml-2">
+                                                                <i class="fas fa-plus">
+                                                                </i>
+                                                            </a>
+                                                        </div>
+
                                                         @php
                                                             $random = rand();
                                                         @endphp
