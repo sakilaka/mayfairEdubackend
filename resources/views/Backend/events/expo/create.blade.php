@@ -1002,7 +1002,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-1">
-                                                                    <div class="form-group">
+                                                                    <div class="form-group mb-0">
                                                                         <label>&nbsp;</label>
                                                                         <a href="javascript:void(0)"
                                                                             class="btn btn-danger btn-sm m-0 ml-2">
