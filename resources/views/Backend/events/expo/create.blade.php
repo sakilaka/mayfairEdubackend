@@ -947,56 +947,68 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="social-container col-md-12 mt-4">
-                                                        <h4 class="mb-3">Social Contents</h4>
+                                                    <div class="col-md-12 mt-4">
+                                                        <div class="d-flex justify-content-between">
+                                                            <h4 class="mb-3">Social Contents</h4>
 
-                                                        <div class="row align-items-center">
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label>Social Type:
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <select class="form-control form-control-lg"
-                                                                        name="footer_contents[social][type]" required>
-                                                                        <option value="">Select Social Type
-                                                                        </option>
-                                                                        <option value="facebook">Facebook</option>
-                                                                        <option value="instagram">Instagram</option>
-                                                                        <option value="linkedin">Linked In</option>
-                                                                        <option value="twitter">X (Twitter)</option>
-                                                                    </select>
+                                                            <a href="javascript:void(0)" class="btn btn-sm btn-primary-bg">
+                                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                                                Add
+                                                            </a>
+                                                        </div>
+
+                                                        <div class="social-container">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label>Social Type:
+                                                                            <span class="text-danger">*</span>
+                                                                        </label>
+                                                                        <select class="form-control form-control-lg"
+                                                                            name="footer_contents[social][type]"
+                                                                            required>
+                                                                            <option value="">Select Social Type
+                                                                            </option>
+                                                                            <option value="facebook">Facebook</option>
+                                                                            <option value="instagram">Instagram
+                                                                            </option>
+                                                                            <option value="linkedin">Linked In</option>
+                                                                            <option value="twitter">X (Twitter)
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-3">
-                                                                <div class="form-group">
-                                                                    <label>Tooltip Title:
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <input type="text"
-                                                                        name="footer_contents[social][title]"
-                                                                        class="form-control"
-                                                                        placeholder="Enter Tooltip Title">
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label>Tooltip Title:
+                                                                            <span class="text-danger">*</span>
+                                                                        </label>
+                                                                        <input type="text"
+                                                                            name="footer_contents[social][title]"
+                                                                            class="form-control"
+                                                                            placeholder="Enter Tooltip Title">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-5">
-                                                                <div class="form-group">
-                                                                    <label>URL:
-                                                                        <span class="text-danger">*</span>
-                                                                    </label>
-                                                                    <input type="text"
-                                                                        name="footer_contents[social][url]"
-                                                                        class="form-control"
-                                                                        placeholder="Enter Social URL">
+                                                                <div class="col-md-5">
+                                                                    <div class="form-group">
+                                                                        <label>URL:
+                                                                            <span class="text-danger">*</span>
+                                                                        </label>
+                                                                        <input type="text"
+                                                                            name="footer_contents[social][url]"
+                                                                            class="form-control"
+                                                                            placeholder="Enter Social URL">
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                            <div class="col-md-1">
-                                                                <div class="form-group">
-                                                                    <label>&nbsp;</label>
-                                                                    <a href="javascript:void(0)"
-                                                                        class="btn btn-danger btn-sm m-0 ml-2">
-                                                                        <i class="fas fa-minus-circle">
-                                                                        </i>
-                                                                    </a>
+                                                                <div class="col-md-1">
+                                                                    <div class="form-group">
+                                                                        <label>&nbsp;</label>
+                                                                        <a href="javascript:void(0)"
+                                                                            class="btn btn-danger btn-sm m-0 ml-2">
+                                                                            <i class="fas fa-minus-circle">
+                                                                            </i>
+                                                                        </a>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
