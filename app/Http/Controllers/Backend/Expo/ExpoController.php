@@ -204,18 +204,18 @@ class ExpoController extends Controller
 
             if ($request->hasFile('footer_contents.organizerLogo')) {
                 $fileName = rand() . '_organizer.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
-                $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
+                // $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
                 $footerContents['organizerLogo'] = url('upload/expo/' . $fileName);
             }
 
             if ($request->hasFile('footer_contents.co_organizerLogo')) {
                 $fileName = rand() . '_co_organizer.' . $request->file('footer_contents.co_organizerLogo')->getClientOriginalExtension();
-                $request->file('footer_contents.co_organizerLogo')->move(public_path('upload/expo/'), $fileName);
+                // $request->file('footer_contents.co_organizerLogo')->move(public_path('upload/expo/'), $fileName);
                 $footerContents['co_organizerLogo'] = url('upload/expo/' . $fileName);
             }
 
             $data['footer_contents'] = json_encode($footerContents);
-
+return $data;
             Expo::create($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Created Successfully!');
         } catch (\Exception $e) {
