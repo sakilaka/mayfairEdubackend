@@ -1332,7 +1332,7 @@
         });
 
         $(document).on('click', '.remove-social-row', function() {
-            $(this).parent().remove();
+            $(this).parent().parent().parent().remove();
         });
     </script>
 
