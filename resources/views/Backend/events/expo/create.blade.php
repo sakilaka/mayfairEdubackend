@@ -958,6 +958,9 @@
                                                             </a>
                                                         </div>
 
+                                                        @php
+                                                            $random = rand();
+                                                        @endphp
                                                         <div class="social-container">
                                                             <div class="row align-items-center">
                                                                 <div class="col-md-3">
@@ -966,7 +969,7 @@
                                                                             <span class="text-danger">*</span>
                                                                         </label>
                                                                         <select class="form-control form-control-lg"
-                                                                            name="footer_contents[social][type]"
+                                                                            name="footer_contents[social][type][{{ $random }}]"
                                                                             required>
                                                                             <option value="">Select Social Type
                                                                             </option>
@@ -985,7 +988,7 @@
                                                                             <span class="text-danger">*</span>
                                                                         </label>
                                                                         <input type="text"
-                                                                            name="footer_contents[social][title]"
+                                                                            name="footer_contents[social][title][{{ $random }}]"
                                                                             class="form-control"
                                                                             placeholder="Enter Tooltip Title">
                                                                     </div>
@@ -996,7 +999,7 @@
                                                                             <span class="text-danger">*</span>
                                                                         </label>
                                                                         <input type="text"
-                                                                            name="footer_contents[social][url]"
+                                                                            name="footer_contents[social][url][{{ $random }}]"
                                                                             class="form-control"
                                                                             placeholder="Enter Social URL">
                                                                     </div>
@@ -1281,6 +1284,8 @@
 
         /* social items */
         $(document).on('click', '.add-social-item', function() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+
             var newRow = `
             <div class="row align-items-center social-row">
                 <div class="col-md-3">
@@ -1288,7 +1293,7 @@
                         <label>Social Type:
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-control form-control-lg" name="footer_contents[social][type]" required>
+                        <select class="form-control form-control-lg" name="footer_contents[social][type][${randomNumber}]" required>
                             <option value="">Select Social Type</option>
                             <option value="facebook">Facebook</option>
                             <option value="instagram">Instagram</option>
@@ -1302,7 +1307,7 @@
                         <label>Tooltip Title:
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="footer_contents[social][title]" class="form-control" placeholder="Enter Tooltip Title">
+                        <input type="text" name="footer_contents[social][title][${randomNumber}]" class="form-control" placeholder="Enter Tooltip Title">
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -1310,7 +1315,7 @@
                         <label>URL:
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="footer_contents[social][url]" class="form-control" placeholder="Enter Social URL">
+                        <input type="text" name="footer_contents[social][url][${randomNumber}]" class="form-control" placeholder="Enter Social URL">
                     </div>
                 </div>
                 <div class="col-md-1">
@@ -1322,12 +1327,12 @@
                     </div>
                 </div>
             </div>`;
-            
+
             $('.social-container').append(newRow);
         });
 
         // Remove the respective row
-        $(document).on('click', '.remove-row', function () {
+        $(document).on('click', '.remove-row', function() {
             $(this).closest('.social-row').remove();
         });
     </script>
