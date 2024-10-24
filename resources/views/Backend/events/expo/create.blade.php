@@ -906,13 +906,13 @@
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Expo Pre Title:</label>
+                                                            <label class="form-control-label">Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
                                                                 <input type="text"
-                                                                    name="additional_contents[pre_title]"
+                                                                    name="footer_contents[organizer_name]"
                                                                     class="form-control"
-                                                                    placeholder="Enter Expo Pre Title">
-                                                                @error('additional_contents[pre_title]')
+                                                                    placeholder="Enter Organizer Name">
+                                                                @error('footer_contents[organizer_name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
@@ -920,76 +920,27 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Expo Title:
-                                                                <span class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <label class="form-control-label">Co-Organizer Name:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="title"
-                                                                    class="form-control" placeholder="Enter Expo Title"
-                                                                    required>
-                                                                @error('title')
+                                                                <input type="text"
+                                                                    name="footer_contents[co_organizer_name]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Co-Organizer Name">
+                                                                @error('footer_contents[co_organizer_name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-3">
+                                                    <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Date:
-                                                                <span class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <label class="form-control-label">Supported By:</label>
                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="date"
-                                                                    class="form-control" required>
-                                                                @error('date')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-3">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">Time:
-                                                                <span class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
-
-                                                            <div class="row">
-                                                                <div class="col-6">
-                                                                    <div class="mg-t-10 mg-sm-t-0">
-                                                                        <input type="text" name="time_from"
-                                                                            class="form-control" placeholder="From"
-                                                                            value="" required>
-                                                                        @error('time_from')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <div class="mg-t-10 mg-sm-t-0">
-                                                                        <input type="text" name="time_to"
-                                                                            class="form-control" placeholder="To"
-                                                                            value="" required>
-                                                                        @error('time_to')
-                                                                            <span
-                                                                                class="text-danger">{{ $message }}</span>
-                                                                        @enderror
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">Place:
-                                                                <span class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" name="place"
-                                                                    class="form-control" placeholder="Enter Address"
-                                                                    required>
-                                                                @error('place')
+                                                                <input type="text"
+                                                                    name="footer_contents[supported_by]"
+                                                                    class="form-control"
+                                                                    placeholder="Enter Name of Support">
+                                                                @error('footer_contents[supported_by]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
                                                             </div>
