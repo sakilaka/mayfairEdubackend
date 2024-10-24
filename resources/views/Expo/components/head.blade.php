@@ -218,7 +218,7 @@
     }
 
     .testimonial-single-card {
-        background-color: #eaf0ff9e;
+        background-color: #f1fff79e;
         border-radius: 10px;
         box-shadow: 0 2px 10px -5px rgba(54, 54, 54, 0.75);
         /* height: 575px; */
