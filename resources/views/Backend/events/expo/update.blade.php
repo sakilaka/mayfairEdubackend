@@ -1167,6 +1167,10 @@
                                             <h3>Footer Contents</h3>
                                             <section>
                                                 <h4 class="mb-3">Footer Contents</h4>
+                                                @php
+                                                    $footer_contents = json_decode($expo->footer_contents, true) ?? [];
+                                                @endphp
+
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
@@ -1175,7 +1179,8 @@
                                                                 <input type="text"
                                                                     name="footer_contents[organizer_name]"
                                                                     class="form-control"
-                                                                    placeholder="Enter Organizer Name">
+                                                                    placeholder="Enter Organizer Name"
+                                                                    value="{{ $footer_contents['organizer_name'] ?? '' }}">
                                                                 @error('footer_contents[organizer_name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -1190,7 +1195,8 @@
                                                                 <input type="text"
                                                                     name="footer_contents[co_organizer_name]"
                                                                     class="form-control"
-                                                                    placeholder="Enter Co-Organizer Name">
+                                                                    placeholder="Enter Co-Organizer Name"
+                                                                    value="{{ $footer_contents['co_organizer_name'] ?? '' }}">
                                                                 @error('footer_contents[co_organizer_name]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -1204,7 +1210,8 @@
                                                                 <input type="text"
                                                                     name="footer_contents[supported_by]"
                                                                     class="form-control"
-                                                                    placeholder="Enter Name of Support">
+                                                                    placeholder="Enter Name of Support"
+                                                                    value="{{ $footer_contents['supported_by'] ?? '' }}">
                                                                 @error('footer_contents[supported_by]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
@@ -1220,7 +1227,8 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
-                                                                            <label class="form-control-label">Upload Organizer
+                                                                            <label class="form-control-label">Upload
+                                                                                Organizer
                                                                                 Logo</label>
                                                                             <div class="dropify-wrapper"
                                                                                 style="border: none">
@@ -1261,7 +1269,7 @@
                                                                     <div
                                                                         class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                         <div class="px-3">
-                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                            <img src="{{ $footer_contents['organizerLogo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                                 alt="" class="img-fluid"
                                                                                 style="border-radius: 10px; max-height: 200px !important;">
                                                                         </div>
@@ -1276,7 +1284,8 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
-                                                                            <label class="form-control-label">Upload Co-Organizer
+                                                                            <label class="form-control-label">Upload
+                                                                                Co-Organizer
                                                                                 Logo</label>
                                                                             <div class="dropify-wrapper"
                                                                                 style="border: none">
@@ -1317,7 +1326,7 @@
                                                                     <div
                                                                         class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                         <div class="px-3">
-                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                            <img src="{{ $footer_contents['co_organizerLogo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                                 alt="" class="img-fluid"
                                                                                 style="border-radius: 10px; max-height: 200px !important;">
                                                                         </div>
@@ -1344,58 +1353,133 @@
                                                             $random = rand();
                                                         @endphp
                                                         <div class="social-container">
-                                                            <div class="row align-items-center social-item-row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label>Social Type:
-                                                                            <span class="text-danger">*</span>
-                                                                        </label>
-                                                                        <select class="form-control form-control-lg"
-                                                                            name="footer_contents[social][type][{{ $random }}]"
-                                                                            required>
-                                                                            <option value="">Select Social Type
-                                                                            </option>
-                                                                            <option value="facebook">Facebook</option>
-                                                                            <option value="instagram">Instagram
-                                                                            </option>
-                                                                            <option value="linkedin">Linked In</option>
-                                                                            <option value="twitter">X (Twitter)
-                                                                            </option>
-                                                                        </select>
+                                                            @forelse ($footer_contents['social']['type'] ?? [] as $key => $type)
+                                                                <div class="row align-items-center social-item-row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label>Social Type:
+                                                                                <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <select
+                                                                                class="form-control form-control-lg"
+                                                                                name="footer_contents[social][type][{{ $key }}]"
+                                                                                required>
+                                                                                <option value="">Select Social
+                                                                                    Type
+                                                                                </option>
+                                                                                <option value="facebook"
+                                                                                    {{ $type === 'facebook' ? 'selected' : '' }}>
+                                                                                    Facebook
+                                                                                </option>
+                                                                                <option value="instagram"
+                                                                                    {{ $type === 'instagram' ? 'selected' : '' }}>
+                                                                                    Instagram
+                                                                                </option>
+                                                                                <option value="linkedin"
+                                                                                    {{ $type === 'linkedin' ? 'selected' : '' }}>
+                                                                                    Linked In
+                                                                                </option>
+                                                                                <option value="twitter"
+                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                    X (Twitter)
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label>Tooltip Title:
+                                                                            </label>
+                                                                            <input type="text"
+                                                                                name="footer_contents[social][title][{{ $key }}]"
+                                                                                class="form-control"
+                                                                                placeholder="Enter Tooltip Title"
+                                                                                value="{{ $footer_contents['social']['title'][$key] ?? '' }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-group">
+                                                                            <label>URL:
+                                                                                <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text"
+                                                                                name="footer_contents[social][url][{{ $key }}]"
+                                                                                class="form-control"
+                                                                                placeholder="Enter Social URL"
+                                                                                value="{{ $footer_contents['social']['url'][$key] ?? '' }}"
+                                                                                required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <div class="form-group mb-0">
+                                                                            <label>&nbsp;</label>
+                                                                            <a href="javascript:void(0)"
+                                                                                class="btn btn-danger btn-sm m-0 remove-social-row ml-2">
+                                                                                <i class="fas fa-minus-circle">
+                                                                                </i>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label>Tooltip Title:
-                                                                        </label>
-                                                                        <input type="text"
-                                                                            name="footer_contents[social][title][{{ $random }}]"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Tooltip Title">
+                                                            @empty
+                                                                <div class="row align-items-center social-item-row">
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label>Social Type:
+                                                                                <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <select
+                                                                                class="form-control form-control-lg"
+                                                                                name="footer_contents[social][type][{{ $random }}]"
+                                                                                required>
+                                                                                <option value="">Select Social
+                                                                                    Type
+                                                                                </option>
+                                                                                <option value="facebook">Facebook
+                                                                                </option>
+                                                                                <option value="instagram">Instagram
+                                                                                </option>
+                                                                                <option value="linkedin">Linked In
+                                                                                </option>
+                                                                                <option value="twitter">X (Twitter)
+                                                                                </option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-3">
+                                                                        <div class="form-group">
+                                                                            <label>Tooltip Title:
+                                                                            </label>
+                                                                            <input type="text"
+                                                                                name="footer_contents[social][title][{{ $random }}]"
+                                                                                class="form-control"
+                                                                                placeholder="Enter Tooltip Title">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-5">
+                                                                        <div class="form-group">
+                                                                            <label>URL:
+                                                                                <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <input type="text"
+                                                                                name="footer_contents[social][url][{{ $random }}]"
+                                                                                class="form-control"
+                                                                                placeholder="Enter Social URL"
+                                                                                required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-md-1">
+                                                                        <div class="form-group mb-0">
+                                                                            <label>&nbsp;</label>
+                                                                            <a href="javascript:void(0)"
+                                                                                class="btn btn-danger btn-sm m-0 remove-social-row ml-2">
+                                                                                <i class="fas fa-minus-circle">
+                                                                                </i>
+                                                                            </a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="form-group">
-                                                                        <label>URL:
-                                                                            <span class="text-danger">*</span>
-                                                                        </label>
-                                                                        <input type="text"
-                                                                            name="footer_contents[social][url][{{ $random }}]"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Social URL" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-1">
-                                                                    <div class="form-group mb-0">
-                                                                        <label>&nbsp;</label>
-                                                                        <a href="javascript:void(0)"
-                                                                            class="btn btn-danger btn-sm m-0 remove-social-row ml-2">
-                                                                            <i class="fas fa-minus-circle">
-                                                                            </i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            @endforelse
                                                         </div>
                                                     </div>
                                                 </div>
