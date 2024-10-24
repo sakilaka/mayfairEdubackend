@@ -5,7 +5,7 @@
         </div>
 
         <div class="row justify-content-center mt-5">
-            @forelse ($exhibitors->take(4) as $exhibitor)
+            @forelse ($exhibitors->take(8) as $exhibitor)
                 @php
                     $courses = App\Models\Course::where([
                         'university_id' => $exhibitor->id,
