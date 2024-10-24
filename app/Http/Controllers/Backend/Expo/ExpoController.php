@@ -213,41 +213,6 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // return $request->footer_contents;
-
-        $footerContents = [];
-
-        // Organizer, co-organizer, and supported_by fields
-        $footerContents['organizer_name'] = $request->input('footer_contents.organizer_name');
-        $footerContents['co_organizer_name'] = $request->input('footer_contents.co_organizer_name');
-        $footerContents['supported_by'] = $request->input('footer_contents.supported_by');
-
-        // Social media contents (type, title, url)
-        $socialTypes = $request->input('footer_contents.social.type');
-        $socialTitles = $request->input('footer_contents.social.title');
-        $socialUrls = $request->input('footer_contents.social.url');
-
-        // Combine the social media data into an array
-        $footerContents['social'] = [
-            'type' => $socialTypes,
-            'title' => $socialTitles,
-            'url' => $socialUrls
-        ];
-
-        // Store organizer logo if provided
-        if ($request->hasFile('footer_contents.organizerLogo')) {
-            $fileName = rand() . '_organizer.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
-            // $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
-            $footerContents['organizerLogo'] = url('upload/expo/' . $fileName);
-        }
-
-        // Store co-organizer logo if provided
-        if ($request->hasFile('footer_contents.co_organizerLogo')) {
-            $fileName = rand() . '_co_organizer.' . $request->file('footer_contents.co_organizerLogo')->getClientOriginalExtension();
-            // $request->file('footer_contents.co_organizerLogo')->move(public_path('upload/expo/'), $fileName);
-            $footerContents['co_organizerLogo'] = url('upload/expo/' . $fileName);
-        }
-        return $footerContents;
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -498,8 +463,39 @@ class ExpoController extends Controller
             $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
 
             $data['additional_contents'] = json_encode($data['additional_contents'] ?? asset('frontend/images/No-image.jpg'));
-            $expo->update($data);
 
+
+            // Organizer, co-organizer, and supported_by fields
+            $footerContents = [];
+            $footerContents['organizer_name'] = $request->input('footer_contents.organizer_name');
+            $footerContents['co_organizer_name'] = $request->input('footer_contents.co_organizer_name');
+            $footerContents['supported_by'] = $request->input('footer_contents.supported_by');
+
+            $socialTypes = $request->input('footer_contents.social.type');
+            $socialTitles = $request->input('footer_contents.social.title');
+            $socialUrls = $request->input('footer_contents.social.url');
+
+            $footerContents['social'] = [
+                'type' => $socialTypes,
+                'title' => $socialTitles,
+                'url' => $socialUrls
+            ];
+
+            if ($request->hasFile('footer_contents.organizerLogo')) {
+                $fileName = rand() . '_organizer.' . $request->file('footer_contents.organizerLogo')->getClientOriginalExtension();
+                // $request->file('footer_contents.organizerLogo')->move(public_path('upload/expo/'), $fileName);
+                $footerContents['organizerLogo'] = url('upload/expo/' . $fileName);
+            }
+
+            if ($request->hasFile('footer_contents.co_organizerLogo')) {
+                $fileName = rand() . '_co_organizer.' . $request->file('footer_contents.co_organizerLogo')->getClientOriginalExtension();
+                // $request->file('footer_contents.co_organizerLogo')->move(public_path('upload/expo/'), $fileName);
+                $footerContents['co_organizerLogo'] = url('upload/expo/' . $fileName);
+            }
+
+            $data['footer_contents'] = json_encode($footerContents);
+
+            $expo->update($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
