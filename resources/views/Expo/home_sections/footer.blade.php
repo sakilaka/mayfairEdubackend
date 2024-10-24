@@ -77,17 +77,26 @@
 
                 <div class="col-12">
                     <div class="d-flex flex-wrap justify-content-center">
-                        <div class="footer_social_item">
-                            <div class="footer_social_icons_container" onclick="openInNewTab('')">
-                                <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path fill-rule="evenodd"
-                                        d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z"
-                                        clip-rule="evenodd"></path>
-                                </svg>
-                            </div>
-                        </div>
+                        @foreach ($footer_contents['social']['type'] ?? as $social_type)
+                            @switch($social_type)
+                                @case('facebook')
+                                <div class="footer_social_item">
+                                    <div class="footer_social_icons_container" onclick="openInNewTab('')">
+                                        <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M13.135 6H15V3h-1.865a4.147 4.147 0 0 0-4.142 4.142V9H7v3h2v9.938h3V12h2.021l.592-3H12V6.591A.6.6 0 0 1 12.592 6h.543Z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                    
+                                    @break
+                                @default
+                                    {{ '&nbsp;' }}
+                            @endswitch
+                        @endforeach
                         <div class="footer_social_item">
                             <div class="footer_social_icons_container"
                                 onclick="openInNewTab('https://www.instagram.com/malishaedu')">
