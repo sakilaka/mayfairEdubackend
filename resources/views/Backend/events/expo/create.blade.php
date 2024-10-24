@@ -947,7 +947,9 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="social-container col-md-12">
+                                                    <div class="social-container col-md-12 mt-4">
+                                                        <h4 class="mb-3">Social Contents</h4>
+
                                                         <div class="row align-items-center">
                                                             <div class="col-md-3">
                                                                 <div class="form-group">
@@ -956,7 +958,8 @@
                                                                     </label>
                                                                     <select class="form-control form-control-lg"
                                                                         name="footer_contents[social][type]" required>
-                                                                        <option value="">Select Social Type</option>
+                                                                        <option value="">Select Social Type
+                                                                        </option>
                                                                         <option value="facebook">Facebook</option>
                                                                         <option value="instagram">Instagram</option>
                                                                         <option value="linkedin">Linked In</option>
