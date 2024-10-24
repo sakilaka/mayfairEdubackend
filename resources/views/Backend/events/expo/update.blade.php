@@ -1216,7 +1216,7 @@
                                                 <div class="row mb-3">
                                                     <div class="col-md-6">
                                                         <div class="row">
-                                                            <div class="col-sm-12 col-md-6 col-lg-8">
+                                                            <div class="col-12">
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
@@ -1265,7 +1265,7 @@
                                                     </div>
                                                     <div class="col-md-6">
                                                         <div class="row">
-                                                            <div class="col-sm-12 col-md-6 col-lg-8">
+                                                            <div class="col-12">
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
