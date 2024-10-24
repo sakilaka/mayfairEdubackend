@@ -1214,97 +1214,101 @@
                                                 </div>
 
                                                 <div class="row mb-3">
-                                                    <div class="col-sm-12 col-md-6 col-lg-8">
+                                                    <div class="col-md-6">
                                                         <div class="row">
-                                                            <div class="col-sm-6 img-upload-container">
-                                                                <div class="form-group">
-                                                                    <label class="form-control-label">Upload
-                                                                        Logo</label>
-                                                                    <div class="dropify-wrapper" style="border: none">
-                                                                        <div class="dropify-loader"></div>
-                                                                        <div class="dropify-errors-container">
-                                                                            <ul></ul>
-                                                                        </div>
-                                                                        <input type="file" class="dropify"
-                                                                            name="additional_contents[organizerDetails][logo]"
-                                                                            accept="image/*">
-                                                                        <button type="button"
-                                                                            class="dropify-clear">Remove</button>
-                                                                        <div class="dropify-preview">
-                                                                            <span class="dropify-render"></span>
-                                                                            <div class="dropify-infos">
-                                                                                <div class="dropify-infos-inner">
-                                                                                    <p class="dropify-filename">
-                                                                                        <span class="file-icon"></span>
-                                                                                        <span
-                                                                                            class="dropify-filename-inner"></span>
-                                                                                    </p>
-                                                                                    <p class="dropify-infos-message">
-                                                                                        Drag and drop or click to
-                                                                                        replace
-                                                                                    </p>
+                                                            <div class="col-sm-12 col-md-6 col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6 img-upload-container">
+                                                                        <div class="form-group">
+                                                                            <label class="form-control-label">Upload
+                                                                                Logo</label>
+                                                                            <div class="dropify-wrapper" style="border: none">
+                                                                                <div class="dropify-loader"></div>
+                                                                                <div class="dropify-errors-container">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                                <input type="file" class="dropify"
+                                                                                    name="additional_contents[organizerDetails][logo]"
+                                                                                    accept="image/*">
+                                                                                <button type="button"
+                                                                                    class="dropify-clear">Remove</button>
+                                                                                <div class="dropify-preview">
+                                                                                    <span class="dropify-render"></span>
+                                                                                    <div class="dropify-infos">
+                                                                                        <div class="dropify-infos-inner">
+                                                                                            <p class="dropify-filename">
+                                                                                                <span class="file-icon"></span>
+                                                                                                <span
+                                                                                                    class="dropify-filename-inner"></span>
+                                                                                            </p>
+                                                                                            <p class="dropify-infos-message">
+                                                                                                Drag and drop or click to
+                                                                                                replace
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
+                                                                    <div
+                                                                        class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
+                                                                        <div class="px-3">
+                                                                            <img src="{{ $additional_contents['organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                alt="" class="img-fluid"
+                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div
-                                                                class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                                                <div class="px-3">
-                                                                    <img src="{{ $additional_contents['organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
-                                                                        alt="" class="img-fluid"
-                                                                        style="border-radius: 10px; max-height: 200px !important;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-6 col-lg-8">
+                                                                <div class="row">
+                                                                    <div class="col-sm-6 img-upload-container">
+                                                                        <div class="form-group">
+                                                                            <label class="form-control-label">Upload
+                                                                                Logo</label>
+                                                                            <div class="dropify-wrapper" style="border: none">
+                                                                                <div class="dropify-loader"></div>
+                                                                                <div class="dropify-errors-container">
+                                                                                    <ul></ul>
+                                                                                </div>
+                                                                                <input type="file" class="dropify"
+                                                                                    name="additional_contents[organizerDetails][logo]"
+                                                                                    accept="image/*">
+                                                                                <button type="button"
+                                                                                    class="dropify-clear">Remove</button>
+                                                                                <div class="dropify-preview">
+                                                                                    <span class="dropify-render"></span>
+                                                                                    <div class="dropify-infos">
+                                                                                        <div class="dropify-infos-inner">
+                                                                                            <p class="dropify-filename">
+                                                                                                <span class="file-icon"></span>
+                                                                                                <span
+                                                                                                    class="dropify-filename-inner"></span>
+                                                                                            </p>
+                                                                                            <p class="dropify-infos-message">
+                                                                                                Drag and drop or click to
+                                                                                                replace
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
+                                                                        <div class="px-3">
+                                                                            <img src="{{ $additional_contents['organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                alt="" class="img-fluid"
+                                                                                style="border-radius: 10px; max-height: 200px !important;">
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">
-                                                                <span class="text-danger">*</span>
-                                                                Organizer Name:</label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="additional_contents[organizerDetails][name]"
-                                                                    class="form-control"
-                                                                    value="{{ $additional_contents['organizerDetails']['name'] ?? '' }}"
-                                                                    placeholder="Enter Organizer Name">
-                                                                @error('additional_contents[organizerDetails][name]')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">
-                                                                Redirect URL:</label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="additional_contents[organizerDetails][redirect_url]"
-                                                                    class="form-control"
-                                                                    value="{{ $additional_contents['organizerDetails']['redirect_url'] ?? '' }}"
-                                                                    placeholder="Enter Organizer Details Redirection URL">
-                                                                @error('additional_contents[organizerDetails][redirect_url]')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">
-                                                                <span class="text-danger">*</span>
-                                                                Organizer Details:</label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <textarea name="additional_contents[organizerDetails][details]" class="form-control editor">{!! $additional_contents['organizerDetails']['details'] ?? '' !!}</textarea>
-                                                                @error('additional_contents[organizerDetails][details]')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
                                                             </div>
                                                         </div>
                                                     </div>
