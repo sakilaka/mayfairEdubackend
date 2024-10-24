@@ -77,11 +77,12 @@
 
                 <div class="col-12">
                     <div class="d-flex flex-wrap justify-content-center">
-                        @foreach ($footer_contents['social']['type'] ?? [] as $social_type)
+                        @foreach ($footer_contents['social']['type'] ?? [] as $key => $social_type)
                             @switch($social_type)
                                 @case('facebook')
                                     <div class="footer_social_item">
-                                        <div class="footer_social_icons_container" onclick="openInNewTab('')">
+                                        <div class="footer_social_icons_container"
+                                            onclick="openInNewTab('{{ $footer_content['social']['url'][$key] ?? '#' }}')">
                                             <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 fill="currentColor" viewBox="0 0 24 24">
@@ -96,7 +97,7 @@
                                 @case('instagram')
                                     <div class="footer_social_item">
                                         <div class="footer_social_icons_container"
-                                            onclick="openInNewTab('https://www.instagram.com/malishaedu')">
+                                            onclick="openInNewTab('{{ $footer_content['social']['url'][$key] ?? '#' }}">
                                             <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -111,8 +112,8 @@
                                 @case('twitter')
                                     <div class="footer_social_item">
                                         <div class="footer_social_icons_container"
-                                            onclick="openInNewTab('https://twitter.com/YourChinaStudy')" data-toggle="tooltip"
-                                            title="Twitter">
+                                            onclick="openInNewTab('{{ $footer_content['social']['url'][$key] ?? '#' }}')"
+                                            data-toggle="tooltip" title="Twitter">
                                             <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 fill="currentColor" viewBox="0 0 24 24">
@@ -127,7 +128,7 @@
                                 @case('linkedin')
                                     <div class="footer_social_item">
                                         <div class="footer_social_icons_container"
-                                            onclick="openInNewTab('https://www.linkedin.com/in/istudyinchina')"
+                                            onclick="openInNewTab('{{ $footer_content['social']['url'][$key] ?? '#' }}')"
                                             data-toggle="tooltip" title="LinkedIn">
                                             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
