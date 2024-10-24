@@ -1229,7 +1229,7 @@
                                                                                     <ul></ul>
                                                                                 </div>
                                                                                 <input type="file" class="dropify"
-                                                                                    name="footer_contents[organizerDetails][logo]"
+                                                                                    name="footer_contents[organizerLogo]"
                                                                                     accept="image/*">
                                                                                 <button type="button"
                                                                                     class="dropify-clear">Remove</button>
@@ -1276,7 +1276,7 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
-                                                                            <label class="form-control-label">Upload
+                                                                            <label class="form-control-label">Upload Co-Organizer
                                                                                 Logo</label>
                                                                             <div class="dropify-wrapper"
                                                                                 style="border: none">
@@ -1285,7 +1285,7 @@
                                                                                     <ul></ul>
                                                                                 </div>
                                                                                 <input type="file" class="dropify"
-                                                                                    name="additional_contents[organizerDetails][logo]"
+                                                                                    name="footer_contents[co_organizerLogo]"
                                                                                     accept="image/*">
                                                                                 <button type="button"
                                                                                     class="dropify-clear">Remove</button>
@@ -1317,7 +1317,7 @@
                                                                     <div
                                                                         class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                         <div class="px-3">
-                                                                            <img src="{{ $additional_contents['organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
                                                                                 alt="" class="img-fluid"
                                                                                 style="border-radius: 10px; max-height: 200px !important;">
                                                                         </div>
