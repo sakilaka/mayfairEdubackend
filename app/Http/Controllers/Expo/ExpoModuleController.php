@@ -86,6 +86,7 @@ class ExpoModuleController extends Controller
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
+        return $data['exhibitor'];
         return view('Frontend.pages.exhibitor_details', $data);
     }
 
