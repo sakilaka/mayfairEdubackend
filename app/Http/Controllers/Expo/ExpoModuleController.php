@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isNull;
+
 class ExpoModuleController extends Controller
 {
     /**
@@ -86,7 +88,16 @@ class ExpoModuleController extends Controller
             return back()->with('error', 'Exhibitor Not Found!');
         }
 
-        return $data['exhibitor'];
+        if ($type === 'main') {
+            if ($data['exhibitor']['exhibitor_desc'] === null) {
+                return 'null';
+            } else {
+                return $data['exhibitor'];
+            }
+        } elseif ($type === 'site') {
+            return 'site';
+        }
+
         return view('Frontend.pages.exhibitor_details', $data);
     }
 
