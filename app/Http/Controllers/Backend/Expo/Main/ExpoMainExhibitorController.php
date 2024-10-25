@@ -21,7 +21,7 @@ class ExpoMainExhibitorController extends Controller
         $exhibitor_ids = array_column($expo_exhibitors, 'exhibitor');
 
         $data['exhibitors'] = University::whereIn('id', $exhibitor_ids)
-            /* ->select('id', 'name', 'address') */
+            ->select('id', 'name', 'address', 'image')
             ->orderByDesc('created_at')
             ->get()
             ->map(function ($university) use ($expo_exhibitors) {
