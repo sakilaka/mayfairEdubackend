@@ -954,7 +954,8 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
-                                                                            <label class="form-control-label">Upload Organizer
+                                                                            <label class="form-control-label">Upload
+                                                                                Organizer
                                                                                 Logo</label>
                                                                             <div class="dropify-wrapper"
                                                                                 style="border: none">
@@ -1010,7 +1011,8 @@
                                                                 <div class="row">
                                                                     <div class="col-sm-6 img-upload-container">
                                                                         <div class="form-group">
-                                                                            <label class="form-control-label">Upload Co-Organizer
+                                                                            <label class="form-control-label">Upload
+                                                                                Co-Organizer
                                                                                 Logo</label>
                                                                             <div class="dropify-wrapper"
                                                                                 style="border: none">
@@ -1095,6 +1097,11 @@
                                                                             <option value="linkedin">Linked In</option>
                                                                             <option value="twitter">X (Twitter)
                                                                             </option>
+                                                                            <option value="youtube">YouTube</option>
+                                                                            <option value="bilibili">Bilibili</option>
+                                                                            <option value="telegram">Telegram</option>
+                                                                            <option value="whatsapp">WhatsApp</option>
+                                                                            <option value="wechat">WeChat</option>
                                                                         </select>
                                                                     </div>
                                                                 </div>
@@ -1414,6 +1421,11 @@
                                 <option value="instagram">Instagram</option>
                                 <option value="linkedin">Linked In</option>
                                 <option value="twitter">X (Twitter)</option>
+                                <option value="youtube">YouTube</option>
+                                <option value="bilibili">Bilibili</option>
+                                <option value="telegram">Telegram</option>
+                                <option value="whatsapp">WhatsApp</option>
+                                <option value="wechat">WeChat</option>
                             </select>
                         </div>
                     </div>
