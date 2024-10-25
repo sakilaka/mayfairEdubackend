@@ -1383,26 +1383,27 @@
                                                                                     {{ $type === 'twitter' ? 'selected' : '' }}>
                                                                                     X (Twitter)
                                                                                 </option>
-                                                                                <option value="twitter"
-                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
-                                                                                    Youtube
+                                                                                <option value="youtube"
+                                                                                    {{ $type === 'youtube' ? 'selected' : '' }}>
+                                                                                    YouTube
                                                                                 </option>
-                                                                                <option value="twitter"
-                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                <option value="bilibili"
+                                                                                    {{ $type === 'bilibili' ? 'selected' : '' }}>
                                                                                     Bilibili
                                                                                 </option>
-                                                                                <option value="twitter"
-                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                <option value="telegram"
+                                                                                    {{ $type === 'telegram' ? 'selected' : '' }}>
                                                                                     Telegram
                                                                                 </option>
-                                                                                <option value="twitter"
-                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                <option value="whatsapp"
+                                                                                    {{ $type === 'whatsapp' ? 'selected' : '' }}>
                                                                                     WhatsApp
                                                                                 </option>
-                                                                                <option value="twitter"
-                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                <option value="wechat"
+                                                                                    {{ $type === 'wechat' ? 'selected' : '' }}>
                                                                                     WeChat
                                                                                 </option>
+
                                                                             </select>
                                                                         </div>
                                                                     </div>
