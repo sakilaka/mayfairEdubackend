@@ -1383,6 +1383,26 @@
                                                                                     {{ $type === 'twitter' ? 'selected' : '' }}>
                                                                                     X (Twitter)
                                                                                 </option>
+                                                                                <option value="twitter"
+                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                    Youtube
+                                                                                </option>
+                                                                                <option value="twitter"
+                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                    Bilibili
+                                                                                </option>
+                                                                                <option value="twitter"
+                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                    Telegram
+                                                                                </option>
+                                                                                <option value="twitter"
+                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                    WhatsApp
+                                                                                </option>
+                                                                                <option value="twitter"
+                                                                                    {{ $type === 'twitter' ? 'selected' : '' }}>
+                                                                                    WeChat
+                                                                                </option>
                                                                             </select>
                                                                         </div>
                                                                     </div>
