@@ -90,12 +90,12 @@ class ExpoModuleController extends Controller
 
         if ($type === 'main') {
             if ($data['exhibitor']['exhibitor_desc'] === null) {
-                return 'null';
-            } else {
-                return $data['exhibitor'];
+                return redirect(route('frontend.university_details', ['id' => $data['exhibitor']->id]));
             }
         } elseif ($type === 'site') {
-            return 'site';
+            if ($data['exhibitor']['exhibitor_site_desc'] === null) {
+                return redirect(route('frontend.university_details', ['id' => $data['exhibitor']->id]));
+            }
         }
 
         return view('Frontend.pages.exhibitor_details', $data);
