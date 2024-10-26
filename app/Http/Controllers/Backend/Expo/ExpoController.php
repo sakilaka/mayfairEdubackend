@@ -520,7 +520,7 @@ class ExpoController extends Controller
 
                         $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
                         $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
-                        $organco_ico_zer['logo'] = url('upload/expo/' . $fileName);
+                        $co_organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
                         return false;
                         $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
