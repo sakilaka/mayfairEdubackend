@@ -2044,13 +2044,11 @@
                 </div>
             `;
 
-            $('.organizer-container').append(myvar);
+            $('.organizer-container').prepend(myvar);
             $(`.dropify`).dropify();
 
             const newEditorElement = document.getElementById(`organizer_details_${randomNumber}`);
             initializeEditor(newEditorElement);
-            console.log(newEditorElement);
-            
         });
 
         $(document).on('click', '.remove-organizer', function() {
@@ -2181,7 +2179,7 @@
                                             <span class="text-danger">*</span>
                                             Organizer Details:</label>
                                         <div class="mg-t-10 mg-sm-t-0">
-                                            <textarea name="additional_contents[co_organizerDetails][${randomNumber}][details]" class="form-control editor"></textarea>
+                                            <textarea name="additional_contents[co_organizerDetails][${randomNumber}][details]" id="co_organizer_details_${randomNumber}" class="form-control editor"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -2193,9 +2191,21 @@
 
             $('.co-organizer-container').prepend(myvar);
             $(`.dropify`).dropify();
+
+            const newEditorElement = document.getElementById(`co_organizer_details_${randomNumber}`);
+            initializeEditor(newEditorElement);
         });
 
         $(document).on('click', '.remove-co-organizer', function() {
+            const editorKey = $(this).parent().parent().parent().find('textarea').attr('name');
+
+            if (window.editorInstances[editorKey]) {
+                window.editorInstances[editorKey].destroy()
+                    .then(() => {
+                        delete window.editorInstances[editorKey];
+                    });
+            }
+
             $(this).parent().parent().parent().remove();
         });
     </script>
