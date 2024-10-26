@@ -20,7 +20,7 @@
         }
 
         .testimonial-single-card {
-            border: 3px solid var(--primary_background);
+            border: 4px solid var(--primary_background);
         }
     </style>
 </head>
