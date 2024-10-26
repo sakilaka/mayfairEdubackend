@@ -64,7 +64,7 @@
 
     window.editorInstances = {};
 
-    document.querySelectorAll('.editor').forEach((editorElement) => {
+    window.initializeEditor = function (editorElement) {
         ClassicEditor
             .create(editorElement, {
                 plugins: [
@@ -234,7 +234,11 @@
             })
             .catch(error => {
                 console.error(error);
-            });
+            });        
+    }
+
+    document.querySelectorAll('.editor').forEach((editorElement) => {
+        initializeEditor(editorElement);
     })
 </script>
 <!-- ckeditor5 config - (end) -->
