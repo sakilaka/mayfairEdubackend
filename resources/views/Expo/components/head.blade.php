@@ -78,6 +78,7 @@
 
         --btn_tertiary_color: var(--tertiary_background);
         --btn_tertiary_hover_color: {{ '#c10000' }};
+        --section-background: #f2fafe;
     }
 
     /* assign btn theme for this site */
@@ -116,7 +117,8 @@
         background-color: var(--btn_tertiary_hover_color) !important;
     }
 
-    .nav-link:hover, .nav-link.active{
+    .nav-link:hover,
+    .nav-link.active {
         background: var(--primary_background) !important;
     }
 </style>
