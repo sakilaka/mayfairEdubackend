@@ -943,7 +943,7 @@
                                                 <div class="row justify-content-between">
                                                     <h4 class="d-inline mb-3">Organizer(s)</h4>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-primary"
-                                                        id="add-gallery">
+                                                        id="add-organizer">
                                                         <i class="fa fa-plus"></i>
                                                         Add
                                                     </a>
@@ -962,7 +962,7 @@
                                                             </h5>
 
                                                             <a href="javascript:void(0)"
-                                                                class="btn btn-sm btn-danger remove-gallery">
+                                                                class="btn btn-sm btn-danger remove-organizer">
                                                                 <i class="fa fa-minus"></i>
                                                             </a>
                                                         </div>
@@ -988,7 +988,7 @@
                                                                                     </div>
                                                                                     <input type="file"
                                                                                         class="dropify"
-                                                                                        name="additional_contents[organizerDetails][logo]"
+                                                                                        name="additional_contents[organizerDetails][{{ $random }}][logo]"
                                                                                         accept="image/*">
                                                                                     <button type="button"
                                                                                         class="dropify-clear">Remove</button>
@@ -1081,7 +1081,6 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                             </section>
 
@@ -1867,6 +1866,22 @@
         });
 
         $(document).on('click', '.remove-social-row', function() {
+            $(this).parent().parent().parent().remove();
+        });
+
+        /* add gallery */
+        $(document).on('click', '#add-organizer', function() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+
+            var myvar = `
+                
+            `;
+
+            $('#organizer-container').prepend(myvar);
+            $(`.dropify`).dropify();
+        });
+
+        $(document).on('click', '.remove-organizer', function() {
             $(this).parent().parent().parent().remove();
         });
     </script>
