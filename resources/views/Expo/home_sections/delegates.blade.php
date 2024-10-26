@@ -15,10 +15,15 @@
                     What Our Overseas Delegates Are Saying
                 </p> --}}
 
+                <style>
+                    .testimonial-single-card {
+                        border: 4px solid var(--primary_background);
+                    }
+                </style>
                 <div class="row {{-- delegates-slick-carousel slick-slider --}} mt-3">
                     @foreach ($delegates as $delegate)
                         <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
-                            <div class="testimonial-single-card p-3">
+                            <div class="testimonial-single-card bg-white p-3">
                                 <div class="d-flex justify-content-center">
                                     <img class="testimonial-user-img"
                                         src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
