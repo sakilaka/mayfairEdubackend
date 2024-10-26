@@ -960,14 +960,14 @@
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
                                                                     Organizer
                                                                 </h5>
-    
+
                                                                 <a href="javascript:void(0)"
                                                                     class="btn btn-sm btn-danger remove-organizer">
                                                                     <i class="fa fa-minus"></i>
                                                                 </a>
                                                             </div>
                                                         </div>
-    
+
                                                         <div class="collapse"
                                                             id="organizer_single_collapse_{{ $random }}">
                                                             <div class="card-body">
@@ -981,7 +981,8 @@
                                                                                         Logo</label>
                                                                                     <div class="dropify-wrapper"
                                                                                         style="border: none">
-                                                                                        <div class="dropify-loader"></div>
+                                                                                        <div class="dropify-loader">
+                                                                                        </div>
                                                                                         <div
                                                                                             class="dropify-errors-container">
                                                                                             <ul></ul>
@@ -1021,14 +1022,15 @@
                                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                                 <div class="px-3">
                                                                                     <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                        alt="" class="img-fluid"
+                                                                                        alt=""
+                                                                                        class="img-fluid"
                                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-    
+
                                                                 <div class="row">
                                                                     <div class="col-12">
                                                                         <div class="form-group">
@@ -1084,7 +1086,7 @@
                                                         </div>
                                                     </div>
                                             </section>
-                                            
+
                                             <h3>Co-Organizer Details</h3>
                                             <section>
                                                 <div class="d-flex justify-content-between">
@@ -1107,14 +1109,14 @@
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
                                                                     Co-Organizer
                                                                 </h5>
-    
+
                                                                 <a href="javascript:void(0)"
                                                                     class="btn btn-sm btn-danger remove-co-organizer">
                                                                     <i class="fa fa-minus"></i>
                                                                 </a>
                                                             </div>
                                                         </div>
-    
+
                                                         <div class="collapse"
                                                             id="co-organizer_single_collapse_{{ $random }}">
                                                             <div class="card-body">
@@ -1128,7 +1130,8 @@
                                                                                         Logo</label>
                                                                                     <div class="dropify-wrapper"
                                                                                         style="border: none">
-                                                                                        <div class="dropify-loader"></div>
+                                                                                        <div class="dropify-loader">
+                                                                                        </div>
                                                                                         <div
                                                                                             class="dropify-errors-container">
                                                                                             <ul></ul>
@@ -1168,14 +1171,15 @@
                                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                                 <div class="px-3">
                                                                                     <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                        alt="" class="img-fluid"
+                                                                                        alt=""
+                                                                                        class="img-fluid"
                                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-    
+
                                                                 <div class="row">
                                                                     <div class="col-12">
                                                                         <div class="form-group">
@@ -2030,7 +2034,7 @@
                                             <span class="text-danger">*</span>
                                             Organizer Details:</label>
                                         <div class="mg-t-10 mg-sm-t-0">
-                                            <textarea name="additional_contents[organizerDetails][${randomNumber}][details]" class="form-control editor"></textarea>
+                                            <textarea name="additional_contents[organizerDetails][${randomNumber}][details]" id="organizer_details_${randomNumber} }}" class="form-control editor"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -2042,9 +2046,21 @@
 
             $('.organizer-container').prepend(myvar);
             $(`.dropify`).dropify();
+
+            const newEditorElement = document.getElementById(`organizer_details_${randomNumber}`);
+            initializeEditor(newEditorElement);
         });
 
         $(document).on('click', '.remove-organizer', function() {
+            const editorKey = $(this).closest('.row').find('textarea').attr('name');
+
+            if (window.editorInstances[editorKey]) {
+                window.editorInstances[editorKey].destroy()
+                    .then(() => {
+                        delete window.editorInstances[editorKey];
+                    });
+            }
+
             $(this).parent().parent().parent().remove();
         });
 
