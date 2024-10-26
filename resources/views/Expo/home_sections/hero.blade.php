@@ -4,7 +4,7 @@
             <div class="container d-flex justify-content-between">
                 <a class="ms-md-4 navbar-brand" href="{{ route('home') }}">
                     <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo"
-                        class="logo" style="width: 120px; height:auto;">
+                        class="logo" style="width: 180px; height:auto;">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
