@@ -216,7 +216,7 @@ h2 {
 }
 
 .bg-color {
-    background-color: rgba(60, 74, 231, 0.22);
+    /* background-color: rgba(60, 74, 231, 0.22); */
     height: 100%;
     position: absolute;
     top: 0;
