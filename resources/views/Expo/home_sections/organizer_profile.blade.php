@@ -1,4 +1,4 @@
-<section class="red-section-bg mt-5 py-5">
+<section class="red-section-bg py-5">
     <div class="container">
         <div class="text-center">
             <h2 class="section-title text-light">Organizer Profile</h2>
