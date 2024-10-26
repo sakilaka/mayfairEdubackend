@@ -2006,7 +2006,7 @@
                                             <input type="text"
                                                 name="additional_contents[organizerDetails][${randomNumber}][name]"
                                                 class="form-control"
-                                                value="
+                                                value=""
                                                 placeholder="Enter Organizer Name">
                                         </div>
                                     </div>
@@ -2139,7 +2139,7 @@
                                             <input type="text"
                                                 name="additional_contents[co_organizerDetails][${randomNumber}][name]"
                                                 class="form-control"
-                                                value="
+                                                value=""
                                                 placeholder="Enter Co-Organizer Name">
                                         </div>
                                     </div>
