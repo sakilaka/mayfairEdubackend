@@ -4,7 +4,7 @@
             <h2 class="section-title text-light">Organizer</h2>
         </div>
 
-        @foreach ($additional_contents['organizerDetails'] ?? [] as $organizer)
+        @forelse ($additional_contents['organizerDetails'] ?? [] as $organizer)
             <div class="row justify-content-center mt-5">
                 <div class="col-md-3">
                     <div class="d-flex flex-column justify-content-center align-items-center align-items-md-end">
@@ -27,6 +27,8 @@
                 </div>
                 <div class="col-md-1"></div>
             </div>
-        @endforeach
+        @empty
+            <p class="text-center text-light mt-3">No Organizer Found</p>
+        @endforelse
     </div>
 </section>

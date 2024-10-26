@@ -28,6 +28,8 @@
                 </div>
                 <div class="col-md-1"></div>
             </div>
+        @empty
+            <p class="text-center mt-3">No Co-Organizer Found</p>
         @endforelse
     </div>
 </section>
