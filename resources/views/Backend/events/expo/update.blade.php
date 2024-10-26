@@ -940,7 +940,14 @@
 
                                             <h3>Organizer Details</h3>
                                             <section>
-                                                <h4 class="mb-3">Organizer Details</h4>
+                                                <div class="row justify-content-between">
+                                                    <h4 class="d-inline mb-3">Organizer(s)</h4>
+                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                        id="add-gallery">
+                                                        <i class="fa fa-plus"></i>
+                                                        Add
+                                                    </a>
+                                                </div>
 
                                                 @php
                                                     $random = rand();
