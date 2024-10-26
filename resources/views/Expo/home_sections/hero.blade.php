@@ -56,7 +56,7 @@
                             </p>
                         @endforeach
                     </div>
-                    <div>
+                    <div class="mt-3">
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Venue:
                         </p>
                         <p class="location-text text-white">
