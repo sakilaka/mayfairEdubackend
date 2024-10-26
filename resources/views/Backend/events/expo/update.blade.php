@@ -952,8 +952,8 @@
                                                 @php
                                                     $random = rand();
                                                 @endphp
-                                                <div class="organizer-container mt-3 row">
-                                                    <div class="col-12">
+                                                <div class="organizer-container row">
+                                                    <div class="col-12 mt-3">
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#activity_single_collapse_{{ $random }}">
                                                             <div class="d-flex justify-content-between">
@@ -1020,7 +1020,7 @@
                                                                             <div
                                                                                 class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                                 <div class="px-3">
-                                                                                    <img src="{{ $additional_contents['organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
                                                                                         alt="" class="img-fluid"
                                                                                         style="border-radius: 10px; max-height: 200px !important;">
                                                                                 </div>
@@ -1039,7 +1039,7 @@
                                                                                 <input type="text"
                                                                                     name="additional_contents[organizerDetails][{{ $random }}][name]"
                                                                                     class="form-control"
-                                                                                    value="{{ $additional_contents['organizerDetails']['name'] ?? '' }}"
+                                                                                    value=""
                                                                                     placeholder="Enter Organizer Name">
                                                                                 @error('additional_contents[organizerDetails][name]')
                                                                                     <span
@@ -1056,7 +1056,7 @@
                                                                                 <input type="text"
                                                                                     name="additional_contents[organizerDetails][{{ $random }}][redirect_url]"
                                                                                     class="form-control"
-                                                                                    value="{{ $additional_contents['organizerDetails']['redirect_url'] ?? '' }}"
+                                                                                    value=""
                                                                                     placeholder="Enter Organizer Details Redirection URL">
                                                                                 @error('additional_contents[organizerDetails][redirect_url]')
                                                                                     <span
@@ -1071,7 +1071,7 @@
                                                                                 <span class="text-danger">*</span>
                                                                                 Organizer Details:</label>
                                                                             <div class="mg-t-10 mg-sm-t-0">
-                                                                                <textarea name="additional_contents[organizerDetails][{{ $random }}][details]" class="form-control editor">{!! $additional_contents['organizerDetails']['details'] ?? '' !!}</textarea>
+                                                                                <textarea name="additional_contents[organizerDetails][{{ $random }}][details]" class="form-control editor"></textarea>
                                                                                 @error('additional_contents[organizerDetails][details]')
                                                                                     <span
                                                                                         class="text-danger">{{ $message }}</span>
@@ -1875,7 +1875,7 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var myvar = `
-                <div class="col-12">
+                <div class="col-12 mt-3">
                     <div class="card-header" data-toggle="collapse"
                         data-target="#activity_single_collapse_${randomNumber}">
                         <div class="d-flex justify-content-between">
