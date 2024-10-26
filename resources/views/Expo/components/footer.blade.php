@@ -55,7 +55,7 @@
 </button> --}}
 
 <div class="fixed-buttons" id="fixed-buttons">
-    <a class="nav-link registration-btn rounded-0 btn-secondary-bg px-2"
+    <a class="nav-link registration-btn rounded-0 btn-primary-bg red-hover-button px-2"
         href="{{ route('expo.sign-up', ['unique_id' => $expo->unique_id]) }}" style="color: white;">Participate</a>
 </div>
 <script>
