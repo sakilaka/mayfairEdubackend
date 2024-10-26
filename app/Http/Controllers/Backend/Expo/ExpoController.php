@@ -244,7 +244,6 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -313,7 +312,7 @@ class ExpoController extends Controller
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
-return $old_additional_contents;
+
             if ($request->hasFile('additional_contents.nav_logo')) {
                 if (!empty($old_additional_contents['nav_logo'])) {
                     $oldFilePath = parse_url($old_additional_contents['nav_logo'], PHP_URL_PATH);
@@ -405,7 +404,8 @@ return $old_additional_contents;
 
                 // Add or update existing items
                 foreach ($organizerDetails as $key => $organizer) {
-                    if (is_file($organizer['logo'])) {
+                    if (isset($organizer['logo']) && is_file($organizer['logo'])) {
+                        return true;
                         // Remove the old file if updating an existing entry with a new logo
                         if (isset($oldOrganizerDetails[$key]['logo'])) {
                             $oldFilePath = parse_url($oldOrganizerDetails[$key]['logo'], PHP_URL_PATH);
@@ -418,6 +418,7 @@ return $old_additional_contents;
                         // $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
+                        return false;
                         // Keep old logo if no new file is provided
                         $organizer['logo'] = $oldOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
@@ -440,7 +441,7 @@ return $old_additional_contents;
 
                 $data['additional_contents']['organizerDetails'] = $oldOrganizerDetails;
             }
-
+return $data;
             // Update co-organizer details
             if (!empty($request->input('additional_contents.co_organizerDetails'))) {
                 $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
