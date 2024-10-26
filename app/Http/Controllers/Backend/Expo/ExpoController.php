@@ -394,18 +394,16 @@ class ExpoController extends Controller
                     $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
                 }
             } */
-            // Retrieve old contents
+
             $oldOrganizerDetails = $old_additional_contents['organizerDetails'] ?? [];
             $oldCoOrganizerDetails = $old_additional_contents['co_organizerDetails'] ?? [];
 
-            // Update organizer details
+            // update organizer details
             if (!empty($request->input('additional_contents.organizerDetails'))) {
                 $organizerDetails = $request->additional_contents['organizerDetails'];
 
-                // Add or update existing items
                 foreach ($organizerDetails as $key => $organizer) {
                     if (isset($organizer['logo']) && is_file($organizer['logo'])) {
-                        // Remove the old file if updating an existing entry with a new logo
                         if (isset($oldOrganizerDetails[$key]['logo'])) {
                             $oldFilePath = parse_url($oldOrganizerDetails[$key]['logo'], PHP_URL_PATH);
                             $oldFileFullPath = public_path($oldFilePath);
@@ -414,7 +412,7 @@ class ExpoController extends Controller
                             }
                         }
                         $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
-                        // $organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
                         $organizer['logo'] = $oldOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
@@ -422,10 +420,8 @@ class ExpoController extends Controller
                     $oldOrganizerDetails[$key] = $organizer;
                 }
 
-                // Remove items not present in the request and delete their files if they exist
                 foreach ($oldOrganizerDetails as $key => $value) {
                     if (!isset($organizerDetails[$key])) {
-                        return true;
                         if (!empty($value['logo'])) {
                             $oldFilePath = parse_url($value['logo'], PHP_URL_PATH);
                             $oldFileFullPath = public_path($oldFilePath);
@@ -439,14 +435,14 @@ class ExpoController extends Controller
 
                 $data['additional_contents']['organizerDetails'] = $oldOrganizerDetails;
             }
-return $data;
-            // Update co-organizer details
+
+            // update co-organizer details
             if (!empty($request->input('additional_contents.co_organizerDetails'))) {
                 $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
 
                 foreach ($co_organizerDetails as $key => $co_organizer) {
                     if (isset($co_organizer['logo']) && is_file($co_organizer['logo'])) {
-                        // Remove old file if updating an existing entry with a new logo
+                        return true;
                         if (isset($oldCoOrganizerDetails[$key]['logo'])) {
                             $oldFilePath = parse_url($oldCoOrganizerDetails[$key]['logo'], PHP_URL_PATH);
                             $oldFileFullPath = public_path($oldFilePath);
@@ -458,13 +454,11 @@ return $data;
                         // $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $co_organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
-                        // Keep old logo if no new file is provided
-                        $co_organizer['logo'] = $oldCoOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
+                        $co_organizer['logo'] = /* $oldCoOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg') */ '';
                     }
                     $oldCoOrganizerDetails[$key] = $co_organizer;
                 }
 
-                // Remove items not present in the request and delete their files if they exist
                 foreach ($oldCoOrganizerDetails as $key => $value) {
                     if (!isset($co_organizerDetails[$key])) {
                         if (!empty($value['logo'])) {
