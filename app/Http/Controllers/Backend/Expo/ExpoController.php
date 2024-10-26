@@ -405,7 +405,6 @@ class ExpoController extends Controller
                 // Add or update existing items
                 foreach ($organizerDetails as $key => $organizer) {
                     if (isset($organizer['logo']) && is_file($organizer['logo'])) {
-                        return true;
                         // Remove the old file if updating an existing entry with a new logo
                         if (isset($oldOrganizerDetails[$key]['logo'])) {
                             $oldFilePath = parse_url($oldOrganizerDetails[$key]['logo'], PHP_URL_PATH);
@@ -418,8 +417,6 @@ class ExpoController extends Controller
                         // $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
-                        return false;
-                        // Keep old logo if no new file is provided
                         $organizer['logo'] = $oldOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
                     $oldOrganizerDetails[$key] = $organizer;
@@ -428,6 +425,7 @@ class ExpoController extends Controller
                 // Remove items not present in the request and delete their files if they exist
                 foreach ($oldOrganizerDetails as $key => $value) {
                     if (!isset($organizerDetails[$key])) {
+                        return true;
                         if (!empty($value['logo'])) {
                             $oldFilePath = parse_url($value['logo'], PHP_URL_PATH);
                             $oldFileFullPath = public_path($oldFilePath);
@@ -447,7 +445,7 @@ return $data;
                 $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
 
                 foreach ($co_organizerDetails as $key => $co_organizer) {
-                    if (is_file($co_organizer['logo'])) {
+                    if (isset($co_organizer['logo']) && is_file($co_organizer['logo'])) {
                         // Remove old file if updating an existing entry with a new logo
                         if (isset($oldCoOrganizerDetails[$key]['logo'])) {
                             $oldFilePath = parse_url($oldCoOrganizerDetails[$key]['logo'], PHP_URL_PATH);
