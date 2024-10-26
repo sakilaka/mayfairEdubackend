@@ -4,7 +4,7 @@
             <h2 class="section-title">Co-Organizer</h2>
         </div>
 
-        @foreach ($additional_contents['co_organizerDetails'] as $co_organizer)
+        @foreach ($additional_contents['co_organizerDetails'] ?? [] as $co_organizer)
             <div class="row justify-content-center mt-5">
                 <div class="col-md-3">
                     <div class="d-flex flex-column justify-content-center align-items-center align-items-md-end">
