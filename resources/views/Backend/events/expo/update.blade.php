@@ -2052,7 +2052,7 @@
         });
 
         $(document).on('click', '.remove-organizer', function() {
-            const editorKey = $(this).closest('.row').find('textarea').attr('name');
+            const editorKey = $(this).parent().parent().parent().find('textarea').attr('name');
 
             if (window.editorInstances[editorKey]) {
                 window.editorInstances[editorKey].destroy()
