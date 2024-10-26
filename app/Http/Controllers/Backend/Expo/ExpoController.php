@@ -479,7 +479,7 @@ class ExpoController extends Controller
                         } */
 
                         $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
-                        // $request->file($organizer['logo'])->move(public_path('upload/expo/'), $fileName);
+                        $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
                         return false;
@@ -508,9 +508,9 @@ class ExpoController extends Controller
             if (!empty($request->input('additional_contents.co_organizerDetails'))) {
                 $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
 
-                foreach ($co_organizerDetails as $key => $organizer) {
-                    if (is_file($organizer['logo'])) {
-                        /* if (!empty($organizer['logo'])) {
+                foreach ($co_organizerDetails as $key => $co_organizer) {
+                    if (is_file($co_organizer['logo'])) {
+                        /* if (!empty($co_organizer['logo'])) {
                             $oldFilePath = parse_url($old_additional_contents['co_organizerDetails']['logo'], PHP_URL_PATH);
                             $oldFileFullPath = public_path($oldFilePath);
                             if (file_exists($oldFileFullPath)) {
@@ -518,25 +518,17 @@ class ExpoController extends Controller
                             }
                         } */
 
-                        $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
-                        // $request->file($organizer['logo'])->move(public_path('upload/expo/'), $fileName);
-                        $organizer['logo'] = url('upload/expo/' . $fileName);
+                        $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
+                        $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $organco_ico_zer['logo'] = url('upload/expo/' . $fileName);
                     } else {
                         return false;
                         $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
 
-                    $data['additional_contents']['co_organizerDetails'][$key] = $organizer;
+                    $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
                 }
             }
-
-            /* $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
-            $data['additional_contents']['organizerDetails']['redirect_url'] = $request['additional_contents']['organizerDetails']['redirect_url'];
-            $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
-
-            $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
-            $data['additional_contents']['co_organizerDetails']['redirect_url'] = $request['additional_contents']['co_organizerDetails']['redirect_url'];
-            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details']; */
 
             $data['additional_contents']['why_should_attend']['contents'] = $request['additional_contents']['why_should_attend']['contents'];
             $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
@@ -594,7 +586,7 @@ class ExpoController extends Controller
             }
 
             $data['footer_contents'] = json_encode($footerContents);
-return $data;
+
             $expo->update($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
