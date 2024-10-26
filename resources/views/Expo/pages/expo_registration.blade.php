@@ -353,11 +353,11 @@
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
                                                         <a href="{{ route('expo.login.page', ['unique_id' => $expo->unique_id]) }}"
-                                                            class="btn btn-primary-bg">Login</a>
+                                                            class="btn btn-primary-bg red-hover-button">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-secondary-bg nextBtn">Next</button>
+                                                            class="btn btn-primary-bg red-hover-button nextBtn">Next</button>
                                                     </div>
                                                 </div>
                                             </div>
