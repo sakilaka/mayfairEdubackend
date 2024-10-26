@@ -1177,10 +1177,6 @@
                                                                                         class="form-control"
                                                                                         value=""
                                                                                         placeholder="Enter Organizer Name">
-                                                                                    @error('additional_contents[organizerDetails][name]')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1194,10 +1190,6 @@
                                                                                         class="form-control"
                                                                                         value=""
                                                                                         placeholder="Enter Organizer Details Redirection URL">
-                                                                                    @error('additional_contents[organizerDetails][redirect_url]')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -1208,10 +1200,6 @@
                                                                                     Organizer Details:</label>
                                                                                 <div class="mg-t-10 mg-sm-t-0">
                                                                                     <textarea name="additional_contents[organizerDetails][{{ $random }}][details]" class="form-control editor"></textarea>
-                                                                                    @error('additional_contents[organizerDetails][details]')
-                                                                                        <span
-                                                                                            class="text-danger">{{ $message }}</span>
-                                                                                    @enderror
                                                                                 </div>
                                                                             </div>
                                                                         </div>
