@@ -1296,7 +1296,7 @@
                                                                                 <div
                                                                                     class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                                     <div class="px-3">
-                                                                                        <img src="{{ /* $co_organizer['logo'] ?? */ asset('frontend/images/No-image.jpg') }}"
+                                                                                        <img src="{{ $co_organizer['logo'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                                             alt=""
                                                                                             class="img-fluid"
                                                                                             style="border-radius: 10px; max-height: 200px !important;">
