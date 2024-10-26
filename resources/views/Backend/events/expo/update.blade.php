@@ -952,8 +952,8 @@
                                                 @php
                                                     $random = rand();
                                                 @endphp
-                                                <div class="organizer-container">
-                                                    <div class="item">
+                                                <div class="organizer-container row">
+                                                    <div class="col-12">
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#activity_single_collapse_{{ $random }}">
                                                             <div class="d-flex justify-content-between">
