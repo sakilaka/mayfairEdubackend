@@ -2034,7 +2034,7 @@
                                             <span class="text-danger">*</span>
                                             Organizer Details:</label>
                                         <div class="mg-t-10 mg-sm-t-0">
-                                            <textarea name="additional_contents[organizerDetails][${randomNumber}][details]" id="organizer_details_${randomNumber} }}" class="form-control editor"></textarea>
+                                            <textarea name="additional_contents[organizerDetails][${randomNumber}][details]" id="organizer_details_${randomNumber}" class="form-control editor"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -2048,7 +2048,7 @@
             $(`.dropify`).dropify();
 
             const newEditorElement = document.getElementById(`organizer_details_${randomNumber}`);
-            // initializeEditor(newEditorElement);
+            initializeEditor(newEditorElement);
             console.log(newEditorElement);
             
         });
