@@ -244,8 +244,8 @@
                                         {{ $expo->title }}</h3>
                                 </div>
                                 <div class="col-2 text-end">
-                                    <img src="{{ $footer_contents['co_organizerLogo'] }}" alt=""
-                                        width="100" class="img-fluid mt-2" style="cursor: pointer;">
+                                    <img src="{{ $footer_contents['co_organizerLogo'] }}" alt="" width="100"
+                                        class="img-fluid mt-2" style="cursor: pointer;">
                                 </div>
                             </div>
 
@@ -601,9 +601,9 @@
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-primary-bg prevBtn">Previous</button>
+                                                            class="btn btn-primary-bg red-hover-button prevBtn">Previous</button>
                                                         <button type="button"
-                                                            class="btn btn-secondary-bg nextBtn">Next</button>
+                                                            class="btn btn-primary-bg red-hover-button nextBtn">Next</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -636,9 +636,9 @@
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-primary-bg prevBtn">Previous</button>
+                                                            class="btn btn-primary-bg red-hover-button prevBtn">Previous</button>
                                                         <button type="submit"
-                                                            class="btn btn-secondary-bg">Submit</button>
+                                                            class="btn btn-success red-hover-button">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -660,8 +660,8 @@
 
     <script>
         /* $('select').select2({
-                                                                                placeholder: 'Select an option'
-                                                                            }); */
+                                                                                    placeholder: 'Select an option'
+                                                                                }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
