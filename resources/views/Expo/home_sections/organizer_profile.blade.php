@@ -1,7 +1,7 @@
 <section class="red-section-bg py-5">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-title text-light">Organizer Profile</h2>
+            <h2 class="section-title text-light">Organizer</h2>
         </div>
 
         <div class="row justify-content-center mt-5">
