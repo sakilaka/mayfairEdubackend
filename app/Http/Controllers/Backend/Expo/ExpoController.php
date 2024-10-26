@@ -305,38 +305,6 @@ class ExpoController extends Controller
                 $data['additional_contents']['why_should_attend']['image'] = $old_additional_contents['why_should_attend']['image'];
             }
 
-            /* if (!empty($request->input('additional_contents.organizerDetails'))) {
-                $organizerDetails = $request->additional_contents['organizerDetails'];
-
-                foreach ($organizerDetails as $key => $organizer) {
-                    if (is_file($organizer['logo'])) {
-                        $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
-                        $organizer['logo']->move(public_path('upload/expo/'), $fileName);
-                        $organizer['logo'] = url('upload/expo/' . $fileName);
-                    } else {
-                        $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
-                    }
-
-                    $data['additional_contents']['organizerDetails'][$key] = $organizer;
-                }
-            }
-
-            if (!empty($request->input('additional_contents.co_organizerDetails'))) {
-                $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
-
-                foreach ($co_organizerDetails as $key => $co_organizer) {
-                    if (is_file($co_organizer['logo'])) {
-                        $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
-                        $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
-                        $co_organizer['logo'] = url('upload/expo/' . $fileName);
-                    } else {
-                        $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
-                    }
-
-                    $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
-                }
-            } */
-
             $oldOrganizerDetails = $old_additional_contents['organizerDetails'] ?? [];
             $oldCoOrganizerDetails = $old_additional_contents['co_organizerDetails'] ?? [];
 
@@ -384,7 +352,6 @@ class ExpoController extends Controller
 
                 foreach ($co_organizerDetails as $key => $co_organizer) {
                     if (isset($co_organizer['logo']) && is_file($co_organizer['logo'])) {
-                        return true;
                         if (isset($oldCoOrganizerDetails[$key]['logo'])) {
                             $oldFilePath = parse_url($oldCoOrganizerDetails[$key]['logo'], PHP_URL_PATH);
                             $oldFileFullPath = public_path($oldFilePath);
