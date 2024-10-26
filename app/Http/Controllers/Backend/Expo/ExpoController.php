@@ -451,10 +451,10 @@ class ExpoController extends Controller
                             }
                         }
                         $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
-                        // $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $co_organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
-                        $co_organizer['logo'] = /* $oldCoOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg') */ '';
+                        $co_organizer['logo'] = $oldCoOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
                     $oldCoOrganizerDetails[$key] = $co_organizer;
                 }
@@ -474,7 +474,7 @@ class ExpoController extends Controller
 
                 $data['additional_contents']['co_organizerDetails'] = $oldCoOrganizerDetails;
             }
-return $data;
+
             $data['additional_contents']['why_should_attend']['contents'] = $request['additional_contents']['why_should_attend']['contents'];
             $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
 
@@ -535,7 +535,6 @@ return $data;
             $expo->update($data);
             return redirect(route('admin.expo.index'))->with('success', 'Expo Updated Successfully!');
         } catch (\Exception $e) {
-            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
