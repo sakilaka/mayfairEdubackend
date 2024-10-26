@@ -46,7 +46,7 @@
                 <div class="container d-flex justify-content-between">
                     <a class="ms-md-4 ps-md-4 navbar-brand" href="{{ route('home') }}">
                         <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 180px; height:auto;">
+                            style="width: 100px; height:auto;">
                     </a>
 
                     @include('Expo.components.navbar')
