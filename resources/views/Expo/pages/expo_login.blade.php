@@ -219,7 +219,7 @@
                         </div>
 
                         <!-- Submit button -->
-                        <button class="btn btn-danger-bg btn-lg w-100 position-relative" style="z-index: 2"
+                        <button class="btn btn-danger-bg red-hover-button btn-lg w-100 position-relative" style="z-index: 2"
                             type="submit">Sign in</button>
                     </form>
 

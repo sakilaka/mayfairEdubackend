@@ -241,7 +241,8 @@
                                             alt="" width="150" class="img-fluid">
                                     </h2> --}}
                                     <h3 class="wrapper-title text-center fw-bold" style="font-size: 16px">
-                                        {{ $expo->title }}</h3>
+                                        {{ $contents['pre_title'] . ' ' . $expo->title }}
+                                    </h3>
                                 </div>
                                 <div class="col-2 text-end">
                                     <img src="{{ $footer_contents['co_organizerLogo'] }}" alt="" width="100"
@@ -660,8 +661,8 @@
 
     <script>
         /* $('select').select2({
-                                                                                    placeholder: 'Select an option'
-                                                                                }); */
+                                                                                            placeholder: 'Select an option'
+                                                                                        }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
