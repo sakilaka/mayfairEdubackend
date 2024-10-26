@@ -184,6 +184,7 @@
 
     @php
         $contents = json_decode($expo['additional_contents'], true) ?? [];
+        $footer_contents = json_decode($expo['footer_contents'], true) ?? [];
     @endphp
 
     @if (isset($contents['hero_bg']) && $contents['hero_bg'])
