@@ -125,6 +125,10 @@
     .section-background {
         background-color: var(--section-background) !important;
     }
+
+    .red-hover-button:hover {
+        background-color: rgb(177, 0, 0) !important;
+    }
 </style>
 
 @if (Route::is('home'))

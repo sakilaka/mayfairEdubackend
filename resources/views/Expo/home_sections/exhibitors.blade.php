@@ -146,15 +146,9 @@
                                         </span>
                                     </p>
 
-                                    <style>
-                                        .exhibitor-details-button:hover{
-                                            background-color: rgb(177, 0, 0) !important;
-                                        }
-                                    </style>
-
                                     <div class="text-center">
                                         <a href="{{ route('expo.exhibitor.details', ['type' => 'main', 'exhibitor_id' => $exhibitor->id]) }}"
-                                            class="btn btn-primary-bg exhibitor-details-button mx-auto px-5 rounded-0"
+                                            class="btn btn-primary-bg red-hover-button mx-auto px-5 rounded-0"
                                             target="_blank">Details</a>
                                     </div>
                                 </div>
@@ -170,7 +164,7 @@
             @if (count($exhibitors) > 0)
                 <div class="text-center">
                     <a href="{{ route('expo.exhibitors', ['unique_id' => $expo->unique_id]) }}"
-                        class="btn btn-primary-bg mx-auto px-5 rounded-0">All
+                        class="btn btn-primary-bg red-hover-button mx-auto px-5 rounded-0">All
                         Exhibitors</a>
                 </div>
             @endif
