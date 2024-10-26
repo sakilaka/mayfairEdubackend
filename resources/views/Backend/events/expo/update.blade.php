@@ -1109,7 +1109,7 @@
                                                                 </h5>
     
                                                                 <a href="javascript:void(0)"
-                                                                    class="btn btn-sm btn-danger remove-organizer">
+                                                                    class="btn btn-sm btn-danger remove-co-organizer">
                                                                     <i class="fa fa-minus"></i>
                                                                 </a>
                                                             </div>
@@ -1187,7 +1187,7 @@
                                                                                     name="additional_contents[co_organizerDetails][{{ $random }}][name]"
                                                                                     class="form-control"
                                                                                     value=""
-                                                                                    placeholder="Enter Organizer Name">
+                                                                                    placeholder="Enter Co-Organizer Name">
                                                                                 @error('additional_contents[co_organizerDetails][name]')
                                                                                     <span
                                                                                         class="text-danger">{{ $message }}</span>
@@ -1204,7 +1204,7 @@
                                                                                     name="additional_contents[co_organizerDetails][{{ $random }}][redirect_url]"
                                                                                     class="form-control"
                                                                                     value=""
-                                                                                    placeholder="Enter Organizer Details Redirection URL">
+                                                                                    placeholder="Enter Co-Organizer Details Redirection URL">
                                                                                 @error('additional_contents[co_organizerDetails][redirect_url]')
                                                                                     <span
                                                                                         class="text-danger">{{ $message }}</span>
@@ -2058,11 +2058,11 @@
                         data-target="#co_organizer_single_collapse_${randomNumber}">
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title mb-0 py-2 gallery-title">
-                                Organizer
+                                Co-Organizer
                             </h5>
 
                             <a href="javascript:void(0)"
-                                class="btn btn-sm btn-danger remove-organizer">
+                                class="btn btn-sm btn-danger remove-co-organizer">
                                 <i class="fa fa-minus"></i>
                             </a>
                         </div>
@@ -2173,11 +2173,11 @@
                 </div>
             `;
 
-            $('.organizer-container').prepend(myvar);
+            $('.co-organizer-container').prepend(myvar);
             $(`.dropify`).dropify();
         });
 
-        $(document).on('click', '.remove-organizer', function() {
+        $(document).on('click', '.remove-co-organizer', function() {
             $(this).parent().parent().parent().remove();
         });
     </script>
