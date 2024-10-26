@@ -2044,7 +2044,7 @@
                 </div>
             `;
 
-            $('.organizer-container').prepend(myvar);
+            $('.organizer-container').append(myvar);
             $(`.dropify`).dropify();
 
             const newEditorElement = document.getElementById(`organizer_details_${randomNumber}`);
