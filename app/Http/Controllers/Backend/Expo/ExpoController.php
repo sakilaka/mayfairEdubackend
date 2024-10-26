@@ -229,7 +229,7 @@ class ExpoController extends Controller
     public function edit(string $id)
     {
         $data['expo'] = Expo::find($id);
-        return json_decode($data['expo']['additional_contents'], true);
+        // return json_decode($data['expo']['additional_contents'], true);
 
         if (!$data['expo']) {
             return redirect()->back()->with('error', 'Expo Not Found!');
@@ -244,6 +244,7 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
