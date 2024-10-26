@@ -121,6 +121,10 @@
     .nav-link.active {
         background: var(--primary_background) !important;
     }
+
+    .section-bg {
+        background-color: var(--section-background) !important;
+    }
 </style>
 
 @if (Route::is('home'))
