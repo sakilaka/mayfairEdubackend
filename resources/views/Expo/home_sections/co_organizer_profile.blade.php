@@ -1,4 +1,4 @@
-<section class="my-5">
+<section class="py-5 section-background">
     <div class="container">
         <div class="text-center">
             <h2 class="section-title">Co-Organizer Profile</h2>
