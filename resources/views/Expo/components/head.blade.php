@@ -122,7 +122,7 @@
         background: var(--primary_background) !important;
     }
 
-    .section-bg {
+    .section-background {
         background-color: var(--section-background) !important;
     }
 </style>

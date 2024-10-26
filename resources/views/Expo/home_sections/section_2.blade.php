@@ -1,4 +1,4 @@
-<section class="my-5 section-bg">
+<section class="my-5 section-background">
     <div class="container">
         <div class="row justify-content-center align-items-center" style="background-color: white;">
             <div class="col-md-11">
