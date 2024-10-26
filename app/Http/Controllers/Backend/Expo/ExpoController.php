@@ -229,7 +229,7 @@ class ExpoController extends Controller
     public function edit(string $id)
     {
         $data['expo'] = Expo::find($id);
-        return json_decode($data['expo']['additional_contents'], true)['co_organizerDetails'];
+        // return json_decode($data['expo']['additional_contents'], true)['co_organizerDetails'];
 
         if (!$data['expo']) {
             return redirect()->back()->with('error', 'Expo Not Found!');
@@ -275,8 +275,6 @@ class ExpoController extends Controller
         try {
             $data = [
                 'title' => $request->title,
-                // 'universities' => json_encode($request->universities) ?? '',
-                // 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
 
@@ -311,93 +309,6 @@ class ExpoController extends Controller
                 $request->banner->move(public_path('upload/expo/'), $fileName);
                 $data['banner'] = url('upload/expo/' . $fileName);
             }
-
-            // Handle guest information
-            /* $guests = [];
-            if ($request->guestName && $request->guestDesignation && $request->guestOrganization) {
-                $guestImages = [];
-                $imageKeys = [];
-                $guestKeys = [];
-
-                foreach (json_decode($expo->guests, true) as $key => $guest) {
-                    $guestKeys[] = $key;
-                }
-
-                if ($request->hasFile('guestImage')) {
-                    foreach ($request->file('guestImage') as $key => $file) {
-                        $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('upload/expo/guest'), $fileName);
-                        $guestImages[$key] = url('upload/expo/guest/' . $fileName);
-                        $imageKeys[] = $key;
-                    }
-                }
-
-                $oldGuestImages = $request->oldGuestImage ?? [];
-                $mergedGuestImages = $oldGuestImages;
-
-                foreach ($guestImages as $key => $url) {
-                    $mergedGuestImages[$key] = $url;
-                }
-
-                $totalGuests = count($request->guestName);
-
-                for ($i = 0; $i < $totalGuests; $i++) {
-                    $key = $guestKeys[$i] ?? null;
-
-                    $guests[$key ?? rand(10000, 99999)] = [
-                        'name' => $request->guestName[$i],
-                        'designation' => $request->guestDesignation[$i],
-                        'organization' => $request->guestOrganization[$i],
-                        'image' => $mergedGuestImages[$key] ?? null
-                    ];
-                }
-            }
-            $data['guests'] = json_encode($guests); */
-
-            // Handle new media partner logos from the request
-            /* $mediaPartnerLogos = [];
-            if ($request->hasFile('media_partner_logo')) {
-                foreach ($request->file('media_partner_logo') as $key => $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/media_partner'), $fileName);
-                    $mediaPartnerLogos[$key] = url('upload/expo/media_partner/' . $fileName);
-                }
-            }
-            $oldMediaPartnerLogos = $request->old_media_partner_logo ?? [];
-            $mergedMediaPartnerLogos = $oldMediaPartnerLogos;
-
-            foreach ($mediaPartnerLogos as $key => $url) {
-                $mergedMediaPartnerLogos[$key] = $url;
-            }
-            $data['media_partner'] = json_encode($mergedMediaPartnerLogos); */
-
-            // Handling video uploads
-            /* if ($request->hasFile('video')) {
-                $videos = [];
-                foreach ($request->file('video') as $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/video'), $fileName);
-                    $videos[] = url('upload/expo/video/' . $fileName);
-                }
-                $data['videos'] = json_encode($videos);
-            } */
-
-            // Handle new gallery images from the request
-            /* $galleryImages = [];
-            if ($request->hasFile('gallery_image')) {
-                foreach ($request->file('gallery_image') as $key => $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/gallery'), $fileName);
-                    $galleryImages[$key] = url('upload/expo/gallery/' . $fileName);
-                }
-            }
-            $oldGalleryImages = $request->old_gallery_image ?? [];
-            $mergedGalleryImages = $oldGalleryImages;
-
-            foreach ($galleryImages as $key => $url) {
-                $mergedGalleryImages[$key] = $url;
-            }
-            $data['photos'] = json_encode($mergedGalleryImages); */
 
             // Handling additional contents
             $old_additional_contents = json_decode($expo['additional_contents'], true);
@@ -450,21 +361,6 @@ class ExpoController extends Controller
                 $data['additional_contents']['why_should_attend']['image'] = $old_additional_contents['why_should_attend']['image'];
             }
 
-            /* if ($request->hasFile('additional_contents.organizerDetails.logo')) {
-                if (!empty($old_additional_contents['organizerDetails']['logo'])) {
-                    $oldFilePath = parse_url($old_additional_contents['organizerDetails']['logo'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
-            } else {
-                $data['additional_contents']['organizerDetails']['logo'] = $old_additional_contents['organizerDetails']['logo'] ?? '';
-            } */
             if (!empty($request->input('additional_contents.organizerDetails'))) {
                 $organizerDetails = $request->additional_contents['organizerDetails'];
 
@@ -490,21 +386,6 @@ class ExpoController extends Controller
                 }
             }
 
-            /* if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
-                if (!empty($old_additional_contents['co_organizerDetails']['logo'])) {
-                    $oldFilePath = parse_url($old_additional_contents['co_organizerDetails']['logo'], PHP_URL_PATH);
-                    $oldFileFullPath = public_path($oldFilePath);
-                    if (file_exists($oldFileFullPath)) {
-                        unlink($oldFileFullPath);
-                    }
-                }
-
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $data['additional_contents']['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
-            } else {
-                $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
-            } */
             if (!empty($request->input('additional_contents.co_organizerDetails'))) {
                 $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
 
