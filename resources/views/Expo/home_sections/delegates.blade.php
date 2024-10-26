@@ -53,7 +53,7 @@
             @if ($delegates)
                 <div class="text-center mt-3">
                     <a href="{{ route('expo.delegates', ['unique_id' => $expo->unique_id]) }}"
-                        class="btn btn-primary-bg mx-auto px-5 rounded-0">
+                        class="btn btn-primary-bg red-hover-button mx-auto px-5 rounded-0">
                         View Overseas Delegates
                     </a>
                 </div>
