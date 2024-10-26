@@ -45,7 +45,8 @@
         <div class="container">
             <div class="text-start">
                 <h2 class="section-title d-inline">Overseas Delegates of</h2>
-                <h4 class="section-title d-inline ms-2 fs-4">{{ $expo->title }}</h4>
+                <h4 class="section-title d-inline ms-2 fs-4">{{ $additional_contents['pre_title'] . ' ' . $expo->title }}
+                </h4>
             </div>
 
             <div class="row justify-content-between align-items-center mt-5 mx-auto">
