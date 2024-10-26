@@ -940,7 +940,7 @@
 
                                             <h3>Organizer Details</h3>
                                             <section>
-                                                <div class="row justify-content-between">
+                                                <div class="d-flex justify-content-between">
                                                     <h4 class="d-inline mb-3">Organizer(s)</h4>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-primary"
                                                         id="add-organizer">
@@ -952,7 +952,7 @@
                                                 @php
                                                     $random = rand();
                                                 @endphp
-                                                <div class="organizer-container row">
+                                                <div class="organizer-container mt-3 row">
                                                     <div class="col-12">
                                                         <div class="card-header" data-toggle="collapse"
                                                             data-target="#activity_single_collapse_{{ $random }}">
