@@ -1,7 +1,7 @@
 <section class="py-5 section-background">
     <div class="container">
         <div class="text-center">
-            <h2 class="section-title">Co-Organizer Profile</h2>
+            <h2 class="section-title">Co-Organizer</h2>
         </div>
 
         <div class="row justify-content-center mt-5">
