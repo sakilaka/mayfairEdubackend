@@ -66,9 +66,9 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="navbar-brand" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
+                    <a class="ms-md-4 ps-md-4 navbar-brand" href="{{ route('home') }}">
                         <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 120px; height:auto;">
+                            style="width: 180px; height:auto;">
                     </a>
 
                     @include('Expo.components.navbar')
