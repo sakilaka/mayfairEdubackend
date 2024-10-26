@@ -37,19 +37,19 @@
                     <div>
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Organizer:
                         </p>
-                        @foreach ($additional_contents['organizerDetails'] ?? as $organizer)
-                            <p class="location-text text-white">
+                        @foreach ($additional_contents['organizerDetails'] ?? [] as $organizer)
+                            <p class="location-text text-white mb-0 pb-0">
                                 <span class="text-style fw-bold">
                                     {{ $organizer['name'] ?? '' }}
                                 </span>
                             </p>
                         @endforeach
                     </div>
-                    <div>
+                    <div class="mt-3">
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
                             Co-Organizer:</p>
-                        @foreach ($additional_contents['co_organizerDetails'] ?? as $co_organizer)
-                            <p class="location-text text-white">
+                        @foreach ($additional_contents['co_organizerDetails'] ?? [] as $co_organizer)
+                            <p class="location-text text-white mb-0 pb-0">
                                 <span class="text-style fw-bold">
                                     {{ $co_organizer['name'] ?? '' }}
                                 </span>
