@@ -1,4 +1,4 @@
-<section class="exhibitors-highlights my-5">
+<section class="exhibitors-highlights py-5 section-background">
     <div class="container">
         <div class="text-center">
             <h2 class="section-title">Overseas Delegates</h2>
