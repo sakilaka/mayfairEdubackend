@@ -244,7 +244,6 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
