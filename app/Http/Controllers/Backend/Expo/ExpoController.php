@@ -125,9 +125,6 @@ class ExpoController extends Controller
                         $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
                         $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
-                    } else {
-                        return false;
-                        $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
 
                     $data['additional_contents']['organizerDetails'][$key] = $organizer;
@@ -142,11 +139,8 @@ class ExpoController extends Controller
                         $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
                         $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $co_organizer['logo'] = url('upload/expo/' . $fileName);
-                    } else {
-                        return false;
-                        $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
-
+                    
                     $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
                 }
             }
@@ -340,7 +334,6 @@ class ExpoController extends Controller
                         $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
-                        return false;
                         $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
 
@@ -357,7 +350,6 @@ class ExpoController extends Controller
                         $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $co_organizer['logo'] = url('upload/expo/' . $fileName);
                     } else {
-                        return false;
                         $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
                     }
 
