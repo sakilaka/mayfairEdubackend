@@ -2048,7 +2048,9 @@
             $(`.dropify`).dropify();
 
             const newEditorElement = document.getElementById(`organizer_details_${randomNumber}`);
-            initializeEditor(newEditorElement);
+            // initializeEditor(newEditorElement);
+            console.log(newEditorElement);
+            
         });
 
         $(document).on('click', '.remove-organizer', function() {
