@@ -951,7 +951,7 @@
 
 
                                                 <div class="organizer-container row">
-                                                    @forelse ($additional_contents['organizerDetails'] as $key => $organizer)
+                                                    @forelse ($additional_contents['organizerDetails'] ?? [] as $key => $organizer)
                                                         <div class="col-12 mt-3">
                                                             <div class="card-header" data-toggle="collapse"
                                                                 data-target="#organizer_single_collapse_{{ $key }}">
@@ -1222,7 +1222,7 @@
                                                 </div>
 
                                                 <div class="co-organizer-container row">
-                                                    @forelse ($additional_contents['co_organizerDetails'] as $key => $co_organizer)
+                                                    @forelse ($additional_contents['co_organizerDetails'] ?? [] as $key => $co_organizer)
                                                         <div class="col-12 mt-3">
                                                             <div class="card-header" data-toggle="collapse"
                                                                 data-target="#co-organizer_single_collapse_{{ $key }}">
