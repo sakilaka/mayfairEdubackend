@@ -29,23 +29,17 @@
             <div class="row justify-content-center align-items-center mt-3">
                 <div class="col-md-3">
                     <div class="text-center">
-                        <a href="{{-- {{ $additional_contents['organizerDetails']['redirect_url'] }} --}}" target="_blank"
-                            class="text-decoration-none">
+                        <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
                             <img class="vector-smart-object-3 img-fluid" width="200"
-                                src="{{ $footer_contents['organizerLogo'] ?? '' }}" alt="">
-                            {{-- <p class="text-light mt-2">{{ $additional_contents['organizerDetails']['redirect_url'] }}
-                            </p> --}}
+                                src="{{ $footer_contents['organizerLogo'] ?? '' }}" alt="organizer-logo">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="text-center">
-                        <a href="{{-- {{ $additional_contents['co_organizerDetails']['redirect_url'] }} --}}" target="_blank"
-                            class="text-decoration-none">
+                        <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
                             <img class="vector-smart-object-3 img-fluid" width="200"
-                                src="{{ $footer_contents['co_organizerLogo'] ?? '' }}" alt="">
-                            {{-- <p class="text-light mt-2">{{ $additional_contents['co_organizerDetails']['redirect_url'] }}
-                            </p> --}}
+                                src="{{ $footer_contents['co_organizerLogo'] ?? '' }}" alt="co-organizer-logo">
                         </a>
                     </div>
                 </div>
@@ -89,8 +83,7 @@
                                     <div class="footer_social_item">
                                         <div class="footer_social_icons_container"
                                             onclick="openInNewTab('{{ $footer_contents['social']['url'][$key] ?? '#' }}')"
-                                            data-toggle="tooltip"
-                                            title="{{ $footer_contents['social']['title'][$key] ?? '' }}">
+                                            data-toggle="tooltip" title="{{ $footer_contents['social']['title'][$key] ?? '' }}">
                                             <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 fill="currentColor" viewBox="0 0 24 24">
@@ -106,8 +99,7 @@
                                     <div class="footer_social_item">
                                         <div class="footer_social_icons_container"
                                             onclick="openInNewTab('{{ $footer_contents['social']['url'][$key] ?? '#' }}"
-                                            data-toggle="tooltip"
-                                            title="{{ $footer_contents['social']['title'][$key] ?? '' }}">
+                                            data-toggle="tooltip" title="{{ $footer_contents['social']['title'][$key] ?? '' }}">
                                             <svg class="w-[40px] h-[40px] text-gray-800 dark:text-white" aria-hidden="true"
                                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                                 viewBox="0 0 24 24">
@@ -255,8 +247,8 @@
                                             title="{{ $footer_contents['social']['title'][$key] ?? '' }}">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                                 fill="none" viewBox="0 0 24 24" id="bilibli">
-                                                <path stroke="#141520" fill="currentColor" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2"
+                                                <path stroke="#141520" fill="currentColor" fill-rule="evenodd"
+                                                    stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M3 10C3 8.93913 3.42143 7.92172 4.17157 7.17157 4.92172 6.42143 5.93913 6 7 6H17C18.0609 6 19.0783 6.42143 19.8284 7.17157 20.5786 7.92172 21 8.93913 21 10V16C21 17.0609 20.5786 18.0783 19.8284 18.8284 19.0783 19.5786 18.0609 20 17 20H7C5.93913 20 4.92172 19.5786 4.17157 18.8284 3.42143 18.0783 3 17.0609 3 16V10zM8 3L10 6M16 3L14 6M9 13V11M15 11V13">
                                                 </path>
                                             </svg>
