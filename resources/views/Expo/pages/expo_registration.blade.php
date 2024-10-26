@@ -230,9 +230,8 @@
                             style="border-radius: 15px">
                             <div class="row justify-content-between align-items-center">
                                 <div class="col-2">
-                                    <img src="{{ $contents['organizerDetails']['logo'] }}" alt="" width="80"
-                                        class="img-fluid mt-2" style="cursor: pointer";
-                                        onclick="location.href='{{ $contents['organizerDetails']['redirect_url'] }}'">
+                                    <img src="{{ $footer_contents['organizerLogo'] }}" alt="" width="80"
+                                        class="img-fluid mt-2" style="cursor: pointer;">
 
                                 </div>
                                 <div class="col-8">
@@ -244,9 +243,8 @@
                                         {{ $expo->title }}</h3>
                                 </div>
                                 <div class="col-2 text-end">
-                                    <img src="{{ $contents['co_organizerDetails']['logo'] }}" alt=""
-                                        width="100" class="img-fluid mt-2" style="cursor: pointer";
-                                        onclick="location.href='{{ $contents['co_organizerDetails']['redirect_url'] }}'">
+                                    <img src="{{ $footer_contents['co_organizerLogo'] }}" alt=""
+                                        width="100" class="img-fluid mt-2" style="cursor: pointer;">
                                 </div>
                             </div>
 
