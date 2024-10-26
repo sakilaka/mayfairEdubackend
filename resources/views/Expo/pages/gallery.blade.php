@@ -100,6 +100,9 @@
 
 <body>
 
+    @php
+        $additional_contents = json_decode($expo->additional_contents, true) ?? [];
+    @endphp
     <div class="bg-section" style="height:auto;">
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
