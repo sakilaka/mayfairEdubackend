@@ -2,7 +2,7 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg shadow-none" style="z-index: 3">
             <div class="container d-flex justify-content-between">
-                <a class="ms-md-4 navbar-brand" href="{{ route('home') }}">
+                <a class="ms-md-4 ps-md-4 navbar-brand" href="{{ route('home') }}">
                     <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo"
                         class="logo" style="width: 180px; height:auto;">
                 </a>
