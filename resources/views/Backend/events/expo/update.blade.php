@@ -958,8 +958,7 @@
                                                             data-target="#activity_single_collapse_{{ $random }}">
                                                             <div class="d-flex justify-content-between">
                                                                 <h5 class="card-title mb-0 py-2 gallery-title">
-                                                                    <i class="fa fa-camera" aria-hidden="true"></i>
-                                                                    Gallery
+                                                                    Organizer
                                                                 </h5>
     
                                                                 <a href="javascript:void(0)"
@@ -1876,13 +1875,12 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var myvar = `
-                <div class="item">
+                <div class="col-12">
                     <div class="card-header" data-toggle="collapse"
                         data-target="#activity_single_collapse_${randomNumber}">
                         <div class="d-flex justify-content-between">
                             <h5 class="card-title mb-0 py-2 gallery-title">
-                                <i class="fa fa-camera" aria-hidden="true"></i>
-                                Gallery
+                                Organizer
                             </h5>
 
                             <a href="javascript:void(0)"
@@ -1997,7 +1995,7 @@
                 </div>
             `;
 
-            $('#organizer-container').prepend(myvar);
+            $('.organizer-container').prepend(myvar);
             $(`.dropify`).dropify();
         });
 
