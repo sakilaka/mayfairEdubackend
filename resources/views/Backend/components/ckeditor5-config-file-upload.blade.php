@@ -40,7 +40,8 @@
         ImageResize,
         ImageStyle,
         AutoImage,
-        /* Base64UploadAdapter */ SimpleUploadAdapter ,
+        /* Base64UploadAdapter */
+        SimpleUploadAdapter,
         CodeBlock,
         Autoformat,
         FindAndReplace,
@@ -64,7 +65,7 @@
 
     window.editorInstances = {};
 
-    document.querySelectorAll('.editor').forEach((editorElement) => {
+    window.initializeEditor = function(editorElement) {
         ClassicEditor
             .create(editorElement, {
                 plugins: [
@@ -73,7 +74,8 @@
                     BlockQuote, List,
                     ImageUpload, Image, ImageInsert, ImageToolbar,
                     LinkImage, ImageCaption, ImageResize, ImageStyle, AutoImage,
-                    /* Base64UploadAdapter */ SimpleUploadAdapter ,
+                    /* Base64UploadAdapter */
+                    SimpleUploadAdapter,
                     CodeBlock, Autoformat, FindAndReplace, Highlight, HorizontalLine,
                     TodoList, MediaEmbed, RemoveFormat, ShowBlocks, SourceEditing,
                     SpecialCharacters, SpecialCharactersEssentials,
@@ -222,7 +224,7 @@
                     }
                 },
                 simpleUpload: {
-                    uploadUrl: '{{ route("ckeditor.upload") }}',
+                    uploadUrl: '{{ route('ckeditor.upload') }}',
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     }
@@ -235,6 +237,10 @@
             .catch(error => {
                 console.error(error);
             });
+    }
+
+    document.querySelectorAll('.editor').forEach((editorElement) => {
+        initializeEditor(editorElement);
     })
 </script>
 <!-- ckeditor5 config - (end) -->
