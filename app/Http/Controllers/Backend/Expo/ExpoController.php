@@ -58,8 +58,6 @@ class ExpoController extends Controller
                 'unique_id' => explode('-', uuid_create())[0],
                 'title' => $request->title,
                 'place' => $request->place ?? '',
-                // 'universities' => json_encode($request->exhibitors) ?? '',
-                // 'description' => $request->description,
                 'location' => json_encode($request->location) ?? ''
             ];
 
@@ -80,68 +78,6 @@ class ExpoController extends Controller
                 $data['banner'] = url('upload/expo/' . $fileName);
             }
 
-            // Handling guest information
-            /* $guests = [];
-            if ($request->guestName && $request->guestDesignation && $request->guestOrganization) {
-                $guestImages = [];
-                $imageKeys = [];
-
-                if ($request->hasFile('guestImage')) {
-                    foreach ($request->file('guestImage') as $key => $file) {
-                        $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('upload/expo/guest'), $fileName);
-                        $guestImages[$key] = url('upload/expo/guest/' . $fileName);
-                        $imageKeys[] = $key;
-                    }
-                }
-
-                $totalGuests = count($request->guestName);
-
-                for ($i = 0; $i < $totalGuests; $i++) {
-                    $key = $imageKeys[$i] ?? null;
-                    $guests[$key ?? rand(10000, 99999)] = [
-                        'name' => $request->guestName[$i],
-                        'designation' => $request->guestDesignation[$i],
-                        'organization' => $request->guestOrganization[$i],
-                        'image' => $guestImages[$key] ?? null
-                    ];
-                }
-            }
-            $data['guests'] = json_encode($guests); */
-
-            // Handling media partner logo
-            /* if ($request->hasFile('media_partner_logo')) {
-                $mediaPartnerLogo = [];
-                foreach ($request->file('media_partner_logo') as $key => $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/media_partner'), $fileName);
-                    $mediaPartnerLogo[$key] = url('upload/expo/media_partner/' . $fileName);
-                }
-                $data['media_partner'] = json_encode($mediaPartnerLogo);
-            } */
-
-            // Handling video uploads
-            /* if ($request->hasFile('video')) {
-                $videos = [];
-                foreach ($request->file('video') as $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/video'), $fileName);
-                    $videos[] = url('upload/expo/video/' . $fileName);
-                }
-                $data['videos'] = json_encode($videos);
-            } */
-
-            // Handling gallery images
-            /* if ($request->hasFile('gallery_image')) {
-                $galleryImages = [];
-                foreach ($request->file('gallery_image') as $key => $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/expo/gallery'), $fileName);
-                    $galleryImages[$key] = url('upload/expo/gallery/' . $fileName);
-                }
-                $data['photos'] = json_encode($galleryImages);
-            } */
-
             // Handling additional images
             if ($request->hasFile('additional_contents.nav_logo')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.nav_logo')->getClientOriginalExtension();
@@ -161,7 +97,7 @@ class ExpoController extends Controller
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
 
-            if ($request->hasFile('additional_contents.organizerDetails.logo')) {
+            /* if ($request->hasFile('additional_contents.organizerDetails.logo')) {
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
                 $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $additionalContents['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
@@ -171,15 +107,49 @@ class ExpoController extends Controller
                 $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
                 $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
                 $additionalContents['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
-            }
+            } */
 
-            $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
+            /* $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
             $data['additional_contents']['organizerDetails']['redirect_url'] = $request['additional_contents']['organizerDetails']['redirect_url'];
             $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
 
             $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
             $data['additional_contents']['co_organizerDetails']['redirect_url'] = $request['additional_contents']['co_organizerDetails']['redirect_url'];
-            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details'];
+            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details']; */
+
+            if (!empty($request->input('additional_contents.organizerDetails'))) {
+                $organizerDetails = $request->additional_contents['organizerDetails'];
+
+                foreach ($organizerDetails as $key => $organizer) {
+                    if (is_file($organizer['logo'])) {
+                        $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
+                        $organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $organizer['logo'] = url('upload/expo/' . $fileName);
+                    } else {
+                        return false;
+                        $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
+                    }
+
+                    $data['additional_contents']['organizerDetails'][$key] = $organizer;
+                }
+            }
+
+            if (!empty($request->input('additional_contents.co_organizerDetails'))) {
+                $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
+
+                foreach ($co_organizerDetails as $key => $co_organizer) {
+                    if (is_file($co_organizer['logo'])) {
+                        $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
+                        $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $co_organizer['logo'] = url('upload/expo/' . $fileName);
+                    } else {
+                        return false;
+                        $data['additional_contents']['co_organizerDetails']['logo'] = $old_additional_contents['co_organizerDetails']['logo'] ?? asset('frontend/images/No-image.jpg');
+                    }
+
+                    $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
+                }
+            }
 
             $data['additional_contents']['why_should_attend']['contents'] = $request['additional_contents']['why_should_attend']['contents'];
             $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
