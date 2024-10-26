@@ -97,26 +97,6 @@ class ExpoController extends Controller
                 $data['additional_contents']['why_should_attend'] = url('upload/expo/' . $fileName);
             }
 
-            /* if ($request->hasFile('additional_contents.organizerDetails.logo')) {
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $additionalContents['organizerDetails']['logo'] = url('upload/expo/' . $fileName);
-            }
-
-            if ($request->hasFile('additional_contents.co_organizerDetails.logo')) {
-                $fileName = rand() . time() . '.' . $request->file('additional_contents.co_organizerDetails.logo')->getClientOriginalExtension();
-                $request->file('additional_contents.co_organizerDetails.logo')->move(public_path('upload/expo/'), $fileName);
-                $additionalContents['co_organizerDetails']['logo'] = url('upload/expo/' . $fileName);
-            } */
-
-            /* $data['additional_contents']['organizerDetails']['name'] = $request['additional_contents']['organizerDetails']['name'];
-            $data['additional_contents']['organizerDetails']['redirect_url'] = $request['additional_contents']['organizerDetails']['redirect_url'];
-            $data['additional_contents']['organizerDetails']['details'] = $request['additional_contents']['organizerDetails']['details'];
-
-            $data['additional_contents']['co_organizerDetails']['name'] = $request['additional_contents']['co_organizerDetails']['name'];
-            $data['additional_contents']['co_organizerDetails']['redirect_url'] = $request['additional_contents']['co_organizerDetails']['redirect_url'];
-            $data['additional_contents']['co_organizerDetails']['details'] = $request['additional_contents']['co_organizerDetails']['details']; */
-
             if (!empty($request->input('additional_contents.organizerDetails'))) {
                 $organizerDetails = $request->additional_contents['organizerDetails'];
 
@@ -140,7 +120,7 @@ class ExpoController extends Controller
                         $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $co_organizer['logo'] = url('upload/expo/' . $fileName);
                     }
-                    
+
                     $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
                 }
             }
