@@ -28,7 +28,8 @@
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
                     <a class="navbar-brand" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
+                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
+                            style="width: 120px; height:auto;">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -53,7 +54,7 @@
                 @endphp
 
                 <div class="col-12 mt-2">
-                    
+
                     <div class="row {{-- delegates-slick-carousel slick-slider --}} mt-3">
                         @foreach ($delegates as $delegate)
                             <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
@@ -61,7 +62,8 @@
                                     <div class="d-flex justify-content-center">
                                         <img class="testimonial-user-img"
                                             src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                            alt="" style="border-radius:10px; background-color:var(--secondary_background)">
+                                            alt=""
+                                            style="border-radius:10px; background-color:var(--secondary_background)">
                                     </div>
 
                                     <div {{-- style="height: 70px" --}}>
