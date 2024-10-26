@@ -244,6 +244,7 @@ class ExpoController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        return $request->all();
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'date' => 'required',
@@ -361,19 +362,11 @@ return $old_additional_contents;
                 $data['additional_contents']['why_should_attend']['image'] = $old_additional_contents['why_should_attend']['image'];
             }
 
-            if (!empty($request->input('additional_contents.organizerDetails'))) {
+            /* if (!empty($request->input('additional_contents.organizerDetails'))) {
                 $organizerDetails = $request->additional_contents['organizerDetails'];
 
                 foreach ($organizerDetails as $key => $organizer) {
                     if (is_file($organizer['logo'])) {
-                        /* if (!empty($organizer['logo'])) {
-                            $oldFilePath = parse_url($old_additional_contents['organizerDetails']['logo'], PHP_URL_PATH);
-                            $oldFileFullPath = public_path($oldFilePath);
-                            if (file_exists($oldFileFullPath)) {
-                                unlink($oldFileFullPath);
-                            }
-                        } */
-
                         $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
                         $organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $organizer['logo'] = url('upload/expo/' . $fileName);
@@ -391,14 +384,6 @@ return $old_additional_contents;
 
                 foreach ($co_organizerDetails as $key => $co_organizer) {
                     if (is_file($co_organizer['logo'])) {
-                        /* if (!empty($co_organizer['logo'])) {
-                            $oldFilePath = parse_url($old_additional_contents['co_organizerDetails']['logo'], PHP_URL_PATH);
-                            $oldFileFullPath = public_path($oldFilePath);
-                            if (file_exists($oldFileFullPath)) {
-                                unlink($oldFileFullPath);
-                            }
-                        } */
-
                         $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
                         $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
                         $co_organizer['logo'] = url('upload/expo/' . $fileName);
@@ -409,8 +394,94 @@ return $old_additional_contents;
 
                     $data['additional_contents']['co_organizerDetails'][$key] = $co_organizer;
                 }
+            } */
+            // Retrieve old contents
+            $oldOrganizerDetails = $old_additional_contents['organizerDetails'] ?? [];
+            $oldCoOrganizerDetails = $old_additional_contents['co_organizerDetails'] ?? [];
+
+            // Update organizer details
+            if (!empty($request->input('additional_contents.organizerDetails'))) {
+                $organizerDetails = $request->additional_contents['organizerDetails'];
+
+                // Add or update existing items
+                foreach ($organizerDetails as $key => $organizer) {
+                    if (is_file($organizer['logo'])) {
+                        // Remove the old file if updating an existing entry with a new logo
+                        if (isset($oldOrganizerDetails[$key]['logo'])) {
+                            $oldFilePath = parse_url($oldOrganizerDetails[$key]['logo'], PHP_URL_PATH);
+                            $oldFileFullPath = public_path($oldFilePath);
+                            if (file_exists($oldFileFullPath)) {
+                                unlink($oldFileFullPath);
+                            }
+                        }
+                        $fileName = rand() . '.' . $organizer['logo']->getClientOriginalExtension();
+                        // $organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $organizer['logo'] = url('upload/expo/' . $fileName);
+                    } else {
+                        // Keep old logo if no new file is provided
+                        $organizer['logo'] = $oldOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
+                    }
+                    $oldOrganizerDetails[$key] = $organizer;
+                }
+
+                // Remove items not present in the request and delete their files if they exist
+                foreach ($oldOrganizerDetails as $key => $value) {
+                    if (!isset($organizerDetails[$key])) {
+                        if (!empty($value['logo'])) {
+                            $oldFilePath = parse_url($value['logo'], PHP_URL_PATH);
+                            $oldFileFullPath = public_path($oldFilePath);
+                            if (file_exists($oldFileFullPath)) {
+                                unlink($oldFileFullPath);
+                            }
+                        }
+                        unset($oldOrganizerDetails[$key]);
+                    }
+                }
+
+                $data['additional_contents']['organizerDetails'] = $oldOrganizerDetails;
             }
 
+            // Update co-organizer details
+            if (!empty($request->input('additional_contents.co_organizerDetails'))) {
+                $co_organizerDetails = $request->additional_contents['co_organizerDetails'];
+
+                foreach ($co_organizerDetails as $key => $co_organizer) {
+                    if (is_file($co_organizer['logo'])) {
+                        // Remove old file if updating an existing entry with a new logo
+                        if (isset($oldCoOrganizerDetails[$key]['logo'])) {
+                            $oldFilePath = parse_url($oldCoOrganizerDetails[$key]['logo'], PHP_URL_PATH);
+                            $oldFileFullPath = public_path($oldFilePath);
+                            if (file_exists($oldFileFullPath)) {
+                                unlink($oldFileFullPath);
+                            }
+                        }
+                        $fileName = rand() . '.' . $co_organizer['logo']->getClientOriginalExtension();
+                        // $co_organizer['logo']->move(public_path('upload/expo/'), $fileName);
+                        $co_organizer['logo'] = url('upload/expo/' . $fileName);
+                    } else {
+                        // Keep old logo if no new file is provided
+                        $co_organizer['logo'] = $oldCoOrganizerDetails[$key]['logo'] ?? asset('frontend/images/No-image.jpg');
+                    }
+                    $oldCoOrganizerDetails[$key] = $co_organizer;
+                }
+
+                // Remove items not present in the request and delete their files if they exist
+                foreach ($oldCoOrganizerDetails as $key => $value) {
+                    if (!isset($co_organizerDetails[$key])) {
+                        if (!empty($value['logo'])) {
+                            $oldFilePath = parse_url($value['logo'], PHP_URL_PATH);
+                            $oldFileFullPath = public_path($oldFilePath);
+                            if (file_exists($oldFileFullPath)) {
+                                unlink($oldFileFullPath);
+                            }
+                        }
+                        unset($oldCoOrganizerDetails[$key]);
+                    }
+                }
+
+                $data['additional_contents']['co_organizerDetails'] = $oldCoOrganizerDetails;
+            }
+return $data;
             $data['additional_contents']['why_should_attend']['contents'] = $request['additional_contents']['why_should_attend']['contents'];
             $data['additional_contents']['schedule'] = $request['additional_contents']['schedule'];
 
