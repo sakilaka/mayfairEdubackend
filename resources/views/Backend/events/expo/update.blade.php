@@ -1037,7 +1037,7 @@
                                                                             Organizer Name:</label>
                                                                         <div class="mg-t-10 mg-sm-t-0">
                                                                             <input type="text"
-                                                                                name="additional_contents[organizerDetails][name]"
+                                                                                name="additional_contents[organizerDetails][{{ $random }}][name]"
                                                                                 class="form-control"
                                                                                 value="{{ $additional_contents['organizerDetails']['name'] ?? '' }}"
                                                                                 placeholder="Enter Organizer Name">
@@ -1054,7 +1054,7 @@
                                                                             Redirect URL:</label>
                                                                         <div class="mg-t-10 mg-sm-t-0">
                                                                             <input type="text"
-                                                                                name="additional_contents[organizerDetails][redirect_url]"
+                                                                                name="additional_contents[organizerDetails][{{ $random }}][redirect_url]"
                                                                                 class="form-control"
                                                                                 value="{{ $additional_contents['organizerDetails']['redirect_url'] ?? '' }}"
                                                                                 placeholder="Enter Organizer Details Redirection URL">
@@ -1071,7 +1071,7 @@
                                                                             <span class="text-danger">*</span>
                                                                             Organizer Details:</label>
                                                                         <div class="mg-t-10 mg-sm-t-0">
-                                                                            <textarea name="additional_contents[organizerDetails][details]" class="form-control editor">{!! $additional_contents['organizerDetails']['details'] ?? '' !!}</textarea>
+                                                                            <textarea name="additional_contents[organizerDetails][{{ $random }}][details]" class="form-control editor">{!! $additional_contents['organizerDetails']['details'] ?? '' !!}</textarea>
                                                                             @error('additional_contents[organizerDetails][details]')
                                                                                 <span
                                                                                     class="text-danger">{{ $message }}</span>
