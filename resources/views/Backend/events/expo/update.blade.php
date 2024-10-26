@@ -1228,7 +1228,7 @@
                                                                 data-target="#co-organizer_single_collapse_{{ $key }}">
                                                                 <div class="d-flex justify-content-between">
                                                                     <h5 class="card-title mb-0 py-2 gallery-title">
-                                                                        Co-Organizer
+                                                                        {{ $co_organizer['name'] ?? 'Co-Organizer' }}
                                                                     </h5>
 
                                                                     <a href="javascript:void(0)"
@@ -1296,7 +1296,7 @@
                                                                                 <div
                                                                                     class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
                                                                                     <div class="px-3">
-                                                                                        <img src="{{ $co_organizer['logo'] ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                        <img src="{{ /* $co_organizer['logo'] ?? */ asset('frontend/images/No-image.jpg') }}"
                                                                                             alt=""
                                                                                             class="img-fluid"
                                                                                             style="border-radius: 10px; max-height: 200px !important;">
