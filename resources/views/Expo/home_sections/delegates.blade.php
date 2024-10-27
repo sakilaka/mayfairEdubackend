@@ -19,6 +19,23 @@
                     .testimonial-single-card {
                         border: 4px solid var(--primary_background);
                     }
+
+                    .delegate-desc-container::-webkit-scrollbar {
+                        width: 3px;
+                    }
+
+                    .delegate-desc-container::-webkit-scrollbar-track {
+                        background: #e0e0e0;
+                    }
+
+                    .delegate-desc-container::-webkit-scrollbar-thumb {
+                        background-color: #28a74648;
+                        border-radius: 10px;
+                    }
+
+                    .delegate-desc-container::-webkit-scrollbar-thumb:hover {
+                        background-color: #218838;
+                    }
                 </style>
                 <div class="row {{-- delegates-slick-carousel slick-slider --}} mt-3">
                     @foreach ($delegates as $delegate)
@@ -31,7 +48,7 @@
                                         style="border-radius:10px; background-color:var(--secondary_background)">
                                 </div>
 
-                                <div {{-- style="height: 70px" --}}>
+                                <div class="delegate-desc-container" style="max-height: 120px; overflow-y:auto;">
                                     <p class="mb-0 fw-bold mt-2 text-center"
                                         style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
                                         {!! $delegate['name'] ?? '&nbsp;' !!}
