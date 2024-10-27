@@ -48,7 +48,7 @@
                                         style="border-radius:10px; background-color:var(--secondary_background)">
                                 </div>
 
-                                <div class="delegate-desc-container" style="height: 130px; overflow-y:auto;">
+                                <div class="delegate-desc-container" style="height: 140px; overflow-y:auto;">
                                     <p class="mb-0 fw-bold mt-2 text-center"
                                         style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
                                         {!! $delegate['name'] ?? '&nbsp;' !!}
