@@ -4,8 +4,29 @@
 @endphp
 <section class="red-section-bg py-5">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-10">
+        <div class="row justify-content-between">
+            <div class="col-md-4">
+                <div class="row justify-content-between">
+                    <div class="col-5">
+                        <div class="text-center">
+                            <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
+                                <img class="vector-smart-object-3 img-fluid" width="200"
+                                    src="{{ $footer_contents['organizerLogo'] ?? '' }}" alt="organizer-logo">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-5 pe-md-4">
+                        <div class="text-center">
+                            <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
+                                <img class="vector-smart-object-3 img-fluid" width="200"
+                                    src="{{ $footer_contents['co_organizerLogo'] ?? '' }}" alt="co-organizer-logo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
                 @if (isset($footer_contents['organizer_name']))
                     <p class="text-light text-center mb-0">
                         <span class="fw600">Organizer:</span> {{ $footer_contents['organizer_name'] ?? '' }}
@@ -23,29 +44,10 @@
                         <span class="fw600">Supported by:</span> {{ $footer_contents['supported_by'] ?? '' }}
                     </p>
                 @endif
-
             </div>
 
-            <div class="row justify-content-center align-items-center mt-3">
-                <div class="col-md-3">
-                    <div class="text-center">
-                        <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
-                            <img class="vector-smart-object-3 img-fluid" width="200"
-                                src="{{ $footer_contents['organizerLogo'] ?? '' }}" alt="organizer-logo">
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="text-center">
-                        <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
-                            <img class="vector-smart-object-3 img-fluid" width="200"
-                                src="{{ $footer_contents['co_organizerLogo'] ?? '' }}" alt="co-organizer-logo">
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center align-items-center mt-3">
+            <div class="col-md-4">
+                <h5 class="text-light">Connect through our socials</h5>
                 <style>
                     .footer_social {
                         margin-top: 1.5rem !important;
