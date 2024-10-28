@@ -209,7 +209,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand" href="{{ route('home') }}">
+                    <a class="ms-md-4 ps-md-4 navbar-brand"
+                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
                         <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
                             style="width: 180px; height:auto;">
                     </a>
@@ -661,8 +662,8 @@
 
     <script>
         /* $('select').select2({
-                                                                                            placeholder: 'Select an option'
-                                                                                        }); */
+                                                                                                placeholder: 'Select an option'
+                                                                                            }); */
 
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];

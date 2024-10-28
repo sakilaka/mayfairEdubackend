@@ -44,7 +44,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand" href="{{ route('home') }}">
+                    <a class="ms-md-4 ps-md-4 navbar-brand"
+                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
                         <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
                             style="width: 180px; height:auto;">
                     </a>
@@ -219,8 +220,8 @@
                         </div>
 
                         <!-- Submit button -->
-                        <button class="btn btn-primary-bg red-hover-button btn-lg w-100 position-relative" style="z-index: 2"
-                            type="submit">Sign in</button>
+                        <button class="btn btn-primary-bg red-hover-button btn-lg w-100 position-relative"
+                            style="z-index: 2" type="submit">Sign in</button>
                     </form>
 
                     <div class="text-center mt-4 mb-5">
