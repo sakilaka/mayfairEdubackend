@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-4">
-                <div class="row justify-content-between">
+                <div class="row justify-content-between align-items-center">
                     <div class="col-5">
                         <div class="text-center">
                             <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
@@ -46,7 +46,7 @@
                 @endif
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 ps-md-5">
                 <h5 class="text-light">Connect through our socials</h5>
                 <style>
                     .footer_social {
