@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-md-4">
-                <div class="row justify-content-between align-items-center">
+                <div class="row justify-content-start align-items-center">
                     <div class="col-5">
                         <div class="text-center">
                             <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
@@ -15,7 +15,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="col-5 pe-md-4">
+                    <div class="col-5 ps-3 px-md-4">
                         <div class="text-center">
                             <a href="javascript:void(0)" target="_blank" class="text-decoration-none">
                                 <img class="vector-smart-object-3 img-fluid" width="200"
