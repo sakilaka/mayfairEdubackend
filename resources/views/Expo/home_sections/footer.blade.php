@@ -78,7 +78,7 @@
                 </script>
 
                 <div class="col-12">
-                    <div class="d-flex flex-wrap justify-content-center">
+                    <div class="d-flex flex-wrap justify-content-start">
                         @foreach ($footer_contents['social']['type'] ?? [] as $key => $social_type)
                             @switch($social_type)
                                 @case('facebook')
