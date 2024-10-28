@@ -16,7 +16,7 @@
         <style>
             .bg-section {
                 background-image: url('{{ $additional_contents['hero_bg'] }}');
-                background-size: 100% 100%;
+                background-size: cover;
                 background-position: center;
                 background-repeat: no-repeat;
             }
