@@ -10,7 +10,7 @@
                     <div class="d-flex flex-column justify-content-center align-items-center align-items-md-end">
                         <img src="{{ $organizer['logo'] ?? '' }}" alt="" class="img-fluid" width="150">
                         <div class="text-center mt-4 me-md-3">
-                            <a href="{{ $organizer['redirect_url'] ?? '#' }}"
+                            <a href="www.google.com"
                                 class="btn btn-light mx-auto px-5 rounded-0" target="_blank">Details</a>
                         </div>
                     </div>
