@@ -212,6 +212,10 @@
         .iti--inline-dropdown .iti__dropdown-content {
             z-index: 9999 !important;
         }
+
+        .top-layer {
+            z-index: 3 !important;
+        }
     </style>
 </head>
 
@@ -243,7 +247,7 @@
 
                         <div class="col-md-10 col-lg-7 col-xl-6 co p-4 my-5 bg-white shadow form-container card-red-pattern-bg"
                             style="border-radius: 15px">
-                            <div class="row justify-content-between align-items-center">
+                            <div class="row justify-content-between align-items-center position-relative top-layer">
                                 <div class="col-2">
                                     <img src="{{ $footer_contents['organizerLogo'] }}" alt="" width="80"
                                         class="img-fluid mt-2" style="cursor: pointer;">
@@ -264,7 +268,7 @@
                                 </div>
                             </div>
 
-                            <div class="card bg-transparent border-0">
+                            <div class="card bg-transparent border-0 position-relative top-layer">
                                 @if (session()->has('success') && session('status') === 'submitted')
                                     <div class="mt-4 d-flex flex-column justify-content-center align-items-center">
                                         <img src="{{ asset('frontend/images/done.png') }}" alt=""
