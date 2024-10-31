@@ -20,7 +20,8 @@
         }
     </style>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css"> --}}
+    <link rel="stylesheet" href="{{ asset('frontend/expo-domain/css/intlTelInput.css') }}">
     <style>
         .iti--inline-dropdown {
             display: flex;
