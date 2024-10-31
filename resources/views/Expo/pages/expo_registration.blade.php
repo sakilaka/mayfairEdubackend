@@ -200,6 +200,8 @@
             }
         </style>
     @endif
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
 </head>
 
 <body>
