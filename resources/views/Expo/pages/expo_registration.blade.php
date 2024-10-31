@@ -20,7 +20,7 @@
         }
     </style>
 
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
     <style>
         .iti--inline-dropdown {
             display: flex;
@@ -33,14 +33,12 @@
         }
     </style>
 
-
     <link rel="stylesheet"
         href="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/css/select2.min.css') }}">
 
     <style>
         .select2-container {
             width: 100% !important;
-            z-index: 9999 !important;
         }
 
         .select2-container--default .select2-selection--multiple {
