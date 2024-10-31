@@ -206,6 +206,9 @@
         .iti--inline-dropdown{
             display: flex;
         }
+        .iti--inline-dropdown .iti__dropdown-content{
+            z-index: 1093 !important;
+        }
     </style>
 </head>
 
