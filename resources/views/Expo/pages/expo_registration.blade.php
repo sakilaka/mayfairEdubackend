@@ -498,12 +498,9 @@
                                                         <span class="text-danger">*</span> Contact Number:
                                                     </label>
                                                     <div class="col-md-9">
-                                                        {{-- <input type="text" id="phone" name="phone"
+                                                        <input type="text" id="phone" name="phone"
                                                             class="form-control form-control-lg"
-                                                            placeholder="Enter your contact number"> --}}
-                                                        <input id="phone" type="tel"
-                                                            class="form-control form-control-lg @error('phone') is-invalid @enderror"
-                                                            name="phone" value="{{ old('phone') }}" required>
+                                                            placeholder="Enter your contact number">
                                                         <div class="invalid-feedback">Please provide a valid contact
                                                             number.
                                                         </div>
