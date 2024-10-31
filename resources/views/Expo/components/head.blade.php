@@ -163,7 +163,7 @@
     }
 
     .card-red-pattern-bg div {
-        position: relative;
+        /* position: relative; */
         z-index: 2;
     }
 </style>
