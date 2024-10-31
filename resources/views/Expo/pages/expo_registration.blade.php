@@ -502,8 +502,8 @@
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter your contact number"> --}}
                                                         <input id="phone" type="tel"
-                                                            class="form-control form-control-lg" name="phone"
-                                                            value="{{ old('phone') }}" required>
+                                                            class="form-control form-control-lg @error('phone') is-invalid @enderror"
+                                                            name="phone" value="{{ old('phone') }}" required>
                                                         <div class="invalid-feedback">Please provide a valid contact
                                                             number.
                                                         </div>
