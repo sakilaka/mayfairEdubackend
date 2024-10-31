@@ -203,13 +203,18 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
     <style>
-        .iti--inline-dropdown{
+        .iti--inline-dropdown {
             display: flex;
+            position: relative;
+            z-index: 1000;
         }
-        .iti--inline-dropdown .iti__dropdown-content{
-            z-index: 1099 !important;
+
+        .iti--inline-dropdown .iti__dropdown-content {
+            position: fixed !important;
+            z-index: 9999 !important;
         }
     </style>
+
 </head>
 
 <body>
