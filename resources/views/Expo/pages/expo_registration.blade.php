@@ -535,7 +535,7 @@
                                                         </input>
                                                     </div>
                                                 </div>
-                                                <!-- Interested Program -->
+                                                {{-- <!-- Interested Program -->
                                                 <div class="form-group row mt-2">
                                                     <label for="program" class="col-md-3 col-form-label">
                                                         Interested Program:
@@ -564,7 +564,7 @@
                                                             name.
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
 
 
                                                 <!-- Password -->

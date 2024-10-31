@@ -199,8 +199,8 @@ class ExpoModuleController extends Controller
             $expoUser->dob = $request->dob;
             $expoUser->phone = $request->phone;
             $expoUser->profession = $request->profession;
-            $expoUser->institution = $request->institution;
-            $expoUser->program = $request->program;
+            // $expoUser->institution = $request->institution;
+            // $expoUser->program = $request->program;
             $expoUser->degree = $request->degree;
             $expoUser->save();
 
