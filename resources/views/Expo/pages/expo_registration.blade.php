@@ -662,6 +662,11 @@
     @include('Expo.components.footer')
 
     <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
+    <script>
+        $('.select2').select2({
+            placeholder: 'Select an option'
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
