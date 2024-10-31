@@ -502,8 +502,8 @@
                                                             class="form-control form-control-lg"
                                                             placeholder="Enter your contact number"> --}}
                                                         <input id="phone" type="tel"
-                                                            class="form-control form-control-lg"
-                                                            name="phone" value="{{ old('phone') }}" required>
+                                                            class="form-control form-control-lg" name="phone"
+                                                            value="{{ old('phone') }}" required>
                                                         <div class="invalid-feedback">Please provide a valid contact
                                                             number.
                                                         </div>
@@ -665,11 +665,67 @@
 
     <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
-        /* $('select').select2({
-                                                                                                    placeholder: 'Select an option'
-                                                                                                }); */
+        const input = document.querySelector("#phone");
+        const output = document.querySelector("#output");
 
+        const iti = window.intlTelInput(input, {
+            initialCountry: "auto",
+            nationalMode: true,
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code
+                        .toLowerCase()))
+                    .catch(() => callback("bd"));
+            },
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
+        });
+
+        const handleChange = () => {
+            let text = "";
+            if (input.value) {
+                if (iti.isValidNumber()) {
+                    text = "Valid number detected. International format: " + iti.getNumber();
+                    output.classList.remove('text-danger');
+                    output.classList.add('text-success');
+                } else {
+                    text = "Please enter a valid number";
+                    output.classList.remove('text-success');
+                    output.classList.add('text-danger');
+                }
+            } else {
+                text = "Please enter a valid number";
+                output.classList.remove('text-success');
+                output.classList.add('text-danger');
+            }
+            output.innerHTML = text;
+        };
+
+
+        input.addEventListener('change', handleChange);
+        input.addEventListener('keyup', handleChange);
+    </script>
+
+
+    <script>
+        $("form").on("submit", function(event) {
+            if (!iti.isValidNumber()) {
+                event.preventDefault();
+                output.innerHTML = "Please enter a valid number";
+                output.classList.remove('text-success');
+                output.classList.add('text-danger');
+
+                alert('Please enter a valid number');
+            } else {
+                const fullNumber = iti.getNumber();
+                input.value = fullNumber;
+            }
+        });
+    </script>
+
+    <script>
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
 
