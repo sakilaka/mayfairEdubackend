@@ -97,7 +97,7 @@
     </div>
 
     @include('Backend.components.script')
-    @include('Backend.components.ckeditor5-config')
+    @include('Backend.components.ckeditor5-config-file-upload')
 </body>
 
 </html>
