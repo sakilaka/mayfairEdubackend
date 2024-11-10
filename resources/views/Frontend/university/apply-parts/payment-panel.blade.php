@@ -136,9 +136,10 @@
 
                 <div class="mt-3 right-side w-100">
 
-                    
-                    <img src="{{ asset('frontend/paymentMethod/wechatQR.jpg') }}"
-                        alt="Description of image" class="img-fluid">
+                    <div class="text-center">
+                        <img src="{{ asset('frontend/paymentMethod/wechatQR.jpg') }}"
+                            alt="Description of image" class="img-fluid" style="width: 50%">
+                    </div>
 
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
 
