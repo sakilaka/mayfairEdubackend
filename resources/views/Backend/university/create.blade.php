@@ -631,10 +631,18 @@
                                                     <label>Select Degree</label>
                                                     <select name="degree[]" class="form-control form-control-lg">
                                                         <option value="">Select Degree</option>
-                                                        <option value="Bachelor">Bachelor</option>
-                                                        <option value="Masters">Masters</option>
-                                                        <option value="PhD">PhD</option>
-                                                        <option value="Non-Degree">Non-Degree</option>
+                                                        <option value="Bachelor"
+                                                            {{ in_array('Bachelor', old('degree', [])) ? 'selected' : '' }}>
+                                                            Bachelor</option>
+                                                        <option value="Masters"
+                                                            {{ in_array('Masters', old('degree', [])) ? 'selected' : '' }}>
+                                                            Masters</option>
+                                                        <option value="PhD"
+                                                            {{ in_array('PhD', old('degree', [])) ? 'selected' : '' }}>
+                                                            PhD</option>
+                                                        <option value="Non-Degree"
+                                                            {{ in_array('Non-Degree', old('degree', [])) ? 'selected' : '' }}>
+                                                            Non-Degree</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -643,14 +651,17 @@
                                                 <div class="form-group">
                                                     <label>Tuition Fee 1 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_1[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_1.0') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tuition Fee 2 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_2[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_2.0') }}">
                                                 </div>
                                             </div>
 
@@ -660,10 +671,18 @@
                                                     <label>Select Degree</label>
                                                     <select name="degree[]" class="form-control form-control-lg">
                                                         <option value="">Select Degree</option>
-                                                        <option value="Bachelor">Bachelor</option>
-                                                        <option value="Masters">Masters</option>
-                                                        <option value="PhD">PhD</option>
-                                                        <option value="Non-Degree">Non-Degree</option>
+                                                        <option value="Bachelor"
+                                                            {{ in_array('Bachelor', old('degree', [])) ? 'selected' : '' }}>
+                                                            Bachelor</option>
+                                                        <option value="Masters"
+                                                            {{ in_array('Masters', old('degree', [])) ? 'selected' : '' }}>
+                                                            Masters</option>
+                                                        <option value="PhD"
+                                                            {{ in_array('PhD', old('degree', [])) ? 'selected' : '' }}>
+                                                            PhD</option>
+                                                        <option value="Non-Degree"
+                                                            {{ in_array('Non-Degree', old('degree', [])) ? 'selected' : '' }}>
+                                                            Non-Degree</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -672,14 +691,17 @@
                                                 <div class="form-group">
                                                     <label>Tuition Fee 1 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_1[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_1.1') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tuition Fee 2 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_2[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_2.1') }}">
                                                 </div>
                                             </div>
 
@@ -689,10 +711,18 @@
                                                     <label>Select Degree</label>
                                                     <select name="degree[]" class="form-control form-control-lg">
                                                         <option value="">Select Degree</option>
-                                                        <option value="Bachelor">Bachelor</option>
-                                                        <option value="Masters">Masters</option>
-                                                        <option value="PhD">PhD</option>
-                                                        <option value="Non-Degree">Non-Degree</option>
+                                                        <option value="Bachelor"
+                                                            {{ in_array('Bachelor', old('degree', [])) ? 'selected' : '' }}>
+                                                            Bachelor</option>
+                                                        <option value="Masters"
+                                                            {{ in_array('Masters', old('degree', [])) ? 'selected' : '' }}>
+                                                            Masters</option>
+                                                        <option value="PhD"
+                                                            {{ in_array('PhD', old('degree', [])) ? 'selected' : '' }}>
+                                                            PhD</option>
+                                                        <option value="Non-Degree"
+                                                            {{ in_array('Non-Degree', old('degree', [])) ? 'selected' : '' }}>
+                                                            Non-Degree</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -701,14 +731,17 @@
                                                 <div class="form-group">
                                                     <label>Tuition Fee 1 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_1[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_1.0') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tuition Fee 2 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_2[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_2.0') }}">
                                                 </div>
                                             </div>
 
