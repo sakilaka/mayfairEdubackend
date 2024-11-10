@@ -3,6 +3,10 @@
         box-shadow: 1px 4px 20px -10px rgba(120, 200, 159, 0.75);
         background-color: #fff;
         border-radius: 8px;
+        border: none !important;
+    }
+    .upload-card:hover{
+        cursor: pointer;
     }
 </style>
 
@@ -43,7 +47,7 @@
                     </div>
 
                     <div data-bs-toggle="modal" data-bs-target="#modalAlipay"
-                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center"
+                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
                         style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
                         <svg height="50" viewBox="0 0 1024.051 1024" width="50"
                             xmlns="http://www.w3.org/2000/svg">
@@ -55,7 +59,7 @@
                     </div>
 
                     <div data-bs-toggle="modal" data-bs-target="#modalPaypal"
-                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center"
+                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
                         style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
                         <svg height="50" viewBox="5.8 1.3 52.7 61.4" width="50"
                             xmlns="http://www.w3.org/2000/svg">
@@ -88,7 +92,7 @@
                     </div>
 
                     <div data-bs-toggle="modal" data-bs-target="#bankTransfer"
-                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center"
+                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
                         style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
                         <img height="50" width="50"
                             src="{{ asset('frontend/paymentMethod/bank-transfer-circle-round-payment-method-19792.png') }}"
