@@ -499,10 +499,18 @@
                                                         class="form-control form-control-lg tagsSelect2"
                                                         name="tags[]" multiple>
                                                         <option value="">Select Tags</option>
-                                                        <option value="211 Projects">211 Projects</option>
-                                                        <option value="985 Projects">985 Projects</option>
-                                                        <option value="Double First Class">Double First Class</option>
-                                                        <option value="C9 League">C9 League</option>
+                                                        <option value="211 Projects"
+                                                            @if (in_array('211 Projects', old('tags', []))) selected @endif>211
+                                                            Projects</option>
+                                                        <option value="985 Projects"
+                                                            @if (in_array('985 Projects', old('tags', []))) selected @endif>985
+                                                            Projects</option>
+                                                        <option value="Double First Class"
+                                                            @if (in_array('Double First Class', old('tags', []))) selected @endif>Double
+                                                            First Class</option>
+                                                        <option value="C9 League"
+                                                            @if (in_array('C9 League', old('tags', []))) selected @endif>C9
+                                                            League</option>
                                                     </select>
                                                     <p class="text-sm text-muted">Maximum 3</p>
                                                 </div>
@@ -512,21 +520,23 @@
                                                 <div class="form-group">
                                                     <label>Accommodation <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="accommodation" style="height: 150px"></textarea>
+                                                    <textarea class="form-control editor" name="accommodation" style="height: 150px">{{ old('accommodation') }}</textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Admissions Process <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="admissions_process" style="height: 150px"></textarea>
+                                                    <textarea class="form-control editor" name="admissions_process" style="height: 150px">{{ old('admissions_process') }}</textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>About <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="about" style="height: 150px"></textarea>
+                                                    <textarea class="form-control editor" name="about" style="height: 150px">{{ old('about') }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
