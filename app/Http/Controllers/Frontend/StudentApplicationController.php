@@ -645,6 +645,7 @@ class StudentApplicationController extends Controller
 
     public function submitAppliction(Request $request, $id)
     {
+        return $request->all();
         $partner_ref_id = session('partner_ref_id') ?? '';
         $application = StudentApplication::find($id);
 
