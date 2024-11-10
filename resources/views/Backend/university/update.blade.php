@@ -547,21 +547,23 @@
                                                 <div class="form-group">
                                                     <label>Accommodation <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="accommodation" style="height: 150px">{{ $university->accommodation }}</textarea>
+                                                    <textarea class="form-control editor" name="accommodation" style="height: 150px">{{ old('accommodation', $university->accommodation) }}</textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Admissions Process <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="admissions_process" style="height: 150px">{{ $university->admissions_process }}</textarea>
+                                                    <textarea class="form-control editor" name="admissions_process" style="height: 150px">{{ old('admissions_process', $university->admissions_process) }}</textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>About <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="about" style="height: 150px">{{ $university->about }}</textarea>
+                                                    <textarea class="form-control editor" name="about" style="height: 150px">{{ old('about', $university->about) }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
