@@ -5,7 +5,8 @@
         border-radius: 8px;
         border: 1px solid #eee !important;
     }
-    .upload-card:hover{
+
+    .upload-card:hover {
         cursor: pointer;
     }
 </style>
@@ -108,9 +109,13 @@
             <div class="button-row d-flex justify-content-between mt-4">
                 <button class="btn btn-secondary js-btn-prev" type="button" title="Prev">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
-
-                    Previous</button>
-
+                    Previous
+                </button>
+                <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment" type="submit"
+                    title="">
+                    <span class="">Submit</span>
+                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -137,8 +142,8 @@
                 <div class="mt-3 right-side w-100">
 
                     <div class="text-center">
-                        <img src="{{ asset('frontend/paymentMethod/wechatQR.jpg') }}"
-                            alt="Description of image" class="img-fluid" style="width: 50%">
+                        <img src="{{ asset('frontend/paymentMethod/wechatQR.jpg') }}" alt="Description of image"
+                            class="img-fluid" style="width: 50%">
                     </div>
 
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
