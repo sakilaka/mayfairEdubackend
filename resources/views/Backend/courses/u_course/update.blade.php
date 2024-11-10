@@ -52,13 +52,15 @@
                                                         required>
                                                         <option value="">Select University</option>
                                                         @foreach ($universities as $university)
-                                                            <option @if ($university->id == $course->university_id) Selected @endif
-                                                                value="{{ $university->id }}">{{ $university->name }}
+                                                            <option value="{{ $university->id }}"
+                                                                {{ old('university_id', $course->university_id) == $university->id ? 'selected' : '' }}>
+                                                                {{ $university->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Major <span class="text-danger"
@@ -68,13 +70,14 @@
                                                         <option value="">Select Department</option>
                                                         @foreach ($departments as $department)
                                                             <option value="{{ $department->id }}"
-                                                                {{ $department->id == $course->department_id ? 'selected' : '' }}>
+                                                                {{ old('department_id', $course->department_id) == $department->id ? 'selected' : '' }}>
                                                                 {{ $department->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Degree <span class="text-danger"
@@ -84,76 +87,75 @@
                                                         <option value="">Select Degree</option>
                                                         @foreach ($degrees as $degree)
                                                             <option value="{{ $degree->id }}"
-                                                                @if ($degree->id == $course->degree_id) selected @endif>
+                                                                {{ old('degree_id', $course->degree_id) == $degree->id ? 'selected' : '' }}>
                                                                 {{ $degree->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Dormitory
-                                                    </label>
+                                                    <label>Dormitory</label>
                                                     <select class="form-control form-control-lg dormitorySelect2"
                                                         name="dormitory_id[]" multiple>
                                                         <option value="">Select Dormitory</option>
                                                         @php
-                                                            $selectedDormitories =
-                                                                json_decode($course->dormitories, true) ?? [];
+                                                            $selectedDormitories = old(
+                                                                'dormitory_id',
+                                                                json_decode($course->dormitories, true) ?? [],
+                                                            );
                                                         @endphp
-
                                                         @foreach ($dormitories as $dormitory)
                                                             <option value="{{ $dormitory->id }}"
-                                                                @if (in_array($dormitory->id, $selectedDormitories)) selected @endif>
+                                                                {{ in_array($dormitory->id, $selectedDormitories) ? 'selected' : '' }}>
                                                                 {{ $dormitory->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Primary Scholarship</label>
                                                     <select class="form-control form-control-lg" name="scholarship_id">
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free">Full Scholarship</option>
-                                                        @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}"
-                                                                {{ $scholarship->id == $course->scholarship_id ? 'selected' : '' }}>
-                                                                {{ $scholarship->title }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    @php
-                                                        $scholarship_ids = [];
-                                                        foreach (
-                                                            json_decode($course->additional_scholarships, true) ?? []
-                                                            as $id
-                                                        ) {
-                                                            $scholarship_ids[] = $id;
-                                                        }
-                                                    @endphp
-                                                    <label>Additional Scholarships</label>
-                                                    <select class="form-control form-control-lg multipleSelect2Search"
-                                                        name="optional_scholarship_id[]" multiple>
-                                                        <option value="">Select Scholarships</option>
                                                         <option value="free"
-                                                            @if ($course->scholarship_id == 'free') Selected @endif>
+                                                            {{ old('scholarship_id', $course->scholarship_id) == 'free' ? 'selected' : '' }}>
                                                             Full Scholarship
                                                         </option>
                                                         @foreach ($scholarships as $scholarship)
                                                             <option value="{{ $scholarship->id }}"
-                                                                @if (in_array($scholarship->id, $scholarship_ids)) selected @endif>
+                                                                {{ old('scholarship_id', $course->scholarship_id) == $scholarship->id ? 'selected' : '' }}>
                                                                 {{ $scholarship->title }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Additional Scholarships</label>
+                                                    <select class="form-control form-control-lg multipleSelect2Search"
+                                                        name="optional_scholarship_id[]" multiple>
+                                                        <option value="">Select Scholarships</option>
+                                                        <option value="free"
+                                                            {{ in_array('free', old('optional_scholarship_id', json_decode($course->additional_scholarships, true) ?? [])) ? 'selected' : '' }}>
+                                                            Full Scholarship
+                                                        </option>
+                                                        @foreach ($scholarships as $scholarship)
+                                                            <option value="{{ $scholarship->id }}"
+                                                                {{ in_array($scholarship->id, old('optional_scholarship_id', json_decode($course->additional_scholarships, true) ?? [])) ? 'selected' : '' }}>
+                                                                {{ $scholarship->title }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Name <span class="text-danger"
