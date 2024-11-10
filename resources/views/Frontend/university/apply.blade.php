@@ -818,7 +818,7 @@
                                                                 <input type="tel" id="phone" name="phone"
                                                                     data-name="phone" required="" placeholder="Enter Phone Number"
                                                                     class="form-control form-control-lg pt-0 @error('phone') is-invalid @enderror"
-                                                                    value="{{ auth()->user()->phone ?? $application->phone }}" style="font-size: 1rem">
+                                                                    value="{{ auth()->user()->phone ?? $application->phone }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
