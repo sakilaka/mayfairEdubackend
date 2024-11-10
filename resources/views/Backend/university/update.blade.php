@@ -674,16 +674,16 @@
                                                         <select name="degree[]" class="form-control form-control-lg">
                                                             <option value="">Select Degree</option>
                                                             <option value="Bachelor"
-                                                                {{ ($fees_structure['degrees'][$index] ?? '') == 'Bachelor' ? 'selected' : '' }}>
+                                                                {{ old('degree.' . $index, $fees_structure['degrees'][$index] ?? '') == 'Bachelor' ? 'selected' : '' }}>
                                                                 Bachelor</option>
                                                             <option value="Masters"
-                                                                {{ ($fees_structure['degrees'][$index] ?? '') == 'Masters' ? 'selected' : '' }}>
+                                                                {{ old('degree.' . $index, $fees_structure['degrees'][$index] ?? '') == 'Masters' ? 'selected' : '' }}>
                                                                 Masters</option>
                                                             <option value="PhD"
-                                                                {{ ($fees_structure['degrees'][$index] ?? '') == 'PhD' ? 'selected' : '' }}>
+                                                                {{ old('degree.' . $index, $fees_structure['degrees'][$index] ?? '') == 'PhD' ? 'selected' : '' }}>
                                                                 PhD</option>
                                                             <option value="Non-Degree"
-                                                                {{ ($fees_structure['degrees'][$index] ?? '') == 'Non-Degree' ? 'selected' : '' }}>
+                                                                {{ old('degree.' . $index, $fees_structure['degrees'][$index] ?? '') == 'Non-Degree' ? 'selected' : '' }}>
                                                                 Non-Degree</option>
                                                         </select>
                                                     </div>
@@ -696,7 +696,7 @@
                                                             name="fs_tuition_fee_1[]"
                                                             placeholder="Enter Yearly Tuition Fee"
                                                             class="form-control"
-                                                            value="{{ $fees_structure['tuition_fees_1'][$index] ?? '' }}">
+                                                            value="{{ old('fs_tuition_fee_1.' . $index, $fees_structure['tuition_fees_1'][$index] ?? '') }}">
                                                     </div>
                                                 </div>
 
@@ -707,7 +707,7 @@
                                                             name="fs_tuition_fee_2[]"
                                                             placeholder="Enter Yearly Tuition Fee"
                                                             class="form-control"
-                                                            value="{{ $fees_structure['tuition_fees_2'][$index] ?? '' }}">
+                                                            value="{{ old('fs_tuition_fee_2.' . $index, $fees_structure['tuition_fees_2'][$index] ?? '') }}">
                                                     </div>
                                                 </div>
                                             @endfor
