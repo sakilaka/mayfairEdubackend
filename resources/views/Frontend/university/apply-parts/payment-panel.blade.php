@@ -138,7 +138,7 @@
                     <p class="text-center" style="font-size: 22px; ">WeChat Pay</p>
                 </div> --}}
 
-                <div class="mt-3 right-side w-100">
+                <div class="mt-3 right-side text-center w-100">
 
                     <div class="text-center">
                         <img src="{{ asset('frontend/paymentMethod/wechatQR.jpg') }}" alt="Description of image"
@@ -147,7 +147,7 @@
 
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
 
-                    <div class="d-flex gap-3 align-items-center">
+                    <div class="d-flex gap-3 justify-content-center align-items-center">
                         <p style="cursor: pointer;" onclick="document.getElementById('fileInput').click()">
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload Payment
                             receipt
@@ -388,7 +388,7 @@
                             <img src="" alt="Image Preview" id="previewBank"
                                 style="max-width: 100px; max-height: 100px; margin-left: 10px;">
                         </div>
-                        
+
                         {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
 
