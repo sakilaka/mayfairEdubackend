@@ -161,10 +161,12 @@
                                                     <label>Course Name <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" name="course_name"
-                                                        placeholder="Enter Course Name" value="{{ $course->name }}"
+                                                        placeholder="Enter Course Name"
+                                                        value="{{ old('course_name', $course->name) }}"
                                                         class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Intake <span class="text-danger"
@@ -173,8 +175,9 @@
                                                         required>
                                                         <option value="">Select Intake</option>
                                                         @foreach ($sections as $section)
-                                                            <option @if ($section->id == $course->section_id) Selected @endif
-                                                                value="{{ $section->id }}">{{ $section->name }}
+                                                            <option value="{{ $section->id }}"
+                                                                {{ old('section_id', $course->section_id) == $section->id ? 'selected' : '' }}>
+                                                                {{ $section->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -183,14 +186,15 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Application Fees (CNY)<span class="text-danger"
+                                                    <label>Application Fees (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="application_charge"
                                                         placeholder="Enter Application Fees"
-                                                        value="{{ $course->application_charge }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('application_charge', $course->application_charge) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (CNY)<span class="text-danger"
