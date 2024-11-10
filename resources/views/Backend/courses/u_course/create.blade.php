@@ -52,8 +52,10 @@
                                                         required>
                                                         <option value="">Select University</option>
                                                         @foreach ($universities as $university)
-                                                            <option value="{{ $university->id }}">
-                                                                {{ $university->name }}</option>
+                                                            <option value="{{ $university->id }}"
+                                                                {{ old('university_id') == $university->id ? 'selected' : '' }}>
+                                                                {{ $university->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -66,8 +68,10 @@
                                                         name="department_id" required>
                                                         <option value="">Select Major</option>
                                                         @foreach ($departments as $department)
-                                                            <option value="{{ $department->id }}">
-                                                                {{ $department->name }}</option>
+                                                            <option value="{{ $department->id }}"
+                                                                {{ old('department_id') == $department->id ? 'selected' : '' }}>
+                                                                {{ $department->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -81,8 +85,10 @@
                                                         {{-- <option value="">Select Major First</option> --}}
                                                         <option value="">Select Degree</option>
                                                         @foreach ($degrees as $degree)
-                                                            <option value="{{ $degree->id }}">
-                                                                {{ $degree->name }}</option>
+                                                            <option value="{{ $degree->id }}"
+                                                                {{ old('degree_id') == $degree->id ? 'selected' : '' }}>
+                                                                {{ $degree->name }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
