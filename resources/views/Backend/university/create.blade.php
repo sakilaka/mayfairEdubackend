@@ -310,14 +310,12 @@
                                                     <select class="form-control form-control-lg" name="city_id"
                                                         id="city" required>
                                                         <option value="">Select Province First</option>
-                                                        @if (old('state_id'))
-                                                            @foreach ($cities as $city)
-                                                                <option value="{{ $city->id }}"
-                                                                    @if (old('city_id') == $city->id) selected @endif>
-                                                                    {{ $city->name }}
-                                                                </option>
-                                                            @endforeach
-                                                        @endif
+                                                        @foreach ($cities as $city)
+                                                            <option value="{{ $city->id }}"
+                                                                @if (old('city_id') == $city->id) selected @endif>
+                                                                {{ $city->name }}
+                                                            </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
