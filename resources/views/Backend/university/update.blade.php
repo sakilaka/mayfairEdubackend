@@ -534,7 +534,7 @@
                                                         name="tags[]" multiple>
                                                         @foreach ($availableTags as $tag)
                                                             <option value="{{ $tag }}"
-                                                                {{ in_array($tag, $tags) ? 'selected' : '' }}>
+                                                                {{ in_array($tag, $tags) || in_array($tag, old('tags', [])) ? 'selected' : '' }}>
                                                                 {{ $tag }}
                                                             </option>
                                                         @endforeach
