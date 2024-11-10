@@ -121,11 +121,11 @@ class UniversityController extends Controller
         $data['continents'] = Continent::where('status', 1)->get();
         $data['countries'] = Country::where('status', 1)->get();
         $data['states'] = State::where(['status' => 1])->get();
+        $data['cities'] = City::all();
         $data['majors'] = Department::where('status', 1)->get();
         $data['scholarships'] = Scholarship::where('status', 1)->get();
         $data['dormitories'] = Dormitory::all();
         $data['intakes'] = Section::all();
-        
 
         return view("Backend.university.create", $data);
     }
