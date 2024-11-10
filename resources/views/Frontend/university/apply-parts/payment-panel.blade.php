@@ -455,10 +455,10 @@
         margin-top: 80px;
     }
 
-    /* .custom-modal-width {
+    .custom-modal-width {
         max-width: 1200px;
         width: 100%;
-    } */
+    }
 
     .top-right {
         position: absolute;
