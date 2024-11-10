@@ -103,22 +103,26 @@
             </div>
         </div>
 
-        <div class="multisteps-form__content mt-3">
-            <div class="button-row d-flex justify-content-between mt-4">
-                <button class="btn btn-secondary js-btn-prev" type="button" title="Prev">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                    Previous
-                </button>
+        <form action="{{ $route }}" method="POST">
+            @csrf
 
-                <input type="hidden" name="payment_method">
-
-                <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment" type="submit"
-                    title="">
-                    <span class="">Submit</span>
-                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                </button>
+            <div class="multisteps-form__content mt-3">
+                <div class="button-row d-flex justify-content-between mt-4">
+                    <button class="btn btn-secondary js-btn-prev" type="button" title="Prev">
+                        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                        Previous
+                    </button>
+    
+                    <input type="hidden" name="payment_method">
+    
+                    <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment" type="submit"
+                        title="">
+                        <span class="">Submit</span>
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
     {{-- </form> --}}
 </div>
