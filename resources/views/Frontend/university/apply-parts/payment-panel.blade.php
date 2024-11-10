@@ -104,13 +104,12 @@
         </div>
 
         <div class="multisteps-form__content mt-3">
-
-
             <div class="button-row d-flex justify-content-between mt-4">
                 <button class="btn btn-secondary js-btn-prev" type="button" title="Prev">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     Previous
                 </button>
+                
                 <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment" type="submit"
                     title="">
                     <span class="">Submit</span>
