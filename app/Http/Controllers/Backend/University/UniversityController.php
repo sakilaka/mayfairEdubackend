@@ -135,7 +135,6 @@ class UniversityController extends Controller
      */
     public function store(Request $request)
     {
-        return back()->with('success', 'Form Submitted!');
         $request->validate([
             'name' => 'required',
         ]);
