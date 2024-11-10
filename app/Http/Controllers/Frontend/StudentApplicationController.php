@@ -231,7 +231,13 @@ class StudentApplicationController extends Controller
         $programs = json_decode($data['application']->programs, true) ?? [];
         $data['programs'] = Course::whereIn('id', $programs)->get();
 
-        
+        $data['is_contain_masters_or_phd'] = false;
+        foreach ($data['programs'] as $program) {
+            if (in_array($program->degree->name, ['Masters', 'PhD'])) {
+                $data['is_contain_masters_or_phd'] = true;
+            }
+        }
+
         $data['terms'] = Page::where('title', 'Terms And Conditions')->first();
         $data['refund'] = Page::where('title', 'Refund Policy')->first();
         $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
