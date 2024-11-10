@@ -153,18 +153,18 @@
                             receipt
                         </p>
 
+                        <input type="file" name="payment_receipt" id="fileInput" style="display: none;"
+                            accept="image/*" onchange="previewImage(event)">
+
+                        <input type="hidden" name="payment_method" value="WeChat Pay">
+
+                        <!-- Image Preview Container -->
+                        <div id="imagePreview" style="display: none;">
+                            <img src="" alt="Image Preview" id="preview"
+                                style="max-width: 100px; max-height: 100px; margin-left: 10px; margin-bottom: 8px;">
+                        </div>
                         {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="payment_receipt" id="fileInput" style="display: none;"
-                                accept="image/*" onchange="previewImage(event)">
-
-                            <input type="hidden" name="payment_method" value="WeChat Pay">
-
-                            <!-- Image Preview Container -->
-                            <div id="imagePreview" style="display: none;">
-                                <img src="" alt="Image Preview" id="preview"
-                                    style="max-width: 100px; max-height: 100px; margin-left: 10px; margin-bottom: 8px;">
-                            </div>
 
                             @if ($application->status == 0)
                                 <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment"
@@ -216,19 +216,20 @@
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
                             Payment receipt
                         </p>
+                        <input type="file" name="payment_receipt" id="fileInputAli" style="display: none;"
+                            accept="image/*" onchange="previewImageAli(event)">
+
+                        <input type="hidden" name="payment_method" value="AliPay">
+
+
+                        <!-- Image Preview Container -->
+                        <div id="imagePreviewAli" style="display: none;">
+                            <img src="" alt="Image Preview" id="previewAli"
+                                style="max-width: 100px; max-height: 100px; margin-left: 10px;">
+                        </div>
+
                         {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="payment_receipt" id="fileInputAli" style="display: none;"
-                                accept="image/*" onchange="previewImageAli(event)">
-
-                            <input type="hidden" name="payment_method" value="AliPay">
-
-
-                            <!-- Image Preview Container -->
-                            <div id="imagePreviewAli" style="display: none;">
-                                <img src="" alt="Image Preview" id="previewAli"
-                                    style="max-width: 100px; max-height: 100px; margin-left: 10px;">
-                            </div>
 
                             @if ($application->status == 0)
                                 <button class="btn btn-primary-light-bg ml-auto submit-payment" id="submit-payment"
@@ -302,19 +303,20 @@
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
                             Payment receipt
                         </p>
+                        <input type="file" name="payment_receipt" id="fileInputPaypal" style="display: none;"
+                            accept="image/*" onchange="previewImagePaypal(event)">
+
+                        <input type="hidden" name="payment_method" value="PayPal">
+
+
+                        <!-- Image Preview Container -->
+                        <div id="imagePreviewPaypal" style="display: none;">
+                            <img src="" alt="Image Preview" id="previewPaypal"
+                                style="max-width: 100px; max-height: 100px; margin-left: 10px;">
+                        </div>
+
                         {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="payment_receipt" id="fileInputPaypal" style="display: none;"
-                                accept="image/*" onchange="previewImagePaypal(event)">
-
-                            <input type="hidden" name="payment_method" value="PayPal">
-
-
-                            <!-- Image Preview Container -->
-                            <div id="imagePreviewPaypal" style="display: none;">
-                                <img src="" alt="Image Preview" id="previewPaypal"
-                                    style="max-width: 100px; max-height: 100px; margin-left: 10px;">
-                            </div>
 
                             @if ($application->status == 0)
                                 <button class="btn btn-primary-light-bg ml-auto submit-payment" id="submit-payment"
@@ -375,19 +377,20 @@
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
                             Payment receipt
                         </p>
+                        <input type="file" name="payment_receipt" id="fileInputBank" style="display: none;"
+                            accept="image/*" onchange="previewImageBank(event)">
+
+                        <input type="hidden" name="payment_method" value="Bank Transfer">
+
+
+                        <!-- Image Preview Container -->
+                        <div id="imagePreviewBank" style="display: none;">
+                            <img src="" alt="Image Preview" id="previewBank"
+                                style="max-width: 100px; max-height: 100px; margin-left: 10px;">
+                        </div>
+                        
                         {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
-                            <input type="file" name="payment_receipt" id="fileInputBank" style="display: none;"
-                                accept="image/*" onchange="previewImageBank(event)">
-
-                            <input type="hidden" name="payment_method" value="Bank Transfer">
-
-
-                            <!-- Image Preview Container -->
-                            <div id="imagePreviewBank" style="display: none;">
-                                <img src="" alt="Image Preview" id="previewBank"
-                                    style="max-width: 100px; max-height: 100px; margin-left: 10px;">
-                            </div>
 
                             @if ($application->status == 0)
                                 <button class="btn btn-primary-light-bg ml-auto submit-payment" id="submit-payment"
