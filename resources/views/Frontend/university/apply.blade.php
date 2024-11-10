@@ -798,18 +798,18 @@
                                                         </div>
                                                         <div class="col-12 col-sm-6">
                                                             <div class=" form-label-group mt-2">
-
                                                                 <input type="tel" id="phone" name="phone"
-                                                                    data-name="phone" required="" placeholder="Phone"
-                                                                    class="form-control"
+                                                                    data-name="phone" required="" placeholder="Enter Phone Number"
+                                                                    class="form-control form-control-lg pt-0 @error('phone') is-invalid @enderror"
                                                                     value="{{ auth()->user()->phone ?? $application->phone }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
-                                                                <div class="invalid-feedback">
-                                                                    This field is required.
+                                                                <span class="text-danger" id="output"></span>
+                                                                <div class="invalid-feedback">Please provide a valid
+                                                                    contact
+                                                                    number.
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
