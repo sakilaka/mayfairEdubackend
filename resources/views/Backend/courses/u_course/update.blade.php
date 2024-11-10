@@ -500,8 +500,7 @@
 
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>About This Program / Overview <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>About This Program / Overview</label>
                                                     <textarea class="form-control editor" name="about" style="height: 150px">{{ old('about', $course->about) }}</textarea>
                                                 </div>
                                             </div>
