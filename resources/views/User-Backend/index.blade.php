@@ -90,7 +90,11 @@
 </head>
 
 <body>
-    <div class="container-scroller">
+
+    <div class="container-scroller"
+        style="
+        @if ($user->role == 'partner') @if ($status == 0) filter: blur(5px); pointer-events: none; @endif @endif
+        ">
         @include('User-Backend.components.navbar')
 
         <div class="container-fluid page-body-wrapper">
@@ -122,7 +126,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+
+                        {{-- <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title mb-0">Events</h4>
@@ -138,7 +143,59 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+
+                        @if ($user->role == 'partner')
+                            <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-0">Your Level</h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-inline-block pt-3">
+                                                <div class="d-md-flex">
+                                                    @if ($user->star == 0)
+                                                        <h2 class="mb-0">Beginner</h2>
+                                                    @else
+                                                        @for ($i = 0; $i < $user->star; $i++)
+                                                            <i class="fa fa-star text-warning icon-md"></i>
+                                                        @endfor
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($user->type == 1 && $user->is_verified === 1)
+                            <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="card-title mb-0">Email Verify status</h4>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="pt-3">
+                                                <div class="">
+                                                    @if ($user->is_verified === 0)
+                                                        <h5 class="mb-2 text-danger fw-bold" style="font-size: 1rem;">Your email is not verified!!</h5>
+                                                        
+                                                        <br>
+                                                        <form action="">
+                                                            <a href="{{ route('frontend.send_verification_email') }}" class="btn btn-success btn-sm">
+                                                                Verify Email
+                                                            </a>
+                                                        </form>
+
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+
 
                         @if (Auth::user()->type == 1)
                             <div class="col-sm-6 col-md-4 col-lg-5 ml-lg-auto grid-margin">
@@ -288,19 +345,19 @@
                                                 </div>
                                             @endif
                                         @endif
-                                        <div class="col-12 col-lg-4">
+                                        {{-- <div class="col-12 col-lg-4">
                                             <div class="form-group">
                                                 <label for="name">Qualification</label>
                                                 <p>{{ Auth::user()->qualification ?? '-' }}</p>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
+                                        </div> --}}
+                                        {{-- <div class="col-12 col-lg-4">
                                             <div class="form-group">
                                                 <label for="name">Experience</label>
                                                 <p>{{ Auth::user()->experience ?? '-' }}</p>
                                             </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
+                                        </div> --}}
+                                        {{-- <div class="col-12 col-lg-4">
                                             <div class="form-group">
                                                 <label for="name">Language</label>
                                                 <p>
@@ -315,15 +372,15 @@
                                                     @endif
                                                 </p>
                                             </div>
-                                        </div>
-                                        @if (auth()->user()->type == 1 || auth()->user()->type == 7)
+                                        </div> --}}
+                                        {{-- @if (auth()->user()->type == 1 || auth()->user()->type == 7)
                                             <div class="col-12 col-lg-4">
                                                 <div class="form-group">
                                                     <label for="name">Continent</label>
                                                     <p>{{ auth()->user()->continents?->name }}</p>
                                                 </div>
                                             </div>
-                                        @endif
+                                        @endif --}}
                                         <div class="col-12 col-lg-4">
                                             <div class="form-group">
                                                 <label for="name">Country</label>
@@ -662,6 +719,19 @@
             </div>
         </div>
     </div>
+
+    @if ($user->role == 'partner')
+        @if ($status == 0)
+            <!-- Full-page overlay for inactive users -->
+            <div class="inactive-overlay"
+                style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; color: #fff;">
+                <div class="text-center">
+                    <h2>Your account is inactive</h2>
+                    <p>Please contact the administrator to activate your account.</p>
+                </div>
+            </div>
+        @endif
+    @endif
 
     @include('User-Backend.components.script')
 </body>

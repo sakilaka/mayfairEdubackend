@@ -58,6 +58,7 @@ Route::prefix('u_courses')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
     Route::post('update/{id}', [UniversityCourseController::class, "update"])->name('admin.u_course.update');
     Route::post('delete', [UniversityCourseController::class, "destroy"])->name('admin.u_course.delete');
     Route::get('/status/{id}', [UniversityCourseController::class, 'status'])->name('admin.u_course.status');
+    
 
     Route::get('show-on-home/{id}', [UniversityCourseController::class, 'show_on_home_toggle'])->name('admin.u_course.show_on_home_toggle');
 });
@@ -120,6 +121,7 @@ Route::prefix('section')->middleware(['auth:admin', 'adminCheck:0'])->group(func
 
 Route::get('ajax-get-charges-data', [UniversityController::class, 'getChargesData'])->name('admin.ajax.getChargesData');
 Route::get('ajax-university-filter', [FrontendUniversityController::class, "ajaxFilterUniversity"])->name('frontend.ajax-university-filter');
+
 Route::prefix('list')->group(function () {
     Route::get('all-universities', [FrontendUniversityController::class, "index"])->name('frontend.all_universities_list');
     Route::get('university-details/{id}', [FrontendUniversityController::class, "universityDetails"])->name('frontend.university_details');

@@ -274,6 +274,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>City <span class="text-danger"
@@ -284,6 +285,22 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Intake <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <select class="form-control form-control-lg" name="intake"
+                                                        id="intake" required>
+                                                        <option value="">Select Intake</option>
+                                                        @foreach ($intakes as $single)
+                                                            <option value="{{ $single->name }}">{{ $single->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Address <span class="text-danger"
@@ -347,18 +364,23 @@
                                                         required>
                                                 </div>
                                             </div>
-                                            {{-- <div class="col-md-4">
+
+                                            {{-- Service Charge  --}}
+
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (CNY)<span class="text-danger"
+                                                    <label>Service Charge (Beginner)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge"
+                                                    <input type="number" min="0"
+                                                        name="service_charge_beginner"
                                                         placeholder="Enter Service Charge" class="form-control"
                                                         required>
                                                 </div>
-                                            </div> --}}
+                                            </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge 1(CNY)<span class="text-danger"
+                                                    <label>Service Charge (1 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_1"
                                                         placeholder="Enter Service Charge" class="form-control"
@@ -367,13 +389,61 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge 2(CNY)<span class="text-danger"
+                                                    <label>Service Charge (2 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_2"
                                                         placeholder="Enter Service Charge" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (3 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_3"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (4 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_4"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (5 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_5"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (6 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_6"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (7 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_7"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+
+
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tags</label>

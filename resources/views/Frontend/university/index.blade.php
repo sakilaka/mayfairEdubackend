@@ -212,6 +212,7 @@
                             $availableTags = ['211 Projects', '985 Projects', 'Double First Class', 'C9 League'];
                             $selectedTags = request()->input('tags') ?? [];
                         @endphp
+
                         <div class="my-2">
                             <div class="toggle-header" data-filterslist="tags">
                                 <h5 class="title is-5">Tags</h5>
@@ -224,6 +225,31 @@
                                         <option value="{{ $tag }}"
                                             {{ in_array($tag, $selectedTags) ? 'selected' : '' }}>
                                             {{ $tag }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+
+                        @php
+                            $selectedIntakes = request()->input('intakes') ?? [];
+                        @endphp
+
+
+                        <div class="my-2">
+                            <div class="toggle-header" data-filterslist="intakes">
+                                <h5 class="title is-5">Intake</h5>
+                                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
+                            </div>
+
+                            <div class="toggle-content" data-filters="intakes">
+                                <select name="intakes" class="form-control select2_form_select" style="width: 90%;">
+                                    <option value="">Select Intake</option>
+                                    @foreach ($intakes as $intake)
+                                        <option value="{{ $intake->name }}"
+                                            {{ in_array($tag, $selectedIntakes) ? 'selected' : '' }}>
+                                            {{ $intake->name }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -801,8 +827,15 @@
             $(this).prop('selected', true);
             filterUniversity();
         });
+
         $(document).on('change', 'select[name="tags"]', function() {
             $(document).find('select[name="tags"]').prop('selected', false);
+            $(this).prop('selected', true);
+            filterUniversity();
+        });
+
+        $(document).on('change', 'select[name="intakes"]', function() {
+            $(document).find('select[name="intakes"]').prop('selected', false);
             $(this).prop('selected', true);
             filterUniversity();
         });
@@ -813,6 +846,9 @@
             var state_id = $(document).find('select[name="state"]:selected').val();
             var city_id = $(document).find('select[name="city"]:selected').val();
             var tags = $(document).find('select[name="tags"]:selected').val();
+            var intakes = $(document).find('select[name="intakes"]:selected').val();
+            // alert(intakes);
+            
             var data_val = {};
 
             $(".university_filter_container").empty();
@@ -878,13 +914,27 @@
                 }
             }
 
+            if (intakes) {
+                if (del_filter == true) {
+                    if (del_name != 'intakes') {
+                        data_val.intakes = intakes;
+                    }
+                } else {
+                    data_val.intakes = intakes;
+                }
+            }
+
             data_val.onsearch_val = onsearch_val;
+            // console.log(data_val);
+            
 
             $.ajax({
                 type: 'GET',
                 url: "{{ url('ajax-university-filter') }}",
                 data: data_val,
                 success: function(data) {
+                    // console.log(data);
+                    
                     $('.preloader_container').removeClass('d-inline-block').addClass('d-none');
                     $(".university_filter_container").append(data);
 

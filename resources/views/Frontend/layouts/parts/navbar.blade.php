@@ -73,25 +73,44 @@
                             <a class="nav-link dropdown-toggle" href="javascript:void(0)"
                                 data-bs-toggle="dropdown">Services
                             </a>
-                            <ul class="dropdown-menu {{-- dropdown-menu-end --}}">
-                                <li>
-                                    <a class="dropdown-item {{ Route::is('frontend.our_services') ? 'active-bg' : '' }}"
-                                        href="{{ route('frontend.our_services') }}">
-                                        Our Services
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item {{ Route::is('frontend.why_china') ? 'active-bg' : '' }}"
-                                        href="{{ route('frontend.why_china') }}">
-                                        Why China?
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item {{ Route::is('frontend.about_china') ? 'active-bg' : '' }}"
-                                        href="{{ route('frontend.about_china') }}">
-                                        About China
-                                    </a>
-                                </li>
+                            <ul class="dropdown-menu">
+
+                                @php
+                                    $all_services = \App\Models\AdditionalPage::where('page', 'our-services')
+                                        ->get()
+                                        ->map(function ($service) {
+                                            $decoded_contents = json_decode($service->contents, true);
+                                            $servicesLarge = $decoded_contents['servicesLarge'] ?? [];
+
+                                            $titles = [];
+
+                                            foreach ($servicesLarge as $key => $serviceDetails) {
+                                                $titles[] = $serviceDetails['title'] ?? 'No title available';
+                                            }
+
+                                            return (object) [
+                                                'titles' => $titles,
+                                            ];
+                                        });
+                                @endphp
+
+                        
+
+                                @foreach ($all_services as $service)
+                                    @foreach ($service->titles as $title)
+                                        <li>
+                                            <a class="dropdown-item {{ Route::is('frontend.single_service', ['title' => $title]) ? 'active-bg' : '' }}"
+                                                href="{{ route('frontend.single_service', ['title' => $title]) }}">
+                                                {{ $title }}
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                @endforeach
+
+
+
+
+                                
                             </ul>
                         </li>
 
@@ -243,6 +262,18 @@
                                 <li>
                                     <a class="dropdown-item {{ Route::is('landing_page.all_notice') ? 'active-bg' : '' }}"
                                         href="{{ route('landing_page.all_notice') }}">Notice Board</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item {{ Route::is('frontend.why_china') ? 'active-bg' : '' }}"
+                                        href="{{ route('frontend.why_china') }}">
+                                        Why China?
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item {{ Route::is('frontend.about_china') ? 'active-bg' : '' }}"
+                                        href="{{ route('frontend.about_china') }}">
+                                        About China
+                                    </a>
                                 </li>
                             </ul>
                         </li>

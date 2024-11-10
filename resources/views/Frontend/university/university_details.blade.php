@@ -3,7 +3,94 @@
 @section('head')
     <link rel="stylesheet" href="{{ asset('frontend/studentconnect/css/app.f6cbb5f7.css') }}" />
 
+    <link rel="stylesheet" href="{{ asset('frontend/justifiedGallery/justifiedGallery.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-zoom.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <style>
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .single-gallery-image {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            border-radius: 6px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .single-gallery-image img {
+            transition: transform 0.3s ease;
+            width: 280px !important;
+            height: 175px !important;
+            height: auto;
+        }
+
+        .single-gallery-image:hover img {
+            transform: scale(1.1);
+        }
+
+
+        .section-background-img {
+            background-image: url('{{ asset('frontend/images/section_bg.webp') }}') !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            height: auto;
+        }
+
+
+        @media screen and (min-width:768px) {
+            .gallery-section {
+                padding: 0 80px;
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            .gallery-section {
+                padding: 0 150px;
+            }
+        }
+
+        .single-gallery-video iframe {
+            height: 200px;
+            border-radius: 10px;
+        }
+
+
+        .justified-gallery>a {
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 3px 10px -7px !important;
+            overflow: hidden;
+            transition: 0.3s ease-in-out all;
+            /* Adjusted for a smoother transition */
+            border: none;
+        }
+
+        .justified-gallery>a:hover {
+            box-shadow: rgba(0, 0, 0, 0.6) 0px 3px 20px -5px !important;
+            border: 1px solid rgba(35, 124, 58, 0.75) !important;
+        }
+
+        .justified-gallery a img {
+            transition: 0.3s ease !important;
+            /* Slightly faster zoom */
+        }
+
+        .justified-gallery a:hover img {
+            transform: scale(1.05) !important;
+            /* Increased zoom effect */
+        }
+
+        a.single-gallery-image {
+            position: relative;
+        }
+
+
         .main-service-card {
             border-radius: 8px;
             overflow: hidden;
@@ -167,8 +254,8 @@
                             @endif
 
                             <li class="university-nav__item">
-                                <a href="#reviews-section" class="university-nav__btn" data-target="reviews-section">
-                                    Reviews
+                                <a href="#university-gallery" class="university-nav__btn" data-target="university-gallery">
+                                    Gallery
                                 </a>
                             </li>
                         </ul>
@@ -564,6 +651,7 @@
                                                         position: relative;
                                                     }
                                                 </style>
+
                                                 <ul class="faq">
                                                     @foreach ($university->universityFAQ as $item)
                                                         @if ($item->answer)
@@ -579,481 +667,92 @@
                                     </div>
                                 @endif
 
-                                <div class="university-body__section text section" id="reviews-section">
+                                <div class="university-body__section text section" id="university-gallery">
                                     <div class="university-body__section-header js-accordion">
                                         <h3 class="university-body__section-heading">
-                                            Reviews
+                                            Gallery
                                         </h3>
                                     </div>
 
-                                    <div class="university-body__section-inner">
-                                        <div class="university-body__section-content">
 
-                                            <div class="row">
-                                                <div class="col-md-4 col-lg-4 text-center">
-                                                    <div
-                                                        class="d-inline-block px-5 py-4 rating-block rounded-3 text-center">
-                                                        <div class="rating-point mb-3 text-center">
-                                                            <h3 class="display-1 fw-light mb-0 fw-semi-bold"
-                                                                style="font-size: 6rem">
-                                                                {{ round(@$university->reviews->avg('ratting'), 1) }}</h3>
+                                    <p style="color: black !important;" class="mb-4 text-center fs-3 fw-bold">Images</p>
 
-                                                            @php
-                                                                $avg_round = floor(
-                                                                    $university->reviews->avg('ratting'),
-                                                                );
-                                                            @endphp
+                                    <div id="gallery" class="section-background-img">
+                                        @php
+                                            $imageGallery = json_decode($university->image_gallery, true) ?? [];
+                                            $hasImages = false;
 
-                                                            <div class="text-warning">
-                                                                @for ($i = 1; $i <= @$avg_round; $i++)
-                                                                    <i class="fa fa-star"></i>
-                                                                @endfor
-                                                            </div>
+                                            // Check if there is at least one image in the gallery
+                                            foreach ($imageGallery as $gallery) {
+                                                if (!empty($gallery['images'])) {
+                                                    $hasImages = true;
+                                                    break;
+                                                }
+                                            }
+                                        @endphp
 
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-8 col-lg-8">
-                                                    <table
-                                                        class="table table-borderless mb-0 white-space-nowrap review-table">
-                                                        <tbody>
-                                                            @php
-                                                                @$five_count = @$university->reviews
-                                                                    ?->where('ratting', 5)
-                                                                    ?->count();
-                                                                @$five_percent =
-                                                                    @$five_count > 0
-                                                                        ? (@$five_count /
-                                                                                @$university?->reviews?->count()) *
-                                                                            100
-                                                                        : 0;
-                                                            @endphp
-                                                            <tr>
-                                                                <td width="70%" class="align-middle">
-                                                                    <div class="rating-percent">
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar bg-warning progress-bar-striped"
-                                                                                role="progressbar"
-                                                                                style="width: {{ @$five_percent }}%"
-                                                                                aria-valuenow="100" aria-valuemin="0"
-                                                                                aria-valuemax="100"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-
-                                                                <td width="10%" class="align-middle">
-                                                                    <div class="rating-quantity">
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="20%" class="align-middle">
-                                                                    <div class="user-rating text-muted">
-                                                                        {{ round(@$five_percent), 1 }}%</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                @php
-                                                                    @$four_count = @$ebook->reviews
-                                                                        ?->where('ratting', 4)
-                                                                        ?->count();
-                                                                    @$four_percent =
-                                                                        @$four_count > 0
-                                                                            ? (@$four_count /
-                                                                                    @$university?->reviews?->count()) *
-                                                                                100
-                                                                            : 0;
-                                                                @endphp
-                                                                <td width="70%" class="align-middle">
-                                                                    <div class="rating-percent">
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar bg-warning progress-bar-striped"
-                                                                                role="progressbar"
-                                                                                style="width: {{ @$four_percent }}%"
-                                                                                aria-valuenow="100" aria-valuemin="0"
-                                                                                aria-valuemax="100"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="10%" class="align-middle">
-                                                                    <div class="rating-quantity">
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="20%" class="align-middle">
-                                                                    <div class="user-rating text-muted">
-                                                                        {{ round(@$four_percent), 1 }}
-                                                                        % </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                @php
-                                                                    @$three_count = @$university->reviews
-                                                                        ?->where('ratting', 3)
-                                                                        ?->count();
-                                                                    @$three_percent =
-                                                                        @$three_count > 0
-                                                                            ? (@$three_count /
-                                                                                    @$university?->reviews?->count()) *
-                                                                                100
-                                                                            : 0;
-                                                                @endphp
-                                                                <td width="70%" class="align-middle">
-                                                                    <div class="rating-percent">
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar bg-warning progress-bar-striped"
-                                                                                role="progressbar"
-                                                                                style="width: {{ @$three_percent }}%"
-                                                                                aria-valuenow="60" aria-valuemin="0"
-                                                                                aria-valuemax="100"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="10%" class="align-middle">
-                                                                    <div class="rating-quantity">
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="20%" class="align-middle">
-                                                                    <div class="user-rating text-muted">
-                                                                        {{ round(@$three_percent), 1 }}%</div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                @php
-                                                                    @$two_count = @$university->reviews
-                                                                        ?->where('ratting', 2)
-                                                                        ?->count();
-                                                                    @$two_percent =
-                                                                        @$two_count > 0
-                                                                            ? (@$two_count /
-                                                                                    @$university?->reviews?->count()) *
-                                                                                100
-                                                                            : 0;
-                                                                @endphp
-                                                                <td width="70%" class="align-middle">
-                                                                    <div class="rating-percent">
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar bg-warning progress-bar-striped"
-                                                                                role="progressbar"
-                                                                                style="width: {{ @$two_percent }}%"
-                                                                                aria-valuenow="40" aria-valuemin="0"
-                                                                                aria-valuemax="100"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="10%" class="align-middle">
-                                                                    <div class="rating-quantity">
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="20%" class="align-middle">
-                                                                    <div class="user-rating text-muted">
-                                                                        {{ round(@$two_percent), 1 }}%
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-
-                                                                @php
-                                                                    @$one_count = @$university->reviews
-                                                                        ?->where('ratting', 1)
-                                                                        ?->count();
-                                                                    @$one_percent =
-                                                                        @$one_count > 0
-                                                                            ? (@$one_count /
-                                                                                    @$university?->reviews?->count()) *
-                                                                                100
-                                                                            : 0;
-                                                                @endphp
-
-                                                                <td width="70%" class="align-middle">
-                                                                    <div class="rating-percent">
-                                                                        <div class="progress">
-                                                                            <div class="progress-bar bg-warning progress-bar-striped"
-                                                                                role="progressbar"
-                                                                                style="width: {{ @$one_percent }}%"
-                                                                                aria-valuenow="20" aria-valuemin="0"
-                                                                                aria-valuemax="100"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="10%" class="align-middle">
-                                                                    <div class="rating-quantity">
-                                                                        <i class="fa fa-star text-warning"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                        <i class="fa fa-star" style="color:#ffe6ad;"></i>
-                                                                    </div>
-                                                                </td>
-                                                                <td width="20%" class="align-middle">
-                                                                    <div class="user-rating text-muted">
-                                                                        {{ round(@$one_percent), 1 }}%</div>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-
-                                            <div class="row my-3">
-                                                @foreach ($university->reviews as $review)
-                                                    <div class="col-12 col-sm-auto">
-                                                        <div class="avatar d-flex align-items-center">
-                                                            <div class="avatar-img me-3">
-                                                                <img src="{{ @$review->user->image_show }}"
-                                                                    alt="">
-                                                            </div>
-                                                            <div class="avatar-text">
-                                                                <h5 class="avatar-name mb-1">
-                                                                    <a href="javascript:void(0)"
-                                                                        style="text-decoration:none; color:var(--primary_background)">{{ @$review->user->name }}</a>
-                                                                </h5>
-                                                                <div class="avatar-designation">
-                                                                    {{ $review->created_at->diffForHumans() }}
-                                                                </div>
-
-                                                                @php
-                                                                    $avg_round = $review->ratting;
-                                                                @endphp
-
-                                                                <div class="mt-1">
-                                                                    @for ($i = 1; $i <= $avg_round; $i++)
-                                                                        <i class="fa fa-star text-warning"></i>
-                                                                    @endfor
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12 mt-3 mt-sm-0"
-                                                        style="color: var(--text_color); margin-left:90px">
-                                                        <p>{!! @$review->comment !!}</p>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                    </div>
+                                        @if ($hasImages)
+                                            @foreach ($imageGallery as $key => $gallery)
+                                                @foreach ($gallery['images'] as $img)
+                                                    <a href="{{ $img }}" target="_blank"
+                                                        class="single-gallery-image" style="cursor: pointer">
+                                                        <img class="img-fluid authorization_image"
+                                                            src="{{ $img }}" alt="">
+                                                    </a>
                                                 @endforeach
-                                            </div>
-
-                                            <div class="row">
-                                                <style>
-                                                    .comment-respond {
-                                                        clear: both;
-                                                        padding: 0;
-                                                        margin: 0;
-                                                        /* padding: clamp(1.5625rem, 1.2845rem + 1.5337vw, 3.125rem); */
-                                                        -webkit-border-radius: 10px;
-                                                        border-radius: 10px;
-                                                    }
-
-                                                    .comment-respond .header_area {
-                                                        padding: clamp(1.5625rem, 1.2845rem + 1.5337vw, 3.125rem);
-                                                        background-color: #e6ffee;
-                                                        -webkit-border-radius: 10px;
-                                                        border-radius: 10px;
-                                                    }
-
-                                                    .comment-respond form {
-                                                        padding: clamp(1.5625rem, 1.2845rem + 1.5337vw, 3.125rem);
-                                                        display: grid;
-                                                        grid-template-columns: repeat(2, 1fr);
-                                                        gap: clamp(0.9375rem, 0.8819rem + 0.3067vw, 1.25rem);
-                                                        float: left;
-                                                        margin: 0;
-                                                        width: 100%;
-                                                    }
-
-                                                    .comment-respond form>p.comment-notes {
-                                                        grid-column: 1 / 3;
-                                                    }
-
-                                                    .comment-respond form>p.comment-form-rating {
-                                                        grid-column: 1 / 3;
-                                                    }
-
-                                                    .comment-respond form>div.ratings {
-                                                        grid-column: 1 / 3;
-                                                        grid-row: 5/6;
-                                                    }
-
-                                                    .comment-respond form>p.comment-form-url {
-                                                        grid-column: 1 / 3;
-                                                    }
-
-                                                    .comment-respond form>p.comment-form-comment {
-                                                        grid-column: 1 / 3;
-                                                    }
-
-                                                    #respond input[type="submit"] {
-                                                        border: none;
-                                                        border-radius: 8px;
-                                                        text-transform: capitalize;
-                                                        font-weight: 600;
-                                                        margin: 0;
-                                                        font-family: 'DM Sans', sans-serif;
-                                                        font-size: 14px;
-                                                        letter-spacing: var(--wdtLetterSpacing_2X);
-                                                        padding: 16px;
-                                                        float: left;
-                                                        cursor: pointer;
-                                                        line-height: normal;
-                                                        height: auto;
-                                                        min-width: auto;
-                                                        background-color: var(--btn_primary_color);
-                                                        color: white;
-                                                        transition: 0.5s;
-                                                    }
-
-                                                    #respond input[type="submit"]:hover {
-                                                        background-color: var(--primary_background);
-                                                    }
-                                                </style>
-                                                <div id="respond" class="comment-respond">
-                                                    <div class="header_area">
-                                                        <h3 id="reply-title" class="comment-reply-title">
-                                                            Leave a Comment
-                                                        </h3>
-                                                        <p class="comment-notes">
-                                                            <span class="required-field-message">
-                                                                Required fields are marked
-                                                                <span class="required">*</span>
-                                                            </span>
-                                                        </p>
-                                                    </div>
-
-                                                    <form action="{{ route('frontend.review.store') }}" method="post"
-                                                        id="commentform" class="comment-form" novalidate="">
-                                                        @csrf
-
-
-                                                        <div class="dtlms-rating-wrapper">
-                                                            <label for="lms_rating" class="mb-2">Ratings</label>
-                                                            <div class="ratings">
-
-                                                                <div class="avatar-text">
-                                                                    <div class="rating-input-block">
-                                                                        <input type="hidden" name="ratting"
-                                                                            id="input_rating">
-                                                                        <input type="hidden" name="university_id"
-                                                                            value="{{ $university->id }}">
-                                                                        <input type="hidden" value="university"
-                                                                            name="type" />
-                                                                        <i data-rating="1"
-                                                                            class="fa fa-star input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="2"
-                                                                            class="fa fa-star input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="3"
-                                                                            class="fa fa-star input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="4"
-                                                                            class="fa fa-star input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="5"
-                                                                            class="fa fa-star input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                    </div>
-                                                                </div>
-
-                                                            </div>
-
-                                                            <script>
-                                                                var ratingInputBlock = document.querySelector('.rating-input-block');
-
-                                                                // Mouseleave event
-                                                                ratingInputBlock.addEventListener('mouseleave', function() {
-                                                                    var activeStar = document.querySelector('.input-ratting.active');
-                                                                    var rm = activeStar ? parseInt(activeStar.getAttribute('data-rating')) : 0;
-
-                                                                    for (var i = 1; i <= rm; i++) {
-                                                                        var star = document.querySelector('.input-ratting[data-rating="' + i + '"]');
-                                                                        star.classList.add('text-warning');
-                                                                        star.classList.remove('btn-grey');
-                                                                    }
-
-                                                                    for (var ram = rm + 1; ram <= 5; ram++) {
-                                                                        var star = document.querySelector('.input-ratting[data-rating="' + ram + '"]');
-                                                                        star.classList.remove('text-warning');
-                                                                        star.classList.add('btn-grey');
-                                                                    }
-                                                                });
-
-                                                                // Mouseenter event
-                                                                ratingInputBlock.addEventListener('mouseenter', function() {
-                                                                    console.log("over");
-                                                                });
-
-                                                                // Click event
-                                                                var stars = document.querySelectorAll('.input-ratting');
-                                                                stars.forEach(function(star) {
-                                                                    star.addEventListener('click', function() {
-                                                                        stars.forEach(function(s) {
-                                                                            s.classList.remove('active');
-                                                                        });
-
-                                                                        if (this.classList.contains('active')) {
-                                                                            document.getElementById('input_rating').value = '';
-                                                                            this.classList.remove('active');
-                                                                        } else {
-                                                                            document.getElementById('input_rating').value = this.getAttribute(
-                                                                                'data-rating');
-                                                                            this.classList.add('active');
-                                                                        }
-                                                                    });
-                                                                });
-
-                                                                // Hover event
-                                                                stars.forEach(function(star) {
-                                                                    star.addEventListener('mouseenter', function() {
-                                                                        var rating = parseInt(this.getAttribute('data-rating'));
-                                                                        stars.forEach(function(s) {
-                                                                            var sRating = parseInt(s.getAttribute('data-rating'));
-                                                                            if (sRating <= rating) {
-                                                                                s.classList.add('text-warning');
-                                                                                s.classList.remove('btn-grey');
-                                                                            } else {
-                                                                                s.classList.remove('text-warning');
-                                                                                s.classList.add('btn-grey');
-                                                                            }
-                                                                        });
-                                                                    });
-                                                                });
-                                                            </script>
-                                                        </div>
-
-                                                        <p class="comment-form-comment">
-                                                            <textarea id="comment" name="comment" cols="45" rows="8" placeholder="Write a comment..."
-                                                                maxlength="65525" required></textarea>
-                                                        </p>
-                                                        <p class="form-submit">
-                                                            <input name="submit" type="submit" id="submit"
-                                                                class="submit" value="Post Comment">
-                                                        </p>
-                                                    </form>
-                                                </div>
-                                            </div>
-
-                                        </div>
+                                            @endforeach
+                                        @else
+                                            <h4 class="company-details-title py-2 fw-bold text-center ">
+                                                No Image Found!
+                                            </h4>
+                                        @endif
                                     </div>
+
+
+
+
+
+                                    <p style="color: black !important;" class="mt-5 mb-2 text-center fs-3 fw-bold">Videos</p>
+
+                                    <section class="section-background-img">
+                                        @php
+                                            $video_contents = json_decode($university->video, true) ?? [];
+                                        @endphp
+
+                                        <div class="gallery-section py-5 video-gallery">
+                                            <div class="">
+                                                @if (empty($video_contents))
+                                                    <h4 class="company-details-title fw-bold text-center">
+                                                        No Video Found!
+                                                    </h4>
+                                                @else
+                                                    @foreach ($video_contents as $video)
+                                                        <a class="single-gallery-video position-relative me-md-2 overflow-hidden"
+                                                            style="cursor: pointer">
+                                                            @if ($video['type'] === 'youtube')
+                                                                <!-- YouTube Embed Code -->
+                                                                {!! $video['url'] !!}
+                                                            @elseif ($video['type'] === 'upload')
+                                                                <!-- Video Preview -->
+                                                                <video class="img-fluid authorization_video" controls
+                                                                    style="max-height: 200px; border-radius: 10px;">
+                                                                    <source src="{{ $video['url'] }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            @endif
+
+                                                        </a>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </section>
+
+
+
+
+
+
                                 </div>
 
                             </div>
@@ -1081,9 +780,9 @@
                                             <div class="university-aside-item__cell">
                                                 @php
                                                     $locationParts = array_filter([
-                                                        ucfirst($university->address),
-                                                        ucfirst($university->city?->name ?? ''),
-                                                        ucfirst($university->state?->name ?? ''),
+                                                        // ucfirst($university->address),
+                                                        ucfirst($university->city?->name ?? 'No city.'),
+                                                        ucfirst($university->state?->name ?? 'No provience.'),
                                                     ]);
                                                 @endphp
 
@@ -1255,3 +954,28 @@
     <script src="{{ asset('frontend/studentconnect/js/730.535b5aff.js') }}"></script>
     <script src="{{ asset('frontend/studentconnect/js/app.773d3c55.js') }}"></script>
 @endsection
+
+
+
+<script src="{{ asset('frontend/justifiedGallery/jquery.justifiedGallery.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#justified-gallery').justifiedGallery({
+            rowHeight: 180,
+            margins: 5,
+            maxRowHeight: 200,
+            lastRow: 'nojustify',
+            captions: false
+        }).on('jg.complete', function() {
+            lightGallery(document.getElementById('justified-gallery'), {
+                plugins: [lgZoom, lgThumbnail],
+                thumbnail: true
+            });
+        });
+    });
+</script>

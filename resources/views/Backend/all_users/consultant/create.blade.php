@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-control-label">NID:
+                                                    <label class="form-control-label">Passport or NID:
                                                         <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <div class="mg-t-10 mg-sm-t-0">
@@ -156,7 +156,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Continent
                                                         <span class="text-danger"
@@ -171,7 +171,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Country <span class="text-danger"

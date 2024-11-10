@@ -6,16 +6,23 @@
     <title>{{ env('APP_NAME') }} | Edit University</title>
 
     <style>
-        /* .select2-container--default .select2-selection--single {
-            padding: 17px 5px;
-        } */
-
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            padding: 2px 0px;
+        /* Select2 multiple select container - set height and enable scrolling */
+        .select2-container--default .select2-selection--multiple {
+            max-height: 80px;
+            overflow-y: auto;
+            padding: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
         }
 
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            top: 12px;
+        .select2-container--default .select2-selection__rendered {
+            max-height: 80px;
+            overflow-y: auto !important;
+            padding: 5px;
+        }
+
+        .select2-container--default .select2-selection__choice {
+            margin-top: 3px;
         }
     </style>
 </head>
@@ -171,6 +178,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Major
@@ -194,6 +202,8 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Scholarship
@@ -329,6 +339,22 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Intake <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <select class="form-control form-control-lg" name="intake"
+                                                        id="intake" required>
+                                                        <option value="">Select Intake</option>
+                                                        @foreach ($intakes as $single)
+                                                            <option value="{{ $single->name }}" @if ($single->name == $university->intake) Selected @endif>{{ $single->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Address <span class="text-danger"
@@ -406,9 +432,22 @@
                                                         class="form-control" required>
                                                 </div>
                                             </div> --}}
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge 1 (CNY)<span class="text-danger"
+                                                    <label>Service Charge (Beginner)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0"
+                                                        name="service_charge_beginner"
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ $university->service_charge_beginner }}"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (1 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_1"
                                                         placeholder="Enter Service Charge"
@@ -418,7 +457,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge 2 (CNY)<span class="text-danger"
+                                                    <label>Service Charge (2 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_2"
                                                         placeholder="Enter Service Charge"
@@ -426,6 +465,57 @@
                                                         class="form-control" required>
                                                 </div>
                                             </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (3 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_3"
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ $university->service_charge_3 }}"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (4 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_4"
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ $university->service_charge_4 }}"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (5 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_5"
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ $university->service_charge_5 }}"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (6 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_6"
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ $university->service_charge_6 }}"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge (7 star)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_7"
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ $university->service_charge_7 }}"
+                                                        class="form-control" required>
+                                                </div>
+                                            </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tags</label>
@@ -660,6 +750,551 @@
                                             </div>
                                         </div>
 
+                                        <hr>
+
+                                        <div class="row">
+
+                                            <div class="col-12 mb-3 px-4">
+                                                <div class="row justify-content-between">
+                                                    <h4 class="d-inline">Galleries</h4>
+
+                                                    <div class="d-flex">
+                                                        {{-- <button type="submit" class="btn blue-btn btn-primary"
+                                                            style="margin-right: 8px">Save</button> --}}
+
+                                                        {{-- <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                            id="add-gallery">
+                                                            <i class="fa fa-plus"></i>
+                                                            Add
+                                                        </a> --}}
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 row" id="galleries-container"
+                                                style="padding-right: 0">
+
+                                                @php
+                                                    $contents = [];
+                                                    if ($university && $university->image_gallery) {
+                                                        $decodedContents = json_decode(
+                                                            $university->image_gallery,
+                                                            true,
+                                                        );
+                                                        $contents = is_array($decodedContents) ? $decodedContents : [];
+                                                    }
+                                                @endphp
+
+                                                @forelse ($contents as $galleryKey => $content)
+                                                    <div class="col-sm-12 mb-3" style="padding-right: 0;">
+
+                                                        {{-- @php
+                                                            $random = rand();
+                                                        @endphp --}}
+
+                                                        <div class="card-header" data-toggle="collapse"
+                                                            data-target="#activity_single_collapse_{{ $galleryKey }}">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h5 class="card-title mb-0 py-2 gallery-title">
+                                                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                                                    &nbsp;
+                                                                    {{ $content['title'] ?? 'Gallery' }}
+                                                                </h5>
+
+                                                                {{-- <a href="javascript:void(0)"
+                                                                    class="btn btn-sm btn-danger remove-gallery">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </a> --}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="collapse"
+                                                            id="activity_single_collapse_{{ $galleryKey }}">
+                                                            <div class="card-body">
+                                                                <div class="col-sm-12 mt-3">
+
+                                                                    <div class="d-flex justify-content-between mt-4">
+                                                                        <h5 class="d-inline">Gallery Image</h5>
+                                                                        <a href="javascript:void(0)"
+                                                                            class="btn btn-sm btn-primary add-gallery-image"
+                                                                            data-gallery-key="{{ $galleryKey }}">
+                                                                            <i class="fa fa-plus"></i>
+                                                                            Add
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="gallery-image-container">
+
+                                                                        @forelse ($content['images'] as $imageKey => $image)
+                                                                            <div class="row align-items-center mt-2">
+
+                                                                                <div
+                                                                                    class="col-sm-12 col-md-5 img-upload-container">
+                                                                                    <label
+                                                                                        class="form-control-label">Upload
+                                                                                        Image:</label>
+                                                                                    <div class="dropify-wrapper"
+                                                                                        style="border: none">
+                                                                                        <div class="dropify-loader">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="dropify-errors-container">
+                                                                                            <ul></ul>
+                                                                                        </div>
+                                                                                        <input type="file"
+                                                                                            class="dropify"
+                                                                                            name="galleries[{{ $galleryKey }}][gallery_image][{{ $imageKey }}]"
+                                                                                            accept="image/*">
+                                                                                        <input type="hidden"
+                                                                                            name="galleries[{{ $galleryKey }}][old_gallery_image][{{ $imageKey }}]"
+                                                                                            value="{{ $image }}">
+                                                                                        <button type="button"
+                                                                                            class="dropify-clear">Remove</button>
+                                                                                        <div class="dropify-preview">
+                                                                                            <span
+                                                                                                class="dropify-render"></span>
+                                                                                            <div class="dropify-infos">
+                                                                                                <div
+                                                                                                    class="dropify-infos-inner">
+                                                                                                    <p
+                                                                                                        class="dropify-filename">
+                                                                                                        <span
+                                                                                                            class="file-icon"></span>
+                                                                                                        <span
+                                                                                                            class="dropify-filename-inner"></span>
+                                                                                                    </p>
+                                                                                                    <p
+                                                                                                        class="dropify-infos-message">
+                                                                                                        Drag
+                                                                                                        and drop or
+                                                                                                        click to
+                                                                                                        replace</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div
+                                                                                    class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                                    <div class="px-3 mt-3">
+                                                                                        <img src="{{ $image ?? asset('frontend/images/No-image.jpg') }}"
+                                                                                            alt=""
+                                                                                            class="img-fluid"
+                                                                                            style="border-radius: 10px; max-height: 200px !important;">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-1">
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="remove-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                                                                        <i class="fas fa-minus-circle">
+                                                                                        </i>
+                                                                                    </a>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        @empty
+                                                                            <div class="row align-items-center mt-2">
+
+                                                                                <div
+                                                                                    class="col-sm-12 col-md-5 mt-3 img-upload-container">
+                                                                                    <label
+                                                                                        class="form-control-label">Upload
+                                                                                        Image:</label>
+                                                                                    <div class="dropify-wrapper"
+                                                                                        style="border: none">
+                                                                                        <div class="dropify-loader">
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="dropify-errors-container">
+                                                                                            <ul></ul>
+                                                                                        </div>
+                                                                                        <input type="file"
+                                                                                            class="dropify"
+                                                                                            name="galleries[{{ $galleryKey }}][gallery_image][{{ $random }}]"
+                                                                                            accept="image/*">
+                                                                                        <button type="button"
+                                                                                            class="dropify-clear">Remove</button>
+                                                                                        <div class="dropify-preview">
+                                                                                            <span
+                                                                                                class="dropify-render"></span>
+                                                                                            <div class="dropify-infos">
+                                                                                                <div
+                                                                                                    class="dropify-infos-inner">
+                                                                                                    <p
+                                                                                                        class="dropify-filename">
+                                                                                                        <span
+                                                                                                            class="file-icon"></span>
+                                                                                                        <span
+                                                                                                            class="dropify-filename-inner"></span>
+                                                                                                    </p>
+                                                                                                    <p
+                                                                                                        class="dropify-infos-message">
+                                                                                                        Drag
+                                                                                                        and drop or
+                                                                                                        click to
+                                                                                                        replace</p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div
+                                                                                    class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                                    <div class="px-3 mt-3">
+                                                                                        <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                                            alt=""
+                                                                                            class="img-fluid"
+                                                                                            style="border-radius: 10px; max-height: 200px !important;">
+                                                                                    </div>
+                                                                                </div>
+
+                                                                                <div class="col-1">
+                                                                                    <a href="javascript:void(0)"
+                                                                                        class="remove-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                                                                        <i class="fas fa-minus-circle">
+                                                                                        </i>
+                                                                                    </a>
+                                                                                </div>
+
+                                                                            </div>
+                                                                        @endforelse
+
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @empty
+                                                    <div class="col-sm-12 mb-3" style="padding-right: 0;">
+                                                        @php
+                                                            $random = rand();
+                                                        @endphp
+
+                                                        <div class="card-header" data-toggle="collapse"
+                                                            data-target="#activity_single_collapse_{{ $random }}">
+                                                            <div class="d-flex justify-content-between">
+                                                                <h5 class="card-title mb-0 py-2 gallery-title">
+                                                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                                                    Gallery
+                                                                </h5>
+
+                                                                {{-- <a href="javascript:void(0)"
+                                                                    class="btn btn-sm btn-danger remove-gallery">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </a> --}}
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="collapse"
+                                                            id="activity_single_collapse_{{ $random }}">
+                                                            <div class="card-body">
+                                                                <div class="col-sm-12 mt-3">
+
+
+                                                                    <div class="d-flex justify-content-between mt-4">
+                                                                        <h5 class="d-inline">Gallery Image</h5>
+                                                                        <a href="javascript:void(0)"
+                                                                            class="btn btn-sm btn-primary add-gallery-image"
+                                                                            data-gallery-key="{{ $random }}">
+                                                                            <i class="fa fa-plus"></i>
+                                                                            Add
+                                                                        </a>
+                                                                    </div>
+
+                                                                    <div class="gallery-image-container">
+
+                                                                        <div class="row align-items-center mt-2">
+
+                                                                            <div
+                                                                                class="col-sm-12 col-md-5 img-upload-container">
+                                                                                <label
+                                                                                    class="form-control-label">Upload
+                                                                                    Image:</label>
+                                                                                <div class="dropify-wrapper"
+                                                                                    style="border: none">
+                                                                                    <div class="dropify-loader"></div>
+                                                                                    <div
+                                                                                        class="dropify-errors-container">
+                                                                                        <ul></ul>
+                                                                                    </div>
+                                                                                    <input type="file"
+                                                                                        class="dropify"
+                                                                                        name="galleries[{{ $random }}][gallery_image][{{ $random }}]"
+                                                                                        accept="image/*">
+                                                                                    <button type="button"
+                                                                                        class="dropify-clear">Remove</button>
+                                                                                    <div class="dropify-preview">
+                                                                                        <span
+                                                                                            class="dropify-render"></span>
+                                                                                        <div class="dropify-infos">
+                                                                                            <div
+                                                                                                class="dropify-infos-inner">
+                                                                                                <p
+                                                                                                    class="dropify-filename">
+                                                                                                    <span
+                                                                                                        class="file-icon"></span>
+                                                                                                    <span
+                                                                                                        class="dropify-filename-inner"></span>
+                                                                                                </p>
+                                                                                                <p
+                                                                                                    class="dropify-infos-message">
+                                                                                                    Drag
+                                                                                                    and drop or click to
+                                                                                                    replace</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div
+                                                                                class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                                                                <div class="px-3 mt-3">
+                                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                                        alt=""
+                                                                                        class="img-fluid"
+                                                                                        style="border-radius: 10px; max-height: 200px !important;">
+                                                                                </div>
+                                                                            </div>
+
+                                                                            <div class="col-1">
+                                                                                <a href="javascript:void(0)"
+                                                                                    class="remove-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                                                                    <i class="fas fa-minus-circle">
+                                                                                    </i>
+                                                                                </a>
+                                                                            </div>
+
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                @endforelse
+
+                                            </div>
+                                        </div>
+
+
+                                        <hr>
+
+
+                                        @php
+                                            $contents = [];
+                                            if ($university && $university->video) {
+                                                $decodedContents = json_decode($university->video, true);
+                                                $contents = is_array($decodedContents) ? $decodedContents : []; // Ensure $contents is an array
+                                            }
+                                        @endphp
+
+
+
+                                        <div class="row">
+
+                                            <div class="col-sm-12">
+                                                <div class="d-flex justify-content-between">
+                                                    <h5 class="d-inline">Videos</h5>
+                                                    <div class="d-flex">
+
+                                                        {{-- <button type="submit" class="btn blue-btn btn-primary"
+                                                            style="margin-right: 8px">Save</button> --}}
+
+                                                        <a href="javascript:void(0)" class="btn btn-sm btn-primary"
+                                                            id="add-photo-gallery-image">
+                                                            <i class="fa fa-plus"></i>
+                                                            Add
+                                                        </a>
+                                                    </div>
+                                                </div>
+
+                                                <div class="photo-gallery-container">
+                                                    @forelse ($contents as $key => $content)
+                                                        <div class="row align-items-center video-container mt-2 mb-4"
+                                                            style="{{ !$loop->last ? 'border-bottom: 3px solid #ddd;' : '' }}">
+                                                            <div
+                                                                class="col-12 row align-items-center justify-content-between">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Video Type <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <select name="video_type[{{ $key }}]"
+                                                                            class="form-control form-control-lg video-type-selector"
+                                                                            onchange="toggleVideoSections(this)">
+                                                                            <option value="">Choose an option
+                                                                            </option>
+                                                                            <option value="youtube"
+                                                                                {{ $content['type'] == 'youtube' ? 'selected' : '' }}>
+                                                                                Youtube Embed Code
+                                                                            </option>
+                                                                            <option value="upload"
+                                                                                {{ $content['type'] == 'upload' ? 'selected' : '' }}>
+                                                                                Video Upload
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-1">
+                                                                    <a href="javascript:void(0)"
+                                                                        class="remove-photo-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                                                        <i class="fas fa-minus-circle"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                            {{-- 
+                                                            <div class="col-12 youtube-section">
+                                                                <div class="form-group">
+                                                                    <label for="">Video Title<span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text"
+                                                                        name="video_title[{{ $key }}]"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter Video Title"
+                                                                        value="{{ $content['title'] ?? '' }}">
+                                                                </div>
+                                                            </div> --}}
+
+                                                            <!-- Youtube Section -->
+                                                            <div
+                                                                class="col-12 youtube-section {{ $content['type'] == 'youtube' ? '' : 'd-none' }}">
+                                                                <div class="form-group">
+                                                                    <label for="">Youtube Embed Code <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text"
+                                                                        name="youtube_embed_code[{{ $key }}]"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter Youtube Embed Code"
+                                                                        value="{{ $content['type'] == 'youtube' ? $content['url'] : '' }}">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Upload Section -->
+                                                            <div
+                                                                class="col-12 row upload-section {{ $content['type'] == 'upload' ? '' : 'd-none' }}">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="upload_video">Upload Video</label>
+                                                                        <input type="file"
+                                                                            name="video_upload[{{ $key }}]"
+                                                                            class="form-control video-upload"
+                                                                            accept="video/*">
+                                                                        <input type="hidden"
+                                                                            name="old_photo_gallery_image[{{ $key }}]"
+                                                                            value="{{ $content['type'] == 'upload' ? $content['url'] : '' }}">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div
+                                                                        class="form-group video-preview-container {{ $content['type'] != 'upload' ? 'd-none' : '' }}">
+                                                                        <label>Video Preview:</label>
+                                                                        <video class="video-preview"
+                                                                            style="width: 100%; max-height: 200px;"
+                                                                            controls>
+                                                                            <source
+                                                                                src="{{ $content['type'] == 'upload' ? $content['url'] : '' }}"
+                                                                                type="video/mp4">
+                                                                            Your browser does not support the video tag.
+                                                                        </video>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @empty
+                                                        <div class="row align-items-center video-container mt-2 mb-4"
+                                                            style="border-bottom: 3px solid #ddd">
+                                                            @php
+                                                                $random = rand(10000, 99999);
+                                                            @endphp
+
+                                                            <div
+                                                                class="col-12 row align-items-center justify-content-between">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="">Video Type <span
+                                                                                class="text-danger">*</span></label>
+                                                                        <select name="video_type[{{ $random }}]"
+                                                                            class="form-control form-control-lg video-type-selector">
+                                                                            <option value="">Choose an option
+                                                                            </option>
+                                                                            <option value="youtube">Youtube Embed Code
+                                                                            </option>
+                                                                            <option value="upload">Video Upload
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-1">
+                                                                    <a href="javascript:void(0)"
+                                                                        class="remove-photo-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                                                        <i class="fas fa-minus-circle"></i>
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+
+                                                            {{-- <!-- Video Title Section -->
+                                                            <div class="col-12">
+                                                                <div class="form-group">
+                                                                    <label for="">Video Title<span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text"
+                                                                        name="video_title[{{ $random }}]"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter Video Title">
+                                                                </div>
+                                                            </div> --}}
+
+                                                            <!-- Youtube Section -->
+                                                            <div class="col-12 youtube-section d-none">
+                                                                <div class="form-group">
+                                                                    <label for="">Youtube Embed Code <span
+                                                                            class="text-danger">*</span></label>
+                                                                    <input type="text"
+                                                                        name="youtube_embed_code[{{ $random }}]"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter Youtube Embed Code">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Upload Section -->
+                                                            <div class="col-12 row upload-section d-none">
+                                                                <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                        <label for="upload_video">Upload Video</label>
+                                                                        <input type="file"
+                                                                            name="video_upload[{{ $random }}]"
+                                                                            class="form-control video-upload"
+                                                                            accept="video/*">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                    <div
+                                                                        class="form-group video-preview-container d-none">
+                                                                        <label>Video Preview:</label>
+                                                                        <video class="video-preview"
+                                                                            style="width: 100%; max-height: 200px;"
+                                                                            controls>
+                                                                            <source src="" type="video/mp4">
+                                                                            Your browser does not support the video tag.
+                                                                        </video>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforelse
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                         </div>
@@ -680,6 +1315,210 @@
 
     <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
     <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
+
+    <script src="{{ asset('backend/assets/js/dropify.js') }}"></script>
+
+    <script>
+        $(document).on('change', `.dropify`, function() {
+            var fileInput = $(this)[0];
+            var uploadSelector = $(this);
+
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $(uploadSelector).closest('.img-upload-container')
+                        .siblings('.img-preview-container')
+                        .find('img')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        });
+
+        /* add gallery image */
+        $(document).on('click', '.add-gallery-image', function() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+            let activityKey = $(this).data('gallery-key');
+
+            var myvar = `
+                <div class="row align-items-center mt-2">
+                
+                    <div
+                        class="col-sm-12 col-md-5 mt-3 img-upload-container">
+                        <label class="form-control-label">Add
+                            Image:</label>
+                        <div class="dropify-wrapper"
+                            style="border: none">
+                            <div class="dropify-loader"></div>
+                            <div class="dropify-errors-container">
+                                <ul></ul>
+                            </div>
+                            <input type="file" class="dropify"
+                                name="galleries[${activityKey}][gallery_image][${randomNumber}]"
+                                accept="image/*">
+                            <button type="button"
+                                class="dropify-clear">Remove</button>
+                            <div class="dropify-preview">
+                                <span class="dropify-render"></span>
+                                <div class="dropify-infos">
+                                    <div class="dropify-infos-inner">
+                                        <p class="dropify-filename">
+                                            <span
+                                                class="file-icon"></span>
+                                            <span
+                                                class="dropify-filename-inner"></span>
+                                        </p>
+                                        <p
+                                            class="dropify-infos-message">
+                                            Drag
+                                            and drop or click to
+                                            replace</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                        <div class="px-3 mt-3">
+                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                alt="" class="img-fluid"
+                                style="border-radius: 10px; max-height: 200px !important;">
+                        </div>
+                    </div>
+
+                    <div class="col-1">
+                        <a href="javascript:void(0)"
+                            class="remove-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                            <i class="fas fa-minus-circle"> </i>
+                        </a>
+                    </div>
+
+                </div>
+            `;
+            $(this).parent().siblings('.gallery-image-container').prepend(myvar);
+            $(`.dropify`).dropify();
+        });
+
+        $(document).on('click', '.remove-gallery-image', function() {
+            $(this).parent().parent().remove();
+        });
+
+        /* add gallery */
+        $(document).on('click', '#add-gallery', function() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+
+            var myvar = `
+                <div class="col-sm-12 mb-3" style="padding-right: 0;">
+                    <div class="card-header" data-toggle="collapse"
+                        data-target="#activity_single_collapse_${randomNumber}">
+                        <div class="d-flex justify-content-between">
+                            <h5 class="card-title mb-0 py-2 gallery-title">
+                                <i class="fa fa-camera" aria-hidden="true"></i>&nbsp;
+                                Gallery
+                            </h5>
+
+                            <a href="javascript:void(0)"
+                                class="btn btn-sm btn-danger remove-gallery">
+                                <i class="fa fa-minus"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="collapse"
+                        id="activity_single_collapse_${randomNumber}">
+                        <div class="card-body">
+                            <div class="col-sm-12 mt-3">
+
+                                <div class="d-flex justify-content-between mt-4">
+                                    <h5 class="d-inline">Gallery Image</h5>
+                                    <a href="javascript:void(0)"
+                                        class="btn btn-sm btn-primary add-gallery-image"
+                                        data-gallery-key="${randomNumber}">
+                                        <i class="fa fa-plus"></i>
+                                        Add
+                                    </a>
+                                </div>
+
+                                <div class="gallery-image-container">
+
+                                    <div class="row align-items-center mt-2">
+                                      
+                                        <div
+                                            class="col-sm-12 col-md-5 img-upload-container">
+                                            <label class="form-control-label">Upload
+                                                Image:</label>
+                                            <div class="dropify-wrapper"
+                                                style="border: none">
+                                                <div class="dropify-loader"></div>
+                                                <div class="dropify-errors-container">
+                                                    <ul></ul>
+                                                </div>
+                                                <input type="file" class="dropify"
+                                                    name="galleries[${randomNumber}][gallery_image][${randomNumber}]"
+                                                    accept="image/*">
+                                                <button type="button"
+                                                    class="dropify-clear">Remove</button>
+                                                <div class="dropify-preview">
+                                                    <span class="dropify-render"></span>
+                                                    <div class="dropify-infos">
+                                                        <div
+                                                            class="dropify-infos-inner">
+                                                            <p class="dropify-filename">
+                                                                <span
+                                                                    class="file-icon"></span>
+                                                                <span
+                                                                    class="dropify-filename-inner"></span>
+                                                            </p>
+                                                            <p
+                                                                class="dropify-infos-message">
+                                                                Drag
+                                                                and drop or click to
+                                                                replace</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div
+                                            class="img-preview-container col-sm-12 col-md-6 d-flex justify-content-center align-items-center">
+                                            <div class="px-3 mt-3">
+                                                <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                    alt="" class="img-fluid"
+                                                    style="border-radius: 10px; max-height: 200px !important;">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-1">
+                                            <a href="javascript:void(0)"
+                                                class="remove-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                                <i class="fas fa-minus-circle">
+                                                </i>
+                                            </a>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            $('#galleries-container').prepend(myvar);
+            $(`.dropify`).dropify();
+        });
+
+        $(document).on('click', '.remove-gallery', function() {
+            $(this).parent().parent().parent().remove();
+        });
+    </script>
+
     <script>
         $('select').select2();
         // $('.scholarshipSelect2').select2();
@@ -713,6 +1552,7 @@
             }
         });
     </script>
+
     <script>
         $('#continent').on("change", function() {
             let id = $(this).val();
@@ -801,6 +1641,117 @@
                     console.error(error);
                 }
             });
+        });
+    </script>
+
+    <script>
+        $(document).on('change', '.video-type-selector', function() {
+            var $parent = $(this).closest('.video-container');
+            var selectedType = $(this).val();
+
+            if (selectedType === 'youtube') {
+                $parent.find('.youtube-section').removeClass('d-none');
+                $parent.find('.upload-section').addClass('d-none');
+            } else if (selectedType === 'upload') {
+                $parent.find('.upload-section').removeClass('d-none');
+                $parent.find('.youtube-section').addClass('d-none');
+            } else {
+                $parent.find('.youtube-section').addClass('d-none');
+                $parent.find('.upload-section').addClass('d-none');
+            }
+        });
+
+        $(document).on('change', '.video-upload', function(e) {
+            var file = e.target.files[0];
+            var $parent = $(this).closest('.upload-section');
+
+            if (file && file.type.startsWith('video/')) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var videoSrc = e.target.result;
+                    $parent.find('.video-preview-container').removeClass('d-none');
+                    $parent.find('.video-preview source').attr('src', videoSrc);
+                    $parent.find('.video-preview')[0].load();
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                $parent.find('.video-preview-container').addClass('d-none');
+            }
+        });
+
+        $('.video-type-selector').trigger('change');
+    </script>
+
+    <script>
+        /* add photo gallery image */
+        $('#add-photo-gallery-image').on('click', function() {
+            var randomNumber = Math.floor(10000 + Math.random() * 90000);
+
+            var myvar = `
+                <div class="row align-items-center video-container mt-2 mb-4" style="border-bottom: 3px solid #ddd">
+                    <div class="col-12 row align-items-center justify-content-between">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Video Type <span class="text-danger">*</span></label>
+                                <select name="video_type[${randomNumber}]"
+                                    class="form-control form-control-lg video-type-selector"
+                                    required>
+                                    <option value="">Choose an option</option>
+                                    <option value="youtube">Youtube Embed Code</option>
+                                    <option value="upload">Video Upload</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-1">
+                            <a href="javascript:void(0)"
+                                class="remove-photo-gallery-image btn btn-danger btn-sm m-0 ml-2">
+                                <i class="fas fa-minus-circle"></i>
+                            </a>
+                        </div>
+                    </div>
+                 
+
+                    <!-- Youtube Section -->
+                    <div class="col-12 youtube-section d-none">
+                        <div class="form-group">
+                            <label for="">Youtube Embed Code <span class="text-danger">*</span></label>
+                            <input type="text" name="youtube_embed_code[${randomNumber}]"
+                                class="form-control form-control-lg"
+                                placeholder="Enter Youtube Embed Code">
+                        </div>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <div class="col-12 row upload-section d-none">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="upload_video">Upload Video</label>
+                                <input type="file" name="video_upload[${randomNumber}]"
+                                    class="form-control video-upload" accept="video/*">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group video-preview-container d-none">
+                                <label>Video Preview:</label>
+                                <video class="video-preview" style="width: 100%; max-height: 200px;" controls>
+                                    <source src="" type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            $('.photo-gallery-container').prepend(myvar);
+            $(`.dropify`).dropify();
+        });
+
+        $(document).on('click', '.remove-photo-gallery-image', function() {
+            $(this).closest('.video-container').remove();
         });
     </script>
 </body>

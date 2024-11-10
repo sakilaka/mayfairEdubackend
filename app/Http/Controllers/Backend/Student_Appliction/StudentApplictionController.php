@@ -746,6 +746,45 @@ class StudentApplictionController extends Controller
         }
     }
 
+    public function updatePaidAmount(Request $request, $id)
+    {
+        $request->validate([
+            'paid_amount' => 'required|numeric|min:0',
+        ]);
+    
+        $s_appliction = StudentApplication::find($id);
+        if ($s_appliction) {
+            // Add the new amount to the existing paid amount
+            $s_appliction->paid_amount += $request->paid_amount;
+            $s_appliction->save();
+
+    
+            // Set payment status based on the total paid amount
+           
+            if ($s_appliction->paid_amount >= $s_appliction->service_charge) {
+                $s_appliction->payment_status = 1;  // Paid
+            } else {
+                $s_appliction->payment_status = 0;  // Unpaid
+            }
+            $s_appliction->save();
+
+    
+            // Save the changes
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Amount updated successfully.',
+                'total_paid' => $s_appliction->paid_amount,
+                'payment_status' => $s_appliction->payment_status
+            ]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Application not found.'], 404);
+        }
+    }
+    
+    
+
+
     public function editDocument($id)
     {
         $data['s_appliction'] = StudentApplication::find($id);

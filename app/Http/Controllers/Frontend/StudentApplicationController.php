@@ -15,8 +15,10 @@ use Illuminate\Support\Facades\DB;
 use File;
 use App\Models\User;
 use App\Models\Notification;
+use App\Models\Page;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class StudentApplicationController extends Controller
 {
@@ -215,6 +217,8 @@ class StudentApplicationController extends Controller
     }
 
 
+    
+
     function applyAdmission($id)
     {
         $data['countries'] = Country::all();
@@ -227,8 +231,15 @@ class StudentApplicationController extends Controller
         $programs = json_decode($data['application']->programs, true) ?? [];
         $data['programs'] = Course::whereIn('id', $programs)->get();
 
+        
+        $data['terms'] = Page::where('title', 'Terms And Conditions')->first();
+        $data['refund'] = Page::where('title', 'Refund Policy')->first();
+        $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
+
         return view('Frontend.university.apply', $data);
     }
+
+    
 
     public function applyCartDelete(Request $request)
     {
@@ -506,37 +517,84 @@ class StudentApplicationController extends Controller
         $data['msg'] = "Option Service Update Successfully";
         return response()->json($data);
     }
-    function applicationAttachmentUpload(Request $request, $id)
-    {
+    // function applicationAttachmentUpload(Request $request, $id)
+    // {
 
+    //     try {
+    //         DB::beginTransaction();
+    //         $application = StudentApplication::find($id);
+
+    //         $filename = time() . 'application_file' . '.' . $request->file->getClientOriginalName();
+    //         $request->file->move(public_path('upload/application/' . $application->id), $filename);
+    //         $document = new ApplicationDocument;
+    //         $document->application_id = $application->id;
+    //         $document->user_id = $application->user_id;
+    //         $document->document_name = $request->title;
+    //         $document->document_type = 'fixed';
+    //         $document->document_file = $filename;
+    //         $document->extensions = $request->file->getClientOriginalExtension();
+    //         $document->save();
+    //         $order = $request->order;
+    //         DB::commit();
+    //         $data['code'] = 0;
+    //         $data['msg'] = "Image Upload Successfully!";
+    //         $data["doc_view"] = view('Backend.student_appliction.ajax_document_load', compact('document', 'order'))->render();
+    //         return response()->json($data);
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         $data['code'] = -1;
+    //         $data['err'] = $e->getMessage();
+    //         $data['msg'] = "Something went wrong";
+    //         return response()->json($data);
+    //     }
+
+       
+    // }
+
+    public function applicationAttachmentUpload(Request $request, $id)
+    {
+        Log::info('Request Data:', $request->all());
+    
         try {
             DB::beginTransaction();
+            
             $application = StudentApplication::find($id);
-
-            $filename = time() . 'application_file' . '.' . $request->file->getClientOriginalName();
-            $request->file->move(public_path('upload/application/' . $application->id), $filename);
-            $document = new ApplicationDocument;
-            $document->application_id = $application->id;
-            $document->user_id = $application->user_id;
-            $document->document_name = $request->title;
-            $document->document_type = 'fixed';
-            $document->document_file = $filename;
-            $document->extensions = $request->file->getClientOriginalExtension();
-            $document->save();
-            $order = $request->order;
+            if (!$application) {
+                return response()->json(['code' => -1, 'msg' => 'Application not found.']);
+            }
+    
+            if ($request->hasFile('files')) {
+                foreach ($request->file('files') as $index => $file) {
+                    $filename = time() . '_' . $file->getClientOriginalName();
+                    $file->move(public_path('upload/application/' . $application->id), $filename);
+    
+                    // Retrieve corresponding title by index
+                    $title = $request->titles[$index] ?? 'Unknown Document';
+    
+                    ApplicationDocument::create([
+                        'application_id' => $application->id,
+                        'user_id' => $application->user_id,
+                        'document_name' => $title,
+                        'document_type' => 'fixed',
+                        'document_file' => $filename,
+                        'extensions' => $file->getClientOriginalExtension()
+                    ]);
+                }
+            }
+    
             DB::commit();
-            $data['code'] = 0;
-            $data['msg'] = "Image Upload Successfully!";
-            $data["doc_view"] = view('Backend.student_appliction.ajax_document_load', compact('document', 'order'))->render();
-            return response()->json($data);
+            return response()->json(['code' => 0, 'msg' => 'Documents uploaded successfully!']);
         } catch (\Exception $e) {
             DB::rollBack();
-            $data['code'] = -1;
-            $data['err'] = $e->getMessage();
-            $data['msg'] = "Something went wrong";
-            return response()->json($data);
+            Log::error("Error uploading document: " . $e->getMessage());
+            return response()->json(['code' => -1, 'err' => $e->getMessage(), 'msg' => 'Something went wrong!']);
         }
     }
+    
+
+
+    
+    
     function applicationGetAttachments(Request $request, $id)
     {
         $application = StudentApplication::find($id);
@@ -587,6 +645,19 @@ class StudentApplicationController extends Controller
         if ($application) {
             $application->status = 1;
             $application->payment_method = $request->payment_method;
+
+            if ($request->hasFile('payment_receipt')) {
+                $file = $request->file('payment_receipt');
+                $filename = time() . '_' . $file->getClientOriginalName();
+                $path = 'upload/application/' . $application->id;
+                $file->move(public_path($path), $filename);
+        
+                $application->payment_proof = $path . '/' . $filename;
+            }
+            
+            
+            
+            // dd($application->payment_method);
 
             $new_student = '';
             if (empty($application->user_id)) {

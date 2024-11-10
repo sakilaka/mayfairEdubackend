@@ -2,6 +2,71 @@
 @section('title', ' - Course Details')
 @section('head')
     <style>
+
+
+        /* gallery */
+
+        #gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .single-gallery-image {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            border-radius: 6px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .single-gallery-image img {
+            transition: transform 0.3s ease;
+            width: 280px !important;
+            height: 175px !important;
+            height: auto;
+        }
+
+        .single-gallery-image:hover img {
+            transform: scale(1.1);
+        }
+
+
+        .section-background-img {
+            background-image: url('{{ asset('frontend/images/section_bg.webp') }}') !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-size: cover !important;
+            height: auto;
+        }
+
+
+
+        @media screen and (min-width:768px) {
+            .gallery-section {
+                padding: 0 80px;
+            }
+        }
+
+        @media screen and (min-width:992px) {
+            .gallery-section {
+                padding: 0 150px;
+            }
+        }
+
+        .single-gallery-video iframe {
+            height: 200px;
+            border-radius: 10px;
+        }
+
+
+
+        a.single-gallery-image {
+            position: relative;
+        }
+
+
+
         .main-service-card {
             border-radius: 8px;
             overflow: hidden;
@@ -456,7 +521,7 @@
                                                 style="display: inline-block; zoom: 1; user-select: none;">
                                                 <a href="javascript:void(0);">
                                                     <span class="fas fa-star"></span>
-                                                    Reviews
+                                                    Gallery
                                                 </a>
                                             </li>
                                             <span class="scroll_tab_right_finisher" style="display: none;">&nbsp;</span>
@@ -599,6 +664,7 @@
                                                 @endforeach
                                             </div>
                                         @endif
+
                                     </div>
 
                                     <div class="dtlms-tabs-horizontal-content" style="display: none;">
@@ -710,6 +776,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
 
                                                 @if ($course->scholarship_id != 'free')
                                                     <div class="col-lg-6 px-4 mb-4">
@@ -922,132 +989,140 @@
                                                     </div>
                                                 @endif
 
+
                                                 @if (!empty($course->additional_scholarships))
                                                     @php
                                                         $additional_scholarships =
                                                             json_decode($course->additional_scholarships, true) ?? [];
                                                     @endphp
+
                                                     @foreach ($additional_scholarships as $scholarship_id)
                                                         @if ($scholarship_id != 'free')
-                                                            <div class="col-lg-6 px-4 mb-4">
-                                                                @php
-                                                                    $scholarship = App\Models\Scholarship::find(
-                                                                        $scholarship_id,
-                                                                    );
+                                                            <div class="row">
+                                                                <div class="col-lg-6 px-4">
+                                                                </div>
 
-                                                                    $scholarship_amount =
-                                                                        $scholarship?->scholarship_amount == 1
-                                                                            ? 'Free'
-                                                                            : $scholarship?->scholarship_amount ?? 0;
-                                                                    $yearly_tuition_fee =
-                                                                        $scholarship?->tuition_fee == 1
-                                                                            ? 'Free'
-                                                                            : $scholarship?->tuition_fee ?? 0;
-                                                                    $accommodation_fee =
-                                                                        $scholarship?->accommodation_fee == 1
-                                                                            ? 'Free'
-                                                                            : $scholarship?->accommodation_fee ?? 0;
-                                                                    $insurance_fee =
-                                                                        $scholarship?->insurance_fee == 1
-                                                                            ? 'Free'
-                                                                            : $scholarship?->insurance_fee ?? 0;
-                                                                    $stipend_monthly =
-                                                                        $scholarship?->stipend_monthly == 1
-                                                                            ? 'Free'
-                                                                            : $scholarship?->stipend_monthly ?? '-';
-                                                                    $stipend_yearly =
-                                                                        $scholarship?->stipend_yearly == 1
-                                                                            ? 'Free'
-                                                                            : $scholarship?->stipend_yearly ?? '-';
-                                                                    $visa_extension = $course->visa_extension_fee ?? 0;
-                                                                    $medical_in_china =
-                                                                        $course->medical_in_china_fee ?? 0;
+                                                                <div class="col-lg-6 px-4 mb-4">
+                                                                    @php
+                                                                        $scholarship = App\Models\Scholarship::find(
+                                                                            $scholarship_id,
+                                                                        );
 
-                                                                    $total_fees_after_scholarship = 0;
-                                                                    $total_fees_after_scholarship += $visa_extension;
-                                                                    $total_fees_after_scholarship += $medical_in_china;
-                                                                    $total_fees_after_scholarship += is_numeric(
-                                                                        $scholarship_amount,
-                                                                    )
-                                                                        ? $scholarship_amount
-                                                                        : 0;
-                                                                    $total_fees_after_scholarship += is_numeric(
-                                                                        $yearly_tuition_fee,
-                                                                    )
-                                                                        ? $yearly_tuition_fee
-                                                                        : 0;
-                                                                    $total_fees_after_scholarship += is_numeric(
-                                                                        $accommodation_fee,
-                                                                    )
-                                                                        ? $accommodation_fee
-                                                                        : 0;
-                                                                    $total_fees_after_scholarship += is_numeric(
-                                                                        $insurance_fee,
-                                                                    )
-                                                                        ? $insurance_fee
-                                                                        : 0;
-                                                                @endphp
+                                                                        $scholarship_amount =
+                                                                            $scholarship?->scholarship_amount == 1
+                                                                                ? 'Free'
+                                                                                : $scholarship?->scholarship_amount ??
+                                                                                    0;
+                                                                        $yearly_tuition_fee =
+                                                                            $scholarship?->tuition_fee == 1
+                                                                                ? 'Free'
+                                                                                : $scholarship?->tuition_fee ?? 0;
+                                                                        $accommodation_fee =
+                                                                            $scholarship?->accommodation_fee == 1
+                                                                                ? 'Free'
+                                                                                : $scholarship?->accommodation_fee ?? 0;
+                                                                        $insurance_fee =
+                                                                            $scholarship?->insurance_fee == 1
+                                                                                ? 'Free'
+                                                                                : $scholarship?->insurance_fee ?? 0;
+                                                                        $stipend_monthly =
+                                                                            $scholarship?->stipend_monthly == 1
+                                                                                ? 'Free'
+                                                                                : $scholarship?->stipend_monthly ?? '-';
+                                                                        $stipend_yearly =
+                                                                            $scholarship?->stipend_yearly == 1
+                                                                                ? 'Free'
+                                                                                : $scholarship?->stipend_yearly ?? '-';
+                                                                        $visa_extension =
+                                                                            $course->visa_extension_fee ?? 0;
+                                                                        $medical_in_china =
+                                                                            $course->medical_in_china_fee ?? 0;
 
-                                                                @if (empty($scholarship))
-                                                                    <div class="card main-service-card"
-                                                                        @if ($loop->iteration % 2 != 0) style="background-color: var(--primary_background);"
+                                                                        $total_fees_after_scholarship = 0;
+                                                                        $total_fees_after_scholarship += $visa_extension;
+                                                                        $total_fees_after_scholarship += $medical_in_china;
+                                                                        $total_fees_after_scholarship += is_numeric(
+                                                                            $scholarship_amount,
+                                                                        )
+                                                                            ? $scholarship_amount
+                                                                            : 0;
+                                                                        $total_fees_after_scholarship += is_numeric(
+                                                                            $yearly_tuition_fee,
+                                                                        )
+                                                                            ? $yearly_tuition_fee
+                                                                            : 0;
+                                                                        $total_fees_after_scholarship += is_numeric(
+                                                                            $accommodation_fee,
+                                                                        )
+                                                                            ? $accommodation_fee
+                                                                            : 0;
+                                                                        $total_fees_after_scholarship += is_numeric(
+                                                                            $insurance_fee,
+                                                                        )
+                                                                            ? $insurance_fee
+                                                                            : 0;
+                                                                    @endphp
+
+                                                                    @if (empty($scholarship))
+                                                                        <div class="card main-service-card"
+                                                                            @if ($loop->iteration % 2 != 0) style="background-color: var(--tertiary_background);"
                                                                         @else
                                                                             style="background-color: var(--tertiary_background);" @endif>
-                                                                        <div class="card-body"
-                                                                            style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                                                                            <p class="text-white fw-bold title">
-                                                                                No Scholarship Available
-                                                                            </p>
+                                                                            <div class="card-body"
+                                                                                style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                                                                                <p class="text-white fw-bold title">
+                                                                                    No Scholarship Available
+                                                                                </p>
+                                                                            </div>
                                                                         </div>
-                                                                    </div>
-                                                                @else
-                                                                    <div class="card main-service-card"
-                                                                        @if ($loop->iteration % 2 != 0) style="background-color: var(--primary_background);"
+                                                                    @else
+                                                                        <div class="card main-service-card"
+                                                                            @if ($loop->iteration % 2 != 0) style="background-color: var(--tertiary_background);"
                                                                         @else
                                                                             style="background-color: var(--tertiary_background);" @endif>
-                                                                        <div class="card-body"
-                                                                            style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-                                                                            <p class="text-white fw-bold title">
-                                                                                @if ($scholarship)
-                                                                                    <br>
-                                                                                    <span
-                                                                                        style="font-size: 0.9rem">({{ $scholarship->title }})</span>
-                                                                                @endif
-                                                                            </p>
+                                                                            <div class="card-body"
+                                                                                style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                                                                                <p class="text-white fw-bold title">
+                                                                                    @if ($scholarship)
+                                                                                        <br>
+                                                                                        <span
+                                                                                            style="font-size: 0.9rem">({{ $scholarship->title }})</span>
+                                                                                    @endif
+                                                                                </p>
 
-                                                                            <div style="width: 100%">
-                                                                                {{-- <div class="d-flex justify-content-between">
+                                                                                <div style="width: 100%">
+                                                                                    {{-- <div class="d-flex justify-content-between">
                                                                             <span
                                                                                 class="text-muted text-start mb-0">Scholarship
                                                                                 Amount:</span>
                                                                             <span
                                                                                 class="text-muted text-end fw-bold mb-0">{{ $scholarship_amount == 'Free' ? 'Free' : convertCurrency($scholarship_amount) }}</span>
                                                                         </div> --}}
-                                                                                <div
-                                                                                    class="d-flex justify-content-between">
-                                                                                    <span
-                                                                                        class="text-white text-start mb-0">Tuition
-                                                                                        Fee:</span>
-                                                                                    <span
-                                                                                        class="text-white text-end fw-bold mb-0">{{ $yearly_tuition_fee == 'Free' ? 'Free' : convertCurrency($yearly_tuition_fee) }}</span>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="d-flex justify-content-between mt-2">
-                                                                                    <span
-                                                                                        class="text-white text-start mb-0">Accommodation
-                                                                                        Fee:</span>
-                                                                                    <span
-                                                                                        class="text-white text-end fw-bold mb-0">{{ $accommodation_fee == 'Free' ? 'Free' : convertCurrency($accommodation_fee) }}</span>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="d-flex justify-content-between mt-2">
-                                                                                    <span
-                                                                                        class="text-white text-start mb-0">Insurance
-                                                                                        Fee:</span>
-                                                                                    <span
-                                                                                        class="text-white text-end fw-bold mb-0">{{ $insurance_fee == 'Free' ? 'Free' : convertCurrency($insurance_fee) }}</span>
-                                                                                </div>
-                                                                                {{-- <div class="d-flex justify-content-between mt-2">
+                                                                                    <div
+                                                                                        class="d-flex justify-content-between">
+                                                                                        <span
+                                                                                            class="text-white text-start mb-0">Tuition
+                                                                                            Fee:</span>
+                                                                                        <span
+                                                                                            class="text-white text-end fw-bold mb-0">{{ $yearly_tuition_fee == 'Free' ? 'Free' : convertCurrency($yearly_tuition_fee) }}</span>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="d-flex justify-content-between mt-2">
+                                                                                        <span
+                                                                                            class="text-white text-start mb-0">Accommodation
+                                                                                            Fee:</span>
+                                                                                        <span
+                                                                                            class="text-white text-end fw-bold mb-0">{{ $accommodation_fee == 'Free' ? 'Free' : convertCurrency($accommodation_fee) }}</span>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="d-flex justify-content-between mt-2">
+                                                                                        <span
+                                                                                            class="text-white text-start mb-0">Insurance
+                                                                                            Fee:</span>
+                                                                                        <span
+                                                                                            class="text-white text-end fw-bold mb-0">{{ $insurance_fee == 'Free' ? 'Free' : convertCurrency($insurance_fee) }}</span>
+                                                                                    </div>
+                                                                                    {{-- <div class="d-flex justify-content-between mt-2">
                                                                             <span class="text-muted text-start mb-0">Visa
                                                                                 Extension:</span>
                                                                             <span
@@ -1060,305 +1135,128 @@
                                                                             <span
                                                                                 class="text-muted text-end fw-bold mb-0">@convertCurrency($medical_in_china)</span>
                                                                         </div> --}}
-                                                                                <div
-                                                                                    class="d-flex justify-content-between mt-2">
-                                                                                    <span
-                                                                                        class="text-white text-start mb-0">Stipend
-                                                                                        (Monthly)
-                                                                                        :</span>
-                                                                                    <span
-                                                                                        class="text-white text-end fw-bold mb-0">{{ $stipend_monthly == 'Free' ? 'Free' : $stipend_monthly }}</span>
-                                                                                </div>
-                                                                                <div
-                                                                                    class="d-flex justify-content-between mt-2">
-                                                                                    <span
-                                                                                        class="text-white text-start mb-0">Stipend
-                                                                                        (Yearly):</span>
-                                                                                    <span
-                                                                                        class="text-white text-end fw-bold mb-0">{{ $stipend_yearly == 'Free' ? 'Free' : $stipend_yearly }}</span>
-                                                                                </div>
-                                                                                {{-- <div
+                                                                                    <div
+                                                                                        class="d-flex justify-content-between mt-2">
+                                                                                        <span
+                                                                                            class="text-white text-start mb-0">Stipend
+                                                                                            (Monthly)
+                                                                                            :</span>
+                                                                                        <span
+                                                                                            class="text-white text-end fw-bold mb-0">{{ $stipend_monthly == 'Free' ? 'Free' : $stipend_monthly }}</span>
+                                                                                    </div>
+                                                                                    <div
+                                                                                        class="d-flex justify-content-between mt-2">
+                                                                                        <span
+                                                                                            class="text-white text-start mb-0">Stipend
+                                                                                            (Yearly):</span>
+                                                                                        <span
+                                                                                            class="text-white text-end fw-bold mb-0">{{ $stipend_yearly == 'Free' ? 'Free' : $stipend_yearly }}</span>
+                                                                                    </div>
+                                                                                    {{-- <div
                                                                             class="d-flex border-top justify-content-between mt-3 pt-1">
                                                                             <span class="text-muted text-start mb-0">
                                                                                 Total Fees After Scholarship</span>
                                                                             <span
                                                                                 class="text-muted text-end fw-bold mb-0">{{ convertCurrency($total_fees_after_scholarship) }}</span>
                                                                         </div> --}}
+                                                                                </div>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                @endif
+                                                                    @endif
+                                                                </div>
                                                             </div>
                                                         @endif
                                                     @endforeach
+
                                                 @endif
+
+
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="dtlms-tabs-horizontal-content" style="display: none;">
-                                        <div class="dtlms-title">Reviews</div>
-                                        <div class="dtlms-column dtlms-one-third first">
-                                            <div class="dtlms-course-detail-review-box">
-                                                <div class="dtlms-course-detail-average-value">
-                                                    {{ round(@$course->reviews->avg('ratting'), 1) }}</div>
-                                                <div class="dtlms-course-detail-star-review">
-                                                    @php
-                                                        $avg_round = floor($course->reviews->avg('ratting'));
-                                                    @endphp
+                                        <div class="dtlms-title">Gallery</div>
 
-                                                    @for ($i = 1; $i <= @$avg_round; $i++)
-                                                        <span class="zmdi zmdi-star"
-                                                            data-value="{{ $i }}"></span>
-                                                    @endfor
-                                                </div>
-                                                <div class="dtlms-course-detail-total-reviews">
-                                                    {{ count(@$course->reviews) }} Reviews</div>
-                                            </div>
-                                        </div>
-                                        <div class="dtlms-column dtlms-two-third">
-                                            <ul class="dtlms-course-detail-ratings-breakup">
-                                                <li>
-                                                    @php
-                                                        @$one_count = @$course->reviews?->where('ratting', 1)?->count();
-                                                        @$one_percent =
-                                                            @$one_count > 0
-                                                                ? (@$one_count / @$course?->reviews?->count()) * 100
-                                                                : 0;
-                                                    @endphp
-                                                    <span class="dtlms-course-detail-ratings-label">1 Stars</span>
-                                                    <div class="dtlms-course-detail-ratings-percentage">
-                                                        <span style="width:{{ @$one_percent }}%"></span>
-                                                    </div>
-                                                    <span>{{ @$one_count }}</span>
-                                                </li>
-                                                <li>
-                                                    @php
-                                                        @$two_count = @$course->reviews?->where('ratting', 2)?->count();
-                                                        @$two_percent =
-                                                            @$two_count > 0
-                                                                ? (@$two_count / @$course?->reviews?->count()) * 100
-                                                                : 0;
-                                                    @endphp
-                                                    <span class="dtlms-course-detail-ratings-label">2 Stars</span>
-                                                    <div class="dtlms-course-detail-ratings-percentage">
-                                                        <span style="width:{{ @$two_percent }}%"></span>
-                                                    </div>
-                                                    <span>{{ @$two_count }}</span>
-                                                </li>
-                                                <li>
-                                                    @php
-                                                        @$three_count = @$course->reviews
-                                                            ?->where('ratting', 3)
-                                                            ?->count();
-                                                        @$three_percent =
-                                                            @$three_count > 0
-                                                                ? (@$three_count / @$course?->reviews?->count()) * 100
-                                                                : 0;
-                                                    @endphp
-                                                    <span class="dtlms-course-detail-ratings-label">3 Stars</span>
-                                                    <div class="dtlms-course-detail-ratings-percentage">
-                                                        <span style="width:{{ @$three_percent }}%"></span>
-                                                    </div>
-                                                    <span>{{ @$three_count }}</span>
-                                                </li>
-                                                <li>
-                                                    @php
-                                                        @$four_count = @$course->reviews
-                                                            ?->where('ratting', 4)
-                                                            ?->count();
-                                                        @$four_percent =
-                                                            @$four_count > 0
-                                                                ? (@$four_count / @$course?->reviews?->count()) * 100
-                                                                : 0;
-                                                    @endphp
-                                                    <span class="dtlms-course-detail-ratings-label">4 Stars</span>
-                                                    <div class="dtlms-course-detail-ratings-percentage">
-                                                        <span style="width:{{ @$four_percent }}%"></span>
-                                                    </div>
-                                                    <span>{{ @$four_count }}</span>
-                                                </li>
-                                                <li>
-                                                    @php
-                                                        @$five_count = @$course->reviews
-                                                            ?->where('ratting', 5)
-                                                            ?->count();
-                                                        @$five_percent =
-                                                            @$five_count > 0
-                                                                ? (@$five_count / @$course?->reviews?->count()) * 100
-                                                                : 0;
-                                                    @endphp
-                                                    <span class="dtlms-course-detail-ratings-label">5 Stars</span>
-                                                    <div class="dtlms-course-detail-ratings-percentage">
-                                                        <span style="width:{{ @$five_percent }}%"></span>
-                                                    </div>
-                                                    <span>{{ @$five_count }}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
 
-                                        <div class="single-dtlms">
-                                            <div id="comments" class="comments-area">
-                                                <h3>Comments ({{ $reviews->count() }})</h3>
-                                                <ul class="commentlist">
-                                                    @foreach ($reviews as $review)
-                                                        <li id="comment-55" class="comment even thread-even depth-1">
-                                                            <article id="div-comment-55" class="comment-body">
-                                                                <footer class="comment-meta">
-                                                                    <div class="comment-author vcard">
-                                                                        <img alt=""
-                                                                            src="{{ $review->user->image_show }}"
-                                                                            srcset="https://secure.gravatar.com/avatar/4016094f0e1d3a11fed8105d3bd999cf?s=100&amp;d=mm&amp;r=g 2x"
-                                                                            class="avatar avatar-50 photo" height="50"
-                                                                            width="50" decoding="async"> <b
-                                                                            class="fn">{{ $review->user->name }}</b>
-                                                                        <span class="says">says:</span>
-                                                                    </div>
-                                                                    <div class="comment-metadata">
-                                                                        <a href="#">
-                                                                            <time datetime="2017-11-22T07:07:29+00:00">
-                                                                                {{ \Carbon\Carbon::createFromTimestamp($review->created_at->timestamp, 'Asia/Dhaka')->format('d M, Y h:i a') }}
-                                                                            </time>
-                                                                        </a>
-                                                                    </div>
-                                                                </footer>
-                                                                <div class="comment-content">
-                                                                    <div class="dtlms-comment-rating">
-                                                                        @for ($i = 1; $i <= $review->ratting; $i++)
-                                                                            <span class="zmdi zmdi-star"
-                                                                                data-value="{{ $i }}"></span>
-                                                                        @endfor
-                                                                    </div>
-                                                                    <p>{{ $review->comment }}</p>
-                                                                </div>
-                                                            </article>
-                                                        </li>
+                                        
+                                        <p style="color: black !important;" class="mb-4 text-center fs-3 fw-bold">Images</p>
+
+                                        <div id="gallery" class="section-background-img">
+                                            @php
+                                                $imageGallery = json_decode($university->image_gallery, true) ?? [];
+                                                $hasImages = false;
+    
+                                                // Check if there is at least one image in the gallery
+                                                foreach ($imageGallery as $gallery) {
+                                                    if (!empty($gallery['images'])) {
+                                                        $hasImages = true;
+                                                        break;
+                                                    }
+                                                }
+                                            @endphp
+    
+                                            @if ($hasImages)
+                                                @foreach ($imageGallery as $key => $gallery)
+                                                    @foreach ($gallery['images'] as $img)
+                                                        <a href="{{ $img }}" target="_blank"
+                                                            class="single-gallery-image" style="cursor: pointer">
+                                                            <img class="img-fluid authorization_image"
+                                                                src="{{ $img }}" alt="">
+                                                        </a>
                                                     @endforeach
-                                                </ul>
+                                                @endforeach
+                                            @else
+                                                <h4 class="company-details-title py-2 fs-6 fw-bold text-center ">
+                                                    No Image Found!
+                                                </h4>
+                                            @endif
+                                        </div>
+    
 
-                                                <div id="respond" class="comment-respond">
-                                                    <h3 id="reply-title" class="comment-reply-title">
-                                                        Leave a Comment
-                                                    </h3>
-                                                    <form action="{{ route('frontend.review.store') }}" method="post"
-                                                        id="commentform" class="comment-form" novalidate="">
-                                                        @csrf
 
-                                                        <p class="comment-notes">
-                                                            <span class="required-field-message">
-                                                                Required fields are marked
-                                                                <span class="required">*</span>
-                                                            </span>
-                                                        </p>
-                                                        <div class="dtlms-rating-wrapper">
-                                                            <label for="lms_rating">Ratings</label>
-                                                            <div class="ratings">
 
-                                                                <div class="avatar-text">
-                                                                    <div class="rating-input-block">
-                                                                        <input type="hidden" name="ratting"
-                                                                            id="input_rating">
-                                                                        <input type="hidden" name="course_id"
-                                                                            value="{{ $course->id }}">
-                                                                        <input type="hidden" value="Program"
-                                                                            name="type" />
-                                                                        <i data-rating="1"
-                                                                            class="fas fa-star fs-4 input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="2"
-                                                                            class="fas fa-star fs-4 input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="3"
-                                                                            class="fas fa-star fs-4 input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="4"
-                                                                            class="fas fa-star fs-4 input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                        <i data-rating="5"
-                                                                            class="fas fa-star fs-4 input-ratting"
-                                                                            style="color:#ffe6ad;"></i>
-                                                                    </div>
-                                                                </div>
 
-                                                            </div>
+                                    <p style="color: black !important;" class="mt-5 mb-2 text-center fs-3 text-black fw-bold">Videos</p>
 
-                                                            <script>
-                                                                var ratingInputBlock = document.querySelector('.rating-input-block');
+                                    <section class="section-background-img">
+                                        @php
+                                            $video_contents = json_decode($university->video, true) ?? [];
+                                        @endphp
 
-                                                                // Mouseleave event
-                                                                ratingInputBlock.addEventListener('mouseleave', function() {
-                                                                    var activeStar = document.querySelector('.input-ratting.active');
-                                                                    var rm = activeStar ? parseInt(activeStar.getAttribute('data-rating')) : 0;
+                                        <div class="gallery-section py-5 video-gallery">
+                                            <div class="container text-center">
+                                                @if (empty($video_contents))
+                                                    <h4 class="company-details-title py-2 fs-6 fw-bold text-center">
+                                                        No Video Found!
+                                                    </h4>
+                                                @else
+                                                    @foreach ($video_contents as $video)
+                                                        <a class="single-gallery-video position-relative me-md-2 overflow-hidden"
+                                                            style="cursor: pointer">
+                                                            @if ($video['type'] === 'youtube')
+                                                                <!-- YouTube Embed Code -->
+                                                                {!! $video['url'] !!}
+                                                            @elseif ($video['type'] === 'upload')
+                                                                <!-- Video Preview -->
+                                                                <video class="img-fluid authorization_video" controls
+                                                                    style="max-height: 200px; border-radius: 10px;">
+                                                                    <source src="{{ $video['url'] }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            @endif
 
-                                                                    for (var i = 1; i <= rm; i++) {
-                                                                        var star = document.querySelector('.input-ratting[data-rating="' + i + '"]');
-                                                                        star.classList.add('text-warning');
-                                                                        star.classList.remove('btn-grey');
-                                                                    }
-
-                                                                    for (var ram = rm + 1; ram <= 5; ram++) {
-                                                                        var star = document.querySelector('.input-ratting[data-rating="' + ram + '"]');
-                                                                        star.classList.remove('text-warning');
-                                                                        star.classList.add('btn-grey');
-                                                                    }
-                                                                });
-
-                                                                // Mouseenter event
-                                                                ratingInputBlock.addEventListener('mouseenter', function() {
-                                                                    console.log("over");
-                                                                });
-
-                                                                // Click event
-                                                                var stars = document.querySelectorAll('.input-ratting');
-                                                                stars.forEach(function(star) {
-                                                                    star.addEventListener('click', function() {
-                                                                        stars.forEach(function(s) {
-                                                                            s.classList.remove('active');
-                                                                        });
-
-                                                                        if (this.classList.contains('active')) {
-                                                                            document.getElementById('input_rating').value = '';
-                                                                            this.classList.remove('active');
-                                                                        } else {
-                                                                            document.getElementById('input_rating').value = this.getAttribute(
-                                                                                'data-rating');
-                                                                            this.classList.add('active');
-                                                                        }
-                                                                    });
-                                                                });
-
-                                                                // Hover event
-                                                                stars.forEach(function(star) {
-                                                                    star.addEventListener('mouseenter', function() {
-                                                                        var rating = parseInt(this.getAttribute('data-rating'));
-                                                                        stars.forEach(function(s) {
-                                                                            var sRating = parseInt(s.getAttribute('data-rating'));
-                                                                            if (sRating <= rating) {
-                                                                                s.classList.add('text-warning');
-                                                                                s.classList.remove('btn-grey');
-                                                                            } else {
-                                                                                s.classList.remove('text-warning');
-                                                                                s.classList.add('btn-grey');
-                                                                            }
-                                                                        });
-                                                                    });
-                                                                });
-                                                            </script>
-                                                        </div>
-
-                                                        <p class="comment-form-comment">
-                                                            <textarea id="comment" name="comment" cols="45" rows="8" placeholder="Comment *" maxlength="65525"
-                                                                required></textarea>
-                                                        </p>
-                                                        <p class="form-submit">
-                                                            <input name="submit" type="submit" id="submit"
-                                                                class="submit" value="Post Comment">
-                                                        </p>
-                                                    </form>
-                                                </div>
+                                                        </a>
+                                                    @endforeach
+                                                @endif
                                             </div>
                                         </div>
+                                    </section>
+
+
+                                        
                                     </div>
+
                                 </div>
                             </div>
 
@@ -1411,26 +1309,19 @@
                                             <label>Application Deadline :</label>
                                             {{ date('d-m-Y', strtotime($course->application_deadline)) }}
                                         </li>
+                                        
+                                        @if (auth()->check())
+                                            <li>
+                                                <label>Service Charge:</label>
+                                                @convertCurrency($service_charge ?? 0)
+                                            </li>
+                                        @endif
+                                    
                                         <li>
-                                            <label>Service Charge: </label>
-                                            @if ($course->service_charge_1)
-                                                @convertCurrency($course->service_charge_1)
-                                            @else
-                                                @convertCurrency(0)
-                                            @endif
-
-                                            @if ($course->service_charge_1 != '' && $course->service_charge_2 != '')
-                                                -
-                                            @endif
-
-                                            @if ($course->service_charge_2)
-                                                @convertCurrency($course->service_charge_2)
-                                            @endif
-                                        </li>
-                                        <li>
-                                            <label>Application Fees: </label>
+                                            <label>Application Fees:</label>
                                             @convertCurrency($course->application_charge)
                                         </li>
+                                    
                                         <li>
                                             <label>Tuition Fees (Yearly): </label>
                                             @convertCurrency($yearly_tuition_fee)

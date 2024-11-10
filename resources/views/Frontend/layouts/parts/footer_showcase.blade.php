@@ -59,20 +59,6 @@
             </div>
 
             <section class="footer_showcase d-flex mb-2">
-                {{-- <div id="lightgallery" class="row justify-content-center px-2">
-                            @foreach ($footer_image as $index => $image)
-                                <div class="col-6 col-sm-4 col-md-2 mb-2 footer-showcase-single">
-                                    <a href="{{ asset('upload/footer_image/' . $image) }}"
-                                        data-src="{{ asset('upload/footer_image/' . $image) }}" class="thumbnail-container">
-                                        <div style="height: 235px; border-radius: 8px; overflow: hidden;"
-                                            class="d-flex align-items-center justify-content-center">
-                                            <img src="{{ asset('upload/footer_image/' . $image) }}" alt=""
-                                                class="img-fluid w-100 h-100" style="object-fit: cover;">
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div> --}}
 
                 <div id="justified-gallery">
                     @foreach ($footer_image['images'] ?? [] as $key => $image)
@@ -105,6 +91,8 @@
             selector: '.thumbnail-container',
         });
     </script> --}}
+
+    
     <script type="text/javascript">
         $(document).ready(function() {
             $('#justified-gallery').justifiedGallery({

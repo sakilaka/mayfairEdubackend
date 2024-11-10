@@ -32,6 +32,12 @@
         height: 330px !important;
     }
 
+    @media (min-width: 1260px) and (max-width: 1430px) {
+        .university-course-container {
+            height: 375px !important;
+        }
+    }
+
     .course-nav-tab .btn-dark-cerulean {
         color: #fff;
         background-color: var(--secondary_background) !important;
@@ -327,7 +333,7 @@
             $partnerRef_2 = session('partner_ref_id') ?? request()->query('partner_ref_id');
             $appliedBy_2 = session('applied_by') ?? request()->query('applied_by');
 
-            $apply_url_params_2['university'] = $university->id;
+            $apply_url_params_2['id'] = $university->id;
 
             if ($partnerRef_2) {
                 $apply_url_params_2['partner_ref_id'] = $partnerRef_2;
@@ -341,7 +347,7 @@
                 $apply_url_params_2['is_anonymous'] = 'true';
             }
 
-            $all_programs_url_2 = route('frontend.university_course_list', $apply_url_params_2);
+            $all_programs_url_2 = route('frontend.single_course', $apply_url_params_2);
         @endphp
 
         <button class="university-header__btn btn btn--primary btn--md px-3 js-call-modal"

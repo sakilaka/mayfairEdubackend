@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\All_users\AffiliateConteoller;
 use App\Http\Controllers\Backend\All_users\ConsultantController;
+use App\Http\Controllers\Backend\All_users\LevelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Backend\All_users\TeacherController;
 use App\Http\Controllers\Backend\All_users\InstructorController;
@@ -72,6 +73,17 @@ Route::middleware(['auth:admin', 'adminCheck:0'])->group(function () {
         Route::post('delete/consultant', [ConsultantController::class, "destroy"])->name('admin.consultant.delete');
         Route::get('status/consultant/{id}', [ConsultantController::class, "status"])->name('admin.consultant.status');
         Route::post('consultant-change-password', [ConsultantController::class, "changePassword"])->name('admin.consultant_change_password');
+    });
+    
+    Route::prefix('level')->group(function () {
+        // instrutor
+        Route::get('index/level', [LevelController::class, "index"])->name('admin.level.index');
+        Route::get('create/level', [LevelController::class, "create"])->name('admin.level.create');
+        Route::post('store/level', [LevelController::class, "store"])->name('admin.level.store');
+        Route::get('edit/level/{id}', [LevelController::class, "edit"])->name('admin.level.edit');
+        Route::post('update/level/{id}', [LevelController::class, "update"])->name('admin.level.update');
+        Route::post('delete/level', [LevelController::class, "destroy"])->name('admin.level.delete');
+        Route::get('status/level/{id}', [LevelController::class, "status"])->name('admin.level.status');
     });
 });
 

@@ -124,9 +124,14 @@ class UniversityCourseController extends Controller
             $course->accommodation = $request->accommodation ?? "";
             $course->about = $request->about ?? "";
 
-            // $course->service_charge = $request->service_charge ?? "";
+            $course->service_charge_beginner = $request->service_charge_beginner ?? "";
             $course->service_charge_1 = $request->service_charge_1 ?? null;
             $course->service_charge_2 = $request->service_charge_2 ?? null;
+            $course->service_charge_3 = $request->service_charge_3 ?? null;
+            $course->service_charge_4 = $request->service_charge_4 ?? null;
+            $course->service_charge_5 = $request->service_charge_5 ?? null;
+            $course->service_charge_6 = $request->service_charge_6 ?? null;
+            $course->service_charge_7 = $request->service_charge_7 ?? null;
             $course->application_charge = $request->application_charge ?? null;
 
             $course->year_fee = $request->year_fee;
@@ -218,9 +223,14 @@ class UniversityCourseController extends Controller
             $course->accommodation = $request->accommodation ?? "";
             $course->about = $request->about ?? "";
 
-            // $course->service_charge = $request->service_charge ?? "";
+            $course->service_charge_beginner = $request->service_charge_beginner ?? "";
             $course->service_charge_1 = $request->service_charge_1 ?? null;
             $course->service_charge_2 = $request->service_charge_2 ?? null;
+            $course->service_charge_3 = $request->service_charge_3 ?? null;
+            $course->service_charge_4 = $request->service_charge_4 ?? null;
+            $course->service_charge_5 = $request->service_charge_5 ?? null;
+            $course->service_charge_6 = $request->service_charge_6 ?? null;
+            $course->service_charge_7 = $request->service_charge_7 ?? null;
             $course->application_charge = $request->application_charge ?? null;
 
             $course->year_fee = $request->year_fee;

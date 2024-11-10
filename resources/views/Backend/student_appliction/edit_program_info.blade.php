@@ -4,6 +4,8 @@
 <head>
     @include('Backend.components.head')
     <title>{{ env('APP_NAME') }} | Student Application Program Edit</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 
     <style>
         span.select2-container {
@@ -114,6 +116,7 @@
                                                         type="text" class="form-control">
                                                 </div>
                                             </div>
+
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="service_charge">{{ __('Final Service Charge:') }}
@@ -124,6 +127,7 @@
                                                         class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="total_fee">{{ __('Total Cost:') }}</label>
@@ -136,15 +140,46 @@
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="address">{{ __('Payment Status:') }}</label>
-                                                    <select name="payment_status" class="form-control form-control-lg">
+                                                    <select id="payment_status" name="payment_status"
+                                                        class="form-control form-control-lg">
                                                         <option @if ($s_appliction->payment_status == 0) Selected @endif
                                                             value="0">Unpaid</option>
                                                         <option @if ($s_appliction->payment_status == 1) Selected @endif
-                                                            value="1"> Paid</option>
+                                                            value="1">Paid</option>
                                                     </select>
-
                                                 </div>
                                             </div>
+
+
+                                            {{-- payment modal  --}}
+
+
+                                            <div class="modal fade" id="paymentModal" tabindex="-1"
+                                                aria-labelledby="paymentModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="paymentModalLabel">Enter Payment
+                                                                Amount</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label for="paid_amount">Amount Paid:</label>
+                                                            <input type="number" id="paid_amount"
+                                                                class="form-control" placeholder="Enter amount">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" id="submitPayment"
+                                                                class="btn btn-primary"
+                                                                data-id="{{ $s_appliction->id }}">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
                                             <div class="col-lg-6">
                                                 <div class="form-group">
                                                     <label for="address">{{ __('Status:') }}</label>
@@ -188,6 +223,15 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="paid_amount">{{ __('Paid Amount:') }}</label>
+                                                    <input id="paid_amount" name="paid_amount" readonly
+                                                        value="{{ $s_appliction->paid_amount ?? '0' }}"
+                                                        type="text" class="form-control">
+                                                </div>
+                                            </div>
+
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label>Feedback</label>
@@ -220,6 +264,7 @@
     @include('Backend.components.ckeditor5-config')
 
     <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('.select2').select2();
 
@@ -236,6 +281,64 @@
                 } else {
                     $('#total_fee').val(newTotal.toFixed(2));
                 }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const paymentStatus = document.getElementById("payment_status");
+            const submitPaymentButton = document.getElementById("submitPayment");
+            const paidAmountInput = document.getElementById("paid_amount");
+            const paymentModal = new bootstrap.Modal(document.getElementById("paymentModal"));
+
+            // Show modal when "Paid" is selected
+            paymentStatus.addEventListener("change", function() {
+                if (paymentStatus.value === "1") {
+                    paymentModal.show();
+                }
+            });
+
+            // Handle modal submit button click
+            submitPaymentButton.addEventListener("click", function() {
+                const paidAmount = parseFloat(paidAmountInput.value);
+                const applicationId = submitPaymentButton.getAttribute("data-id");
+
+                if (isNaN(paidAmount) || paidAmount <= 0) {
+                    Swal.fire("Error", "Please enter a valid amount", "error");
+                    return;
+                }
+
+                // Fetch request to update the amount
+                fetch(`/admin/update-paid-amount/${applicationId}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            paid_amount: paidAmount
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire("Success", data.message, "success");
+
+                            // Update the payment status dropdown and display total paid amount
+                            paymentStatus.value = data.payment_status === 1 ? "1" : "0";
+                            paidAmountInput.value = ""; // Clear the input after submission
+                        } else {
+                            Swal.fire("Error", data.message, "error");
+                        }
+                        paymentModal.hide();
+                    })
+                    .catch(error => {
+                        Swal.fire("Error", "An error occurred while updating: " + error.message,
+                            "error");
+                        console.error("Error:", error);
+                    });
             });
         });
     </script>

@@ -154,7 +154,7 @@
 
     @php
         $popupContentKey = App\Models\Tp_option::where('option_name', 'theme_option_home_popup')->first();
-        $popupContent = json_decode($popupContentKey->option_value, true) ?? [];
+        $popupContent = json_decode($popupContentKey->option_value, true);
     @endphp
 
     @if ($popupContent['photo'] != '' && $popupContent['show_hide'] == 'show')

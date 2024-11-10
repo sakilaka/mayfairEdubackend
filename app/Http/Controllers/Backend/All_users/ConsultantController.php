@@ -9,16 +9,48 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Mail\ConsultantFrogotPassword;
 use App\Models\Country;
+use App\Models\Level;
+use App\Models\StudentApplication;
 use Illuminate\Support\Facades\Hash;
 
 class ConsultantController extends Controller
 {
     public function index()
     {
-        $data['continents'] = Continent::where('status', 1)->get();
-        $data['consultants'] = User::where('type', '7')->orderBy('id', 'desc')->get();
-        return view("Backend.all_users.consultant.index", $data);
+        $consultants = User::where('type', '7')->orderBy('id', 'desc')->get();
+        $continents = Continent::where('status', 1)->get();
+    
+        $partners = User::where('role', 'partner')->get()->map(function ($partner) {
+            $total_students = User::where([
+                ['partner_ref_id', '=', $partner->id],
+                ['role', '=', 'student']
+            ])->count();
+    
+            $total_applications = StudentApplication::where(function ($query) use ($partner) {
+                $query->where('partner_ref_id', 'like', '%"partner":' . $partner->id . '%')
+                      ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner->id . '%')
+                      ->orWhere('partner_ref_id', 'like', '%"support":' . $partner->id . '%');
+            })->count();
+    
+            // Find the star value based on the total applications
+            $star = Level::where('eligibility_range_min', '<=', $total_applications)
+                         ->where('eligibility_range_max', '>=', $total_applications)
+                         ->value('star_value');
+    
+            return [
+                'partner' => $partner,
+                'total_students' => $total_students,
+                'total_applications' => $total_applications,
+                'star' => $star,
+            ];
+        });
+    
+        return view("Backend.all_users.consultant.index", compact('consultants', 'continents', 'partners'));
     }
+    
+    
+
+    
 
     function indexAjax(Request $request)
     {
@@ -192,7 +224,8 @@ class ConsultantController extends Controller
     {
         $data["consultant"] = $consultant = User::find($id);
         $data['continents'] = Continent::where('status', 1)->get();
-        $data['countries'] = Country::where('continent_id', @$consultant->continent_id)->get();
+        $data['countries'] = Country::all();
+        $data['levels'] = Level::all();
         return view("Backend.all_users.consultant.update", $data);
     }
 
@@ -223,13 +256,15 @@ class ConsultantController extends Controller
             $user->institution = $request->institution ?? "";
             $user->designation = $request->designation ?? "";
             $user->description = $request->description ?? "";
-            $user->continent_id = $request->continent_id ?? "";
+            // $user->continent_id = $request->continent_id ?? "";
 
             //Social Information
             $user->facebook_url = $request->facebook_url;
             $user->twitter_url = $request->twitter_url;
             $user->google_plus_url = $request->google_plus_url;
             $user->instagram_url = $request->instagram_url;
+            // star 
+            $user->star = $request->star;
 
 
             if ($request->hasFile('image')) {

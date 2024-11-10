@@ -86,6 +86,9 @@
                                                                 id="avatar_preview">
                                                         </div>
                                                     </div>
+
+                                                
+
                                                 </div>
                                             </div>
                                         </div>
@@ -106,6 +109,32 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label class="form-control-label">
+                                                        Partner Star:
+                                                        <span class="text-danger" style="font-size: 1.25rem; line-height: 0;">*</span>
+                                                    </label>
+                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                        <select name="star" id="star" class="form-control">
+                                                            <option value="">Select star</option>
+                                                            @foreach ($levels as $level)
+                                                                <option value="{{ $level->star_value }}" 
+                                                                    {{ $consultant->star == $level->star_value ? 'selected' : '' }}>
+                                                                    {{ $level->star_value }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                        @error('star')
+                                                            <span class="text-danger">{{ $message }}</span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">Mobile Number:
@@ -136,18 +165,20 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label class="form-control-label">NID:
+                                                    <label class="form-control-label">Passport or NID:
                                                         <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="nid" class="form-control"
-                                                            placeholder="Enter NID" value="{{ $consultant->nid }}"
+                                                            placeholder="Enter passport or NID" value="{{ $consultant->nid }}"
                                                             required>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Gender <span class="text-danger"
@@ -176,7 +207,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Continent
                                                         <span class="text-danger"
@@ -192,7 +223,7 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Country <span class="text-danger"

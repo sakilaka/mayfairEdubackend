@@ -105,6 +105,7 @@ class CategoryController extends Controller
     /**
      * Toggle status change
      */
+    
     public function status_toggle($id)
     {
         try {

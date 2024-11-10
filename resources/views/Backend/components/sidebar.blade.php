@@ -11,6 +11,8 @@
         @php
             $permissions = json_decode($currentUser->permissions, true) ?? [];
         @endphp
+
+
         @if (in_array('home_module', $permissions ?? []))
             @php
                 $is_active_home =
@@ -31,7 +33,7 @@
                 <div class="collapse {{ $is_active_home ? 'show' : '' }}" id="home-sidemenu">
                     <ul class="nav flex-column sub-menu">
                         {{-- Category --}}
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item">
                             <a href="{{ route('home-category.index') }}"
                                 class="nav-link {{ Route::is('home-category.index') || Route::is('home-category.create') || Route::is('home-category.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -40,7 +42,7 @@
                         </li>
 
                         {{-- Sub Category --}}
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('home-sub-category.index') }}"
                                 class="nav-link {{ Route::is('home-sub-category.create') || Route::is('home-sub-category.index') || Route::is('home-sub-category.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -91,7 +93,7 @@
                                 Route::is('admin.u_course.create') ||
                                 Route::is('admin.u_course.edit');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.u_course.index') }}"
                                 class="nav-link {{ $is_active_program_sub_module ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -106,7 +108,7 @@
                                 Route::is('admin.major.create') ||
                                 Route::is('admin.major.edit');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.major.index') }}"
                                 class="nav-link {{ $is_active_major_sub_module ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -121,7 +123,7 @@
                                 Route::is('admin.degree.create') ||
                                 Route::is('admin.degree.edit');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.degree.index') }}"
                                 class="nav-link {{ $is_active_degree_sub_module ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -136,7 +138,7 @@
                                 Route::is('admin.section.create') ||
                                 Route::is('admin.section.edit');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.section.index') }}"
                                 class="nav-link {{ $is_active_section_sub_module ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -151,7 +153,7 @@
                                 Route::is('admin.language.create') ||
                                 Route::is('admin.language.edit');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.language.index') }}"
                                 class="nav-link {{ $is_active_language_sub_module ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -166,7 +168,7 @@
                                 Route::is('admin.scholarship.create') ||
                                 Route::is('admin.scholarship.edit');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.scholarship.index') }}"
                                 class="nav-link {{ $is_active_scholarship_sub_module ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -205,7 +207,7 @@
                 </a>
                 <div class="collapse {{ $is_active_all_applications ? 'show' : '' }}" id="all-application-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             @php
                                 $program_application_routes =
                                     Route::is('admin.student_appliction_list') ||
@@ -239,7 +241,7 @@
                             @endif
                         </li>
                         @if (!in_array(Auth::user()->role, ['manager', 'support']))
-                            <li class="nav-item d-none d-lg-block">
+                            <li class="nav-item ">
                                 @php
                                     $partner_wise_student_application_routes =
                                         Route::is('admin.student_appliction_list_partner_wise') ||
@@ -253,7 +255,7 @@
                                 </a>
                             </li>
                         @endif
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('frontend.apply_now', ['partner_ref_id' => session('partner_ref_id'), 'applied_by' => session('applied_by')]) }}"
                                 class="nav-link" target="_blank">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -264,6 +266,55 @@
                 </div>
             </li>
         @endif
+
+
+
+        {{-- @if (in_array('partner_management', $permissions ?? [])) --}}
+            @php
+                $is_active_partner =
+                    Route::is('admin.consultant.index') ||
+                    Route::is('admin.consultant.create') ||
+                    Route::is('admin.consultant.edit') ||
+                    Route::is('admin.level.index') ||
+                    Route::is('admin.level.create') ||
+                    Route::is('admin.level.edit');
+            @endphp
+
+            <li class="nav-item {{ $is_active_partner ? 'active' : '' }}">
+                <a class="nav-link" data-toggle="collapse" href="#partner_management"
+                    aria-expanded="{{ $is_active_partner ? 'true' : 'false' }}" aria-controls="partner_management">
+                    <i class="fa fa-home menu-icon"></i>
+                    <span class="menu-title">Partner Management</span>
+                    <i class="menu-arrow"></i>
+                </a>
+                <div class="collapse {{ $is_active_partner ? 'show' : '' }}" id="partner_management">
+                    <ul class="nav flex-column sub-menu">
+
+                        {{-- Create Level  --}}
+
+                        <li class="nav-item ">
+                            <a href="{{ route('admin.level.index') }}"
+                                class="nav-link {{ Route::is('admin.level.index') || Route::is('admin.level.create') || Route::is('admin.level.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                                Manage Level 
+                            </a>
+                        </li>
+
+                        {{-- manage partner  --}}
+
+                        <li class="nav-item ">
+                            <a href="{{ route('admin.consultant.index') }}"
+                                class="nav-link {{ Route::is('admin.consultant.index') || Route::is('admin.consultant.create') || Route::is('admin.consultant.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                                Manage Partner
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </li>
+        {{-- @endif --}}
+
 
         @if (in_array('university_module', $permissions ?? []))
             {{-- university --}}
@@ -287,21 +338,21 @@
                 </a>
                 <div class="collapse {{ $is_active_university ? 'show' : '' }}" id="university-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.university.index') }}"
                                 class="nav-link {{ Route::is('admin.university.index') || Route::is('admin.university.index.filter') || Route::is('admin.university.create') || Route::is('admin.university.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                 Manage University
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.university_faq_manage') }}"
                                 class="nav-link {{ Route::is('admin.university_faq_manage') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                 University FAQ
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.dormitory.index') }}"
                                 class="nav-link {{ Route::is('admin.dormitory.index') || Route::is('admin.dormitory.create') || Route::is('admin.dormitory.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -339,28 +390,28 @@
                 </a>
                 <div class="collapse {{ $is_active_location ? 'show' : '' }}" id="location-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('continent.index') }}"
                                 class="nav-link {{ Route::is('continent.index') || Route::is('continent.create') || Route::is('continent.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                 Continents
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('country.index') }}"
                                 class="nav-link {{ Route::is('country.index') || Route::is('country.create') || Route::is('country.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                 Countries
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('state.index') }}"
                                 class="nav-link {{ Route::is('state.index') || Route::is('state.create') || Route::is('state.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                 Provinces
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('city.index') }}"
                                 class="nav-link {{ Route::is('city.index') || Route::is('city.create') || Route::is('city.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -385,10 +436,7 @@
                     Route::is('admin.student.create') ||
                     Route::is('admin.student.edit') ||
                     Route::is('admin.student.index') ||
-                    Route::is('admin.student_details') ||
-                    Route::is('admin.consultant.create') ||
-                    Route::is('admin.consultant.edit') ||
-                    Route::is('admin.consultant.index');
+                    Route::is('admin.student_details');
             @endphp
             <li class="nav-item {{ $is_active_users ? 'active' : '' }}">
                 <a class="nav-link" data-toggle="collapse" href="#all-user-sidemenu" aria-expanded="false"
@@ -399,7 +447,7 @@
                 </a>
                 <div class="collapse {{ $is_active_users ? 'show' : '' }}" id="all-user-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('backend.manage_admin') }}"
                                 class="nav-link {{ Route::is('backend.manage_admin') || Route::is('backend.create_admin') || Route::is('backend.edit_admin') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -407,7 +455,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('backend.admin.manage_employee.index') }}"
                                 class="nav-link {{ Route::is('backend.admin.manage_employee.index') || Route::is('backend.admin.manage_employee.create') || Route::is('backend.admin.manage_employee.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -415,7 +463,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.student.index') }}"
                                 class="nav-link {{ Route::is('admin.student.index') || Route::is('admin.student.create') || Route::is('admin.student_details') || Route::is('admin.student.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
@@ -423,13 +471,13 @@
                             </a>
                         </li>
 
-                        <li class="nav-item d-none d-lg-block">
+                        {{-- <li class="nav-item ">
                             <a href="{{ route('admin.consultant.index') }}"
                                 class="nav-link {{ Route::is('admin.consultant.index') || Route::is('admin.consultant.create') || Route::is('admin.consultant.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
                                 Manage Partner
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </li>
@@ -454,14 +502,14 @@
                 </a>
                 <div class="collapse {{ $is_active_testimonial ? 'show' : '' }}" id="testimonials-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.manage_testimonial') }}"
                                 class="nav-link {{ Route::is('admin.manage_testimonial') || Route::is('admin.add_new_testimonial') || Route::is('admin.edit_testimonial') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Testimonials
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.review.index') }}"
                                 class="nav-link {{ Route::is('admin.review.index') || Route::is('admin.review.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -501,21 +549,21 @@
                 </a>
                 <div class="collapse {{ $is_active_blog ? 'show' : '' }}" id="blogs-events-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.event.index') }}"
                                 class="nav-link {{ Route::is('admin.event.index') || Route::is('admin.event.create') || Route::is('admin.event.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Event
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.event.order.manage') }}"
                                 class="nav-link {{ Route::is('admin.event.order.manage') || Route::is('event.order.details') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Event Participant
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.event.contact.index') }}"
                                 class="nav-link {{ Route::is('admin.event.contact.index') || Route::is('admin.event.contact.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -523,7 +571,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('blog.manage_topic') }}"
                                 class="nav-link {{ Route::is('blog.manage_topic') || Route::is('blog.create_topic') || Route::is('blog.edit_topic') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -531,14 +579,14 @@
                             </a>
                         </li>
 
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('blog.index') }}"
                                 class="nav-link {{ Route::is('blog.index') || Route::is('blog.create') || Route::is('blog.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Blog
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('blog.comments') }}"
                                 class="nav-link {{ Route::is('blog.comments') || Route::is('blog.comment_edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -566,7 +614,6 @@
                     Route::is('admin.expo.media.gallery') ||
                     Route::is('admin.expo.media.video') ||
                     Route::is('admin.expo.join.index') ||
-                    Route::is('admin.expo.theme_colors.index') ||
                     (Route::is('admin.expo.users') && request()->type == 'main') ||
                     (Route::is('admin.expo.users.filter') && request()->type == 'main') ||
                     (Route::is('admin.expo.add_participator') && request()->type == 'main');
@@ -593,17 +640,16 @@
                                 Route::is('admin.expo.delegate.manage') ||
                                 Route::is('admin.expo.media.gallery') ||
                                 Route::is('admin.expo.media.video') ||
-                                Route::is('admin.expo.join.index') ||
-                                Route::is('admin.expo.theme_colors.index');
+                                Route::is('admin.expo.join.index');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.expo.index') }}"
                                 class="nav-link {{ $is_expo_routes ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Expo
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.expo.users', ['type' => 'main']) }}"
                                 class="nav-link {{ (Route::is('admin.expo.users') || Route::is('admin.expo.users.filter') || Route::is('admin.expo.add_participator')) && request()->type == 'main' ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -636,14 +682,14 @@
                 </a>
                 <div class="collapse {{ $is_active_expo_site_module ? 'show' : '' }}" id="expo-site-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.expo-site.exhibitors.index') }}"
                                 class="nav-link {{ Route::is('admin.expo-site.exhibitors.index') || Route::is('admin.expo-site.exhibitor.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Exhibitors
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.expo-site.users', ['type' => 'site']) }}"
                                 class="nav-link {{ Route::is('admin.expo-site.users') || Route::is('admin.expo-site.add_participator') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -656,7 +702,7 @@
                                 Route::is('admin.expo-site.ui.gallery') ||
                                 Route::is('admin.expo-site.ui.video');
                         @endphp
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.expo-site.ui.contact') }}"
                                 class="nav-link {{ $is_active_expo_site_module_contents ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -803,7 +849,7 @@
                 </a>
                 <div class="collapse {{ $is_active_appearance ? 'show' : '' }}" id="appearance-sidemenu">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             @php
                                 $is_active_appearance_theme_option =
                                     Route::is('backend.theme-options') ||
@@ -825,35 +871,35 @@
                                 Theme option
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('backend.home_content') }}"
                                 class="nav-link {{ Route::is('backend.home_content') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Home Content Setup
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('home-banner.index') }}"
                                 class="nav-link {{ Route::is('home-banner.index') || Route::is('home-banner.create') || Route::is('home-banner.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Banner
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('all-pages.index') }}"
                                 class="nav-link {{ Route::is('all-pages.index') || Route::is('all-pages.create') || Route::is('all-pages.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Pages
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.page_control.index') }}"
                                 class="nav-link {{ Route::is('admin.page_control.index') || Route::is('admin.page_control.create') || Route::is('admin.page_control.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
                                 Manage Page Control
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             @php
                                 $is_active_other_pages =
                                     Route::is('admin.ourServices_page') ||
@@ -874,7 +920,7 @@
                                 Other Pages
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             @php
                                 $is_active_landing_pages =
                                     Route::is('admin.landing_page.index') ||
@@ -887,7 +933,7 @@
                                 Landing Pages
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-block">
+                        <li class="nav-item ">
                             <a href="{{ route('admin.manage_currency') }}"
                                 class="nav-link {{ Route::is('admin.manage_currency') || Route::is('admin.create_currency') || Route::is('admin.edit_currency') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-2" aria-hidden="true"></i>
@@ -898,5 +944,6 @@
                 </div>
             </li>
         @endif
+
     </ul>
 </nav>

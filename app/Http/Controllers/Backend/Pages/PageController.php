@@ -563,6 +563,8 @@ class PageController extends Controller
     public function ourServicesPage()
     {
         $data['page'] = AdditionalPage::where('page', 'our-services')->first();
+        // dd($data['page']);
+        // dd(json_decode($data['page']['contents'], true));
         return view('Backend.setting.page.ourServices_page', $data);
     }
 
@@ -578,52 +580,9 @@ class PageController extends Controller
             $page->title = $request->title ?? 'Our Services';
             $page->page = 'our-services';
 
-            // Handling services mini
-            /* $servicesMini = [];
-            if ($request->service_mini_description) {
-                $serviceMiniImages = [];
-                $imageKeys = [];
-                $serviceMiniKeys = [];
-
-                $existingServicesMini = json_decode($page->contents, true)['servicesMini'] ?? [];
-                foreach ($existingServicesMini as $key => $guest) {
-                    $serviceMiniKeys[] = $key;
-                }
-
-                if ($request->hasFile('services_mini_image')) {
-                    foreach ($request->file('services_mini_image') as $key => $file) {
-                        $fileName = 'service-mini_' . rand() . time() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('upload/our-services'), $fileName);
-                        $serviceMiniImages[$key] = url('upload/our-services/' . $fileName);
-                        $imageKeys[] = $key;
-                    }
-                }
-
-                $oldServiceMiniImages = $request->old_services_mini_image ?? [];
-                $mergedServiceMiniImages = $oldServiceMiniImages;
-
-                foreach ($serviceMiniImages as $key => $url) {
-                    if (isset($mergedServiceMiniImages[$key]) && file_exists(public_path('upload/our-services/' . basename($mergedServiceMiniImages[$key])))) {
-                        unlink(public_path('upload/our-services/' . basename($mergedServiceMiniImages[$key])));
-                    }
-
-                    $mergedServiceMiniImages[$key] = $url;
-                }
-
-                $totalServicesMini = count($request->service_mini_description);
-
-                for ($i = 0; $i < $totalServicesMini; $i++) {
-                    $key = $serviceMiniKeys[$i] ?? null;
-
-                    $servicesMini[$key ?? rand(10000, 99999)] = [
-                        'description' => $request->service_mini_description[$i],
-                        'image' => $mergedServiceMiniImages[$key] ?? null
-                    ];
-                }
-            }
-            $servicesData['servicesMini'] = $servicesMini; */
 
             // Handling services large
+            
             $servicesLarge = [];
             if ($request->service_large_description) {
                 $serviceLargeImages = [];
@@ -663,6 +622,7 @@ class PageController extends Controller
                     $servicesLarge[$key ?? rand(10000, 99999)] = [
                         'title' => $request->service_large_title[$i],
                         'description' => $request->service_large_description[$i],
+                        'long_description' => $request->service_large_long_description[$i],
                         'image' => $mergedServiceLargeImages[$key] ?? null
                     ];
                 }

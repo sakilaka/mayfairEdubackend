@@ -12,13 +12,13 @@ use Illuminate\Queue\SerializesModels;
 class EmailVerificationCustom extends Mailable
 {
     use Queueable, SerializesModels;
-    public $value;
+    public $data;
     /**
      * Create a new message instance.
      */
-    public function __construct($value)
+    public function __construct($data)
     {
-        $this->value = $value;
+        $this->data = $data;
     }
 
     /**
@@ -27,7 +27,7 @@ class EmailVerificationCustom extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Email Verification Link',
+            subject: 'Email Verification',
         );
     }
 
@@ -37,7 +37,7 @@ class EmailVerificationCustom extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'Frontend.mail.user_email_verification',
+            view: 'Frontend.auth.email_verification',
         );
     }
 
@@ -49,5 +49,11 @@ class EmailVerificationCustom extends Mailable
     public function attachments(): array
     {
         return [];
+    }
+    
+    public function build()
+    {
+        return $this->from(env('MAIL_FROM_ADDRESS'),env('MAIL_FROM_NAME'))
+        ->view('Frontend.auth.email_verification');
     }
 }

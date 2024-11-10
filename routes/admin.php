@@ -62,6 +62,10 @@ Route::get('logout', [AuthenticatedSessionController::class, 'destroy'])->name('
 Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(function () {
   //Admin Dashboard Route
   Route::get('dashboard', [BackendController::class, 'index'])->name('admin.dashboard');
+  Route::get('dashboards', [BackendController::class, 'indexs'])->name('admin.level.create');
+
+  // level star
+  
   // home route start
 
   Route::prefix('home')->group(function () {
@@ -537,6 +541,8 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::post('student-appliction-family-info-update/{id}', [StudentApplictionController::class, "familyUpdate"])->name('admin.student_appliction_update_family');
   Route::get('student-appliction-program-edit/{id}', [StudentApplictionController::class, "editProgramInfo"])->name('admin.student_appliction_program_edit');
   Route::post('students-appliction-program-update/{id}', [StudentApplictionController::class, "updateProgramInfo"])->name('admin.student_appliction_program_update');
+  Route::post('/update-paid-amount/{id}', [StudentApplictionController::class, 'updatePaidAmount'])->name('admin.update.paid.amount');
+
   Route::get('student-appliction-document/{id}', [StudentApplictionController::class, "editDocument"])->name('admin.student_appliction_document');
   Route::post('student-appliction-document-update/{id}', [StudentApplictionController::class, "updateDocument"])->name('admin.student_appliction_document-update');
   Route::post('backend.application-status/{id}', [StudentApplictionController::class, "applicationStatus"])->name('backend.application-status');

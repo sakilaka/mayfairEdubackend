@@ -84,29 +84,33 @@
             @php
                 $servicesLarge = json_decode($page['contents'], true)['servicesLarge'] ?? [];
             @endphp
+
             @if (!empty($servicesLarge))
                 <div class="mt-5">
                     <div class="row justify-content-center">
                         @foreach ($servicesLarge as $key => $service)
                             <div class="col-lg-4 col-md-6 mb-4">
-                                <div class="card service-card" style="">
-                                    <img src="{{ $service['image'] ?? asset('frontend/images/No-image.jpg') }}"
-                                        class="card-img-top" alt="{{ $service['title'] }}-image">
-                                    <div class="card-body">
-                                        <p class="card-subtitle text-capital text-muted">Service {{ $loop->iteration }}</p>
-                                        <h4 class="card-title mb-2 fw-bold" style="font-size: 1.3rem">
-                                            {{ $service['title'] }}
-                                        </h4>
-                                        <p class="card-text text-muted">
-                                            {{ $service['description'] }}
-                                        </p>
+                                <a href="{{ route('frontend.single_service', ['title' => $service['title']]) }}">
+                                    <div class="card service-card" style="">
+                                        <img src="{{ $service['image'] ?? asset('frontend/images/No-image.jpg') }}"
+                                            class="card-img-top" alt="{{ $service['title'] }}-image">
+                                        <div class="card-body">
+                                            <p class="card-subtitle text-capital text-muted">Service {{ $loop->iteration }}</p>
+                                            <h4 class="card-title mb-2 fw-bold" style="font-size: 1.3rem">
+                                                {{ $service['title'] }}
+                                            </h4>
+                                            <p class="card-text text-muted">
+                                                {{ $service['description'] }}
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         @endforeach
                     </div>
                 </div>
             @endif
+
         </div>
         @include('Frontend.layouts.parts.news-letter')
 

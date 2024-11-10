@@ -16,6 +16,7 @@ use App\Models\Course;
 use App\Models\Department;
 use App\Models\Review;
 use App\Models\Scholarship;
+use App\Models\Section;
 use App\Models\State;
 use App\Models\User;
 
@@ -119,6 +120,8 @@ class UniversityController extends Controller
         $data['select_state'] = $select_state;
         $data['select_city'] = $select_city;
         $data['universities'] = $univerties->get();
+        
+        $data['intakes'] = Section::all();
 
 
         $data['banner'] = Banner::where('type', 'university')->first();
@@ -247,6 +250,13 @@ class UniversityController extends Controller
             });
         }
 
+        
+        if ($intake = request()->input('intakes')) {
+            $univerties = $univerties->where(function ($query) use ($intake) {
+                $query->where('intake', $intake);
+            });
+        }
+
 
         $data['countries'] = $countries = Country::withCount('university')->where('continent_id', $select_continent)->where('status', 1)->get();
 
@@ -261,8 +271,12 @@ class UniversityController extends Controller
         $data['select_city'] = $select_city;
         $data['universities'] = $univerties->get();
 
+        // return response()->json(['data'=> $data['universities']]);
+        $data['intakes'] = Section::all();
+
         return view('Frontend.university.ajax-university-filter', $data);
     }
+    
     function getcitybyCountry()
     {
         $cities = City::withCount('university')->has('university')->where('status', 1)->get();
@@ -274,7 +288,7 @@ class UniversityController extends Controller
 
     public function universityDetails($id)
     {
-        $data['university'] = $university = University::find($id);
+        $data['university'] = $university = University::with('city', 'state')->find($id);
         $data['scholarships'] = Scholarship::where('status', 1)->get();
         $data['majors'] = Department::where('status', 1)->get();
 

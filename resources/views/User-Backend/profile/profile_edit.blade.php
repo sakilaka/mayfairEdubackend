@@ -115,19 +115,19 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-md-6 col-lg-4">
+                                    {{-- <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
                                             <label class="col-form-label">Date of Birth</label>
                                             <input type="date" class="form-control" value="{{ Auth::user()->dob }}"
                                                 name="dob" />
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="col-md-6 col-lg-4">
                                         <div class="form-group">
-                                            <label class="col-form-label">NID Number</label>
+                                            <label class="col-form-label">Passport or NID</label>
                                             <input type="text" class="form-control" value="{{ Auth::user()->nid }}"
-                                                name="nid" placeholder="NID" />
+                                                name="nid" placeholder="Passport or NID" />
                                         </div>
                                     </div>
 

@@ -96,7 +96,7 @@ class UserController extends Controller
             $user = auth()->user();
             $userId = $user->id;
             $userRole = $user->role;
-
+            $data['status'] = $user->status;
             $data['orders'] =
                 StudentApplication::where(function ($query) use ($userId, $userRole) {
                     $query->where('applied_by', 'like', '%"' . $userRole . '":' . $userId . '%');
@@ -113,6 +113,9 @@ class UserController extends Controller
         $student = auth()->user();
         $data['consultant'] = User::where('id', $student->partner_ref_id)
             ->first();
+        $data['user'] = User::where('id', auth()->user()->id)
+            ->first();
+            
 
         // return view('user.dashboard', $data);
         return view('User-Backend.index', $data);
@@ -231,7 +234,8 @@ class UserController extends Controller
 
     public function myOrderDetails($id)
     {
-        $data['s_appliction'] = StudentApplication::find($id);
+        $data['s_appliction'] = StudentApplication::with('documents')->find($id);
+        // dd($data['s_appliction']);
         // return view('user.order.application_details', $data);
         return view('User-Backend.application_view', $data);
     }

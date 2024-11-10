@@ -21,24 +21,7 @@
     <style>
         .item {
             border: 1px solid #efefef;
-            box-shadow: 0 0 20px -5px rgba(150, 150, 150, 0.25);
-        }
-    </style>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
-    <style>
-        .iti--inline-dropdown {
-            display: flex;
-            position: relative;
-            z-index: 1000 !important;
-        }
-
-        .iti--inline-dropdown .iti__dropdown-content {
-            z-index: 9999 !important;
-        }
-
-        .top-layer {
-            z-index: 3 !important;
+            box-shadow: 0 0 20px -5px rgba(150,150,150,0.25);
         }
     </style>
 @endsection
@@ -60,24 +43,7 @@
                                 <strong style="font-size: 1rem;" class="badge badge-warning"
                                     id="application-id">{{ $application->application_code }}</strong>
                             </div>
-                            <div class="mt-2 mb2 application-fee d-flex justify-content-between">
-                                <span class="service_type"> Service Charge <span
-                                        data-tippy-content="This is the service charge required to process your application."><i
-                                            class="far fa-question-circle"></i></span></span>
-                                <div>
-                                    <strong id="orig-app-fee"
-                                        style="color: grey; text-decoration: line-through; display: none;"> <span
-                                            style="font-size: 1rem; text-decoration:line-through;" class="badge p-0">
-                                            {{-- {{ convertCurrency($application->service_charge) }} --}}
-                                            Pending
-                                        </span></strong>
-                                    <strong> <span style="font-size: 1rem;color:black;" class="badge p-0"
-                                            id="application-fee">
-                                            {{-- {{ convertCurrency($application->service_charge) }} --}}
-                                            Pending
-                                        </span></strong>
-                                </div>
-                            </div>
+                         
                             <div class="mt-2 mb2 application-fee d-flex justify-content-between">
                                 <span class="service_type"> Application Fees <span
                                         data-tippy-content="This is the application charge required to process your application."><i
@@ -91,6 +57,7 @@
                                             id="application-fee">{{ convertCurrency($application->application_fee) }}</span></strong>
                                 </div>
                             </div>
+
                             <div class="mt-2 mb2 service-fee-container justify-content-between d-none">
                                 <span class="service-fee"> Service Fee <span
                                         data-tippy-content="This is the service fee to cover the processing of your application to the university on China Admissions platform."><i
@@ -103,11 +70,11 @@
                                 <strong><span style="font-size: 1rem;" class="badge p-0" id="opt-service-fee">$990
                                         USD</span></strong>
                             </div>
-                            <div class="mt-2 mb2 total-fee d-flex justify-content-between"><span class=""> Total
+                            {{-- <div class="mt-2 mb2 total-fee d-flex justify-content-between d-none"><span class=""> Total
                                     Fee</span>
                                 <strong><span style="font-size: 1rem;color:black;" class="badge p-0"
                                         id="total-fee">{{ convertCurrency($application->total_fee) }}</span></strong>
-                            </div>
+                            </div> --}}
                             <hr>
                         </div>
 
@@ -770,8 +737,8 @@
                                         <button class="multisteps-form__progress-btn" type="button" title="Family">Your
                                             Family
                                         </button>
-                                        <button id="services-nav" class="multisteps-form__progress-btn" type="button"
-                                            title="Choose Service">Choose Service
+                                        <button id="agreement-nav" class="multisteps-form__progress-btn" type="button"
+                                            title="Agreement">Terms and Conditions
                                         </button>
                                         <button class="multisteps-form__progress-btn confirm-nav" type="button"
                                             title="Upload Documents">Upload Documents
@@ -816,31 +783,29 @@
                                                             <div class=" form-label-group mt-2">
 
                                                                 <input type="tel" id="phone" name="phone"
-                                                                    data-name="phone" required="" placeholder="Enter Phone Number"
-                                                                    class="form-control form-control-lg pt-0 @error('phone') is-invalid @enderror"
+                                                                    data-name="phone" required="" placeholder="Phone"
+                                                                    class="form-control"
                                                                     value="{{ auth()->user()->phone ?? $application->phone }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
-                                                                <span class="text-danger" id="output"></span>
-                                                                <div class="invalid-feedback">Please provide a valid
-                                                                    contact
-                                                                    number.
+                                                                <div class="invalid-feedback">
+                                                                    This field is required.
                                                                 </div>
+
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class=" form-label-group mt-2">
 
                                                                 <input type="tel" id="contact_id" name="contact_id"
-                                                                    data-name="contact_id"
-                                                                    placeholder="WeChat/Whatsapp/Telegram"
+                                                                    data-name="contact_id" placeholder="WeChat/Whatsapp/Telegram"
                                                                     class="form-control"
                                                                     value="{{ $application->contact_id }}">
                                                                 <label for="contact_id" class="form-control-placeholder">
                                                                     Contact ID
-                                                                    (WeChat/Whatsapp/Telegram)
-                                                                </label>
+                                                                (WeChat/Whatsapp/Telegram)
+                                                            </label>
 
                                                             </div>
                                                         </div>
@@ -2164,7 +2129,8 @@
                                         </div>
 
                                         @include('Frontend.university.apply-parts.family-panel')
-                                        @include('Frontend.university.apply-parts.service-panel')
+                                        {{-- @include('Frontend.university.apply-parts.service-panel') --}}
+                                        @include('Frontend.university.apply-parts.terms-panel')
                                         @include('Frontend.university.apply-parts.document-panel')
                                         @include('Frontend.university.apply-parts.payment-panel')
 
@@ -2176,6 +2142,7 @@
                                                     value="D2ErfFCeK4gtXZUv3v4SjLY9WSVz4gQZq25sUGHqf5RqPokv5UyB0HdnCvAiyHUo">
                                             </form>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -2255,49 +2222,6 @@
     </div>
 @endsection
 @section('cus_sc')
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
-    <script>
-        const input = document.querySelector("#phone");
-        const output = document.querySelector("#output");
-
-        const iti = window.intlTelInput(input, {
-            initialCountry: "auto",
-            nationalMode: true,
-            geoIpLookup: callback => {
-                fetch("https://ipapi.co/json")
-                    .then(res => res.json())
-                    .then(data => callback(data.country_code
-                        .toLowerCase()))
-                    .catch(() => callback("bd"));
-            },
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
-        });
-
-        const handleChange = () => {
-            let text = "";
-            if (input.value) {
-                if (iti.isValidNumber()) {
-                    text = "Valid number detected. International format: " + iti.getNumber();
-                    output.classList.remove('text-danger');
-                    output.classList.add('text-success');
-                } else {
-                    text = "Please enter a valid number";
-                    output.classList.remove('text-success');
-                    output.classList.add('text-danger');
-                }
-            } else {
-                text = "Please enter a valid number";
-                output.classList.remove('text-success');
-                output.classList.add('text-danger');
-            }
-            output.innerHTML = text;
-        };
-
-
-        input.addEventListener('change', handleChange);
-        input.addEventListener('keyup', handleChange);
-    </script>
-
     <script>
         $(document).ready(function() {
             $('.delete-prog-btn').on('click', function() {

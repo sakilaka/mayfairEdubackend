@@ -4,6 +4,7 @@
 <head>
     @include('Backend.components.head')
     <title>{{ env('APP_NAME') }} | All Partner</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 
 <body>
@@ -26,11 +27,9 @@
                                 Add Partner</a>
                         </nav>
                     </div>
-
                     <div class="row card">
                         <div class="col-sm-12 card-body table-responsive">
-                            <table id="order-listing" class="table table-striped dataTable no-footer" role="grid"
-                                aria-describedby="order-listing_info">
+                            <table id="order-listing" class="table table-striped dataTable no-footer" role="grid" aria-describedby="order-listing_info">
                                 <thead>
                                     <tr role="row">
                                         <th>SL</th>
@@ -38,22 +37,51 @@
                                         <th>Mobile</th>
                                         <th>Email</th>
                                         <th>Continent</th>
+                                        <th>Passport</th>
+                                        <th>Level (star)</th>
                                         <th>Status</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($consultants as $consultant)
+                                        @php
+                                            $star = optional($partners->firstWhere('partner.id', $consultant->id))['star'] ?? 0;
+                                        @endphp
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
                                             <td>
-                                                <img src="{{ $consultant->image_show }}" alt="{{ $consultant->name }}"
-                                                    width="40px" height="40px">&nbsp;&nbsp;
+                                                <img src="{{ $consultant->image_show }}" alt="{{ $consultant->name }}" width="40px" height="40px">&nbsp;&nbsp;
                                                 {{ $consultant->name }}
                                             </td>
                                             <td>{{ $consultant->mobile }}</td>
                                             <td>{{ $consultant->email }}</td>
                                             <td>{{ $consultant->continents?->name }}</td>
+                                            <td
+                                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">
+                                                <span data-toggle="tooltip" data-placement="left"
+                                                    data-original-title="{{ $consultant->passport ?? '' }}">
+                                                    @if ($consultant->passport)
+                                                        <p class="my-2">
+                                                            <a href="{{ asset('upload/users/passport/' . $consultant->passport) }}"
+                                                                target="_blank">
+                                                                View File
+                                                            </a>
+                                                        </p>
+                                                    @else
+                                                        <p class="my-2">No file uploaded.</p>
+                                                    @endif
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @if ($consultant->star > 0)
+                                                    @for ($i = 0; $i < $consultant->star; $i++)
+                                                        <i class="fa fa-star text-warning"></i> 
+                                                    @endfor
+                                                @else
+                                                    Beginner
+                                                @endif
+                                            </td>
                                             <td class="text-center">
                                                 @if ($consultant->status == 1)
                                                     <a href="{{ route('admin.consultant.status', $consultant->id) }}">
@@ -66,13 +94,11 @@
                                                 @endif
                                             </td>
                                             <td class="text-right">
-                                                <a href="{{ route('admin.consultant.edit', $consultant->id) }}"
-                                                    class="btn text-primary">
+                                                <a href="{{ route('admin.consultant.edit', $consultant->id) }}" class="btn text-primary">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a>
                                                 <input type="hidden" value="{{ $consultant->id }}">
-                                                <a data-toggle="modal" data-target="#delete_modal_box"
-                                                    class="btn text-primary delete-item">
+                                                <a data-toggle="modal" data-target="#delete_modal_box" class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>
@@ -82,6 +108,8 @@
                             </table>
                         </div>
                     </div>
+                    
+                    
                 </div>
 
                 {{-- Item delete modal --}}

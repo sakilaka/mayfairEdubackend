@@ -367,9 +367,16 @@
                                 <select name="scholarship_type" class="form-control select2_form_select"
                                     style="width: 90%;">
                                     <option value="">Select Type</option>
-                                    @foreach ($scholarships->unique('type') as $item)
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                    <option value="E">E</option>
+                                    <option value="F">F</option>
+                                    <option value="G">G</option>
+                                    {{-- @foreach ($scholarships->unique('type') as $item)
                                         <option value="{{ $item->type }}">{{ $item->type }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                             </div>
                         </div>

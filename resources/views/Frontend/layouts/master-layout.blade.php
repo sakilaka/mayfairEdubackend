@@ -22,6 +22,13 @@
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
+
+    <link rel="stylesheet" href="{{ asset('frontend/justifiedGallery/justifiedGallery.min.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-zoom.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     @php
         $titles = '';
         $keywords = '';
@@ -784,6 +791,55 @@
     <script src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/js/dropzone.js"></script>
 
     @yield('cus_sc')
+
+    <script src="{{ asset('frontend/justifiedGallery/jquery.justifiedGallery.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#justified-gallery-university').justifiedGallery({
+                    rowHeight: 170,
+                    margins: 5,  
+                    maxRowHeight: 180,
+                    lastRow: 'nojustify',
+                    captions: false
+                }).on('jg.complete', function() {
+                    lightGallery(document.getElementById('justified-gallery-university'), {
+                        plugins: [lgZoom, lgThumbnail],
+                        thumbnail: true
+                    });
+                });
+            });
+        </script>
+        
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.image-gallery').each(function(index, element) {
+            $(element).justifiedGallery({
+                rowHeight: 180,
+                margins: 5,
+                maxRowHeight: 300,
+                lastRow: 'nojustify',
+                captions: false
+            }).on('jg.complete', function() {
+                lightGallery(element, {
+                    plugins: [lgZoom, lgThumbnail],
+                    thumbnail: true,
+                    selector: 'a',
+                    download: true,
+                    speed: 500
+                });
+            });
+        });
+    });
+</script>
+
     <script>
         $(document).ready(function() {
             $(".delete-button").click(function() {
@@ -889,6 +945,8 @@
             {!! $custom_js->custom_body_js !!}
         </script>
     @endif
+
+
 
 </body>
 

@@ -36,7 +36,7 @@
                                         <th>SL</th>
                                         <th>Course Name</th>
                                         <th>University Name</th>
-                                        <th class="text-center">Service Charge</th>
+                                        {{-- <th class="text-center">Service Charge</th> --}}
                                         <th class="text-center">Application Fees</th>
                                         <th class="text-center">Yearly Fee</th>
                                         <th class="text-center">Show On Home</th>
@@ -74,10 +74,10 @@
                                                     {{ $course->university?->name ?? '' }}
                                                 </a>
                                             </td>
-                                            <td class="text-center">
-                                                {{-- {{ $course->service_charge }} --}}
+                                            {{-- <td class="text-center">
+                                                {{ $course->service_charge }}
                                                 {{ $course->service_charge_1 . ' - ' . $course->service_charge_2 }}
-                                            </td>
+                                            </td> --}}
                                             <td class="text-center">{{ $course->application_charge }}</td>
                                             <td class="text-center">{{ $course->year_fee }}</td>
                                             <td class="text-center">
@@ -93,17 +93,19 @@
                                                     </a>
                                                 @endif
                                             </td>
+
                                             <td class="text-center">
                                                 @if ($course->status == 1)
-                                                    <a href="{{ route('home-category.status_toggle', $course->id) }}">
+                                                    <a href="{{ route('admin.u_course.status', $course->id) }}">
                                                         <span class="badge badge-success">Active</span>
                                                     </a>
                                                 @elseif($course->status == 0)
-                                                    <a href="{{ route('home-category.status_toggle', $course->id) }}">
+                                                    <a href="{{ route('admin.u_course.status', $course->id) }}">
                                                         <span class="badge badge-danger">Inactive</span>
                                                     </a>
                                                 @endif
                                             </td>
+                                            
                                             <td class="text-right d-flex">
                                                 <a href="{{ route('admin.u_course.edit', $course->id) }}"
                                                     class="btn text-primary">

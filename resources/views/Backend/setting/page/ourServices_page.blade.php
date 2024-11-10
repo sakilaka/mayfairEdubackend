@@ -50,12 +50,15 @@
                                         @csrf
 
                                         <div class="row">
+                            
+
                                             <div class="col-sm-12 mb-3">
-                                                <div id="services_large_image">
+                                              
+                                                <div class="{{-- collapse --}}" id="services_large_image">
                                                     <div class="card-body">
-                                                        <div class="col-sm-12">
+                                                        <div class="col-sm-12 {{-- mt-3 --}}">
                                                             <div class="d-flex justify-content-between">
-                                                                <h5 class="d-inline">Our Services
+                                                                <h5 class="d-inline">Our Services {{-- (Large) --}}
                                                                 </h5>
                                                                 <a href="javascript:void(0)"
                                                                     class="btn btn-sm btn-primary"
@@ -172,13 +175,14 @@
                                                                                     Description
                                                                                     <span class="text-danger">*</span>
                                                                                 </label>
-                                                                                <textarea name="service_large_long_description[]" class="form-control editor">{{ $service['service_large_long_description'] ?? '' }}</textarea>
+                                                                                <textarea name="service_large_long_description[]" class="form-control editor" style="height: 150px">{{ $service['long_description'] ?? "No description" }}</textarea>
                                                                             </div>
                                                                         </div>
 
                                                                         <div class="col-12 border-top"></div>
                                                                     </div>
                                                                 @empty
+
                                                                     <div class="row align-items-center mt-2">
                                                                         <div class="col-12 row align-items-center">
                                                                             <div
@@ -274,6 +278,7 @@
 
                                                                         <div class="col-12 border-top"></div>
                                                                     </div>
+                                                                    
                                                                 @endforelse
                                                             </div>
                                                         </div>
@@ -323,19 +328,12 @@
             }
         });
 
+
         /* add service large */
         $('#add-services-large').on('click', function() {
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
-            const editorKey = `service_large_long_description[]`;
-
-            if (!window.editorInstances || !window.editorInstances[editorKey]) {
-                console.error(`Editor instance for '${editorKey}' not found.`);
-            } else {
-                const editorInstance = window.editorInstances[editorKey];
-                editorInstance.setData('');
-            }
-
+    
             var myvar = `
                 <div class="row align-items-center mt-2">
                     <div class="col-12 row align-items-center">
@@ -350,7 +348,7 @@
                                     <ul></ul>
                                 </div>
                                 <input type="file" class="dropify"
-                                    name="services_large_image[${randomNumber}]"
+                                    name="service_large_image[${randomNumber}]"
                                     accept="image/*">
                                 <button type="button"
                                     class="dropify-clear">Remove</button>
@@ -420,7 +418,7 @@
                                 Description
                                 <span class="text-danger">*</span>
                             </label>
-                            <textarea name="${editorKey}" class="form-control editor"></textarea>
+                            <textarea name="service_large_long_description[]" class="form-control" style="height: 150px"></textarea>
                         </div>
                     </div>
 
@@ -434,6 +432,7 @@
         $(document).on('click', '.remove-services-large', function() {
             $(this).parent().parent().parent().remove();
         });
+
     </script>
 </body>
 

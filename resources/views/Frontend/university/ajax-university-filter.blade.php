@@ -102,6 +102,33 @@
             </div>
         </div>
 
+
+        @php
+            $selectedIntakes = request()->input('intakes') ?? [];
+        @endphp
+
+
+        <div class="my-2">
+            <div class="toggle-header" data-filterslist="intakes">
+                <h5 class="title is-5">Intake</h5>
+                <div class="toggle-icon" style="transform: rotate(-45deg);"></div>
+            </div>
+
+            <div class="toggle-content" data-filters="intakes">
+                <select name="intakes" class="form-control select2_form_select" style="width: 90%;">
+                    <option value="">Select Intake</option>
+                    @foreach ($intakes as $intake)
+                        <option value="{{ $intake->name }}" {{ ($selectedIntakes == $intake->name) ? 'selected' : '' }}>
+                            {{ $intake->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+
+
+
+
     </div>
 </div>
 <div class="column is-10" id="schools">

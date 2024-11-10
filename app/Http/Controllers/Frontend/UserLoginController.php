@@ -4,17 +4,17 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Mail\ChangePassword;
-use App\Mail\ForgotPasswordEmail;
-use App\Mail\EmailVerification;
 use App\Mail\EmailVerificationCustom;
+use App\Mail\ForgotPasswordEmail;
 use App\Models\User;
 use App\Models\Useraccess;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class UserLoginController extends Controller
 {
@@ -40,15 +40,16 @@ class UserLoginController extends Controller
             return redirect('/sign-in')->with('error', 'This mail have already register, Please try another mail.');
             // return redirect('/sign-in')->with('error', 'Email not verified. Please Verify your email!');
         }
+
         $validator = Validator::make($request->all(), [
 
             // 'email' => 'email:rfc,dns',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'type' => 'required',
-            'password' =>  [
+            'password' => [
                 'required',
                 'string',
-                'min:8',             // must be at least 10 characters in length
+                'min:8', // must be at least 10 characters in length
                 // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             ],
         ]);
@@ -61,13 +62,15 @@ class UserLoginController extends Controller
         // try{
         //     DB::beginTransaction();
 
-
         $user = new User();
         $user->name = $request->name ?? '';
-        $user->mobile = $request->mobile;
+
+        $countryCode = $request->country_code;
+        $mobile = $request->mobile;
+        $user->mobile = $countryCode . $mobile;
+
         $user->email = $request->email;
         $user->password = $request->password;
-
         $user->gender = $request->gender;
         $user->qualification = $request->qualification;
         $user->experience = $request->experience;
@@ -81,10 +84,25 @@ class UserLoginController extends Controller
 
         $user->address = $request->address;
         $user->type = $request->type;
+        $user->is_verified = '0';
         $user->role = 'student';
+        $tempCode = rand(10000, 99999);
+        $user->temp_mail_code = $tempCode;
         $user->save();
 
-        return redirect('/sign-in')->with('success', 'You are successfully Registered. Now You can login. Thank You.');
+        $data = [
+            'email' => $user->email,
+            'verification_code' => $tempCode,
+        ];
+        
+        try {
+            Mail::to($user->email)->send(new EmailVerificationCustom($data));
+            $email = $data['email'];
+            return view('Frontend.auth.verification_check', compact('email'))->with('success', 'You are successfully Registered. Now You can Verify. Thank You.');
+        } catch (\Exception $e) {
+            // return $e->getMessage();
+            return redirect()->back()->with('error', 'Registration successful. But failed to send verification code');
+        }
 
         // if($user->type == 1){
         //     $patient = New Patient;
@@ -96,8 +114,6 @@ class UserLoginController extends Controller
         //     $patient->user_id =  $user->id;
         //     $patient->save();
         // }
-
-
 
         // $token= $this->generateRandomString(16);
         // // dd($token);
@@ -121,8 +137,54 @@ class UserLoginController extends Controller
         //     return back()->with ('error_message', "Something Went Wrong!")->withInput();
         // }
 
-
     }
+
+    public function sendVerificationEmail(){
+        
+        $user = auth()->user(); 
+        // dd($user);
+        $tempCode = rand(10000, 99999);
+        $user->temp_mail_code = $tempCode;
+        $user->save();
+    
+        $data = [
+            'email' => $user->email,
+            'verification_code' => $tempCode,
+        ];
+    
+        try {
+            Mail::to($user->email)->send(new EmailVerificationCustom($data));
+            $email = $data['email'];
+            return view('Frontend.auth.verification_check', compact('email'))->with('success', 'You are successfully Registered. Now You can Verify. Thank You.');
+        } catch (\Exception $e) {
+            // return $e->getMessage();
+            return redirect()->back()->with('error', 'Registration successful. But failed to send verification code');
+        }
+    }
+
+
+    public function userVerify(Request $request)
+    {
+        $user = User::where('email', $request->email)->first();
+    
+        if ($request->verification_code == $user->temp_mail_code) {
+            // Update user verification status
+            $user->temp_mail_code = '';
+            $user->is_verified = '1';
+            $user->save();
+    
+            // Conditional redirect based on login status
+            if (auth()->check()) {
+                return redirect()->route('user.dashboard')->with('success', 'Your email has been successfully verified!');
+            } else {
+                return redirect('/sign-in')->with('success', 'You are successfully registered. Now you can log in. Thank you.');
+            }
+        } else {
+            return redirect()->back()->with('error', 'Verification code does not match.');
+        }
+    }
+    
+
 
     public function partnerRegister(Request $request)
     {
@@ -150,10 +212,10 @@ class UserLoginController extends Controller
             // 'email' => 'email:rfc,dns',
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'type' => 'required',
-            'password' =>  [
+            'password' => [
                 'required',
                 'string',
-                'min:8',             // must be at least 10 characters in length
+                'min:8', // must be at least 10 characters in length
                 // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
             ],
         ]);
@@ -166,12 +228,23 @@ class UserLoginController extends Controller
         // try{
         //     DB::beginTransaction();
 
-
         $user = new User();
         $user->name = $request->name ?? '';
-        $user->mobile = $request->mobile;
+
+        $countryCode = $request->country_code;
+        $mobile = $request->mobile;
+        $user->mobile = $countryCode . $mobile;
+
+        // dd($user->mobile);
+
         $user->email = $request->email;
         $user->password = $request->password;
+
+        if ($request->hasFile('passport')) {
+            $fileName = rand() . time() . '_passport_file.' . request()->passport->getClientOriginalExtension();
+            request()->passport->move(public_path('upload/users/passport/'), $fileName);
+            $user->passport = $fileName;
+        }
 
         $user->gender = $request->gender;
         $user->qualification = $request->qualification;
@@ -202,8 +275,6 @@ class UserLoginController extends Controller
         //     $patient->save();
         // }
 
-
-
         // $token= $this->generateRandomString(16);
         // // dd($token);
         // $user->email_verify_token = $token;
@@ -226,20 +297,17 @@ class UserLoginController extends Controller
         //     return back()->with ('error_message', "Something Went Wrong!")->withInput();
         // }
 
-
     }
 
     public function userSignin(Request $request)
     {
 
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);
 
         $user = User::where('email', $request->email)->first();
-
-
 
         if ($user) {
             $remember_me = $request->has('remember_me') ? true : false;
@@ -281,12 +349,11 @@ class UserLoginController extends Controller
         return back()->with('error', 'Your email or password is incorrect.');
     }
 
-
     public function consultentSignin(Request $request)
     {
         $this->validate($request, [
-            'email'   => 'required|email',
-            'password' => 'required|min:6'
+            'email' => 'required|email',
+            'password' => 'required|min:6',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -325,7 +392,7 @@ class UserLoginController extends Controller
                         } else {
                             session()->put('partner_ref_id', auth()->user()->id);
                             session()->put('applied_by', auth()->user()->role);
-                            
+
                             return redirect('/user/profile');
                         }
                     }
@@ -336,7 +403,7 @@ class UserLoginController extends Controller
         return back()->with('error', 'Your email or password is incorrect.');
     }
 
-    function generateRandomString($length = 10)
+    public function generateRandomString($length = 10)
     {
         return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
     }
@@ -348,19 +415,18 @@ class UserLoginController extends Controller
         return view('User-Backend.profile.profile_edit', compact('password'));
     }
 
-
     public function setChangePassword(Request $request, $id)
     {
         try {
             $request->validate([
                 'current_password' => 'required',
                 // 'new_password' => 'required|min:8|confirmed',
-                'new_password' =>  [
+                'new_password' => [
                     'required',
                     'string',
                     'min:8',
                     'confirmed',
-                ]
+                ],
             ]);
 
             // Check if current password is correct
@@ -369,7 +435,6 @@ class UserLoginController extends Controller
             }
 
             $user = User::find($id);
-
 
             $data = [];
             $token = $this->generateRandomString(6);
@@ -404,10 +469,10 @@ class UserLoginController extends Controller
         if (isset($request->token)) {
             $user = User::find($id);
             if ($request->token == $user->change_token) {
-                $date1 =  date("Y-m-d H:i:s");
+                $date1 = date("Y-m-d H:i:s");
                 $t1 = strtotime($date1);
                 $t2 = strtotime($user->change_date);
-                $diff =  $t1  - $t2;
+                $diff = $t1 - $t2;
                 $hours = $diff / (60 * 60);
 
                 // dd($hours);
@@ -434,18 +499,12 @@ class UserLoginController extends Controller
         return redirect('/');
     }
 
-
-
-
     //Forget Password section start here
 
     public function forgotPassword()
     {
         return view('Frontend.forgot_password');
     }
-
-
-
 
     public function sentMailforgotPassword(Request $request)
     {
@@ -460,7 +519,7 @@ class UserLoginController extends Controller
             $send_mail = $user->email;
             $data['id'] = $user->id;
             $data['token'] = $token;
-            $details['email'] =  $send_mail;
+            $details['email'] = $send_mail;
             //dd(new ForgotPasswordEmail($data));
             //    dd($send_mail);
             $details['send_item'] = new ForgotPasswordEmail($data);
@@ -479,10 +538,10 @@ class UserLoginController extends Controller
         if (isset($request->token)) {
             $data['user'] = $user = User::find($id);
             if ($request->token == $user->forget_token) {
-                $date1 =  date("Y-m-d H:i:s");
+                $date1 = date("Y-m-d H:i:s");
                 $t1 = strtotime($date1);
                 $t2 = strtotime($user->forget_date);
-                $diff =  $t1  - $t2;
+                $diff = $t1 - $t2;
                 $hours = $diff / (60 * 60);
                 if ($hours <= 1) {
                     return view('Frontend.reset_forgot_password', $data);
@@ -500,7 +559,6 @@ class UserLoginController extends Controller
             return redirect('/forgot-password')->with('message', 'Please resubmit your email, and reset your password. Thank You.');
         }
     }
-
 
     public function resetForgotPassword(Request $request, $id)
     {
@@ -527,10 +585,10 @@ class UserLoginController extends Controller
         if (isset($request->token)) {
             $data['user'] = $user = User::find($id);
             if ($request->token == $user->forget_token) {
-                $date1 =  date("Y-m-d H:i:s");
+                $date1 = date("Y-m-d H:i:s");
                 $t1 = strtotime($date1);
                 $t2 = strtotime($user->forget_date);
-                $diff =  $t1  - $t2;
+                $diff = $t1 - $t2;
                 $hours = $diff / (60 * 60);
                 if ($hours <= 1) {
                     return view('auth.reset_forgot_password', $data);
@@ -548,7 +606,6 @@ class UserLoginController extends Controller
             return redirect('/admin-forgot-password')->with('message', 'Please resubmit your email, and reset your password. Thank You.');
         }
     }
-
 
     public function resetAdminForgotPassword(Request $request, $id)
     {

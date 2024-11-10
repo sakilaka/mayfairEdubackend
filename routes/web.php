@@ -53,10 +53,16 @@ Route::middleware(['accessLogin'])->group(function () {
         Route::get('/partner-register', [FrontendController::class, 'consultantRegister'])->name('frontend.consultant_register');
     });
 
+    
     Route::post('/sign-in', [UserLoginController::class, 'userSignin'])->name('frontend.sign_in');
     Route::post('/partner-sign-in', [UserLoginController::class, 'consultentSignin'])->name('frontend.consultent_sign_in');
     Route::post('/register', [UserLoginController::class, 'userRegister'])->name('frontend.set_register');
+    Route::post('/verify', [UserLoginController::class, 'userVerify'])->name('frontend.set_verify');
     Route::post('/partner-register', [UserLoginController::class, 'partnerRegister'])->name('frontend.set_register_partner');
+    
+    Route::get('/send-verification-email', [UserLoginController::class, 'sendVerificationEmail'])->name('frontend.send_verification_email');
+
+    
 
     //Subscription Route
     Route::post('/subscription', [SubscriberController::class, 'add_subscription'])->name('frontend.subscription');
@@ -64,6 +70,7 @@ Route::middleware(['accessLogin'])->group(function () {
     //Page Route
     Route::get('/founders-co-founders', [FrontendController::class, 'founders_co_founders'])->name('frontend.founders_co_founders');
     Route::get('/our-services', [FrontendController::class, 'our_services'])->name('frontend.our_services');
+    Route::get('/single-services/{title}', [FrontendController::class, 'single_services'])->name('frontend.single_service');
     Route::get('/why-china', [FrontendController::class, 'why_china'])->name('frontend.why_china');
     Route::get('/about-china', [FrontendController::class, 'about_china'])->name('frontend.about_china');
     Route::get('/company-details', [FrontendController::class, 'company_details'])->name('frontend.company_details');
@@ -254,6 +261,7 @@ Route::middleware(['accessLogin'])->group(function () {
     //university  Course list
     Route::get('admission-apply', [FrontendController::class, 'admissionApply'])->name('frontend.university_admission_apply');
     Route::get('course_list', [FrontendController::class, 'universityCourseList'])->name('frontend.university_course_list');
+    Route::get('single_course/{id}', [FrontendController::class, 'singleCourse'])->name('frontend.single_course');
     Route::get('/get-sort-course-list/{cat}', [FrontendController::class, "getAjaxCourseList"]);
     Route::get('ajax-course-filter', [FrontendController::class, "ajaxFilterCourse"])->name('frontend.ajax_course_filter');
 });
@@ -263,8 +271,11 @@ Route::get('apply-now', [FrontendController::class, 'applyNow'])->name('frontend
 //get ajax get-sort-category-course
 Route::get('/apply-cart/{id}/', [StudentApplicationController::class, "applyCart"])->name('apply_cart');
 Route::get('/apply-admission/{id}/', [StudentApplicationController::class, "applyAdmission"])->name('apply_admission');
+
 Route::get('/application/detail/{id}', [StudentApplicationController::class, "applicationDetails"])->name('application.details');
 Route::post('/application/program/delete', [StudentApplicationController::class, "applyCartDelete"])->name('application.program.delete');
+
+
 Route::post('application/personal/{id}', [StudentApplicationController::class, 'applicationPersonalInfo'])->name('application.personal');
 Route::post('application/home_address/{id}', [StudentApplicationController::class, 'applicationHomeAddress'])->name('application.home_address');
 Route::post('application/post_address/{id}', [StudentApplicationController::class, 'applicationPostAddress'])->name('application.post_address');
@@ -273,6 +284,7 @@ Route::post('application/work_experience/{id}', [StudentApplicationController::c
 Route::post('application/family_finance/{id}', [StudentApplicationController::class, 'applicationFamilyFinance'])->name('application.family_finance');
 Route::post('application/optional_service/{id}', [StudentApplicationController::class, 'applicationOptionalService'])->name('application.optional_service');
 Route::post('add-attachment/upload/{id?}', [StudentApplicationController::class, 'applicationAttachmentUpload'])->name('application.add-attachment.upload');
+
 Route::get('get-attachments/{id}', [StudentApplicationController::class, 'applicationGetAttachments'])->name('application.get-attachments');
 Route::post('attachment/download/{id}', [StudentApplicationController::class, 'attachmentDownload'])->name('application.attachments.download');
 Route::post('attachment/delete/{id}', [StudentApplicationController::class, 'attachmentDelete'])->name('application.attachment.delete');

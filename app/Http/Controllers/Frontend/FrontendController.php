@@ -3,80 +3,73 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Models\AboutPageSetup;
 use App\Models\AdditionalPage;
-use App\Models\Blog;
-use App\Models\BusinessPackages;
-use App\Models\Client;
-use App\Models\Faq;
-use App\Models\HomeContentSetup;
-use App\Models\Partner;
-use App\Models\Course;
-use App\Models\Category;
-use App\Models\Comment;
-use App\Models\HomeContentItem;
-use App\Models\Review;
-use App\Models\UserContact;
-use App\Models\SiteSetting;
-use App\Models\learnerPageSetup;
-use App\Models\InstructorPageSetup;
-use App\Models\Library;
-use App\Models\User;
-use App\Models\Event;
 use App\Models\Banner;
-use App\Models\MaestroClassSetup;
-use App\Models\Page;
-use App\Models\Testimonial;
+use App\Models\Blog;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Client;
+use App\Models\Continent;
+use App\Models\Country;
+use App\Models\Course;
+use App\Models\CourseLanguage;
+use App\Models\CourseLessonFile;
+use App\Models\CourseQuizFile;
+use App\Models\CourseResourceFile;
 use App\Models\CourseSave;
+use App\Models\CoursezprojectFile;
 use App\Models\Currency;
+use App\Models\Degree;
+use App\Models\Department;
+use App\Models\Dormitory;
 use App\Models\Ebook;
 use App\Models\EbookAudioContent;
 use App\Models\EbookVideoContent;
-use App\Models\EventCart;
-
-use App\Models\Degree;
-use App\Models\FounderCoFundere;
-use App\Models\Topic;
-use App\Models\University;
-use App\Models\Tp_option;
-use App\Models\VisitorModel;
-use App\Models\CourseResourceFile;
-use App\Models\CourseLessonFile;
-use App\Models\CourseQuizFile;
+use App\Models\Event;
+use App\Models\Expo;
+use App\Models\Faq;
+use App\Models\FooterImage;
+use App\Models\HomeContentItem;
+use App\Models\HomeContentLocation;
+use App\Models\HomeContentSetup;
+use App\Models\InstructorPageSetup;
+use App\Models\learnerPageSetup;
+use App\Models\Library;
+use App\Models\MaestroClassSetup;
+use App\Models\Office;
+use App\Models\Page;
+use App\Models\Partner;
+use App\Models\RelatedCourse;
+use App\Models\Review;
+use App\Models\Scholarship;
 use App\Models\Section;
-
-use App\Models\CoursezprojectFile;
+use App\Models\State;
+use App\Models\Testimonial;
+use App\Models\Topic;
+use App\Models\Tp_option;
+use App\Models\University;
+use App\Models\User;
+use App\Models\UserContact;
+use App\Models\VisitorModel;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\File;
 use Mpdf\Mpdf;
 use ZipArchive;
 
-use App\Models\HomeContentLocation;
-use App\Models\Continent;
-use App\Models\Country;
-use App\Models\State;
-use App\Models\City;
-use App\Models\CourseLanguage;
-use App\Models\Department;
-use App\Models\Dormitory;
-use App\Models\Expo;
-use App\Models\FooterImage;
-use App\Models\GetConsultation;
-use App\Models\Office;
-use App\Models\RelatedCourse;
-use App\Models\Scholarship;
-
 class FrontendController extends Controller
 {
+
+
+    
+    
     public function getCountries($continent)
     {
         $countries = Country::where('continent_id', $continent)->where('status', 1)->orderBy('name', 'asc')->get();
 
         return response([
-            'response' => $countries
+            'response' => $countries,
         ], 200);
     }
 
@@ -85,7 +78,7 @@ class FrontendController extends Controller
         $states = State::where('country_id', $country)->where('status', 1)->orderBy('name', 'asc')->get();
 
         return response([
-            'response' => $states
+            'response' => $states,
         ], 200);
     }
 
@@ -94,11 +87,11 @@ class FrontendController extends Controller
         $cities = City::where('state_id', $state)->where('status', 1)->orderBy('name', 'asc')->get();
 
         return response([
-            'response' => $cities
+            'response' => $cities,
         ], 200);
     }
 
-    function changeCurrency($name)
+    public function changeCurrency($name)
     {
         $currency = Currency::where('currency_name', $name)->first();
         if ($currency) {
@@ -121,7 +114,7 @@ class FrontendController extends Controller
 
         $data['buttons'] = Faq::where('type', 'homepage')->get();
         $data['continents'] = Continent::where('status', 1)->orderBy('id', 'desc')->get();
-        $data['learn_texts'] =  HomeContentItem::where('type', "homepage")->get();
+        $data['learn_texts'] = HomeContentItem::where('type', "homepage")->get();
         $data['clients'] = Client::all();
 
         $data['universities'] = University::where('status', 1)->orderBy('id', 'desc')->get();
@@ -134,6 +127,7 @@ class FrontendController extends Controller
         $data['services'] = AdditionalPage::where('page', 'our-services')->first();
 
         // fetch selected programs for 'all programs' tab
+        
         $selected_programs = Course::where(['status' => 1, 'type' => 'university', 'show_on_home' => 1])->orderBy('updated_at', 'desc')->limit(8)->get();
         if (count($selected_programs) > 0) {
             $data['courses_all'] = $selected_programs;
@@ -161,7 +155,7 @@ class FrontendController extends Controller
             'ip_address' => $UserIP,
             'visit_time' => $timeDate,
             'created_at' => Carbon::now(),
-            'updated_at' => now()
+            'updated_at' => now(),
         ]);
 
         return view('Frontend.index', $data);
@@ -231,17 +225,14 @@ class FrontendController extends Controller
         return view('Frontend.pages.master_course_ajax', $data);
     }
 
-
-
     //course By Sub CatAjax
     public function courseBySubCatAjax(Request $request, $id)
     {
         $data['name'] = $name = $request->input('name');
         $data['top_category'] = $category = Category::find($id);
-        $data['courses']  = Course::where('status', 1)->where('sub_category_id', $id)->orderBy('id', 'desc')->get();
+        $data['courses'] = Course::where('status', 1)->where('sub_category_id', $id)->orderBy('id', 'desc')->get();
         return view('Frontend.course.subcatajax', $data);
     }
-
 
     //get Course Type By Cat
     // public function getCourseTypeByCat($cat){
@@ -272,8 +263,7 @@ class FrontendController extends Controller
         return view('Frontend.course.publishedajaxcourse', $data);
     }
 
-
-    function addToSave(Request $request, $id)
+    public function addToSave(Request $request, $id)
     {
         try {
             if (auth()->check()) {
@@ -297,24 +287,21 @@ class FrontendController extends Controller
         }
     }
 
-
-
-
     //home course By Sub CatAjax
     public function homecourseByTypeAjax($id)
     {
         if ($id == "1") {
-            $data['courses']  = Course::where('status', 1)->where('type', 'university')->where('coursetype', '1')->orderBy('id', 'desc')->get();
+            $data['courses'] = Course::where('status', 1)->where('type', 'university')->where('coursetype', '1')->orderBy('id', 'desc')->get();
         } else if ($id == "2") {
-            $data['courses']  = Course::where('status', 1)->where('type', 'university')->where('coursetype', '2')->orderBy('id', 'desc')->get();
+            $data['courses'] = Course::where('status', 1)->where('type', 'university')->where('coursetype', '2')->orderBy('id', 'desc')->get();
         } else if ($id == "3") {
-            $data['courses']  = Course::where('status', 1)->where('type', 'university')->where('coursetype', '3')->orderBy('id', 'desc')->get();
+            $data['courses'] = Course::where('status', 1)->where('type', 'university')->where('coursetype', '3')->orderBy('id', 'desc')->get();
         } else if ($id == "4") {
-            $data['courses']  = Course::where('status', 1)->where('type', 'university')->where('coursetype', '4')->orderBy('id', 'desc')->get();
+            $data['courses'] = Course::where('status', 1)->where('type', 'university')->where('coursetype', '4')->orderBy('id', 'desc')->get();
         } else if ($id == "6") {
-            $data['courses']  = Course::where('status', 1)->where('type', 'university')->orderBy('id', 'desc')->get();
+            $data['courses'] = Course::where('status', 1)->where('type', 'university')->orderBy('id', 'desc')->get();
         } else {
-            $data['courses']  = Course::where('status', 1)->where('type', 'university')->where('coursetype', '5')->orderBy('id', 'desc')->get();
+            $data['courses'] = Course::where('status', 1)->where('type', 'university')->where('coursetype', '5')->orderBy('id', 'desc')->get();
         }
 
         return view('Frontend.course.homepopularcourse-ajax', $data);
@@ -323,17 +310,54 @@ class FrontendController extends Controller
     public function courseDetails($id)
     {
         $data['course'] = $course = Course::find($id);
+
         if ($course) {
-            $course->views = $course->views + 1;
+            $course->views += 1;
             $course->save();
         }
 
         $data['reviews'] = Review::where('course_id', $course->id)->get();
 
         $continent = $course->university->continent_id;
-        $data['consultant'] = User::where('continent_id', $continent)
-            ->where('type', 7)->where('status', 1)
+        $data['consultant'] = $consultant = User::where('continent_id', $continent)
+            ->where('type', 7)
+            ->where('status', 1)
             ->first();
+
+        $data['user'] = $user = User::where('id', Auth::id())->first();
+
+        $star = $user->star ?? 0;
+        // dd($user->star);
+        $data['university'] = $course->university;
+        // dd($data['university']);
+
+        switch ($star) {
+            case 0:
+                $data['service_charge'] = $course->service_charge_beginner;
+                break;
+            case 1:
+                $data['service_charge'] = $course->service_charge_1;
+                break;
+            case 2:
+                $data['service_charge'] = $course->service_charge_2;
+                break;
+            case 3:
+                $data['service_charge'] = $course->service_charge_3;
+                break;
+            case 4:
+                $data['service_charge'] = $course->service_charge_4;
+                break;
+            case 5:
+                $data['service_charge'] = $course->service_charge_5;
+                break;
+            case 6:
+                $data['service_charge'] = $course->service_charge_6;
+                break;
+            case 7:
+                $data['service_charge'] = $course->service_charge_7;
+                break;
+
+        }
 
         $data['related_courses'] = RelatedCourse::where('course_id', $id)->get();
         $data['scholarships'] = Scholarship::where('status', 1)->get();
@@ -341,6 +365,8 @@ class FrontendController extends Controller
 
         return view('Frontend.course.coursedetails', $data);
     }
+    
+
     public function signin()
     {
         // dd(url()->previous());
@@ -418,6 +444,28 @@ class FrontendController extends Controller
         return view('Frontend.pages.our_services', $data);
     }
 
+    public function single_services($title)
+    {
+        $service = AdditionalPage::where('page', 'our-services')
+            ->where('contents', 'LIKE', '%' . $title . '%')
+            ->first();
+
+        if (!$service) {
+            abort(404, 'Service not found');
+        }
+
+        $decoded_contents = json_decode($service->contents, true);
+        $servicesLarge = $decoded_contents['servicesLarge'] ?? [];
+
+        $serviceDetails = collect($servicesLarge)->firstWhere('title', $title);
+
+        if (!$serviceDetails) {
+            abort(404, 'Service details not found');
+        }
+
+        return view('Frontend.pages.single_services', compact('serviceDetails'));
+    }
+
     public function why_china()
     {
         $data['page'] = AdditionalPage::where('page', 'why-china')->first();
@@ -442,7 +490,7 @@ class FrontendController extends Controller
 
     public function scholarship()
     {
-        $data['scholarship_courses'] = Course::where('scholarship_id', '!=', null)->get();
+        $data['scholarship_courses'] = Course::where('scholarship_id', '!=', null)->where('status',1)->get();
 
         $data['univerties'] = $univerties = University::withCount('courses')->get();
         $data['degrees'] = $degrees = Degree::withCount('courses')->get();
@@ -460,7 +508,7 @@ class FrontendController extends Controller
 
     public function ajaxScholarshipProgramFilter(Request $request)
     {
-        $courses =  Course::query();
+        $courses = Course::query();
 
         $data['univerties'] = $univerties = University::get();
         $data['degrees'] = $degrees = Degree::get();
@@ -471,7 +519,7 @@ class FrontendController extends Controller
         $univerties = University::where('status', 1);
 
         /* if (request()->input('name')) {
-            $courses->where('name', 'like', '%' . request()->name . '%');
+        $courses->where('name', 'like', '%' . request()->name . '%');
         } */
         if (request()->input('scholarship')) {
             $courses->where('scholarship_id', request()->scholarship);
@@ -493,7 +541,7 @@ class FrontendController extends Controller
             $univerties = $univerties->where('continent_id', request()->input('continent'));
             $select_continent = request()->input('continent');
         } else {
-            $select_continent =  0;
+            $select_continent = 0;
         }
 
         if (request()->input('country')) {
@@ -501,12 +549,12 @@ class FrontendController extends Controller
             $select_country = Country::find(request()->input('country'));
             if ($select_continent == 0) {
                 $select_continent = $select_country->continent->id;
-                $select_country =  $select_country->id;
+                $select_country = $select_country->id;
             } else {
-                $select_country =  $select_country->id;
+                $select_country = $select_country->id;
             }
         } else {
-            $select_country =  0;
+            $select_country = 0;
         }
         $data['countries'] = $countries = Country::withCount('university')->where('continent_id', $select_continent)->where('status', 1)->get();
 
@@ -516,12 +564,12 @@ class FrontendController extends Controller
             $select_state = State::find(request()->input('state'));
             if ($select_country == 0) {
                 $select_country = $select_state->country->id;
-                $select_state =  $select_state->id;
+                $select_state = $select_state->id;
             } else {
-                $select_state =  $select_state->id;
+                $select_state = $select_state->id;
             }
         } else {
-            $select_state =  0;
+            $select_state = 0;
         }
         $data['states'] = $states = State::withCount('universities')->where('country_id', $select_country)->where('status', 1)->get();
 
@@ -531,16 +579,15 @@ class FrontendController extends Controller
             $select_city = City::find(request()->input('city'));
             if ($select_state == 0) {
                 $select_state = $select_city->state->id;
-                $select_city =  $select_city->id;
+                $select_city = $select_city->id;
             } else {
-                $select_city =  $select_city->id;
+                $select_city = $select_city->id;
             }
         } else {
-            $select_city =  0;
+            $select_city = 0;
         }
 
         $data['cities'] = $cities = City::withCount('universities')->where('state_id', $select_state)->where('status', 1)->get();
-
 
         $data['select_continent'] = $select_continent;
         $data['select_country'] = $select_country;
@@ -808,7 +855,7 @@ class FrontendController extends Controller
         $contact->details = $request->details;
         $contact->contact_type = 'event';
         $contact->save();
-        return redirect()->back()->with('success', 'Massage Add Successfully');;
+        return redirect()->back()->with('success', 'Massage Add Successfully');
     }
     //Event Cat Show
     public function getEventByCat(Request $request, $id)
@@ -889,7 +936,6 @@ class FrontendController extends Controller
         } else {
             $category = Category::find($id);
 
-
             if ($category->sub->count() > 0) {
                 $cat_ids[] = $id;
                 foreach ($category->sub as $sub_cate) {
@@ -912,9 +958,6 @@ class FrontendController extends Controller
         }
         return view('Frontend.pages.blog_sort_by_ajax', $data);
     }
-
-
-
 
     public function paymentProcess()
     {
@@ -960,7 +1003,7 @@ class FrontendController extends Controller
     public function faq()
     {
         $data['faq_content'] = Faq::where('type', 'faq_content')->first();
-        $data['faqs'] =  Faq::where('type', "faq")->get();
+        $data['faqs'] = Faq::where('type', "faq")->get();
         $data['blogs'] = Blog::where('status', 1)->orderBy('id', 'desc')->get();
         return view('Frontend.pages.faq', $data);
     }
@@ -972,7 +1015,6 @@ class FrontendController extends Controller
         $data['home_content'] = HomeContentSetup::first();
         return view('Frontend.pages.subscribe_details', $data);
     }
-
 
     // -------------------------------==============
     public function eBook(Request $request)
@@ -1041,7 +1083,6 @@ class FrontendController extends Controller
         $mpdf->Output($name . '.pdf', 'D');
     }
 
-
     public function eBookVideoDownload($id)
     {
 
@@ -1092,7 +1133,6 @@ class FrontendController extends Controller
 
         return response()->download(public_path('upload/ebook/audio/' . $zipFileName))->deleteFileAfterSend(true);
     }
-
 
     //ebook audio start
     public function eBookAudio(Request $request)
@@ -1157,7 +1197,6 @@ class FrontendController extends Controller
     }
     //ebook audio end
 
-
     //ebook Video start
     public function eBookVideo(Request $request)
     {
@@ -1221,7 +1260,6 @@ class FrontendController extends Controller
     }
     //ebook audio end
 
-
     public function courseResourceFilesDownload($id)
     {
 
@@ -1246,7 +1284,6 @@ class FrontendController extends Controller
 
         return response()->download(public_path('upload/course/file/' . $zipFileName))->deleteFileAfterSend(true);
     }
-
 
     public function courseLessonFilesDownload($id)
     {
@@ -1274,7 +1311,6 @@ class FrontendController extends Controller
         return response()->download(public_path('upload/course/file/' . $zipFileName))->deleteFileAfterSend(true);
     }
 
-
     public function courseQuizFilesDownload($id)
     {
 
@@ -1300,7 +1336,6 @@ class FrontendController extends Controller
 
         return response()->download(public_path('upload/course/file/' . $zipFileName))->deleteFileAfterSend(true);
     }
-
 
     public function courseProjectFilesDownload($id)
     {
@@ -1338,7 +1373,7 @@ class FrontendController extends Controller
 
     public function universityCourseList(Request $request)
     {
-        $courses =  Course::query();
+        $courses = Course::query();
 
         $data['univerties'] = $universities = University::withCount('courses')->get();
         $data['degrees'] = $degrees = Degree::withCount('courses')->get();
@@ -1463,13 +1498,31 @@ class FrontendController extends Controller
             $courses = $courses->distinct();
         }
 
-        $data['courses'] = $courses->paginate(10);
+        $data['courses'] = $courses->where('status', 1)->paginate(10);
         return view('Frontend.university.university_course_list', $data);
+    }
+
+    public function singleCourse(Request $request, $id)
+    {
+        $courses = Course::query();
+
+        $data['univerties'] = $universities = University::withCount('courses')->get();
+        $data['degrees'] = $degrees = Degree::withCount('courses')->get();
+        $data['states'] = $states = State::withCount('universities')->get();
+        $data['cities'] = $cities = City::withCount('universities')->get();
+        $data['departments'] = $departments = Department::withCount('courses')->get();
+        $data['countries'] = $countries = Country::withCount('universities')->get();
+        $data['languages'] = $language = CourseLanguage::withCount('courses')->get();
+        $data['sections'] = $sections = Section::withCount('courses')->orderBy('id', 'desc')->get();
+        $data['continents'] = $continents = Continent::withCount('universities')->get();
+
+        $data['courses'] = Course::where('university_id', $id)->paginate(10);
+        return view('Frontend.university.single_uni_course_list', $data);
     }
 
     public function applyNow(Request $request)
     {
-        $courses =  Course::query();
+        $courses = Course::query();
 
         $data['univerties'] = $univerties = University::withCount('courses')->get();
         $data['degrees'] = $degrees = Degree::withCount('courses')->get();
@@ -1480,7 +1533,6 @@ class FrontendController extends Controller
         $data['departments'] = $departments = Department::withCount('courses')->get();
         $data['sections'] = $sections = Section::withCount('courses')->orderBy('id', 'desc')->get();
         $data['continents'] = $continents = Continent::withCount('universities')->get();
-
 
         if ($request->university) {
             $courses = $courses->where('university_id', $request->university);
@@ -1530,7 +1582,7 @@ class FrontendController extends Controller
 
     public function ajaxFilterCourse(Request $request)
     {
-        $courses =  Course::query();
+        $courses = Course::query();
 
         $data['univerties'] = $univerties = University::get();
         $data['degrees'] = $degrees = Degree::get();
@@ -1544,7 +1596,7 @@ class FrontendController extends Controller
             $univerties = $univerties->where('continent_id', request()->input('continent'));
             $select_continent = request()->input('continent');
         } else {
-            $select_continent =  0;
+            $select_continent = 0;
         }
 
         if (request()->input('country')) {
@@ -1552,12 +1604,12 @@ class FrontendController extends Controller
             $select_country = Country::find(request()->input('country'));
             if ($select_continent == 0) {
                 $select_continent = $select_country->continent->id;
-                $select_country =  $select_country->id;
+                $select_country = $select_country->id;
             } else {
-                $select_country =  $select_country->id;
+                $select_country = $select_country->id;
             }
         } else {
-            $select_country =  0;
+            $select_country = 0;
         }
         $data['countries'] = $countries = Country::withCount('university')->where('continent_id', $select_continent)->where('status', 1)->get();
 
@@ -1567,12 +1619,12 @@ class FrontendController extends Controller
             $select_state = State::find(request()->input('state'));
             if ($select_country == 0) {
                 $select_country = $select_state->country->id;
-                $select_state =  $select_state->id;
+                $select_state = $select_state->id;
             } else {
-                $select_state =  $select_state->id;
+                $select_state = $select_state->id;
             }
         } else {
-            $select_state =  0;
+            $select_state = 0;
         }
         $data['states'] = $states = State::withCount('universities')->where('country_id', $select_country)->where('status', 1)->get();
 
@@ -1582,16 +1634,15 @@ class FrontendController extends Controller
             $select_city = City::find(request()->input('city'));
             if ($select_state == 0) {
                 $select_state = $select_city->state->id;
-                $select_city =  $select_city->id;
+                $select_city = $select_city->id;
             } else {
-                $select_city =  $select_city->id;
+                $select_city = $select_city->id;
             }
         } else {
-            $select_city =  0;
+            $select_city = 0;
         }
 
         $data['cities'] = $cities = City::withCount('universities')->where('state_id', $select_state)->where('status', 1)->get();
-
 
         $data['select_continent'] = $select_continent;
         $data['select_country'] = $select_country;
@@ -1651,7 +1702,6 @@ class FrontendController extends Controller
             $courses->whereBetween('year_fee', [$tuition_fees_min, $tuition_fees_max]);
         }
 
-
         if (($request->accommodation_fees_min != '') && ($request->accommodation_fees_max != '')) {
             $accommodation_fees_min = convertToDefaultCurrency(request()->input('accommodation_fees_min'));
             $accommodation_fees_max = convertToDefaultCurrency(request()->input('accommodation_fees_max'));
@@ -1679,7 +1729,7 @@ class FrontendController extends Controller
     //ajax get Sort Category Course
     public function getAjaxCourseList(Request $request, $cat)
     {
-        $courses =  Course::query();
+        $courses = Course::query();
 
         $data['univerties'] = $univerties = University::get();
         $data['degrees'] = $degrees = Degree::get();
@@ -1693,7 +1743,7 @@ class FrontendController extends Controller
             $univerties = $univerties->where('continent_id', request()->input('continent'));
             $select_continent = request()->input('continent');
         } else {
-            $select_continent =  0;
+            $select_continent = 0;
         }
 
         if (request()->input('country')) {
@@ -1701,12 +1751,12 @@ class FrontendController extends Controller
             $select_country = Country::find(request()->input('country'));
             if ($select_continent == 0) {
                 $select_continent = $select_country->continent->id;
-                $select_country =  $select_country->id;
+                $select_country = $select_country->id;
             } else {
-                $select_country =  $select_country->id;
+                $select_country = $select_country->id;
             }
         } else {
-            $select_country =  0;
+            $select_country = 0;
         }
         $data['countries'] = $countries = Country::withCount('university')->where('continent_id', $select_continent)->where('status', 1)->get();
 
@@ -1716,12 +1766,12 @@ class FrontendController extends Controller
             $select_state = State::find(request()->input('state'));
             if ($select_country == 0) {
                 $select_country = $select_state->country->id;
-                $select_state =  $select_state->id;
+                $select_state = $select_state->id;
             } else {
-                $select_state =  $select_state->id;
+                $select_state = $select_state->id;
             }
         } else {
-            $select_state =  0;
+            $select_state = 0;
         }
         $data['states'] = $states = State::withCount('universities')->where('country_id', $select_country)->where('status', 1)->get();
 
@@ -1731,16 +1781,15 @@ class FrontendController extends Controller
             $select_city = City::find(request()->input('city'));
             if ($select_state == 0) {
                 $select_state = $select_city->state->id;
-                $select_city =  $select_city->id;
+                $select_city = $select_city->id;
             } else {
-                $select_city =  $select_city->id;
+                $select_city = $select_city->id;
             }
         } else {
-            $select_city =  0;
+            $select_city = 0;
         }
 
         $data['cities'] = $cities = City::withCount('universities')->where('state_id', $select_state)->where('status', 1)->get();
-
 
         $data['select_continent'] = $select_continent;
         $data['select_country'] = $select_country;

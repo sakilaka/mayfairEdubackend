@@ -23,14 +23,8 @@ class UniversityController extends Controller
     {
         $university = University::select([
             'year_fee',
-            'service_charge_beginner',
             'service_charge_1',
             'service_charge_2',
-            'service_charge_3',
-            'service_charge_4',
-            'service_charge_5',
-            'service_charge_6',
-            'service_charge_7',
             'application_charge',
             'accommodation_fee',
             'insurance_fee',
@@ -125,7 +119,6 @@ class UniversityController extends Controller
         $data['scholarships'] = Scholarship::where('status', 1)->get();
         $data['dormitories'] = Dormitory::all();
         $data['intakes'] = Section::all();
-        
 
         return view("Backend.university.create", $data);
     }
@@ -148,8 +141,7 @@ class UniversityController extends Controller
             $university->country_id = $request->country_id ?? 1;
             $university->state_id = $request->state_id;
             $university->city_id = $request->city_id;
-            // $university->intake = $request->intake;
-
+            $university->intake = $request->intake;
             $university->address = $request->address;
             $university->about = $request->about;
             $university->admissions_process = $request->admissions_process;
@@ -246,6 +238,7 @@ class UniversityController extends Controller
     public function edit(string $id)
     {
         $data["university"] = $university = University::find($id);
+        
         $data['continents'] = Continent::all();
         $data['countries'] = Country::where('continent_id', @$university->continent->id)->get();
         $data['states'] = State::where(['status' => 1])->get();
@@ -253,7 +246,6 @@ class UniversityController extends Controller
         $data['majors'] = Department::where('status', 1)->get();
         $data['scholarships'] = Scholarship::where('status', 1)->get();
         $data['dormitories'] = Dormitory::all();
-        $data['intakes'] = Section::all();
 
         return view("Backend.university.update", $data);
     }
@@ -262,13 +254,11 @@ class UniversityController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    
     {
         $request->validate([
             'name' => 'required',
-
         ]);
-
+        
         try {
             DB::beginTransaction();
             $university = University::find($id);
@@ -277,8 +267,6 @@ class UniversityController extends Controller
             $university->country_id = $request->country_id ?? 1;
             $university->state_id = $request->state_id;
             $university->city_id = $request->city_id;
-            // $university->intake = $request->intake;
-
             $university->address = $request->address;
             $university->about = $request->about;
             $university->admissions_process = $request->admissions_process;
@@ -354,145 +342,6 @@ class UniversityController extends Controller
             }
 
 
-
-                    
-       // Image gallery
-
-       
-        $allGalleries = [];
-        $oldGalleries = json_decode($university->image_gallery, true) ?? [];
-
-        if (is_array($request->galleries)) {
-            $galleries = $request->galleries;
-
-            foreach ($galleries as $galleryKey => $gallery) {
-                $galleryImages = [];
-                $galleryImageKeys = array_keys($gallery['gallery_image'] ?? []);
-
-                foreach ($galleryImageKeys as $imageKey) {
-                    if ($request->hasFile("galleries.$galleryKey.gallery_image.$imageKey")) {
-                        $file = $request->file("galleries.$galleryKey.gallery_image.$imageKey");
-                        $fileName = 'gallery-image_' . rand() . time() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('upload/university/gallery'), $fileName);
-                        $galleryImages[$imageKey] = url('upload/university/gallery/' . $fileName);
-                    }
-                }
-
-                $oldGalleryImages = $gallery['old_gallery_image'] ?? [];
-                $mergedGalleryImages = $oldGalleryImages;
-
-                foreach ($galleryImages as $imageKey => $url) {
-                    if (isset($mergedGalleryImages[$imageKey]) && file_exists(public_path('upload/university/gallery/' . basename($mergedGalleryImages[$imageKey])))) {
-                        unlink(public_path('upload/university/gallery/' . basename($mergedGalleryImages[$imageKey])));
-                    }
-
-                    $mergedGalleryImages[$imageKey] = $url;
-                }
-
-                $galleryData['images'] = $mergedGalleryImages;
-                $allGalleries[$galleryKey] = $galleryData;
-            }
-
-            if (is_array($oldGalleries)) {
-                foreach ($oldGalleries as $oldGalleryKey => $oldGallery) {
-                    if (isset($allGalleries[$oldGalleryKey])) {
-                        $removedImages = array_diff_key($oldGallery['images'], $allGalleries[$oldGalleryKey]['images']);
-
-                        foreach ($removedImages as $imageKey => $imageUrl) {
-                            $imagePath = public_path('upload/university/gallery/' . basename($imageUrl));
-                            if (file_exists($imagePath)) {
-                                unlink($imagePath);
-                            }
-                        }
-
-                        $allGalleries[$oldGalleryKey] = array_merge($oldGallery, $allGalleries[$oldGalleryKey]);
-                    } else {
-                        $allGalleries[$oldGalleryKey] = $oldGallery;
-                    }
-                }
-            }
-        } else {
-            foreach ($oldGalleries as $key => $gallery) {
-                foreach ($gallery['images'] ?? [] as $key => $image) {
-                    if (isset($image) && file_exists(public_path('upload/university/gallery/' . basename($image)))) {
-                        unlink(public_path('upload/university/gallery/' . basename($image)));
-                    }
-                }
-            }
-        }
-
-        $university->image_gallery = json_encode($allGalleries);
-
-        // Video Contents
-
-
-        
-        $videoContents = [];
-        $videoTypes = $request->input('video_type') ?? [];
-        $youtubeEmbedCodes = $request->input('youtube_embed_code') ?? [];
-        $videoUploads = $request->file('video_upload') ?? [];
-        $oldPhotoGalleryImages = $request->old_photo_gallery_image ?? [];
-
-        foreach ($videoTypes as $key => $type) {
-            if ($type === 'youtube') {
-                if (!empty($youtubeEmbedCodes[$key])) {
-                    $videoContents[$key] = [
-                        'type' => 'youtube',
-                        'url' => $youtubeEmbedCodes[$key],
-                    ];
-                } elseif (isset($oldPhotoGalleryImages[$key]) && $oldPhotoGalleryImages[$key]) {
-                    $videoContents[$key] = [
-                        'type' => 'youtube',
-                        'url' => $oldPhotoGalleryImages[$key],
-                    ];
-                }
-            } elseif ($type === 'upload') {
-                if (isset($videoUploads[$key])) {
-                    $file = $videoUploads[$key];
-                    if ($file) {
-                        if (isset($oldPhotoGalleryImages[$key]) && $oldPhotoGalleryImages[$key]) {
-                            $oldVideoPath = public_path('upload/university/video/' . basename($oldPhotoGalleryImages[$key]));
-                            if (file_exists($oldVideoPath)) {
-                                unlink($oldVideoPath);
-                            }
-                        }
-
-                        $fileName = 'university/video-' . rand() . time() . '.' . $file->getClientOriginalExtension();
-                        $file->move(public_path('upload/university/video'), $fileName);
-                        $videoContents[$key] = [
-                            'type' => 'upload',
-                            'url' => url('upload/university/video/' . $fileName),
-                        ];
-                    } elseif (isset($oldPhotoGalleryImages[$key]) && $oldPhotoGalleryImages[$key]) {
-                        $videoContents[$key] = [
-                            'type' => 'upload',
-                            'url' => $oldPhotoGalleryImages[$key],
-                        ];
-                    }
-                } else {
-                    if (isset($oldPhotoGalleryImages[$key]) && $oldPhotoGalleryImages[$key]) {
-                        $videoContents[$key] = [
-                            'type' => 'upload',
-                            'url' => $oldPhotoGalleryImages[$key],
-                        ];
-                    }
-                }
-            }
-        }
-
-        $videoContents = array_filter($videoContents, function ($content) {
-            return isset($content['type'], $content['url']) && !empty($content['url']);
-        });
-
-        $finalVideoContents = [];
-        foreach ($videoContents as $key => $content) {
-            $finalVideoContents[$key] = $content;
-        }
-
-        $university->video = json_encode($finalVideoContents);
-
-
-         
             
             $university->save();
 
@@ -504,8 +353,10 @@ class UniversityController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
-    
 
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(Request $request)
     {
         try {
