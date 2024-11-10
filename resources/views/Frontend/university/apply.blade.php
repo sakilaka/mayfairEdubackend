@@ -21,7 +21,7 @@
     <style>
         .item {
             border: 1px solid #efefef;
-            box-shadow: 0 0 20px -5px rgba(150,150,150,0.25);
+            box-shadow: 0 0 20px -5px rgba(150, 150, 150, 0.25);
         }
     </style>
 @endsection
@@ -805,23 +805,25 @@
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
-                                                                <div class="invalid-feedback">
-                                                                    This field is required.
+                                                                <span class="text-danger" id="output"></span>
+                                                                <div class="invalid-feedback">Please provide a valid
+                                                                    contact
+                                                                    number.
                                                                 </div>
-
                                                             </div>
                                                         </div>
                                                         <div class="col-12">
                                                             <div class=" form-label-group mt-2">
 
                                                                 <input type="tel" id="contact_id" name="contact_id"
-                                                                    data-name="contact_id" placeholder="WeChat/Whatsapp/Telegram"
+                                                                    data-name="contact_id"
+                                                                    placeholder="WeChat/Whatsapp/Telegram"
                                                                     class="form-control"
                                                                     value="{{ $application->contact_id }}">
                                                                 <label for="contact_id" class="form-control-placeholder">
                                                                     Contact ID
-                                                                (WeChat/Whatsapp/Telegram)
-                                                            </label>
+                                                                    (WeChat/Whatsapp/Telegram)
+                                                                </label>
 
                                                             </div>
                                                         </div>
