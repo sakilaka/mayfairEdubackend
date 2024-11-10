@@ -294,7 +294,8 @@
                                                         id="state" required>
                                                         <option value="">Select Province</option>
                                                         @foreach ($states as $state)
-                                                            <option value="{{ $state->id }}">
+                                                            <option value="{{ $state->id }}"
+                                                                @if (old('state_id') == $state->id) selected @endif>
                                                                 {{ $state->name }}
                                                             </option>
                                                         @endforeach
@@ -309,6 +310,14 @@
                                                     <select class="form-control form-control-lg" name="city_id"
                                                         id="city" required>
                                                         <option value="">Select Province First</option>
+                                                        @if (old('state_id'))
+                                                            @foreach ($cities as $city)
+                                                                <option value="{{ $city->id }}"
+                                                                    @if (old('city_id') == $city->id) selected @endif>
+                                                                    {{ $city->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
@@ -321,7 +330,9 @@
                                                         id="intake" required>
                                                         <option value="">Select Intake</option>
                                                         @foreach ($intakes as $single)
-                                                            <option value="{{ $single->name }}">{{ $single->name }}
+                                                            <option value="{{ $single->name }}"
+                                                                @if (old('intake') == $single->name) selected @endif>
+                                                                {{ $single->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -333,7 +344,8 @@
                                                     <label>Address <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" name="address" class="form-control"
-                                                        placeholder="Enter Address" required>
+                                                        placeholder="Enter Address" value="{{ old('address') }}"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -343,52 +355,57 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="application_charge"
                                                         placeholder="Enter Application Fees" class="form-control"
-                                                        required>
+                                                        value="{{ old('application_charge') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Yearly Tuition Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="year_fee"
                                                         placeholder="Enter Yearly Tuition Fee" class="form-control"
-                                                        required>
+                                                        value="{{ old('year_fee') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Accommodation Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="accommodation_fee"
                                                         placeholder="Enter Accommodation Fee" class="form-control"
-                                                        required>
+                                                        value="{{ old('accommodation_fee') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Yearly Insurance Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="insurance_fee"
                                                         placeholder="Enter Insurance Fee" class="form-control"
-                                                        required>
+                                                        value="{{ old('insurance_fee') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Visa Extension Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="visa_extension_fee"
                                                         placeholder="Enter Visa Extension Fee" class="form-control"
-                                                        required>
+                                                        value="{{ old('visa_extension_fee') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Medical In China Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
                                                         placeholder="Enter Medical In China Fee" class="form-control"
-                                                        required>
+                                                        value="{{ old('medical_in_china_fee') }}" required>
                                                 </div>
                                             </div>
 
@@ -401,7 +418,7 @@
                                                     <input type="number" min="0"
                                                         name="service_charge_beginner"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_beginner') }}" required>
                                                 </div>
                                             </div>
 
@@ -411,65 +428,69 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_1"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_1') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (2 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_2"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_2') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (3 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_3"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_3') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (4 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_4"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_4') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (5 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_5"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_5') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (6 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_6"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_6') }}" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (7 star)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_7"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_7') }}" required>
                                                 </div>
                                             </div>
-
-
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
