@@ -315,17 +315,21 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" min="0" name="course_duration"
                                                         placeholder="Enter Course Duration In Yearly"
-                                                        class="form-control" required>
+                                                        value="{{ old('course_duration') }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Application Deadline <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="date" name="application_deadline"
+                                                        value="{{ old('application_deadline') }}"
                                                         class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Language <span class="text-danger"
@@ -334,12 +338,15 @@
                                                         required>
                                                         <option value="">Select Course Language</option>
                                                         @foreach ($languages as $language)
-                                                            <option value="{{ $language->id }}">{{ $language->name }}
+                                                            <option value="{{ $language->id }}"
+                                                                {{ old('language_id') == $language->id ? 'selected' : '' }}>
+                                                                {{ $language->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Related Programs</label>
@@ -347,23 +354,27 @@
                                                         name="relatedcourse_id[]" multiple>
                                                         <option value="">Select Programs</option>
                                                         @foreach ($courses as $course)
-                                                            <option value="{{ $course->id }}">{{ $course->name }}
+                                                            <option value="{{ $course->id }}"
+                                                                {{ in_array($course->id, old('relatedcourse_id', [])) ? 'selected' : '' }}>
+                                                                {{ $course->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pre Requisites </label>
-                                                    <textarea class="form-control editor" name="requisites" style="height: 150px"></textarea>
+                                                    <label>Pre Requisites</label>
+                                                    <textarea class="form-control editor" name="requisites" style="height: 150px">{{ old('requisites') }}</textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>About This Program / Overview <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="about" style="height: 150px"></textarea>
+                                                    <textarea class="form-control editor" name="about" style="height: 150px" required>{{ old('about') }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
