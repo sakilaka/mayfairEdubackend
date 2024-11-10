@@ -800,7 +800,7 @@
 
                                                                 <input type="tel" id="phone" name="phone"
                                                                     data-name="phone" required="" placeholder="Phone"
-                                                                    class="form-control"
+                                                                    class="form-control @error('phone') is-invalid @enderror"
                                                                     value="{{ auth()->user()->phone ?? $application->phone }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
