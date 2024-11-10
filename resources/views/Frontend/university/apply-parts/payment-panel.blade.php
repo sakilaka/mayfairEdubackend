@@ -105,7 +105,7 @@
         <div class="multisteps-form__content mt-3">
 
 
-            <div class="button-row d-flex mt-4">
+            <div class="button-row d-flex justify-content-between mt-4">
                 <button class="btn btn-secondary js-btn-prev" type="button" title="Prev">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
 
