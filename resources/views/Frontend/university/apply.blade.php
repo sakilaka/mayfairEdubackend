@@ -2239,6 +2239,49 @@
     </div>
 @endsection
 @section('cus_sc')
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+    <script>
+        const input = document.querySelector("#phone");
+        const output = document.querySelector("#output");
+
+        const iti = window.intlTelInput(input, {
+            initialCountry: "auto",
+            nationalMode: true,
+            geoIpLookup: callback => {
+                fetch("https://ipapi.co/json")
+                    .then(res => res.json())
+                    .then(data => callback(data.country_code
+                        .toLowerCase()))
+                    .catch(() => callback("bd"));
+            },
+            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
+        });
+
+        const handleChange = () => {
+            let text = "";
+            if (input.value) {
+                if (iti.isValidNumber()) {
+                    text = "Valid number detected. International format: " + iti.getNumber();
+                    output.classList.remove('text-danger');
+                    output.classList.add('text-success');
+                } else {
+                    text = "Please enter a valid number";
+                    output.classList.remove('text-success');
+                    output.classList.add('text-danger');
+                }
+            } else {
+                text = "Please enter a valid number";
+                output.classList.remove('text-success');
+                output.classList.add('text-danger');
+            }
+            output.innerHTML = text;
+        };
+
+
+        input.addEventListener('change', handleChange);
+        input.addEventListener('keyup', handleChange);
+    </script>
+    
     <script>
         $(document).ready(function() {
             $('.delete-prog-btn').on('click', function() {
