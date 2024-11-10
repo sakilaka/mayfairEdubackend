@@ -718,41 +718,45 @@
                                                     <input type="number" min="0"
                                                         name="fs_accommodation_fee_1"
                                                         placeholder="Enter Accommodation Fee" class="form-control"
-                                                        value="{{ $fees_structure['accommodation_fees_1'] ?? '' }}">
+                                                        value="{{ old('fs_accommodation_fee_1', $fees_structure['accommodation_fees_1'] ?? '') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Accommodation Fee 2 (CNY)</label>
                                                     <input type="number" min="0"
                                                         name="fs_accommodation_fee_2"
                                                         placeholder="Enter Accommodation Fee" class="form-control"
-                                                        value="{{ $fees_structure['accommodation_fees_2'] ?? '' }}">
+                                                        value="{{ old('fs_accommodation_fee_2', $fees_structure['accommodation_fees_2'] ?? '') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Insurance Fee (CNY)</label>
                                                     <input type="number" min="0" name="fs_insurance_fee"
                                                         placeholder="Enter Insurance Fee" class="form-control"
-                                                        value="{{ $fees_structure['insurance_fee'] ?? '' }}">
+                                                        value="{{ old('fs_insurance_fee', $fees_structure['insurance_fee'] ?? '') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Visa Extension Fee (CNY)</label>
                                                     <input type="number" min="0" name="fs_visa_extension_fee"
                                                         placeholder="Enter Visa Extension Fee" class="form-control"
-                                                        value="{{ $fees_structure['visa_extension_fee'] ?? '' }}">
+                                                        value="{{ old('fs_visa_extension_fee', $fees_structure['visa_extension_fee'] ?? '') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Medical In China Fee (CNY)</label>
                                                     <input type="number" min="0"
                                                         name="fs_medical_in_china_fee"
                                                         placeholder="Enter Medical In China Fee" class="form-control"
-                                                        value="{{ $fees_structure['medical_in_china_fee'] ?? '' }}">
+                                                        value="{{ old('fs_medical_in_china_fee', $fees_structure['medical_in_china_fee'] ?? '') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -1088,9 +1092,7 @@
                                             </div>
                                         </div>
 
-
                                         <hr>
-
 
                                         @php
                                             $contents = [];
@@ -1099,9 +1101,6 @@
                                                 $contents = is_array($decodedContents) ? $decodedContents : []; // Ensure $contents is an array
                                             }
                                         @endphp
-
-
-
                                         <div class="row">
 
                                             <div class="col-sm-12">
@@ -1298,10 +1297,8 @@
 
                                                 </div>
                                             </div>
-
                                         </div>
-
-
+                                        
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                                         </div>
