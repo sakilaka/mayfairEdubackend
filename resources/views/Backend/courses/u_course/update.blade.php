@@ -214,7 +214,7 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_beginner"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_beginner }}"
+                                                        value="{{ old('service_charge_beginner', $course->service_charge_beginner) }}"
                                                         class="form-control" required>
                                                 </div>
                                             </div>
@@ -225,8 +225,8 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_1"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_1 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_1', $course->service_charge_1) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
 
@@ -236,58 +236,63 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_2"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_2 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_2', $course->service_charge_2) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 3 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_3"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_3 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_3', $course->service_charge_3) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 4 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_4"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_4 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_4', $course->service_charge_4) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 5 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_5"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_5 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_5', $course->service_charge_5) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 6 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_6"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_6 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_6', $course->service_charge_6) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 7 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_7"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ $course->service_charge_7 }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('service_charge_7', $course->service_charge_7) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
 
@@ -297,83 +302,101 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="year_fee"
                                                         placeholder="Enter Yearly Course Fee"
-                                                        value="{{ $course->year_fee }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('year_fee', $course->year_fee) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Accommodation Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="accommodation_fee"
-                                                        placeholder="Enter Accommodation Fee" class="form-control"
-                                                        value="{{ $course->accommodation_fee }}" required>
+                                                        placeholder="Enter Accommodation Fee"
+                                                        value="{{ old('accommodation_fee', $course->accommodation_fee) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Yearly Insurance Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="insurance_fee"
-                                                        placeholder="Enter Insurance Fee" class="form-control"
-                                                        value="{{ $course->insurance_fee }}" required>
+                                                        placeholder="Enter Insurance Fee"
+                                                        value="{{ old('insurance_fee', $course->insurance_fee) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Visa Extension Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="visa_extension_fee"
-                                                        placeholder="Enter Visa Extension Fee" class="form-control"
-                                                        value="{{ $course->visa_extension_fee }}" required>
+                                                        placeholder="Enter Visa Extension Fee"
+                                                        value="{{ old('visa_extension_fee', $course->visa_extension_fee) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Medical In China Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
-                                                        placeholder="Enter Medical In China Fee" class="form-control"
-                                                        value="{{ $course->medical_in_china_fee }}" required>
+                                                        placeholder="Enter Medical In China Fee"
+                                                        value="{{ old('medical_in_china_fee', $course->medical_in_china_fee) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Others Fee (Logistics)</label>
                                                     <input type="number" min="0" name="others_fee"
                                                         placeholder="Enter Others Fee (CNY)"
-                                                        value="{{ $course->others_fee }}" class="form-control">
+                                                        value="{{ old('others_fee', $course->others_fee) }}"
+                                                        class="form-control">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Program Type <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <select class="form-control form-control-lg" name="course_type"
                                                         required>
-                                                        <option @if ($course->coursetype == '1') Selected @endif
-                                                            value="1">Our Top Picks</option>
-                                                        <option @if ($course->coursetype == '2') Selected @endif
-                                                            value="2">Most Popular</option>
-                                                        <option @if ($course->coursetype == '3') Selected @endif
-                                                            value="3">Fastest Admissions</option>
-                                                        <option @if ($course->coursetype == '4') Selected @endif
-                                                            value="4">Highest Rating</option>
-                                                        <option @if ($course->coursetype == '5') Selected @endif
-                                                            value="5">Top Ranked</option>
+                                                        <option value="1"
+                                                            {{ old('course_type', $course->coursetype) == '1' ? 'selected' : '' }}>
+                                                            Our Top Picks</option>
+                                                        <option value="2"
+                                                            {{ old('course_type', $course->coursetype) == '2' ? 'selected' : '' }}>
+                                                            Most Popular</option>
+                                                        <option value="3"
+                                                            {{ old('course_type', $course->coursetype) == '3' ? 'selected' : '' }}>
+                                                            Fastest Admissions</option>
+                                                        <option value="4"
+                                                            {{ old('course_type', $course->coursetype) == '4' ? 'selected' : '' }}>
+                                                            Highest Rating</option>
+                                                        <option value="5"
+                                                            {{ old('course_type', $course->coursetype) == '5' ? 'selected' : '' }}>
+                                                            Top Ranked</option>
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Duration (Yearly) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" min="0" name="course_duration"
                                                         placeholder="Enter Course Duration In Yearly"
-                                                        value="{{ $course->course_duration }}" class="form-control"
-                                                        required>
+                                                        value="{{ old('course_duration', $course->course_duration) }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Application Start Date <span class="text-danger"
