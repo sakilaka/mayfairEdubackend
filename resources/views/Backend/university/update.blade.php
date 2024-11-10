@@ -582,40 +582,44 @@
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="university_type"
                                                             class="form-control" placeholder="Enter University Type"
-                                                            value="{{ $display_data['university_type'] ?? '' }}">
+                                                            value="{{ old('university_type', $display_data['university_type'] ?? '') }}">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">World Rank:</label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="world_rank" class="form-control"
                                                             placeholder="Enter World Rank"
-                                                            value="{{ $display_data['world_rank'] ?? '' }}">
+                                                            value="{{ old('world_rank', $display_data['world_rank'] ?? '') }}">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">National Rank:</label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="national_rank"
                                                             class="form-control" placeholder="Enter National Rank"
-                                                            value="{{ $display_data['national_rank'] ?? '' }}">
+                                                            value="{{ old('national_rank', $display_data['national_rank'] ?? '') }}">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">Total Students:</label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="total_students"
                                                             class="form-control" placeholder="Enter Total Students"
-                                                            value="{{ $display_data['total_students'] ?? '' }}">
+                                                            value="{{ old('total_students', $display_data['total_students'] ?? '') }}">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">International Students:</label>
@@ -623,20 +627,22 @@
                                                         <input type="text" name="international_students"
                                                             class="form-control"
                                                             placeholder="Enter International Students"
-                                                            value="{{ $display_data['international_students'] ?? '' }}">
+                                                            value="{{ old('international_students', $display_data['international_students'] ?? '') }}">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">Student Enrolled:</label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="student_enrolled"
                                                             class="form-control" placeholder="Enter Student Enrolled"
-                                                            value="{{ $display_data['student_enrolled'] ?? '' }}">
+                                                            value="{{ old('student_enrolled', $display_data['student_enrolled'] ?? '') }}">
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">Countdown Deadline:</label>
@@ -644,12 +650,11 @@
                                                         <input type="date" name="countdown_deadline"
                                                             class="form-control"
                                                             placeholder="Enter Countdown Deadline"
-                                                            value="{{ $display_data['countdown_deadline'] ?? '' }}"
+                                                            value="{{ old('countdown_deadline', $display_data['countdown_deadline'] ?? '') }}"
                                                             {{-- min="{{ date('Y-m-d') }}" --}}>
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
 
                                         <div class="row mt-4">
