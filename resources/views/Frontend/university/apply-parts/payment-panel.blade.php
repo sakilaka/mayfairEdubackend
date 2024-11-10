@@ -132,12 +132,6 @@
                 {{-- close button  --}}
                 <button type="button" class="btn-close top-right" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                {{-- <div class="sidebarWeChat d-flex flex-column justify-content-center align-items-center p-3">
-                    <img height="80" width="80"
-                        src="{{ asset('frontend/paymentMethod/wechat-payment-1-32.png') }}" alt="Description of image">
-                    <p class="text-center" style="font-size: 22px; ">WeChat Pay</p>
-                </div> --}}
-
                 <div class="mt-3 right-side text-center w-100">
 
                     <div class="text-center">
@@ -178,8 +172,6 @@
                     </div>
 
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -194,50 +186,39 @@
                 {{-- close button  --}}
                 <button type="button" class="btn-close top-right" data-bs-dismiss="modal"
                     aria-label="Close"></button>
-                <div class="sidebarAlipay d-flex flex-column justify-content-center align-items-center p-3">
-                    <svg height="100" viewBox="0 0 1024.051 1024" width="100"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="m1024.051 701.03v-504.166a196.966 196.966 0 0 0 -196.915-196.864h-630.272a196.966 196.966 0 0 0 -196.864 196.864v630.272a196.915 196.915 0 0 0 196.864 196.864h630.272a197.12 197.12 0 0 0 193.843-162.1c-52.224-22.63-278.528-120.32-396.441-176.64-89.703 108.698-183.706 173.927-325.325 173.927s-236.186-87.245-224.82-194.047c7.476-70.041 55.553-184.576 264.295-164.966 110.08 10.342 160.41 30.873 250.163 60.518 23.194-42.598 42.496-89.446 57.14-139.264h-397.928v-39.424h196.915v-70.86h-240.178v-43.367h240.128v-102.145s2.15-15.974 19.814-15.974h98.458v118.118h256v43.418h-256v70.758h208.845a805.99 805.99 0 0 1 -84.839 212.685c60.672 22.016 336.794 106.393 336.794 106.393zm-740.505 90.573c-149.658 0-173.312-94.464-165.376-133.939 7.833-39.322 51.2-90.624 134.4-90.624 95.59 0 181.248 24.474 284.057 74.547-72.192 94.003-160.921 150.016-253.081 150.016z"
-                            fill="#009fe8" />
-                    </svg>
-                    <p class="text-center" style="font-size: 22px;">Alipay</p>
-                </div>
 
-                <div class="mt-3 right-side w-100">
+                <div class="mt-3 right-side text-center w-100">
 
-                    <img height="220" width="190" src="{{ asset('frontend/paymentMethod/malisha.webp') }}"
-                        alt="Description of image">
-
+                    <div class="text-center">
+                        <img src="{{ asset('frontend/paymentMethod/malisha.webp') }}" alt="Description of image"
+                            class="img-fluid" style="width: 50%">
+                    </div>
 
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
 
-                    <div class="d-flex gap-3 align-items-center">
+                    <div class="d-flex gap-3 justify-content-center align-items-center">
                         <a href="javascript:void(0)" style="cursor: pointer;"
-                            onclick="document.getElementById('fileInputAli').click()"
-                            class="fw-bold btn btn-primary-bg">
-                            <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
-                            Payment
+                            onclick="document.getElementById('fileInputAli').click()" class="fw-bold btn btn-primary-bg">
+                            <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload Payment
                             receipt
                         </a>
-                        <input type="file" name="payment_receipt" id="fileInputAli" style="display: none;"
-                            accept="image/*" onchange="previewImageAli(event)">
 
-                        <input type="hidden" name="payment_method" value="AliPay">
+                        <input type="file" name="payment_receipt" id="fileInput" style="display: none;"
+                            accept="image/*" onchange="previewImage(event)">
 
+                        <input type="hidden" name="payment_method" value="WeChat Pay">
 
                         <!-- Image Preview Container -->
-                        <div id="imagePreviewAli" style="display: none;">
-                            <img src="" alt="Image Preview" id="previewAli"
-                                style="max-width: 100px; max-height: 100px; margin-left: 10px;">
+                        <div id="imagePreview" style="display: none;">
+                            <img src="" alt="Image Preview" id="preview"
+                                style="max-width: 100px; max-height: 100px; margin-left: 10px; margin-bottom: 8px;">
                         </div>
-
                         {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
 
                             @if ($application->status == 0)
-                                <button class="btn btn-primary-light-bg ml-auto submit-payment" id="submit-payment"
-                                    type="submit" title="Next">
+                                <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment"
+                                    id="submit-payment" type="submit" title="">
                                     <span class="">Submit</span>
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </button>
