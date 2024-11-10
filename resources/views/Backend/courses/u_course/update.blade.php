@@ -482,25 +482,27 @@
                                                         name="relatedcourse_id[]" multiple>
                                                         <option value="">Select Programs</option>
                                                         @foreach ($courses as $selected_course)
-                                                            <option @if ($selected_course->relatedcourses->where('course_id', $course->id)->all()) Selected @endif
-                                                                value="{{ $selected_course->id }}">
+                                                            <option value="{{ $selected_course->id }}"
+                                                                @if (in_array($selected_course->id, old('relatedcourse_id', $course->relatedcourses->pluck('id')->toArray()))) selected @endif>
                                                                 {{ $selected_course->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pre Requisites </label>
-                                                    <textarea class="form-control editor" name="requisites" style="height: 150px">{!! $course->requisites !!}</textarea>
+                                                    <label>Pre Requisites</label>
+                                                    <textarea class="form-control editor" name="requisites" style="height: 150px">{{ old('requisites', $course->requisites) }}</textarea>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>About This Program / Overview <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <textarea class="form-control editor" name="about" style="height: 150px">{!! $course->about !!}</textarea>
+                                                    <textarea class="form-control editor" name="about" style="height: 150px">{{ old('about', $course->about) }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
