@@ -258,13 +258,15 @@
                                                         name="continent_id" required>
                                                         <option value="">Select Continent</option>
                                                         @foreach ($continents as $continent)
-                                                            <option value="{{ $continent->id }}">
+                                                            <option value="{{ $continent->id }}"
+                                                                @if (old('continent_id') == $continent->id) selected @endif>
                                                                 {{ $continent->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Country <span class="text-danger"
@@ -272,9 +274,18 @@
                                                     <select class="form-control form-control-lg" name="country_id"
                                                         id="country" required>
                                                         <option value="">Select Continent First</option>
+                                                        @if (old('continent_id'))
+                                                            @foreach ($countries as $country)
+                                                                <option value="{{ $country->id }}"
+                                                                    @if (old('country_id') == $country->id) selected @endif>
+                                                                    {{ $country->name }}
+                                                                </option>
+                                                            @endforeach
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div> --}}
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Province <span class="text-danger"
