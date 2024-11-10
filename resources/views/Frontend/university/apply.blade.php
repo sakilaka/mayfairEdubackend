@@ -24,6 +24,23 @@
             box-shadow: 0 0 20px -5px rgba(150,150,150,0.25);
         }
     </style>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
+    <style>
+        .iti--inline-dropdown {
+            display: flex;
+            position: relative;
+            z-index: 1000 !important;
+        }
+
+        .iti--inline-dropdown .iti__dropdown-content {
+            z-index: 9999 !important;
+        }
+
+        .top-layer {
+            z-index: 3 !important;
+        }
+    </style>
 @endsection
 @section('main_content')
     <div class="container d-lg-flex p-0" style="flex-flow: row-reverse; margin-top:8rem;">
