@@ -110,6 +110,8 @@
                     Previous
                 </button>
 
+                <input type="hidden" name="payment_method">
+
                 <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment" type="submit"
                     title="">
                     <span class="">Submit</span>
@@ -463,7 +465,6 @@
         right: 15px;
     }
 </style>
-
 
 <script>
     function previewImage(event) {
