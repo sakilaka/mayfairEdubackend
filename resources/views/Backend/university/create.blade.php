@@ -751,10 +751,18 @@
                                                     <label>Select Degree</label>
                                                     <select name="degree[]" class="form-control form-control-lg">
                                                         <option value="">Select Degree</option>
-                                                        <option value="Bachelor">Bachelor</option>
-                                                        <option value="Masters">Masters</option>
-                                                        <option value="PhD">PhD</option>
-                                                        <option value="Non-Degree">Non-Degree</option>
+                                                        <option value="Bachelor"
+                                                            {{ in_array('Bachelor', old('degree', [])) ? 'selected' : '' }}>
+                                                            Bachelor</option>
+                                                        <option value="Masters"
+                                                            {{ in_array('Masters', old('degree', [])) ? 'selected' : '' }}>
+                                                            Masters</option>
+                                                        <option value="PhD"
+                                                            {{ in_array('PhD', old('degree', [])) ? 'selected' : '' }}>
+                                                            PhD</option>
+                                                        <option value="Non-Degree"
+                                                            {{ in_array('Non-Degree', old('degree', [])) ? 'selected' : '' }}>
+                                                            Non-Degree</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -763,14 +771,17 @@
                                                 <div class="form-group">
                                                     <label>Tuition Fee 1 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_1[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_1.0') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Tuition Fee 2 (CNY)</label>
                                                     <input type="number" min="0" name="fs_tuition_fee_2[]"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control">
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        value="{{ old('fs_tuition_fee_2.0') }}">
                                                 </div>
                                             </div>
 
@@ -779,36 +790,46 @@
                                                     <label>Accommodation Fee 1 (CNY)</label>
                                                     <input type="number" min="0"
                                                         name="fs_accommodation_fee_1"
-                                                        placeholder="Enter Accommodation Fee" class="form-control">
+                                                        placeholder="Enter Accommodation Fee" class="form-control"
+                                                        value="{{ old('fs_accommodation_fee_1') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Accommodation Fee 2 (CNY)</label>
-                                                    <input type="number" min="0" name="fs_ccommodation_fee_2"
-                                                        placeholder="Enter Accommodation Fee" class="form-control">
+                                                    <input type="number" min="0"
+                                                        name="fs_accommodation_fee_2"
+                                                        placeholder="Enter Accommodation Fee" class="form-control"
+                                                        value="{{ old('fs_accommodation_fee_2') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Insurance Fee (CNY)</label>
                                                     <input type="number" min="0" name="fs_insurance_fee"
-                                                        placeholder="Enter Insurance Fee" class="form-control">
+                                                        placeholder="Enter Insurance Fee" class="form-control"
+                                                        value="{{ old('fs_insurance_fee') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Visa Extension Fee (CNY)</label>
                                                     <input type="number" min="0" name="fs_visa_extension_fee"
-                                                        placeholder="Enter Visa Extension Fee" class="form-control">
+                                                        placeholder="Enter Visa Extension Fee" class="form-control"
+                                                        value="{{ old('fs_visa_extension_fee') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Medical In China Fee (CNY)</label>
                                                     <input type="number" min="0"
                                                         name="fs_medical_in_china_fee"
-                                                        placeholder="Enter Medical In China Fee" class="form-control">
+                                                        placeholder="Enter Medical In China Fee" class="form-control"
+                                                        value="{{ old('fs_medical_in_china_fee') }}">
                                                 </div>
                                             </div>
                                         </div>
