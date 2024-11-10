@@ -136,7 +136,7 @@
 
                 <div class="mt-3 right-side w-100">
 
-                    <img height="220" width="190" src="{{ asset('frontend/paymentMethod/wechatQR.jpg') }}"
+                    <img height="220" width="190" src="{{ asset('frontend/paymentMethod/wechatQR.webp') }}"
                         alt="Description of image">
 
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
@@ -199,7 +199,7 @@
 
                 <div class="mt-3 right-side w-100">
 
-                    <img height="220" width="190" src="{{ asset('frontend/paymentMethod/malisha.png') }}"
+                    <img height="220" width="190" src="{{ asset('frontend/paymentMethod/malisha.webp') }}"
                         alt="Description of image">
 
 
