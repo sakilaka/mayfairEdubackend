@@ -136,7 +136,7 @@ class UniversityController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:5',
+            'name' => 'required',
         ]);
 
         try {
