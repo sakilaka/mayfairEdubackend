@@ -3,7 +3,7 @@
         box-shadow: 1px 4px 20px -10px rgba(120, 200, 159, 0.75);
         background-color: #fff;
         border-radius: 8px;
-        border: none !important;
+        border: 0.5px solid #e5e5e5;
     }
     .upload-card:hover{
         cursor: pointer;
