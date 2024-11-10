@@ -149,7 +149,8 @@
                                                 <div class="form-group">
                                                     <label class="form-control-label">University Name:
                                                         <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                    </label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="name" class="form-control"
                                                             placeholder="Enter University Name"
@@ -157,11 +158,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label class="form-control-label">Short Name:
                                                         <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                    </label>
                                                     <div class="mg-t-10 mg-sm-t-0">
                                                         <input type="text" name="short_name" class="form-control"
                                                             placeholder="Enter University Short Name"
@@ -169,6 +172,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Major
@@ -180,12 +184,15 @@
                                                         name="major_id[]" multiple required>
                                                         <option value="">Select Major</option>
                                                         @foreach ($majors as $major)
-                                                            <option value="{{ $major->id }}">{{ $major->name }}
+                                                            <option value="{{ $major->id }}"
+                                                                @if (in_array($major->id, old('major_id', []))) selected @endif>
+                                                                {{ $major->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Scholarship
@@ -196,42 +203,51 @@
                                                         name="scholarship_id[]" multiple required>
                                                         <option value="">Select Scholarships</option>
                                                         @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}">
+                                                            <option value="{{ $scholarship->id }}"
+                                                                @if (in_array($scholarship->id, old('scholarship_id', []))) selected @endif>
                                                                 {{ $scholarship->title }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Additional Scholarships</label>
                                                     <select class="form-control form-control-lg scholarshipSelect2"
                                                         name="optional_scholarship_id[]" multiple>
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free">Full Scholarship</option>
+                                                        <option value="free"
+                                                            @if (in_array('free', old('optional_scholarship_id', []))) selected @endif>
+                                                            Full Scholarship
+                                                        </option>
                                                         @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}">
-                                                                {{ $scholarship->title }}</option>
+                                                            <option value="{{ $scholarship->id }}"
+                                                                @if (in_array($scholarship->id, old('optional_scholarship_id', []))) selected @endif>
+                                                                {{ $scholarship->title }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Dormitory
-                                                    </label>
+                                                    <label>Dormitory</label>
                                                     <select class="form-control form-control-lg dormitorySelect2"
                                                         name="dormitory_id[]" multiple>
                                                         <option value="">Select Dormitory</option>
                                                         @foreach ($dormitories as $dormitory)
-                                                            <option value="{{ $dormitory->id }}">
+                                                            <option value="{{ $dormitory->id }}"
+                                                                @if (in_array($dormitory->id, old('dormitory_id', []))) selected @endif>
                                                                 {{ $dormitory->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Continent
