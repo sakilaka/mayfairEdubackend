@@ -100,48 +100,62 @@
                                                         name="dormitory_id[]" multiple>
                                                         <option value="">Select Dormitory</option>
                                                         @foreach ($dormitories as $dormitory)
-                                                            <option value="{{ $dormitory->id }}">
+                                                            <option value="{{ $dormitory->id }}"
+                                                                {{ in_array($dormitory->id, old('dormitory_id', [])) ? 'selected' : '' }}>
                                                                 {{ $dormitory->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Primary Scholarship</label>
                                                     <select class="form-control form-control-lg" name="scholarship_id">
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free">Full Scholarship</option>
+                                                        <option value="free"
+                                                            {{ old('scholarship_id') == 'free' ? 'selected' : '' }}>
+                                                            Full Scholarship</option>
                                                         @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}">
-                                                                {{ $scholarship->title }}</option>
+                                                            <option value="{{ $scholarship->id }}"
+                                                                {{ old('scholarship_id') == $scholarship->id ? 'selected' : '' }}>
+                                                                {{ $scholarship->title }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Additional Scholarships</label>
                                                     <select class="form-control form-control-lg multipleSelect2Search"
                                                         name="optional_scholarship_id[]" multiple>
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free">Full Scholarship</option>
+                                                        <option value="free"
+                                                            {{ in_array('free', old('optional_scholarship_id', [])) ? 'selected' : '' }}>
+                                                            Full Scholarship</option>
                                                         @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}">
-                                                                {{ $scholarship->title }}</option>
+                                                            <option value="{{ $scholarship->id }}"
+                                                                {{ in_array($scholarship->id, old('optional_scholarship_id', [])) ? 'selected' : '' }}>
+                                                                {{ $scholarship->title }}
+                                                            </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Name <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" name="course_name"
-                                                        placeholder="Enter Course Name" class="form-control" required>
+                                                        placeholder="Enter Course Name" class="form-control" required
+                                                        value="{{ old('course_name') }}">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Intake <span class="text-danger"
@@ -150,30 +164,34 @@
                                                         required>
                                                         <option value="">Select Intake</option>
                                                         @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}">{{ $section->name }}
+                                                            <option value="{{ $section->id }}"
+                                                                {{ old('section_id') == $section->id ? 'selected' : '' }}>
+                                                                {{ $section->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Application Fees (CNY)<span class="text-danger"
+                                                    <label>Application Fees (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="application_charge"
                                                         placeholder="Enter Application Fees" class="form-control"
-                                                        required>
+                                                        required value="{{ old('application_charge') }}">
                                                 </div>
                                             </div>
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (CNY)<span class="text-danger"
+                                                    <label>Service Charge (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        placeholder="Enter Service Charge" class="form-control" required
+                                                        value="{{ old('service_charge') }}">
                                                 </div>
                                             </div> --}}
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 1(CNY)<span class="text-danger"
