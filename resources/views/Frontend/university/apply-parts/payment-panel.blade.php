@@ -128,11 +128,11 @@
                 {{-- close button  --}}
                 <button type="button" class="btn-close top-right" data-bs-dismiss="modal" aria-label="Close"></button>
 
-                <div class="sidebarWeChat d-flex flex-column justify-content-center align-items-center p-3">
+                {{-- <div class="sidebarWeChat d-flex flex-column justify-content-center align-items-center p-3">
                     <img height="80" width="80"
                         src="{{ asset('frontend/paymentMethod/wechat-payment-1-32.png') }}" alt="Description of image">
                     <p class="text-center" style="font-size: 22px; ">WeChat Pay</p>
-                </div>
+                </div> --}}
 
                 <div class="mt-3 right-side w-100">
 
