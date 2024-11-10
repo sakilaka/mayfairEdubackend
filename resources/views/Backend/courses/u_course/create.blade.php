@@ -196,131 +196,93 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (Beginner)<span class="text-danger"
+                                                    <label>Service Charge (Beginner) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_beginner"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                                        placeholder="Enter Service Charge"
+                                                        value="{{ old('service_charge_beginner') }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Service Charge 1(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_1"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
+                                            @for ($i = 1; $i <= 7; $i++)
+                                                <div class="col-md-4">
+                                                    <div class="form-group">
+                                                        <label>Service Charge {{ $i }} (CNY) <span
+                                                                class="text-danger"
+                                                                style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                        <input type="number" min="0"
+                                                            name="service_charge_{{ $i }}"
+                                                            placeholder="Enter Service Charge"
+                                                            value="{{ old('service_charge_' . $i) }}"
+                                                            class="form-control" required>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endfor
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge 2(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_2"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Service Charge 3(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_3"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Service Charge 4(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_4"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Service Charge 5(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_5"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Service Charge 6(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_6"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Service Charge 7(CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <input type="number" min="0" name="service_charge_7"
-                                                        placeholder="Enter Service Charge" class="form-control"
-                                                        required>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Yearly Tuition Fee (CNY)<span class="text-danger"
+                                                    <label>Yearly Tuition Fee (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="year_fee"
-                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
-                                                        required>
+                                                        placeholder="Enter Yearly Tuition Fee"
+                                                        value="{{ old('year_fee') }}" class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Accommodation Fee (CNY)<span class="text-danger"
+                                                    <label>Accommodation Fee (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="accommodation_fee"
-                                                        placeholder="Enter Accommodation Fee" class="form-control"
+                                                        placeholder="Enter Accommodation Fee"
+                                                        value="{{ old('accommodation_fee') }}" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Yearly Insurance Fee (CNY)<span class="text-danger"
+                                                    <label>Yearly Insurance Fee (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="insurance_fee"
-                                                        placeholder="Enter Insurance Fee" class="form-control"
+                                                        placeholder="Enter Insurance Fee"
+                                                        value="{{ old('insurance_fee') }}" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Visa Extension Fee (CNY)<span class="text-danger"
+                                                    <label>Visa Extension Fee (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="visa_extension_fee"
-                                                        placeholder="Enter Visa Extension Fee" class="form-control"
+                                                        placeholder="Enter Visa Extension Fee"
+                                                        value="{{ old('visa_extension_fee') }}" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Medical In China Fee (CNY)<span class="text-danger"
+                                                    <label>Medical In China Fee (CNY) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
-                                                        placeholder="Enter Medical In China Fee" class="form-control"
-                                                        required>
+                                                        placeholder="Enter Medical In China Fee"
+                                                        value="{{ old('medical_in_china_fee') }}"
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Others Fee (Logistics)</label>
                                                     <input type="number" min="0" name="others_fee"
-                                                        placeholder="Enter Others Fee (CNY)" class="form-control">
+                                                        placeholder="Enter Others Fee (CNY)"
+                                                        value="{{ old('others_fee') }}" class="form-control">
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Program Type <span class="text-danger"
@@ -328,14 +290,25 @@
                                                     <select class="form-control form-control-lg" name="course_type"
                                                         required>
                                                         <option value="">Select Course type</option>
-                                                        <option value="1">Our Top Picks</option>
-                                                        <option value="2">Most Popular</option>
-                                                        <option value="3">Fastest Admissions</option>
-                                                        <option value="4">Highest Rating</option>
-                                                        <option value="5">Top Ranked</option>
+                                                        <option value="1"
+                                                            {{ old('course_type') == '1' ? 'selected' : '' }}>Our Top
+                                                            Picks</option>
+                                                        <option value="2"
+                                                            {{ old('course_type') == '2' ? 'selected' : '' }}>Most
+                                                            Popular</option>
+                                                        <option value="3"
+                                                            {{ old('course_type') == '3' ? 'selected' : '' }}>Fastest
+                                                            Admissions</option>
+                                                        <option value="4"
+                                                            {{ old('course_type') == '4' ? 'selected' : '' }}>Highest
+                                                            Rating</option>
+                                                        <option value="5"
+                                                            {{ old('course_type') == '5' ? 'selected' : '' }}>Top
+                                                            Ranked</option>
                                                     </select>
                                                 </div>
                                             </div>
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Duration (Yearly) <span class="text-danger"
