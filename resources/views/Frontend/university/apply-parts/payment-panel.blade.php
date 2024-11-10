@@ -120,7 +120,7 @@
 
 <!-- WeChat Modal -->
 <div class="modal fade" id="modalWechat" tabindex="-1" aria-labelledby="modalWechatLabel" aria-hidden="true">
-    <div class="modal-dialog custom-modal-width modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
             <div class="modal-body position-relative">
@@ -154,7 +154,6 @@
 
                             <input type="hidden" name="payment_method" value="WeChat Pay">
 
-
                             <!-- Image Preview Container -->
                             <div id="imagePreview" style="display: none;">
                                 <img src="" alt="Image Preview" id="preview"
@@ -181,7 +180,7 @@
 
 <!-- AliPay Modal -->
 <div class="modal fade" id="modalAlipay" tabindex="-1" aria-labelledby="modalAlipayLabel" aria-hidden="true">
-    <div class="modal-dialog custom-modal-width modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
 
             <div class="modal-body position-relative">
