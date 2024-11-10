@@ -109,7 +109,7 @@
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                     Previous
                 </button>
-                
+
                 <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment" type="submit"
                     title="">
                     <span class="">Submit</span>
@@ -153,7 +153,7 @@
                             receipt
                         </p>
 
-                        <form action="{{ $route }}" method="post" enctype="multipart/form-data">
+                        {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="payment_receipt" id="fileInput" style="display: none;"
                                 accept="image/*" onchange="previewImage(event)">
@@ -173,7 +173,7 @@
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </button>
                             @endif
-                        </form>
+                        </form> --}}
                     </div>
 
                 </div>
@@ -216,7 +216,7 @@
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
                             Payment receipt
                         </p>
-                        <form action="{{ $route }}" method="post" enctype="multipart/form-data">
+                        {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="payment_receipt" id="fileInputAli" style="display: none;"
                                 accept="image/*" onchange="previewImageAli(event)">
@@ -237,12 +237,10 @@
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </button>
                             @endif
-                        </form>
+                        </form> --}}
                     </div>
 
                 </div>
-
-
             </div>
         </div>
     </div>
@@ -304,7 +302,7 @@
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
                             Payment receipt
                         </p>
-                        <form action="{{ $route }}" method="post" enctype="multipart/form-data">
+                        {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="payment_receipt" id="fileInputPaypal" style="display: none;"
                                 accept="image/*" onchange="previewImagePaypal(event)">
@@ -325,7 +323,7 @@
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </button>
                             @endif
-                        </form>
+                        </form> --}}
                     </div>
 
                 </div>
@@ -377,7 +375,7 @@
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
                             Payment receipt
                         </p>
-                        <form action="{{ $route }}" method="post" enctype="multipart/form-data">
+                        {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="file" name="payment_receipt" id="fileInputBank" style="display: none;"
                                 accept="image/*" onchange="previewImageBank(event)">
@@ -398,7 +396,7 @@
                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                 </button>
                             @endif
-                        </form>
+                        </form> --}}
                     </div>
 
                 </div>
