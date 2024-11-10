@@ -149,7 +149,7 @@
 
                     <div class="d-flex gap-3 justify-content-center align-items-center">
                         <a href="javascript:void(0)" style="cursor: pointer;"
-                            onclick="document.getElementById('fileInput').click()" class="fw-bold btn btn-secondary-bg">
+                            onclick="document.getElementById('fileInput').click()" class="fw-bold btn btn-primary-bg">
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload Payment
                             receipt
                         </a>
@@ -213,10 +213,13 @@
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
 
                     <div class="d-flex gap-3 align-items-center">
-                        <p style="cursor: pointer;" onclick="document.getElementById('fileInputAli').click()">
+                        <a href="javascript:void(0)" style="cursor: pointer;"
+                            onclick="document.getElementById('fileInputAli').click()"
+                            class="fw-bold btn btn-primary-bg">
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
-                            Payment receipt
-                        </p>
+                            Payment
+                            receipt
+                        </a>
                         <input type="file" name="payment_receipt" id="fileInputAli" style="display: none;"
                             accept="image/*" onchange="previewImageAli(event)">
 
@@ -300,10 +303,13 @@
                     <p>Please upload the screen shot of transaction record after payment</p>
 
                     <div class="d-flex gap-3 align-items-center">
-                        <p style="cursor: pointer;" onclick="document.getElementById('fileInputPaypal').click()">
+                        <a href="javascript:void(0)" style="cursor: pointer;"
+                            onclick="document.getElementById('fileInputPaypal').click()"
+                            class="fw-bold btn btn-primary-bg">
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
-                            Payment receipt
-                        </p>
+                            Payment
+                            receipt
+                        </a>
                         <input type="file" name="payment_receipt" id="fileInputPaypal" style="display: none;"
                             accept="image/*" onchange="previewImagePaypal(event)">
 
@@ -374,10 +380,13 @@
                     <p>Please upload the screen shot of transaction record after payment</p>
 
                     <div class="d-flex gap-3 align-items-center">
-                        <p style="cursor: pointer;" onclick="document.getElementById('fileInputBank').click()">
+                        <a href="javascript:void(0)" style="cursor: pointer;"
+                            onclick="document.getElementById('fileInputBank').click()"
+                            class="fw-bold btn btn-primary-bg">
                             <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload
-                            Payment receipt
-                        </p>
+                            Payment
+                            receipt
+                        </a>
                         <input type="file" name="payment_receipt" id="fileInputBank" style="display: none;"
                             accept="image/*" onchange="previewImageBank(event)">
 
