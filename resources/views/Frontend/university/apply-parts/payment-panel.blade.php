@@ -190,7 +190,7 @@
                 <div class="mt-3 right-side text-center w-100">
 
                     <div class="text-center">
-                        <img src="{{ asset('frontend/paymentMethod/malisha.webp') }}" alt="Description of image"
+                        <img src="{{ asset('frontend/paymentMethod/malisha.jpg') }}" alt="Description of image"
                             class="img-fluid" style="width: 50%">
                     </div>
 
