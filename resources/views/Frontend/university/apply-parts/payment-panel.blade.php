@@ -103,7 +103,7 @@
             </div>
         </div>
 
-        <form action="{{ $route }}" method="POST">
+        <form action="{{ $route }}" method="POST" >
             @csrf
 
             <div class="multisteps-form__content mt-3">
