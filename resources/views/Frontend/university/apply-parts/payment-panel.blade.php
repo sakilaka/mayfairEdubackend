@@ -148,8 +148,9 @@
                     <p class="mt-2">Please upload the screen shot of transaction record after payment</p>
 
                     <div class="d-flex gap-3 justify-content-center align-items-center">
-                        <a href="javascript:void(0)" style="cursor: pointer;" onclick="document.getElementById('fileInput').click()">
-                            <i class="fa fa-upload me-2" class="fw-bold btn btn-secondary-bg" style="font-size: 12px;" aria-hidden="true"></i>Upload Payment
+                        <a href="javascript:void(0)" style="cursor: pointer;"
+                            onclick="document.getElementById('fileInput').click()" class="fw-bold btn btn-secondary-bg">
+                            <i class="fa fa-upload me-2" style="font-size: 12px;" aria-hidden="true"></i>Upload Payment
                             receipt
                         </a>
 
