@@ -1,3 +1,11 @@
+<style>
+    .upload-card {
+        box-shadow: 1px 4px 20px -10px rgba(120, 200, 159, 0.75);
+        background-color: #fff;
+        border-radius: 8px;
+    }
+</style>
+
 <div id="payment">
     @php
         if (session('partner_ref_id') || request()->query('partner_ref_id')) {
@@ -26,7 +34,7 @@
                 <div class="row my-3 p-3 d-flex flex-wrap">
 
                     <div data-bs-toggle="modal" data-bs-target="#modalWechat"
-                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center"
+                        class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
                         style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
                         <img height="50" width="50"
                             src="{{ asset('frontend/paymentMethod/wechat-payment-1-32.png') }}"
