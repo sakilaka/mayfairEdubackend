@@ -36,7 +36,6 @@
             <div class="my-4">
 
                 <div class="row my-3 p-3 d-flex flex-wrap">
-
                     <div data-bs-toggle="modal" data-bs-target="#modalWechat"
                         class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
                         style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
@@ -99,11 +98,8 @@
                             alt="Description of image">
                         <p class="mt-2">Bank Transfer</p>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
 
         <div class="multisteps-form__content mt-3">
@@ -459,10 +455,10 @@
         margin-top: 80px;
     }
 
-    .custom-modal-width {
+    /* .custom-modal-width {
         max-width: 1200px;
         width: 100%;
-    }
+    } */
 
     .top-right {
         position: absolute;
