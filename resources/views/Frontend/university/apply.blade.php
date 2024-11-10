@@ -816,8 +816,8 @@
                                                             <div class=" form-label-group mt-2">
 
                                                                 <input type="tel" id="phone" name="phone"
-                                                                    data-name="phone" required="" placeholder="Phone"
-                                                                    class="form-control @error('phone') is-invalid @enderror"
+                                                                    data-name="phone" required="" placeholder="Enter Phone Number"
+                                                                    class="form-control form-control-lg @error('phone') is-invalid @enderror"
                                                                     value="{{ auth()->user()->phone ?? $application->phone }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
