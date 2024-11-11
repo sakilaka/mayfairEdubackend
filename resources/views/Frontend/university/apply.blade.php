@@ -57,7 +57,7 @@
                         <hr>
                         <div class="app_summary">
                             <div class="mt-2 mb2 d-flex justify-content-between">Application ID
-                                <strong style="font-size: 1rem;" class="badge badge-warning"
+                                <strong style="font-size: 1rem; background-color: var(--primary_background)" class="badge"
                                     id="application-id">{{ $application->application_code }}</strong>
                             </div>
                          

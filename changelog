@@ -1,7 +1,3 @@
-application_code
-YYMMDD-unique
-fade green
-
 assigned application, assigned student remove from partner profile
 in application form, show service charge partner wise. if not found, then show default (beginner)
 total fee => app_charge + service charge

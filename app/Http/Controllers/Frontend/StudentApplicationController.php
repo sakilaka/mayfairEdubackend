@@ -184,8 +184,8 @@ class StudentApplicationController extends Controller
         if ($application == null) {
             $application = new StudentApplication();
             $application->user_id = $auth_user->id;
-            $application->application_code = 'M-EDU-' . strtoupper($this->generateRandomString(6));
-            
+            $application->application_code = date('ymd') . '-' . strtoupper($this->generateRandomString(6));
+
             // $application->service_charge = (float) $course->service_charge ?? 0;
             $application->application_fee = (float) $course->application_charge ?? 0;
             $application->total_fee = /* $application->service_charge + */ $application->application_fee;
@@ -217,7 +217,7 @@ class StudentApplicationController extends Controller
     }
 
 
-    
+
 
     function applyAdmission($id)
     {
@@ -245,7 +245,7 @@ class StudentApplicationController extends Controller
         return view('Frontend.university.apply', $data);
     }
 
-    
+
 
     public function applyCartDelete(Request $request)
     {
@@ -554,29 +554,29 @@ class StudentApplicationController extends Controller
     //         return response()->json($data);
     //     }
 
-       
+
     // }
 
     public function applicationAttachmentUpload(Request $request, $id)
     {
         Log::info('Request Data:', $request->all());
-    
+
         try {
             DB::beginTransaction();
-            
+
             $application = StudentApplication::find($id);
             if (!$application) {
                 return response()->json(['code' => -1, 'msg' => 'Application not found.']);
             }
-    
+
             if ($request->hasFile('files')) {
                 foreach ($request->file('files') as $index => $file) {
                     $filename = time() . '_' . $file->getClientOriginalName();
                     $file->move(public_path('upload/application/' . $application->id), $filename);
-    
+
                     // Retrieve corresponding title by index
                     $title = $request->titles[$index] ?? 'Unknown Document';
-    
+
                     ApplicationDocument::create([
                         'application_id' => $application->id,
                         'user_id' => $application->user_id,
@@ -587,7 +587,7 @@ class StudentApplicationController extends Controller
                     ]);
                 }
             }
-    
+
             DB::commit();
             return response()->json(['code' => 0, 'msg' => 'Documents uploaded successfully!']);
         } catch (\Exception $e) {
@@ -596,11 +596,11 @@ class StudentApplicationController extends Controller
             return response()->json(['code' => -1, 'err' => $e->getMessage(), 'msg' => 'Something went wrong!']);
         }
     }
-    
 
 
-    
-    
+
+
+
     function applicationGetAttachments(Request $request, $id)
     {
         $application = StudentApplication::find($id);
@@ -645,7 +645,7 @@ class StudentApplicationController extends Controller
 
     public function submitAppliction(Request $request, $id)
     {
-        return $request->all();
+        // return $request->all();
         $partner_ref_id = session('partner_ref_id') ?? '';
         $application = StudentApplication::find($id);
 
@@ -658,12 +658,12 @@ class StudentApplicationController extends Controller
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $path = 'upload/application/' . $application->id;
                 $file->move(public_path($path), $filename);
-        
+
                 $application->payment_proof = $path . '/' . $filename;
             }
-            
-            
-            
+
+
+
             // dd($application->payment_method);
 
             $new_student = '';

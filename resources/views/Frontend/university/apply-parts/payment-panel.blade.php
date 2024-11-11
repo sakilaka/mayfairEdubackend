@@ -115,7 +115,7 @@
                     <input type="hidden" name="payment_method">
 
                     <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment" id="submit-payment"
-                        type="submit" title="">
+                        type="submit" title="" style="display: none">
                         <span class="">Submit</span>
                         <i class="fa fa-arrow-right" aria-hidden="true"></i>
                     </button>
@@ -201,13 +201,13 @@
                             </a>
 
                             <input type="file" name="payment_receipt" id="fileInputAli" style="display: none;"
-                                accept="image/*" onchange="previewImage(event)">
+                                accept="image/*" onchange="previewImageAli(event)">
 
                             <input type="hidden" name="payment_method" value="WeChat Pay">
 
                             <!-- Image Preview Container -->
-                            <div id="imagePreview" style="display: none;">
-                                <img src="" alt="Image Preview" id="preview"
+                            <div id="imagePreviewAli" style="display: none;">
+                                <img src="" alt="Image Preview" id="previewAli"
                                     style="max-width: 100px; max-height: 100px; margin-left: 10px; margin-bottom: 8px;">
                             </div>
                         </div>
@@ -429,21 +429,75 @@
         const file = event.target.files[0];
         const previewContainer = document.getElementById('imagePreview');
         const previewImage = document.getElementById('preview');
+        const modalElement = document.getElementById('modalWechat');
+        const submitPaymentBtn = document.getElementById('submit-payment');
 
         if (file) {
-            // Display the image preview container
-            previewContainer.style.display = 'block';
+            /* previewContainer.style.display = 'block';
 
-            // Create a file reader to read the selected file
             const reader = new FileReader();
             reader.onload = function(e) {
-                // Set the preview image src to the file data
                 previewImage.src = e.target.result;
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file); */
+            submitPaymentBtn.style.display = 'inline';
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
         } else {
-            // Hide the preview if no file is selected
             previewContainer.style.display = 'none';
+        }
+    }
+
+    function previewImageAli(event) {
+        const file = event.target.files[0];
+        const previewContainerAli = document.getElementById('imagePreviewAli');
+        const previewImageAli = document.getElementById('imagePreviewAli');
+        const modalElement = document.getElementById('modalAlipay');
+        const submitPaymentBtn = document.getElementById('submit-payment');
+
+        if (file) {
+            /* previewContainerAli.style.display = 'block';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImageAli.src = e.target.result;
+            };
+            reader.readAsDataURL(file); */
+            submitPaymentBtn.style.display = 'inline';
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
+        } else {
+            previewContainerAli.style.display = 'none';
+        }
+    }
+
+
+    function previewImagePaypal(event) {
+        const file = event.target.files[0];
+        const previewContainerPaypal = document.getElementById('imagePreviewPaypal');
+        const previewImagePaypal = document.getElementById('previewPaypal');
+        const modalElement = document.getElementById('modalPaypal');
+        const submitPaymentBtn = document.getElementById('submit-payment');
+
+        if (file) {
+            /* previewContainerPaypal.style.display = 'block';
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImagePaypal.src = e.target.result;
+            };
+            reader.readAsDataURL(file); */
+            submitPaymentBtn.style.display = 'inline';
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
+        } else {
+            previewContainerPaypal.style.display = 'none';
         }
     }
 
@@ -451,53 +505,24 @@
         const file = event.target.files[0];
         const previewContainerBank = document.getElementById('imagePreviewBank');
         const previewImageBank = document.getElementById('previewBank');
+        const modalElement = document.getElementById('bankTransfer');
+        const submitPaymentBtn = document.getElementById('submit-payment');
 
         if (file) {
-            previewContainerBank.style.display = 'block';
+            /* previewContainerBank.style.display = 'block';
 
             const reader = new FileReader();
             reader.onload = function(e) {
                 previewImageBank.src = e.target.result;
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file); */
+            submitPaymentBtn.style.display = 'inline';
+            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+            if (modalInstance) {
+                modalInstance.hide();
+            }
         } else {
             previewContainerBank.style.display = 'none';
-        }
-    }
-
-    function previewImagePaypal(event) {
-        const file = event.target.files[0];
-        const previewContainerPaypal = document.getElementById('imagePreviewPaypal');
-        const previewImagePaypal = document.getElementById('previewPaypal');
-
-        if (file) {
-            previewContainerPaypal.style.display = 'block';
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImagePaypal.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            previewContainerPaypal.style.display = 'none';
-        }
-    }
-
-    function previewImageAli(event) {
-        const file = event.target.files[0];
-        const previewContainerAli = document.getElementById('imagePreviewAli');
-        const previewImageAli = document.getElementById('previewAli');
-
-        if (file) {
-            previewContainerAli.style.display = 'block';
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                previewImageAli.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-        } else {
-            previewContainerAli.style.display = 'none';
         }
     }
 </script>
