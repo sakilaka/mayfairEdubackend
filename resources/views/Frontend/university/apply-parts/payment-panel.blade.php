@@ -164,17 +164,6 @@
                                 <img src="" alt="Image Preview" id="preview"
                                     style="max-width: 100px; max-height: 100px; margin-left: 10px; margin-bottom: 8px;">
                             </div>
-                            {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
-                                @csrf
-    
-                                @if ($application->status == 0)
-                                    <button class="btn btn-primary-light-bg ml-auto mt-2 submit-payment"
-                                        id="submit-payment" type="submit" title="">
-                                        <span class="">Submit</span>
-                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                    </button>
-                                @endif
-                            </form> --}}
                         </div>
 
                     </div>
@@ -301,23 +290,8 @@
                                 <img src="" alt="Image Preview" id="previewPaypal"
                                     style="max-width: 100px; max-height: 100px; margin-left: 10px;">
                             </div>
-
-                            {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
-                                @csrf
-    
-                                @if ($application->status == 0)
-                                    <button class="btn btn-primary-light-bg ml-auto submit-payment" id="submit-payment"
-                                        type="submit" title="Next">
-                                        <span class="">Submit</span>
-                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                    </button>
-                                @endif
-                            </form> --}}
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -379,23 +353,8 @@
                                 <img src="" alt="Image Preview" id="previewBank"
                                     style="max-width: 100px; max-height: 100px; margin-left: 10px;">
                             </div>
-
-                            {{-- <form action="{{ $route }}" method="post" enctype="multipart/form-data">
-                                @csrf
-    
-                                @if ($application->status == 0)
-                                    <button class="btn btn-primary-light-bg ml-auto submit-payment" id="submit-payment"
-                                        type="submit" title="Next">
-                                        <span class="">Submit</span>
-                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                    </button>
-                                @endif
-                            </form> --}}
                         </div>
-
                     </div>
-
-
                 </div>
             </div>
         </div>
