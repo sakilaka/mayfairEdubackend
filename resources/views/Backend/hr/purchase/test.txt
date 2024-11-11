@@ -1,0 +1,51 @@
+<div class="col-md-3 my-2">
+                            <label for="">Color : </label>
+                           <input type="text" name="color" placeholder="color" class="form-control"  value="{{old('color'
+                            )}}">
+                           @error('color')
+                           <span class="text-danger">{{$message}}</span>
+                           @enderror
+                        </div>
+                         <div class="col-md-3 my-2">
+                            <label for="">Quantity : </label>
+                           <input type="number" name="quantity" placeholder="Quantity" class="form-control"  value="{{old('quantity'
+                            )}}" id="quantity">
+                           @error('quantity')
+                           <span class="text-danger">{{$message}}</span>
+                           @enderror
+                        </div>
+                          <div class="col-md-3 my-2">
+                            <label for="">Price : </label>
+                           <input type="number" name="price" placeholder="Price" class="form-control"  value="{{old('price'
+                            )}}" id="price">
+                           @error('price')
+                           <span class="text-danger">{{$message}}</span>
+                           @enderror
+                        </div>
+
+                        <div class="col-md-3 my-2">
+                            <label for=""> Total Price : </label>
+                           <input type="number" name="total_price"  class="form-control"  value="{{old('total_price'
+                            )}}" readonly id="totalPrice"> 
+                           @error('total_price')
+                           <span class="text-danger">{{$message}}</span>
+                           @enderror
+                        </div>
+
+                        
+                        <div class="col-md-3 my-2">
+                            <label for=""> Discount Price : </label>
+                           <input type="number" name="discount_price" placeholder="Discount Price"  class="form-control"  value="{{old('discount_price'
+                            )}}">
+                           @error('discount_price')
+                           <span class="text-danger">{{$message}}</span>
+                           @enderror
+                        </div>
+                          <div class="col-md-3 my-2">
+                            <label for=""> Sell Price : </label>
+                           <input type="number" name="sell_price" placeholder="Sell Price"  class="form-control"  value="{{old('sell_price'
+                            )}}">
+                           @error('sell_price')
+                           <span class="text-danger">{{$message}}</span>
+                           @enderror
+                        </div>

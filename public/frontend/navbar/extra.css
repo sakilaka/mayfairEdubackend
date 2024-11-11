@@ -1,0 +1,1321 @@
+/*LTR Support Styles Start */
+.direction-ltr {
+    direction: ltr !important;
+}
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: transparent !important;
+}
+
+/* Menu CSS */
+.menu-notification-tab-content .message-user-item {
+    justify-content: space-between !important;
+}
+/* Menu CSS */
+
+.video-floating-img-wrap {
+    padding-right: 55px !important;
+}
+.faq-area-right {
+    text-align: right !important;
+}
+.still-no-luck {
+    left: 156px !important;
+}
+
+/* About Us Page */
+.upgrade-skills-left {
+    padding-left: 120px !important;
+}
+.upgrade-skills-right {
+    padding-right: 165px !important;
+}
+/* About Us Page */
+
+/* Blog Page */
+.author-details {
+    padding-left: 1.5rem !important;
+}
+.blog-reply-btn .iconify {
+    position: relative !important;
+    top: -2px !important;
+    left: -7px !important;
+}
+/* Blog Page */
+
+/* Course Page */
+.show-all-course-area-inner-tags .iconify {
+    cursor: pointer !important;
+}
+/* Course Page */
+
+/* Customize Youtube Player Start */
+.vbox-child {
+    position: relative !important;
+}
+.video-player-area {
+    position: relative !important;
+}
+.vbox-child::after,
+.video-player-area::after {
+    position: absolute !important;
+    height: 70px !important;
+    width: 100% !important;
+    background-color: transparent !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 999999 !important;
+    content: "" !important;
+}
+/* Customize Youtube Player End */
+
+/*Course watch page no video img start*/
+.course-watch-no-video-img {
+    height: 600px !important;
+    overflow: hidden !important;
+}
+/*Course watch page no video img end*/
+
+/*LTR Support Styles End */
+
+/* RTL Support Styles Start */
+.direction-rtl {
+    direction: rtl !important;
+}
+
+/* Menu css */
+.direction-rtl #mainNav .navbar-brand {
+    margin-right: 0 !important;
+    margin-left: 30px !important;
+}
+.direction-rtl .header-nav-left-side {
+    padding-left: 0 !important;
+    padding-right: 30px !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .header-nav-left-side:before {
+    left: auto !important;
+    right: 0 !important;
+}
+.direction-rtl .header-nav-left-side form {
+    margin-right: 30px !important;
+    margin-left: 0 !important;
+}
+.direction-rtl .header-nav-left-side form button {
+    padding-right: 10px !important;
+    padding-left: 0 !important;
+}
+.direction-rtl .menu-round-btn > a {
+    margin-right: 0 !important;
+    margin-left: 18px !important;
+}
+.direction-rtl .menu-user-btn a {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+.direction-rtl .menu-language-btn > a {
+    margin-right: 18px !important;
+    margin-left: 18px !important;
+}
+.direction-rtl .navbar .dropdown .dropdown-toggle:after {
+    margin-left: 0 !important;
+    margin-right: 0.375rem !important;
+}
+.direction-rtl .menu-language-btn .dropdown-menu .dropdown-item img {
+    margin-right: 0 !important;
+    margin-left: 7px !important;
+}
+.direction-rtl #mainNav .navbar-nav .dropdown-menu a {
+    padding: 8px 30px 8px 45px !important;
+}
+.direction-rtl .navbar .dropdown-menu a::after {
+    transform: rotate(90deg) !important;
+    right: auto !important;
+    left: 1.7rem !important;
+}
+@media (min-width: 992px) {
+    .direction-rtl .dropdown-menu .submenu {
+        left: auto !important;
+        right: 100% !important;
+    }
+}
+.direction-rtl .menu-user-btn .dropdown-menu a {
+    padding: 8px 0 8px 45px !important;
+}
+.direction-rtl .menu-user-btn .dropdown-menu a .iconify {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+.direction-rtl .message-user-item-left {
+    text-align: right !important;
+}
+.direction-rtl .message-user-notification-box {
+    float: left !important;
+}
+.direction-rtl .message-user-item-right {
+    margin-right: 0.25rem !important;
+    margin-left: 0 !important;
+}
+.direction-rtl .message-user-item-right .text-end {
+    text-align: left !important;
+}
+/* Menu css */
+
+/* Hero Area */
+.direction-rtl .theme-btn > svg {
+    margin-left: 0 !important;
+    margin-right: 3px !important;
+}
+.direction-rtl .load-more-btn .iconify {
+    margin-left: 0 !important;
+    margin-right: 7px !important;
+}
+.direction-rtl .theme-btn > svg.feather-arrow-right {
+    transform: rotate(180deg) !important;
+}
+.direction-rtl .feature-content {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .top-categories-area .feature-content {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .top-instructor-area .section-heading-img,
+.direction-rtl .courses-area .section-heading-img,
+.direction-rtl .passionate-team-member-area .section-heading-img {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+/* Hero Area */
+
+/* Top Categories CSS */
+.direction-rtl .top-cat-item {
+    padding: 39px 39px 39px 57px !important;
+}
+/* Top Categories CSS */
+
+.direction-rtl .video-floating-img-wrap {
+    padding-right: 0 !important;
+    padding-left: 55px !important;
+}
+.direction-rtl .video-area .video-area-left {
+    padding-right: 0 !important;
+    padding-left: 22px !important;
+}
+.direction-rtl .video-floating-img-wrap img {
+    left: auto !important;
+    right: -85px !important;
+}
+.direction-rtl .testimonial-item {
+    padding-right: 0 !important;
+    padding-left: 46px !important;
+}
+.direction-rtl .testimonial-content {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .achievement-item {
+    padding: 0 15px 0 35px !important;
+}
+.direction-rtl .achievement-content {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .faq-area-right {
+    text-align: left !important;
+}
+.direction-rtl .still-no-luck {
+    left: auto !important;
+    right: 156px !important;
+}
+.direction-rtl .accordion-button::after {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+/* Footer CSS */
+.direction-rtl .footer-social ul li a {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .footer-contact-info ul li img,
+.direction-rtl .footer-contact-info ul li .iconify {
+    margin-right: 0 !important;
+    margin-left: 22px !important;
+}
+/* Footer CSS */
+
+/* Contact Page */
+.direction-rtl .contact-info-content {
+    margin-right: 1rem !important;
+    margin-left: 0 !important;
+}
+.direction-rtl .form-select {
+    background-position: left 0.75rem center !important;
+    padding: 0.375rem 0.75rem 0.375rem 2.25rem !important;
+}
+/* Contact Page */
+.direction-rtl .breadcrumb-item + .breadcrumb-item {
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+}
+
+.direction-rtl .breadcrumb-item + .breadcrumb-item::before {
+    float: right !important;
+    padding-right: 0 !important;
+    padding-left: 0.5rem !important;
+}
+
+/* About Us Page */
+.direction-rtl .upgrade-skills-left {
+    padding-left: 0 !important;
+    padding-right: 120px !important;
+}
+.direction-rtl .upgrade-skills-right {
+    padding-right: 0 !important;
+    padding-left: 165px !important;
+}
+/* About Us Page */
+
+/* Blog Page */
+.direction-rtl .blog-sidebar-categories li a {
+    margin-left: 0 !important;
+    margin-right: 22px !important;
+}
+.direction-rtl .blog-sidebar-categories li::before {
+    left: auto !important;
+    right: 0 !important;
+}
+.direction-rtl .blog-sidebar-tags li a {
+    margin: 0 0 11px 7px !important;
+}
+.direction-rtl .pagination li {
+    margin-right: 0 !important;
+    margin-left: 14px !important;
+}
+.direction-rtl .page-item:first-child .page-link {
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+}
+.direction-rtl .page-item:last-child .page-link {
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+}
+.direction-rtl .page-item .page-link .iconify {
+    transform: rotate(180deg) !important;
+}
+.direction-rtl .share-box {
+    margin-right: 0 !important;
+    margin-left: 1.5rem !important;
+}
+.direction-rtl .author-details {
+    padding-left: 0 !important;
+    padding-right: 1.5rem !important;
+}
+.direction-rtl .blog-reply-btn .iconify {
+    transform: rotate(180deg) !important;
+}
+.direction-rtl .blog-reply-btn .iconify {
+    left: auto !important;
+    right: -7px !important;
+}
+.direction-rtl .blog-details-content-quotation-part .quote-item-img-wrap {
+    margin-right: 0 !important;
+    margin-left: 33px !important;
+}
+/* Blog Page */
+
+/* Course Page */
+.direction-rtl .search-tag-list {
+    margin: 5px 0 5px 5px !important;
+}
+.direction-rtl .sidebar-filter-btn {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .sidebar-filter-btn img {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .filter-bar-search-box {
+    padding-right: 0 !important;
+}
+.direction-rtl .filter-box {
+    padding: 0 10px 0 0 !important;
+}
+.direction-rtl .filter-bar-right {
+    text-align: left !important;
+}
+.direction-rtl .clear-all-tags {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+.direction-rtl .clear-all-tags .iconify,
+.direction-rtl .show-all-course-area-inner-tags .iconify,
+.direction-rtl .sidebar-radio-item label.form-check-label .iconify {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .courses-sidebar-area {
+    border-right: none !important;
+    border-left: 1px solid #e5e8ec !important;
+}
+.direction-rtl .form-check .form-check-input {
+    float: right !important;
+    margin-left: 0 !important;
+    margin-right: -1.5em !important;
+}
+.direction-rtl .courses-sidebar-area .accordion-button {
+    padding: 0.55rem 0 0.55rem 1.25rem !important;
+    text-align: right !important;
+}
+.direction-rtl .range-value-wrap-go-btn .iconify {
+    transform: rotate(-180deg) !important;
+}
+.direction-rtl
+    .courses-sidebar-area
+    .sidebar-inner-title
+    .accordion-button
+    .iconify {
+    margin-right: 0 !important;
+    margin-left: 12px !important;
+}
+.direction-rtl .sidebar-radio-item {
+    padding-right: 0 !important;
+    padding-left: 20px !important;
+}
+.direction-rtl .form-check {
+    padding-left: 0 !important;
+    padding-right: 1.5em !important;
+}
+.direction-rtl .sidebar-radio-item label {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+}
+.direction-rtl .ui-slider-horizontal .ui-slider-handle {
+    margin-left: 0 !important;
+    margin-right: -0.6em !important;
+}
+.direction-rtl .range-value-wrap {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+/* Course Page */
+
+/* Course Details Page */
+.direction-rtl .course-rating .me-2 {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .course-tab-nav-wrap .nav-tabs.tab-nav-list li {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .course-details-tab-nav-wrap .tab-nav-list.nav-tabs .nav-link {
+    margin-left: 0 !important;
+    margin-right: 22px !important;
+}
+.direction-rtl .what-you-learn-list-wrap ul li p {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+}
+.direction-rtl .play-list-left img {
+    margin-right: 0 !important;
+    margin-left: 18px !important;
+}
+.direction-rtl .show-preview {
+    margin-right: 0 !important;
+    margin-left: 30px !important;
+}
+.direction-rtl .rating-list li {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .progress-star {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .hint-number {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+.direction-rtl .rating-list li {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .customer-review-item .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .customer-review-item .rating-list {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .rating-list li {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .course-single-details-right-content {
+    margin-left: 0 !important;
+    margin-right: 26px !important;
+}
+.direction-rtl .course-price-box h4 .ps-3 {
+    padding-left: 0 !important;
+    padding-right: 1rem !important;
+}
+.direction-rtl .course-left-duration .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .course-includes-box ul li span {
+    margin-left: 0 !important;
+    margin-right: 8px !important;
+}
+.direction-rtl .course-info-box-wishlist-btns .theme-btn > svg {
+    margin-left: 0.5rem !important;
+    margin-right: 0 !important;
+    transform: rotate(0deg) !important;
+}
+.direction-rtl .share-this-course-box svg {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+/* Course Details Page */
+
+/* Course Watch Page */
+.direction-rtl .course-watch-banner-items li .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .enrolled-count {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+.direction-rtl .course-tab-nav-wrap .nav-tabs.tab-nav-list li {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl
+    .course-watch-page-area
+    .course-details-tab-nav-wrap
+    .tab-nav-list.nav-tabs
+    .nav-link {
+    margin-left: 15px !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .what-you-learn-list-wrap ul {
+    padding-right: 0 !important;
+    padding-left: 25px !important;
+}
+.direction-rtl .publish-update-time {
+    text-align: left !important;
+}
+.direction-rtl .watch-course-title-right-btns .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+.direction-rtl .course-watch-right-content .watchFinishedCourse p {
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+}
+.direction-rtl .course-watch-right-content .watchContinuingCourse p,
+.direction-rtl .course-watch-right-content .play-list-item .play-list-left p {
+    padding-left: 0 !important;
+    padding-right: 0.5rem !important;
+}
+.direction-rtl .modal .btn-close {
+    right: auto !important;
+    left: 31px !important;
+}
+.direction-rtl #newVideoPlayerModal .modal-header {
+    right: auto !important;
+    left: 0 !important;
+}
+.direction-rtl #newVideoPlayerModal .btn-close {
+    right: auto !important;
+    left: 30px !important;
+}
+/* Course Watch Page */
+
+/*Cart Page Start*/
+.direction-rtl .price-symbol {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+/*Cart Page End*/
+
+/* Instructor Single Page */
+.direction-rtl .instructor-details-avatar-wrap img {
+    transform: translateX(50%) !important;
+}
+.direction-rtl .instructor-social ul li a {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .instructor-skills-tag-item {
+    margin: 0 0 10px 10px !important;
+}
+.direction-rtl .instructor-temporary-unavailable .me-3 {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+.direction-rtl .only-follower-item {
+    border-right: 0 !important;
+    border-left: 1px solid #ece6d3 !important;
+}
+/* Instructor Single Page */
+
+/* Student Profile Page */
+.direction-rtl .student-profile-left-part h6 {
+    margin-left: 0 !important;
+    margin-right: 42px !important;
+}
+.direction-rtl .student-profile-right-part .profile-top .profile-image {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}
+.direction-rtl .account-connections-btn .theme-btn img {
+    margin-right: 0 !important;
+    margin-left: 1.5rem !important;
+}
+.direction-rtl .form-check-inline {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+/* Student Profile Page */
+
+/* My Courses or Wishlist Page */
+.direction-rtl .course-item.wishlist-item .card-body {
+    padding: 0 20px 0 0 !important;
+}
+.direction-rtl .checkout-course-item .course-item.wishlist-item .card-body {
+    padding: 0 10px 0 0 !important;
+}
+.direction-rtl .instructor-my-course-item .rating-list {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+}
+.direction-rtl .wishlist-course-item .card-body button,
+.direction-rtl .wishlist-course-item .card-body .my-learning-invoice {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .wishlist-course-item .card-body button img,
+.direction-rtl .wishlist-course-item .card-body button .iconify,
+.direction-rtl .wishlist-course-item .card-body .my-learning-invoice img {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+.direction-rtl .order-summary-box-note .ms-2 {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+/* My Courses or Wishlist Page */
+
+/* Checkout Page */
+.direction-rtl .payment-method-card-box .form-check-input {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .form-check.payment-method-card-box.paypal-box .me-3 {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+.direction-rtl .checkout-we-protect-content .ms-2 {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+/* Checkout Page */
+
+/* Auth pages */
+.direction-rtl .sign-up-right-content .pass-icon {
+    right: auto !important;
+    left: 10px !important;
+}
+/* Auth pages */
+
+/* Become an Instructor */
+.direction-rtl .become-instructor-feature-area button.theme-btn,
+.direction-rtl .become-instructor-call-to-action button.theme-btn {
+    margin-right: 0 !important;
+    margin-left: 30px !important;
+}
+.direction-rtl .become-an-instructor-procedure-item-right {
+    margin-left: 25px !important;
+    margin-right: 25px !important;
+}
+.direction-rtl .become-an-instructor-procedure-item-right .section-heading {
+    text-align: right !important;
+    padding-right: 0 !important;
+    padding-left: 50% !important;
+}
+.direction-rtl
+    .become-an-instructor-procedures-area
+    .row:nth-child(even)
+    .become-an-instructor-procedure-item-right
+    .section-heading {
+    text-align: left !important;
+    padding-left: 0 !important;
+    padding-right: 50% !important;
+}
+.direction-rtl
+    .become-an-instructor-procedures-area
+    .row:nth-child(even)
+    .become-an-instructor-procedure-item-right
+    p {
+    text-align: left !important;
+}
+.direction-rtl .counter-content {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+/* Become an Instructor */
+
+/* Message Page */
+.direction-rtl .message-user-item-left .ms-3,
+.direction-rtl .chat-item.chat-item-left .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .message-chat-top-right {
+    text-align: left !important;
+}
+.direction-rtl .message-chat-top-right .dropdown-menu .dropdown-item .iconify {
+    margin-right: 0 !important;
+    margin-left: 6px !important;
+}
+.direction-rtl .chat-item .dropdown {
+    right: auto !important;
+    float: left !important;
+    left: -25px !important;
+}
+.direction-rtl .chat-text-box {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}
+.direction-rtl .chat-item.chat-item-right {
+    float: left !important;
+}
+.direction-rtl .message-chat-bottom-right {
+    text-align: left !important;
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .message-chat-bottom-action-btn.send-chat-button .iconify {
+    transform: rotate(-80deg) !important;
+}
+.direction-rtl .message-chat-bottom-left .pe-0 {
+    padding-right: 0.75rem !important;
+    padding-left: 0 !important;
+}
+.direction-rtl .message-chat-bottom-left .ps-0 {
+    padding-left: 0.75rem !important;
+    padding-right: 0 !important;
+}
+.direction-rtl .search-message-box .input-group-text {
+    padding-right: 0.75rem !important;
+    padding-left: 0 !important;
+}
+.direction-rtl .search-message-box input {
+    border-left: 1px solid #e9e8e8 !important;
+    border-right: 0 !important;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+.direction-rtl .search-message-box .input-group-text {
+    border-right: 1px solid #e9e8e8 !important;
+    border-left: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-top-right-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+}
+/* Message Page */
+
+/* Instructor Dashboard Pages */
+.direction-rtl .instructor-profile-left-part ul li a .iconify {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+.direction-rtl .instructor-profile-left-part ul li .toggle-account-menu {
+    right: auto !important;
+    text-align: left !important;
+    left: 10px !important;
+}
+.direction-rtl .instructor-profile-page .profile-top .profile-image {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}
+.direction-rtl .add-more-certificate .iconify,
+.direction-rtl .instructor-add-extra-field-box .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .instructor-profile-left-part-wrap {
+    border-right: none !important;
+    border-left: 1px solid #ebebeb !important;
+}
+.direction-rtl .instructor-my-courses-btns .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+
+.direction-rtl .instructor-dashboard-top-part-item .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .recently-added-course-item-left .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .recently-added-course-item-right.ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+
+.direction-rtl .ranking-content-in-right {
+    margin-left: 0 !important;
+    margin-right: 15px !important;
+}
+.direction-rtl .ranking-item-right {
+    padding-left: 0 !important;
+    padding-right: 50px !important;
+}
+.direction-rtl .ranking-item-right:after {
+    left: auto !important;
+    right: 0 !important;
+}
+/* Ranking Badge list page */
+.direction-rtl .ranking-item-right .ranking-content-in-right {
+    margin-left: 0 !important;
+    margin-right: 50px !important;
+}
+/* Ranking Badge list page */
+
+/* Instructor Dashboard Pages */
+
+/* Befour Purchase course single Tabs */
+
+/* Discussion Tab */
+.direction-rtl .discussion-comment-left-img-wrap {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+.direction-rtl .extra-info-left button {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}
+.direction-rtl .extra-info-right div {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+.direction-rtl .extra-info-right div .iconify {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+/* Discussion Tab */
+
+/* Meet your instructor tab */
+.direction-rtl .meet-instructor-img-wrap {
+    margin-right: 0 !important;
+    margin-left: 13px !important;
+}
+.direction-rtl .meet-instructor-extra-info-item .iconify {
+    margin-right: 0 !important;
+    margin-left: 7px !important;
+}
+/* Meet your instructor tab */
+
+/* Befour Purchase course single Tabs */
+
+/* After Purchase course single Tabs */
+
+/* Live Class Tab */
+.direction-rtl .course-watch-meeting-link .iconify {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+}
+/* Live Class Tab */
+
+/* Discussion tab */
+.direction-rtl .start-conversation-btn-wrap button .iconify {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+.direction-rtl .discussion-left-img-wrap {
+    margin-right: 0 !important;
+    margin-left: 26px !important;
+}
+/* Discussion tab */
+
+/* Certificate Tab */
+.direction-rtl
+    .course-watch-certificate-download-btns
+    .theme-btn.default-hover-btn {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .green-theme-btn .iconify,
+.direction-rtl .theme-btn.default-hover-btn .iconify {
+    margin-right: 0 !important;
+    margin-left: 8px !important;
+}
+.direction-rtl .course-watch-certificate-download-btns .theme-btn .iconify {
+    transform: rotate(0deg) !important;
+}
+/* Certificate Tab */
+
+/* Review Tab */
+.direction-rtl
+    .course-watch-page-area.course-single-details-area
+    .review-progress-bar-wrap {
+    margin-left: 0 !important;
+    margin-right: 40px !important;
+}
+/* Review Tab */
+
+/* Quiz Tab */
+.direction-rtl .notice-board-action-btns .theme-btn {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .multiple-quiz-block .form-check .iconify {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+}
+.direction-rtl .course-watch-quiz-title-right-side p:not(:last-child) {
+    border-right: none !important;
+    border-left: 1px solid #b5b4bd !important;
+    margin-right: 0 !important;
+    margin-left: 26px !important;
+    padding-right: 0 !important;
+    padding-left: 26px !important;
+}
+.direction-rtl .quiz-back-btn,
+.direction-rtl .default-back-btn {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .merit-list-crown-img-wrap {
+    margin-left: 0 !important;
+    margin-right: 30px !important;
+}
+/* Quiz Tab */
+
+/* Resources Tab */
+.direction-rtl .resource-list-text a {
+    margin: 0 8px 0 10px !important;
+}
+/* Resources Tab */
+
+/* Assignment tab */
+.direction-rtl .create-assignment-upload-files button .iconify {
+    margin-right: 0 !important;
+    margin-left: 8px !important;
+}
+/* Assignment tab */
+
+/* After Purchase course single Tabs */
+
+/* Instructor Course Page */
+.direction-rtl .instructor-courses-info-duration-wrap ul li .iconify {
+    margin-right: 0 !important;
+    margin-left: 6px !important;
+}
+.direction-rtl .instructor-courses-info-duration-wrap-text {
+    margin-left: 0 !important;
+    margin-right: 0.25rem !important;
+}
+/* Instructor Course Page */
+
+/* Instructor Resources Page */
+.direction-rtl .default-delete-btn-red .iconify {
+    margin-right: 0 !important;
+    margin-left: 8px !important;
+}
+.direction-rtl .red-blue-action-btns .theme-btn {
+    margin-right: 0 !important;
+    margin-left: 9px !important;
+}
+.direction-rtl .instructor-quiz-list-page table .theme-btn .iconify {
+    transform: rotate(0deg) !important;
+}
+.direction-rtl .quiz-list-page-top-right {
+    text-align: left !important;
+}
+/* Instructor Resources Page */
+
+/* Instructor Quiz List Page */
+.direction-rtl .instructor-quiz-list-page .dropdown li a .iconify {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .instructor-quiz-details-page table td > .iconify {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .instructor-add-question-page .openion-item .form-check {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+.direction-rtl .add-question-save-btns .theme-btn {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+/* Instructor Quiz List Page */
+
+/* Instructor Assignment Page */
+.direction-rtl .assignment-btn-group .theme-btn {
+    margin-right: 0 !important;
+    margin-left: 11px !important;
+}
+.direction-rtl .assignment-btn-group .theme-btn .iconify {
+    margin-right: 0 !important;
+    margin-left: 7px !important;
+}
+/* Instructor Assignment Page */
+
+/* Instructor Upload Course Page */
+.direction-rtl #progressbar li:after {
+    right: auto !important;
+    left: -118px !important;
+}
+.direction-rtl #msform .upload-course-step-item {
+    text-align: right !important;
+}
+.direction-rtl .course-overview-step1 ul li .iconify {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+    transform: rotate(180deg) !important;
+}
+.direction-rtl .common-upload-lesson-btn,
+.direction-rtl .common-upload-video-btn {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+.direction-rtl .common-upload-lesson-btn .iconify,
+.direction-rtl .common-upload-video-btn .iconify {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+
+.direction-rtl .upload-course-video-edit-btn {
+    margin-left: 0 !important;
+    margin-right: 1.5rem !important;
+}
+.direction-rtl .upload-course-video-edit-btn .iconify {
+    margin-left: 0.25rem !important;
+    margin-right: 0 !important;
+}
+.direction-rtl .add-more-section-btn .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .upload-course-duration-text {
+    margin-right: 0 !important;
+    margin-left: 1.5rem !important;
+}
+.direction-rtl .upload-course-duration-text .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .stepper-action-btns .theme-button3,
+.direction-rtl .show-last-phase-back-btn {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .course-overview-step1 .mr-15 {
+    margin-right: 0 !important;
+    margin-left: 15px !important;
+}
+.direction-rtl .main-upload-video-processing-item .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .main-upload-video-processing-item-btns .theme-btn {
+    margin-right: 0 !important;
+    margin-left: 7px !important;
+}
+.direction-rtl .main-upload-video-processing-item .ms-4 {
+    margin-left: 0 !important;
+    margin-right: 1.5rem !important;
+}
+/* Instructor Upload Course Page */
+
+/* Instructor All Student Page */
+.direction-rtl .all-student-filter-dropdown-btn .iconify {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .all-student-modal-img span {
+    margin-left: 0 !important;
+    margin-right: 15px !important;
+}
+/* Instructor All Student Page */
+
+/* Instructor Notice Board Page */
+.direction-rtl .table-data-course-name {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+}
+.direction-rtl .default-edit-btn-blue .iconify {
+    margin-right: 0 !important;
+    margin-left: 8px !important;
+}
+/* Instructor Notice Board Page */
+
+/* Instructor Live Class Page */
+.direction-rtl .copy-text-btn {
+    right: auto !important;
+    left: 10px !important;
+}
+/* Instructor Live Class Page */
+
+/* Instructor Certificate Pages */
+.direction-rtl .instructor-certificate-course-list-wrap span {
+    margin-left: 0 !important;
+    margin-right: 15px !important;
+}
+.direction-rtl .color-picker label > span {
+    margin-left: 0 !important;
+    margin-right: 5px !important;
+}
+.direction-rtl .create-certificate-sidebar .upload-img-btn-wrapper {
+    float: left !important;
+    right: auto !important;
+    left: -9px !important;
+}
+.direction-rtl .create-certificate-sidebar .accordion-button::after {
+    float: left !important;
+}
+/* Instructor Certificate Pages */
+
+/* Instructor Finance Pages */
+.direction-rtl #withdrawalModal .btn-close {
+    right: auto !important;
+    left: 20px !important;
+}
+/* Instructor Finance Pages */
+
+/* Instructor Discussion page */
+.direction-rtl .instructor-disscussion-page-leftside .search-message-box input {
+    border: none !important;
+}
+.direction-rtl
+    .instructor-disscussion-page-leftside
+    .search-message-box
+    .input-group-text {
+    border-right: none !important;
+}
+/* Instructor Discussion page */
+
+/* Support tickets all pages */
+.direction-rtl .create-tickets-btns .theme-btn {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl .ticket-status-box {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+}
+/* Support tickets all pages */
+
+/* Student My Learning */
+.direction-rtl .my-courses-page .filter-box-short-icon img {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+/* Student My Learning */
+
+/* Upload course edit */
+.direction-rtl .lecture-edit-title,
+.direction-rtl .see-preview-video {
+    margin-left: 0 !important;
+    margin-right: 10px !important;
+}
+/* Upload course edit */
+
+/* RTL Consultation Pages */
+.direction-rtl #consultationBookingModal .consultantion-hours-box label,
+.direction-rtl #consultationBookingModal .consultantion-calendar-box label {
+    margin-right: 0 !important;
+    margin-left: 13px !important;
+}
+.direction-rtl .booking-history-right {
+    text-align: left !important;
+}
+.direction-rtl .book-schedule-calendar-wrap .iconify {
+    left: 11px !important;
+    right: auto !important;
+}
+.direction-rtl .are-you-available-title .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+/* RTL Consultation Pages */
+
+/* RTL Forum Pages */
+.direction-rtl .forum-nav-list-title {
+    padding: 18px 0 18px 20px !important;
+}
+.direction-rtl .forum-link-box-title .iconify {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+.direction-rtl .forum-categories-filter-box button {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+.direction-rtl .forum-category-single-item-right {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .forum-category-single-item-bottom-left li {
+    margin-right: 0 !important;
+    margin-left: 20px !important;
+}
+.direction-rtl .forum-category-single-item-bottom-left li .iconify,
+.direction-rtl .forum-category-single-item-bottom-right li .iconify {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .forum-category-single-item-bottom-right li {
+    margin-left: 0 !important;
+    margin-right: 20px !important;
+}
+.direction-rtl .ms-3 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+.direction-rtl .forum-details-bottom .reply-btn {
+    margin-left: 0 !important;
+    margin-right: 28px !important;
+}
+.direction-rtl .forum-details-rightside.sticky-top {
+    padding-left: 0 !important;
+    padding-right: 100px !important;
+}
+.direction-rtl .forum-timeline-menu:before {
+    left: auto !important;
+    right: 0 !important;
+}
+.direction-rtl .list-group-item.active::after {
+    left: auto !important;
+    right: -1px !important;
+}
+.direction-rtl .list-group-item {
+    padding: 0 15px 0 0 !important;
+}
+/* RTL Forum Pages */
+
+/* RTL Affiliate Pages Start */
+.direction-rtl .affiliate-top-title-btns {
+    text-align: left !important;
+}
+.direction-rtl .affiliate-top-title-btns .theme-btn {
+    margin: 5px 5px 5px 0 !important;
+}
+.direction-rtl .affiliate-dashboard-item .iconify {
+    margin-left: 0 !important;
+    margin-right: 0.25rem !important;
+    transform: scaleX(-1) !important;
+}
+.direction-rtl .affiliate-export-btns .theme-btn {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+
+/* Affiliate Link Box in Course page */
+.direction-rtl .course-info-box-affiliate-link-copy input {
+    padding: 15px 15px 15px 40px !important;
+}
+.direction-rtl .affiliate-copy-btn {
+    right: auto !important;
+    left: 12px !important;
+}
+/* Affiliate Link Box in Course page */
+
+/* RTL Affiliate Pages End */
+
+/* Subscription and Saas Plan section */
+.direction-rtl .check-icon-wrap {
+    margin-right: 0.5rem !important;
+    margin-left: 0.5rem !important;
+}
+/* Subscription and Saas Plan section */
+
+/* Star Ratings css */
+.direction-rtl .star-ratings .fill-ratings {
+    left: auto !important;
+    right: 0 !important;
+}
+.direction-rtl .rating-count {
+    margin-left: 0rem !important;
+    margin-right: 0.5rem !important;
+}
+/* Star Ratings css */
+
+/* Session Online Show CSS Start */
+.direction-rtl .session-online {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+/* Session Online Show CSS Start */
+/* Search Instructor Page RTL Start */
+.direction-rtl .sidebar-select-item {
+    margin-right: 0 !important;
+    margin-left: 1.5rem !important;
+}
+/* Search Instructor Page RTL End */
+
+/* Organization Dashboard RTL Start */
+.direction-rtl .status.form-select {
+    padding: 6px 15px 7px 27px !important;
+}
+.direction-rtl #donut .apexcharts-canvas {
+    left: auto !important;
+    right: -5px !important;
+}
+.direction-rtl #donut .apexcharts-legend-marker {
+    margin-right: 0 !important;
+    margin-left: 3px !important;
+}
+
+/* Organization student profile Start */
+.direction-rtl .organization-social-box ul li a {
+    margin-right: 0 !important;
+    margin-left: 5px !important;
+}
+.direction-rtl .organization-stu-skill-box ul li a {
+    margin-right: 0 !important;
+    margin-left: 10px !important;
+}
+.direction-rtl
+    .organization-stu-profile-right-certificate
+    .table
+    tbody
+    tr
+    td:last-child {
+    text-align: end !important;
+}
+/* Organization student profile End */
+
+/* Organization Dashboard RTL End */
+
+/* RTL Support Styles End */
+
+/* PWA Install Button Start */
+.pwa-install-btn {
+    right: 10px !important;
+    top: 30% !important;
+    padding: 7px 10px !important;
+    display: flex !important;
+    border: 1px solid var(--border-color) !important;
+}
+/* PWA Install Button End */
