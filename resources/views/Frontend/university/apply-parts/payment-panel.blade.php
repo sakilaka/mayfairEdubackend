@@ -125,7 +125,6 @@
         {{-- </form> --}}
     </div>
 
-
     <!-- WeChat Modal -->
     <div class="modal fade" id="modalWechat" tabindex="-1" aria-labelledby="modalWechatLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
