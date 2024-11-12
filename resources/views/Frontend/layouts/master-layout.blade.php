@@ -368,21 +368,20 @@
     <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
 
     <script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "CollegeOrUniversity",
-"name": "Malisha EDU",
-"url": "https://malishaedu.com/",
-"logo":
-"https://malishaedu.com/upload/site_setting/1723997160_header-logo.svg",
-"alternateName": "malishaedu",
-"sameAs": [
-"https://www.facebook.com/gz.malishaedu",
-"https://www.instagram.com/malishaedu",
-"https://www.youtube.com/@MalishaEdu"
-]
-}
-</script>
+        {
+        "@context": "https://schema.org",
+        "@type": "CollegeOrUniversity",
+        "name": "Malisha EDU",
+        "url": "https://malishaedu.com/",
+        "logo": "https://malishaedu.com/upload/site_setting/1723997160_header-logo.svg",
+        "alternateName": "malishaedu",
+        "sameAs": [
+                "https://www.facebook.com/gz.malishaedu",
+                "https://www.instagram.com/malishaedu",
+                "https://www.youtube.com/@MalishaEdu"
+            ]
+        }
+    </script>
 </head>
 
 <body>
