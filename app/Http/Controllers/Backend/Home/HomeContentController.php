@@ -466,6 +466,7 @@ class HomeContentController extends Controller
             }
             $data['images'] = $mergedPhotoGalleryImages;
             $data['image_titles'] = $request->image_title;
+            $data['image_positions'] = $request->image_position;
 
             $footerImage->footer_image = json_encode($data);
             $footerImage->save();

@@ -58,7 +58,7 @@
                         <div class="app_summary">
                             <div class="mt-2 mb2 d-flex justify-content-between">Application ID
                                 <strong style="font-size: 1rem; background-color: var(--primary_background)" class="badge"
-                                id="application-id">{{ $application->application_code }}</strong>
+                                id="application-id">{{ $application->application_code}}</strong>
                             </div>
 
                             <div class="mt-2 mb2 application-fee d-flex justify-content-between">
@@ -75,6 +75,18 @@
                                 </div>
                             </div>
 
+                            <div class="mt-2 mb2 application-fee d-flex justify-content-between">
+                                <span class="service_type"> Service Charge <span
+                                        data-tippy-content="This is the application charge required to process your application."><i
+                                            class="far fa-question-circle"></i></span></span>
+                                <div>
+                                    <strong> <span style="font-size: 1rem;color:black;" class="badge p-0"
+                                            id="application-fee">{{ convertCurrency($service_charge != null ? $service_charge : 0  )  }}</span></strong>
+                                </div>
+                            </div>
+
+
+
                             <div class="mt-2 mb2 service-fee-container justify-content-between d-none">
                                 <span class="service-fee"> Service Fee <span
                                         data-tippy-content="This is the service fee to cover the processing of your application to the university on China Admissions platform."><i
@@ -82,6 +94,7 @@
                                 <strong><span style="font-size: 1rem;" class="badge p-0"
                                         id="service-fee">Free</span></strong>
                             </div>
+
                             <div class="mt-2 mb2 opt-service-fee-container justify-content-between d-none"><span
                                     class="opt-service-fee">Optional Service Fee</span>
                                 <strong><span style="font-size: 1rem;" class="badge p-0" id="opt-service-fee">$990
@@ -156,6 +169,7 @@
                                 </div>
                             @endforeach
                         </div>
+
 
                         <div class="mt-2 mb2 d-flex flex-column">
                             <button class="btn-add-prog btn mb-4"
@@ -3323,6 +3337,7 @@
         </div>
     </div>
 @endsection
+
 @section('cus_sc')
     <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>

@@ -9,6 +9,7 @@ use App\Models\Country;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class StudentController extends Controller
 {
@@ -64,7 +65,7 @@ class StudentController extends Controller
             $user->description = $request->description ?? "";
             $user->type = 1;
             $user->role = 'student';
-            $user->password = 12345678;
+            $user->password = Hash::make(12345678);
 
             if ($request->hasFile('image')) {
                 $fileName = rand() . time() . '_image.' . request()->image->getClientOriginalExtension();

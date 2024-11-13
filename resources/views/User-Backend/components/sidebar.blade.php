@@ -40,22 +40,22 @@
 
         @if (Auth::user()->role == 'partner')
             {{-- manage application --}}
-            <li class="nav-item {{ Route::is('frontend.manage_consultant_application') || Route::is('frontend.manage_consultant_application_filter') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Route::is('frontend.manage_consultant_application') || Route::is('frontend.manage_consultant_application_filter') ? 'active' : '' }}">
                 <a class="nav-link {{ Route::is('frontend.manage_consultant_application') || Route::is('frontend.manage_consultant_application_filter') ? 'active' : '' }}"
                     href="{{ route('frontend.manage_consultant_application') }}">
                     <i class="fa fa-file-pdf menu-icon"></i>
                     <span class="menu-title">Assigned Application</span>
                 </a>
-            </li>
+            </li> --}}
 
             {{-- manage application --}}
-            <li class="nav-item {{ Route::is('frontend.manage_consultant_student') ? 'active' : '' }}">
+            {{-- <li class="nav-item {{ Route::is('frontend.manage_consultant_student') ? 'active' : '' }}">
                 <a class="nav-link {{ Route::is('frontend.manage_consultant_student') ? 'active' : '' }}"
                     href="{{ route('frontend.manage_consultant_student') }}">
                     <i class="fa fa-users menu-icon"></i>
                     <span class="menu-title">Assigned Students</span>
                 </a>
-            </li>
+            </li> --}}
 
             {{-- apply for new application --}}
             <li class="nav-item">

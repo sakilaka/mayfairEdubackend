@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Partner Wise Student & Appliction List</title>
+    <title>{{ env('APP_NAME') }} | Partner Wise Appliction List</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            Partner Wise Student & Appliction List
+                            Partner Wise Appliction List
                         </h3>
                     </div>
 
@@ -29,9 +29,9 @@
                                     <tr role="row">
                                         <th class="text-left" style="max-width: 50px;">SL</th>
                                         <th>Partner</th>
-                                        <th class="text-right">Total Students</th>
-                                        <th class="text-right">Total Applications</th>
-                                        <th class="text-right">Success Rate</th>
+                                        {{-- <th class="text-right">Total Students</th> --}}
+                                        <th class="text-right">All Applications</th>
+                                        <th class="text-right">Levels</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,7 +39,7 @@
                                         <tr role="row" class="{{ $key % 2 == 0 ? 'even' : 'odd' }}">
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $item['partner']->name }}</td>
-                                            <td class="text-right">
+                                            {{-- <td class="text-right">
                                                 @if ($item['total_students'] != 0)
                                                     {{ $item['total_students'] }}
                                                     <a href="{{ route('admin.student_list_partner_wise', ['partner_id' => $item['partner']->id]) }}"
@@ -53,7 +53,7 @@
                                                             style="color: transparent;"></i>
                                                     </span>
                                                 @endif
-                                            </td>
+                                            </td> --}}
                                             <td class="text-right">
                                                 @if ($item['total_applications'] != 0)
                                                     {{ $item['total_applications'] }}
@@ -69,7 +69,7 @@
                                                     </span>
                                                 @endif
                                             </td>
-                                            <td class="text-right">{{ number_format($item['success_rate'], 2) }}%</td>
+                                            <td class="text-right">{{ $item['levels'] == null ? 'Beginner' : $item['levels'] }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

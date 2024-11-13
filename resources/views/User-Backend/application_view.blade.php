@@ -607,7 +607,6 @@
                                         </div>
                                     </div>
 
-
                                     <!-- Modal -->
                                     <div class="modal fade" id="certificateModal{{ $k }}" tabindex="-1"
                                         role="dialog" aria-labelledby="audioModalLabel" aria-hidden="true">
@@ -640,16 +639,80 @@
                                     </div>
                                 @endforeach
                             </div>
+
+                            {{-- <div class="ms-2">
+                                <h4>Money Receipt</h4>
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <img src="{{ asset($s_appliction->payment_proof) }}" alt="image"
+                                                 style="height: 300px; width: 450px">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label for="address"><b>Payment Receipt</b></label>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <button style="margin-left: 18px" type="button" data-toggle="modal" data-target="#paymentRecipt" class="btn btn-primary">
+                                                <i class="fa-solid fa-eye"></i> Details
+                                            </button>
+                                            <a href="{{ route('frontend.application-file-download', $s_appliction->id) }}" class="btn btn-primary">
+                                                <i class="fa-solid fa-download"></i> Download
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="paymentRecipt" tabindex="-1" role="dialog" aria-labelledby="paymentReciptLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="paymentReciptLabel" style="color: black">
+                                                Payment Receipt
+                                            </h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            @php
+                                                $filePath = asset($s_appliction->payment_proof); // Ensure the file path starts from 'public'
+                                                $fileExtension = pathinfo($s_appliction->payment_proof, PATHINFO_EXTENSION);
+                                            @endphp
+                            
+                                            @if ($fileExtension === 'pdf')
+                                                <iframe src="{{ $filePath }}" width="100%" height="500"></iframe>
+                                            @else
+                                                <img src="{{ $filePath }}" alt="image" style="height: 300px; width: 450px">
+                                            @endif
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
+
                     </div>
+                  
                 </div>
 
-                @include('User-Backend.components.footer')
+                <div>
+
+                    @include('User-Backend.components.footer')
+                </div>
             </div>
         </div>
-    </div>
 
-    @include('User-Backend.components.script')
+        @include('User-Backend.components.script')
 
 </body>
 

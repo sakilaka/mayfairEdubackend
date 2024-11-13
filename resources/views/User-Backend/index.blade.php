@@ -86,6 +86,88 @@
             font-size: 1rem;
             color: rgb(43, 43, 43);
         }
+
+        .program-top-right-degree {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 14px;
+            color: #fff;
+            padding: 3px 8px;
+            font-weight: 600;
+        }
+
+        .university-tag {
+            background-color: #ff0015b5;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .university-course-container {
+            height: 370px !important;
+        }
+
+        .course-nav-tab .btn-dark-cerulean {
+            color: #fff;
+            background-color: var(--secondary_background) !important;
+            border-color: var(--secondary_background) !important;
+        }
+
+        .course-nav-tab .btn-dark-cerulean:hover {
+            color: #fff;
+            background-color: var(--primary_background) !important;
+            border-color: var(--primary_background) !important;
+        }
+
+        .course_nav_tabs::-webkit-scrollbar {
+            width: 0px;
+            display: none;
+        }
+
+        .course-nav-tab-subtitle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--primary_background);
+        }
+
+        .course-nav-tab-subtitle .line {
+            width: 30px;
+            height: 1px;
+            background-color: var(--secondary_background);
+            margin-right: 10px;
+        }
+
+        .course-nav-tab-subtitle .text-uppercase {
+            font-weight: 500;
+        }
+
+        .browse-more-btn.btn-dark-cerulean {
+            color: #fff;
+            background-color: var(--secondary_background) !important;
+            border-color: var(--secondary_background) !important;
+        }
+
+        .browse-more-btn.btn-dark-cerulean:hover {
+            color: #fff;
+            background-color: var(--primary_background) !important;
+            border-color: var(--primary_background) !important;
+        }
+
+        .course-university-image-container img {
+            transition: transform 0.3s;
+            transform-origin: center center;
+            opacity: 1;
+            width: 6.125rem !important;
+            height: 5.375rem !important;
+            object-fit: contain !important;
+            -webkit-transform: perspective(0px) rotateX(0deg) rotateY(0deg) scaleX(1) scaleY(1);
+            transform: perspective(0px) rotateX(0deg) rotateY(0deg) scaleX(1) scaleY(1);
+        }
     </style>
 </head>
 
@@ -127,23 +209,59 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-0">Events</h4>
+                                    <h4 class="card-title mb-0">Total Applications fees paid</h4>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-inline-block pt-3">
                                             <div class="d-md-flex">
-                                                <h2 class="mb-0">{{ $event->count() }}</h2>
+                                                <h2 class="mb-0">{{ $totalApplicationFee }}</h2>
                                             </div>
                                         </div>
                                         <div class="d-inline-block">
-                                            <i class="fa fa-podcast text-info icon-lg"></i>
+                                            <i class="fa fa fa-money-bill mt-1 text-danger icon-lg"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
+
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-0">Total service charge</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-inline-block pt-3">
+                                            <div class="d-md-flex">
+                                                <h2 class="mb-0">{{ $totalServiceCharge }}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <i class="fa fa-money-bill mt-1 text-danger icon-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-0">Total service charge Paid</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-inline-block pt-3">
+                                            <div class="d-md-flex">
+                                                <h2 class="mb-0">{{ $totalServiceChargePaid }}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <i class="fa fa-money-bill mt-1 text-danger icon-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         @if ($user->role == 'partner')
                             <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
@@ -177,11 +295,13 @@
                                             <div class="pt-3">
                                                 <div class="">
                                                     @if ($user->is_verified === 0)
-                                                        <h5 class="mb-2 text-danger fw-bold" style="font-size: 1rem;">Your email is not verified!!</h5>
-                                                        
+                                                        <h5 class="mb-2 text-danger fw-bold" style="font-size: 1rem;">
+                                                            Your email is not verified!!</h5>
+
                                                         <br>
                                                         <form action="">
-                                                            <a href="{{ route('frontend.send_verification_email') }}" class="btn btn-success btn-sm">
+                                                            <a href="{{ route('frontend.send_verification_email') }}"
+                                                                class="btn btn-success btn-sm">
                                                                 Verify Email
                                                             </a>
                                                         </form>
@@ -261,14 +381,36 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                           
+
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         @endif
+
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Applications History Diagram</h4>
+                                    <canvas id="linechart-multi"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Summary</h4>
+                                    <canvas id="doughnutChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                      
+                    </div>
+
+                    <h4 class="mt-3">Programs</h4>
 
                     <div class="tab-pane fade show tabidload active" id="all_program">
                         <div class="row justify-content-center gx-3 gy-4">
@@ -344,7 +486,7 @@
                                                         </a>
                                                     </div>
                                                     <div style="position: absolute; bottom: 0.85rem; width: 90%;">
-                                                        
+
                                                         <div class="tags py-0 pt-2 d-flex flex-column">
                                                             <div class="mobile-title">
                                                                 <div class="d-flex flex-column">
@@ -365,7 +507,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            
+
                                                             <span class="mt-1">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                                     height="16" fill="currentColor"
@@ -507,7 +649,7 @@
                                                             </div>
                                                             @if (strtotime(@$course->application_deadline) < strtotime(now()))
                                                                 <a href="javascript:void(0)"
-                                                                    class="btn btn-dark-cerulean"
+                                                                    class="btn btn-primary-bg"
                                                                     style="background-color: #6c757d !important; border-color: #6c757d !important; cursor: not-allowed !important; pointer-events: none !important;">
                                                                     <img src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/img/cart.png"
                                                                         style="width: 14px;">
@@ -515,7 +657,7 @@
                                                                 </a>
                                                             @else
                                                                 <a href="{{ $apply_url }}"
-                                                                    class="btn btn-dark-cerulean">
+                                                                    class="btn btn-primary-bg">
                                                                     <img src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/img/cart.png"
                                                                         style="width: 14px;">
                                                                     Apply Now
@@ -542,7 +684,7 @@
                             @endif
                         </div>
                     </div>
-                    
+
                 </div>
 
                 @include('User-Backend.components.footer')
@@ -564,6 +706,150 @@
     @endif
 
     @include('User-Backend.components.script')
+
+    <script>
+        if ($("#linechart-multi").length) {
+            var dataForChart = @json($dataForChart);
+
+            var labels = dataForChart.map(function(e) {
+                return e.y;
+            });
+            var dataApplications = dataForChart.map(function(e) {
+                return e.a;
+            });
+            var dataApproved = dataForChart.map(function(e) {
+                return e.b;
+            });
+
+            var multiLineData = {
+                labels: labels,
+                datasets: [{
+                        label: 'Applications',
+                        data: dataApplications,
+                        borderColor: 'rgba(255, 99, 132, 0.75)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.35)',
+                        borderWidth: 3,
+                        fill: true,
+                        cubicInterpolationMode: 'default',
+                        tension: 0.3,
+                        pointRadius: 1
+                    },
+                    {
+                        label: 'Approved',
+                        data: dataApproved,
+                        borderColor: 'rgba(11, 148, 247, 0.75)',
+                        backgroundColor: 'rgba(11, 148, 247, 0.35)',
+                        borderWidth: 3,
+                        fill: true,
+                        cubicInterpolationMode: 'default',
+                        tension: 0.3,
+                        pointRadius: 1
+                    }
+                ]
+            };
+
+            var options = {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Applications and Approvals'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        },
+                        suggestedMin: -10,
+                        suggestedMax: 50,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    xAxes: [{
+                        gridLines: false
+                    }],
+                    yAxes: [{
+                        gridLines: false
+                    }]
+                }
+            };
+            var multiLineCanvas = $("#linechart-multi").get(0).getContext("2d");
+            var lineChart = new Chart(multiLineCanvas, {
+                type: 'line',
+                data: multiLineData,
+                options: options
+            });
+        }
+        if ($("#doughnutChart").length) {
+            var totalApplications = @json($total_applications);
+            var totalServiceCharge = @json($totalServiceCharge);
+            var totalApplicationFee = @json($totalApplicationFee);
+
+            var doughnutPieData = {
+                datasets: [{
+                    data: [
+                        totalApplications,
+                        totalServiceCharge,
+                        totalApplicationFee,
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.45)',
+                        'rgba(54, 162, 235, 0.45)',
+                        'rgba(75, 192, 192, 0.45)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 0.45)',
+                        'rgba(54, 162, 235, 0.45)',
+                        'rgba(75, 192, 192, 0.45)',
+                    ],
+                }],
+                labels: [
+                    'Applications',
+                    'Service Charge',
+                    'Applcation fee',
+                ]
+            };
+
+            var doughnutPieOptions = {
+                responsive: true,
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+
+            var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+            var doughnutChart = new Chart(doughnutChartCanvas, {
+                type: 'doughnut',
+                data: doughnutPieData,
+                options: doughnutPieOptions
+            });
+        }
+    </script>
+    
 </body>
 
 </html>
+

@@ -416,6 +416,7 @@
                                                     @endif
                                                 </td>
                                             @endif
+                                            
                                             @if (isset($table_manipulate_data['application_status']) && $table_manipulate_data['application_status'] == 'on')
                                                 <td data-field="status">
                                                     @php

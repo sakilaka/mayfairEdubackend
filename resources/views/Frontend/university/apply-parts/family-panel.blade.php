@@ -78,7 +78,7 @@
                 <h5 class="multisteps-form__title">Financial Supporter</h5>
                 <p>Please enter the details of the person who will be paying for your studies. It can be a family
                     member, friend, company, government or yourself.</p>
-                <div class="form-row">
+                {{-- <div class="form-row">
                     <span class="pl-2 mr-2">Same as: </span>
                     <div class="form-check form-check-inline">
 
@@ -98,7 +98,7 @@
                             Mother
                         </label>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-row ">
                     <div class="col-12 col-sm-6">
                         <div class=" form-label-group mt-2">

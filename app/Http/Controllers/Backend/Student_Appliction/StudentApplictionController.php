@@ -388,17 +388,21 @@ class StudentApplictionController extends Controller
             $total_students = User::where('partner_ref_id', $partner->id)
                 ->where('role', 'student')
                 ->count();
+            
+            $user = User::where('id', $partner->id)->first();
+            $levels = $user->star;
+            // dd($levels);
 
             $total_applications = StudentApplication::where(function ($query) use ($partner) {
-                $query->where('partner_ref_id', 'like', '%"partner":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"support":' . $partner->id . '%');
+                $query->where('applied_by', 'like', '%"partner":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"manager":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"support":' . $partner->id . '%');
             })->count();
 
             $total_approved_applications = StudentApplication::where(function ($query) use ($partner) {
-                $query->where('partner_ref_id', 'like', '%"partner":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"support":' . $partner->id . '%');
+                $query->where('applied_by', 'like', '%"partner":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"manager":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"support":' . $partner->id . '%');
             })->whereIn('status', [2, 14])
                 ->count();
 
@@ -409,6 +413,7 @@ class StudentApplictionController extends Controller
                 'total_students' => $total_students,
                 'total_applications' => $total_applications,
                 'success_rate' => $success_rate,
+                'levels' => $levels
             ];
         }
 
@@ -437,44 +442,45 @@ class StudentApplictionController extends Controller
 
     public function partnerWiseApplications(Request $request, $partner_id)
     {
-        if ($request->has('detach-application')) {
-            $applicationId = $request->input('detach-application');
-            $application = StudentApplication::find($applicationId);
+        // if ($request->has('detach-application')) {
+        //     $applicationId = $request->input('detach-application');
+        //     $application = StudentApplication::find($applicationId);
 
-            if ($application) {
-                $partnerRefData = json_decode($application->partner_ref_id, true) ?? [];
+        //     if ($application) {
+        //         $partnerRefData = json_decode($application->partner_ref_id, true) ?? [];
 
-                foreach (['partner', 'manager', 'support'] as $role) {
-                    if (isset($partnerRefData[$role]) && $partnerRefData[$role] == $partner_id) {
-                        $partnerRefData[$role] = null;
-                    }
-                }
+        //         foreach (['partner', 'manager', 'support'] as $role) {
+        //             if (isset($partnerRefData[$role]) && $partnerRefData[$role] == $partner_id) {
+        //                 $partnerRefData[$role] = null;
+        //             }
+        //         }
 
-                $partnerRefData = array_filter($partnerRefData);
-                $application->partner_ref_id = json_encode($partnerRefData);
-                $application->save();
+        //         $partnerRefData = array_filter($partnerRefData);
+        //         $application->partner_ref_id = json_encode($partnerRefData);
+        //         $application->save();
 
-                return redirect()->back()->with('success', 'Partner has been detached from the application!');
-            } else {
-                return redirect()->back()->with('error', 'Application Not Found!');
-            }
-        }
+        //         return redirect()->back()->with('success', 'Partner has been detached from the application!');
+        //     } else {
+        //         return redirect()->back()->with('error', 'Application Not Found!');
+        //     }
+        // }
 
         $partner = User::find($partner_id);
 
         if ($partner) {
             $data['partner'] = $partner;
+        }
 
-            $data['applications'] = StudentApplication::where(function ($query) use ($partner_id) {
-                $query->where('partner_ref_id', 'like', '%"partner":' . $partner_id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner_id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"support":' . $partner_id . '%');
-            })->get();
+        $data['applications'] = StudentApplication::where(function ($query) use ($partner_id) {
+            $query->where('applied_by', 'like', '%"partner":' . $partner_id . '%')
+                ->orWhere('applied_by', 'like', '%"manager":' . $partner_id . '%')
+                ->orWhere('applied_by', 'like', '%"support":' . $partner_id . '%');
+        })->get();
+
+        // $data['applications'] = StudentApplication::where('user_id', $partner_id)->get();
 
             return view('Backend.student_appliction.partner_wise_application', $data);
-        } else {
-            return redirect()->back()->with('error', 'User Not Found!');
-        }
+       
     }
 
     public function assignStudentToEmployee(Request $request)
@@ -664,6 +670,7 @@ class StudentApplictionController extends Controller
     public function editProgramInfo($id)
     {
         $data['s_appliction'] = StudentApplication::find($id);
+        // dd($data['s_appliction']);
         $data['managers'] = User::where('role', 'manager')->get();
         $data['supports'] = User::where('role', 'support')->get();
         $data['programs'] = Course::all();
