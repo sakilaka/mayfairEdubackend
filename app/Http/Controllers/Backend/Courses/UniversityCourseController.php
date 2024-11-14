@@ -41,7 +41,7 @@ class UniversityCourseController extends Controller
      */
     public function index()
     {
-        $data['courses'] = Course::where('type', 'university')->orderBy('id', 'desc')->get();
+        $data['courses'] = Course::where('type', 'university')->orderBy('id', 'desc')->paginate(50);
         return view("Backend.courses.u_course.index", $data);
     }
 
