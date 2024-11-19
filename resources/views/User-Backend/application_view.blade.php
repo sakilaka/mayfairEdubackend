@@ -79,7 +79,7 @@
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('University Name:') }}</b></label>
                                         @php
-                                            $programIds = json_decode($item->programs) ?? [];
+                                            $programIds = json_decode($s_appliction->programs) ?? [];
                                             $universities = collect($programIds)
                                                 ->map(function ($programId) {
                                                     $course = \App\Models\Course::find($programId);
@@ -91,19 +91,16 @@
 
                                             $universityNames = $universities
                                                 ->map(function ($university) {
-                                                    return '<a href="' .
-                                                        route('frontend.university_details', [
-                                                            'id' => $university->id,
-                                                        ]) .
-                                                        '" target="_blank" style="color: var(--primary_background);" data-toggle="tooltip" data-placement="top" data-original-title="' .
+                                                    return '<span data-toggle="tooltip" data-placement="top" data-original-title="' .
                                                         $university->name .
                                                         '">' .
                                                         $university->name .
-                                                        '</a>';
+                                                        '</span>';
                                                 })
                                                 ->implode(',<br>');
+
                                         @endphp
-                                        <p>{!! $programLinks !!}</p>
+                                        <p>{!! $universityNames !!}</p>
                                     </div>
                                 </div>
 
