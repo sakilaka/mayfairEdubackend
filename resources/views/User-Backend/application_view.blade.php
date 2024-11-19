@@ -78,9 +78,32 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('University Name:') }}</b></label>
-                                        @foreach ($s_appliction->carts as $cart)
-                                            <p>{{ @$cart->course->university->name }}</p>
-                                        @endforeach
+                                        @php
+                                            $programIds = json_decode($item->programs) ?? [];
+                                            $universities = collect($programIds)
+                                                ->map(function ($programId) {
+                                                    $course = \App\Models\Course::find($programId);
+                                                    return $course?->university;
+                                                })
+                                                ->filter()
+                                                ->unique('id')
+                                                ->values();
+
+                                            $universityNames = $universities
+                                                ->map(function ($university) {
+                                                    return '<a href="' .
+                                                        route('frontend.university_details', [
+                                                            'id' => $university->id,
+                                                        ]) .
+                                                        '" target="_blank" style="color: var(--primary_background);" data-toggle="tooltip" data-placement="top" data-original-title="' .
+                                                        $university->name .
+                                                        '">' .
+                                                        $university->name .
+                                                        '</a>';
+                                                })
+                                                ->implode(',<br>');
+                                        @endphp
+                                        <p>{!! $programLinks !!}</p>
                                     </div>
                                 </div>
 
