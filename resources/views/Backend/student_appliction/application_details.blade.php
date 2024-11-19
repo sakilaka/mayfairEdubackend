@@ -41,7 +41,7 @@
                             <div class="row p-3 border">
                                 <div class="col-12 d-flex justify-content-center my-3">
                                     <h3 class="page-title">
-                                        {{ @$s_appliction->student->name }}'s
+                                        {{ @$s_appliction->first_name }}'s
                                         Application Details
                                     </h3>
                                 </div>
