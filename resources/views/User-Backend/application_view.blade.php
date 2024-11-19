@@ -483,7 +483,7 @@
                                     <hr>
                                 </div>
 
-                                {{-- @foreach ($s_appliction->familyMembers as $item)
+                                @foreach ($s_appliction->familyMembers as $item)
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label for="address"><b>{{ __('Member Name:') }}</b></label>
@@ -527,7 +527,7 @@
                                             <p>{{ $item->relationship }}</p>
                                         </div>
                                     </div>
-                                @endforeach --}}
+                                @endforeach
 
                                 <div class="col-lg-12 mt-3">
                                     <b>
