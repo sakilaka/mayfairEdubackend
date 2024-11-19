@@ -45,9 +45,40 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Program Name:') }}</b></label>
-                                        @foreach ($s_appliction->carts as $cart)
+                                        {{-- @foreach ($s_appliction->carts as $cart)
                                             <p>{{ @$cart->course->name }}</p>
-                                        @endforeach
+                                        @endforeach --}}
+                                        @php
+                                            $programIds = json_decode($s_appliction->programs) ?? [];
+                                            $programs = collect($programIds)
+                                                ->map(function ($programId) {
+                                                    $course = \App\Models\Course::find($programId);
+                                                    return $course
+                                                        ? [
+                                                            'id' => $course->id,
+                                                            'name' => $course->name,
+                                                        ]
+                                                        : null;
+                                                })
+                                                ->filter()
+                                                ->unique('id')
+                                                ->values();
+
+                                            $programLinks = $programs
+                                                ->map(function ($program) {
+                                                    return '<a href="' .
+                                                        route('frontend.course.details', [
+                                                            'id' => $program['id'],
+                                                        ]) .
+                                                        '" target="_blank" style="color: var(--primary_background);" data-toggle="tooltip" data-placement="top" data-original-title="' .
+                                                        $program['name'] .
+                                                        '">' .
+                                                        $program['name'] .
+                                                        '</a>';
+                                                })
+                                                ->implode(',<br>');
+                                        @endphp
+                                        <p>{!! $programLinks !!}</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
