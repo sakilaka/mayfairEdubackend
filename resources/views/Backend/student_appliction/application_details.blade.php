@@ -58,9 +58,10 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Program Name:') }}</b></label>
-                                        @foreach (json_decode($s_appliction->programs) as $programId)
+                                        {{ gettype($s_appliction->programs) }}
+                                        {{-- @foreach (json_decode($s_appliction->programs, true) ?? [] as $programId)
                                             <p>{{ optional(\App\Models\Course::find($programId))->name }}</p>
-                                        @endforeach
+                                        @endforeach --}}
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
