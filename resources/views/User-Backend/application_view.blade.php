@@ -42,6 +42,7 @@
                                         <p>{{ $s_appliction->application_code }}</p>
                                     </div>
                                 </div>
+                                
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Program Name:') }}</b></label>
