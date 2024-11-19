@@ -129,9 +129,9 @@
                                         @if (isset($table_manipulate_data['dormitories']) && $table_manipulate_data['dormitories'] == 'on')
                                             <th>Dormitory</th>
                                         @endif
-                                        {{-- @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
+                                        @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
                                             <th class="text-center">Status</th>
-                                        @endif --}}
+                                        @endif
                                         @if (isset($table_manipulate_data['show_on_home']) && $table_manipulate_data['show_on_home'] == 'on')
                                             <th class="text-center">Show on home</th>
                                         @endif
@@ -228,7 +228,7 @@
                                                     </span>
                                                 </td>
                                             @endif
-                                            {{-- @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
+                                            @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
                                                 <td class="text-center">
                                                     @if ($university->status == 1)
                                                         <a
@@ -246,7 +246,7 @@
                                                         </a>
                                                     @endif
                                                 </td>
-                                            @endif --}}
+                                            @endif
                                             @if (isset($table_manipulate_data['show_on_home']) && $table_manipulate_data['show_on_home'] == 'on')
                                                 <td class="text-center">
                                                     @if ($university->show_on_home == 1)

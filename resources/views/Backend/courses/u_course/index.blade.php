@@ -121,12 +121,6 @@
                                     @endforeach
                                 </tbody>
                             </table>
-
-                            <div class="d-flex justify-content-end mt-3">
-                                <div class="pagination-container">
-                                    {{ $courses->links() }}
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

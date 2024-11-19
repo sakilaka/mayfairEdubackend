@@ -22,10 +22,11 @@
             {{-- passport  --}}
             <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card"
                 style="border-radius:5px;">
-                <h6 class="ms-2">Passport Pages (1-12)</h6>
+                <h6 class="ms-2">Passport Pages</h6>
                 <input type="file" id="passport-file" style="display: none;"
                     onchange="showFileName('passport-file', 'passport-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('passport-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('passport-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -38,7 +39,8 @@
                 <h6 class="ms-2">Highest Academic Certificate</h6>
                 <input type="file" id="certificate-file" style="display: none;"
                     onchange="showFileName('certificate-file', 'certificate-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('certificate-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('certificate-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -50,7 +52,8 @@
                 <h6 class="ms-2">Highest Academic Transcript</h6>
                 <input type="file" id="transcript-file" style="display: none;"
                     onchange="showFileName('transcript-file', 'transcript-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('transcript-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('transcript-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -62,7 +65,8 @@
                 <h6 class="ms-2">Language Proficiency Certificate</h6>
                 <input type="file" id="language-file" style="display: none;"
                     onchange="showFileName('language-file', 'language-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('language-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('language-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -74,7 +78,8 @@
                 <h6 class="ms-2">Foreigner Physical Examination Form</h6>
                 <input type="file" id="foreigner-file" style="display: none;"
                     onchange="showFileName('foreigner-file', 'foreigner-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('foreigner-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('foreigner-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -86,7 +91,8 @@
                 <h6 class="ms-2">Non Criminal Certificate</h6>
                 <input type="file" id="criminal-file" style="display: none;"
                     onchange="showFileName('criminal-file', 'criminal-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('criminal-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('criminal-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -110,7 +116,8 @@
                 <h6 class="ms-2">Personal Photo</h6>
                 <input type="file" id="personal-file" style="display: none;"
                     onchange="showFileName('personal-file', 'personal-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('personal-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('personal-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -122,7 +129,8 @@
                 <h6 class="ms-2">Resume/CV</h6>
                 <input type="file" id="resume-file" style="display: none;"
                     onchange="showFileName('resume-file', 'resume-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('resume-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('resume-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -134,7 +142,8 @@
                 <h6 class="ms-2">Award Certificate</h6>
                 <input type="file" id="award-file" style="display: none;"
                     onchange="showFileName('award-file', 'award-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('award-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('award-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
@@ -146,193 +155,212 @@
                 <h6 class="ms-2">Father’s/Mother’s ID</h6>
                 <input type="file" id="father-file" style="display: none;"
                     onchange="showFileName('father-file', 'father-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('father-file').click()"
+                <button class="me-4 px-3 py-1 btn-secondary-bg"
+                    onclick="document.getElementById('father-file').click()"
                     style="color:white; font-size: 12px; border-radius:5px; border:none;">
                     Choose File
                 </button>
             </div>
             <div id="father-preview" class="mt-2"></div>
 
-            {{-- Passport --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Passport Pages (1-12)</h6>
-                <input type="file" id="passportMasters-file" style="display: none;"
-                    onchange="showFileName('passportMasters-file', 'passportMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('passportMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="passportMasters-preview" class="mt-2"></div>
+            @if ($is_contain_masters_or_phd)
+                {{-- Passport --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Passport Pages</h6>
+                    <input type="file" id="passportMasters-file" style="display: none;"
+                        onchange="showFileName('passportMasters-file', 'passportMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('passportMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
 
-            {{-- Academic Certificate --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Highest Academic Certificate</h6>
-                <input type="file" id="certificateMasters-file" style="display: none;"
-                    onchange="showFileName('certificateMasters-file', 'certificateMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('certificateMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="certificateMasters-preview" class="mt-2"></div>
+                <div id="passportMasters-preview" class="mt-2"></div>
 
-            {{-- Academic Transcript --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Highest Academic Transcript</h6>
-                <input type="file" id="transcriptMasters-file" style="display: none;"
-                    onchange="showFileName('transcriptMasters-file', 'transcriptMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('transcriptMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="transcriptMasters-preview" class="mt-2"></div>
+                {{-- Academic Certificate --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Highest Academic Certificate</h6>
+                    <input type="file" id="certificateMasters-file" style="display: none;"
+                        onchange="showFileName('certificateMasters-file', 'certificateMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('certificateMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="certificateMasters-preview" class="mt-2"></div>
 
-            {{-- Language Certificate --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Language Proficiency Certificate</h6>
-                <input type="file" id="languageMasters-file" style="display: none;"
-                    onchange="showFileName('languageMasters-file', 'languageMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('languageMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="languageMasters-preview" class="mt-2"></div>
+                {{-- Academic Transcript --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Highest Academic Transcript</h6>
+                    <input type="file" id="transcriptMasters-file" style="display: none;"
+                        onchange="showFileName('transcriptMasters-file', 'transcriptMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('transcriptMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="transcriptMasters-preview" class="mt-2"></div>
 
-            {{-- Foreigner Physical --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Foreigner Physical Examination Form</h6>
-                <input type="file" id="foreignerMasters-file" style="display: none;"
-                    onchange="showFileName('foreignerMasters-file', 'foreignerMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('foreignerMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="foreignerMasters-preview" class="mt-2"></div>
+                {{-- Language Certificate --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Language Proficiency Certificate</h6>
+                    <input type="file" id="languageMasters-file" style="display: none;"
+                        onchange="showFileName('languageMasters-file', 'languageMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('languageMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="languageMasters-preview" class="mt-2"></div>
 
-            {{-- Non Criminal --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Non Criminal Certificate</h6>
-                <input type="file" id="criminalMasters-file" style="display: none;"
-                    onchange="showFileName('criminalMasters-file', 'criminalMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('criminalMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="criminalMasters-preview" class="mt-2"></div>
+                {{-- Foreigner Physical --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Foreigner Physical Examination Form</h6>
+                    <input type="file" id="foreignerMasters-file" style="display: none;"
+                        onchange="showFileName('foreignerMasters-file', 'foreignerMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('foreignerMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="foreignerMasters-preview" class="mt-2"></div>
 
-            {{-- Bank Certificate --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Bank Solvency Certificate</h6>
-                <input type="file" id="bankMasters-file" style="display: none;"
-                    onchange="showFileName('bankMasters-file', 'bankMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('bankMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="bankMasters-preview" class="mt-2"></div>
+                {{-- Non Criminal --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Non Criminal Certificate</h6>
+                    <input type="file" id="criminalMasters-file" style="display: none;"
+                        onchange="showFileName('criminalMasters-file', 'criminalMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('criminalMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="criminalMasters-preview" class="mt-2"></div>
 
-            {{-- Personal Photo --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Personal Photo</h6>
-                <input type="file" id="personalMasters-file" style="display: none;"
-                    onchange="showFileName('personalMasters-file', 'personalMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('personalMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="personalMasters-preview" class="mt-2"></div>
+                {{-- Bank Certificate --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Bank Solvency Certificate</h6>
+                    <input type="file" id="bankMasters-file" style="display: none;"
+                        onchange="showFileName('bankMasters-file', 'bankMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('bankMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="bankMasters-preview" class="mt-2"></div>
 
-            {{-- Two Recommendation Letters --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Two Recommendation Letters</h6>
-                <input type="file" id="Recommendation-file" style="display: none;"
-                    onchange="showFileName('Recommendation-file', 'Recommendation-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('Recommendation-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="Recommendation-preview" class="mt-2"></div>
+                {{-- Personal Photo --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Personal Photo</h6>
+                    <input type="file" id="personalMasters-file" style="display: none;"
+                        onchange="showFileName('personalMasters-file', 'personalMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('personalMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="personalMasters-preview" class="mt-2"></div>
 
-            {{-- Study Plan --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Study Plan</h6>
-                <input type="file" id="studyPlan-file" style="display: none;"
-                    onchange="showFileName('studyPlan-file', 'studyPlan-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('studyPlan-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="studyPlan-preview" class="mt-2"></div>
+                {{-- Two Recommendation Letters --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Two Recommendation Letters</h6>
+                    <input type="file" id="Recommendation-file" style="display: none;"
+                        onchange="showFileName('Recommendation-file', 'Recommendation-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('Recommendation-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="Recommendation-preview" class="mt-2"></div>
 
-            {{-- Work Experience --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Work Experience</h6>
-                <input type="file" id="work-file" style="display: none;"
-                    onchange="showFileName('work-file', 'work-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('work-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="work-preview" class="mt-2"></div>
+                {{-- Study Plan --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Study Plan</h6>
+                    <input type="file" id="studyPlan-file" style="display: none;"
+                        onchange="showFileName('studyPlan-file', 'studyPlan-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('studyPlan-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="studyPlan-preview" class="mt-2"></div>
 
-            {{-- Publication --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Publication</h6>
-                <input type="file" id="Publication-file" style="display: none;"
-                    onchange="showFileName('Publication-file', 'Publication-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('Publication-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="Publication-preview" class="mt-2"></div>
+                {{-- Work Experience --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Work Experience</h6>
+                    <input type="file" id="work-file" style="display: none;"
+                        onchange="showFileName('work-file', 'work-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('work-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="work-preview" class="mt-2"></div>
 
-            {{-- Resume/CV --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Resume/CV</h6>
-                <input type="file" id="resumeMasters-file" style="display: none;"
-                    onchange="showFileName('resumeMasters-file', 'resumeMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('resumeMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="resumeMasters-preview" class="mt-2"></div>
+                {{-- Publication --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Publication</h6>
+                    <input type="file" id="Publication-file" style="display: none;"
+                        onchange="showFileName('Publication-file', 'Publication-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('Publication-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="Publication-preview" class="mt-2"></div>
 
-            {{-- Award Certificate --}}
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Award Certificate</h6>
-                <input type="file" id="awardMasters-file" style="display: none;"
-                    onchange="showFileName('awardMasters-file', 'awardMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('awardMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="awardMasters-preview" class="mt-2"></div>
+                {{-- Resume/CV --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Resume/CV</h6>
+                    <input type="file" id="resumeMasters-file" style="display: none;"
+                        onchange="showFileName('resumeMasters-file', 'resumeMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('resumeMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="resumeMasters-preview" class="mt-2"></div>
 
-            {{-- Father id  --}}
+                {{-- Award Certificate --}}
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Award Certificate</h6>
+                    <input type="file" id="awardMasters-file" style="display: none;"
+                        onchange="showFileName('awardMasters-file', 'awardMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('awardMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="awardMasters-preview" class="mt-2"></div>
 
-            <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                <h6 class="ms-2">Father’s/Mother’s ID</h6>
-                <input type="file" id="fatherMasters-file" style="display: none;"
-                    onchange="showFileName('fatherMasters-file', 'fatherMasters-preview')">
-                <button class="me-4 px-3 py-1 btn-secondary-bg" onclick="document.getElementById('fatherMasters-file').click()"
-                    style="color:white; font-size: 12px; border-radius:5px; border:none;">
-                    Choose File
-                </button>
-            </div>
-            <div id="fatherMasters-preview" class="mt-2"></div>
+                {{-- Father id  --}}
+
+                <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
+                    <h6 class="ms-2">Father’s/Mother’s ID</h6>
+                    <input type="file" id="fatherMasters-file" style="display: none;"
+                        onchange="showFileName('fatherMasters-file', 'fatherMasters-preview')">
+                    <button class="me-4 px-3 py-1 btn-secondary-bg"
+                        onclick="document.getElementById('fatherMasters-file').click()"
+                        style="color:white; font-size: 12px; border-radius:5px; border:none;">
+                        Choose File
+                    </button>
+                </div>
+                <div id="fatherMasters-preview" class="mt-2"></div>
+            @endif
 
             <button class="btn btn-primary mt-3" onclick="uploadDocuments({{ $application->id }})">Upload
                 Documents</button>
@@ -460,7 +488,7 @@
         const passportFile = document.getElementById('passport-file').files[0];
         if (passportFile) {
             formData.append('files[]', passportFile);
-            formData.append('titles[]', 'Passport Pages (1-12)');
+            formData.append('titles[]', 'Passport Pages');
         }
 
         const transcriptFile = document.getElementById('transcript-file').files[0];
@@ -531,7 +559,7 @@
         const passportMastersFile = document.getElementById('passportMasters-file').files[0];
         if (passportFile) {
             formData.append('files[]', passportMastersFile);
-            formData.append('titles[]', 'Passport Pages (1-12)');
+            formData.append('titles[]', 'Passport Pages');
         }
 
         const transcriptMastersFile = document.getElementById('transcriptMasters-file').files[0];

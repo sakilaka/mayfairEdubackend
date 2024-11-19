@@ -86,6 +86,88 @@
             font-size: 1rem;
             color: rgb(43, 43, 43);
         }
+
+        .program-top-right-degree {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 14px;
+            color: #fff;
+            padding: 3px 8px;
+            font-weight: 600;
+        }
+
+        .university-tag {
+            background-color: #ff0015b5;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .university-course-container {
+            height: 370px !important;
+        }
+
+        .course-nav-tab .btn-dark-cerulean {
+            color: #fff;
+            background-color: var(--secondary_background) !important;
+            border-color: var(--secondary_background) !important;
+        }
+
+        .course-nav-tab .btn-dark-cerulean:hover {
+            color: #fff;
+            background-color: var(--primary_background) !important;
+            border-color: var(--primary_background) !important;
+        }
+
+        .course_nav_tabs::-webkit-scrollbar {
+            width: 0px;
+            display: none;
+        }
+
+        .course-nav-tab-subtitle {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--primary_background);
+        }
+
+        .course-nav-tab-subtitle .line {
+            width: 30px;
+            height: 1px;
+            background-color: var(--secondary_background);
+            margin-right: 10px;
+        }
+
+        .course-nav-tab-subtitle .text-uppercase {
+            font-weight: 500;
+        }
+
+        .browse-more-btn.btn-dark-cerulean {
+            color: #fff;
+            background-color: var(--secondary_background) !important;
+            border-color: var(--secondary_background) !important;
+        }
+
+        .browse-more-btn.btn-dark-cerulean:hover {
+            color: #fff;
+            background-color: var(--primary_background) !important;
+            border-color: var(--primary_background) !important;
+        }
+
+        .course-university-image-container img {
+            transition: transform 0.3s;
+            transform-origin: center center;
+            opacity: 1;
+            width: 6.125rem !important;
+            height: 5.375rem !important;
+            object-fit: contain !important;
+            -webkit-transform: perspective(0px) rotateX(0deg) rotateY(0deg) scaleX(1) scaleY(1);
+            transform: perspective(0px) rotateX(0deg) rotateY(0deg) scaleX(1) scaleY(1);
+        }
     </style>
 </head>
 
@@ -127,45 +209,87 @@
                             </div>
                         </div>
 
-                        {{-- <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-0">Events</h4>
+                                    <h4 class="card-title mb-0">Total Applications fees paid</h4>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="d-inline-block pt-3">
                                             <div class="d-md-flex">
-                                                <h2 class="mb-0">{{ $event->count() }}</h2>
+                                                <h2 class="mb-0">{{ $totalApplicationFee }}</h2>
                                             </div>
                                         </div>
                                         <div class="d-inline-block">
-                                            <i class="fa fa-podcast text-info icon-lg"></i>
+                                            <i class="fa fa fa-money-bill mt-1 text-danger icon-lg"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> --}}
+                        </div>
+
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-0">Total service charge</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-inline-block pt-3">
+                                            <div class="d-md-flex">
+                                                <h2 class="mb-0">{{ $totalServiceCharge }}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <i class="fa fa-money-bill mt-1 text-danger icon-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-0">Total service charge Paid</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-inline-block pt-3">
+                                            <div class="d-md-flex">
+                                                <h2 class="mb-0">{{ $totalServiceChargePaid }}</h2>
+                                            </div>
+                                        </div>
+                                        <div class="d-inline-block">
+                                            <i class="fa fa-money-bill mt-1 text-danger icon-lg"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         @if ($user->role == 'partner')
-                            <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-0">Your Level</h4>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-inline-block pt-3">
-                                                <div class="d-md-flex">
-                                                    @if ($user->star == 0)
-                                                        <h2 class="mb-0">Beginner</h2>
-                                                    @else
-                                                        @for ($i = 0; $i < $user->star; $i++)
-                                                            <i class="fa fa-star text-warning icon-md"></i>
-                                                        @endfor
-                                                    @endif
-                                                </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-0">Your Level</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-inline-block pt-3">
+                                            <div class="d-md-flex">
+                                                @php
+                                                    $star = \App\Models\Level::where('eligibility_range_min', '<=', $orders->count())
+                                                        ->where('eligibility_range_max', '>=', $orders->count())
+                                                        ->value('star_value');
+                                                @endphp
+                        
+                                                @if ($star == 0)
+                                                    <h2 class="mb-0">Beginner</h2>
+                                                @else
+                                                    @for ($i = 0; $i < $star; $i++)
+                                                        <i class="fa fa-star text-warning icon-md"></i>
+                                                    @endfor
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endif
 
                         @if ($user->type == 1 && $user->is_verified === 1)
@@ -177,11 +301,13 @@
                                             <div class="pt-3">
                                                 <div class="">
                                                     @if ($user->is_verified === 0)
-                                                        <h5 class="mb-2 text-danger fw-bold" style="font-size: 1rem;">Your email is not verified!!</h5>
-                                                        
+                                                        <h5 class="mb-2 text-danger fw-bold" style="font-size: 1rem;">
+                                                            Your email is not verified!!</h5>
+
                                                         <br>
                                                         <form action="">
-                                                            <a href="{{ route('frontend.send_verification_email') }}" class="btn btn-success btn-sm">
+                                                            <a href="{{ route('frontend.send_verification_email') }}"
+                                                                class="btn btn-success btn-sm">
                                                                 Verify Email
                                                             </a>
                                                         </form>
@@ -197,7 +323,7 @@
 
 
 
-                        @if (Auth::user()->type == 1)
+                        @if (Auth::user()->type == 1 && $consultant)
                             <div class="col-sm-6 col-md-4 col-lg-5 ml-lg-auto grid-margin">
                                 <div class="card">
                                     <div class="card-body">
@@ -261,458 +387,310 @@
                                                     </li>
                                                 </ul>
                                             </div>
-                                        @else
-                                            <p style="font-size: 1rem;">You have no partner yet.</p>
+
                                         @endif
                                     </div>
                                 </div>
                             </div>
                         @endif
+
                     </div>
 
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title mb-0"><b>Personal Informations</b></h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 col-lg-3">
-                                    <img src="{{ Auth::user()->image_show }}" alt="{{ Auth::user()->name }}"
-                                        width="200" style="border-radius: 8px">
-                                    <div class="mt-2">
-                                        <p class="pr-3" style="font-size: 1rem !important">
-                                            {{ Auth::user()->description }}
-                                        </p>
-                                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Applications History Diagram</h4>
+                                    <canvas id="linechart-multi"></canvas>
                                 </div>
-                                <div class="col-12 col-lg-9 mt-3 mt-lg-0">
-                                    <div class="row">
-                                        <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Name</label>
-                                                <p>{{ Auth::user()->name }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Email Address</label>
-                                                <p>{{ Auth::user()->email }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Phone Number</label>
-                                                <p>{{ Auth::user()->mobile }}</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Gender</label>
-                                                <p>
-                                                    @if (Auth::user()->gender == '0')
-                                                        Male
-                                                    @elseif (Auth::user()->gender == '1')
-                                                        Female
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        </div>
-                                        @if (Auth::user()->type == '1' || Auth::user()->type == '2')
-                                            <div class="col-12 col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="name">Date of Birth</label>
-                                                    <p>{{ date('d M, Y', strtotime(Auth::user()->dob)) }}</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="name">NID</label>
-                                                    <p>{{ Auth::user()->nid ?? '-' }}</p>
-                                                </div>
-                                            </div>
-                                            @if (Auth::user()->type == 2)
-                                                <div class="col-12 col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="name">Designation</label>
-                                                        <p>{{ Auth::user()->designation ?? '-' }}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="name">Institution</label>
-                                                        <p>{{ Auth::user()->institution ?? '-' }}</p>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        @endif
-                                        {{-- <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Qualification</label>
-                                                <p>{{ Auth::user()->qualification ?? '-' }}</p>
-                                            </div>
-                                        </div> --}}
-                                        {{-- <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Experience</label>
-                                                <p>{{ Auth::user()->experience ?? '-' }}</p>
-                                            </div>
-                                        </div> --}}
-                                        {{-- <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Language</label>
-                                                <p>
-                                                    @if (auth()->user()->language == '1')
-                                                        Bangla
-                                                    @elseif (auth()->user()->language == '2')
-                                                        English
-                                                    @elseif (auth()->user()->language == '3')
-                                                        Hindi
-                                                    @elseif (auth()->user()->language == '4')
-                                                        Arabic
-                                                    @endif
-                                                </p>
-                                            </div>
-                                        </div> --}}
-                                        {{-- @if (auth()->user()->type == 1 || auth()->user()->type == 7)
-                                            <div class="col-12 col-lg-4">
-                                                <div class="form-group">
-                                                    <label for="name">Continent</label>
-                                                    <p>{{ auth()->user()->continents?->name }}</p>
-                                                </div>
-                                            </div>
-                                        @endif --}}
-                                        <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Country</label>
-                                                @php
-                                                    $countries = [
-                                                        1 => 'Afghanistan',
-                                                        2 => 'Aland Islands',
-                                                        3 => 'Albania',
-                                                        4 => 'Algeria',
-                                                        5 => 'American Samoa',
-                                                        6 => 'Andorra',
-                                                        7 => 'Angola',
-                                                        8 => 'Anguilla',
-                                                        9 => 'Antarctica',
-                                                        10 => 'Antigua and Barbuda',
-                                                        11 => 'Argentina',
-                                                        12 => 'Armenia',
-                                                        13 => 'Aruba',
-                                                        14 => 'Australia',
-                                                        15 => 'Austria',
-                                                        16 => 'Azerbaijan',
-                                                        17 => 'Bahamas',
-                                                        18 => 'Bahrain',
-                                                        19 => 'Bangladesh',
-                                                        20 => 'Barbados',
-                                                        21 => 'Belarus',
-                                                        22 => 'Belgium',
-                                                        23 => 'Belize',
-                                                        24 => 'Benin',
-                                                        25 => 'Bermuda',
-                                                        26 => 'Bhutan',
-                                                        27 => 'Bolivia',
-                                                        28 => 'Bonaire, Sint Eustatius and Saba',
-                                                        29 => 'Bosnia and Herzegovina',
-                                                        30 => 'Botswana',
-                                                        31 => 'Bouvet Island',
-                                                        32 => 'Brazil',
-                                                        33 => 'British Indian Ocean Territory',
-                                                        34 => 'Brunei',
-                                                        35 => 'Bulgaria',
-                                                        36 => 'Burkina Faso',
-                                                        37 => 'Burundi',
-                                                        38 => 'Cambodia',
-                                                        39 => 'Cameroon',
-                                                        40 => 'Canada',
-                                                        41 => 'Cape Verde',
-                                                        42 => 'Cayman Islands',
-                                                        43 => 'Central African Republic',
-                                                        44 => 'Chad',
-                                                        45 => 'Chile',
-                                                        46 => 'China',
-                                                        47 => 'Christmas Island',
-                                                        48 => 'Cocos (Keeling) Islands',
-                                                        49 => 'Colombia',
-                                                        50 => 'Comoros',
-                                                        51 => 'Congo',
-                                                        52 => 'Cook Islands',
-                                                        53 => 'Costa Rica',
-                                                        54 => 'Ivory Coast',
-                                                        55 => 'Croatia',
-                                                        56 => 'Cuba',
-                                                        57 => 'Curacao',
-                                                        58 => 'Cyprus',
-                                                        59 => 'Czech Republic',
-                                                        60 => 'Democratic Republic of the Congo',
-                                                        61 => 'Denmark',
-                                                        62 => 'Djibouti',
-                                                        63 => 'Dominica',
-                                                        64 => 'Dominican Republic',
-                                                        65 => 'Ecuador',
-                                                        66 => 'Egypt',
-                                                        67 => 'El Salvador',
-                                                        68 => 'Equatorial Guinea',
-                                                        69 => 'Eritrea',
-                                                        70 => 'Estonia',
-                                                        71 => 'Ethiopia',
-                                                        72 => 'Falkland Islands (Malvinas)',
-                                                        73 => 'Faroe Islands',
-                                                        74 => 'Fiji',
-                                                        75 => 'Finland',
-                                                        76 => 'France',
-                                                        77 => 'French Guiana',
-                                                        78 => 'French Polynesia',
-                                                        79 => 'French Southern Territories',
-                                                        80 => 'Gabon',
-                                                        81 => 'Gambia',
-                                                        82 => 'Georgia',
-                                                        83 => 'Germany',
-                                                        84 => 'Ghana',
-                                                        85 => 'Gibraltar',
-                                                        86 => 'Greece',
-                                                        87 => 'Greenland',
-                                                        88 => 'Grenada',
-                                                        89 => 'Guadaloupe',
-                                                        90 => 'Guam',
-                                                        91 => 'Guatemala',
-                                                        92 => 'Guernsey',
-                                                        93 => 'Guinea',
-                                                        94 => 'Guinea-Bissau',
-                                                        95 => 'Guyana',
-                                                        96 => 'Haiti',
-                                                        97 => 'Heard Island and McDonald Islands',
-                                                        98 => 'Honduras',
-                                                        99 => 'Hong Kong',
-                                                        100 => 'Hungary',
-                                                        101 => 'Iceland',
-                                                        102 => 'India',
-                                                        103 => 'Indonesia',
-                                                        104 => 'Iran',
-                                                        105 => 'Iraq',
-                                                        106 => 'Ireland',
-                                                        107 => 'Isle of Man',
-                                                        108 => 'Israel',
-                                                        109 => 'Italy',
-                                                        110 => 'Jamaica',
-                                                        111 => 'Japan',
-                                                        112 => 'Jersey',
-                                                        113 => 'Jordan',
-                                                        114 => 'Kazakhstan',
-                                                        115 => 'Kenya',
-                                                        116 => 'Kiribati',
-                                                        117 => 'Kosovo',
-                                                        118 => 'Kuwait',
-                                                        119 => 'Kyrgyzstan',
-                                                        120 => 'Laos',
-                                                        121 => 'Latvia',
-                                                        122 => 'Lebanon',
-                                                        123 => 'Lesotho',
-                                                        124 => 'Liberia',
-                                                        125 => 'Libya',
-                                                        126 => 'Liechtenstein',
-                                                        127 => 'Lithuania',
-                                                        128 => 'Luxembourg',
-                                                        129 => 'Macao',
-                                                        130 => 'Macedonia',
-                                                        131 => 'Madagascar',
-                                                        132 => 'Malawi',
-                                                        133 => 'Malaysia',
-                                                        134 => 'Maldives',
-                                                        135 => 'Mali',
-                                                        136 => 'Malta',
-                                                        137 => 'Marshall Islands',
-                                                        138 => 'Martinique',
-                                                        139 => 'Mauritania',
-                                                        140 => 'Mauritius',
-                                                        141 => 'Mayotte',
-                                                        142 => 'Mexico',
-                                                        143 => 'Micronesia',
-                                                        144 => 'Moldava',
-                                                        145 => 'Monaco',
-                                                        146 => 'Mongolia',
-                                                        147 => 'Montenegro',
-                                                        148 => 'Montserrat',
-                                                        149 => 'Morocco',
-                                                        150 => 'Mozambique',
-                                                        151 => 'Myanmar (Burma)',
-                                                        152 => 'Namibia',
-                                                        153 => 'Nauru',
-                                                        154 => 'Nepal',
-                                                        155 => 'Netherlands',
-                                                        156 => 'New Caledonia',
-                                                        157 => 'New Zealand',
-                                                        158 => 'Nicaragua',
-                                                        159 => 'Niger',
-                                                        160 => 'Nigeria',
-                                                        161 => 'Niue',
-                                                        162 => 'Norfolk Island',
-                                                        163 => 'North Korea',
-                                                        164 => 'Northern Mariana Islands',
-                                                        165 => 'Norway',
-                                                        166 => 'Oman',
-                                                        167 => 'Pakistan',
-                                                        168 => 'Palau',
-                                                        169 => 'Palestine',
-                                                        170 => 'Panama',
-                                                        171 => 'Papua New Guinea',
-                                                        172 => 'Paraguay',
-                                                        173 => 'Peru',
-                                                        174 => 'Phillipines',
-                                                        175 => 'Pitcairn',
-                                                        176 => 'Poland',
-                                                        177 => 'Portugal',
-                                                        178 => 'Puerto Rico',
-                                                        179 => 'Qatar',
-                                                        180 => 'Reunion',
-                                                        181 => 'Romania',
-                                                        182 => 'Russia',
-                                                        183 => 'Rwanda',
-                                                        184 => 'Saint Barthelemy',
-                                                        185 => 'Saint Helena',
-                                                        186 => 'Saint Kitts and Nevis',
-                                                        187 => 'Saint Lucia',
-                                                        188 => 'Saint Martin',
-                                                        189 => 'Saint Pierre and Miquelon',
-                                                        190 => 'Saint Vincent and the Grenadines',
-                                                        191 => 'Samoa',
-                                                        192 => 'San Marino',
-                                                        193 => 'Sao Tome and Principe',
-                                                        194 => 'Saudi Arabia',
-                                                        195 => 'Senegal',
-                                                        196 => 'Serbia',
-                                                        197 => 'Seychelles',
-                                                        198 => 'Sierra Leone',
-                                                        199 => 'Singapore',
-                                                        200 => 'Sint Maarten',
-                                                        201 => 'Slovakia',
-                                                        202 => 'Slovenia',
-                                                        203 => 'Solomon Islands',
-                                                        204 => 'Somalia',
-                                                        205 => 'South Africa',
-                                                        206 => 'South Georgia and the South Sandwich Islands',
-                                                        207 => 'South Korea',
-                                                        208 => 'South Sudan',
-                                                        209 => 'Spain',
-                                                        210 => 'Sri Lanka',
-                                                        211 => 'Sudan',
-                                                        212 => 'Suriname',
-                                                        213 => 'Svalbard and Jan Mayen',
-                                                        214 => 'Swaziland',
-                                                        215 => 'Sweden',
-                                                        216 => 'Switzerland',
-                                                        217 => 'Syria',
-                                                        218 => 'Taiwan',
-                                                        219 => 'Tajikistan',
-                                                        220 => 'Tanzania',
-                                                        221 => 'Thailand',
-                                                        222 => 'Timor-Leste (East Timor)',
-                                                        223 => 'Togo',
-                                                        224 => 'Tokelau',
-                                                        225 => 'Tonga',
-                                                        226 => 'Trinidad and Tobago',
-                                                        227 => 'Tunisia',
-                                                        228 => 'Turkey',
-                                                        229 => 'Turkmenistan',
-                                                        230 => 'Turks and Caicos Islands',
-                                                        231 => 'Tuvalu',
-                                                        232 => 'Uganda',
-                                                        233 => 'Ukraine',
-                                                        234 => 'United Arab Emirates',
-                                                        235 => 'United Kingdom',
-                                                        236 => 'United States',
-                                                        237 => 'Uruguay',
-                                                        238 => 'Uzbekistan',
-                                                        239 => 'Vanuatu',
-                                                        240 => 'Vatican City',
-                                                        241 => 'Venezuela',
-                                                        242 => 'Vietnam',
-                                                        243 => 'British Virgin Islands',
-                                                        244 => 'US Virgin Islands',
-                                                        245 => 'Western Sahara',
-                                                        246 => 'Yemen',
-                                                        247 => 'Zambia',
-                                                        248 => 'Zimbabwe',
-                                                    ];
-                                                @endphp
-                                                <p>
-                                                    {{ $countries[Auth::user()->country] }}
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-lg-4">
-                                            <div class="form-group">
-                                                <label for="name">Address</label>
-                                                <p>{{ auth()->user()->address ?? '-' }}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                @if (Auth::user()->certificate->count() > 0)
-                                    <div class="col-12 mt-4 mt-lg-2">
-                                        <h4 class="card-title mb-3"><b>Certificates</b></h4>
-
-                                        <div class="row">
-                                            @foreach (Auth::user()->certificate as $k => $item)
-                                                <div class="col-6 col-md-6 col-lg-4">
-                                                    <div class="form-group">
-                                                        <label for="address"><b>{{ $loop->iteration }}.
-                                                                {{ $item->certificates_name }}</b></label>
-                                                        <div class="row">
-                                                            <div class="col-md-6">
-                                                                <button style="margin-left: 18px" type="button"
-                                                                    data-toggle="modal"
-                                                                    data-target="#certificateModal{{ $k }}"
-                                                                    class="btn btn-primary"><i class="fa fa-eye"></i>
-                                                                    View
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-
-                                                <!-- Modal -->
-                                                <div class="modal fade" id="certificateModal{{ $k }}"
-                                                    tabindex="-1" role="dialog" aria-labelledby="audioModalLabel"
-                                                    aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="audioModalLabel"
-                                                                    style="color: black">
-                                                                    {{ $item->certificates_name }}</h5>
-                                                                <button type="button" class="close"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                @if ($item->extensions == 'pdf')
-                                                                    <iframe src="{{ $item->certificates_file_show }}"
-                                                                        width="100%" height="500"></iframe>
-                                                                @else
-                                                                    <img src="{{ $item->certificates_file_show }}"
-                                                                        alt="image"
-                                                                        style="height: 300px; width:450px">
-                                                                @endif
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-danger"
-                                                                    data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                @endif
                             </div>
                         </div>
+                        <div class="col-lg-6 grid-margin stretch-card">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">Summary</h4>
+                                    <canvas id="doughnutChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                      
                     </div>
+
+                    <h4 class="mt-3">Programs</h4>
+
+                    <div class="tab-pane fade show tabidload active" id="all_program">
+                        <div class="row justify-content-center gx-3 gy-4">
+                            @if (count($courses_all) > 0)
+                                @foreach ($courses_all as $course)
+                                    @php
+                                        // Retrieve partner_ref_id and applied_by from session or query parameters
+                                        $partnerRef = session('partner_ref_id') ?? request()->query('partner_ref_id');
+                                        $appliedBy = session('applied_by') ?? request()->query('applied_by');
+
+                                        // Set up the URL parameters
+                                        $apply_url_params = ['id' => $course->id];
+                                        $course_details_url_params = ['id' => $course->id];
+
+                                        $course_list_url_params = [
+                                            'partner_ref_id' => $partnerRef,
+                                            'applied_by' => $appliedBy,
+                                        ];
+
+                                        // Add partner_ref_id and applied_by to the parameters if they are set
+                                        if ($partnerRef) {
+                                            $apply_url_params['partner_ref_id'] = $partnerRef;
+                                            $course_details_url_params['partner_ref_id'] = $partnerRef;
+                                            $course_list_url_params['is_anonymous'] = 'true';
+                                        }
+
+                                        if ($appliedBy) {
+                                            $apply_url_params['applied_by'] = $appliedBy;
+                                            $course_details_url_params['applied_by'] = $appliedBy;
+                                            $course_list_url_params['is_anonymous'] = 'true';
+                                        }
+
+                                        // Add is_anonymous if it is set in the session
+                                        if (session('is_anonymous')) {
+                                            $apply_url_params['is_anonymous'] = 'true';
+                                            $course_details_url_params['is_anonymous'] = 'true';
+                                            $course_list_url_params['is_anonymous'] = 'true';
+                                        }
+
+                                        // Generate the routes with the parameters
+                                        $apply_url = route('apply_cart', $apply_url_params);
+                                        $course_details_url = route(
+                                            'frontend.course.details',
+                                            $course_details_url_params,
+                                        );
+                                        $course_list_url = route(
+                                            'frontend.university_course_list',
+                                            $course_list_url_params,
+                                        );
+                                    @endphp
+
+                                    <div class="col-12 col-md-6 col-lg-3 col-auto mt-sm-3 mt-md-4">
+                                        <div class="text-center card university overflow-hidden"
+                                            style="border-radius:8px; cursor: pointer;"
+                                            onclick="window.location.href='{{ $course_details_url }}'">
+                                            <div class="card-body university-course-container mt-4">
+                                                <div class="course-university-image-container">
+                                                    <a href="{{ $course_details_url }}">
+                                                        <img decoding="async"
+                                                            src="{{ @$course->university?->image_show }}"
+                                                            alt="{{ $course->university?->name }}"
+                                                            title="{{ $course->university?->name }}"
+                                                            style="border-radius: 8px" class="university-image">
+                                                    </a>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <div class="mt-3">
+                                                        <a href="{{ $course_details_url }}"
+                                                            class="text-dark university_name">
+                                                            <h5 style="font-size: 1.25rem;" class="fw-bold">
+                                                                {{ Illuminate\Support\Str::limit($course->name, 35, '...') }}
+                                                            </h5>
+                                                        </a>
+                                                    </div>
+                                                    <div style="position: absolute; bottom: 0.85rem; width: 90%;">
+
+                                                        <div class="tags py-0 pt-2 d-flex flex-column">
+                                                            <div class="mobile-title">
+                                                                <div class="d-flex flex-column">
+                                                                    <div class="my-2 mt-4 text-center">
+                                                                        @forelse (json_decode($course->university?->tags, true) ?? [] as $index => $tag)
+                                                                            @php
+                                                                                $colors = ['#357A61', '#302C61'];
+                                                                                $backgroundColor =
+                                                                                    $colors[$index % count($colors)];
+                                                                            @endphp
+                                                                            <span class="university-tag mx-1 mt-2"
+                                                                                style="background-color: {{ $backgroundColor }};">
+                                                                                {{ $tag }}
+                                                                            </span>
+                                                                        @empty
+                                                                            <span>&nbsp;</span>
+                                                                        @endforelse
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <span class="mt-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" fill="currentColor"
+                                                                    class="bi bi-mortarboard-fill"
+                                                                    viewBox="0 0 16 16">
+                                                                    <path
+                                                                        d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917z" />
+                                                                    <path
+                                                                        d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466z" />
+                                                                </svg>
+                                                                {{ Illuminate\Support\Str::limit($course->university?->name, 35, '...') }}
+                                                            </span>
+                                                            <span class="mt-1">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                                                                    height="16" class="bi bi-geo-alt-fill"
+                                                                    viewBox="0 0 16 16" style="fill:#494949">
+                                                                    <path
+                                                                        d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                                                                </svg>
+                                                                @php
+                                                                    $locationParts = array_filter([
+                                                                        /* $course->university?->continent?->name ?? '', */
+                                                                        /* $course->university?->country?->name ?? '', */
+                                                                        $course->university?->state?->name ?? '',
+                                                                        $course->university?->city?->name ?? '',
+                                                                    ]);
+                                                                @endphp
+
+                                                                {{ implode(', ', $locationParts) }}
+                                                            </span>
+
+                                                            <div class="mt-1">
+                                                                <span>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="16" height="16"
+                                                                        class="bi bi-translate" viewBox="0 0 16 16"
+                                                                        style="fill:#494949">
+                                                                        <path
+                                                                            d="M4.545 6.714 4.11 8H3l1.862-5h1.284L8 8H6.833l-.435-1.286zm1.634-.736L5.5 3.956h-.049l-.679 2.022z" />
+                                                                        <path
+                                                                            d="M0 2a2 2 0 0 1 2-2h7a2 2 0 0 1 2 2v3h3a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-3H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v7a1 1 0 0 0 1 1h7a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm7.138 9.995q.289.451.63.846c-.748.575-1.673 1.001-2.768 1.292.178.217.451.635.555.867 1.125-.359 2.08-.844 2.886-1.494.777.665 1.739 1.165 2.93 1.472.133-.254.414-.673.629-.89-1.125-.253-2.057-.694-2.82-1.284.681-.747 1.222-1.651 1.621-2.757H14V8h-3v1.047h.765c-.318.844-.74 1.546-1.272 2.13a6 6 0 0 1-.415-.492 2 2 0 0 1-.94.31" />
+                                                                    </svg>
+                                                                    {{ @$course->language?->name }}
+                                                                </span>
+
+                                                                <span>
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="16" height="16"
+                                                                        fill="currentColor" class="bi bi-flag-fill"
+                                                                        viewBox="0 0 16 16">
+                                                                        <path
+                                                                            d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001" />
+                                                                    </svg>
+                                                                    @php
+                                                                        $display_data = json_decode(
+                                                                            $course->university?->display_data,
+                                                                            true,
+                                                                        );
+                                                                    @endphp
+
+                                                                    World Ranking:
+                                                                    {{ $display_data['world_rank'] ?? 'N/A' }}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div
+                                                            class="d-flex justify-content-between align-items-center mt-2">
+                                                            <div class="fw-bold"
+                                                                style="color: var(--secondary_background); font-size:0.85rem;">
+                                                                @php
+                                                                    $scholarship = $course->scholarship;
+
+                                                                    // Calculate yearly tuition fee
+                                                                    $yearly_tuition_fee =
+                                                                        $scholarship?->tuition_fee == 1
+                                                                            ? 'Free'
+                                                                            : $course->year_fee -
+                                                                                ($scholarship?->tuition_fee ?? 0);
+
+                                                                    // Calculate accommodation fee
+                                                                    $accommodation_fee =
+                                                                        $scholarship?->accommodation_fee == 1
+                                                                            ? 'Free'
+                                                                            : $course->accommodation_fee -
+                                                                                ($scholarship?->accommodation_fee ?? 0);
+
+                                                                    // Calculate insurance fee
+                                                                    $insurance_fee =
+                                                                        $scholarship?->insurance_fee == 1
+                                                                            ? 'Free'
+                                                                            : $course->insurance_fee -
+                                                                                ($scholarship?->insurance_fee ?? 0);
+
+                                                                    // Check if all fees are 'Free'
+                                                                    $all_free =
+                                                                        $yearly_tuition_fee == 'Free' &&
+                                                                        $accommodation_fee == 'Free' &&
+                                                                        $insurance_fee == 'Free';
+
+                                                                    if ($all_free) {
+                                                                        $main_value = 'Free';
+                                                                    } else {
+                                                                        $main_value = 0;
+
+                                                                        $main_value +=
+                                                                            $yearly_tuition_fee != 'Free'
+                                                                                ? $yearly_tuition_fee
+                                                                                : 0;
+                                                                        $main_value +=
+                                                                            $accommodation_fee != 'Free'
+                                                                                ? $accommodation_fee
+                                                                                : 0;
+                                                                        /* $main_value +=
+                                                                            $insurance_fee != 'Free'
+                                                                                ? $insurance_fee
+                                                                                : 0;
+                                                                        $main_value += $course->visa_extension_fee;
+                                                                        $main_value += $course->medical_in_china_fee; */
+                                                                    }
+
+                                                                    // Calculate the original total fee before scholarships
+                                                                    $cut_value =
+                                                                        ($course->year_fee ?? 0) +
+                                                                        ($course->accommodation_fee ?? 0);
+                                                                @endphp
+
+                                                                <p class="mb-0 text-start">Yearly Fee</p>
+                                                                <p class="mb-0">
+                                                                    <span style="font-size: 16px">
+                                                                        {{ $main_value == 0 || $main_value == 'Free' ? 'Free' : convertCurrency($main_value) }}
+                                                                    </span>
+                                                                    <span style="font-size: 13px">
+                                                                        <del>
+                                                                            @convertCurrency($cut_value ?? 0)
+                                                                        </del>
+                                                                    </span>
+                                                                </p>
+                                                            </div>
+                                                            @if (strtotime(@$course->application_deadline) < strtotime(now()))
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-primary-bg"
+                                                                    style="background-color: #6c757d !important; border-color: #6c757d !important; cursor: not-allowed !important; pointer-events: none !important;">
+                                                                    <img src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/img/cart.png"
+                                                                        style="width: 14px;">
+                                                                    Apply Now
+                                                                </a>
+                                                            @else
+                                                                <a href="{{ $apply_url }}"
+                                                                    class="btn btn-primary-bg">
+                                                                    <img src="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/img/cart.png"
+                                                                        style="width: 14px;">
+                                                                    Apply Now
+                                                                </a>
+                                                            @endif
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="position-absolute program-top-right-degree"
+                                                style="background-color: var(--primary_background)">
+                                                {{ $course->degree?->name }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="text-center mt-4">
+                                    <h3>Course Not Found !</h3>
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+
                 </div>
 
                 @include('User-Backend.components.footer')
@@ -734,6 +712,150 @@
     @endif
 
     @include('User-Backend.components.script')
+
+    <script>
+        if ($("#linechart-multi").length) {
+            var dataForChart = @json($dataForChart);
+
+            var labels = dataForChart.map(function(e) {
+                return e.y;
+            });
+            var dataApplications = dataForChart.map(function(e) {
+                return e.a;
+            });
+            var dataApproved = dataForChart.map(function(e) {
+                return e.b;
+            });
+
+            var multiLineData = {
+                labels: labels,
+                datasets: [{
+                        label: 'Applications',
+                        data: dataApplications,
+                        borderColor: 'rgba(255, 99, 132, 0.75)',
+                        backgroundColor: 'rgba(255, 99, 132, 0.35)',
+                        borderWidth: 3,
+                        fill: true,
+                        cubicInterpolationMode: 'default',
+                        tension: 0.3,
+                        pointRadius: 1
+                    },
+                    {
+                        label: 'Approved',
+                        data: dataApproved,
+                        borderColor: 'rgba(11, 148, 247, 0.75)',
+                        backgroundColor: 'rgba(11, 148, 247, 0.35)',
+                        borderWidth: 3,
+                        fill: true,
+                        cubicInterpolationMode: 'default',
+                        tension: 0.3,
+                        pointRadius: 1
+                    }
+                ]
+            };
+
+            var options = {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Applications and Approvals'
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                interaction: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                scales: {
+                    x: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Date'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    },
+                    y: {
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'Count'
+                        },
+                        suggestedMin: -10,
+                        suggestedMax: 50,
+                        grid: {
+                            display: false
+                        }
+                    },
+                    xAxes: [{
+                        gridLines: false
+                    }],
+                    yAxes: [{
+                        gridLines: false
+                    }]
+                }
+            };
+            var multiLineCanvas = $("#linechart-multi").get(0).getContext("2d");
+            var lineChart = new Chart(multiLineCanvas, {
+                type: 'line',
+                data: multiLineData,
+                options: options
+            });
+        }
+        if ($("#doughnutChart").length) {
+            var totalApplications = @json($total_applications);
+            var totalServiceCharge = @json($totalServiceCharge);
+            var totalApplicationFee = @json($totalApplicationFee);
+
+            var doughnutPieData = {
+                datasets: [{
+                    data: [
+                        totalApplications,
+                        totalServiceCharge,
+                        totalApplicationFee,
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.45)',
+                        'rgba(54, 162, 235, 0.45)',
+                        'rgba(75, 192, 192, 0.45)',
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 0.45)',
+                        'rgba(54, 162, 235, 0.45)',
+                        'rgba(75, 192, 192, 0.45)',
+                    ],
+                }],
+                labels: [
+                    'Applications',
+                    'Service Charge',
+                    'Applcation fee',
+                ]
+            };
+
+            var doughnutPieOptions = {
+                responsive: true,
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            };
+
+            var doughnutChartCanvas = $("#doughnutChart").get(0).getContext("2d");
+            var doughnutChart = new Chart(doughnutChartCanvas, {
+                type: 'doughnut',
+                data: doughnutPieData,
+                options: doughnutPieOptions
+            });
+        }
+    </script>
+    
 </body>
 
 </html>
+

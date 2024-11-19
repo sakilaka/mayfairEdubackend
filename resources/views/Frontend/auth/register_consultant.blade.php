@@ -85,7 +85,7 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label class="form-label mb-1" for="user_passport">Passport</label>
+                                    <label class="form-label mb-1" for="user_passport">Passport or NID</label>
                                     <input class="form-control form-control-lg" type="file" id="user_passport"
                                         name="passport" onkeyup="mailcheck(4)" placeholder="Enter your passport" required="">
                                 </div>
@@ -96,53 +96,12 @@
                                         <option value="">Select Gender</option>
                                         <option value="0">Male</option>
                                         <option value="1">Female</option>
+                                        <option value="2">Other</option>
                                     </select>
                                 </div>
 
-                                <div class="mb-3">
-                                    <label class="form-label mb-1" for="user_mobile">Qualification</label>
-                                    <input class="form-control form-control-lg" type="text" id="user_mobile"
-                                        name="qualification" placeholder="Enter your Qualification"
-                                        onkeyup="mobilecheck(4)">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label mb-1" for="user_mobile">Experience</label>
-                                    <input class="form-control form-control-lg" type="text" id="user_mobile"
-                                        name="experience" placeholder="Enter your Experience" onkeyup="mobilecheck(4)">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label mb-1" for="user_mobile">Language</label>
-                                    <select class="form-select form-control-lg" name="language">
-                                        <option value="">select one language</option>
-                                        <option value="1">Bangla</option>
-                                        <option value="2">English</option>
-                                        <option value="3">Hindi</option>
-                                        <option value="4">Arabic</option>
-                                    </select>
-                                    {{-- <input class="form-control form-control-lg" type="text" id="user_mobile" name="language" placeholder="Enter your Language" onkeyup="mobilecheck(4)" required=""> --}}
-                                </div>
-                                {{-- <div class="mb-3">
-                            <label class="form-label mb-1" for="user_mobile">Continent</label>
-                            <select  class="form-control" name="continent" required>
-                              <option value="">Select Continent</option>
-                              <option value="asia">Asia</option>
-                              <option value="europe">Europe</option>
-                              <option value="north_america">North America</option>
-                              <option value="africa">Africa</option>
-                              <option value="south_america">South America</option>
-                              <option value="antarctica">Antarctica</option>
-                              <option value="oceania">Oceania</option>
-                          </select>
-                        </div> --}}
-                                <div class="mb-3">
-                                    <label class="form-label mb-1" for="user_mobile">Continent</label>
-                                    <select class="form-control" name="continent_id" required>
-                                        <option value="">Select Continent</option>
-                                        @foreach ($continents as $continent)
-                                            <option value="{{ $continent->id }}">{{ $continent->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                            
+
                                 <div class="mb-3">
                                     <label class="form-label mb-1" for="user_mobile">Country</label>
                                     <select class="form-select form-control-lg" name="country">

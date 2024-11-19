@@ -35,7 +35,10 @@ class StudentApplictionController extends Controller
             $page_route = 'admin.student_appliction_list';
         }
 
-        $data['applications'] = StudentApplication::orderBy('id', 'desc')->get();
+        $data['applications'] = StudentApplication::orderBy('id', 'desc')
+        ->where('status', '!=', 0)
+        ->get();  
+          
         $data['assigned_applications'] = StudentApplication::where(function ($query) {
             $userId = auth()->user()->id;
             $query->where('partner_ref_id', 'like', '%"partner":' . $userId . '%')
@@ -253,6 +256,7 @@ class StudentApplictionController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+    
 
     public function getFilterItems(Request $request)
     {
@@ -293,6 +297,7 @@ class StudentApplictionController extends Controller
 
         return response()->json($items);
     }
+    
 
     public function fetchApplication($application_id)
     {
@@ -388,17 +393,21 @@ class StudentApplictionController extends Controller
             $total_students = User::where('partner_ref_id', $partner->id)
                 ->where('role', 'student')
                 ->count();
+            
+            $user = User::where('id', $partner->id)->first();
+            $levels = $user->star;
+            // dd($levels);
 
             $total_applications = StudentApplication::where(function ($query) use ($partner) {
-                $query->where('partner_ref_id', 'like', '%"partner":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"support":' . $partner->id . '%');
+                $query->where('applied_by', 'like', '%"partner":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"manager":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"support":' . $partner->id . '%');
             })->count();
 
             $total_approved_applications = StudentApplication::where(function ($query) use ($partner) {
-                $query->where('partner_ref_id', 'like', '%"partner":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner->id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"support":' . $partner->id . '%');
+                $query->where('applied_by', 'like', '%"partner":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"manager":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"support":' . $partner->id . '%');
             })->whereIn('status', [2, 14])
                 ->count();
 
@@ -409,6 +418,7 @@ class StudentApplictionController extends Controller
                 'total_students' => $total_students,
                 'total_applications' => $total_applications,
                 'success_rate' => $success_rate,
+                'levels' => $levels
             ];
         }
 
@@ -437,44 +447,45 @@ class StudentApplictionController extends Controller
 
     public function partnerWiseApplications(Request $request, $partner_id)
     {
-        if ($request->has('detach-application')) {
-            $applicationId = $request->input('detach-application');
-            $application = StudentApplication::find($applicationId);
+        // if ($request->has('detach-application')) {
+        //     $applicationId = $request->input('detach-application');
+        //     $application = StudentApplication::find($applicationId);
 
-            if ($application) {
-                $partnerRefData = json_decode($application->partner_ref_id, true) ?? [];
+        //     if ($application) {
+        //         $partnerRefData = json_decode($application->partner_ref_id, true) ?? [];
 
-                foreach (['partner', 'manager', 'support'] as $role) {
-                    if (isset($partnerRefData[$role]) && $partnerRefData[$role] == $partner_id) {
-                        $partnerRefData[$role] = null;
-                    }
-                }
+        //         foreach (['partner', 'manager', 'support'] as $role) {
+        //             if (isset($partnerRefData[$role]) && $partnerRefData[$role] == $partner_id) {
+        //                 $partnerRefData[$role] = null;
+        //             }
+        //         }
 
-                $partnerRefData = array_filter($partnerRefData);
-                $application->partner_ref_id = json_encode($partnerRefData);
-                $application->save();
+        //         $partnerRefData = array_filter($partnerRefData);
+        //         $application->partner_ref_id = json_encode($partnerRefData);
+        //         $application->save();
 
-                return redirect()->back()->with('success', 'Partner has been detached from the application!');
-            } else {
-                return redirect()->back()->with('error', 'Application Not Found!');
-            }
-        }
+        //         return redirect()->back()->with('success', 'Partner has been detached from the application!');
+        //     } else {
+        //         return redirect()->back()->with('error', 'Application Not Found!');
+        //     }
+        // }
 
         $partner = User::find($partner_id);
 
         if ($partner) {
             $data['partner'] = $partner;
+        }
 
-            $data['applications'] = StudentApplication::where(function ($query) use ($partner_id) {
-                $query->where('partner_ref_id', 'like', '%"partner":' . $partner_id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"manager":' . $partner_id . '%')
-                    ->orWhere('partner_ref_id', 'like', '%"support":' . $partner_id . '%');
-            })->get();
+        $data['applications'] = StudentApplication::where(function ($query) use ($partner_id) {
+            $query->where('applied_by', 'like', '%"partner":' . $partner_id . '%')
+                ->orWhere('applied_by', 'like', '%"manager":' . $partner_id . '%')
+                ->orWhere('applied_by', 'like', '%"support":' . $partner_id . '%');
+        })->get();
+
+        // $data['applications'] = StudentApplication::where('user_id', $partner_id)->get();
 
             return view('Backend.student_appliction.partner_wise_application', $data);
-        } else {
-            return redirect()->back()->with('error', 'User Not Found!');
-        }
+       
     }
 
     public function assignStudentToEmployee(Request $request)
@@ -664,6 +675,7 @@ class StudentApplictionController extends Controller
     public function editProgramInfo($id)
     {
         $data['s_appliction'] = StudentApplication::find($id);
+        // dd($data['s_appliction']);
         $data['managers'] = User::where('role', 'manager')->get();
         $data['supports'] = User::where('role', 'support')->get();
         $data['programs'] = Course::all();
@@ -776,6 +788,42 @@ class StudentApplictionController extends Controller
                 'message' => 'Amount updated successfully.',
                 'total_paid' => $s_appliction->paid_amount,
                 'payment_status' => $s_appliction->payment_status
+            ]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Application not found.'], 404);
+        }
+    }
+    
+    public function updateApplicationFee(Request $request, $id)
+    {
+        $request->validate([
+            'paid_application_fees' => 'required|numeric|min:0',
+        ]);
+    
+        $s_appliction = StudentApplication::find($id);
+        if ($s_appliction) {
+            // Add the new amount to the existing paid amount
+            $s_appliction->paid_application_fees += $request->paid_application_fees;
+            $s_appliction->save();
+
+    
+            // Set payment status based on the total paid amount
+           
+            if ($s_appliction->paid_application_fee >= $s_appliction->service_charge) {
+                $s_appliction->payment_status_application = 1;  // Paid
+            } else {
+                $s_appliction->payment_status_application = 0;  // Unpaid
+            }
+            $s_appliction->save();
+
+    
+            // Save the changes
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Amount updated successfully.',
+                'total_paid' => $s_appliction->paid_application_fees,
+                'payment_status_application' => $s_appliction->payment_status_application
             ]);
         } else {
             return response()->json(['success' => false, 'message' => 'Application not found.'], 404);

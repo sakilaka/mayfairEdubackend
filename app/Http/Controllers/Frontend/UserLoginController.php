@@ -86,6 +86,7 @@ class UserLoginController extends Controller
         $user->type = $request->type;
         $user->is_verified = '0';
         $user->role = 'student';
+        
         $tempCode = rand(10000, 99999);
         $user->temp_mail_code = $tempCode;
         $user->save();
@@ -167,22 +168,28 @@ class UserLoginController extends Controller
     {
         $user = User::where('email', $request->email)->first();
     
-        if ($request->verification_code == $user->temp_mail_code) {
+        if ($user && $request->verification_code == $user->temp_mail_code) {
             // Update user verification status
             $user->temp_mail_code = '';
             $user->is_verified = '1';
             $user->save();
     
-            // Conditional redirect based on login status
+            // Conditional redirect based on login status and user role
             if (auth()->check()) {
                 return redirect()->route('user.dashboard')->with('success', 'Your email has been successfully verified!');
             } else {
-                return redirect('/sign-in')->with('success', 'You are successfully registered. Now you can log in. Thank you.');
+                // Redirect based on user role
+                if ($user->role === 'partner') {
+                    return redirect('/partner-sign-in')->with('success', 'You are successfully registered. Now you can log in as a partner. Thank you.');
+                } else if ($user->role === 'student') {
+                    return redirect('/sign-in')->with('success', 'You are successfully registered. Now you can log in as a student. Thank you.');
+                }
             }
         } else {
             return redirect()->back()->with('error', 'Verification code does not match.');
         }
     }
+    
     
 
 
@@ -207,6 +214,7 @@ class UserLoginController extends Controller
             return redirect('/sign-in')->with('error', 'This mail have already register, Please try another mail.');
             // return redirect('/sign-in')->with('error', 'Email not verified. Please Verify your email!');
         }
+        
         $validator = Validator::make($request->all(), [
 
             // 'email' => 'email:rfc,dns',
@@ -260,9 +268,30 @@ class UserLoginController extends Controller
         $user->address = $request->address;
         $user->type = $request->type;
         $user->role = 'partner';
+
+
+        $tempCode = rand(10000, 99999);
+        $user->temp_mail_code = $tempCode;
         $user->save();
 
-        return redirect('/partner-sign-in')->with('success', 'You are successfully Registered. Now You can login. Thank You.');
+        $data = [
+            'email' => $user->email,
+            'verification_code' => $tempCode,
+        ];
+        
+        // $user->save();
+
+        
+
+        // return redirect('/partner-sign-in')->with('success', 'You are successfully Registered. Now You can login. Thank You.');
+        try {
+            Mail::to($user->email)->send(new EmailVerificationCustom($data));
+            $email = $data['email'];
+            return view('Frontend.auth.verification_check', compact('email'))->with('success', 'You are successfully Registered. Now You can Verify. Thank You.');
+        } catch (\Exception $e) {
+            // return $e->getMessage();
+            return redirect()->back()->with('error', 'Registration successful. But failed to send verification code');
+        }
 
         // if($user->type == 1){
         //     $patient = New Patient;

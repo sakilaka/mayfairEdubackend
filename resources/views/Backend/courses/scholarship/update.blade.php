@@ -78,7 +78,7 @@
                                         </div>
 
 
-                                        {{-- <div class="form-group row">
+                                        <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="scholarship_amount" class=" col-form-label">Scholarship
                                                     Amount
@@ -94,7 +94,8 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div> --}}
+                                        </div>
+                                        
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="tuition_fee" class=" col-form-label">Tuition Fee

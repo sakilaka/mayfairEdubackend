@@ -18,18 +18,7 @@
                         @endphp
                         <h2 class="h3 mb-4 mb-sm-3">
                             Hey there!<br>Welcome back.                        </h2>
-                        {{-- <div class="mt-sm-2 text-center">
-                            Login as                            <strong>
-                                <a href="{{ route('frontend.teacher_signin') }}" class="text-decoration-underline">Teacher</a>                            </strong>
-                        </div>
-                        <div class="mt-sm-2 text-center">
-                            Login as                            <strong>
-                                <a href="{{ route('frontend.seller_signin') }}" class="text-decoration-underline">Seller</a>                            </strong>
-                        </div>
-                        <div class="mt-sm-2 text-center">
-                            Login as                            <strong>
-                                <a href="{{ route('frontend.affiliate_signin') }}" class="text-decoration-underline">Affiliate</a>                            </strong>
-                        </div> --}}
+                 
                         <div class="mt-sm-2 mb-sm-4 text-center">
                             Login as                            <strong>
                                 <a href="{{ route('frontend.consultant_signin') }}" class="text-decoration-underline">Partner</a>                            </strong>
@@ -54,17 +43,7 @@
                     <h4>
                         Student Sign in
                     </h4>
-                    
-                        <!-- <a class="btn btn-outline-dark-cerulean btn-lg w-100 mb-3" href="#"><i
-                                class="fab fa-google me-1"></i>Sign in with Google</a> -->
-                        <!--                         <a class="btn btn-outline-dark-cerulean btn-lg w-100 mb-3" href=""><i
-                                class="fab fa-facebook me-1"></i>Sign in with Facebook</a> -->
-
-                        <!-- <div class="d-flex align-items-center py-3 mb-3">
-                            <hr class="w-100">
-                            <div class="px-3">Or</div>
-                            <hr class="w-100">
-                        </div> -->
+                 
                         <form action="{{ route('frontend.sign_in') }}" class="myform" id="learner_myform" enctype="multipart/form-data" method="post" accept-charset="utf-8">
                         @csrf
                         
@@ -110,33 +89,7 @@
                             </a>
                         </div>
 
-                         
-                        <!-- <a class="btn btn-outline-dark-cerulean btn-lg w-100 mb-3" href=""><i
-                                class="fab fa-facebook me-1"></i>Sign in with Facebook</a> -->
-
-                        {{-- <div class="text-center col-md-12 mt-3 d-flex ">
-                            <div class="" style="padding: 10px; margin-left:60px">
-                                <form action="{{ route('auth.google') }}" method="get">
-                                    <input type="hidden" name="login_type" value="1">
-                                
-                                    <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-google me-1"></i></button>                       
-                                </form>
-                            </div>
-                            <div class="" style="padding: 10px">
-                                <form action="{{ route('auth.facebook') }}" method="get">
-                                    <input type="hidden" name="login_type" value="1">
-                                <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-facebook me-1"></i></button>
-                                </form>
-                            </div>
-                        </div> --}}
-                        
-                        {{-- <div class="text-center">
-                            <p style="color:#11487B; font-size:14px;">
-                            <strong>
-                                Social Signin                            </strong>
-                        </p>
-                        </div> --}}
-
+                   
                         <div class="mt-sm-4 text-center">
                             Don't have an account?                            <strong>
 

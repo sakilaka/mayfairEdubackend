@@ -194,7 +194,7 @@
         }
 
         .university-course-container {
-            height: 340px !important;
+            height: 390px !important;
         }
 
         .course-nav-tab .btn-dark-cerulean {
@@ -509,6 +509,7 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="my-2">
                             <div class="toggle-header" data-filterslist="tuition_fees">
                                 <h5 class="title is-5">Tuition Fees</h5>
@@ -532,6 +533,8 @@
                                 </div>
                             </div>
                         </div>
+
+
                         <div class="my-2">
                             <div class="toggle-header" data-filterslist="accommodation_fees">
                                 <h5 class="title is-5">Accommodation Fees</h5>
@@ -772,10 +775,12 @@
                                                                 </div>
                                                             </div>
 
+                                                            <p class="mb-0 mt-2 text-start fw-bold" style="color: var(--secondary_background); font-size:0.85rem;">Sch. Amount : {{ convertCurrency($course->scholarship?->scholarship_amount) }}</p>
+
+
                                                             <div
                                                                 class="d-flex justify-content-between align-items-center mt-2">
-                                                                <div class="fw-bold"
-                                                                    style="color: var(--secondary_background); font-size:0.85rem;">
+                                                                <div class="fw-bold" style="color: var(--secondary_background); font-size:0.85rem;">
                                                                     @php
                                                                         $scholarship = $course->scholarship;
 
@@ -836,16 +841,19 @@
 
                                                                     <p class="mb-0 text-start">Yearly Fee</p>
                                                                     <p class="mb-0">
-                                                                        <span style="font-size: 16px">
+                                                                        <span style="font-size: 15px" class="text-start ms-0">
                                                                             {{ $main_value == 0 || $main_value == 'Free' ? 'Free' : convertCurrency($main_value) }}
                                                                         </span>
-                                                                        <span style="font-size: 13px">
+                                                                        <span style="font-size: 12px">
                                                                             <del>
                                                                                 @convertCurrency($cut_value ?? 0)
                                                                             </del>
                                                                         </span>
                                                                     </p>
+
+                                                          
                                                                 </div>
+
                                                                 @if (strtotime(@$course->application_deadline) < strtotime(now()))
                                                                     <a href="javascript:void(0)"
                                                                         class="btn btn-dark-cerulean"
@@ -894,6 +902,7 @@
                                         <th>Degree</th>
                                         <th>Language</th>
                                         <th>Tuition Fees</th>
+                                        <th>Sch. Amount</th>
                                         <th>Sch. Type</th>
                                         <th>Deadline</th>
                                         <th>Apply</th>
@@ -940,6 +949,7 @@
                                                     @endphp
                                                     {{ $yearly_tuition_fee }}
                                                 </td>
+                                                <td>{{ convertCurrency($course->scholarship?->scholarship_amount) }}</td>
 
                                                 <td class="text-center">
                                                     <span data-toggle="tooltip"
@@ -1142,6 +1152,7 @@
             $(this).prop('selected', true);
             filterCourse();
         });
+
         /* $(document).on('click', '#name_filter_btn', function() {
             let value = $('input[name="name"]').val();
             var data_val = {};
@@ -1149,6 +1160,7 @@
 
             fetchCourses(data_val);
         }); */
+
         $(document).on('click', '#tuition_fees_filter_btn', function() {
             let value = $('#tuition-fees-slider-value').val();
             var data_val = {};
@@ -1156,6 +1168,7 @@
 
             fetchCourses(data_val);
         });
+        
         $(document).on('click', '#accommodation_fees_filter_btn', function() {
             let value = $('#accommodation-fees-slider-value').val();
             var data_val = {};
@@ -1163,6 +1176,7 @@
 
             fetchCourses(data_val);
         });
+
         $(document).on('click', '#service_charge_filter_btn', function() {
             let value = $('#service-charge-slider-value').val();
             var data_val = {};

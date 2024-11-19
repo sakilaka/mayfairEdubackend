@@ -7,19 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ApplicationDocument extends Model
 {
-    use HasFactory; 
-
-    protected $fillable = [
-        'application_id',
-        'user_id',
-        'document_name',
-        'document_type',
-        'document_file',
-        'extensions',
-        
-    ];
-
-    
+    use HasFactory;
     public function getDocumentFileShowAttribute(){
         $id = $this->application_id;
         return $this->document_file != "" ? asset("upload/application/{$id}/".$this->document_file) : asset("frontend/images/no-profile.jpg");

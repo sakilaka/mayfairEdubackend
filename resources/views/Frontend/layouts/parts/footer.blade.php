@@ -51,6 +51,7 @@
         padding: 0 25px;
         height: 45px;
         border: none;
+        width: 300px;
     }
 
     .subscribe-input input::placeholder {

@@ -25,6 +25,8 @@ use App\Models\CourseParticipant;
 use App\Models\Ebook;
 use App\Models\StudentApplication;
 use App\Models\StudentApplicationTableModify;
+use App\Models\University;
+use App\Models\VisitorModel;
 use App\Models\Withdrawal;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -40,6 +42,7 @@ class UserController extends Controller
     {
         return redirect(route('user.dashboard'));
     }
+    
     public function dashboard(Request $request)
     {
         $daily = "";
@@ -106,6 +109,13 @@ class UserController extends Controller
             $data['orders'] = StudentApplication::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
         }
 
+        $selected_programs = Course::where(['status' => 1, 'type' => 'university', 'show_on_home' => 1])->orderBy('updated_at', 'desc')->limit(8)->get();
+        if (count($selected_programs) > 0) {
+            $data['courses_all'] = $selected_programs;
+        } else {
+            $data['courses_all'] = Course::where(['status' => 1, 'type' => 'university'])->inRandomOrder()->limit(8)->get();
+        }
+        
         $data['daily'] = $daily;
         $data['monthly'] = $monthly;
         $data['yearly'] = $yearly;
@@ -115,11 +125,57 @@ class UserController extends Controller
             ->first();
         $data['user'] = User::where('id', auth()->user()->id)
             ->first();
-            
 
-        // return view('user.dashboard', $data);
+             // fetch chart data of last 30 days
+        $now        = Carbon::now();
+        $last30Days = [];
+
+        for ($i = 0; $i < 30; $i++) {
+            $day                = $now->copy()->subDays($i);
+            $dateFormatted      = $day->format('Y-m-d');
+            $shortDateFormatted = $day->format('M d');
+
+            $totalApplicationsStatus1  = StudentApplication::whereDate('created_at', $dateFormatted)->where('user_id', Auth::id())->count();
+            $totalApplicationsApproved = StudentApplication::whereDate('created_at', $dateFormatted)->where('status', 2)->count();
+
+            $last30Days[] = [
+                'y' => $shortDateFormatted,
+                'a' => $totalApplicationsStatus1,
+                'b' => $totalApplicationsApproved,
+            ];
+        }
+        
+        $data['dataForChart'] = array_reverse($last30Days);
+
+        // fetch visitors of last 30 days
+        $last30DaysVisitors = [];
+
+        for ($i = 0; $i < 30; $i++) {
+            $day                = $now->copy()->subDays($i);
+            $dateFormatted      = $day->format('Y-m-d');
+            $shortDateFormatted = $day->format('M d');
+
+            $last30DaysVisitors[] = [
+                'date'  => $shortDateFormatted,
+                'count' => VisitorModel::whereDate('created_at', $dateFormatted)->count(),
+            ];
+        }
+        $data['total_applications'] = StudentApplication::where('user_id', Auth::id())->count();
+        
+        $data['totalServiceCharge'] = 0;
+        $data['totalApplicationFee'] = 0;
+        $data['totalServiceChargePaid'] = 0;
+        
+        foreach ($data['orders'] as $order) {
+            if ($order->status !== 0 && $order->status !== 1) {
+                $data['totalApplicationFee'] += $order->paid_application_fees;
+            }
+            $data['totalServiceCharge'] += $order->service_charge;
+            $data['totalServiceChargePaid'] += $order->paid_amount;
+        }
         return view('User-Backend.index', $data);
     }
+    
     public function myCourseList()
     {
         return view('user.customer.my_course_list');
@@ -234,7 +290,7 @@ class UserController extends Controller
 
     public function myOrderDetails($id)
     {
-        $data['s_appliction'] = StudentApplication::with('documents')->find($id);
+        $data['s_appliction'] = StudentApplication::with('documents','educations','work_experiences','familyMembers')->find($id);
         // dd($data['s_appliction']);
         // return view('user.order.application_details', $data);
         return view('User-Backend.application_view', $data);

@@ -60,19 +60,30 @@
 
             <section class="footer_showcase d-flex mb-2">
 
+                @php
+                $imagesWithPosition = collect($footer_image['images'] ?? [])->map(function ($image, $key) use ($footer_image) {
+                    return [
+                        'src' => $image,
+                        'title' => $footer_image['image_titles'][$key] ?? '',
+                        'position' => $footer_image['image_positions'][$key] ?? 0,
+                    ];
+                })->sortBy('position');
+                 @endphp
+            
                 <div id="justified-gallery">
-                    @foreach ($footer_image['images'] ?? [] as $key => $image)
-                        <a data-src="{{ $image }}" class="single-gallery-image" style="cursor: pointer">
-                            <img class="img-fluid authorization_image" src="{{ $image }}"
-                                alt="{{ $footer_image['image_titles'][$key] ?? '' }}">
-                            @if ($footer_image['image_titles'][$key])
+                    @foreach ($imagesWithPosition as $imageData)
+                        <a data-src="{{ $imageData['src'] }}" class="single-gallery-image" style="cursor: pointer">
+                            <img class="img-fluid authorization_image" src="{{ $imageData['src'] }}"
+                                alt="{{ $imageData['title'] }}">
+                            @if ($imageData['title'])
                                 <p class="image-title">
-                                    {{ $footer_image['image_titles'][$key] ?? '' }}
+                                    {{ $imageData['title'] }}
                                 </p>
                             @endif
                         </a>
                     @endforeach
                 </div>
+                
             </section>
         </div>
     </div>

@@ -32,7 +32,7 @@ class ScholarshipController extends Controller
     {
         $request->validate([
             'title' => 'required|string',
-            // 'scholarship_amount' => 'required',
+            'scholarship_amount' => 'required',
             'tuition_fee' => 'required',
             'accommodation_fee' => 'required',
             'insurance_fee' => 'required',
@@ -43,7 +43,7 @@ class ScholarshipController extends Controller
         $data = [
             'title' => $request->title,
             'type' => $request->type,
-            // 'scholarship_amount' => $request->scholarship_amount ?? 0,
+            'scholarship_amount' => $request->scholarship_amount ?? 0,
             'tuition_fee' => $request->tuition_fee,
             'accommodation_fee' => $request->accommodation_fee,
             'insurance_fee' => $request->insurance_fee,
@@ -75,7 +75,7 @@ class ScholarshipController extends Controller
 
             $request->validate([
                 'title' => 'required|string',
-                // 'scholarship_amount' => 'required',
+                'scholarship_amount' => 'required',
                 'tuition_fee' => 'required',
                 'accommodation_fee' => 'required',
                 'insurance_fee' => 'required',
@@ -86,7 +86,7 @@ class ScholarshipController extends Controller
             $data = [
                 'title' => $request->title ?? $scholarship->title,
                 'type' => $request->type ?? $scholarship->type,
-                // 'scholarship_amount' => $request->scholarship_amount ?? $scholarship->scholarship_amount ?? 0,
+                'scholarship_amount' => $request->scholarship_amount ?? $scholarship->scholarship_amount ?? 0,
                 'tuition_fee' => $request->tuition_fee ?? $scholarship->tuition_fee,
                 'accommodation_fee' => $request->accommodation_fee ?? $scholarship->accommodation_fee,
                 'insurance_fee' => $request->insurance_fee ?? $scholarship->insurance_fee,

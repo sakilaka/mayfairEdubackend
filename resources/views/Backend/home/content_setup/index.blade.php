@@ -1356,11 +1356,27 @@
                                                                 json_decode($footer_gallery['footer_image'], true)[
                                                                     'image_titles'
                                                                 ] ?? [];
+                                                            $imagePosition =
+                                                                json_decode($footer_gallery['footer_image'], true)[
+                                                                    'image_positions'
+                                                                ] ?? [];
                                                         }
                                                     @endphp
 
                                                     @forelse ($galleryImages as $key => $image)
                                                         <div class="row align-items-center mt-2">
+
+                                                            <div class="col-12 mt-3">
+                                                                <div class="form-group">
+                                                                    <label>Image Position</label>
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter image alt position"
+                                                                        name="image_position[{{ $key }}]"
+                                                                        value="{{ $imagePosition[$key] ?? '' }}">
+                                                                </div>
+                                                            </div>
+
                                                             <div class="col-12 mt-3">
                                                                 <div class="form-group">
                                                                     <label>Image Title</label>
@@ -1428,6 +1444,17 @@
                                                             @php
                                                                 $random = rand(10000, 99999);
                                                             @endphp
+
+                                                            <div class="col-12 mt-3">
+                                                                <div class="form-group">
+                                                                    <label>Image Position</label>
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg"
+                                                                        placeholder="Enter image alt position"
+                                                                        name="image_position[{{ $random }}]">
+                                                                </div>
+                                                            </div>
+
                                                             <div class="col-12 mt-3">
                                                                 <div class="form-group">
                                                                     <label>Image Title</label>
@@ -1499,6 +1526,7 @@
                                         </div>
                                     </form>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -1657,6 +1685,17 @@
 
             var myvar = `
                 <div class="row align-items-center mt-2">
+                    
+                    <div class="col-12 mt-3">
+                        <div class="form-group">
+                            <label>Image Position</label>
+                            <input type="text"
+                                class="form-control form-control-lg"
+                                placeholder="Enter image alt position"
+                                name="image_position[${randomNumber}]">
+                        </div>
+                    </div>
+
                     <div class="col-12 mt-3">
                         <div class="form-group">
                             <label>Image Title</label>

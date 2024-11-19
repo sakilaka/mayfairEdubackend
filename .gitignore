@@ -6,6 +6,7 @@
 /public/backend/css
 /public/backend/Employee_Image
 /public/backend/js
+/public/upload
 /DB
 /storage/*.key
 /vendor

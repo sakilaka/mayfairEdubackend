@@ -139,6 +139,7 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content mt-4">
+                    
                     <div role="tabpanel" class="tab-pane fade show tabidload active" id="all_program">
                         <div class="row justify-content-center gx-3 gy-4">
                             @if (count($courses_all) > 0)

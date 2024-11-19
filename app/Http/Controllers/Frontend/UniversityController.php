@@ -300,7 +300,7 @@ class UniversityController extends Controller
             ->where('type', 7)->where('status', 1)
             ->first();
 
-        $data['university_courses'] = Course::where('university_id', $university->id)->latest()->get();
+        $data['university_courses'] = Course::where('university_id', $university->id)->where('status', 1)->latest()->get();
         return view('Frontend.university.university_details', $data);
     }
 
