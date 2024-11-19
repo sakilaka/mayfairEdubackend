@@ -18,6 +18,10 @@ class StudentApplication extends Model
     {
         return $this->hasMany(ApplicationEducation::class, 'application_id');
     }
+    function familyMembers()
+    {
+        return $this->hasMany(FamilyMember::class, 'student_application_id');
+    }
     function work_experiences()
     {
         return $this->hasMany(ApplicationWork::class, 'application_id');
