@@ -45,9 +45,6 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Program Name:') }}</b></label>
-                                        {{-- @foreach ($s_appliction->carts as $cart)
-                                            <p>{{ @$cart->course->name }}</p>
-                                        @endforeach --}}
                                         @php
                                             $programIds = json_decode($s_appliction->programs) ?? [];
                                             $programs = collect($programIds)
@@ -66,17 +63,14 @@
 
                                             $programLinks = $programs
                                                 ->map(function ($program) {
-                                                    return '<a href="' .
-                                                        route('frontend.course.details', [
-                                                            'id' => $program['id'],
-                                                        ]) .
-                                                        '" target="_blank" style="color: var(--primary_background);" data-toggle="tooltip" data-placement="top" data-original-title="' .
+                                                    return '<span data-toggle="tooltip" data-placement="top" data-original-title="' .
                                                         $program['name'] .
                                                         '">' .
                                                         $program['name'] .
-                                                        '</a>';
+                                                        '</span>';
                                                 })
                                                 ->implode(',<br>');
+
                                         @endphp
                                         <p>{!! $programLinks !!}</p>
                                     </div>
