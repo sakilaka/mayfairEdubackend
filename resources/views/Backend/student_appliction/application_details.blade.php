@@ -58,16 +58,18 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Program Name:') }}</b></label>
-                                        {{ gettype($s_appliction->programs) }}
-                                        {{-- @foreach (json_decode($s_appliction->programs, true) ?? [] as $programId)
+                                        @php
+                                            $programs = json_decode($s_appliction->programs, true);
+                                        @endphp
+                                        @foreach ($programs ?? [] as $programId)
                                             <p>{{ optional(\App\Models\Course::find($programId))->name }}</p>
-                                        @endforeach --}}
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('University Name:') }}</b></label>
-                                        @foreach (json_decode($s_appliction->programs) as $programId)
+                                        @foreach ($programs ?? [] as $programId)
                                             <p>{{ optional(optional(\App\Models\Course::find($programId))->university)->name }}
                                             </p>
                                         @endforeach
@@ -76,7 +78,7 @@
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Continent Name:') }}</b></label>
-                                        @foreach (json_decode($s_appliction->programs) as $programId)
+                                        @foreach ($programs ?? [] as $programId)
                                             <p>{{ optional(optional(optional(\App\Models\Course::find($programId))->university)->continent)->name }}
                                             </p>
                                         @endforeach
