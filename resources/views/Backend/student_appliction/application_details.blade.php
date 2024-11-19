@@ -116,7 +116,7 @@
                                         <p>{!! $universityNames !!}</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                {{-- <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Continent Name:') }}</b></label>
                                         @foreach ($programs ?? [] as $programId)
@@ -124,7 +124,7 @@
                                             </p>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <div class="col-lg-12 mt-3">
                                     <h4>Personal Information</h4>
