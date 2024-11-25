@@ -11,7 +11,7 @@
 
     <style>
         .university-highlights {
-            background-image: url('{{ asset('frontend/images/expo-page-bg-blank.jpeg') }}?v={{ rand() }}');
+            background-image: url('{{ asset('frontend/images/expo-page-white-bg-blank.jpeg') }}');
             background-position: top;
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -26,10 +26,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand"
-                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 180px; height:auto;">
+                    <a class="navbar-brand" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
+                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -199,7 +197,7 @@
                                         </p>
                                         <div class="text-center">
                                             <a href="{{ route('expo.exhibitor.details', ['type' => 'main', 'exhibitor_id' => $exhibitor->id]) }}"
-                                                class="btn btn-primary-bg red-hover-button mx-auto px-5 rounded-0"
+                                                class="btn btn-primary-bg mx-auto px-5 rounded-0"
                                                 target="_blank">Details</a>
                                         </div>
                                     </div>

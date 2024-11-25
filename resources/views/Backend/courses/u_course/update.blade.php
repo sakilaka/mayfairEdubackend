@@ -52,15 +52,13 @@
                                                         required>
                                                         <option value="">Select University</option>
                                                         @foreach ($universities as $university)
-                                                            <option value="{{ $university->id }}"
-                                                                {{ old('university_id', $course->university_id) == $university->id ? 'selected' : '' }}>
-                                                                {{ $university->name }}
+                                                            <option @if ($university->id == $course->university_id) Selected @endif
+                                                                value="{{ $university->id }}">{{ $university->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Major <span class="text-danger"
@@ -70,14 +68,13 @@
                                                         <option value="">Select Department</option>
                                                         @foreach ($departments as $department)
                                                             <option value="{{ $department->id }}"
-                                                                {{ old('department_id', $course->department_id) == $department->id ? 'selected' : '' }}>
+                                                                {{ $department->id == $course->department_id ? 'selected' : '' }}>
                                                                 {{ $department->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Degree <span class="text-danger"
@@ -87,17 +84,17 @@
                                                         <option value="">Select Degree</option>
                                                         @foreach ($degrees as $degree)
                                                             <option value="{{ $degree->id }}"
-                                                                {{ old('degree_id', $course->degree_id) == $degree->id ? 'selected' : '' }}>
+                                                                @if ($degree->id == $course->degree_id) selected @endif>
                                                                 {{ $degree->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Dormitory</label>
+                                                    <label>Dormitory
+                                                    </label>
                                                     <select class="form-control form-control-lg dormitorySelect2"
                                                         name="dormitory_id[]" multiple>
                                                         <option value="">Select Dormitory</option>
@@ -105,70 +102,67 @@
                                                             $selectedDormitories =
                                                                 json_decode($course->dormitories, true) ?? [];
                                                         @endphp
+
                                                         @foreach ($dormitories as $dormitory)
                                                             <option value="{{ $dormitory->id }}"
-                                                                {{ in_array($dormitory->id, old('dormitory_id', $selectedDormitories)) ? 'selected' : '' }}>
+                                                                @if (in_array($dormitory->id, $selectedDormitories)) selected @endif>
                                                                 {{ $dormitory->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Primary Scholarship</label>
                                                     <select class="form-control form-control-lg" name="scholarship_id">
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free"
-                                                            {{ old('scholarship_id', $course->scholarship_id) == 'free' ? 'selected' : '' }}>
-                                                            Full Scholarship
-                                                        </option>
+                                                        <option value="free">Full Scholarship</option>
                                                         @foreach ($scholarships as $scholarship)
                                                             <option value="{{ $scholarship->id }}"
-                                                                {{ old('scholarship_id', $course->scholarship_id) == $scholarship->id ? 'selected' : '' }}>
-                                                                {{ $scholarship->title }}
-                                                            </option>
+                                                                {{ $scholarship->id == $course->scholarship_id ? 'selected' : '' }}>
+                                                                {{ $scholarship->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     @php
-                                                        $scholarship_ids =
-                                                            json_decode($course->additional_scholarships, true) ?? [];
+                                                        $scholarship_ids = [];
+                                                        foreach (
+                                                            json_decode($course->additional_scholarships, true) ?? []
+                                                            as $id
+                                                        ) {
+                                                            $scholarship_ids[] = $id;
+                                                        }
                                                     @endphp
                                                     <label>Additional Scholarships</label>
                                                     <select class="form-control form-control-lg multipleSelect2Search"
                                                         name="optional_scholarship_id[]" multiple>
                                                         <option value="">Select Scholarships</option>
                                                         <option value="free"
-                                                            {{ in_array('free', old('optional_scholarship_id', $scholarship_ids)) ? 'selected' : '' }}>
+                                                            @if ($course->scholarship_id == 'free') Selected @endif>
                                                             Full Scholarship
                                                         </option>
                                                         @foreach ($scholarships as $scholarship)
                                                             <option value="{{ $scholarship->id }}"
-                                                                {{ in_array($scholarship->id, old('optional_scholarship_id', $scholarship_ids)) ? 'selected' : '' }}>
+                                                                @if (in_array($scholarship->id, $scholarship_ids)) selected @endif>
                                                                 {{ $scholarship->title }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Name <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" name="course_name"
-                                                        placeholder="Enter Course Name"
-                                                        value="{{ old('course_name', $course->name) }}"
+                                                        placeholder="Enter Course Name" value="{{ $course->name }}"
                                                         class="form-control" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Intake <span class="text-danger"
@@ -177,9 +171,8 @@
                                                         required>
                                                         <option value="">Select Intake</option>
                                                         @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}"
-                                                                {{ old('section_id', $course->section_id) == $section->id ? 'selected' : '' }}>
-                                                                {{ $section->name }}
+                                                            <option @if ($section->id == $course->section_id) Selected @endif
+                                                                value="{{ $section->id }}">{{ $section->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -192,18 +185,17 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="application_charge"
                                                         placeholder="Enter Application Fees"
-                                                        value="{{ old('application_charge', $course->application_charge) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->application_charge }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge', $course->service_charge) }}" class="form-control"
+                                                        value="{{ $course->service_charge }}" class="form-control"
                                                         required>
                                                 </div>
                                             </div> --}}
@@ -214,8 +206,8 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_beginner"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_beginner', $course->service_charge_beginner) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_beginner }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -225,8 +217,8 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_1"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_1', $course->service_charge_1) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_1 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -236,63 +228,58 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_2"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_2', $course->service_charge_2) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_2 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 3 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_3"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_3', $course->service_charge_3) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_3 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 4 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_4"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_4', $course->service_charge_4) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_4 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 5 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_5"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_5', $course->service_charge_5) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_5 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 6 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_6"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_6', $course->service_charge_6) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_6 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge 7 (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_7"
                                                         placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_7', $course->service_charge_7) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->service_charge_7 }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
 
@@ -302,101 +289,83 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="year_fee"
                                                         placeholder="Enter Yearly Course Fee"
-                                                        value="{{ old('year_fee', $course->year_fee) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->year_fee }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Accommodation Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="accommodation_fee"
-                                                        placeholder="Enter Accommodation Fee"
-                                                        value="{{ old('accommodation_fee', $course->accommodation_fee) }}"
-                                                        class="form-control" required>
+                                                        placeholder="Enter Accommodation Fee" class="form-control"
+                                                        value="{{ $course->accommodation_fee }}" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Yearly Insurance Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="insurance_fee"
-                                                        placeholder="Enter Insurance Fee"
-                                                        value="{{ old('insurance_fee', $course->insurance_fee) }}"
-                                                        class="form-control" required>
+                                                        placeholder="Enter Insurance Fee" class="form-control"
+                                                        value="{{ $course->insurance_fee }}" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Visa Extension Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="visa_extension_fee"
-                                                        placeholder="Enter Visa Extension Fee"
-                                                        value="{{ old('visa_extension_fee', $course->visa_extension_fee) }}"
-                                                        class="form-control" required>
+                                                        placeholder="Enter Visa Extension Fee" class="form-control"
+                                                        value="{{ $course->visa_extension_fee }}" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Medical In China Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
-                                                        placeholder="Enter Medical In China Fee"
-                                                        value="{{ old('medical_in_china_fee', $course->medical_in_china_fee) }}"
-                                                        class="form-control" required>
+                                                        placeholder="Enter Medical In China Fee" class="form-control"
+                                                        value="{{ $course->medical_in_china_fee }}" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Others Fee (Logistics)</label>
                                                     <input type="number" min="0" name="others_fee"
                                                         placeholder="Enter Others Fee (CNY)"
-                                                        value="{{ old('others_fee', $course->others_fee) }}"
-                                                        class="form-control">
+                                                        value="{{ $course->others_fee }}" class="form-control">
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Program Type <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <select class="form-control form-control-lg" name="course_type"
                                                         required>
-                                                        <option value="1"
-                                                            {{ old('course_type', $course->coursetype) == '1' ? 'selected' : '' }}>
-                                                            Our Top Picks</option>
-                                                        <option value="2"
-                                                            {{ old('course_type', $course->coursetype) == '2' ? 'selected' : '' }}>
-                                                            Most Popular</option>
-                                                        <option value="3"
-                                                            {{ old('course_type', $course->coursetype) == '3' ? 'selected' : '' }}>
-                                                            Fastest Admissions</option>
-                                                        <option value="4"
-                                                            {{ old('course_type', $course->coursetype) == '4' ? 'selected' : '' }}>
-                                                            Highest Rating</option>
-                                                        <option value="5"
-                                                            {{ old('course_type', $course->coursetype) == '5' ? 'selected' : '' }}>
-                                                            Top Ranked</option>
+                                                        <option @if ($course->coursetype == '1') Selected @endif
+                                                            value="1">Our Top Picks</option>
+                                                        <option @if ($course->coursetype == '2') Selected @endif
+                                                            value="2">Most Popular</option>
+                                                        <option @if ($course->coursetype == '3') Selected @endif
+                                                            value="3">Fastest Admissions</option>
+                                                        <option @if ($course->coursetype == '4') Selected @endif
+                                                            value="4">Highest Rating</option>
+                                                        <option @if ($course->coursetype == '5') Selected @endif
+                                                            value="5">Top Ranked</option>
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Duration (Yearly) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" min="0" name="course_duration"
                                                         placeholder="Enter Course Duration In Yearly"
-                                                        value="{{ old('course_duration', $course->course_duration) }}"
-                                                        class="form-control" required>
+                                                        value="{{ $course->course_duration }}" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Application Start Date <span class="text-danger"
@@ -482,31 +451,30 @@
                                                         name="relatedcourse_id[]" multiple>
                                                         <option value="">Select Programs</option>
                                                         @foreach ($courses as $selected_course)
-                                                            <option value="{{ $selected_course->id }}"
-                                                                @if (in_array($selected_course->id, old('relatedcourse_id', $course->relatedcourses->pluck('id')->toArray()))) selected @endif>
+                                                            <option @if ($selected_course->relatedcourses->where('course_id', $course->id)->all()) Selected @endif
+                                                                value="{{ $selected_course->id }}">
                                                                 {{ $selected_course->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pre Requisites</label>
-                                                    <textarea class="form-control editor" name="requisites" style="height: 150px">{{ old('requisites', $course->requisites) }}</textarea>
+                                                    <label>Pre Requisites </label>
+                                                    <textarea class="form-control editor" name="requisites" style="height: 150px">{!! $course->requisites !!}</textarea>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>About This Program / Overview</label>
-                                                    <textarea class="form-control editor" name="about" style="height: 150px">{{ old('about', $course->about) }}</textarea>
+                                                    <label>About This Program / Overview <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <textarea class="form-control editor" name="about" style="height: 150px">{!! $course->about !!}</textarea>
                                                 </div>
                                             </div>
                                         </div>
 
-
+                                        
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Update</button>
@@ -633,7 +601,7 @@
 
                         $('input[name="service_charge_beginner"]').val(response.university
                             .service_charge_beginner);
-                        $('input[name="service_charge_1"]').val(response.university
+                            $('input[name="service_charge_1"]').val(response.university
                             .service_charge_1);
                         $('input[name="service_charge_2"]').val(response.university
                             .service_charge_2);
@@ -647,7 +615,7 @@
                             .service_charge_6);
                         $('input[name="service_charge_7"]').val(response.university
                             .service_charge_7);
-
+                      
                         $('input[name="application_charge"]').val(response.university
                             .application_charge);
                         $('input[name="accommodation_fee"]').val(response.university

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend\Expo;
 
-use App\Exports\ExpoUsersExport;
 use App\Http\Controllers\Controller;
 use App\Jobs\SendEmailsJob;
 use App\Mail\SendExpoEmail;
@@ -15,7 +14,6 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-use Maatwebsite\Excel\Facades\Excel;
 
 class ExpoParticipantController extends Controller
 {
@@ -28,12 +26,12 @@ class ExpoParticipantController extends Controller
             if (($request->has('filter_participant')) && ($request->filter_participant !== 'all') && ($request->filter_participant !== null)) {
                 $data['expo_users'] = ExpoUser::where('expo_id', $request->filter_participant)->latest()->paginate(50);
             } else {
-                $data['expo_users'] = ExpoUser::latest()->paginate(50);
+                $data['expo_users'] = ExpoUser::latest()->paginate(25);
             }
 
             $data['filtered_expo'] = $request->filter_participant;
         } elseif ($type == 'site') {
-            $data['expo_users'] = ExpoModule::latest()->paginate(50);
+            $data['expo_users'] = ExpoModule::latest()->paginate(25);
         } else {
             abort(404, 'Not Found');
         }
@@ -100,56 +98,6 @@ class ExpoParticipantController extends Controller
             return $e->getMessage();
             return back()->with(['error' => 'Something Went Wrong!']);
         }
-    }
-
-    /**
-     * download excel data
-     */
-    public function expo_download_data_excel($type)
-    {
-        if ($type === 'main') {
-            $expoUser = ExpoUser::select([
-                'ticket_no',
-                'expo_id',
-                'email',
-                'first_name',
-                'last_name',
-                'nationality',
-                'sex',
-                'dob',
-                'phone',
-                'profession',
-                'institution',
-                'program',
-                'degree',
-            ])->get();
-
-            $expoIds = $expoUser->pluck('expo_id')->unique();
-            $expoTitles = Expo::whereIn('unique_id', $expoIds)->pluck('title', 'unique_id');
-
-            foreach ($expoUser as $user) {
-                $user->expo_title = $expoTitles->get($user->expo_id);
-            }
-        } elseif ($type === 'site') {
-            $expoUser = ExpoModule::select([
-                'ticket_no',
-                'email',
-                'first_name',
-                'last_name',
-                'nationality',
-                'sex',
-                'dob',
-                'phone',
-                'profession',
-                'institution',
-                'program',
-                'degree',
-            ])->get();
-        } else {
-            abort(500, 'Server Error');
-        }
-
-        return Excel::download(new ExpoUsersExport($expoUser, $type), 'expo_participators.xlsx');
     }
 
     /**

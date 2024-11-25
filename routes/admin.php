@@ -542,6 +542,7 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::get('student-appliction-program-edit/{id}', [StudentApplictionController::class, "editProgramInfo"])->name('admin.student_appliction_program_edit');
   Route::post('students-appliction-program-update/{id}', [StudentApplictionController::class, "updateProgramInfo"])->name('admin.student_appliction_program_update');
   Route::post('/update-paid-amount/{id}', [StudentApplictionController::class, 'updatePaidAmount'])->name('admin.update.paid.amount');
+  Route::post('/update-application-fee/{id}', [StudentApplictionController::class, 'updateApplicationFee'])->name('admin.update.paid.amount');
 
   Route::get('student-appliction-document/{id}', [StudentApplictionController::class, "editDocument"])->name('admin.student_appliction_document');
   Route::post('student-appliction-document-update/{id}', [StudentApplictionController::class, "updateDocument"])->name('admin.student_appliction_document-update');

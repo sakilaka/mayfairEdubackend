@@ -66,15 +66,15 @@
                                     @foreach ($exhibitors as $exhibitor)
                                         <tr role="row" class="odd">
                                             <td class="text-left">{{ $loop->iteration }}</td>
-                                            <td>
-                                                <img src="{{ $exhibitor->image_show ?? asset('frontend/images/No-image.jpg') }}"
-                                                    alt="" width="30px" height="30px"
-                                                    style="margin-right: 8px">
+                                            <td
+                                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px;">
+                                                <img src="{{ $exhibitor->image_show }}" alt="" width="30px"
+                                                    height="30px" style="margin-right: 8px">
                                                 <a href="{{ route('expo.exhibitor.details', ['type' => 'main', 'exhibitor_id' => $exhibitor->id]) }}"
                                                     target="_blank" style="color: var(--primary_background);"
                                                     data-toggle="tooltip" data-placement="top"
                                                     data-original-title="{{ $exhibitor->name }}">
-                                                    {{ Illuminate\Support\Str::limit($exhibitor->name, 50, '...') }}
+                                                    {{ $exhibitor->name }}
                                                 </a>
                                             </td>
                                             <td class="text-left">{{ $exhibitor->address }}</td>

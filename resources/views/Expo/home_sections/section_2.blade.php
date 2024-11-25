@@ -1,6 +1,6 @@
-<section class="py-5 section-background">
+<section class="my-5">
     <div class="container">
-        <div class="row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center" style="background-color: white;">
             <div class="col-md-11">
                 <div class="row">
                     <div class="col-md-6 col-xs-12">

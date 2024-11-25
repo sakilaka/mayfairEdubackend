@@ -2,9 +2,9 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg shadow-none" style="z-index: 3">
             <div class="container d-flex justify-content-between">
-                <a class="ms-md-4 ps-md-4 navbar-brand" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                    <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                        style="width: 180px; height:auto;">
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo"
+                        class="logo">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -37,26 +37,22 @@
                     <div>
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Organizer:
                         </p>
-                        @foreach ($additional_contents['organizerDetails'] ?? [] as $organizer)
-                            <p class="location-text text-white mb-0 pb-0">
-                                <span class="text-style fw-bold">
-                                    {{ $organizer['name'] ?? '' }}
-                                </span>
-                            </p>
-                        @endforeach
+                        <p class="location-text text-white">
+                            <span class="text-style fw-bold">
+                                {{ $additional_contents['organizerDetails']['name'] ?? '' }}
+                            </span>
+                        </p>
                     </div>
-                    <div class="mt-3">
+                    <div>
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
                             Co-Organizer:</p>
-                        @foreach ($additional_contents['co_organizerDetails'] ?? [] as $co_organizer)
-                            <p class="location-text text-white mb-0 pb-0">
-                                <span class="text-style fw-bold">
-                                    {{ $co_organizer['name'] ?? '' }}
-                                </span>
-                            </p>
-                        @endforeach
+                        <p class="location-text text-white">
+                            <span class="text-style fw-bold">
+                                {{ $additional_contents['co_organizerDetails']['name'] ?? '' }}
+                            </span>
+                        </p>
                     </div>
-                    <div class="mt-3">
+                    <div>
                         <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Venue:
                         </p>
                         <p class="location-text text-white">

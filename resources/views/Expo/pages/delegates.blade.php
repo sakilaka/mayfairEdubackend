@@ -12,32 +12,11 @@
 
     <style>
         .university-highlights {
-            background-image: url('{{ asset('frontend/images/expo-page-bg-blank.jpeg') }}?v={{ rand() }}');
+            background-image: url('{{ asset('frontend/images/expo-page-white-bg-blank.jpeg') }}');
             background-position: top;
             background-size: 100% 100%;
             background-repeat: no-repeat;
             padding: 5rem 0;
-        }
-
-        .testimonial-single-card {
-            border: 4px solid var(--primary_background);
-        }
-
-        .delegate-desc-container::-webkit-scrollbar {
-            width: 3px;
-        }
-
-        .delegate-desc-container::-webkit-scrollbar-track {
-            background: #e0e0e0;
-        }
-
-        .delegate-desc-container::-webkit-scrollbar-thumb {
-            background-color: #28a74648;
-            border-radius: 10px;
-        }
-
-        .delegate-desc-container::-webkit-scrollbar-thumb:hover {
-            background-color: #218838;
         }
     </style>
 </head>
@@ -48,10 +27,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand"
-                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 180px; height:auto;">
+                    <a class="navbar-brand" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
+                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -67,9 +44,7 @@
         <div class="container">
             <div class="text-start">
                 <h2 class="section-title d-inline">Overseas Delegates of</h2>
-                <h4 class="section-title d-inline ms-2 fs-4">
-                    {{ $additional_contents['pre_title'] . ' ' . $expo->title }}
-                </h4>
+                <h4 class="section-title d-inline ms-2 fs-4">{{ $expo->title }}</h4>
             </div>
 
             <div class="row justify-content-between align-items-center mt-5 mx-auto">
@@ -78,34 +53,42 @@
                 @endphp
 
                 <div class="col-12 mt-2">
-
-                    <div class="row {{-- delegates-slick-carousel slick-slider --}} mt-3">
+                    <p class="text-center fw-bold"
+                        style="color:var(--primary_background); font-family: 'DM Sans', sans-serif;font-size:1.5rem;font-weight:500;">
+                        What Our Overseas Delegates Are Saying
+                    </p>
+                    <div class="row delegates-slick-carousel slick-slider">
                         @foreach ($delegates as $delegate)
-                            <div class="d-lg-flex flex-lg-column col-md-4 col-lg-3 justify-content-center p-2">
+                            <div class="d-lg-flex flex-lg-column col-md-6 col-lg-4 justify-content-center p-2">
                                 <div class="testimonial-single-card bg-white p-3">
                                     <div class="d-flex justify-content-center">
                                         <img class="testimonial-user-img"
                                             src="{{ $delegate['photo'] ?? asset('frontend/images/no-profile.jpg') }}"
-                                            alt=""
-                                            style="border-radius:10px; background-color:var(--secondary_background)">
+                                            alt="" style="border-radius:10px;">
                                     </div>
 
-                                    <div class="delegate-desc-container" style="height: 140px; overflow-y:auto;">
+                                    <div style="height: 70px">
                                         <p class="mb-0 fw-bold mt-2 text-center"
                                             style="font-size: 1.25rem; font-family: 'DM Sans', sans-serif !important;">
-                                            {!! $delegate['name'] ?? '&nbsp;' !!}
+                                            {{ $delegate['name'] }}
                                         </p>
                                         <p class="mb-0 text-center"
                                             style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {!! $delegate['designation'] ?? '&nbsp;' !!}
+                                            {{ $delegate['designation'] }}
                                         </p>
-                                        <p class="mb-0 text-center"
-                                            style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {!! $delegate['organization_name'] ?? '&nbsp;' !!}
-                                        </p>
-                                        <p class="mb-0 text-center"
-                                            style="font-size: 0.9rem; font-family: 'DM Sans', sans-serif;">
-                                            {!! $delegate['country'] ?? '&nbsp;' !!}
+                                    </div>
+
+                                    <div class="my-2 mt-3">
+                                        <img src="{{ asset('frontend/images/left-quotes-sign.png') }}" alt=""
+                                            style="width:1rem">
+                                    </div>
+                                    <div class="testimonial-content">
+                                        @php
+                                            $description = strip_tags($delegate['description']);
+                                        @endphp
+                                        <p class="mb-0 ckeditor5-rendered testimonial-comment"
+                                            data-full-comment="{{ $description }}">
+                                            {!! $description !!}
                                         </p>
                                     </div>
                                 </div>

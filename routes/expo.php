@@ -15,7 +15,6 @@ use App\Http\Controllers\Backend\Expo\External\ExpoExternalModuleContentsControl
 use App\Http\Controllers\Backend\Expo\External\ExpoExternalExhibitorController;
 use App\Http\Controllers\Backend\Expo\Main\ExpoJoinController;
 use App\Http\Controllers\Backend\Expo\Main\ExpoMainExhibitorController;
-use App\Http\Controllers\Backend\Expo\Main\ExpoThemeColorsController;
 use App\Http\Controllers\Frontend\UserLoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,11 +69,6 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::post('update', [ExpoJoinController::class, 'expo_join_page_update'])->name('admin.expo.join.update');
     });
 
-    Route::prefix('{expo_id}/theme-colors')->group(function () {
-        Route::get('/', [ExpoThemeColorsController::class, 'expo_theme_colors'])->name('admin.expo.theme_colors.index');
-        Route::post('update', [ExpoThemeColorsController::class, 'expo_theme_colors_update'])->name('admin.expo.theme_colors.update');
-    });
-
     Route::prefix('users')->group(function () {
         Route::get('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo.users');
         Route::post('{type}', [ExpoParticipantController::class, 'expo_users'])->name('admin.expo.users.filter');
@@ -82,7 +76,6 @@ Route::prefix('expo')->middleware(['auth:admin', 'adminCheck:0'])->group(functio
         Route::get('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator'])->name('admin.expo.add_participator');
         Route::post('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator_store'])->name('admin.expo.add_participator.store');
 
-        Route::get('{type}/download-data-excel', [ExpoParticipantController::class, 'expo_download_data_excel'])->name('admin.expo.download_data_excel');
         Route::get('{type}/show-participant', [ExpoParticipantController::class, 'expo_view_participant'])->name('admin.expo.show_participant');
     });
 });
@@ -123,7 +116,6 @@ Route::prefix('expo-site')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
         Route::get('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator'])->name('admin.expo-site.add_participator');
         Route::post('{type}/add-participator', [ExpoParticipantController::class, 'expo_add_participator_store'])->name('admin.expo-site.add_participator.store');
 
-        Route::get('{type}/download-data-excel', [ExpoParticipantController::class, 'expo_download_data_excel'])->name('admin.expo-site.download_data_excel');
         Route::get('{type}/show-participant', [ExpoParticipantController::class, 'expo_view_participant'])->name('admin.expo-site.show_participant');
     });
 });

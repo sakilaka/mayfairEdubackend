@@ -44,10 +44,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand"
-                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 180px; height:auto;">
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -83,26 +81,22 @@
                             <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
                                 Organizer:
                             </p>
-                            @foreach ($contents['organizerDetails'] ?? [] as $organizer)
-                                <p class="location-text text-white mb-0 pb-0">
-                                    <span class="text-style fw-bold">
-                                        {{ $organizer['name'] ?? '' }}
-                                    </span>
-                                </p>
-                            @endforeach
+                            <p class="location-text text-white">
+                                <span class="text-style fw-bold">
+                                    {{ $contents['organizerDetails']['name'] ?? '' }}
+                                </span>
+                            </p>
                         </div>
-                        <div class="mt-3">
+                        <div>
                             <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">
                                 Co-Organizer:</p>
-                            @foreach ($contents['co_organizerDetails'] ?? [] as $co_organizer)
-                                <p class="location-text text-white mb-0 pb-0">
-                                    <span class="text-style fw-bold">
-                                        {{ $co_organizer['name'] ?? '' }}
-                                    </span>
-                                </p>
-                            @endforeach
+                            <p class="location-text text-white">
+                                <span class="text-style fw-bold">
+                                    {{ $contents['co_organizerDetails']['name'] ?? '' }}
+                                </span>
+                            </p>
                         </div>
-                        <div class="mt-3">
+                        <div>
                             <p style="font-size: 16px; color: var(--secondary_background);" class="mb-0 fw-600">Venue:
                             </p>
                             <p class="location-text text-white">
@@ -220,8 +214,8 @@
                         </div>
 
                         <!-- Submit button -->
-                        <button class="btn btn-primary-bg red-hover-button btn-lg w-100 position-relative"
-                            style="z-index: 2" type="submit">Sign in</button>
+                        <button class="btn btn-danger-bg btn-lg w-100 position-relative" style="z-index: 2"
+                            type="submit">Sign in</button>
                     </form>
 
                     <div class="text-center mt-4 mb-5">

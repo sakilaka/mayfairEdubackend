@@ -1,11 +1,11 @@
-<section class="exhibitors-highlights py-5 section-background">
+<section class="exhibitors-highlights my-5">
     <div class="container">
         <div class="text-center">
             <h2 class="section-title">Exhibitors</h2>
         </div>
 
         <div class="row justify-content-center mt-5">
-            @forelse ($exhibitors->take(8) as $exhibitor)
+            @forelse ($exhibitors->take(4) as $exhibitor)
                 @php
                     $courses = App\Models\Course::where([
                         'university_id' => $exhibitor->id,
@@ -145,10 +145,9 @@
                                             Teaching language: English, Chinese
                                         </span>
                                     </p>
-
                                     <div class="text-center">
                                         <a href="{{ route('expo.exhibitor.details', ['type' => 'main', 'exhibitor_id' => $exhibitor->id]) }}"
-                                            class="btn btn-primary-bg red-hover-button mx-auto px-5 rounded-0"
+                                            class="btn btn-primary-bg mx-auto px-5 rounded-0"
                                             target="_blank">Details</a>
                                     </div>
                                 </div>
@@ -164,7 +163,7 @@
             @if (count($exhibitors) > 0)
                 <div class="text-center">
                     <a href="{{ route('expo.exhibitors', ['unique_id' => $expo->unique_id]) }}"
-                        class="btn btn-primary-bg red-hover-button mx-auto px-5 rounded-0">All
+                        class="btn btn-primary-bg mx-auto px-5 rounded-0">All
                         Exhibitors</a>
                 </div>
             @endif

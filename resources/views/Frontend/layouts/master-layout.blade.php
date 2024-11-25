@@ -366,22 +366,6 @@
     <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.5.0/plugins/zoom/lg-zoom.min.js"></script>
 
     <link rel="stylesheet" href="{{ asset('frontend/ckeditor5-rendered.css') }}">
-
-    <script type="application/ld+json">
-        {
-        "@context": "https://schema.org",
-        "@type": "CollegeOrUniversity",
-        "name": "Malisha EDU",
-        "url": "https://malishaedu.com/",
-        "logo": "https://malishaedu.com/upload/site_setting/1723997160_header-logo.svg",
-        "alternateName": "malishaedu",
-        "sameAs": [
-                "https://www.facebook.com/gz.malishaedu",
-                "https://www.instagram.com/malishaedu",
-                "https://www.youtube.com/@MalishaEdu"
-            ]
-        }
-    </script>
 </head>
 
 <body>
@@ -815,46 +799,46 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#justified-gallery-university').justifiedGallery({
-                rowHeight: 170,
-                margins: 5,
-                maxRowHeight: 180,
-                lastRow: 'nojustify',
-                captions: false
-            }).on('jg.complete', function() {
-                lightGallery(document.getElementById('justified-gallery-university'), {
-                    plugins: [lgZoom, lgThumbnail],
-                    thumbnail: true
-                });
-            });
-        });
-    </script>
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('.image-gallery').each(function(index, element) {
-                $(element).justifiedGallery({
-                    rowHeight: 180,
-                    margins: 5,
-                    maxRowHeight: 300,
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#justified-gallery-university').justifiedGallery({
+                    rowHeight: 170,
+                    margins: 5,  
+                    maxRowHeight: 180,
                     lastRow: 'nojustify',
                     captions: false
                 }).on('jg.complete', function() {
-                    lightGallery(element, {
+                    lightGallery(document.getElementById('justified-gallery-university'), {
                         plugins: [lgZoom, lgThumbnail],
-                        thumbnail: true,
-                        selector: 'a',
-                        download: true,
-                        speed: 500
+                        thumbnail: true
                     });
                 });
             });
+        </script>
+        
+
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('.image-gallery').each(function(index, element) {
+            $(element).justifiedGallery({
+                rowHeight: 180,
+                margins: 5,
+                maxRowHeight: 300,
+                lastRow: 'nojustify',
+                captions: false
+            }).on('jg.complete', function() {
+                lightGallery(element, {
+                    plugins: [lgZoom, lgThumbnail],
+                    thumbnail: true,
+                    selector: 'a',
+                    download: true,
+                    speed: 500
+                });
+            });
         });
-    </script>
+    });
+</script>
 
     <script>
         $(document).ready(function() {

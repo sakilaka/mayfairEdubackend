@@ -37,8 +37,6 @@
                                         <th>SL</th>
                                         <th>Name</th>
                                         <th>Designation</th>
-                                        <th>Organization</th>
-                                        <th>Country</th>
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
@@ -55,16 +53,10 @@
                                                     alt="{{ $delegate['name'] }}" width="75" height="75"
                                                     class="rounded-circle">
                                                 &nbsp;
-                                                {{ $delegate['name'] ?? '' }}
+                                                {{ $delegate['name'] }}
                                             </td>
                                             <td>
-                                                {{ $delegate['designation'] ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $delegate['organization_name'] ?? '' }}
-                                            </td>
-                                            <td>
-                                                {{ $delegate['country'] ?? '' }}
+                                                {{ $delegate['designation'] }}
                                             </td>
 
                                             <td class="text-right">
@@ -75,8 +67,8 @@
                                                 </a>
 
                                                 <a href="{{ route('admin.expo.delegate.delete', ['expo_id' => $expo->unique_id, 'delegate_key' => $key]) }}"
-                                                    data-toggle="tooltip" data-title="Delete Delegate"
-                                                    class="btn text-primary delete-item">
+                                                    data-toggle="tooltip"
+                                                    data-title="Delete Delegate" class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                                 </a>
                                             </td>

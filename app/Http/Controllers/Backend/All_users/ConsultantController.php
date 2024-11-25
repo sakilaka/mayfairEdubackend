@@ -12,50 +12,41 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
 
 class ConsultantController extends Controller
 {
     public function index()
     {
         $consultants = User::where('role', 'partner')->get();
-$continents = Continent::where('status', 1)->get();
+        $continents  = Continent::where('status', 1)->get();
 
-$partners = User::where('role', 'partner')->get()->map(function ($partner) {
-   
-    // Set the star to null before calculating
-    $partner->star = null;
-    $partner->save(); // Save the updated star value as null initially
+        $partners = User::where('role', 'partner')->get()->map(function ($partner) {
 
-    // Calculate the total applications for each partner
-    $total_applications = StudentApplication::where(function ($query) use ($partner) {
-        $query->where('applied_by', 'like', '%"partner":' . $partner->id . '%')
-              ->orWhere('applied_by', 'like', '%"manager":' . $partner->id . '%')
-              ->orWhere('applied_by', 'like', '%"support":' . $partner->id . '%');
-    })->count();
+            $partner->star = null;
+            $partner->save(); 
+            
+            $total_applications = StudentApplication::where(function ($query) use ($partner) {
+                $query->where('applied_by', 'like', '%"partner":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"manager":' . $partner->id . '%')
+                    ->orWhere('applied_by', 'like', '%"support":' . $partner->id . '%');
+            })->count();
 
-    // Log the total applications for the partner
-    Log::info('Total Applications for Partner ID: ' . $partner->id, ['total_applications' => $total_applications]);
+            $star = Level::where('eligibility_range_min', '<=', $total_applications)
+                ->where('eligibility_range_max', '>=', $total_applications)
+                ->value('star_value');
 
-    // Find the star value based on the total applications
-    $star = Level::where('eligibility_range_min', '<=', $total_applications)
-        ->where('eligibility_range_max', '>=', $total_applications)
-        ->value('star_value');
+            $partner->star = $star;
+            $partner->save();
 
-    // Update the partner's star value
-    $partner->star = $star;
-    $partner->save(); // Save the updated star value in the database
+            return [
+                'partner'            => $partner,
+                'total_applications' => $total_applications,
+                'star'               => $star,
+            ];
 
-    return [
-        'partner' => $partner,
-        'total_applications' => $total_applications,
-        'star' => $star,
-    ];
+        });
 
-});
-
-return view("Backend.all_users.consultant.index", compact('consultants', 'continents', 'partners'));
-
+        return view("Backend.all_users.consultant.index", compact('consultants', 'continents', 'partners'));
 
     }
 

@@ -60,15 +60,13 @@
 <meta property="og:image:width" content="600" />
 <meta property="og:image:height" content="315" />
 
-@php
-    $theme_colors = json_decode($expo->theme_colors, true);
-@endphp
 <style>
     :root {
-        --primary_background: {{ $theme_colors['primary_color'] ?? '#0c4493' }};
-        --primary_background_hover: {{ $theme_colors['primary_hover_color'] ?? '#3a62a0' }};
-        --secondary_background: {{ $theme_colors['secondary_color'] ?? '#58b135' }};
-        --secondary_background_hover: {{ $theme_colors['secondary_hover_color'] ?? '#357e61' }};
+        --primary_background: #0c4493;
+        --primary_background_hover: #3a62a0;
+        --secondary_background: #58b135;
+        --secondary_background_hover: #357e61;
+        --tertiary_background: #c0392b;
 
         --btn_primary_color: var(--primary_background);
         --btn_primary_hover_color: var(--primary_background_hover);
@@ -78,7 +76,6 @@
 
         --btn_tertiary_color: var(--tertiary_background);
         --btn_tertiary_hover_color: {{ '#c10000' }};
-        --section-background: #f2fafe;
     }
 
     /* assign btn theme for this site */
@@ -116,19 +113,6 @@
     .btn-tertiary-bg:hover {
         background-color: var(--btn_tertiary_hover_color) !important;
     }
-
-    .nav-link:hover,
-    .nav-link.active {
-        background: var(--primary_background) !important;
-    }
-
-    .section-background {
-        background-color: var(--section-background) !important;
-    }
-
-    .red-hover-button:hover {
-        background-color: rgb(177, 0, 0) !important;
-    }
 </style>
 
 @if (Route::is('home'))
@@ -163,8 +147,8 @@
     }
 
     .card-red-pattern-bg div {
-        /* position: relative; */
-        /* z-index: 2; */
+        position: relative;
+        z-index: 2;
     }
 </style>
 
@@ -228,9 +212,9 @@
     }
 
     .testimonial-single-card {
-        background-color: #f1fff79e;
+        background-color: #f2f8f19e;
         border-radius: 10px;
-        box-shadow: 0 2px 10px -5px rgba(54, 54, 54, 0.75);
+        box-shadow: 0 2px 5px -3px rgba(54, 54, 54, 0.5);
         /* height: 575px; */
         /* overflow: auto; */
         /* position: relative; */

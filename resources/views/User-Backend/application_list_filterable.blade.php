@@ -40,11 +40,17 @@
 
                         <nav aria-label="breadcrumb">
                             <div class="d-md-flex justify-content-between">
-                                <button class="btn btn-primary-bg" data-toggle="modal"
+
+                                <a href="{{ route('frontend.university_course_list') }}"><button class="ml-3 btn btn-primary-bg" data-toggle=""
+                                    data-target="#">Add a new application</button></a>
+
+                                <button class="ml-3 btn btn-primary-bg" data-toggle="modal"
                                     data-target="#manage_fields_modal">Manage Fields</button>
 
                                 <button class="ml-3 btn btn-primary-bg" data-toggle="modal"
                                     data-target="#manage_filters_modal">Manage Filters</button>
+
+                               
                             </div>
 
                         </nav>
@@ -410,6 +416,7 @@
                                                     @endif
                                                 </td>
                                             @endif
+                                            
                                             @if (isset($table_manipulate_data['application_status']) && $table_manipulate_data['application_status'] == 'on')
                                                 <td data-field="status">
                                                     @php

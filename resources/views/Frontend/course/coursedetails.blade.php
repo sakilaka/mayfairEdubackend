@@ -1179,7 +1179,6 @@
                                         <div class="dtlms-title">Gallery</div>
 
 
-
                                         
                                         <p style="color: black !important;" class="mb-4 text-center fs-3 fw-bold">Images</p>
 

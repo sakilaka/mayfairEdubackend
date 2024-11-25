@@ -52,10 +52,8 @@
                                                         required>
                                                         <option value="">Select University</option>
                                                         @foreach ($universities as $university)
-                                                            <option value="{{ $university->id }}"
-                                                                {{ old('university_id') == $university->id ? 'selected' : '' }}>
-                                                                {{ $university->name }}
-                                                            </option>
+                                                            <option value="{{ $university->id }}">
+                                                                {{ $university->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -68,10 +66,8 @@
                                                         name="department_id" required>
                                                         <option value="">Select Major</option>
                                                         @foreach ($departments as $department)
-                                                            <option value="{{ $department->id }}"
-                                                                {{ old('department_id') == $department->id ? 'selected' : '' }}>
-                                                                {{ $department->name }}
-                                                            </option>
+                                                            <option value="{{ $department->id }}">
+                                                                {{ $department->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -82,17 +78,15 @@
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <select class="form-control form-control-lg" id="degree"
                                                         name="degree_id" required>
+                                                        {{-- <option value="">Select Major First</option> --}}
                                                         <option value="">Select Degree</option>
                                                         @foreach ($degrees as $degree)
-                                                            <option value="{{ $degree->id }}"
-                                                                {{ old('degree_id') == $degree->id ? 'selected' : '' }}>
-                                                                {{ $degree->name }}
-                                                            </option>
+                                                            <option value="{{ $degree->id }}">
+                                                                {{ $degree->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Dormitory</label>
@@ -100,62 +94,48 @@
                                                         name="dormitory_id[]" multiple>
                                                         <option value="">Select Dormitory</option>
                                                         @foreach ($dormitories as $dormitory)
-                                                            <option value="{{ $dormitory->id }}"
-                                                                {{ in_array($dormitory->id, old('dormitory_id', [])) ? 'selected' : '' }}>
+                                                            <option value="{{ $dormitory->id }}">
                                                                 {{ $dormitory->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Primary Scholarship</label>
                                                     <select class="form-control form-control-lg" name="scholarship_id">
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free"
-                                                            {{ old('scholarship_id') == 'free' ? 'selected' : '' }}>
-                                                            Full Scholarship</option>
+                                                        <option value="free">Full Scholarship</option>
                                                         @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}"
-                                                                {{ old('scholarship_id') == $scholarship->id ? 'selected' : '' }}>
-                                                                {{ $scholarship->title }}
-                                                            </option>
+                                                            <option value="{{ $scholarship->id }}">
+                                                                {{ $scholarship->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Additional Scholarships</label>
                                                     <select class="form-control form-control-lg multipleSelect2Search"
                                                         name="optional_scholarship_id[]" multiple>
                                                         <option value="">Select Scholarships</option>
-                                                        <option value="free"
-                                                            {{ in_array('free', old('optional_scholarship_id', [])) ? 'selected' : '' }}>
-                                                            Full Scholarship</option>
+                                                        <option value="free">Full Scholarship</option>
                                                         @foreach ($scholarships as $scholarship)
-                                                            <option value="{{ $scholarship->id }}"
-                                                                {{ in_array($scholarship->id, old('optional_scholarship_id', [])) ? 'selected' : '' }}>
-                                                                {{ $scholarship->title }}
-                                                            </option>
+                                                            <option value="{{ $scholarship->id }}">
+                                                                {{ $scholarship->title }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Name <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" name="course_name"
-                                                        placeholder="Enter Course Name"
-                                                        value="{{ old('course_name') }}" class="form-control" required>
+                                                        placeholder="Enter Course Name" class="form-control" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Intake <span class="text-danger"
@@ -164,125 +144,158 @@
                                                         required>
                                                         <option value="">Select Intake</option>
                                                         @foreach ($sections as $section)
-                                                            <option value="{{ $section->id }}"
-                                                                {{ old('section_id') == $section->id ? 'selected' : '' }}>
-                                                                {{ $section->name }}
+                                                            <option value="{{ $section->id }}">{{ $section->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Application Fees (CNY) <span class="text-danger"
+                                                    <label>Application Fees (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="application_charge"
-                                                        placeholder="Enter Application Fees"
-                                                        value="{{ old('application_charge') }}" class="form-control"
+                                                        placeholder="Enter Application Fees" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
-
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Service Charge (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge"
                                                         placeholder="Enter Service Charge" class="form-control"
-                                                        {{ old('service_charge') }} required>
+                                                        required>
                                                 </div>
                                             </div> --}}
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (Beginner) <span class="text-danger"
+                                                    <label>Service Charge (Beginner)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="service_charge_beginner"
-                                                        placeholder="Enter Service Charge"
-                                                        value="{{ old('service_charge_beginner') }}"
-                                                        class="form-control" required>
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
 
-                                            @for ($i = 1; $i <= 7; $i++)
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label>Service Charge {{ $i }} (CNY) <span
-                                                                class="text-danger"
-                                                                style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                        <input type="number" min="0"
-                                                            name="service_charge_{{ $i }}"
-                                                            placeholder="Enter Service Charge"
-                                                            value="{{ old('service_charge_' . $i) }}"
-                                                            class="form-control" required>
-                                                    </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge 1(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_1"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
                                                 </div>
-                                            @endfor
+                                            </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Yearly Tuition Fee (CNY) <span class="text-danger"
+                                                    <label>Service Charge 2(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_2"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge 3(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_3"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge 4(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_4"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge 5(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_5"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge 6(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_6"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Service Charge 7(CNY)<span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <input type="number" min="0" name="service_charge_7"
+                                                        placeholder="Enter Service Charge" class="form-control"
+                                                        required>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>Yearly Tuition Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="year_fee"
-                                                        placeholder="Enter Yearly Tuition Fee"
-                                                        value="{{ old('year_fee') }}" class="form-control" required>
+                                                        placeholder="Enter Yearly Tuition Fee" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Accommodation Fee (CNY) <span class="text-danger"
+                                                    <label>Accommodation Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="accommodation_fee"
-                                                        placeholder="Enter Accommodation Fee"
-                                                        value="{{ old('accommodation_fee') }}" class="form-control"
+                                                        placeholder="Enter Accommodation Fee" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Yearly Insurance Fee (CNY) <span class="text-danger"
+                                                    <label>Yearly Insurance Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="insurance_fee"
-                                                        placeholder="Enter Insurance Fee"
-                                                        value="{{ old('insurance_fee') }}" class="form-control"
+                                                        placeholder="Enter Insurance Fee" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Visa Extension Fee (CNY) <span class="text-danger"
+                                                    <label>Visa Extension Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="visa_extension_fee"
-                                                        placeholder="Enter Visa Extension Fee"
-                                                        value="{{ old('visa_extension_fee') }}" class="form-control"
+                                                        placeholder="Enter Visa Extension Fee" class="form-control"
                                                         required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Medical In China Fee (CNY) <span class="text-danger"
+                                                    <label>Medical In China Fee (CNY)<span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
-                                                        placeholder="Enter Medical In China Fee"
-                                                        value="{{ old('medical_in_china_fee') }}"
-                                                        class="form-control" required>
+                                                        placeholder="Enter Medical In China Fee" class="form-control"
+                                                        required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Others Fee (Logistics)</label>
                                                     <input type="number" min="0" name="others_fee"
-                                                        placeholder="Enter Others Fee (CNY)"
-                                                        value="{{ old('others_fee') }}" class="form-control">
+                                                        placeholder="Enter Others Fee (CNY)" class="form-control">
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Program Type <span class="text-danger"
@@ -290,46 +303,31 @@
                                                     <select class="form-control form-control-lg" name="course_type"
                                                         required>
                                                         <option value="">Select Course type</option>
-                                                        <option value="1"
-                                                            {{ old('course_type') == '1' ? 'selected' : '' }}>Our Top
-                                                            Picks</option>
-                                                        <option value="2"
-                                                            {{ old('course_type') == '2' ? 'selected' : '' }}>Most
-                                                            Popular</option>
-                                                        <option value="3"
-                                                            {{ old('course_type') == '3' ? 'selected' : '' }}>Fastest
-                                                            Admissions</option>
-                                                        <option value="4"
-                                                            {{ old('course_type') == '4' ? 'selected' : '' }}>Highest
-                                                            Rating</option>
-                                                        <option value="5"
-                                                            {{ old('course_type') == '5' ? 'selected' : '' }}>Top
-                                                            Ranked</option>
+                                                        <option value="1">Our Top Picks</option>
+                                                        <option value="2">Most Popular</option>
+                                                        <option value="3">Fastest Admissions</option>
+                                                        <option value="4">Highest Rating</option>
+                                                        <option value="5">Top Ranked</option>
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Duration (Yearly) <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="text" min="0" name="course_duration"
                                                         placeholder="Enter Course Duration In Yearly"
-                                                        value="{{ old('course_duration') }}" class="form-control"
-                                                        required>
+                                                        class="form-control" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Application Deadline <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
                                                     <input type="date" name="application_deadline"
-                                                        value="{{ old('application_deadline') }}"
                                                         class="form-control" required>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Course Language <span class="text-danger"
@@ -338,15 +336,12 @@
                                                         required>
                                                         <option value="">Select Course Language</option>
                                                         @foreach ($languages as $language)
-                                                            <option value="{{ $language->id }}"
-                                                                {{ old('language_id') == $language->id ? 'selected' : '' }}>
-                                                                {{ $language->name }}
+                                                            <option value="{{ $language->id }}">{{ $language->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Related Programs</label>
@@ -354,26 +349,23 @@
                                                         name="relatedcourse_id[]" multiple>
                                                         <option value="">Select Programs</option>
                                                         @foreach ($courses as $course)
-                                                            <option value="{{ $course->id }}"
-                                                                {{ in_array($course->id, old('relatedcourse_id', [])) ? 'selected' : '' }}>
-                                                                {{ $course->name }}
+                                                            <option value="{{ $course->id }}">{{ $course->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>Pre Requisites</label>
-                                                    <textarea class="form-control editor" name="requisites" style="height: 150px">{{ old('requisites') }}</textarea>
+                                                    <label>Pre Requisites </label>
+                                                    <textarea class="form-control editor" name="requisites" style="height: 150px"></textarea>
                                                 </div>
                                             </div>
-
                                             <div class="col-md-12">
                                                 <div class="form-group">
-                                                    <label>About This Program / Overview</label>
-                                                    <textarea class="form-control editor" name="about" style="height: 150px">{{ old('about') }}</textarea>
+                                                    <label>About This Program / Overview <span class="text-danger"
+                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <textarea class="form-control editor" name="about" style="height: 150px"></textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -291,6 +291,8 @@ class UserController extends Controller
     public function myOrderDetails($id)
     {
         $data['s_appliction'] = StudentApplication::with('documents','educations','work_experiences','familyMembers')->find($id);
+        // dd($data['s_appliction']);
+        // return view('user.order.application_details', $data);
         return view('User-Backend.application_view', $data);
     }
 

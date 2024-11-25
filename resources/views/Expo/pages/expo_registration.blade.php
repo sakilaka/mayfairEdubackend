@@ -184,7 +184,6 @@
 
     @php
         $contents = json_decode($expo['additional_contents'], true) ?? [];
-        $footer_contents = json_decode($expo['footer_contents'], true) ?? [];
     @endphp
 
     @if (isset($contents['hero_bg']) && $contents['hero_bg'])
@@ -200,23 +199,6 @@
             }
         </style>
     @endif
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
-    <style>
-        .iti--inline-dropdown {
-            display: flex;
-            position: relative;
-            z-index: 1000 !important;
-        }
-
-        .iti--inline-dropdown .iti__dropdown-content {
-            z-index: 9999 !important;
-        }
-
-        .top-layer {
-            z-index: 3 !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -226,10 +208,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand"
-                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 180px; height:auto;">
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        <img src="{{ $contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -247,10 +227,11 @@
 
                         <div class="col-md-10 col-lg-7 col-xl-6 co p-4 my-5 bg-white shadow form-container card-red-pattern-bg"
                             style="border-radius: 15px">
-                            <div class="row justify-content-between align-items-center position-relative top-layer">
+                            <div class="row justify-content-between align-items-center">
                                 <div class="col-2">
-                                    <img src="{{ $footer_contents['organizerLogo'] }}" alt="" width="80"
-                                        class="img-fluid mt-2" style="cursor: pointer;">
+                                    <img src="{{ $contents['organizerDetails']['logo'] }}" alt="" width="80"
+                                        class="img-fluid mt-2" style="cursor: pointer";
+                                        onclick="location.href='{{ $contents['organizerDetails']['redirect_url'] }}'">
 
                                 </div>
                                 <div class="col-8">
@@ -259,16 +240,16 @@
                                             alt="" width="150" class="img-fluid">
                                     </h2> --}}
                                     <h3 class="wrapper-title text-center fw-bold" style="font-size: 16px">
-                                        {{ $contents['pre_title'] . ' ' . $expo->title }}
-                                    </h3>
+                                        {{ $expo->title }}</h3>
                                 </div>
                                 <div class="col-2 text-end">
-                                    <img src="{{ $footer_contents['co_organizerLogo'] }}" alt="" width="100"
-                                        class="img-fluid mt-2" style="cursor: pointer;">
+                                    <img src="{{ $contents['co_organizerDetails']['logo'] }}" alt=""
+                                        width="100" class="img-fluid mt-2" style="cursor: pointer";
+                                        onclick="location.href='{{ $contents['co_organizerDetails']['redirect_url'] }}'">
                                 </div>
                             </div>
 
-                            <div class="card bg-transparent border-0 position-relative top-layer">
+                            <div class="card bg-transparent border-0">
                                 @if (session()->has('success') && session('status') === 'submitted')
                                     <div class="mt-4 d-flex flex-column justify-content-center align-items-center">
                                         <img src="{{ asset('frontend/images/done.png') }}" alt=""
@@ -372,11 +353,11 @@
                                                 <div class="row justify-content-between mt-4">
                                                     <div class="col-6">
                                                         <a href="{{ route('expo.login.page', ['unique_id' => $expo->unique_id]) }}"
-                                                            class="btn btn-primary-bg red-hover-button">Login</a>
+                                                            class="btn btn-primary-bg">Login</a>
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-primary-bg red-hover-button nextBtn">Next</button>
+                                                            class="btn btn-secondary-bg nextBtn">Next</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -513,10 +494,9 @@
                                                         <span class="text-danger">*</span> Contact Number:
                                                     </label>
                                                     <div class="col-md-9">
-                                                        <input id="phone" type="tel"
-                                                            class="form-control form-control-lg @error('phone') is-invalid @enderror"
-                                                            name="phone" value="{{ old('phone') }}" required>
-                                                        <span class="text-danger" id="output"></span>
+                                                        <input type="text" id="phone" name="phone"
+                                                            class="form-control form-control-lg"
+                                                            placeholder="Enter your contact number">
                                                         <div class="invalid-feedback">Please provide a valid contact
                                                             number.
                                                         </div>
@@ -553,7 +533,7 @@
                                                         </input>
                                                     </div>
                                                 </div>
-                                                {{-- <!-- Interested Program -->
+                                                <!-- Interested Program -->
                                                 <div class="form-group row mt-2">
                                                     <label for="program" class="col-md-3 col-form-label">
                                                         Interested Program:
@@ -582,7 +562,7 @@
                                                             name.
                                                         </div>
                                                     </div>
-                                                </div> --}}
+                                                </div>
 
 
                                                 <!-- Password -->
@@ -621,9 +601,9 @@
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-primary-bg red-hover-button prevBtn">Previous</button>
+                                                            class="btn btn-primary-bg prevBtn">Previous</button>
                                                         <button type="button"
-                                                            class="btn btn-primary-bg red-hover-button nextBtn">Next</button>
+                                                            class="btn btn-secondary-bg nextBtn">Next</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -656,9 +636,9 @@
                                                     </div>
                                                     <div class="col-6 text-end">
                                                         <button type="button"
-                                                            class="btn btn-primary-bg red-hover-button prevBtn">Previous</button>
+                                                            class="btn btn-primary-bg prevBtn">Previous</button>
                                                         <button type="submit"
-                                                            class="btn btn-success red-hover-button">Submit</button>
+                                                            class="btn btn-secondary-bg">Submit</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -677,73 +657,12 @@
     @include('Expo.components.footer')
 
     <script src="{{ asset('backend/lib/select2/js/select2.min.js') }}"></script>
-    <script>
-        $('.select2').select2({
-            placeholder: 'Select an option'
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
-    <script>
-        const input = document.querySelector("#phone");
-        const output = document.querySelector("#output");
-
-        const iti = window.intlTelInput(input, {
-            initialCountry: "auto",
-            nationalMode: true,
-            geoIpLookup: callback => {
-                fetch("https://ipapi.co/json")
-                    .then(res => res.json())
-                    .then(data => callback(data.country_code
-                        .toLowerCase()))
-                    .catch(() => callback("bd"));
-            },
-            utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
-        });
-
-        const handleChange = () => {
-            let text = "";
-            if (input.value) {
-                if (iti.isValidNumber()) {
-                    text = "Valid number detected. International format: " + iti.getNumber();
-                    output.classList.remove('text-danger');
-                    output.classList.add('text-success');
-                } else {
-                    text = "Please enter a valid number";
-                    output.classList.remove('text-success');
-                    output.classList.add('text-danger');
-                }
-            } else {
-                text = "Please enter a valid number";
-                output.classList.remove('text-success');
-                output.classList.add('text-danger');
-            }
-            output.innerHTML = text;
-        };
-
-
-        input.addEventListener('change', handleChange);
-        input.addEventListener('keyup', handleChange);
-    </script>
-
 
     <script>
-        $("form").on("submit", function(event) {
-            if (!iti.isValidNumber()) {
-                event.preventDefault();
-                output.innerHTML = "Please enter a valid number";
-                output.classList.remove('text-success');
-                output.classList.add('text-danger');
+        /* $('select').select2({
+                                                                                placeholder: 'Select an option'
+                                                                            }); */
 
-                alert('Please enter a valid number');
-            } else {
-                const fullNumber = iti.getNumber();
-                input.value = fullNumber;
-            }
-        });
-    </script>
-
-    <script>
         $('#photo_upload').on('change', function(e) {
             var fileInput = $(this)[0];
 

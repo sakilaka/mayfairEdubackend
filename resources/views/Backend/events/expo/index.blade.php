@@ -125,11 +125,6 @@
                                                                 data-title="Manage Join Page">
                                                                 <i class="fa fa-link" aria-hidden="true"></i>
                                                             </a>
-                                                            <a href="{{ route('admin.expo.theme_colors.index', ['expo_id' => $expo->unique_id]) }}"
-                                                                class="btn text-primary" data-toggle="tooltip"
-                                                                data-title="Manage Theme Colors">
-                                                                <i class="fa fa-magic" aria-hidden="true"></i>
-                                                            </a>
 
                                                             <a href="{{ route('admin.expo.edit', $expo->id) }}"
                                                                 class="btn text-primary" data-toggle="tooltip"

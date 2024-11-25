@@ -42,69 +42,23 @@
                                         <p>{{ $s_appliction->application_code }}</p>
                                     </div>
                                 </div>
-                                
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Program Name:') }}</b></label>
-                                        @php
-                                            $programIds = json_decode($s_appliction->programs) ?? [];
-                                            $programs = collect($programIds)
-                                                ->map(function ($programId) {
-                                                    $course = \App\Models\Course::find($programId);
-                                                    return $course
-                                                        ? [
-                                                            'id' => $course->id,
-                                                            'name' => $course->name,
-                                                        ]
-                                                        : null;
-                                                })
-                                                ->filter()
-                                                ->unique('id')
-                                                ->values();
-
-                                            $programLinks = $programs
-                                                ->map(function ($program) {
-                                                    return '<span data-toggle="tooltip" data-placement="top" data-original-title="' .
-                                                        $program['name'] .
-                                                        '">' .
-                                                        $program['name'] .
-                                                        '</span>';
-                                                })
-                                                ->implode(',<br>');
-
-                                        @endphp
-                                        <p>{!! $programLinks !!}</p>
+                                        @foreach ($s_appliction->carts as $cart)
+                                            <p>{{ @$cart->course->name }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('University Name:') }}</b></label>
-                                        @php
-                                            $programIds = json_decode($s_appliction->programs) ?? [];
-                                            $universities = collect($programIds)
-                                                ->map(function ($programId) {
-                                                    $course = \App\Models\Course::find($programId);
-                                                    return $course?->university;
-                                                })
-                                                ->filter()
-                                                ->unique('id')
-                                                ->values();
-
-                                            $universityNames = $universities
-                                                ->map(function ($university) {
-                                                    return '<span data-toggle="tooltip" data-placement="top" data-original-title="' .
-                                                        $university->name .
-                                                        '">' .
-                                                        $university->name .
-                                                        '</span>';
-                                                })
-                                                ->implode(',<br>');
-
-                                        @endphp
-                                        <p>{!! $universityNames !!}</p>
+                                        @foreach ($s_appliction->carts as $cart)
+                                            <p>{{ @$cart->course->university->name }}</p>
+                                        @endforeach
                                     </div>
                                 </div>
-
+                                
                                 {{-- <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Continent Name:') }}</b></label>
@@ -113,6 +67,8 @@
                                         @endforeach
                                     </div>
                                 </div> --}}
+
+
 
                                 <div class="col-lg-12 mt-3">
                                     <b>
@@ -340,8 +296,8 @@
                                         <p>{{ $s_appliction->HSK_score ?? 'Null' }}</p>
                                     </div>
                                 </div>
-
-
+                                
+                                
 
                                 <div class="col-lg-12 mt-3">
                                     <b>
@@ -528,6 +484,7 @@
                                 </div>
 
                                 @foreach ($s_appliction->familyMembers as $item)
+
                                     <div class="col-lg-3">
                                         <div class="form-group">
                                             <label for="address"><b>{{ __('Member Name:') }}</b></label>

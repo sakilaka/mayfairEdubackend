@@ -257,6 +257,7 @@
                                             </div>
 
                                         </div>
+                                        
 
                                     </form>
                                 </div>
@@ -319,16 +320,7 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- Video Title Section -->
-                    <div class="col-12">
-                        <div class="form-group">
-                            <label for="">Video Title<span class="text-danger">*</span></label>
-                            <input type="text" name="video_title[${randomNumber}]"
-                                class="form-control form-control-lg"
-                                placeholder="Enter Video Title">
-                        </div>
-                    </div>
+                 
 
                     <!-- Youtube Section -->
                     <div class="col-12 youtube-section d-none">

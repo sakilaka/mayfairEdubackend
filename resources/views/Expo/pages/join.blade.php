@@ -51,7 +51,7 @@
         }
 
         .university-highlights {
-            background-image: url('{{ asset('frontend/images/expo-page-bg-blank.jpeg') }}?v={{ rand() }}');
+            background-image: url('{{ asset('frontend/images/expo-page-white-bg-blank.jpeg') }}');
             background-position: top;
             background-size: 100% 100%;
             background-repeat: no-repeat;
@@ -66,10 +66,8 @@
         <div class="container">
             <nav class="navbar navbar-expand-md shadow-none" style="z-index: 3">
                 <div class="container d-flex justify-content-between">
-                    <a class="ms-md-4 ps-md-4 navbar-brand"
-                        href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
-                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo"
-                            style="width: 180px; height:auto;">
+                    <a class="navbar-brand" href="{{ route('expo.details', ['id' => $expo->unique_id]) }}">
+                        <img src="{{ $additional_contents['nav_logo'] ?? '' }}" alt="Logo" class="logo">
                     </a>
 
                     @include('Expo.components.navbar')
@@ -124,8 +122,7 @@
                                 <div class="row justify-content-between">
                                     @foreach ($content['reference'] ?? [] as $reference)
                                         <div class="col-6 d-flex flex-column align-items-center">
-                                            <img src="{{ $reference['image'] ?? '' }}" alt=""
-                                                class="img-fluid">
+                                            <img src="{{ $reference['image'] ?? '' }}" alt="" class="img-fluid">
                                             <span class="fw-700 mt-2" style="color: greenyellow; font-size:16px;">
                                                 {{ $reference['qr_code_type'] ?? '' }}
                                             </span>

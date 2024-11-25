@@ -209,7 +209,8 @@
                                                                         <option value="overseas">Overseas</option>
                                                                     </select>
                                                                     @error('location[]')
-                                                                        <span class="text-danger">{{ $message }}</span>
+                                                                        <span
+                                                                            class="text-danger">{{ $message }}</span>
                                                                     @enderror
                                                                 </div>
                                                             </div>
@@ -678,280 +679,202 @@
 
                                             <h3>Organizer Details</h3>
                                             <section>
-                                                <div class="d-flex justify-content-between">
-                                                    <h4 class="d-inline mb-3">Organizer(s)</h4>
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary"
-                                                        id="add-organizer">
-                                                        <i class="fa fa-plus"></i>
-                                                        Add
-                                                    </a>
-                                                </div>
+                                                <h4 class="mb-3">Organizer Details</h4>
 
-                                                <div class="organizer-container row">
-                                                    @php
-                                                        $random = rand();
-                                                    @endphp
-
-                                                    <div class="col-12 mt-3">
-                                                        <div class="card-header" data-toggle="collapse"
-                                                            data-target="#organizer_single_collapse_{{ $random }}">
-                                                            <div class="d-flex justify-content-between">
-                                                                <h5 class="card-title mb-0 py-2 gallery-title">
-                                                                    Organizer
-                                                                </h5>
-
-                                                                <a href="javascript:void(0)"
-                                                                    class="btn btn-sm btn-danger remove-organizer">
-                                                                    <i class="fa fa-minus"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="collapse"
-                                                            id="organizer_single_collapse_{{ $random }}">
-                                                            <div class="card-body">
-                                                                <div class="row mb-3">
-                                                                    <div class="col-sm-12 col-md-6 col-lg-8">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-6 img-upload-container">
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        class="form-control-label">Upload
-                                                                                        Logo</label>
-                                                                                    <div class="dropify-wrapper"
-                                                                                        style="border: none">
-                                                                                        <div class="dropify-loader">
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="dropify-errors-container">
-                                                                                            <ul></ul>
-                                                                                        </div>
-                                                                                        <input type="file"
-                                                                                            class="dropify"
-                                                                                            name="additional_contents[organizerDetails][{{ $random }}][logo]"
-                                                                                            accept="image/*">
-                                                                                        <button type="button"
-                                                                                            class="dropify-clear">Remove</button>
-                                                                                        <div class="dropify-preview">
-                                                                                            <span
-                                                                                                class="dropify-render"></span>
-                                                                                            <div class="dropify-infos">
-                                                                                                <div
-                                                                                                    class="dropify-infos-inner">
-                                                                                                    <p
-                                                                                                        class="dropify-filename">
-                                                                                                        <span
-                                                                                                            class="file-icon"></span>
-                                                                                                        <span
-                                                                                                            class="dropify-filename-inner"></span>
-                                                                                                    </p>
-                                                                                                    <p
-                                                                                                        class="dropify-infos-message">
-                                                                                                        Drag and
-                                                                                                        drop or
-                                                                                                        click to
-                                                                                                        replace
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                                                                <div class="px-3">
-                                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                        alt=""
-                                                                                        class="img-fluid"
-                                                                                        style="border-radius: 10px; max-height: 200px !important;">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-12 col-md-6 col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 img-upload-container">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">Upload
+                                                                        Logo</label>
+                                                                    <div class="dropify-wrapper" style="border: none">
+                                                                        <div class="dropify-loader"></div>
+                                                                        <div class="dropify-errors-container">
+                                                                            <ul></ul>
+                                                                        </div>
+                                                                        <input type="file" class="dropify"
+                                                                            name="additional_contents[organizerDetails][logo]"
+                                                                            accept="image/*">
+                                                                        <button type="button"
+                                                                            class="dropify-clear">Remove</button>
+                                                                        <div class="dropify-preview">
+                                                                            <span class="dropify-render"></span>
+                                                                            <div class="dropify-infos">
+                                                                                <div class="dropify-infos-inner">
+                                                                                    <p class="dropify-filename">
+                                                                                        <span class="file-icon"></span>
+                                                                                        <span
+                                                                                            class="dropify-filename-inner"></span>
+                                                                                    </p>
+                                                                                    <p class="dropify-infos-message">
+                                                                                        Drag and drop or click to
+                                                                                        replace
+                                                                                    </p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">
-                                                                                <span class="text-danger">*</span>
-                                                                                Organizer Name:</label>
-                                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                                <input type="text"
-                                                                                    name="additional_contents[organizerDetails][{{ $random }}][name]"
-                                                                                    class="form-control"
-                                                                                    value=""
-                                                                                    placeholder="Enter Organizer Name">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">
-                                                                                Redirect URL:</label>
-                                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                                <input type="text"
-                                                                                    name="additional_contents[organizerDetails][{{ $random }}][redirect_url]"
-                                                                                    class="form-control"
-                                                                                    value=""
-                                                                                    placeholder="Enter Organizer Details Redirection URL">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">
-                                                                                <span class="text-danger">*</span>
-                                                                                Organizer Details:</label>
-                                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                                <textarea name="additional_contents[organizerDetails][{{ $random }}][details]" class="form-control editor"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                            </div>
+                                                            <div
+                                                                class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
+                                                                <div class="px-3">
+                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                        alt="" class="img-fluid"
+                                                                        style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Organizer Name:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[organizerDetails][name]"
+                                                                    class="form-control" value=""
+                                                                    placeholder="Enter Organizer Name" required>
+                                                                @error('additional_contents[organizerDetails][name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                Redirect URL:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[organizerDetails][redirect_url]"
+                                                                    class="form-control" value=""
+                                                                    placeholder="Enter Organizer Details Redirection URL">
+                                                                @error('additional_contents[organizerDetails][redirect_url]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Organizer Details:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <textarea name="additional_contents[organizerDetails][details]" class="form-control editor"></textarea>
+                                                                @error('additional_contents[organizerDetails][details]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </section>
 
                                             <h3>Co-Organizer Details</h3>
                                             <section>
-                                                <div class="d-flex justify-content-between">
-                                                    <h4 class="d-inline mb-3">Co-Organizer(s)</h4>
-                                                    <a href="javascript:void(0)" class="btn btn-sm btn-primary"
-                                                        id="add-co-organizer">
-                                                        <i class="fa fa-plus"></i>
-                                                        Add
-                                                    </a>
-                                                </div>
+                                                <h4 class="mb-3">Co-Organizer Details</h4>
 
-                                                <div class="co-organizer-container row">
-                                                    @php
-                                                        $random = rand();
-                                                    @endphp
-
-                                                    <div class="col-12 mt-3">
-                                                        <div class="card-header" data-toggle="collapse"
-                                                            data-target="#co-organizer_single_collapse_{{ $random }}">
-                                                            <div class="d-flex justify-content-between">
-                                                                <h5 class="card-title mb-0 py-2 gallery-title">
-                                                                    Co-Organizer
-                                                                </h5>
-
-                                                                <a href="javascript:void(0)"
-                                                                    class="btn btn-sm btn-danger remove-co-organizer">
-                                                                    <i class="fa fa-minus"></i>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="collapse"
-                                                            id="co-organizer_single_collapse_{{ $random }}">
-                                                            <div class="card-body">
-                                                                <div class="row mb-3">
-                                                                    <div class="col-sm-12 col-md-6 col-lg-8">
-                                                                        <div class="row">
-                                                                            <div class="col-sm-6 img-upload-container">
-                                                                                <div class="form-group">
-                                                                                    <label
-                                                                                        class="form-control-label">Upload
-                                                                                        Logo</label>
-                                                                                    <div class="dropify-wrapper"
-                                                                                        style="border: none">
-                                                                                        <div class="dropify-loader">
-                                                                                        </div>
-                                                                                        <div
-                                                                                            class="dropify-errors-container">
-                                                                                            <ul></ul>
-                                                                                        </div>
-                                                                                        <input type="file"
-                                                                                            class="dropify"
-                                                                                            name="additional_contents[co_organizerDetails][{{ $random }}][logo]"
-                                                                                            accept="image/*">
-                                                                                        <button type="button"
-                                                                                            class="dropify-clear">Remove</button>
-                                                                                        <div class="dropify-preview">
-                                                                                            <span
-                                                                                                class="dropify-render"></span>
-                                                                                            <div class="dropify-infos">
-                                                                                                <div
-                                                                                                    class="dropify-infos-inner">
-                                                                                                    <p
-                                                                                                        class="dropify-filename">
-                                                                                                        <span
-                                                                                                            class="file-icon"></span>
-                                                                                                        <span
-                                                                                                            class="dropify-filename-inner"></span>
-                                                                                                    </p>
-                                                                                                    <p
-                                                                                                        class="dropify-infos-message">
-                                                                                                        Drag and
-                                                                                                        drop or
-                                                                                                        click to
-                                                                                                        replace
-                                                                                                    </p>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div
-                                                                                class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                                                                <div class="px-3">
-                                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                        alt=""
-                                                                                        class="img-fluid"
-                                                                                        style="border-radius: 10px; max-height: 200px !important;">
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-12 col-md-6 col-lg-8">
+                                                        <div class="row">
+                                                            <div class="col-sm-6 img-upload-container">
+                                                                <div class="form-group">
+                                                                    <label class="form-control-label">Upload
+                                                                        Logo</label>
+                                                                    <div class="dropify-wrapper" style="border: none">
+                                                                        <div class="dropify-loader"></div>
+                                                                        <div class="dropify-errors-container">
+                                                                            <ul></ul>
+                                                                        </div>
+                                                                        <input type="file" class="dropify"
+                                                                            name="additional_contents[co_organizerDetails][logo]"
+                                                                            accept="image/*">
+                                                                        <button type="button"
+                                                                            class="dropify-clear">Remove</button>
+                                                                        <div class="dropify-preview">
+                                                                            <span class="dropify-render"></span>
+                                                                            <div class="dropify-infos">
+                                                                                <div class="dropify-infos-inner">
+                                                                                    <p class="dropify-filename">
+                                                                                        <span class="file-icon"></span>
+                                                                                        <span
+                                                                                            class="dropify-filename-inner"></span>
+                                                                                    </p>
+                                                                                    <p class="dropify-infos-message">
+                                                                                        Drag and drop or click to
+                                                                                        replace
+                                                                                    </p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
-
-                                                                <div class="row">
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">
-                                                                                <span class="text-danger">*</span>
-                                                                                Co-Organizer Name:</label>
-                                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                                <input type="text"
-                                                                                    name="additional_contents[co_organizerDetails][{{ $random }}][name]"
-                                                                                    class="form-control"
-                                                                                    value=""
-                                                                                    placeholder="Enter Co-Organizer Name">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">
-                                                                                Redirect URL:</label>
-                                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                                <input type="text"
-                                                                                    name="additional_contents[co_organizerDetails][{{ $random }}][redirect_url]"
-                                                                                    class="form-control"
-                                                                                    value=""
-                                                                                    placeholder="Enter Co-Organizer Details Redirection URL">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-12">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">
-                                                                                <span class="text-danger">*</span>
-                                                                                Co-Organizer Details:</label>
-                                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                                <textarea name="additional_contents[co_organizerDetails][{{ $random }}][details]" class="form-control editor"></textarea>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
+                                                            </div>
+                                                            <div
+                                                                class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
+                                                                <div class="px-3">
+                                                                    <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                                        alt="" class="img-fluid"
+                                                                        style="border-radius: 10px; max-height: 200px !important;">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Co-Organizer Name:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[co_organizerDetails][name]"
+                                                                    class="form-control" value=""
+                                                                    placeholder="Enter Co-Organizer Name" required>
+                                                                @error('additional_contents[co_organizerDetails][name]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                Redirect URL:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <input type="text"
+                                                                    name="additional_contents[co_organizerDetails][redirect_url]"
+                                                                    class="form-control" value=""
+                                                                    placeholder="Enter Co-Organizer Details Redirection URL">
+                                                                @error('additional_contents[co_organizerDetails][redirect_url]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <label class="form-control-label">
+                                                                <span class="text-danger">*</span>
+                                                                Co-Organizer Details:</label>
+                                                            <div class="mg-t-10 mg-sm-t-0">
+                                                                <textarea name="additional_contents[co_organizerDetails][details]" class="form-control editor"></textarea>
+                                                                @error('additional_contents[co_organizerDetails][details]')
+                                                                    <span class="text-danger">{{ $message }}</span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </section>
 
                                             <h3>Schedule</h3>
@@ -970,250 +893,6 @@
                                                                 @error('additional_contents[schedule]')
                                                                     <span class="text-danger">{{ $message }}</span>
                                                                 @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <h3>Footer Contents</h3>
-                                            <section>
-                                                <h4 class="mb-3">Footer Contents</h4>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">Organizer Name:</label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="footer_contents[organizer_name]"
-                                                                    class="form-control"
-                                                                    placeholder="Enter Organizer Name">
-                                                                @error('footer_contents[organizer_name]')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">Co-Organizer
-                                                                Name:</label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="footer_contents[co_organizer_name]"
-                                                                    class="form-control"
-                                                                    placeholder="Enter Co-Organizer Name">
-                                                                @error('footer_contents[co_organizer_name]')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <label class="form-control-label">Supported By:</label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text"
-                                                                    name="footer_contents[supported_by]"
-                                                                    class="form-control"
-                                                                    placeholder="Enter Name of Support">
-                                                                @error('footer_contents[supported_by]')
-                                                                    <span class="text-danger">{{ $message }}</span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mb-3">
-                                                    <div class="col-md-6">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6 img-upload-container">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">Upload
-                                                                                Organizer
-                                                                                Logo</label>
-                                                                            <div class="dropify-wrapper"
-                                                                                style="border: none">
-                                                                                <div class="dropify-loader"></div>
-                                                                                <div class="dropify-errors-container">
-                                                                                    <ul></ul>
-                                                                                </div>
-                                                                                <input type="file" class="dropify"
-                                                                                    name="footer_contents[organizerLogo]"
-                                                                                    accept="image/*">
-                                                                                <button type="button"
-                                                                                    class="dropify-clear">Remove</button>
-                                                                                <div class="dropify-preview">
-                                                                                    <span
-                                                                                        class="dropify-render"></span>
-                                                                                    <div class="dropify-infos">
-                                                                                        <div
-                                                                                            class="dropify-infos-inner">
-                                                                                            <p
-                                                                                                class="dropify-filename">
-                                                                                                <span
-                                                                                                    class="file-icon"></span>
-                                                                                                <span
-                                                                                                    class="dropify-filename-inner"></span>
-                                                                                            </p>
-                                                                                            <p
-                                                                                                class="dropify-infos-message">
-                                                                                                Drag and drop or click
-                                                                                                to
-                                                                                                replace
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                                                        <div class="px-3">
-                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                alt="" class="img-fluid"
-                                                                                style="border-radius: 10px; max-height: 200px !important;">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="row">
-                                                            <div class="col-12">
-                                                                <div class="row">
-                                                                    <div class="col-sm-6 img-upload-container">
-                                                                        <div class="form-group">
-                                                                            <label class="form-control-label">Upload
-                                                                                Co-Organizer
-                                                                                Logo</label>
-                                                                            <div class="dropify-wrapper"
-                                                                                style="border: none">
-                                                                                <div class="dropify-loader"></div>
-                                                                                <div class="dropify-errors-container">
-                                                                                    <ul></ul>
-                                                                                </div>
-                                                                                <input type="file" class="dropify"
-                                                                                    name="footer_contents[co_organizerLogo]"
-                                                                                    accept="image/*">
-                                                                                <button type="button"
-                                                                                    class="dropify-clear">Remove</button>
-                                                                                <div class="dropify-preview">
-                                                                                    <span
-                                                                                        class="dropify-render"></span>
-                                                                                    <div class="dropify-infos">
-                                                                                        <div
-                                                                                            class="dropify-infos-inner">
-                                                                                            <p
-                                                                                                class="dropify-filename">
-                                                                                                <span
-                                                                                                    class="file-icon"></span>
-                                                                                                <span
-                                                                                                    class="dropify-filename-inner"></span>
-                                                                                            </p>
-                                                                                            <p
-                                                                                                class="dropify-infos-message">
-                                                                                                Drag and drop or click
-                                                                                                to
-                                                                                                replace
-                                                                                            </p>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                                                        <div class="px-3">
-                                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                                                alt="" class="img-fluid"
-                                                                                style="border-radius: 10px; max-height: 200px !important;">
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="row">
-                                                    <div class="col-md-12 mt-4">
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <h4 class="mb-3">Social Contents</h4>
-
-                                                            <a href="javascript:void(0)"
-                                                                class="btn btn-primary-bg add-social-item btn-sm m-0 ml-2">
-                                                                <i class="fas fa-plus">
-                                                                </i>
-                                                            </a>
-                                                        </div>
-
-                                                        @php
-                                                            $random = rand();
-                                                        @endphp
-                                                        <div class="social-container">
-                                                            <div class="row align-items-center social-item-row">
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label>Social Type:
-                                                                            <span class="text-danger">*</span>
-                                                                        </label>
-                                                                        <select class="form-control form-control-lg"
-                                                                            name="footer_contents[social][type][{{ $random }}]"
-                                                                            required>
-                                                                            <option value="">Select Social Type
-                                                                            </option>
-                                                                            <option value="facebook">Facebook</option>
-                                                                            <option value="instagram">Instagram
-                                                                            </option>
-                                                                            <option value="linkedin">Linked In</option>
-                                                                            <option value="twitter">X (Twitter)
-                                                                            </option>
-                                                                            <option value="youtube">YouTube</option>
-                                                                            <option value="bilibili">Bilibili</option>
-                                                                            <option value="telegram">Telegram</option>
-                                                                            <option value="whatsapp">WhatsApp</option>
-                                                                            <option value="wechat">WeChat</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-3">
-                                                                    <div class="form-group">
-                                                                        <label>Tooltip Title:
-                                                                        </label>
-                                                                        <input type="text"
-                                                                            name="footer_contents[social][title][{{ $random }}]"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Tooltip Title">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-5">
-                                                                    <div class="form-group">
-                                                                        <label>URL:
-                                                                            <span class="text-danger">*</span>
-                                                                        </label>
-                                                                        <input type="text"
-                                                                            name="footer_contents[social][url][{{ $random }}]"
-                                                                            class="form-control"
-                                                                            placeholder="Enter Social URL" required>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="col-md-1">
-                                                                    <div class="form-group mb-0">
-                                                                        <label>&nbsp;</label>
-                                                                        <a href="javascript:void(0)"
-                                                                            class="btn btn-danger btn-sm m-0 remove-social-row ml-2">
-                                                                            <i class="fas fa-minus-circle">
-                                                                            </i>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1480,353 +1159,6 @@
 
         $(document).on('click', '.remove-photo-gallery', function() {
             $(this).parent().remove();
-        });
-
-        /* social items */
-        $(document).on('click', '.add-social-item', function() {
-            var randomNumber = Math.floor(10000 + Math.random() * 90000);
-
-            var newRow = `
-                <div class="row align-items-center social-item-row">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Social Type:
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select class="form-control form-control-lg" name="footer_contents[social][type][${randomNumber}]" required>
-                                <option value="">Select Social Type</option>
-                                <option value="facebook">Facebook</option>
-                                <option value="instagram">Instagram</option>
-                                <option value="linkedin">Linked In</option>
-                                <option value="twitter">X (Twitter)</option>
-                                <option value="youtube">YouTube</option>
-                                <option value="bilibili">Bilibili</option>
-                                <option value="telegram">Telegram</option>
-                                <option value="whatsapp">WhatsApp</option>
-                                <option value="wechat">WeChat</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Tooltip Title:
-                            </label>
-                            <input type="text" name="footer_contents[social][title][${randomNumber}]" class="form-control" placeholder="Enter Tooltip Title">
-                        </div>
-                    </div>
-                    <div class="col-md-5">
-                        <div class="form-group">
-                            <label>URL:
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="footer_contents[social][url][${randomNumber}]" class="form-control" placeholder="Enter Social URL" required>
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="form-group mb-0">
-                            <label>&nbsp;</label>
-                            <a href="javascript:void(0)" class="btn btn-danger btn-sm m-0 ml-2 remove-social-row">
-                                <i class="fas fa-minus-circle"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>`;
-
-            $('.social-container').append(newRow);
-        });
-
-        $(document).on('click', '.remove-social-row', function() {
-            $(this).parent().parent().parent().remove();
-        });
-
-        /* add organizer */
-        $(document).on('click', '#add-organizer', function() {
-            var randomNumber = Math.floor(10000 + Math.random() * 90000);
-
-            var myvar = `
-                <div class="col-12 mt-3">
-                    <div class="card-header" data-toggle="collapse"
-                        data-target="#organizer_single_collapse_${randomNumber}">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title mb-0 py-2 gallery-title">
-                                Organizer
-                            </h5>
-
-                            <a href="javascript:void(0)"
-                                class="btn btn-sm btn-danger remove-organizer">
-                                <i class="fa fa-minus"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="collapse"
-                        id="organizer_single_collapse_${randomNumber}">
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-sm-12 col-md-6 col-lg-8">
-                                    <div class="row">
-                                        <div class="col-sm-6 img-upload-container">
-                                            <div class="form-group">
-                                                <label
-                                                    class="form-control-label">Upload
-                                                    Logo</label>
-                                                <div class="dropify-wrapper"
-                                                    style="border: none">
-                                                    <div class="dropify-loader"></div>
-                                                    <div
-                                                        class="dropify-errors-container">
-                                                        <ul></ul>
-                                                    </div>
-                                                    <input type="file"
-                                                        class="dropify"
-                                                        name="additional_contents[organizerDetails][${randomNumber}][logo]"
-                                                        accept="image/*">
-                                                    <button type="button"
-                                                        class="dropify-clear">Remove</button>
-                                                    <div class="dropify-preview">
-                                                        <span
-                                                            class="dropify-render"></span>
-                                                        <div class="dropify-infos">
-                                                            <div
-                                                                class="dropify-infos-inner">
-                                                                <p
-                                                                    class="dropify-filename">
-                                                                    <span
-                                                                        class="file-icon"></span>
-                                                                    <span
-                                                                        class="dropify-filename-inner"></span>
-                                                                </p>
-                                                                <p
-                                                                    class="dropify-infos-message">
-                                                                    Drag and drop or
-                                                                    click to
-                                                                    replace
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                            <div class="px-3">
-                                                <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                    alt="" class="img-fluid"
-                                                    style="border-radius: 10px; max-height: 200px !important;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">
-                                            <span class="text-danger">*</span>
-                                            Organizer Name:</label>
-                                        <div class="mg-t-10 mg-sm-t-0">
-                                            <input type="text"
-                                                name="additional_contents[organizerDetails][${randomNumber}][name]"
-                                                class="form-control"
-                                                value=""
-                                                placeholder="Enter Organizer Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">
-                                            Redirect URL:</label>
-                                        <div class="mg-t-10 mg-sm-t-0">
-                                            <input type="text"
-                                                name="additional_contents[organizerDetails][${randomNumber}][redirect_url]"
-                                                class="form-control"
-                                                value=""
-                                                placeholder="Enter Organizer Details Redirection URL">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">
-                                            <span class="text-danger">*</span>
-                                            Organizer Details:</label>
-                                        <div class="mg-t-10 mg-sm-t-0">
-                                            <textarea name="additional_contents[organizerDetails][${randomNumber}][details]" id="organizer_details_${randomNumber}" class="form-control editor"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            $('.organizer-container').prepend(myvar);
-            $(`.dropify`).dropify();
-
-            const newEditorElement = document.getElementById(`organizer_details_${randomNumber}`);
-            initializeEditor(newEditorElement);
-        });
-
-        $(document).on('click', '.remove-organizer', function() {
-            const editorKey = $(this).parent().parent().parent().find('textarea').attr('name');
-
-            if (window.editorInstances[editorKey]) {
-                window.editorInstances[editorKey].destroy()
-                    .then(() => {
-                        delete window.editorInstances[editorKey];
-                    });
-            }
-
-            $(this).parent().parent().parent().remove();
-        });
-
-        /* add co-organizer */
-        $(document).on('click', '#add-co-organizer', function() {
-            var randomNumber = Math.floor(10000 + Math.random() * 90000);
-
-            var myvar = `
-                <div class="col-12 mt-3">
-                    <div class="card-header" data-toggle="collapse"
-                        data-target="#co_organizer_single_collapse_${randomNumber}">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title mb-0 py-2 gallery-title">
-                                Co-Organizer
-                            </h5>
-
-                            <a href="javascript:void(0)"
-                                class="btn btn-sm btn-danger remove-co-organizer">
-                                <i class="fa fa-minus"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="collapse"
-                        id="co_organizer_single_collapse_${randomNumber}">
-                        <div class="card-body">
-                            <div class="row mb-3">
-                                <div class="col-sm-12 col-md-6 col-lg-8">
-                                    <div class="row">
-                                        <div class="col-sm-6 img-upload-container">
-                                            <div class="form-group">
-                                                <label
-                                                    class="form-control-label">Upload
-                                                    Logo</label>
-                                                <div class="dropify-wrapper"
-                                                    style="border: none">
-                                                    <div class="dropify-loader"></div>
-                                                    <div
-                                                        class="dropify-errors-container">
-                                                        <ul></ul>
-                                                    </div>
-                                                    <input type="file"
-                                                        class="dropify"
-                                                        name="additional_contents[co_organizerDetails][${randomNumber}][logo]"
-                                                        accept="image/*">
-                                                    <button type="button"
-                                                        class="dropify-clear">Remove</button>
-                                                    <div class="dropify-preview">
-                                                        <span
-                                                            class="dropify-render"></span>
-                                                        <div class="dropify-infos">
-                                                            <div
-                                                                class="dropify-infos-inner">
-                                                                <p
-                                                                    class="dropify-filename">
-                                                                    <span
-                                                                        class="file-icon"></span>
-                                                                    <span
-                                                                        class="dropify-filename-inner"></span>
-                                                                </p>
-                                                                <p
-                                                                    class="dropify-infos-message">
-                                                                    Drag and drop or
-                                                                    click to
-                                                                    replace
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="img-preview-container col-sm-6 d-flex justify-content-center align-items-center">
-                                            <div class="px-3">
-                                                <img src="{{ asset('frontend/images/No-image.jpg') }}"
-                                                    alt="" class="img-fluid"
-                                                    style="border-radius: 10px; max-height: 200px !important;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">
-                                            <span class="text-danger">*</span>
-                                            Co-Organizer Name:</label>
-                                        <div class="mg-t-10 mg-sm-t-0">
-                                            <input type="text"
-                                                name="additional_contents[co_organizerDetails][${randomNumber}][name]"
-                                                class="form-control"
-                                                value=""
-                                                placeholder="Enter Co-Organizer Name">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">
-                                            Redirect URL:</label>
-                                        <div class="mg-t-10 mg-sm-t-0">
-                                            <input type="text"
-                                                name="additional_contents[co_organizerDetails][${randomNumber}][redirect_url]"
-                                                class="form-control"
-                                                value=""
-                                                placeholder="Enter Co-Organizer Details Redirection URL">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="form-control-label">
-                                            <span class="text-danger">*</span>
-                                            Organizer Details:</label>
-                                        <div class="mg-t-10 mg-sm-t-0">
-                                            <textarea name="additional_contents[co_organizerDetails][${randomNumber}][details]" id="co_organizer_details_${randomNumber}" class="form-control editor"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            $('.co-organizer-container').prepend(myvar);
-            $(`.dropify`).dropify();
-
-            const newEditorElement = document.getElementById(`co_organizer_details_${randomNumber}`);
-            initializeEditor(newEditorElement);
-        });
-
-        $(document).on('click', '.remove-co-organizer', function() {
-            const editorKey = $(this).parent().parent().parent().find('textarea').attr('name');
-
-            if (window.editorInstances[editorKey]) {
-                window.editorInstances[editorKey].destroy()
-                    .then(() => {
-                        delete window.editorInstances[editorKey];
-                    });
-            }
-
-            $(this).parent().parent().parent().remove();
         });
     </script>
 

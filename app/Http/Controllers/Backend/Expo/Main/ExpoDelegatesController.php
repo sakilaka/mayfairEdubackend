@@ -61,8 +61,7 @@ class ExpoDelegatesController extends Controller
                     $delegate = [
                         'name' => $delegateData['name'] ?? null,
                         'designation' => $delegateData['designation'] ?? null,
-                        'organization_name' => $delegateData['organization_name'] ?? null,
-                        'country' => $delegateData['country'] ?? null,
+                        'description' => $delegateData['description'] ?? null,
                         'photo' => null,
                     ];
 
