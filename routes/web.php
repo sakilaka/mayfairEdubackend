@@ -19,6 +19,8 @@ use App\Http\Controllers\Frontend\CourseUserSubscriptionsController;
 use App\Http\Controllers\Frontend\EbookCartController;
 use App\Http\Controllers\Frontend\StudentApplicationController;
 use Illuminate\Http\Request;
+use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -322,4 +324,11 @@ Route::get('/validate-email', function (Request $request) {
     }
 
     return response()->json(['isValid' => true, 'message' => 'Valid email address.']);
+});
+
+/**
+ * Sitemap
+ */
+Route::get('/sitemap.xml', function () {
+    return response()->file(public_path('sitemap.xml'));
 });
