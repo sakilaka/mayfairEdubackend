@@ -29,6 +29,8 @@
 
         <!--single form panel-->
         <div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+            <p class="my-2">Please pay the Application Fees: {{ $application->application_fee }} CNY. After completing your payment please upload the payment receipt.</p>
+            
             <h5 class="multisteps-form__title">Choose Your Payment Method</h5>
 
             <div class="has-fee">
@@ -41,16 +43,16 @@
                     <div class="row my-3 p-3 d-flex flex-wrap">
                         <div data-bs-toggle="modal" data-bs-target="#modalWechat"
                             class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
-                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
+                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;" data-id="wechatPay">
                             <img height="50" width="50"
-                                src="{{ asset('frontend/paymentMethod/wechat-payment-1-32.png') }}"
+                                src="{{ asset('frontend/paymentMethod/wechat.png') }}"
                                 alt="Description of image">
                             <p class="mt-2">WeChat pay</p>
                         </div>
 
                         <div data-bs-toggle="modal" data-bs-target="#modalAlipay"
                             class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
-                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
+                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;" data-id="Alipay">
                             <svg height="50" viewBox="0 0 1024.051 1024" width="50"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -62,7 +64,7 @@
 
                         <div data-bs-toggle="modal" data-bs-target="#modalPaypal"
                             class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
-                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
+                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;" data-id="Paypal">
                             <svg height="50" viewBox="5.8 1.3 52.7 61.4" width="50"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -95,14 +97,16 @@
 
                         <div data-bs-toggle="modal" data-bs-target="#bankTransfer"
                             class="cardPayment p-3 flex-grow-1 justify-content-center align-items-center upload-card"
-                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;">
+                            style="max-width: calc(25% - 16px); margin-right: 16px; margin-bottom: 16px;" data-id="Bank Transfer">
                             <img height="50" width="50"
                                 src="{{ asset('frontend/paymentMethod/bank-transfer-circle-round-payment-method-19792.png') }}"
                                 alt="Description of image">
                             <p class="mt-2">Bank Transfer</p>
                         </div>
                     </div>
+
                 </div>
+                
             </div>
 
             <div class="multisteps-form__content mt-3">
@@ -143,7 +147,7 @@
                             </button>
                             <input type="file" name="wechat_payment_receipt" id="fileInputWechat"
                                 style="display: none;" accept="image/*"
-                                onchange="previewImage(event, 'imagePreviewWechat', 'modalWechat','wechatPay')">
+                                onchange="previewImage(event, 'imagePreviewWechat', 'previewWechat', 'modalWechat','wechatPay')">
                             {{-- <input type="hidden" name="payment_method" value="WeChat Pay"> --}}
                             <div id="imagePreviewWechat" style="display: none;">
                                 <img src="" alt="Image Preview" id="previewWechat"
@@ -228,7 +232,7 @@
                     </div>
 
                     <div class="right-side right-side-margin">
-                        <p><span class="fw-bold">PayPal Account Number:</span> shuangri@eduprchina.com</p>
+                        <p><span class="fw-bold">PayPal Account Number:</span> korban_ali@hotmail.com</p>
                         <p>Please upload your receipt after completing payment (PayPal charges a transaction service
                             fee).</p>
                         <p>Upload the screenshot of the transaction record after payment:</p>
@@ -271,8 +275,11 @@
                     </div>
 
                     <div class="mt-3 right-side">
-                        <p><span class="fw-bold">Bank Name:</span> CHINA MERCHANTS BANK NANJING BRANCH</p>
-                        <p><span class="fw-bold">Account Number:</span> 1259 0536 4432802</p>
+                        <p><span class="fw-bold">Account Name:</span>Guangzhou MalishaEdu Co., Limited</p>
+                        <p><span class="fw-bold">Bank Name:</span> ICBC Guangzhou South Branch</p>
+                        <p><span class="fw-bold">Account Number:</span> 3602041709140229437</p>
+                        <p><span class="fw-bold">Swift code:</span> ICBKCNBJGDG</p>
+                        <p><span class="fw-bold">Address:</span> 2nd Floor Crowne Plaza ,Huanshi Donglu 339, Yuexiu District ,Guangzhou City, Guangdong Provice, P.R China 510000</p>
                         <p>Please upload the screenshot of the transaction record after payment.</p>
 
                         <div class="d-flex gap-3 align-items-center">
@@ -364,33 +371,54 @@
 <script>
 
 
-    function previewImage(event, previewContainerId, previewImageId, modalId, paymentMethod) {
-        const file = event.target.files[0];
-        const previewContainer = document.getElementById(previewContainerId);
-        const previewImage = document.getElementById(previewImageId);
-        const modalElement = document.getElementById(modalId);
-        const submitPaymentBtn = document.getElementById('submit-payment');
-        const paymentMethodName = document.getElementById('payment_method');
+   function previewImage(event, previewContainerId, previewImageId, modalId, paymentMethod) {
+    const file = event.target.files[0];
+    const previewContainer = document.getElementById(previewContainerId);
+    const previewImage = document.getElementById(previewImageId);
+    const modalElement = document.getElementById(modalId);
+    const submitPaymentBtn = document.getElementById('submit-payment');
+    const paymentMethodName = document.getElementById('payment_method');
 
+    // Get all payment method divs
+    const paymentMethods = document.querySelectorAll('.cardPayment');
 
-        if (file) {
-            // Show submit button
-            submitPaymentBtn.style.display = 'inline';
+    // Disable other payment methods when a file is selected
+    if (file) {
+        submitPaymentBtn.style.display = 'inline';  // Show submit button
+        previewImage.src = URL.createObjectURL(file);  // Set preview image
+        previewContainer.style.display = 'block';  // Show preview container
+        paymentMethodName.value = paymentMethod;  // Set selected payment method
 
-            // Display the selected image in the preview container
-            previewImage.src = URL.createObjectURL(file);
-            previewContainer.style.display = 'block';
-            paymentMethodName.value = paymentMethod;
+        // Disable all other payment methods
+        paymentMethods.forEach(method => {
+            if (method.getAttribute('data-id') !== paymentMethod) {
+                method.classList.add('disabled');
+                method.style.pointerEvents = 'none'; // Make it unclickable
+            }
+        });
 
-            // Hide the modal after selecting an image
-            const modalInstance = bootstrap.Modal.getInstance(modalElement);
-            if (modalInstance) modalInstance.hide();
-        } else {
-            // Hide the preview container if no file is selected
-            previewContainer.style.display = 'none';
-        }
+        // Hide the modal after selecting an image
+        const modalInstance = bootstrap.Modal.getInstance(modalElement);
+        if (modalInstance) modalInstance.hide();
+    } else {
+        // Hide the preview container if no file is selected
+        previewContainer.style.display = 'none';
+
+        // Re-enable all payment methods if no file is selected
+        paymentMethods.forEach(method => {
+            method.classList.remove('disabled');
+            method.style.pointerEvents = 'auto';  // Make them clickable again
+        });
     }
+}
+
 
 
     
 </script>
+
+<style>
+    .cardPayment.disabled {
+    opacity: 0.5; /* Lower opacity to indicate it's disabled */
+}
+</style>

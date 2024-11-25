@@ -7,6 +7,7 @@ use App\Models\AskQuestion;
 use App\Models\City;
 use App\Models\Continent;
 use App\Models\Country;
+use App\Models\Course;
 use App\Models\Department;
 use App\Models\Dormitory;
 use App\Models\Scholarship;
@@ -16,6 +17,7 @@ use App\Models\University;
 use App\Models\UniversityTableFilter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class UniversityController extends Controller
 {
@@ -267,6 +269,8 @@ class UniversityController extends Controller
             $university->country_id = $request->country_id ?? 1;
             $university->state_id = $request->state_id;
             $university->city_id = $request->city_id;
+            $university->intake = $request->intake;
+
             $university->address = $request->address;
             $university->about = $request->about;
             $university->admissions_process = $request->admissions_process;
@@ -373,21 +377,62 @@ class UniversityController extends Controller
 
 
 
+    // public function status($id)
+    // {
+    //     try {
+    //         $university = University::find($id);
+    //         if ($university->status == 0) {
+    //             $university->status = 1;
+    //             $program = Course::where('university_id', $id)->get();
+    //         } elseif ($university->status == 1) {
+    //             $university->status = 0;
+    //         }
+    //         $university->update();
+            
+            
+            
+    //         return redirect()->route('admin.university.index')->with('success', 'University Status Changed Successfully!');
+    //     } catch (\Exception $e) {
+    //         return redirect()->back()->with('error', 'Something Went Wrong!');
+    //     }
+    // }
+
+
     public function status($id)
     {
         try {
+            // Find the university by ID
             $university = University::find($id);
-            if ($university->status == 0) {
-                $university->status = 1;
-            } elseif ($university->status == 1) {
-                $university->status = 0;
+    
+            if ($university) {
+                // Toggle university status
+                $newStatus = $university->status == 0 ? 1 : 0;
+                $university->status = $newStatus;
+    
+                // Find all courses under the university
+                $courses = Course::where('university_id', $id)->get();
+                Log::info("Courses found for university ID $id: " . $courses->count());
+    
+                // Update all programs (courses) under the university
+                $updatedCount = Course::where('university_id', $id)->update(['status' => $newStatus]);
+                Log::info("Courses updated for university ID $id: $updatedCount");
+    
+                // Save university status
+                $university->update();
+                Log::info("University status updated for ID $id to $newStatus");
+    
+                return redirect()->route('admin.university.index')->with('success', 'University and Program Statuses Changed Successfully!');
+            } else {
+                Log::warning("University with ID $id not found.");
+                return redirect()->back()->with('error', 'University Not Found!');
             }
-            $university->update();
-            return redirect()->route('admin.university.index')->with('success', 'University Status Changed Successfully!');
         } catch (\Exception $e) {
+            Log::error("Error changing university status for ID $id: " . $e->getMessage());
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
+    
+
 
     public function universityFAQMAnage()
     {

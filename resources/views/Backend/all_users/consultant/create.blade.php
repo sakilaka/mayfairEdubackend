@@ -45,16 +45,14 @@
 
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">Partner Photo <span
-                                                                    class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <label class="form-control-label">Partner Photo</label>
                                                             <div class="dropify-wrapper" style="border: none">
                                                                 <div class="dropify-loader"></div>
                                                                 <div class="dropify-errors-container">
                                                                     <ul></ul>
                                                                 </div>
                                                                 <input type="file" class="dropify" name="image"
-                                                                    accept="image/*" id="avatar_upload" required>
+                                                                    accept="image/*" id="avatar_upload">
                                                                 <button type="button"
                                                                     class="dropify-clear">Remove</button>
                                                                 <div class="dropify-preview">

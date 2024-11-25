@@ -5,6 +5,8 @@
     @include('Backend.components.head')
     <title>{{ env('APP_NAME') }} | Student Application Program Edit</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 
 
     <style>
@@ -150,6 +152,19 @@
                                                 </div>
                                             </div>
 
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="address">{{ __('Payment Status Application:') }}</label>
+                                                    <select id="payment_status_application" name="payment_status_application"
+                                                        class="form-control form-control-lg">
+                                                        <option @if ($s_appliction->payment_status_application == 0) Selected @endif
+                                                            value="0">Unpaid</option>
+                                                        <option @if ($s_appliction->payment_status_application == 1) Selected @endif
+                                                            value="1">Paid</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
 
                                             {{-- payment modal  --}}
 
@@ -161,8 +176,7 @@
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="paymentModalLabel">Enter Payment
                                                                 Amount</h5>
-                                                            <button type="button" class="btn-close"
-                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                         </div>
                                                         <div class="modal-body">
                                                             <label for="paid_amount">Amount Paid:</label>
@@ -178,6 +192,30 @@
                                                 </div>
                                             </div>
 
+                                            {{-- Application modal  --}}
+
+                                            <div class="modal fade" id="paymentModalApplication" tabindex="-1"
+                                                aria-labelledby="paymentModalApplicationLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="paymentModalApplicationLabel">Enter Payment
+                                                                Amount</h5>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <label for="paid_application_fees">Amount Paid:</label>
+                                                            <input type="number" id="paid_application_fees"
+                                                                class="form-control" placeholder="Enter amount">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" id="submitPaymentApplication"
+                                                                class="btn btn-primary"
+                                                                data-id="{{ $s_appliction->id }}">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
 
 
                                             <div class="col-lg-6">
@@ -186,39 +224,27 @@
                                                     <select name="status" class="form-control form-control-lg">
                                                         <option value=""> Select Status</option>
                                                         <option @if ($s_appliction->status == 0) Selected @endif
-                                                            value="1"> Not Complete</option>
+                                                            value="0"> Not Complete</option>
                                                         <option @if ($s_appliction->status == 1) Selected @endif
-                                                            value="1"> Processing</option>
+                                                            value="1"> Pending</option>
                                                         <option @if ($s_appliction->status == 2) Selected @endif
-                                                            value="2"> Approved</option>
+                                                            value="2"> Re-submit</option>
                                                         <option @if ($s_appliction->status == 3) Selected @endif
-                                                            value="3"> Cancel</option>
+                                                            value="3"> Submitted</option>
                                                         <option @if ($s_appliction->status == 4) Selected @endif
-                                                            value="4">Not Submitted</option>
+                                                            value="4">Processing</option>
                                                         <option @if ($s_appliction->status == 5) Selected @endif
-                                                            value="5">Submitted</option>
+                                                            value="5">Initial Review Passed</option>
                                                         <option @if ($s_appliction->status == 6) Selected @endif
-                                                            value="6">Pending</option>
+                                                            value="6">Pre-Admission</option>
                                                         <option @if ($s_appliction->status == 7) Selected @endif
-                                                            value="7">E-documents Qualified</option>
+                                                            value="7">Admitted </option>
                                                         <option @if ($s_appliction->status == 8) Selected @endif
-                                                            value="8">Waiting Processing</option>
+                                                            value="8">Got JW202</option>
                                                         <option @if ($s_appliction->status == 9) Selected @endif
-                                                            value="9">Processing</option>
+                                                            value="9">Got Visa</option>
                                                         <option @if ($s_appliction->status == 10) Selected @endif
-                                                            value="10">More Documents Needed</option>
-                                                        <option @if ($s_appliction->status == 11) Selected @endif
-                                                            value="11">Re-Submitted</option>
-                                                        <option @if ($s_appliction->status == 12) Selected @endif
-                                                            value="12">Rejected</option>
-                                                        <option @if ($s_appliction->status == 13) Selected @endif
-                                                            value="13">Transferred</option>
-                                                        <option @if ($s_appliction->status == 14) Selected @endif
-                                                            value="14">Accepted</option>
-                                                        <option @if ($s_appliction->status == 15) Selected @endif
-                                                            value="15">E-offer Delivered</option>
-                                                        <option @if ($s_appliction->status == 16) Selected @endif
-                                                            value="16">Offer Delivered</option>
+                                                            value="10">Registration</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -228,6 +254,15 @@
                                                     <label for="paid_amount">{{ __('Paid Amount:') }}</label>
                                                     <input id="paid_amount" name="paid_amount" readonly
                                                         value="{{ $s_appliction->paid_amount ?? '0' }}"
+                                                        type="text" class="form-control">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="paid_application_fees">{{ __('Paid Application fees:') }}</label>
+                                                    <input id="paid_application_fees" name="paid_application_fees" readonly
+                                                        value="{{ $s_appliction->paid_application_fees ?? '0' }}"
                                                         type="text" class="form-control">
                                                 </div>
                                             </div>
@@ -265,6 +300,8 @@
 
     <script src="{{ asset('backend/assets/js/select2.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         $('.select2').select2();
 
@@ -333,6 +370,64 @@
                             Swal.fire("Error", data.message, "error");
                         }
                         paymentModal.hide();
+                    })
+                    .catch(error => {
+                        Swal.fire("Error", "An error occurred while updating: " + error.message,
+                            "error");
+                        console.error("Error:", error);
+                    });
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const paymentStatus = document.getElementById("payment_status_application");
+            const submitPaymentApplicationButton = document.getElementById("submitPaymentApplication");
+            const paidApplicationfeeInput = document.getElementById("paid_application_fees");
+            const paymentModalApplication = new bootstrap.Modal(document.getElementById("paymentModalApplication"));
+
+            // Show modal when "Paid" is selected
+            paymentStatus.addEventListener("change", function() {
+                if (paymentStatus.value === "1") {
+                    paymentModalApplication.show();
+                }
+            });
+
+            // Handle modal submit button click
+            submitPaymentApplicationButton.addEventListener("click", function() {
+                const paidAmount = parseFloat(paidApplicationfeeInput.value);
+                const applicationId = submitPaymentApplicationButton.getAttribute("data-id");
+
+                if (isNaN(paidAmount) || paidAmount <= 0) {
+                    Swal.fire("Error", "Please enter a valid amount", "error");
+                    return;
+                }
+
+                // Fetch request to update the amount
+                fetch(`/admin/update-application-fee/${applicationId}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content')
+                        },
+                        body: JSON.stringify({
+                            paid_application_fees: paidAmount
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            Swal.fire("Success", data.message, "success");
+
+                            // Update the payment status dropdown and display total paid amount
+                            paymentStatus.value = data.payment_status_application === 1 ? "1" : "0";
+                            paidApplicationfeeInput.value = ""; // Clear the input after submission
+                        } else {
+                            Swal.fire("Error", data.message, "error");
+                        }
+                        paymentModalApplication.hide();
                     })
                     .catch(error => {
                         Swal.fire("Error", "An error occurred while updating: " + error.message,

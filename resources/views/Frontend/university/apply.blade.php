@@ -23,6 +23,28 @@
             border: 1px solid #efefef;
             box-shadow: 0 0 20px -5px rgba(150, 150, 150, 0.25);
         }
+
+        #scrollbarr {
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        #scrollbarr::-webkit-scrollbar {
+            display: none;
+        }
+        #family {
+            overflow-y: scroll;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            max-height: 1200px;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        #family::-webkit-scrollbar {
+            display: none;
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/css/intlTelInput.css">
@@ -58,7 +80,7 @@
                         <div class="app_summary">
                             <div class="mt-2 mb2 d-flex justify-content-between">Application ID
                                 <strong style="font-size: 1rem; background-color: var(--primary_background)" class="badge"
-                                id="application-id">{{ $application->application_code}}</strong>
+                                    id="application-id">{{ $application->application_code }}</strong>
                             </div>
 
                             <div class="mt-2 mb2 application-fee d-flex justify-content-between">
@@ -81,7 +103,7 @@
                                             class="far fa-question-circle"></i></span></span>
                                 <div>
                                     <strong> <span style="font-size: 1rem;color:black;" class="badge p-0"
-                                            id="application-fee">{{ convertCurrency($service_charge != null ? $service_charge : 0  )  }}</span></strong>
+                                            id="application-fee">{{ convertCurrency($service_charge != null ? $service_charge : 0) }}</span></strong>
                                 </div>
                             </div>
 
@@ -761,6 +783,7 @@
                             <div class="row">
                                 <div class="col-12 ml-auto mr-auto mb-4">
                                     <div class="multisteps-form__progress">
+
                                         <button class="multisteps-form__progress-btn js-active" type="button"
                                             title="Your information">
                                             Your Information
@@ -769,26 +792,29 @@
                                             Family
                                         </button>
                                         <button id="agreement-nav" class="multisteps-form__progress-btn" type="button"
-                                            title="Agreement">Terms and Conditions
+                                            title="Agreement">Declaration and Agreement
                                         </button>
                                         <button class="multisteps-form__progress-btn confirm-nav" type="button"
                                             title="Upload Documents">Upload Documents
                                         </button>
-                                        <button id="payment-nav"
-                                            class="multisteps-form__progress-btn payment-nav disabled" type="button"
+                                        <button id=""
+                                            class="multisteps-form__progress-btn disabled" type="button"
                                             title="Final Step">Final Step
                                         </button>
                                     </div>
                                 </div>
                             </div>
 
+
+
                             <!--form panels-->
                             <div class="row">
                                 <div class="col-12  m-auto p-0">
-                                    <div class="multisteps-form__form" style="height: 2126px;">
+                                    <div class="multisteps-form__form">
 
                                         <!--about you panel-->
-                                        <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active"
+                                        <div id="scrollbarr" style="max-height: 2000px; overflow-y: auto;"
+                                            class="multisteps-form__panel shadow p-4 rounded bg-white js-active"
                                             data-animation="scaleIn">
                                             <form action="" id="aboutyou">
                                                 <h5 class="multisteps-form__title">Contact Details</h5>
@@ -810,23 +836,26 @@
 
                                                             </div>
                                                         </div>
+
                                                         <div class="col-12 col-sm-6">
                                                             <div class=" form-label-group mt-2">
                                                                 <input type="tel" id="phone" name="phone"
                                                                     data-name="phone" required=""
                                                                     placeholder="Enter Phone Number"
-                                                                    class="form-control form-control-lg pt-0 @error('phone') is-invalid @enderror"
+                                                                    class="form-control form-control-lg pt-0 phone-input @error('phone') is-invalid @enderror"
                                                                     value="{{ auth()->user()->phone ?? $application->phone }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
-                                                                <span class="text-danger" id="output"></span>
+                                                                {{-- <span class="text-danger" id="output"></span> --}}
                                                                 <div class="invalid-feedback">Please provide a valid
                                                                     contact
                                                                     number.
                                                                 </div>
+
                                                             </div>
                                                         </div>
+
                                                         <div class="col-12">
                                                             <div class=" form-label-group mt-2">
 
@@ -1395,7 +1424,8 @@
                                                                     <option value="205">
                                                                         South Africa </option>
                                                                     <option value="206">
-                                                                        South Georgia and the South Sandwich Islands</option>
+                                                                        South Georgia and the South Sandwich Islands
+                                                                    </option>
                                                                     <option value="207">
                                                                         South Korea </option>
                                                                     <option value="208">
@@ -1490,9 +1520,10 @@
                                                         </div>
                                                         <div class="col-12 col-sm-6">
                                                             <div class=" form-label-group mt-2">
-                                                                <select class="custom-select d-block w-100" id="religion"
-                                                                    name="religion" data-name="religion"
-                                                                    placeholder="Religion" value="" required="">
+                                                                <select class="custom-select d-block w-100"
+                                                                    id="religion" name="religion"
+                                                                    data-name="religion" placeholder="Religion"
+                                                                    value="" required="">
                                                                     <option
                                                                         @if ($application->religion == 'Islam') selected @endif
                                                                         value="Islam">Islam</option>
@@ -1541,9 +1572,9 @@
                                                             style="display: none;"></div>
                                                         <div class="col-12 col-sm-6">
                                                             <div class="form-label-group mt-2">
-                                                                <select class="custom-select d-block w-100" id="gender"
-                                                                    name="gender" placeholder="Gender" value=""
-                                                                    required="">
+                                                                <select class="custom-select d-block w-100"
+                                                                    id="gender" name="gender" placeholder="Gender"
+                                                                    value="" required="">
                                                                     <option
                                                                         @if ($application->gender == 'Male') selected @endif
                                                                         value="Male">Male</option>
@@ -1582,7 +1613,8 @@
                                                                         @if ($application->in_chaina == 1) selected @endif
                                                                         value="true">Yes</option>
                                                                 </select>
-                                                                <label for="is_in_china">Are you currently in China</label>
+                                                                <label for="is_in_china">Are you currently in
+                                                                    China</label>
                                                             </div>
                                                         </div>
                                                         <div class="col-12 col-sm-6">
@@ -1602,7 +1634,8 @@
                                                                     alcohol or drugs</label>
                                                             </div>
                                                         </div>
-                                                        <div id="msg-in-china" class="invalid-feedback col-12 col-sm-12">
+                                                        <div id="msg-in-china"
+                                                            class="invalid-feedback col-12 col-sm-12">
                                                             Please make sure to upload a copy of your current visa.
                                                             China Admissions can not help in any kind of visa Issue.
                                                             If your visa is expiring in 60 days or before the start of the
@@ -1713,7 +1746,8 @@
                                                         <div class="col-12 mt-2">
                                                             <div class="form-label-group mt-2">
                                                                 <select class="custom-select d-block w-100"
-                                                                    id="english_level" name="language_proficiency_english"
+                                                                    id="english_level"
+                                                                    name="language_proficiency_english"
                                                                     placeholder="English level" value=""
                                                                     required="">
                                                                     <option value="" selected="">English level
@@ -1726,23 +1760,17 @@
                                                                     </option> --}}
                                                                     <option
                                                                         @if ($application->english_level == 1) selected @endif
-                                                                        value="1">1 - Beginner - not currently
-                                                                        good
-                                                                        enough
-                                                                        to study in English</option>
+                                                                        value="1">1 - Poor</option>
                                                                     <option
                                                                         @if ($application->english_level == 2) selected @endif
-                                                                        value="2">2 - Intermediate - OK but
-                                                                        needs
-                                                                        some
-                                                                        work</option>
+                                                                        value="2">2 - Fair</option>
                                                                     <option
                                                                         @if ($application->english_level == 3) selected @endif
-                                                                        value="3">3 - Fluent - very good level
+                                                                        value="3">3 - Good
                                                                     </option>
                                                                     <option
                                                                         @if ($application->english_level == 4) selected @endif
-                                                                        value="4">4 - Native English</option>
+                                                                        value="4">4 - Excellent</option>
 
                                                                 </select>
                                                                 <label for="english_level">English level</label>
@@ -1752,42 +1780,125 @@
 
                                                         <div class="col-12 mt-2">
                                                             <div class="form-label-group mt-2">
+                                                                <select class="custom-select d-block w-100" id="english_certificate" name="certificate_english_proficiency" required>
+                                                                    <option value="" selected="">Select Course</option>
+                                                                    <option value="1">IELTS</option>
+                                                                    <option value="2">TOEFL</option>
+                                                                    <option value="3">Duolingo</option>
+                                                                    <option value="4">Others</option>
+                                                                </select>
+                                                                <label for="english_certificate">Certificate of English Proficiency</label>
+                                                            </div>
+                                                        </div>
+
+
+                                                         {{-- Extra field  --}}
+                                                        <div class="col-12 mt-2" id="extra-fields" style="display: none;">
+                                                            <div class="form-group">
+                                                                <label for="english_score">English Score:</label>
+                                                                <input type="text" class="form-control" id="english_score" name="english_score" placeholder="Enter your score">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="certificate_issue_date">Certificate Issue Date:</label>
+                                                                <input type="date" class="form-control" id="certificate_issue_date" name="certificate_issue_date">
+                                                            </div>
+                                                        </div>
+                                                        
+
+                                                        <div class="col-12 mt-2">
+                                                            <div class="form-label-group mt-2">
                                                                 <select class="custom-select d-block w-100"
-                                                                    id="chinese_level" name="language_proficiency_chinese"
+                                                                    id="chinese_level"
+                                                                    name="language_proficiency_chinese"
                                                                     placeholder="Chinese level" value=""
                                                                     required="">
                                                                     <option value="" selected="">Chinese level
                                                                     </option>
                                                                     <option
                                                                         @if ($application->chinese_level == 0) selected @endif
-                                                                        value="0"> 0 - Can't speak Chinese at
-                                                                        all
-                                                                    </option>
+                                                                        value="0">Poor</option>
                                                                     <option
                                                                         @if ($application->chinese_level == 1) selected @endif
-                                                                        value="1">1 - Beginner - not currently
-                                                                        good
-                                                                        enough
-                                                                        to study in Chinese</option>
+                                                                        value="1">Fair</option>
                                                                     <option
                                                                         @if ($application->chinese_level == 2) selected @endif
-                                                                        value="2">2 - Intermediate - OK but
-                                                                        needs
-                                                                        some
-                                                                        work</option>
+                                                                        value="2">Good</option>
                                                                     <option
                                                                         @if ($application->chinese_level == 3) selected @endif
-                                                                        value="3">3 - Fluent - very good level
-                                                                    </option>
-                                                                    <option
+                                                                        value="3">Excellent</option>
+
+                                                                    {{-- <option
                                                                         @if ($application->chinese_level == 4) selected @endif
-                                                                        value="4">4 - Native Chinese</option>
+                                                                        value="4">4 - Native Chinese</option> --}}
 
                                                                 </select>
                                                                 <label for="english_level">Chinese level</label>
                                                             </div>
 
                                                         </div>
+
+
+                                                        {{-- extra field  --}}
+                                                        <div class="col-12 mt-2" id="extra-fields-chinese" style="display: none;">
+                                                            <div class="form-group mt-2">
+                                                                <label for="english_score">Level of HSK :</label>
+                                                                <div class="form-group mt-2">
+                                                                    <select class="custom-select d-block w-100" id="Level_of_HSK" name="HSK_level" required>
+                                                                        <option value="" selected="">Select level</option>
+                                                                        <option value="1">HSK LEVEL 1</option>
+                                                                        <option value="2">HSK LEVEL 2</option>
+                                                                        <option value="3">HSK LEVEL 3</option>
+                                                                        <option value="4">HSK LEVEL 4</option>
+                                                                        <option value="5">HSK LEVEL 5</option>
+                                                                        <option value="6">HSK LEVEL 6</option>
+                                                                        <option value="7">HSK LEVEL 7</option>
+                                                                        <option value="8">HSK LEVEL 8</option>
+                                                                        <option value="9">HSK LEVEL 9</option>
+                                                                        <option value="10">HSK Base level C(score level:1)</option>
+                                                                        <option value="11">HSK Base level B(score level:2)</option>
+                                                                        <option value="12">HSK Base level A(score level:3)</option>
+                                                                        <option value="13">HSK Junior level c(score level:4)</option>
+                                                                        <option value="14">HSK Junior level b(score level:5)</option>
+                                                                        <option value="15">HSK Junior level a(score level:6)</option>
+                                                                        <option value="16">HSK Secondary level c(score level:7)</option>
+                                                                        <option value="17">HSK Secondary level b(score level:8)</option>
+                                                                        <option value="18">HSK Secondary level a(score level:9)</option>
+                                                                        <option value="19">HSK Senior level a(score level:10)</option>
+                                                                        <option value="20">HSK Senior level a(score level:11)</option>
+                                                                        <option value="21">HSK Senior level a(score level:12)</option>
+                                                                    </select>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group mt-2">
+                                                                <input type="text" class="form-control" id="HSK_score" name="HSK_score" placeholder="Enter your score">
+                                                            </div>
+
+                                                            <div class="form-group mt-2">
+                                                                <label for="english_score">Level of HSKK:</label>
+                                                                <div class="form-group mt-2">
+                                                                    <select class="custom-select d-block w-100" id="Level_of_HSKK" name="HSKK_level" required>
+                                                                        <option value="" selected="">Select level</option>
+                                                                        <option value="1">ELEMENTARY</option>
+                                                                        <option value="2">INTERMEDIATE</option>
+                                                                        <option value="3">ADVANCED</option>
+                                                                    </select>
+                                                        
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group mt-2">
+                                                                <input type="text" class="form-control" id="HSKK_score" name="HSKK_score" placeholder="Enter your score">
+                                                            </div>
+
+                                                            <div class="form-group mt-2">
+                                                                <label for="ReportNo">HSK Test Score Report No:</label>
+                                                                <input type="text" class="form-control" name="report_no" placeholder="Enter your No">
+                                                            </div>
+
+                                                        </div>
+
+
                                                     </div>
 
                                                 </div>
@@ -1803,9 +1914,9 @@
                                                                 <div class=" form-label-group mt-2">
 
                                                                     <input type="text" id="home_country"
-                                                                        name="country" data-name="country" required=""
-                                                                        placeholder="Country" class="form-control"
-                                                                        maxlength=""
+                                                                        name="country" data-name="country"
+                                                                        required="" placeholder="Country"
+                                                                        class="form-control" maxlength=""
                                                                         value="{{ $application->home_country }}">
                                                                     <label for="country"
                                                                         class="form-control-placeholder">
@@ -1820,9 +1931,10 @@
                                                             <div class="col-12 col-sm-6">
                                                                 <div class=" form-label-group mt-2">
 
-                                                                    <input type="text" id="home_city" name="city"
-                                                                        data-name="city" placeholder="City/Province"
-                                                                        class="form-control" maxlength=""
+                                                                    <input type="text" id="home_city"
+                                                                        name="city" data-name="city"
+                                                                        placeholder="City/Province" class="form-control"
+                                                                        maxlength=""
                                                                         value="{{ $application->home_city }}">
                                                                     <label for="city"
                                                                         class="form-control-placeholder">
@@ -1851,10 +1963,10 @@
                                                             <div class="col-12 col-sm-6">
                                                                 <div class=" form-label-group mt-2">
 
-                                                                    <input type="text" id="home_street" name="street"
-                                                                        data-name="street" required=""
-                                                                        placeholder="Street" class="form-control"
-                                                                        maxlength=""
+                                                                    <input type="text" id="home_street"
+                                                                        name="street" data-name="street"
+                                                                        required="" placeholder="Street"
+                                                                        class="form-control" maxlength=""
                                                                         value="{{ $application->home_street }}">
                                                                     <label for="street"
                                                                         class="form-control-placeholder">
@@ -1870,9 +1982,9 @@
                                                                 <div class=" form-label-group mt-2">
 
                                                                     <input type="text" id="home_zipcode"
-                                                                        name="zipcode" data-name="zipcode" required=""
-                                                                        placeholder="Postal/Zip Code" class="form-control"
-                                                                        maxlength=""
+                                                                        name="zipcode" data-name="zipcode"
+                                                                        required="" placeholder="Postal/Zip Code"
+                                                                        class="form-control" maxlength=""
                                                                         value="{{ $application->home_zipcode }}">
                                                                     <label for="zipcode"
                                                                         class="form-control-placeholder">
@@ -1884,13 +1996,14 @@
 
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-12 col-sm-6">
                                                                 <div class=" form-label-group mt-2">
 
                                                                     <input type="text" id="home_contact"
                                                                         name="contact" data-name="contact"
-                                                                        placeholder="Receiver's name" class="form-control"
-                                                                        maxlength=""
+                                                                        placeholder="Receiver's name"
+                                                                        class="form-control" maxlength=""
                                                                         value="{{ $application->home_contact_name }}">
                                                                     <label for="contact"
                                                                         class="form-control-placeholder">
@@ -1898,24 +2011,29 @@
 
                                                                 </div>
                                                             </div>
+
                                                             <div class="col-12 col-sm-6">
                                                                 <div class=" form-label-group mt-2">
 
-                                                                    <input type="text" id="home_phone" name="phone"
-                                                                        data-name="phone" required=""
+                                                                    <input type="text" id="home_phone"
+                                                                        name="phone" data-name="phone"
+                                                                        required=""
                                                                         placeholder="Receiver's Phone Number"
-                                                                        class="form-control" maxlength=""
+                                                                        class="form-control form-control-lg pt-0 phone-input @error('phone') is-invalid @enderror"
+                                                                        maxlength=""
                                                                         value="{{ $application->home_contact_phone }}">
                                                                     <label for="phone"
                                                                         class="form-control-placeholder">
                                                                         Receiver's Phone Number</label>
 
+                                                                    {{-- <span class="text-danger" id="output"></span> --}}
                                                                     <div class="invalid-feedback">
                                                                         This field is required.
                                                                     </div>
 
                                                                 </div>
                                                             </div>
+
                                                         </div>
 
                                                     </div>
@@ -2046,12 +2164,12 @@
                                                                         name="phone" data-name="phone"
                                                                         required=""
                                                                         placeholder="Receiver's Phone Number"
-                                                                        class="form-control" maxlength=""
+                                                                        class="form-control form-control-lg pt-0 phone-input" maxlength=""
                                                                         value="{{ $application->current_contact_phone }}">
                                                                     <label for="phone"
                                                                         class="form-control-placeholder">
                                                                         Receiver's Phone Number</label>
-
+                                                                    {{-- <span class="text-danger" id="output"></span> --}}
                                                                     <div class="invalid-feedback">
                                                                         This field is required.
                                                                     </div>
@@ -2610,7 +2728,8 @@
                                                                             <option value="205">
                                                                                 South Africa </option>
                                                                             <option value="206">
-                                                                                South Georgia and the South Sandwich Islands</option>
+                                                                                South Georgia and the South Sandwich Islands
+                                                                            </option>
                                                                             <option value="207">
                                                                                 South Korea </option>
                                                                             <option value="208">
@@ -2672,7 +2791,8 @@
                                                                             <option value="236">
                                                                                 United States</option>
                                                                             <option value="237">
-                                                                                United States Minor Outlying Islands</option>
+                                                                                United States Minor Outlying Islands
+                                                                            </option>
                                                                             <option value="238">
                                                                                 Uruguay</option>
                                                                             <option value="239">
@@ -3273,8 +3393,78 @@
         aria-live="polite"></div>
     {{-- </main> --}}
 
+
+    
+        <!-- Modal -->
+        <div id="termsModal" class="modal modal-terms">
+            <div class="modal-content modal-content-terms">
+                <p>{!! $terms->description !!}</p>
+                {{-- <div class="checkbox-container">
+                    <input type="checkbox" id="agreeCheckbox" onchange="toggleNextButton()">
+                    <label for="agreeCheckbox">I agree to the Terms and Conditions</label>
+                </div> --}}
+                <div class="modal-footer modal-footer-terms">
+                    <button type="button" onclick="closeModal()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                    {{-- <button type="button" id="agreeButton" onclick="confirmAgreement()" disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Privacy -->
+        <div id="privacyModal" class="modal modal-terms">
+            <div class="modal-content modal-content-terms">
+                <p>{!! $privacy->description !!}</p>
+                {{-- <div class="checkbox-container">
+                    <input type="checkbox" id="agreeCheckboxPrivacy" onchange="toggleNextButtonPrivacy()">
+                    <label for="agreeCheckboxPrivacy">I agree to the Terms and Conditions</label>
+                </div> --}}
+                <div class="modal-footer modal-footer-terms">
+                    <button type="button" onclick="closeModalPrivacy()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                    {{-- <button type="button" id="agreeButtonPrivacy" onclick="confirmAgreementPrivacy()"
+                        disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Payment -->
+        <div id="paymentModal" class="modal modal-terms">
+            <div class="modal-content modal-content-terms">
+                <p>{!! $payment->description !!}</p>
+
+                {{-- <div class="checkbox-container">
+                    <input type="checkbox" id="agreeCheckboxPayment" onchange="toggleNextButtonPayment()">
+                    <label for="agreeCheckboxPayment">I agree to the Terms and Conditions</label>
+                </div> --}}
+
+                <div class="modal-footer modal-footer-terms">
+                    <button type="button" onclick="closeModalPayment()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                    {{-- <button type="button" id="agreeButtonPayment" onclick="confirmAgreementPayment()"
+                        disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Refund -->
+        <div id="refundModal" class="modal modal-terms">
+            <div class="modal-content modal-content-terms">
+                <p>{!! $refund->description !!}</p>
+
+                {{-- <div class="checkbox-container">
+                    <input type="checkbox" id="agreeCheckboxRefund" onchange="toggleNextButtonRefund()">
+                    <label for="agreeCheckboxRefund">I agree to the Terms and Conditions</label>
+                </div> --}}
+
+                <div class="modal-footer modal-footer-terms">
+                    <button type="button" onclick="closeModalRefund()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                    {{-- <button type="button" id="agreeButtonRefund" onclick="confirmAgreementRefund()"
+                        disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
+                </div>
+            </div>
+        </div>
+
     <!-- Modal -->
     @include('Frontend.university.apply-parts.upload-modals')
+
     <div class="modal fade" id="delete_program" tabindex="-1" role="dialog" aria-labelledby="delete_program"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -3339,7 +3529,7 @@
 @endsection
 
 @section('cus_sc')
-    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
     <script>
         const input = document.querySelector("#phone");
         const output = document.querySelector("#output");
@@ -3380,7 +3570,56 @@
 
         input.addEventListener('change', handleChange);
         input.addEventListener('keyup', handleChange);
+    </script> --}}
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/intlTelInput.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneInputs = document.querySelectorAll(".phone-input");
+
+            phoneInputs.forEach((input) => {
+                const output = document.createElement('div');
+                output.className = 'validation-output';
+                input.parentNode.insertBefore(output, input.nextSibling);
+
+                const iti = window.intlTelInput(input, {
+                    initialCountry: "auto",
+                    nationalMode: true,
+                    geoIpLookup: callback => {
+                        fetch("https://ipapi.co/json")
+                            .then(res => res.json())
+                            .then(data => callback(data.country_code.toLowerCase()))
+                            .catch(() => callback("bd"));
+                    },
+                    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@24.6.0/build/js/utils.js"
+                });
+
+                const handleChange = () => {
+                    let text = "";
+                    if (input.value) {
+                        if (iti.isValidNumber()) {
+                            text = `Valid number detected. International format: ${iti.getNumber()}`;
+                            output.classList.remove('text-danger');
+                            output.classList.add('text-success');
+                        } else {
+                            text = "Please enter a valid number";
+                            output.classList.remove('text-success');
+                            output.classList.add('text-danger');
+                        }
+                    } else {
+                        text = "Please enter a valid number";
+                        output.classList.remove('text-success');
+                        output.classList.add('text-danger');
+                    }
+                    output.innerHTML = text;
+                };
+
+                input.addEventListener('change', handleChange);
+                input.addEventListener('keyup', handleChange);
+            });
+        });
     </script>
+
 
     <script>
         $(document).ready(function() {
@@ -3609,5 +3848,33 @@
                 });
             });
         });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.getElementById('english_certificate');
+            const extraFields = document.getElementById('extra-fields');
+
+            dropdown.addEventListener('change', function () {
+                if (this.value) {
+                    extraFields.style.display = 'block';
+                } else {
+                    extraFields.style.display = 'none';
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropdown = document.getElementById('chinese_level');
+            const extraFields = document.getElementById('extra-fields-chinese');
+
+            dropdown.addEventListener('change', function () {
+                if (this.value) {
+                    extraFields.style.display = 'block';
+                } else {
+                    extraFields.style.display = 'none';
+                }
+            });
+        });
+
     </script>
 @endsection

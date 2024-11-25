@@ -22,7 +22,7 @@
             {{-- passport  --}}
             <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card"
                 style="border-radius:5px;">
-                <h6 class="ms-2">Passport Pages (1-12)</h6>
+                <h6 class="ms-2">Passport Pages</h6>
                 <input type="file" id="passport-file" style="display: none;"
                     onchange="showFileName('passport-file', 'passport-preview')">
                 <button class="me-4 px-3 py-1 btn-secondary-bg"
@@ -166,7 +166,7 @@
             @if ($is_contain_masters_or_phd)
                 {{-- Passport --}}
                 <div class="d-flex justify-content-between align-items-center mt-3 p-1 py-2 upload-card">
-                    <h6 class="ms-2">Passport Pages (1-12)</h6>
+                    <h6 class="ms-2">Passport Pages</h6>
                     <input type="file" id="passportMasters-file" style="display: none;"
                         onchange="showFileName('passportMasters-file', 'passportMasters-preview')">
                     <button class="me-4 px-3 py-1 btn-secondary-bg"
@@ -488,7 +488,7 @@
         const passportFile = document.getElementById('passport-file').files[0];
         if (passportFile) {
             formData.append('files[]', passportFile);
-            formData.append('titles[]', 'Passport Pages (1-12)');
+            formData.append('titles[]', 'Passport Pages');
         }
 
         const transcriptFile = document.getElementById('transcript-file').files[0];
@@ -559,7 +559,7 @@
         const passportMastersFile = document.getElementById('passportMasters-file').files[0];
         if (passportFile) {
             formData.append('files[]', passportMastersFile);
-            formData.append('titles[]', 'Passport Pages (1-12)');
+            formData.append('titles[]', 'Passport Pages');
         }
 
         const transcriptMastersFile = document.getElementById('transcriptMasters-file').files[0];

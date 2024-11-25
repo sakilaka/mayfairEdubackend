@@ -120,6 +120,9 @@
                                         @if (isset($table_manipulate_data['city_id']) && $table_manipulate_data['city_id'] == 'on')
                                             <th>City</th>
                                         @endif
+                                        @if (isset($table_manipulate_data['intake']) && $table_manipulate_data['intake'] == 'on')
+                                            <th>Intake</th>
+                                        @endif
                                         @if (isset($table_manipulate_data['major_id']) && $table_manipulate_data['major_id'] == 'on')
                                             <th>Major</th>
                                         @endif
@@ -129,9 +132,9 @@
                                         @if (isset($table_manipulate_data['dormitories']) && $table_manipulate_data['dormitories'] == 'on')
                                             <th>Dormitory</th>
                                         @endif
-                                        {{-- @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
+                                        @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
                                             <th class="text-center">Status</th>
-                                        @endif --}}
+                                        @endif
                                         @if (isset($table_manipulate_data['show_on_home']) && $table_manipulate_data['show_on_home'] == 'on')
                                             <th class="text-center">Show on home</th>
                                         @endif
@@ -174,6 +177,9 @@
                                             @endif
                                             @if (isset($table_manipulate_data['city_id']) && $table_manipulate_data['city_id'] == 'on')
                                                 <td>{{ $university->city->name ?? '' }}</td>
+                                            @endif
+                                            @if (isset($table_manipulate_data['intake']) && $table_manipulate_data['intake'] == 'on')
+                                                <td>{{ $university->intake ?? '' }}</td>
                                             @endif
                                             @if (isset($table_manipulate_data['major_id']) && $table_manipulate_data['major_id'] == 'on')
                                                 @php
@@ -228,7 +234,7 @@
                                                     </span>
                                                 </td>
                                             @endif
-                                            {{-- @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
+                                            @if (isset($table_manipulate_data['status']) && $table_manipulate_data['status'] == 'on')
                                                 <td class="text-center">
                                                     @if ($university->status == 1)
                                                         <a
@@ -246,7 +252,7 @@
                                                         </a>
                                                     @endif
                                                 </td>
-                                            @endif --}}
+                                            @endif
                                             @if (isset($table_manipulate_data['show_on_home']) && $table_manipulate_data['show_on_home'] == 'on')
                                                 <td class="text-center">
                                                     @if ($university->show_on_home == 1)
@@ -410,6 +416,15 @@
                                                                     class="form-check-input"
                                                                     @if (isset($table_manipulate_data['dormitories']) && $table_manipulate_data['dormitories'] == 'on') checked @endif>
                                                                 Dormitory
+                                                                <i class="input-helper"></i>
+                                                            </label>
+                                                        </div>
+                                                        <div class="form-check">
+                                                            <label class="form-check-label fs-09">
+                                                                <input type="checkbox" name="intake"
+                                                                    class="form-check-input"
+                                                                    @if (isset($table_manipulate_data['intake']) && $table_manipulate_data['intake'] == 'on') checked @endif>
+                                                                Intake
                                                                 <i class="input-helper"></i>
                                                             </label>
                                                         </div>

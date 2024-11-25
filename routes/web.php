@@ -18,7 +18,7 @@ use App\Http\Controllers\Frontend\EventCartController;
 use App\Http\Controllers\Frontend\CourseUserSubscriptionsController;
 use App\Http\Controllers\Frontend\EbookCartController;
 use App\Http\Controllers\Frontend\StudentApplicationController;
-
+use Illuminate\Http\Request;
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -307,3 +307,19 @@ Route::get('get-free-consultation', [GetConsultationController::class, 'get_cons
 Route::post('get-free-consultation', [GetConsultationController::class, 'get_consultation_store'])->name('frontend.get_consultation_store');
 
 Route::post('/ckeditor/upload', [CKEditorUploadController::class, 'uploadImage'])->name('ckeditor.upload');
+
+
+Route::get('/validate-email', function (Request $request) {
+    $email = $request->query('email');
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return response()->json(['isValid' => false, 'message' => 'Invalid email format.']);
+    }
+
+    $domain = substr(strrchr($email, "@"), 1);
+    if (!checkdnsrr($domain, 'MX')) {
+        return response()->json(['isValid' => false, 'message' => 'Invalid domain.']);
+    }
+
+    return response()->json(['isValid' => true, 'message' => 'Valid email address.']);
+});

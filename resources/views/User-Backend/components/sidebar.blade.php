@@ -38,7 +38,7 @@
             </li>
         @endif
 
-        @if (Auth::user()->role == 'partner')
+
             {{-- manage application --}}
             {{-- <li class="nav-item {{ Route::is('frontend.manage_consultant_application') || Route::is('frontend.manage_consultant_application_filter') ? 'active' : '' }}">
                 <a class="nav-link {{ Route::is('frontend.manage_consultant_application') || Route::is('frontend.manage_consultant_application_filter') ? 'active' : '' }}"
@@ -65,7 +65,7 @@
                     <span class="menu-title">Apply For New</span>
                 </a>
             </li>
-        @endif
+
 
         {{-- my notifications --}}
         <li class="nav-item {{ Route::is('user.notification') || Route::is('user.notifications') ? 'active' : '' }}">

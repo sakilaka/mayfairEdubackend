@@ -184,7 +184,9 @@ class StudentApplicationController extends Controller
         if ($application == null) {
             $application                   = new StudentApplication();
             $application->user_id          = $auth_user->id;
-            $application->application_code = date('ymd') . strtoupper($this->generateRandomString(6));
+            $randomNumber                  = random_int(100000, 999999); // Generates a 6-digit random number
+            $application->application_code = date('ymd') . $randomNumber;
+            // $application->application_code = date('ymd') . strtoupper($this->generateRandomString(6));
 
             // $application->service_charge = (float) $course->service_charge ?? 0;
             $application->application_fee = (float) $course->application_charge ?? 0;
@@ -230,17 +232,18 @@ class StudentApplicationController extends Controller
 
         // Fetch all programs related to the application
         $data['programs'] = Course::whereIn('id', $programs)->get();
-        
+
         $data['is_contain_masters_or_phd'] = false;
-        foreach($data['programs'] as $program){
-            if(in_array($program->degree?->name, ['Masters', 'PhD'])){
-                $data['is_contain_masters_or_phd'] = true; 
+        foreach ($data['programs'] as $program) {
+            if (in_array($program->degree?->name, ['Masters', 'PhD'])) {
+                $data['is_contain_masters_or_phd'] = true;
             }
         }
 
         $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
         $data['refund']  = Page::where('title', 'Refund Policy')->first();
         $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
+        $data['payment'] = Page::where('title', 'Payment Process')->first();
 
         $data['user'] = User::find(auth()->user()->id ?? 1);
 
@@ -329,22 +332,33 @@ class StudentApplicationController extends Controller
     {
         $application = StudentApplication::find($id);
         if ($application) {
-            $application->email                = $request->email;
-            $application->phone                = $request->phone;
-            $application->contact_id           = $request->contact_id;
-            $application->first_name           = $request->first_name;
-            $application->middle_name          = $request->middle_name;
-            $application->last_name            = $request->last_name;
-            $application->last_name            = $request->last_name;
-            $application->chinese_name         = $request->chinese_name;
-            $application->dob                  = $request->date_of_birth;
-            $application->gender               = $request->gender;
-            $application->hobby                = $request->hobbies_interests;
-            $application->in_chaina            = $request->is_in_china == false ? 0 : 1;
-            $application->in_alcoholic         = $request->addict_to_alcohol_drugs == false ? 0 : 1;
-            $application->native_language      = $request->language_native;
-            $application->english_level        = $request->language_proficiency_english;
-            $application->chinese_level        = $request->language_proficiency_chinese;
+            $application->email                           = $request->email;
+            $application->phone                           = $request->phone;
+            $application->contact_id                      = $request->contact_id;
+            $application->first_name                      = $request->first_name;
+            $application->middle_name                     = $request->middle_name;
+            $application->last_name                       = $request->last_name;
+            $application->last_name                       = $request->last_name;
+            $application->chinese_name                    = $request->chinese_name;
+            $application->dob                             = $request->date_of_birth;
+            $application->gender                          = $request->gender;
+            $application->hobby                           = $request->hobbies_interests;
+            $application->in_chaina                       = $request->is_in_china == false ? 0 : 1;
+            $application->in_alcoholic                    = $request->addict_to_alcohol_drugs == false ? 0 : 1;
+            $application->native_language                 = $request->language_native;
+            $application->english_level                   = $request->language_proficiency_english;
+            
+            $application->english_proficiency_certificate = $request->certificate_english_proficiency;
+            $application->certificate_issue_date          = $request->certificate_issue_date;
+            $application->english_score                   = $request->english_score;
+
+            $application->chinese_level = $request->language_proficiency_chinese;
+            $application->HSK_level     = $request->HSK_level;
+            $application->HSK_score     = $request->HSK_score;
+            $application->HSK_report_no = $request->report_no;
+            $application->HSKK_score    = $request->HSKK_level;
+            $application->HSKK_score    = $request->HSKK_score;
+
             $application->maritial_status      = $request->marital_status;
             $application->nationality          = $request->applicants_nationality;
             $application->passport_exipre_date = $request->passport_expiration_date;
@@ -674,7 +688,7 @@ class StudentApplicationController extends Controller
         $application    = StudentApplication::find($id);
 
         if ($application) {
-            $application->status = 1;
+            $application->status         = 1;
             $application->payment_method = $request->payment_method;
 
             if ($request->hasFile('wechat_payment_receipt')) {

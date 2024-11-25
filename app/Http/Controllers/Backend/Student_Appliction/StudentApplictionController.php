@@ -35,7 +35,10 @@ class StudentApplictionController extends Controller
             $page_route = 'admin.student_appliction_list';
         }
 
-        $data['applications'] = StudentApplication::orderBy('id', 'desc')->get();
+        $data['applications'] = StudentApplication::orderBy('id', 'desc')
+        ->where('status', '!=', 0)
+        ->get();  
+          
         $data['assigned_applications'] = StudentApplication::where(function ($query) {
             $userId = auth()->user()->id;
             $query->where('partner_ref_id', 'like', '%"partner":' . $userId . '%')
@@ -253,6 +256,7 @@ class StudentApplictionController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
+    
 
     public function getFilterItems(Request $request)
     {
@@ -293,6 +297,7 @@ class StudentApplictionController extends Controller
 
         return response()->json($items);
     }
+    
 
     public function fetchApplication($application_id)
     {
@@ -783,6 +788,42 @@ class StudentApplictionController extends Controller
                 'message' => 'Amount updated successfully.',
                 'total_paid' => $s_appliction->paid_amount,
                 'payment_status' => $s_appliction->payment_status
+            ]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Application not found.'], 404);
+        }
+    }
+    
+    public function updateApplicationFee(Request $request, $id)
+    {
+        $request->validate([
+            'paid_application_fees' => 'required|numeric|min:0',
+        ]);
+    
+        $s_appliction = StudentApplication::find($id);
+        if ($s_appliction) {
+            // Add the new amount to the existing paid amount
+            $s_appliction->paid_application_fees += $request->paid_application_fees;
+            $s_appliction->save();
+
+    
+            // Set payment status based on the total paid amount
+           
+            if ($s_appliction->paid_application_fee >= $s_appliction->service_charge) {
+                $s_appliction->payment_status_application = 1;  // Paid
+            } else {
+                $s_appliction->payment_status_application = 0;  // Unpaid
+            }
+            $s_appliction->save();
+
+    
+            // Save the changes
+    
+            return response()->json([
+                'success' => true,
+                'message' => 'Amount updated successfully.',
+                'total_paid' => $s_appliction->paid_application_fees,
+                'payment_status_application' => $s_appliction->payment_status_application
             ]);
         } else {
             return response()->json(['success' => false, 'message' => 'Application not found.'], 404);

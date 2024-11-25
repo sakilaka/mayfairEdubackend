@@ -264,26 +264,32 @@
                         </div>
 
                         @if ($user->role == 'partner')
-                            <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h4 class="card-title mb-0">Your Level</h4>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="d-inline-block pt-3">
-                                                <div class="d-md-flex">
-                                                    @if ($user->star == 0)
-                                                        <h2 class="mb-0">Beginner</h2>
-                                                    @else
-                                                        @for ($i = 0; $i < $user->star; $i++)
-                                                            <i class="fa fa-star text-warning icon-md"></i>
-                                                        @endfor
-                                                    @endif
-                                                </div>
+                        <div class="col-sm-6 col-md-4 col-lg-3 grid-margin">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-0">Your Level</h4>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-inline-block pt-3">
+                                            <div class="d-md-flex">
+                                                @php
+                                                    $star = \App\Models\Level::where('eligibility_range_min', '<=', $orders->count())
+                                                        ->where('eligibility_range_max', '>=', $orders->count())
+                                                        ->value('star_value');
+                                                @endphp
+                        
+                                                @if ($star == 0)
+                                                    <h2 class="mb-0">Beginner</h2>
+                                                @else
+                                                    @for ($i = 0; $i < $star; $i++)
+                                                        <i class="fa fa-star text-warning icon-md"></i>
+                                                    @endfor
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
                         @endif
 
                         @if ($user->type == 1 && $user->is_verified === 1)

@@ -1,5 +1,6 @@
 <!--family & finance panel-->
-<div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+
+<div class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn" id="family">
     <div class="multisteps-form__content">
         <form action="" id="financialsupport">
 
@@ -9,66 +10,79 @@
                         <h5 class="multisteps-form__title">Family Contact</h5>
                         <h6>Member information</h6>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="addFamilyMember()">Add A Family Member</button>
+                    <button type="button" class="btn btn-primary" onclick="addFamilyMember()">Add A Family
+                        Member</button>
                 </div>
-            
+
                 <!-- Initial Family Member Section -->
                 <div class="family-member">
                     <div class="form-row">
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_name[]" placeholder="Name" class="form-control" required>
+                                <input type="text" name="family_member_name[]" placeholder="Name"
+                                    class="form-control" required>
                                 <label>Name</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_nationality[]" placeholder="Nationality" class="form-control" required>
+                                <input type="text" name="family_member_nationality[]" placeholder="Nationality"
+                                    class="form-control" required>
                                 <label>Nationality</label>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_phone[]" placeholder="Phone number" class="form-control" required>
+                                <input type="text" name="family_member_phone[]" placeholder="Phone number"
+                                    class="form-control form-control-lg phone-input pt-0" required>
                                 <label>Phone number</label>
                             </div>
+                            <span class="text-danger" id="output"></span>
+                            <div class="invalid-feedback">
+                                This field is required.
+                            </div>
                         </div>
+
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_email[]" placeholder="Email" class="form-control" required>
+                                <input type="text" name="family_member_email[]" placeholder="Email"
+                                    class="form-control" required>
                                 <label>Email</label>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_work_employer[]" placeholder="Workplace" class="form-control" required>
+                                <input type="text" name="family_member_work_employer[]" placeholder="Workplace"
+                                    class="form-control" required>
                                 <label>Workplace</label>
                             </div>
                         </div>
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_work_position[]" placeholder="Position" class="form-control" required>
+                                <input type="text" name="family_member_work_position[]" placeholder="Position"
+                                    class="form-control" required>
                                 <label>Position</label>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="form-row">
                         <div class="col-12 col-sm-6">
                             <div class="form-label-group mt-2">
-                                <input type="text" name="family_member_work_relationship[]" placeholder="Relationship" class="form-control" required>
+                                <input type="text" name="family_member_work_relationship[]"
+                                    placeholder="Relationship" class="form-control" required>
                                 <label>Relationship</label>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+
                 <!-- Container for Additional Family Members -->
                 <div id="family-members-container"></div>
             </div>
@@ -105,8 +119,7 @@
 
                             <input type="text" id="supporter_relationship" name="supporter_relationship"
                                 data-name="supporter_relationship" required="" placeholder="Relationship"
-                                class="form-control" maxlength=""
-                                value="{{ $application->guarantor_relationship }}">
+                                class="form-control" maxlength="" value="{{ $application->guarantor_relationship }}">
                             <label for="supporter_relationship" class="form-control-placeholder">
                                 Relationship</label>
 
@@ -119,9 +132,9 @@
                     <div class="col-12 col-sm-6">
                         <div class=" form-label-group mt-2">
 
-                            <input type="text" id="supporter_name" name="supporter_name"
-                                data-name="supporter_name" required="" placeholder="Guarantor’s name"
-                                class="form-control" maxlength="" value="{{ $application->guarantor_name }}">
+                            <input type="text" id="supporter_name" name="supporter_name" data-name="supporter_name"
+                                required="" placeholder="Guarantor’s name" class="form-control" maxlength=""
+                                value="{{ $application->guarantor_name }}">
                             <label for="supporter_name" class="form-control-placeholder">
                                 Guarantor’s name</label>
 
@@ -154,10 +167,11 @@
 
                             <input type="text" id="supporter_phone" name="supporter_phone"
                                 data-name="supporter_phone" required="" placeholder="Guarantor’s phone"
-                                class="form-control" maxlength="" value="{{ $application->guarantor_phone }}">
+                                class="form-control phone-input" maxlength=""
+                                value="{{ $application->guarantor_phone }}">
                             <label for="supporter_phone" class="form-control-placeholder">
                                 Guarantor’s phone</label>
-
+                            <span class="text-danger" id="output"></span>
                             <div class="invalid-feedback">
                                 This field is required.
                             </div>
@@ -170,9 +184,9 @@
                     <div class="col-12 col-sm-6">
                         <div class=" form-label-group mt-2">
 
-                            <input type="text" id="supporter_email" name="supporter_email"
+                            <input type="email" id="supporter_email" name="supporter_email"
                                 data-name="supporter_email" required="" placeholder="Guarantor’s email"
-                                class="form-control" maxlength="" value="{{ $application->guarantor_email }}">
+                                class="form-control email-input" maxlength="" value="{{ $application->guarantor_email }}">
                             <label for="supporter_email" class="form-control-placeholder">
                                 Guarantor’s email</label>
 
@@ -217,7 +231,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="form-row ">
+                {{-- <div class="form-row ">
                     <div class="col-12 mt-2">
                         <div class="form-label-group mt-2">
                             <select class="custom-select d-block w-100" id="fund" name="fund"
@@ -237,7 +251,7 @@
                         <small id="msg-fund" class="invalid-feedback" style="display: block;">
                         </small>
                     </div>
-                </div>
+                </div> --}}
                 <div class="form-row" id="txt-scholarship" style="display: none;">
                     <div class="col-12 col-sm-6">
                         <div class=" form-label-group mt-2">
@@ -284,8 +298,8 @@
 
                             <input type="text" id="emergency_contact_phone" name="emergency_contact_phone"
                                 data-name="emergency_contact_phone" required="" placeholder="Phone number"
-                                class="form-control" maxlength=""
-                                value="{{ $application->emergency_contact_phone }}">
+                                class="form-control pt-0 phone-input @error('phone') is-invalid @enderror"
+                                maxlength="" value="{{ $application->emergency_contact_phone }}">
                             <label for="emergency_contact_phone" class="form-control-placeholder">
                                 Phone number</label>
 
@@ -298,9 +312,9 @@
                     <div class="col-12 col-sm-6">
                         <div class=" form-label-group mt-2">
 
-                            <input type="text" id="emergency_contact_email" name="emergency_contact_email"
+                            <input type="email" id="emergency_contact_email" name="emergency_contact_email"
                                 data-name="emergency_contact_email" required="" placeholder="Email"
-                                class="form-control" maxlength=""
+                                class="form-control email-input" maxlength=""
                                 value="{{ $application->emergency_contact_email }}">
                             <label for="emergency_contact_email" class="form-control-placeholder">
                                 Email</label>
@@ -347,12 +361,12 @@
 
 
 <script>
-function addFamilyMember() {
-    // Create a new family member section
-    const familyMember = document.createElement('div');
-    familyMember.classList.add('family-member');
-    
-    familyMember.innerHTML = `
+    function addFamilyMember() {
+        // Create a new family member section
+        const familyMember = document.createElement('div');
+        familyMember.classList.add('family-member');
+
+        familyMember.innerHTML = `
         <div class="d-flex justify-content-between">
             <h6>Member information</h6>
             <button type="button" class="btn btn-danger" onclick="removeFamilyMember(this)">Remove</button>
@@ -375,13 +389,17 @@ function addFamilyMember() {
         <div class="form-row">
             <div class="col-12 col-sm-6">
                 <div class="form-label-group mt-2">
-                    <input type="text" name="family_member_phone[]" placeholder="Phone number" class="form-control" required>
+                    <input type="text" name="family_member_phone[]" placeholder="Phone number" class="form-control form-control-lg phone-input pt-0" required>
                     <label>Phone number</label>
+                </div>
+                <span class="text-danger" id="output"></span>
+                <div class="invalid-feedback">
+                    This field is required.
                 </div>
             </div>
             <div class="col-12 col-sm-6">
                 <div class="form-label-group mt-2">
-                    <input type="text" name="family_member_email[]" placeholder="Email" class="form-control" required>
+                    <input type="email" name="family_member_email[]" placeholder="Email" class="form-control" required>
                     <label>Email</label>
                 </div>
             </div>
@@ -411,13 +429,75 @@ function addFamilyMember() {
             </div>
         </div>
     `;
-    
-    // Append the new family member section to the container
-    document.getElementById('family-members-container').appendChild(familyMember);
-}
 
-function removeFamilyMember(element) {
-    // Remove the specific family member section
-    element.closest('.family-member').remove();
-}
+        // Append the new family member section to the container
+        document.getElementById('family-members-container').appendChild(familyMember);
+    }
+
+    function removeFamilyMember(element) {
+        // Remove the specific family member section
+        element.closest('.family-member').remove();
+    } 
 </script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const emailInputs = document.querySelectorAll('.email-input');
+
+        emailInputs.forEach((input) => {
+            const output = document.createElement('div');
+            output.className = 'validation-output';
+            input.parentNode.insertBefore(output, input.nextSibling);
+
+            const validateEmail = (email) => {
+                const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return regex.test(email);
+            };
+
+            const checkEmailValidity = async (email) => {
+                try {
+                    const response = await fetch(`/validate-email?email=${encodeURIComponent(email)}`);
+                    const data = await response.json();
+                    return data.isValid;
+                } catch (error) {
+                    console.error('Email validation error:', error);
+                    return false;
+                }
+            };
+
+            const handleChange = async () => {
+                const email = input.value.trim();
+                if (!email) {
+                    output.textContent = 'Please enter an email address.';
+                    output.classList.add('text-danger');
+                    output.classList.remove('text-success');
+                    return;
+                }
+
+                if (!validateEmail(email)) {
+                    output.textContent = 'Invalid email format.';
+                    output.classList.add('text-danger');
+                    output.classList.remove('text-success');
+                    return;
+                }
+
+                output.textContent = 'Validating email...';
+                const isValid = await checkEmailValidity(email);
+
+                if (isValid) {
+                    output.textContent = 'Valid email address.';
+                    output.classList.add('text-success');
+                    output.classList.remove('text-danger');
+                } else {
+                    output.textContent = 'Invalid email address or domain.';
+                    output.classList.add('text-danger');
+                    output.classList.remove('text-success');
+                }
+            };
+
+            input.addEventListener('change', handleChange);
+            input.addEventListener('keyup', handleChange);
+        });
+    });
+</script>
+

@@ -168,7 +168,7 @@ class UserController extends Controller
         
         foreach ($data['orders'] as $order) {
             if ($order->status !== 0 && $order->status !== 1) {
-                $data['totalApplicationFee'] += $order->application_fee;
+                $data['totalApplicationFee'] += $order->paid_application_fees;
             }
             $data['totalServiceCharge'] += $order->service_charge;
             $data['totalServiceChargePaid'] += $order->paid_amount;
@@ -290,7 +290,7 @@ class UserController extends Controller
 
     public function myOrderDetails($id)
     {
-        $data['s_appliction'] = StudentApplication::with('documents')->find($id);
+        $data['s_appliction'] = StudentApplication::with('documents','educations','work_experiences','familyMembers')->find($id);
         // dd($data['s_appliction']);
         // return view('user.order.application_details', $data);
         return view('User-Backend.application_view', $data);

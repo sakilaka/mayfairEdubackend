@@ -146,22 +146,16 @@
                                 @php
                                     $statusLabels = [
                                         0 => 'Not Complete',
-                                        1 => 'Processing',
-                                        2 => 'Approved',
-                                        3 => 'Cancel',
-                                        4 => 'Not Submitted',
-                                        5 => 'Submitted',
-                                        6 => 'Pending',
-                                        7 => 'E-documents Qualified',
-                                        8 => 'Waiting Processing',
-                                        9 => 'Processing',
-                                        10 => 'More Documents Needed',
-                                        11 => 'Re-Submitted',
-                                        12 => 'Rejected',
-                                        13 => 'Transferred',
-                                        14 => 'Accepted',
-                                        15 => 'E-offer Delivered',
-                                        16 => 'Offer Delivered',
+                                        1 => 'Pending',
+                                        2 => 'Re-submit',
+                                        3 => 'Submitted',
+                                        4 => 'Processing',
+                                        5 => 'Initial Review Passed',
+                                        6 => 'Pre-Admission',
+                                        7 => 'Admitted',
+                                        8 => 'Got JW202',
+                                        9 => 'Got Visa',
+                                        10 => 'Registration',
                                     ];
                                 @endphp
                                 @foreach ($statusLabels as $key => $status)
@@ -179,7 +173,7 @@
                                     <tr role="row">
                                         <th class="text-left">SL</th>
                                         @if (isset($table_manipulate_data['application_code']) && $table_manipulate_data['application_code'] == 'on')
-                                            <th>Code</th>
+                                            <th>Application No.</th>
                                         @endif
                                         @if (isset($table_manipulate_data['student_name']) && $table_manipulate_data['student_name'] == 'on')
                                             <th>Student</th>

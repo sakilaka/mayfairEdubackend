@@ -58,14 +58,15 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
+                                
+                                {{-- <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Continent Name:') }}</b></label>
                                         @foreach ($s_appliction->carts as $cart)
                                             <p>{{ @$cart->course->university->continent->name }}</p>
                                         @endforeach
                                     </div>
-                                </div>
+                                </div> --}}
 
 
 
@@ -224,6 +225,28 @@
                                         </p>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('Certificate:') }}</b></label>
+                                        <p>{{ $s_appliction->english_proficiency_certificate ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('English Score:') }}</b></label>
+                                        <p>{{ $s_appliction->english_score ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('Certificate Issue date:') }}</b></label>
+                                        <p>{{ $s_appliction->certificate_issue_date ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Chinese Level:') }}</b></label>
@@ -242,6 +265,39 @@
                                         </p>
                                     </div>
                                 </div>
+
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('HSK_level:') }}</b></label>
+                                        <p>{{ $s_appliction->HSK_level ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('HSK_score:') }}</b></label>
+                                        <p>{{ $s_appliction->HSK_score ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('HSK_report_no:') }}</b></label>
+                                        <p>{{ $s_appliction->HSK_report_no ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('HSKK_level:') }}</b></label>
+                                        <p>{{ $s_appliction->HSK_level ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <label for="address"><b>{{ __('HSKK_score:') }}</b></label>
+                                        <p>{{ $s_appliction->HSK_score ?? 'Null' }}</p>
+                                    </div>
+                                </div>
+                                
+                                
 
                                 <div class="col-lg-12 mt-3">
                                     <b>
@@ -422,83 +478,65 @@
 
                                 <div class="col-lg-12 mt-3">
                                     <b>
-                                        <h4>Family Information
+                                        <h4>Family Member Information
                                     </b></h4>
                                     <hr>
                                 </div>
 
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Father Name:') }}</b></label>
-                                        <p>{{ $s_appliction->father_name }}</p>
+                                @foreach ($s_appliction->familyMembers as $item)
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Name:') }}</b></label>
+                                            <p>{{ $item->name }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Father Nnationlity:') }}</b></label>
-                                        <p>{{ $s_appliction->father_nationlity }}</p>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Email:') }}</b></label>
+                                            <p>{{ $item->email }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Father Phone:') }}</b></label>
-                                        <p>{{ $s_appliction->father_phone }}</p>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Phone:') }}</b></label>
+                                            <p>{{ $item->phone }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Father Email:') }}</b></label>
-                                        <p>{{ $s_appliction->father_email }}</p>
+
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Nnationlity:') }}</b></label>
+                                            <p>{{ $item->nationlity }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Father Workplace:') }}</b></label>
-                                        <p>{{ $s_appliction->father_workplace }}</p>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Workplace:') }}</b></label>
+                                            <p>{{ $item->workplace }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Father Position:') }}</b></label>
-                                        <p>{{ $s_appliction->father_position }}</p>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Position:') }}</b></label>
+                                            <p>{{ $item->position }}</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Mother Name:') }}</b></label>
-                                        <p>{{ $s_appliction->mother_name }}</p>
+                                    <div class="col-lg-3">
+                                        <div class="form-group">
+                                            <label for="address"><b>{{ __('Member Relationship:') }}</b></label>
+                                            <p>{{ $item->relationship }}</p>
+                                        </div>
                                     </div>
+                                @endforeach
+
+                                <div class="col-lg-12 mt-3">
+                                    <b>
+                                        <h4>Guarantor Information
+                                    </b></h4>
+                                    <hr>
                                 </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Mother Nationlity:') }}</b></label>
-                                        <p>{{ $s_appliction->mother_nationlity }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Mother Phone:') }}</b></label>
-                                        <p>{{ $s_appliction->mother_phone }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Mother Email:') }}</b></label>
-                                        <p>{{ $s_appliction->mother_email }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Mother Workplace:') }}</b></label>
-                                        <p>{{ $s_appliction->mother_workplace }}</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="form-group">
-                                        <label for="address"><b>{{ __('Mother Position:') }}</b></label>
-                                        <p>{{ $s_appliction->mother_position }}</p>
-                                    </div>
-                                </div>
+
                                 <div class="col-lg-3">
                                     <div class="form-group">
                                         <label for="address"><b>{{ __('Guarantor Relationship:') }}</b></label>
@@ -657,52 +695,62 @@
                                     <label for="address"><b>Payment Receipt</b></label>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <button style="margin-left: 18px" type="button" data-toggle="modal" data-target="#paymentRecipt" class="btn btn-primary">
+                                            <button style="margin-left: 18px" type="button" data-toggle="modal"
+                                                data-target="#paymentRecipt" class="btn btn-primary">
                                                 <i class="fa-solid fa-eye"></i> Details
                                             </button>
-                                            <a href="{{ route('frontend.application-file-download', $s_appliction->id) }}" class="btn btn-primary">
+                                            <a href="{{ route('frontend.application-file-download', $s_appliction->id) }}"
+                                                class="btn btn-primary">
                                                 <i class="fa-solid fa-download"></i> Download
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <!-- Modal -->
-                            <div class="modal fade" id="paymentRecipt" tabindex="-1" role="dialog" aria-labelledby="paymentReciptLabel" aria-hidden="true">
+                            <div class="modal fade" id="paymentRecipt" tabindex="-1" role="dialog"
+                                aria-labelledby="paymentReciptLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h5 class="modal-title" id="paymentReciptLabel" style="color: black">
                                                 Payment Receipt
                                             </h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
                                             @php
                                                 $filePath = asset($s_appliction->payment_proof); // Ensure the file path starts from 'public'
-                                                $fileExtension = pathinfo($s_appliction->payment_proof, PATHINFO_EXTENSION);
+                                                $fileExtension = pathinfo(
+                                                    $s_appliction->payment_proof,
+                                                    PATHINFO_EXTENSION,
+                                                );
                                             @endphp
-                            
+
                                             @if ($fileExtension === 'pdf')
-                                                <iframe src="{{ $filePath }}" width="100%" height="500"></iframe>
+                                                <iframe src="{{ $filePath }}" width="100%"
+                                                    height="500"></iframe>
                                             @else
-                                                <img src="{{ $filePath }}" alt="image" style="height: 300px; width: 450px">
+                                                <img src="{{ $filePath }}" alt="image"
+                                                    style="height: 300px; width: 450px">
                                             @endif
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </div>
-                  
+
                 </div>
 
                 <div>
