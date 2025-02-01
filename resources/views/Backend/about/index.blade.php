@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | All Category</title>
+    <title>{{ env('APP_NAME') }} | About</title>
 </head>
 
 <body>
@@ -17,7 +17,7 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            All Category
+                            About
                         </h3>
 
                         <nav aria-label="breadcrumb">
@@ -43,7 +43,7 @@
                                     <tr role="row" class="odd">
                                         <td class="text-left">1</td>
                                         <td class="text-left">{{ $about->banner_title }}</td>
-                                       
+
                                         {{-- <td class="text-right">
                                             <a href="{{ route('home-category.edit', $about->id) }}"
                                                 class="btn text-primary">
