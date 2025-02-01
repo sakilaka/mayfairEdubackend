@@ -1,4 +1,4 @@
-@extends('Frontend.layouts.master-layout')
+@extends('Frontend.layouts.master-layout-app')
 @section('title', ' - All Universities')
 @section('head')
     <link href="{{ asset('frontend') }}/application/modules/frontend/views/themes/default/assets/css/application-style.css"
@@ -33,6 +33,7 @@
         #scrollbarr::-webkit-scrollbar {
             display: none;
         }
+
         #family {
             overflow-y: scroll;
             -ms-overflow-style: none;
@@ -64,8 +65,9 @@
         }
     </style>
 @endsection
+
 @section('main_content')
-    <div class="container d-lg-flex p-0" style="flex-flow: row-reverse; margin-top:8rem;">
+    <div class="container d-lg-flex p-0" style="flex-flow: row-reverse; margin-top:12rem;">
 
         <div class="col-lg-4">
             <div class="center">
@@ -80,7 +82,7 @@
                         <div class="app_summary">
                             <div class="mt-2 mb2 d-flex justify-content-between">Application ID
                                 <strong style="font-size: 1rem; background-color: var(--primary_background)" class="badge"
-                                    id="application-id">{{ $application->application_code }}</strong>
+                                    id="application-id">{{ $application->application_code ?? '' }}</strong>
                             </div>
 
                             <div class="mt-2 mb2 application-fee d-flex justify-content-between">
@@ -91,9 +93,9 @@
                                     <strong id="orig-app-fee"
                                         style="color: grey; text-decoration: line-through; display: none;"> <span
                                             style="font-size: 1rem; text-decoration:line-through;"
-                                            class="badge p-0">{{ convertCurrency($application->application_fee) }}</span></strong>
+                                            class="badge p-0">{{ convertCurrency($application->application_fee ?? 0)  }}</span></strong>
                                     <strong> <span style="font-size: 1rem;color:black;" class="badge p-0"
-                                            id="application-fee">{{ convertCurrency($application->application_fee) }}</span></strong>
+                                            id="application-fee">{{ convertCurrency($application->application_fee ?? 0)  }}</span></strong>
                                 </div>
                             </div>
 
@@ -797,9 +799,8 @@
                                         <button class="multisteps-form__progress-btn confirm-nav" type="button"
                                             title="Upload Documents">Upload Documents
                                         </button>
-                                        <button id=""
-                                            class="multisteps-form__progress-btn disabled" type="button"
-                                            title="Final Step">Final Step
+                                        <button id="" class="multisteps-form__progress-btn disabled"
+                                            type="button" title="Final Step">Final Step
                                         </button>
                                     </div>
                                 </div>
@@ -843,7 +844,7 @@
                                                                     data-name="phone" required=""
                                                                     placeholder="Enter Phone Number"
                                                                     class="form-control form-control-lg pt-0 phone-input @error('phone') is-invalid @enderror"
-                                                                    value="{{ auth()->user()->phone ?? $application->phone }}">
+                                                                    value="{{ auth()->user()->phone ? $application->phone : '' }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
@@ -863,7 +864,7 @@
                                                                     data-name="contact_id"
                                                                     placeholder="WeChat/Whatsapp/Telegram"
                                                                     class="form-control"
-                                                                    value="{{ $application->contact_id }}">
+                                                                    value="{{ $application->contact_id ?? '' }}">
                                                                 <label for="contact_id" class="form-control-placeholder">
                                                                     Contact ID
                                                                     (WeChat/Whatsapp/Telegram)
@@ -902,7 +903,7 @@
                                                                 <input type="text" id="middle_name" name="middle_name"
                                                                     data-name="middle_name" placeholder="Middle name"
                                                                     class="form-control" maxlength=""
-                                                                    value="{{ $application->middle_name }}">
+                                                                    value="{{ $application->middle_name ?? '' }}">
                                                                 <label for="middle_name" class="form-control-placeholder">
                                                                     Middle name</label>
 
@@ -916,7 +917,7 @@
                                                                     data-name="last_name" required=""
                                                                     placeholder="Last name (Family name)"
                                                                     class="form-control" maxlength=""
-                                                                    value="{{ $application->last_name }}">
+                                                                    value="{{ $application->last_name ?? '' }}">
                                                                 <label for="last_name" class="form-control-placeholder">
                                                                     Last name (Family name)</label>
 
@@ -933,7 +934,7 @@
                                                                     name="chinese_name" data-name="chinese_name"
                                                                     placeholder="Chinese name" class="form-control"
                                                                     maxlength=""
-                                                                    value="{{ $application->chinese_name }}">
+                                                                    value="{{ $application->chinese_name ?? '' }}">
                                                                 <label for="chinese_name"
                                                                     class="form-control-placeholder">
                                                                     Chinese name</label>
@@ -966,7 +967,7 @@
                                                                     name="place_of_birth" data-name="place_of_birth"
                                                                     placeholder="Place of birth" class="form-control"
                                                                     maxlength=""
-                                                                    value="{{ $application->birth_place }}">
+                                                                    value="{{ $application->birth_place ?? '' }}">
                                                                 <label for="place_of_birth"
                                                                     class="form-control-placeholder">
                                                                     Place of birth</label>
@@ -979,7 +980,7 @@
                                                                 <input type="text" id="passport_no" name="passport_no"
                                                                     data-name="passport_no" placeholder="Passport number"
                                                                     class="form-control" maxlength=""
-                                                                    value="{{ $application->passport_number }}">
+                                                                    value="{{ $application->passport_number ?? '' }}">
                                                                 <label for="passport_no" class="form-control-placeholder">
                                                                     Passport number</label>
 
@@ -993,7 +994,7 @@
                                                                     data-name="passport_expiration_date" date-field=""
                                                                     data-date="Y-m-d" placeholder="Passport expiry date"
                                                                     class="form-control flatpickr-input" maxlength=""
-                                                                    value="{{ $application->passport_exipre_date }}">
+                                                                    value="{{ $application->passport_exipre_date ?? '' }}">
                                                                 <label for="passport_expiration_date"
                                                                     class="form-control-placeholder">
                                                                     Passport expiry date</label>
@@ -1780,30 +1781,40 @@
 
                                                         <div class="col-12 mt-2">
                                                             <div class="form-label-group mt-2">
-                                                                <select class="custom-select d-block w-100" id="english_certificate" name="certificate_english_proficiency" required>
-                                                                    <option value="" selected="">Select Course</option>
+                                                                <select class="custom-select d-block w-100"
+                                                                    id="english_certificate"
+                                                                    name="certificate_english_proficiency" required>
+                                                                    <option value="" selected="">Select Course
+                                                                    </option>
                                                                     <option value="1">IELTS</option>
                                                                     <option value="2">TOEFL</option>
                                                                     <option value="3">Duolingo</option>
                                                                     <option value="4">Others</option>
                                                                 </select>
-                                                                <label for="english_certificate">Certificate of English Proficiency</label>
+                                                                <label for="english_certificate">Certificate of English
+                                                                    Proficiency</label>
                                                             </div>
                                                         </div>
 
 
-                                                         {{-- Extra field  --}}
-                                                        <div class="col-12 mt-2" id="extra-fields" style="display: none;">
+                                                        {{-- Extra field  --}}
+                                                        <div class="col-12 mt-2" id="extra-fields"
+                                                            style="display: none;">
                                                             <div class="form-group">
                                                                 <label for="english_score">English Score:</label>
-                                                                <input type="text" class="form-control" id="english_score" name="english_score" placeholder="Enter your score">
+                                                                <input type="text" class="form-control"
+                                                                    id="english_score" name="english_score"
+                                                                    placeholder="Enter your score">
                                                             </div>
                                                             <div class="form-group">
-                                                                <label for="certificate_issue_date">Certificate Issue Date:</label>
-                                                                <input type="date" class="form-control" id="certificate_issue_date" name="certificate_issue_date">
+                                                                <label for="certificate_issue_date">Certificate Issue
+                                                                    Date:</label>
+                                                                <input type="date" class="form-control"
+                                                                    id="certificate_issue_date"
+                                                                    name="certificate_issue_date">
                                                             </div>
                                                         </div>
-                                                        
+
 
                                                         <div class="col-12 mt-2">
                                                             <div class="form-label-group mt-2">
@@ -1839,12 +1850,15 @@
 
 
                                                         {{-- extra field  --}}
-                                                        <div class="col-12 mt-2" id="extra-fields-chinese" style="display: none;">
+                                                        <div class="col-12 mt-2" id="extra-fields-chinese"
+                                                            style="display: none;">
                                                             <div class="form-group mt-2">
                                                                 <label for="english_score">Level of HSK :</label>
                                                                 <div class="form-group mt-2">
-                                                                    <select class="custom-select d-block w-100" id="Level_of_HSK" name="HSK_level" required>
-                                                                        <option value="" selected="">Select level</option>
+                                                                    <select class="custom-select d-block w-100"
+                                                                        id="Level_of_HSK" name="HSK_level" required>
+                                                                        <option value="" selected="">Select
+                                                                            level</option>
                                                                         <option value="1">HSK LEVEL 1</option>
                                                                         <option value="2">HSK LEVEL 2</option>
                                                                         <option value="3">HSK LEVEL 3</option>
@@ -1854,46 +1868,65 @@
                                                                         <option value="7">HSK LEVEL 7</option>
                                                                         <option value="8">HSK LEVEL 8</option>
                                                                         <option value="9">HSK LEVEL 9</option>
-                                                                        <option value="10">HSK Base level C(score level:1)</option>
-                                                                        <option value="11">HSK Base level B(score level:2)</option>
-                                                                        <option value="12">HSK Base level A(score level:3)</option>
-                                                                        <option value="13">HSK Junior level c(score level:4)</option>
-                                                                        <option value="14">HSK Junior level b(score level:5)</option>
-                                                                        <option value="15">HSK Junior level a(score level:6)</option>
-                                                                        <option value="16">HSK Secondary level c(score level:7)</option>
-                                                                        <option value="17">HSK Secondary level b(score level:8)</option>
-                                                                        <option value="18">HSK Secondary level a(score level:9)</option>
-                                                                        <option value="19">HSK Senior level a(score level:10)</option>
-                                                                        <option value="20">HSK Senior level a(score level:11)</option>
-                                                                        <option value="21">HSK Senior level a(score level:12)</option>
+                                                                        <option value="10">HSK Base level C(score
+                                                                            level:1)</option>
+                                                                        <option value="11">HSK Base level B(score
+                                                                            level:2)</option>
+                                                                        <option value="12">HSK Base level A(score
+                                                                            level:3)</option>
+                                                                        <option value="13">HSK Junior level c(score
+                                                                            level:4)</option>
+                                                                        <option value="14">HSK Junior level b(score
+                                                                            level:5)</option>
+                                                                        <option value="15">HSK Junior level a(score
+                                                                            level:6)</option>
+                                                                        <option value="16">HSK Secondary level c(score
+                                                                            level:7)</option>
+                                                                        <option value="17">HSK Secondary level b(score
+                                                                            level:8)</option>
+                                                                        <option value="18">HSK Secondary level a(score
+                                                                            level:9)</option>
+                                                                        <option value="19">HSK Senior level a(score
+                                                                            level:10)</option>
+                                                                        <option value="20">HSK Senior level a(score
+                                                                            level:11)</option>
+                                                                        <option value="21">HSK Senior level a(score
+                                                                            level:12)</option>
                                                                     </select>
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group mt-2">
-                                                                <input type="text" class="form-control" id="HSK_score" name="HSK_score" placeholder="Enter your score">
+                                                                <input type="text" class="form-control"
+                                                                    id="HSK_score" name="HSK_score"
+                                                                    placeholder="Enter your score">
                                                             </div>
 
                                                             <div class="form-group mt-2">
                                                                 <label for="english_score">Level of HSKK:</label>
                                                                 <div class="form-group mt-2">
-                                                                    <select class="custom-select d-block w-100" id="Level_of_HSKK" name="HSKK_level" required>
-                                                                        <option value="" selected="">Select level</option>
+                                                                    <select class="custom-select d-block w-100"
+                                                                        id="Level_of_HSKK" name="HSKK_level" required>
+                                                                        <option value="" selected="">Select
+                                                                            level</option>
                                                                         <option value="1">ELEMENTARY</option>
                                                                         <option value="2">INTERMEDIATE</option>
                                                                         <option value="3">ADVANCED</option>
                                                                     </select>
-                                                        
+
                                                                 </div>
                                                             </div>
 
                                                             <div class="form-group mt-2">
-                                                                <input type="text" class="form-control" id="HSKK_score" name="HSKK_score" placeholder="Enter your score">
+                                                                <input type="text" class="form-control"
+                                                                    id="HSKK_score" name="HSKK_score"
+                                                                    placeholder="Enter your score">
                                                             </div>
 
                                                             <div class="form-group mt-2">
                                                                 <label for="ReportNo">HSK Test Score Report No:</label>
-                                                                <input type="text" class="form-control" name="report_no" placeholder="Enter your No">
+                                                                <input type="text" class="form-control"
+                                                                    name="report_no" placeholder="Enter your No">
                                                             </div>
 
                                                         </div>
@@ -2164,7 +2197,8 @@
                                                                         name="phone" data-name="phone"
                                                                         required=""
                                                                         placeholder="Receiver's Phone Number"
-                                                                        class="form-control form-control-lg pt-0 phone-input" maxlength=""
+                                                                        class="form-control form-control-lg pt-0 phone-input"
+                                                                        maxlength=""
                                                                         value="{{ $application->current_contact_phone }}">
                                                                     <label for="phone"
                                                                         class="form-control-placeholder">
@@ -2199,6 +2233,7 @@
                                                     </div>
 
                                                 </div>
+
                                                 <div class="items" data-index="0" data-group="education_fields">
                                                     <!-- Repeater Item Content -->
                                                     <div class="item-content">
@@ -2209,6 +2244,7 @@
                                                                 <input type="hidden"
                                                                     name="education-fields[0][undefined]" value=""
                                                                     id="education-fields_0_undefined">
+
                                                                 <div class="col-12 col-sm-6">
                                                                     <div class=" form-label-group mt-2"
                                                                         style="margin-left:5px;">
@@ -2230,6 +2266,7 @@
 
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-12 col-sm-6">
                                                                     <div class=" form-label-group mt-2"
                                                                         style="margin-left:5px;">
@@ -2246,6 +2283,7 @@
 
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-12 col-sm-6">
                                                                     <div class=" form-label-group mt-2"
                                                                         style="margin-left:5px;">
@@ -2268,6 +2306,7 @@
 
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-12 col-sm-6">
                                                                     <div class=" form-label-group mt-2"
                                                                         style="margin-left:5px;">
@@ -2285,6 +2324,7 @@
 
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-12 col-sm-6">
                                                                     <div class="form-label-group mt-2"
                                                                         style="margin-left:5px;">
@@ -2298,27 +2338,19 @@
                                                                         <label for="education-fields_0_gpa">GPA</label>
                                                                     </div>
                                                                 </div>
+
                                                                 <div class="col-12 col-sm-6">
                                                                     <div class=" form-label-group mt-2"
                                                                         style="margin-left:5px;">
 
-                                                                        {{-- <input type="text"
-                                                                            id="education-fields_0_country"
-                                                                            name="education-fields[0][country]"
-                                                                            data-name="country" required=""
-                                                                            placeholder="Country Name"
-                                                                            class="form-control" maxlength=""
-                                                                            value=""> --}}
+                                                                       
                                                                         <select data-name="country"
                                                                             name="education-fields[0][country]"
                                                                             class="form-control"
                                                                             id="education-fields_0_country">
                                                                             <option value="Select country">Select Country
                                                                             </option>
-                                                                            {{-- @foreach ($countries as $country)
-                                                                                <option value="{{ $country->name }}">
-                                                                                    {{ $country->name }}</option>
-                                                                            @endforeach --}}
+                                                                           
                                                                             <option value="1"> Afghanistan </option>
                                                                             <option value="2">Aland Islands </option>
                                                                             <option value="3">
@@ -2830,6 +2862,7 @@
 
                                                                     </div>
                                                                 </div>
+
                                                             </form>
                                                         </div>
                                                     </div>
@@ -3117,6 +3150,7 @@
                                                         <form action=""
                                                             class=" form-row   workexperience_form_fields-before">
                                                             <input type="hidden" name="id">
+
                                                             <div class="col-12 col-sm-6">
                                                                 <div class=" form-label-group mt-2">
 
@@ -3173,6 +3207,7 @@
 
                                                                 </div>
                                                             </div>
+                                                            
                                                             <div class="pull-right repeater-remove-btn mt-2">
                                                                 <button type="button"
                                                                     class="btn btn-secondary remove-btn"
@@ -3394,73 +3429,77 @@
     {{-- </main> --}}
 
 
-    
-        <!-- Modal -->
-        <div id="termsModal" class="modal modal-terms">
-            <div class="modal-content modal-content-terms">
-                <p>{!! $terms->description !!}</p>
-                {{-- <div class="checkbox-container">
+
+    <!-- Modal -->
+    <div id="termsModal" class="modal modal-terms">
+        <div class="modal-content modal-content-terms">
+            <p>{!! $terms->description !!}</p>
+            {{-- <div class="checkbox-container">
                     <input type="checkbox" id="agreeCheckbox" onchange="toggleNextButton()">
                     <label for="agreeCheckbox">I agree to the Terms and Conditions</label>
                 </div> --}}
-                <div class="modal-footer modal-footer-terms">
-                    <button type="button" onclick="closeModal()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
-                    {{-- <button type="button" id="agreeButton" onclick="confirmAgreement()" disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
-                </div>
+            <div class="modal-footer modal-footer-terms">
+                <button type="button" onclick="closeModal()"
+                    style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                {{-- <button type="button" id="agreeButton" onclick="confirmAgreement()" disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
             </div>
         </div>
+    </div>
 
-        <!-- Modal Privacy -->
-        <div id="privacyModal" class="modal modal-terms">
-            <div class="modal-content modal-content-terms">
-                <p>{!! $privacy->description !!}</p>
-                {{-- <div class="checkbox-container">
+    <!-- Modal Privacy -->
+    <div id="privacyModal" class="modal modal-terms">
+        <div class="modal-content modal-content-terms">
+            <p>{!! $privacy->description !!}</p>
+            {{-- <div class="checkbox-container">
                     <input type="checkbox" id="agreeCheckboxPrivacy" onchange="toggleNextButtonPrivacy()">
                     <label for="agreeCheckboxPrivacy">I agree to the Terms and Conditions</label>
                 </div> --}}
-                <div class="modal-footer modal-footer-terms">
-                    <button type="button" onclick="closeModalPrivacy()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
-                    {{-- <button type="button" id="agreeButtonPrivacy" onclick="confirmAgreementPrivacy()"
+            <div class="modal-footer modal-footer-terms">
+                <button type="button" onclick="closeModalPrivacy()"
+                    style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                {{-- <button type="button" id="agreeButtonPrivacy" onclick="confirmAgreementPrivacy()"
                         disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
-                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Payment -->
-        <div id="paymentModal" class="modal modal-terms">
-            <div class="modal-content modal-content-terms">
-                <p>{!! $payment->description !!}</p>
+    <!-- Modal Payment -->
+    <div id="paymentModal" class="modal modal-terms">
+        <div class="modal-content modal-content-terms">
+            <p>{!! $payment->description !!}</p>
 
-                {{-- <div class="checkbox-container">
+            {{-- <div class="checkbox-container">
                     <input type="checkbox" id="agreeCheckboxPayment" onchange="toggleNextButtonPayment()">
                     <label for="agreeCheckboxPayment">I agree to the Terms and Conditions</label>
                 </div> --}}
 
-                <div class="modal-footer modal-footer-terms">
-                    <button type="button" onclick="closeModalPayment()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
-                    {{-- <button type="button" id="agreeButtonPayment" onclick="confirmAgreementPayment()"
+            <div class="modal-footer modal-footer-terms">
+                <button type="button" onclick="closeModalPayment()"
+                    style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                {{-- <button type="button" id="agreeButtonPayment" onclick="confirmAgreementPayment()"
                         disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
-                </div>
             </div>
         </div>
+    </div>
 
-        <!-- Modal Refund -->
-        <div id="refundModal" class="modal modal-terms">
-            <div class="modal-content modal-content-terms">
-                <p>{!! $refund->description !!}</p>
+    <!-- Modal Refund -->
+    <div id="refundModal" class="modal modal-terms">
+        <div class="modal-content modal-content-terms">
+            <p>{!! $refund->description !!}</p>
 
-                {{-- <div class="checkbox-container">
+            {{-- <div class="checkbox-container">
                     <input type="checkbox" id="agreeCheckboxRefund" onchange="toggleNextButtonRefund()">
                     <label for="agreeCheckboxRefund">I agree to the Terms and Conditions</label>
                 </div> --}}
 
-                <div class="modal-footer modal-footer-terms">
-                    <button type="button" onclick="closeModalRefund()" style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
-                    {{-- <button type="button" id="agreeButtonRefund" onclick="confirmAgreementRefund()"
+            <div class="modal-footer modal-footer-terms">
+                <button type="button" onclick="closeModalRefund()"
+                    style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button>
+                {{-- <button type="button" id="agreeButtonRefund" onclick="confirmAgreementRefund()"
                         disabled style="background-color: var(--primary_background); color:white;padding: 5px 10px; border:none; border-radius: 4px;">Agree</button> --}}
-                </div>
             </div>
         </div>
+    </div>
 
     <!-- Modal -->
     @include('Frontend.university.apply-parts.upload-modals')
@@ -3850,11 +3889,11 @@
         });
 
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const dropdown = document.getElementById('english_certificate');
             const extraFields = document.getElementById('extra-fields');
 
-            dropdown.addEventListener('change', function () {
+            dropdown.addEventListener('change', function() {
                 if (this.value) {
                     extraFields.style.display = 'block';
                 } else {
@@ -3863,11 +3902,11 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const dropdown = document.getElementById('chinese_level');
             const extraFields = document.getElementById('extra-fields-chinese');
 
-            dropdown.addEventListener('change', function () {
+            dropdown.addEventListener('change', function() {
                 if (this.value) {
                     extraFields.style.display = 'block';
                 } else {
@@ -3875,6 +3914,6 @@
                 }
             });
         });
-
     </script>
+
 @endsection

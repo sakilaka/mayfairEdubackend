@@ -1,11 +1,15 @@
+@php
+     $header_logo = \App\Models\Tp_option::where('option_name', 'theme_logo')->first();
+@endphp
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="{{ route('home') }}">
-            <img src="{{ asset('backend/assets/images/logo.svg') }}" alt="logo">
+        <a class="navbar-brand brand-logo" href="{{ url('http://localhost:5173/') }}">
+            <img src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
+            alt="Logo-{{ @$theme_header->company_name }}">
         </a>
-        <a class="navbar-brand brand-logo-mini" href="{{ route('home') }}">
+        {{-- <a class="navbar-brand brand-logo-mini" href="{{ route('home') }}">
             <img src="{{ asset('backend/assets/images/logo-mini.svg') }}" alt="logo">
-        </a>
+        </a> --}}
     </div>
     <div class="navbar-menu-wrapper d-flex justify-content-between align-items-stretch">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">

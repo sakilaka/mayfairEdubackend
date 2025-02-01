@@ -18,6 +18,8 @@ use App\Models\Notification;
 use App\Models\Section;
 use App\Models\StudentApplicationTableModify;
 use App\Models\University;
+use App\Models\UniversityApplication;
+use App\Models\UniversityDocument;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,6 +30,12 @@ use ZipArchive;
 
 class StudentApplictionController extends Controller
 {
+    public function indexList(Request $request)
+    {
+        $data['applications'] = UniversityApplication::orderBy('id', 'desc')->get();  
+        return view('Backend.open_application.index', $data);
+    }
+    
     public function index(Request $request)
     {
         $page_route = Route::currentRouteName();
@@ -864,6 +872,25 @@ class StudentApplictionController extends Controller
         $data['s_appliction'] = StudentApplication::find($id);
         return view('Backend.student_appliction.application_details', $data);
     }
+    
+    public function openDetails($id)
+    {
+        $data['o_application'] = UniversityApplication::with([
+            'educations',
+            'familyMembers',
+            'work_experiences',
+            'documents',
+        ])->find($id);
+
+        // dd($data['o_application']);
+    
+        if (!$data['o_application']) {
+            return redirect()->back()->with('error', 'Application not found');
+        }
+    
+        return view('Backend.open_application.application_details', $data);
+    }
+    
 
     public function applicationInvoice($id)
     {
@@ -908,6 +935,23 @@ class StudentApplictionController extends Controller
         }
 
         $filePath = public_path("upload/application/{$file->application_id}/{$file->document_file}");
+
+        if (!file_exists($filePath)) {
+            abort(404, 'File not found');
+        }
+
+        return response()->download($filePath);
+    }
+    
+    public function openApplicationFileDownload($id)
+    {
+        $file = UniversityDocument::find($id);
+
+        if (!$file) {
+            abort(404, 'File not found');
+        }
+
+        $filePath = public_path("upload/application/{$file->document_file}");
 
         if (!file_exists($filePath)) {
             abort(404, 'File not found');
@@ -1002,6 +1046,43 @@ class StudentApplictionController extends Controller
 
         $mpdf->writeHTML($html);
         $name = 'Student_Application_Form_ ' . date('Y-m-d i:h:s');
+        $mpdf->Output($name . '.pdf', 'D');
+    }
+    
+    public function openApplicationFormDownload($id)
+    {
+        $data['o_application'] = UniversityApplication::with([
+            'educations',
+            'familyMembers',
+            'work_experiences',
+            'documents',
+        ])->find($id);
+        
+        $html = view('Backend.open_application.download_application', $data);
+
+        $mpdf = new Mpdf([
+            'mode' => 'UTF-8',
+            'margin_left' => 5,
+            'margin_right' => 5,
+            'margin_top' => 5,
+            'margin_bottom' => 0,
+            'margin_header' => 0,
+            'margin_footer' => 0,
+        ]);
+
+        //For Multilanguage Start
+        $mpdf->autoScriptToLang = true;
+        $mpdf->baseScript = 1;
+        $mpdf->autoLangToFont = true;
+        $mpdf->autoVietnamese = true;
+        $mpdf->autoArabic = true;
+
+        //For Multilanguage End
+        $mpdf->setAutoTopMargin = 'stretch';
+        $mpdf->setAutoBottomMargin = 'stretch';
+
+        $mpdf->writeHTML($html);
+        $name = 'Open_Application_Form_ ' . date('Y-m-d i:h:s');
         $mpdf->Output($name . '.pdf', 'D');
     }
 

@@ -17,10 +17,23 @@ use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\EventCartController;
 use App\Http\Controllers\Frontend\CourseUserSubscriptionsController;
 use App\Http\Controllers\Frontend\EbookCartController;
+use App\Http\Controllers\Frontend\InstructorCourseController;
 use App\Http\Controllers\Frontend\StudentApplicationController;
+use App\Http\Controllers\User\ebook\EbookController;
+use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\ebook\EbookAudioController;
+use App\Http\Controllers\User\ebook\EbookVideoController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
+
+Route::fallback(function () {
+    return redirect('http://localhost:5173/');
+});
+Route::get('/', function () {
+    return redirect('http://localhost:5173/');
+});
 
 Route::get('/clear-cache', function () {
     Artisan::call('cache:clear');
@@ -45,7 +58,7 @@ Route::middleware(['accessLogin'])->group(function () {
 
     Route::get('change-currency/{name}', [FrontendController::class, 'changeCurrency'])->name('frontend.change_currency');
     //Home Route
-    Route::get('/', [FrontendController::class, 'index'])->name('home');
+    // Route::get('/', [FrontendController::class, 'index'])->name('home');
     Route::get('/typeahead-search', [FrontendController::class, 'typeaHeadSearch'])->name('home.head_search');
 
     Route::group(['middleware' => 'redirectIfAuthenticated'], function () {
@@ -262,7 +275,7 @@ Route::middleware(['accessLogin'])->group(function () {
 
     //university  Course list
     Route::get('admission-apply', [FrontendController::class, 'admissionApply'])->name('frontend.university_admission_apply');
-    Route::get('course_list', [FrontendController::class, 'universityCourseList'])->name('frontend.university_course_list');
+    // Route::get('course_list', [FrontendController::class, 'universityCourseList'])->name('frontend.university_course_list');
     Route::get('single_course/{id}', [FrontendController::class, 'singleCourse'])->name('frontend.single_course');
     Route::get('/get-sort-course-list/{cat}', [FrontendController::class, "getAjaxCourseList"]);
     Route::get('ajax-course-filter', [FrontendController::class, "ajaxFilterCourse"])->name('frontend.ajax_course_filter');
@@ -271,11 +284,17 @@ Route::middleware(['accessLogin'])->group(function () {
 Route::get('apply-now', [FrontendController::class, 'applyNow'])->name('frontend.apply_now');
 
 //get ajax get-sort-category-course
-Route::get('/apply-cart/{id}/', [StudentApplicationController::class, "applyCart"])->name('apply_cart');
-Route::get('/apply-admission/{id}/', [StudentApplicationController::class, "applyAdmission"])->name('apply_admission');
+
+Route::get('/apply-cart/{id}/', [StudentApplicationController::class, "applyCart"])->name('apply_cart')->middleware('userCheck');
+
+Route::get('/apply-admission/{id}/', [StudentApplicationController::class, "applyAdmission"])->name('apply_admission')->middleware('userCheck');
+
 
 Route::get('/application/detail/{id}', [StudentApplicationController::class, "applicationDetails"])->name('application.details');
 Route::post('/application/program/delete', [StudentApplicationController::class, "applyCartDelete"])->name('application.program.delete');
+
+// university application 
+Route::post('application/personalUni', [StudentApplicationController::class, 'applicationPersonalInfoUni'])->name('application.personalUni');
 
 
 Route::post('application/personal/{id}', [StudentApplicationController::class, 'applicationPersonalInfo'])->name('application.personal');
@@ -332,3 +351,8 @@ Route::get('/validate-email', function (Request $request) {
 Route::get('/sitemap.xml', function () {
     return response()->file(public_path('sitemap.xml'));
 });
+
+
+Route::get('/apply-admission-university', [StudentApplicationController::class, "applyAdmissionUniversity"])->name('apply_admission_university');
+
+Route::get('/success', [StudentApplicationController::class, "successApplication"])->name('success.application');

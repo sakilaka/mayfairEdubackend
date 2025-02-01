@@ -32,28 +32,24 @@ class DegreeController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
         $request->validate([
-
             'name' => 'required',
-            // 'link' => 'required',
-            // 'image' => 'required',
+            'degree' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+    
         $degree = new Degree();
-        // $degree->department_id = $request->department_id;
         $degree->name = $request->name;
-        // $degree->link = "https://" . preg_replace('#^https?://#', '',$request->link);
-
-        // if($request->hasFile('image')){
-        //     $fileName = rand().time().'.'.request()->image->getClientOriginalExtension();
-        //     request()->image->move(public_path('upload/degree/'),$fileName);
-        //     $degree->image = $fileName;
-        // }
-
+    
+        if ($request->hasFile('degree')) {
+            $fileName = rand().time().'.'.$request->degree->getClientOriginalExtension();
+            $request->degree->move(public_path('upload/degree/'), $fileName);
+            $degree->image = $fileName;
+        }
+    
         $degree->save();
         return redirect()->route('admin.degree.index')->with('success', 'Degree Added Successfully');
     }
+    
 
     /**
      * Display the specified resource.
@@ -76,29 +72,32 @@ class DegreeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required',
-            // 'link' => 'required',
+            'degree' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
-        $degree = Degree::find($id);
+    
+        $degree = Degree::findOrFail($id);
         $degree->name = $request->name;
-        // $degree->department_id = $request->department_id;
-        $degree->status = 1;
-        // $degree->link = "https://" . preg_replace('#^https?://#', '',$request->link);
-
-        // if($request->hasFile('image')){
-        //     @unlink(public_path("upload/degree/".$degree->image));
-        //     $fileName = rand().time().'.'.request()->image->getClientOriginalExtension();
-        //     request()->image->move(public_path('upload/degree/'),$fileName);
-        //     $degree->image = $fileName;
-        // }
-
+    
+        if ($request->hasFile('degree')) {
+            // Delete old image if exists
+            if ($degree->image && file_exists(public_path('upload/degree/' . $degree->image))) {
+                unlink(public_path('upload/degree/' . $degree->image));
+            }
+    
+            // Store new image
+            $fileName = rand().time().'.'.$request->degree->getClientOriginalExtension();
+            $request->degree->move(public_path('upload/degree/'), $fileName);
+            $degree->image = $fileName;
+        }
+    
         $degree->save();
         return redirect()->route('admin.degree.index')->with('success', 'Degree Updated Successfully');
     }
+    
 
     /**
      * Remove the specified resource from storage.

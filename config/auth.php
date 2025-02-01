@@ -52,6 +52,10 @@ return [
             'driver' => 'session',
             'provider' => 'expo_site_users',
         ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
     ],
 
     /*

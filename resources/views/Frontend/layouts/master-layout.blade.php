@@ -28,6 +28,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
 
     @php
         $titles = '';
@@ -439,16 +440,7 @@
         }
     </style>
 
-    {{-- <button id="btn-toggle">
-        <i class="fa fa-arrow-left"></i>
-    </button> --}}
 
-    <div class="fixed-buttons" id="fixed-buttons">
-        <a href="{{ route('frontend.university_course_list') }}" class="btn btn-tertiary-bg"
-            id="btn-apply-now-fixed">Apply Now</a>
-        <a href="{{ route('frontend.get_consultation') }}" class="btn btn-primary-bg"
-            id="btn-consultation-fixed">Get A Free <br> Consultation</a>
-    </div>
     <script>
         document.getElementById('btn-toggle').addEventListener('click', function() {
             const fixedButtons = document.getElementById('fixed-buttons');
@@ -466,16 +458,16 @@
 
 
     <!--Start Back to top button -->
-    <button type="button" class="btn btn-top d-flex justify-content-center align-items-center" id="btn-back-to-top">
+    {{-- <button type="button" class="btn btn-top d-flex justify-content-center align-items-center" id="btn-back-to-top">
         <i class="fas fa-arrow-up"></i>
-    </button>
+    </button> --}}
     <!--End Back to top button -->
 
-    @include('Frontend.layouts.parts.navbar')
+    {{-- @include('Frontend.layouts.parts.navbar') --}}
 
     @yield('main_content')
 
-    @include('Frontend.layouts.parts.footer')
+    {{-- @include('Frontend.layouts.parts.footer') --}}
 
     <script src="{{ asset('frontend/application/modules/frontend/views/themes/default/assets/js/slick-slider.min.js') }}">
     </script>
@@ -628,7 +620,7 @@
     <script src="{{ asset('frontend/navbar/navbar-custom.js') }}"></script>
 
     <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
             Tawk_LoadStart = new Date();
         (function() {
@@ -640,7 +632,7 @@
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
-    </script>
+    </script> --}}
     <!--End of Tawk.to Script-->
 
     @yield('script')

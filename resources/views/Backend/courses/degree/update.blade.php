@@ -64,6 +64,21 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="degree_name" class="col-form-label">Degree Image
+                                                    <span class="text-danger">*</span>
+                                                </label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <input id="degree_name" type="file"
+                                                    name="degree" class="form-control" required>
+                                                <img src="{{ asset('upload/degree/' . $degree->image) }}" alt="Degree Image">
+                                            </div>
+                                        </div>
+
+
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Update</button>
                                         </div>

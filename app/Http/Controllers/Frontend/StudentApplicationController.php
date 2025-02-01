@@ -9,9 +9,15 @@ use App\Models\ApplicationWork;
 use App\Models\Country;
 use App\Models\Course;
 use App\Models\FamilyMember;
+use App\Models\FamilyMemberUni;
 use App\Models\Notification;
 use App\Models\Page;
 use App\Models\StudentApplication;
+use App\Models\University;
+use App\Models\UniversityApplication;
+use App\Models\UniversityDocument;
+use App\Models\UniversityEducation;
+use App\Models\UniversityWork;
 use App\Models\User;
 use File;
 use Illuminate\Http\Request;
@@ -22,10 +28,18 @@ use Illuminate\Support\Facades\Log;
 
 class StudentApplicationController extends Controller
 {
+
+    
     public function applications()
     {
         $applications = StudentApplication::where('user_id', auth()->user()->id)->has('carts')->get();
         return view('Frontend.university.applications');
+    }
+    
+    public function successApplication()
+    {
+        // $applications = StudentApplication::where('user_id', auth()->user()->id)->has('carts')->get();
+        return view('Frontend.success');
     }
 
     public function generateRandomString($length = 10)
@@ -219,50 +233,98 @@ class StudentApplicationController extends Controller
         return redirect()->route('apply_admission', $params);
     }
 
-    public function applyAdmission($id)
+    public function applyAdmission($id) 
     {
         $data['countries']   = Country::all();
         $data['application'] = StudentApplication::find($id);
-
-        if ($data['application'] == null) {
-            return redirect()->route('frontend.university_course_list');
+    
+        // If application is null, redirect or handle gracefully
+        if (!$data['application']) {
+            return redirect('http://localhost:5173/course?message=Application%20not%20found');
         }
-
-        $programs = json_decode($data['application']->programs, true) ?? [];
-
+        
+    
+        // Use optional chaining and null coalescing to avoid errors
+        $programs = json_decode($data['application']?->programs ?? '[]', true) ?? [];
+    
         // Fetch all programs related to the application
         $data['programs'] = Course::whereIn('id', $programs)->get();
-
+    
         $data['is_contain_masters_or_phd'] = false;
         foreach ($data['programs'] as $program) {
-            if (in_array($program->degree?->name, ['Masters', 'PhD'])) {
+            if (in_array($program->degree?->name ?? '', ['Masters', 'PhD'])) {
                 $data['is_contain_masters_or_phd'] = true;
             }
         }
-
+    
         $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
         $data['refund']  = Page::where('title', 'Refund Policy')->first();
         $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
         $data['payment'] = Page::where('title', 'Payment Process')->first();
+    
+        // Handle cases where the user might not be authenticated
+        $data['user'] = User::find(auth()->id() ?? 1);
+    
+        // Determine the total service charge based on the user's star level
+        $userStarLevel      = $data['user']?->star ?? null;
+        $totalServiceCharge = 0;
+    
+        foreach ($data['programs'] as $program) {
+            $serviceChargeField = 'service_charge_' . ($userStarLevel ?? 'beginner');
+            $totalServiceCharge += $program->$serviceChargeField ?? 0;
+        }
+    
+        $data['service_charge'] = $totalServiceCharge;
+    
+        return view('Frontend.university.apply', $data);
+    }
+    
 
-        $data['user'] = User::find(auth()->user()->id ?? 1);
+    public function applyAdmissionUniversity()
+    {
+        $data['countries'] = Country::all();
+        // $data['application'] = StudentApplication::find($id);
+
+        // if ($data['application'] == null) {
+        //     return redirect()->route('frontend.university_course_list');
+        // }
+
+        // $programs = json_decode($data['application']->programs, true) ?? [];
+
+        // Fetch all programs related to the application
+
+        // $data['programs'] = Course::whereIn('id', $programs)->get();
+
+        // $data['is_contain_masters_or_phd'] = false;
+        // foreach ($data['programs'] as $program) {
+        //     if (in_array($program->degree?->name, ['Masters', 'PhD'])) {
+        //         $data['is_contain_masters_or_phd'] = true;
+        //     }
+        // }
+
+        // $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
+        // $data['refund']  = Page::where('title', 'Refund Policy')->first();
+        // $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
+        // $data['payment'] = Page::where('title', 'Payment Process')->first();
+
+        // $data['user'] = User::find(auth()->user()->id ?? 1);
 
         // Determine the total service charge based on the user's star level
-        $userStarLevel      = $data['user']->star;
-        $totalServiceCharge = 0;
+        // $userStarLevel      = $data['user']->star;
+        // $totalServiceCharge = 0;
 
-        foreach ($data['programs'] as $program) {
-            if ($userStarLevel === null) {
-                $totalServiceCharge += $program->service_charge_beginner;
-            } else {
-                $serviceChargeField = 'service_charge_' . $userStarLevel;
-                $totalServiceCharge += $program->$serviceChargeField;
-            }
-        }
+        // foreach ($data['programs'] as $program) {
+        //     if ($userStarLevel === null) {
+        //         $totalServiceCharge += $program->service_charge_beginner;
+        //     } else {
+        //         $serviceChargeField = 'service_charge_' . $userStarLevel;
+        //         $totalServiceCharge += $program->$serviceChargeField;
+        //     }
+        // }
 
-        $data['service_charge'] = $totalServiceCharge;
+        // $data['service_charge'] = $totalServiceCharge;
 
-        return view('Frontend.university.apply', $data);
+        return view('Frontend.university.applyUniversity', $data);
     }
 
     public function applyCartDelete(Request $request)
@@ -328,26 +390,198 @@ class StudentApplicationController extends Controller
         }
     }
 
+    public function applicationPersonalInfoUni(Request $request)
+    {
+        // dd($request->all());
+        $application = new UniversityApplication();
+
+        $application->university      = implode(', ', $request->university);
+        $application->email           = $request->email;
+        $application->phone           = $request->phone;
+        $application->contact_id      = $request->contact_id;
+        $application->first_name      = $request->first_name;
+        $application->middle_name     = $request->middle_name;
+        $application->last_name       = $request->last_name;
+        $application->last_name       = $request->last_name;
+        $application->chinese_name    = $request->chinese_name;
+        $application->dob             = $request->date_of_birth;
+        $application->gender          = $request->gender;
+        $application->hobby           = $request->hobbies_interests;
+        $application->in_chaina       = $request->is_in_china == false ? 0 : 1;
+        $application->in_alcoholic    = $request->addict_to_alcohol_drugs == false ? 0 : 1;
+        $application->native_language = $request->language_native;
+        $application->english_level   = $request->language_proficiency_english;
+
+        $application->english_proficiency_certificate = $request->certificate_english_proficiency;
+        $application->certificate_issue_date          = $request->certificate_issue_date;
+        $application->english_score                   = $request->english_score;
+
+        $application->chinese_level = $request->language_proficiency_chinese;
+        $application->HSK_level     = $request->HSK_level;
+        $application->HSK_score     = $request->HSK_score;
+        $application->HSK_report_no = $request->report_no;
+        $application->HSKK_score    = $request->HSKK_level;
+        $application->HSKK_score    = $request->HSKK_score;
+
+        $application->maritial_status      = $request->marital_status;
+        $application->nationality          = $request->applicants_nationality;
+        $application->passport_exipre_date = $request->passport_expiration_date;
+        $application->passport_number      = $request->passport_no;
+        $application->birth_place          = $request->place_of_birth;
+        $application->religion             = $request->religion;
+
+        // Home address 
+        $application->home_country       = $request->country;
+        $application->home_city          = $request->city;
+        $application->home_district      = $request->district;
+        $application->home_contact_name  = $request->contact;
+        $application->home_contact_phone = $request->phone;
+        $application->home_street        = $request->street;
+        $application->home_zipcode       = $request->zipcode;
+
+        // post address 
+        $application->current_country       = $request->country;
+        $application->current_city          = $request->city;
+        $application->current_district      = $request->district;
+        $application->current_contact_name  = $request->contact;
+        $application->current_contact_phone = $request->phone;
+        $application->current_street        = $request->street;
+        $application->current_zipcode       = $request->zipcode;
+
+
+        $application->guarantor_name            = $request->supporter_name;
+        $application->guarantor_email           = $request->supporter_email;
+        $application->guarantor_phone           = $request->supporter_phone;
+        $application->guarantor_address         = $request->supporter_address;
+        $application->guarantor_workplace       = $request->supporter_company;
+        $application->guarantor_work_address    = $request->supporter_company_address;
+        $application->guarantor_relationship    = $request->supporter_relationship;
+        $application->guarantor_inter_relation  = $request->inlineRadioOptions;
+        $application->study_fund                = $request->fund;
+        $application->scholarship               = $request->scholarship;
+        $application->emergency_contact_name    = $request->emergency_contact_name;
+        $application->emergency_contact_phone   = $request->emergency_contact_phone;
+        $application->emergency_contact_email   = $request->emergency_contact_email;
+        $application->emergency_contact_address = $request->emergency_contact_address;
+
+        $application->save();
+
+
+        $educationData = $request->input('education'); 
+
+        foreach ($educationData as $field) {
+            $studentEducation = new UniversityEducation;
+            $studentEducation->application_id = $application->id;
+            $studentEducation->country = $field['country'] ?? null;
+            $studentEducation->gpa_type = $field['gpa'] ?? null;
+            $studentEducation->major = $field['major'] ?? null;
+            $studentEducation->end_date = $field['month_finished'] ?? null;
+            $studentEducation->start_date = $field['month_started'] ?? null;
+            $studentEducation->school = $field['school'] ?? null;
+            $studentEducation->save();
+        }
+    
+
+        // $workExperienceData = $request->input('work'); 
+
+        // foreach ($workExperienceData as $field) {
+        //     $workExperience = new UniversityWork;
+        //     $workExperience->application_id = $application->id;
+        //     $workExperience->company = $field['employer'] ?? null;
+        //     $workExperience->job_title = $field['job_title'] ?? null;
+        //     $workExperience->start_date = $field['month_started'] ?? null;
+        //     $workExperience->end_date = $field['month_finished'] ?? null;
+        //     $workExperience->save();
+        // }
+
+        foreach ($request->family_member_name as $index => $name) {
+            FamilyMemberUni::create([
+                'open_application_id'    => $application->id,
+                'name'                   => $name,
+                'email'                  => $request->family_member_email[$index] ?? null,
+                'phone'                  => $request->family_member_phone[$index] ?? null,
+                'nationality'            => $request->family_member_nationality[$index] ?? null,
+                'workplace'              => $request->family_member_work_employer[$index] ?? null,
+                'position'               => $request->family_member_work_position[$index] ?? null,
+                'relationship'           => $request->family_member_work_relationship[$index] ?? null,
+            ]);
+        }
+
+        if ($request->hasFile('documents')) {
+            Log::info('Files received for upload: ', $request->file('documents'));
+        
+            foreach ($request->file('documents') as $index => $file) {
+                // Log details for each file being processed
+                Log::info("Processing file at index {$index}", [
+                    'file_name' => $file->getClientOriginalName(),
+                    'file_size' => $file->getSize(),
+                    'file_extension' => $file->getClientOriginalExtension(),
+                ]);
+                
+                if ($file->isValid()) {
+                    // Log success information before saving the file
+                    $filename = time() . '_' . $file->getClientOriginalName();
+                    Log::info("Saving file: {$filename} to upload/application directory");
+        
+                    $file->move(public_path('upload/application'), $filename);
+                
+                    $title = $request->input("titles.$index", 'Unknown Document');
+                    
+                    Log::info("Saving document details to the database: ", [
+                        'document_name' => $title,
+                        'document_type' => 'fixed',
+                        'document_file' => $filename,
+                        'extension' => $file->getClientOriginalExtension(),
+                    ]);
+                    
+                    UniversityDocument::create([
+                        'application_id' => $application->id,
+                        'document_name'  => $title,
+                        'document_type'  => 'fixed',
+                        'document_file'  => $filename,
+                        'extensions'     => $file->getClientOriginalExtension(),
+                    ]);
+                } else {
+                    Log::error("File upload failed for index {$index}, file is not valid", [
+                        'file_name' => $file->getClientOriginalName(),
+                        'file_size' => $file->getSize(),
+                        'file_extension' => $file->getClientOriginalExtension(),
+                    ]);
+                }
+            }
+        } else {
+            Log::warning('No files found in the request');
+        }
+        
+
+        
+
+        $data['code'] = 0;
+        $data['msg']  = "Personal information Update Successfully";
+        // return response()->json($data);
+        return redirect()->route('success.application')->with('success','Application Submitted Successfully');
+    }
+
     public function applicationPersonalInfo(Request $request, $id)
     {
         $application = StudentApplication::find($id);
         if ($application) {
-            $application->email                           = $request->email;
-            $application->phone                           = $request->phone;
-            $application->contact_id                      = $request->contact_id;
-            $application->first_name                      = $request->first_name;
-            $application->middle_name                     = $request->middle_name;
-            $application->last_name                       = $request->last_name;
-            $application->last_name                       = $request->last_name;
-            $application->chinese_name                    = $request->chinese_name;
-            $application->dob                             = $request->date_of_birth;
-            $application->gender                          = $request->gender;
-            $application->hobby                           = $request->hobbies_interests;
-            $application->in_chaina                       = $request->is_in_china == false ? 0 : 1;
-            $application->in_alcoholic                    = $request->addict_to_alcohol_drugs == false ? 0 : 1;
-            $application->native_language                 = $request->language_native;
-            $application->english_level                   = $request->language_proficiency_english;
-            
+            $application->email           = $request->email;
+            $application->phone           = $request->phone;
+            $application->contact_id      = $request->contact_id;
+            $application->first_name      = $request->first_name;
+            $application->middle_name     = $request->middle_name;
+            $application->last_name       = $request->last_name;
+            $application->last_name       = $request->last_name;
+            $application->chinese_name    = $request->chinese_name;
+            $application->dob             = $request->date_of_birth;
+            $application->gender          = $request->gender;
+            $application->hobby           = $request->hobbies_interests;
+            $application->in_chaina       = $request->is_in_china == false ? 0 : 1;
+            $application->in_alcoholic    = $request->addict_to_alcohol_drugs == false ? 0 : 1;
+            $application->native_language = $request->language_native;
+            $application->english_level   = $request->language_proficiency_english;
+
             $application->english_proficiency_certificate = $request->certificate_english_proficiency;
             $application->certificate_issue_date          = $request->certificate_issue_date;
             $application->english_score                   = $request->english_score;

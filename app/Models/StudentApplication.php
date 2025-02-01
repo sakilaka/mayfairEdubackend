@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class StudentApplication extends Model
 {
     use HasFactory;
+    
     protected $dates = ['created_at'];
 
     function carts()

@@ -43,16 +43,24 @@
                         <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
 
                             <!-- <a class="btn btn-outline-dark-cerulean btn-lg w-100 mb-3" href="#"><i class="fab fa-google me-1"></i>Sign in with Google</a>
-                            <a class="btn btn-outline-dark-cerulean btn-lg w-100 mb-3" href="#"><i class="fab fa-facebook me-1"></i>Sign in with Facebook</a>
-                            <div class="d-flex align-items-center py-2 mb-2">
-                                <hr class="w-100">
-                                <div class="px-3">Or</div>
-                                <hr class="w-100">
-                            </div> -->
+                                <a class="btn btn-outline-dark-cerulean btn-lg w-100 mb-3" href="#"><i class="fab fa-facebook me-1"></i>Sign in with Facebook</a>
+                                <div class="d-flex align-items-center py-2 mb-2">
+                                    <hr class="w-100">
+                                    <div class="px-3">Or</div>
+                                    <hr class="w-100">
+                                </div> -->
 
                             <!--  -->
+                            @php
+                                $header_logo = \App\Models\Tp_option::where('option_name', 'theme_logo')->first();
+                            @endphp
 
-                            <h4>Partner Sign up</h4>
+                            <a class="navbar-brand" href="{{ url('http://localhost:5173/') }}">
+                                <img style="width: 75%; margin-top: -35px;"
+                                    src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
+                                    alt="Logo-{{ @$theme_header->company_name }}">
+                            </a>
+                            <h4 class="mt-4">Partner Sign up</h4>
                             <form action="{{ route('frontend.set_register_partner') }}" class="myform" id="student"
                                 enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                 @csrf
@@ -73,8 +81,7 @@
                                             <!-- Options will be populated by JavaScript -->
                                         </select>
                                         <input class="form-control form-control-lg" type="number" id="user_mobile"
-                                            name="mobile" placeholder="Mobile Number" onkeyup="mobilecheck(4)"
-                                            required>
+                                            name="mobile" placeholder="Mobile Number" onkeyup="mobilecheck(4)" required>
                                     </div>
                                 </div>
 
@@ -87,7 +94,8 @@
                                 <div class="mb-3">
                                     <label class="form-label mb-1" for="user_passport">Passport or NID</label>
                                     <input class="form-control form-control-lg" type="file" id="user_passport"
-                                        name="passport" onkeyup="mailcheck(4)" placeholder="Enter your passport" required="">
+                                        name="passport" onkeyup="mailcheck(4)" placeholder="Enter your passport"
+                                        required="">
                                 </div>
 
                                 <div class="mb-3">
@@ -100,7 +108,7 @@
                                     </select>
                                 </div>
 
-                            
+
 
                                 <div class="mb-3">
                                     <label class="form-label mb-1" for="user_mobile">Country</label>
@@ -626,8 +634,8 @@
                                         {{-- <h6>Password must be following requirements:</h6> --}}
                                         {{-- <ul class="ps-0"> --}}
                                         <!-- <li id="letter" class="invalid">At least <strong>one letter</strong></li>
-                                        <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
-                                        <li id="number" class="invalid">At least <strong>one number</strong></li> -->
+                                            <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+                                            <li id="number" class="invalid">At least <strong>one number</strong></li> -->
                                         <p id="length" class="invalid">Be at least <strong>8 characters</strong></p>
                                         {{-- <li id="length" class="invalid">Be at least <strong>8 characters</strong></li> --}}
                                         {{-- </ul> --}}
@@ -648,21 +656,21 @@
                                         </a>
                                     </span>
                                     <!-- <div id="confirm-pswd_info">
-                                    <h6>Password must be following requirements:</h6>
-                                    <ul class="ps-0">
-                                         <li id="confirm-letter" class="invalid">At least <strong>one letter</strong></li>
-                                        <li id="confirm-capital" class="invalid">At least <strong>one capital letter</strong></li>
-                                        <li id="confirm-number" class="invalid">At least <strong>one number</strong></li>
-                                        <li id="confirm-length" class="invalid">Be at least <strong>8 characters</strong></li>
-                                    </ul>
-                                </div> -->
+                                        <h6>Password must be following requirements:</h6>
+                                        <ul class="ps-0">
+                                             <li id="confirm-letter" class="invalid">At least <strong>one letter</strong></li>
+                                            <li id="confirm-capital" class="invalid">At least <strong>one capital letter</strong></li>
+                                            <li id="confirm-number" class="invalid">At least <strong>one number</strong></li>
+                                            <li id="confirm-length" class="invalid">Be at least <strong>8 characters</strong></li>
+                                        </ul>
+                                    </div> -->
 
                                     <div id="confirm-pswd_info" style="display: none">
                                         {{-- <h6>Password must be following requirements:</h6> --}}
                                         {{-- <ul class="ps-0"> --}}
                                         <!-- <li id="letter" class="invalid">At least <strong>one letter</strong></li>
-                                            <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
-                                            <li id="number" class="invalid">At least <strong>one number</strong></li> -->
+                                                <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+                                                <li id="number" class="invalid">At least <strong>one number</strong></li> -->
                                         <p id="length" class="invalid">Be at least <strong>8 characters</strong></p>
                                         {{-- </ul> --}}
                                     </div>
@@ -681,9 +689,9 @@
                                         <a target="_blank" href="{{ route('frontend.refund_policy') }}"
                                             class="text-decoration-underline">and Return and Refund Policy.</a> </label>
                                     <!-- <br>
-                                    <div class="loadotpmodal mt-2">
-                                                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">OTP Modal</button>
-                                                                        </div> -->
+                                        <div class="loadotpmodal mt-2">
+                                                                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">OTP Modal</button>
+                                                                            </div> -->
 
                                 </div>
 
@@ -727,7 +735,7 @@
         </div>
     </div>
 
-    @include('Frontend.layouts.parts.news-letter')
+    {{-- @include('Frontend.layouts.parts.news-letter') --}}
 
 @endsection
 
@@ -1073,7 +1081,7 @@
             });
         }
     </script>
-     <script>
+    <script>
         // List of countries with country codes
         const countryCodes = [{
                 name: "Afghanistan",

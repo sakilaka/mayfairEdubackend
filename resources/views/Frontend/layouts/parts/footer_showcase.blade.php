@@ -63,13 +63,14 @@
                 @php
                 $imagesWithPosition = collect($footer_image['images'] ?? [])->map(function ($image, $key) use ($footer_image) {
                     return [
+                        'id' => $key, // Include the key as an ID for sorting
                         'src' => $image,
                         'title' => $footer_image['image_titles'][$key] ?? '',
                         'position' => $footer_image['image_positions'][$key] ?? 0,
                     ];
-                })->sortBy('position');
-                 @endphp
-            
+                })->sortByDesc('id'); // Sort by the ID in descending order
+                @endphp
+                
                 <div id="justified-gallery">
                     @foreach ($imagesWithPosition as $imageData)
                         <a data-src="{{ $imageData['src'] }}" class="single-gallery-image" style="cursor: pointer">
@@ -83,6 +84,7 @@
                         </a>
                     @endforeach
                 </div>
+                
                 
             </section>
         </div>

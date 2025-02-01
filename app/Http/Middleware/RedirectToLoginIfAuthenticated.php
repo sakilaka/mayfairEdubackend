@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 class RedirectToLoginIfAuthenticated
 {
@@ -17,7 +18,8 @@ class RedirectToLoginIfAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if (auth()->check()) {
-            return redirect()->route('home'); 
+            // return redirect()->route('home');
+            return redirect('http://localhost:5173/');
         }
         return $next($request);
     }

@@ -193,7 +193,7 @@ body {
 
 .navbar-nav .nav-link.active,
 .navbar-nav .nav-link.show {
-    color: var(--secondary_background);
+    color: #713898;
 }
 
 .navbar-nav .dropdown-menu {
@@ -672,11 +672,11 @@ body {
 .bar-custom span {
     width: 4px;
     margin: 0 1px;
-    border: 1px solid var(--secondary_background);
+    border: 1px solid #713898;
 }
 
 .bar-custom span.fill {
-    background: var(--secondary_background);
+    background: #713898;
 }
 
 .bar-custom span:first-child {
@@ -1009,13 +1009,13 @@ body {
     border-width: 2px;
 }
 .btn-top:hover {
-    background-color: var(--secondary_background);
+    background-color: #713898;
 }
 .btn-top:hover i {
     color: white;
 }
 .btn-top i {
-    color: var(--secondary_background);
+    color: #713898;
 }
 
 /*--------------------------------------------------------------
@@ -3661,8 +3661,8 @@ svg.injected-svg * {
 }
 
 .page-item.active .page-link {
-    background-color: var(--secondary_background);
-    border-color: var(--secondary_background);
+    background-color: #713898;
+    border-color: #713898;
 }
 
 /*--------------------------------------------------------------
@@ -4107,8 +4107,8 @@ a {
 
 .btn-dark-cerulean {
     color: #fff;
-    background-color: var(--secondary_background);
-    border-color: var(--secondary_background);
+    background-color: #713898;
+    border-color: #713898;
 }
 
 .btn-dark-cerulean:hover {
@@ -4123,14 +4123,14 @@ a {
 }
 
 .btn-outline-dark-cerulean {
-    color: var(--secondary_background);
-    border-color: var(--secondary_background);
+    color: #713898;
+    border-color: #713898;
 }
 
 .btn-outline-dark-cerulean:hover {
     color: #fff;
-    background-color: var(--secondary_background);
-    border-color: var(--secondary_background);
+    background-color: #713898;
+    border-color: #713898;
 }
 
 .btn-group-m .btn {

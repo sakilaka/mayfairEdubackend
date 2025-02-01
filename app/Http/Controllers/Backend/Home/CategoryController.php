@@ -37,11 +37,13 @@ class CategoryController extends Controller
         $category->type = $request->type;
         $category->details = $request->details;
         $category->slug = SlugService::createSlug(Category::class, 'slug', $request->name);
+        
         if ($request->hasFile('image')) {
             $fileName = rand() . time() . '.' . request()->image->getClientOriginalExtension();
             request()->image->move(public_path('upload/category/'), $fileName);
             $category->image = $fileName;
         }
+        
         $category->save();
 
         return redirect()->route('home-category.index')->with('success', 'Category Added Successfully');

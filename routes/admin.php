@@ -46,11 +46,13 @@ use App\Http\Controllers\Backend\Appearance\ThemeOptionController;
 use App\Http\Controllers\Backend\Courses\DepartmentController;
 use App\Http\Controllers\Backend\Currency\CurrencyController as CurrencyCurrencyController;
 use App\Http\Controllers\Backend\GetConsultation\GetConsultationController;
+use App\Http\Controllers\Backend\Home\AboutUsController;
 use App\Http\Controllers\Backend\Home\ProChildCategoryController;
 use App\Http\Controllers\Backend\Landing\LandingPageController;
 use App\Http\Controllers\Backend\Office\OfficeController;
 use App\Http\Controllers\Backend\Role\RoleController;
 use App\Http\Controllers\Backend\Student_Appliction\StudentApplictionController;
+use App\Http\Controllers\Backend\Transanctions\TransactionsController;
 use App\Http\Controllers\Backend\WithdrawalController;
 use App\Http\Controllers\EmployeeManageController;
 
@@ -67,6 +69,14 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   // level star
   
   // home route start
+   // about-us 
+   Route::get('aboutUs', [AboutUsController::class, "index"])->name('about-us.index');
+   Route::get('about-us-create', [AboutUsController::class, "create"])->name('about-us.create');
+   Route::post('about-us-store', [AboutUsController::class, "store"])->name('about-us.store');
+   Route::get('about-us-edit/{id}', [AboutUsController::class, "edit"])->name('about-us.edit');
+   Route::post('about-us-update/{id}', [AboutUsController::class, "update"])->name('about-us.update');
+   Route::post('about-us-delete', [AboutUsController::class, "destroy"])->name('about-us.delete');
+
 
   Route::prefix('home')->group(function () {
     //category
@@ -78,6 +88,9 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
     Route::post('home-category-delete', [CategoryController::class, "destroy"])->name('home-category.delete');
     Route::get('/home-category_status_toggle/{id}', [CategoryController::class, 'status_toggle'])->name('home-category.status_toggle');
     //end category
+
+   
+    
 
     //sub category
     // Route::resource('home-sub-category', SubCategoryController::class);
@@ -529,6 +542,12 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::post('assign-student-to-partner', [StudentApplictionController::class, "assignStudentToEmployee"])->name('admin.assign_student_to_employee');
   Route::post('assign-application-to-partner', [StudentApplictionController::class, "assignApplicationToEmployee"])->name('admin.assign_application_to_employee');
 
+  Route::get('open-application-list', [StudentApplictionController::class, "indexList"])->name('admin.open_application_list');
+  Route::get('open-application-details/{id}', [StudentApplictionController::class, "openDetails"])->name('admin.open_application_details');
+  Route::get('/open-application/doc/download/{id}', [StudentApplictionController::class, 'openApplicationFileDownload'])->name('admin.open-application-file-download');
+
+
+  
   Route::get('student-appliction-list-assigned', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list_assigned');
   Route::get('student-appliction-list', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list');
   Route::post('student-appliction-list', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list.filter');
@@ -554,6 +573,27 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::get('/application-order-print/{id}', [StudentApplictionController::class, 'applicationOrderPrint'])->name('admin.application_order_print');
 
   Route::get('/application/form/download/{id}', [StudentApplictionController::class, 'applicationFormDownload'])->name('admin.application-form-download');
+  Route::get('/application/open/form/download/{id}', [StudentApplictionController::class, 'openApplicationFormDownload'])->name('admin.open-application-form-download');
+
+  Route::prefix('transactions')->group(function () {
+    Route::get('/', [TransactionsController::class, 'index'])->name('admin.transactions.index');
+    Route::post('/', [TransactionsController::class, 'index'])->name('admin.transactions.index.filter');
+
+    Route::get('in-form/', [TransactionsController::class, 'in_form'])->name('admin.transactions.in_form');
+    Route::post('in-form', [TransactionsController::class, 'in_form_update'])->name('admin.transactions.in_form_update');
+
+    Route::get('out-form/', [TransactionsController::class, 'out_form'])->name('admin.transactions.out_form');
+    Route::post('out-form', [TransactionsController::class, 'out_form_update'])->name('admin.transactions.out_form_update');
+
+    Route::get('deposit-form/', [TransactionsController::class, 'deposit_form'])->name('admin.transactions.deposit_form');
+    Route::post('deposit-form', [TransactionsController::class, 'deposit_form_update'])->name('admin.transactions.deposit_form_update');
+
+    Route::post('account-protection', [TransactionsController::class, 'account_protection'])->name('admin.transactions.account_protection');
+    Route::get('details', [TransactionsController::class, 'details'])->name('admin.transactions.details');
+    Route::post('refund/{transaction_id}', [TransactionsController::class, 'refund_transaction'])->name('admin.transactions.refund');
+    Route::post('toggle-status/{transaction_id}', [TransactionsController::class, 'toggleStatus'])->name('admin.transactions.toggle-status');
+    Route::post('delete', [TransactionsController::class, 'delete_transaction'])->name('admin.transactions.delete_transaction');
+  });
 });
 
 Route::post('student-appliction-list-table-modify', [StudentApplictionController::class, "applicationTableManipulate"])->name('admin.student_appliction_list.table_manipulate');

@@ -128,32 +128,4 @@ Route::middleware(['accessLogin'])->group(function () {
 
 
 
-        // Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('user.logout');
-        // Route::post('/profile/pic/{id}',[UserController::class, 'updateUserPic'])->name('update.user.profile.pic');
-
-
-
-
-        // Route::middleware(['userCheck:3'])->group(function () {
-
-        //         Route::get('/instructor/profile',[UserController::class, 'index'])->name('instructor.profile');
-        //         // Route::post('/instructor/profile/pic/{id}',[UserController::class, 'updateUserPic'])->name('update.user.profile.pic');
-        //         Route::get('/instructor/profile/{id}',[UserController::class, 'editUserInfo'])->name('instructor.edit_profile');
-        //         Route::post('/instructor/update/profile/{id}',[UserController::class, 'updateUserInfo'])->name('instructor.profile_info_update');
-
-        //         Route::get('/instructor/security/{id}', [UserLoginController::class, 'getUserChangePassword'])->name('instructor.password');
-        //         Route::post('/instructor/security/{id}', [UserLoginController::class, 'setChangePassword'])->name('user.password_change');
-        //         Route::get('/instructor/security/confirm-code/{id}', [UserLoginController::class, 'getConfirmPassword'])->name('user.password_confirm');
-        //         Route::post('/instructor/security/confirm-code/{id}', [UserLoginController::class, 'confirmChangePassword'])->name('user.password_confirm');
-
-        //         Route::get('/instructor/wishlist', [UserController::class, 'wishlist'])->name('instructor.wishlist');
-        //         Route::get('/instructor/notification', [UserController::class, 'notification'])->name('instructor.notification');
-        //         Route::get('/instructor/privacy', [UserController::class, 'privacy'])->name('instructor.privacy');
-        //         Route::get('/instructor/dashboard', [UserController::class, 'dashboard'])->name('instructor.dashboard');
-
-        //         // Route::get('/user-logout', [UserLoginController::class, 'userLogout'])->name('user.logout');
-
-        // });
-
-
 });

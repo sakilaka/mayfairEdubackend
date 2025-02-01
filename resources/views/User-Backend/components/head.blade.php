@@ -3,13 +3,6 @@
 <meta name="_token" content="{{ csrf_token() }}">
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/assets/images/favicon.png') }}" />
 
-<link rel="stylesheet" href="{{ asset('backend/assets/vendors/iconfonts/font-awesome/css/all.min.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.base.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.addons.css') }}">
-<link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
-<link rel="stylesheet"
-    href="{{ asset('backend/assets/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css') }}">
-
 @php
     $results = \App\Models\Tp_option::where('option_name', 'theme_color')->first();
     $dataObj = json_decode($results->option_value);
@@ -17,7 +10,7 @@
 @if ($dataObj)
     <style>
         :root {
-            --primary_background: {{ $theme_color['primary_color'] ?? '#068b76' }};
+            --primary_background: {{ $theme_color['primary_color'] ?? '#824fa3' }};
             --secondary_background: {{ $theme_color['secondary_color'] ?? '#068b76' }};
             --tertiary_background: {{ $theme_color['tertiary_color'] ?? '#f40000' }};
 
@@ -62,6 +55,14 @@
         }
     </style>
 @endif
+
+<link rel="stylesheet" href="{{ asset('backend/assets/vendors/iconfonts/font-awesome/css/all.min.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.base.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/vendors/css/vendor.bundle.addons.css') }}">
+<link rel="stylesheet" href="{{ asset('backend/assets/css/style.css') }}">
+<link rel="stylesheet"
+    href="{{ asset('backend/assets/vendors/iconfonts/simple-line-icon/css/simple-line-icons.css') }}">
+
 
 <link rel="stylesheet" href="{{ asset('backend/assets/css/dataTable-buttons.min.css') }}">
 <style>

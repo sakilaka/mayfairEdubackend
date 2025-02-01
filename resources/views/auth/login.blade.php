@@ -21,9 +21,9 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-center p-5">
                             <div class="brand-logo">
-                                {{-- @php
+                                @php
                                     $header_logo = \App\Models\Tp_option::where('option_name', 'theme_logo')->first();
-                                @endphp --}}
+                                @endphp
                                 <img src="{{ $header_logo->header_image_show ?? asset('backend/assets/images/logo.svg') }}"
                                     alt="logo">
                             </div>

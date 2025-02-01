@@ -1517,6 +1517,7 @@ var deleteSchool = function (school) {
             });
         });
 };
+
 var _updateProfile = function () {
     // console.log($("#aboutyou"));
     // return false;
@@ -1539,6 +1540,30 @@ var _updateProfile = function () {
         });
     });
 };
+
+var _updateProfileForUniversity = function () {
+    // console.log($("#aboutyouUniversity"));
+    // return false;
+    return new Promise((resolve, reject) => {
+        alert('hit');
+        $.ajax({
+            type: "post",
+            url: base_url + "/application/personalUni",
+            
+            data: $("#aboutyouUniversity").serialize(),
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                resolve(response);
+            },
+            error: function (error) {
+                reject(error);
+            },
+        });
+    });
+};
+
+
 var _updateAddress = function () {
     //If this is a new account the new account will not have an address thus the id will be undefined
     url = base_url + "/application/home_address/" + application_id;

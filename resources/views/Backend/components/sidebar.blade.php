@@ -12,6 +12,23 @@
             $permissions = json_decode($currentUser->permissions, true) ?? [];
         @endphp
 
+        {{-- transactions --}}
+        @php
+            $is_active_transactions =
+                Route::is('admin.transactions.index') ||
+                Route::is('admin.transactions.index.filter') ||
+                Route::is('admin.transactions.in_form') ||
+                Route::is('admin.transactions.out_form') ||
+                Route::is('admin.transactions.deposit_form');
+        @endphp
+
+        <li class="nav-item {{ $is_active_transactions ? 'active' : '' }}">
+            <a class="nav-link" href="{{ route('admin.transactions.index') }}">
+                <i class="fa fa-money-bill menu-icon"></i>
+                <span class="menu-title">Accounts</span>
+            </a>
+        </li>
+
 
         @if (in_array('home_module', $permissions ?? []))
             @php
@@ -49,10 +66,22 @@
                                 Sub Category
                             </a>
                         </li>
+
+                         {{-- About us --}}
+                        <li class="nav-item ">
+                            <a href="{{ route('about-us.index') }}"
+                                class="nav-link {{ Route::is('about-us.create') || Route::is('about-us.index') || Route::is('about-us.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                                About
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>
         @endif
+
+
+
 
         @if (in_array('programs_module', $permissions ?? []))
             {{-- programs --}}
@@ -185,6 +214,8 @@
             @php
                 $is_active_all_applications =
                     Route::is('admin.student_appliction_list') ||
+                    Route::is('admin.open_application_list') ||
+                    Route::is('admin.open_application_details') ||
                     Route::is('admin.student_appliction_list_assigned') ||
                     Route::is('admin.student_appliction_list.filter') ||
                     Route::is('admin.student_appliction_list.study_type_filter') ||
@@ -240,6 +271,22 @@
                                 </a>
                             @endif
                         </li>
+
+                        <li class="nav-item ">
+                            @php
+                                $program_application_routes =
+                                    Route::is('admin.open_application_list') ||
+                                    Route::is('admin.open_application_details');
+                            @endphp
+                            @if (in_array('program_applications_module', $permissions ?? []))
+                                <a href="{{ route('admin.open_application_list') }}"
+                                    class="nav-link {{ $program_application_routes && request()->query('type') !== 'assigned' ? 'active' : '' }}">
+                                    <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                                    Open Applications
+                                </a>
+                            @endif
+
+                        </li>
                         @if (!in_array(Auth::user()->role, ['manager', 'support']))
                             <li class="nav-item ">
                                 @php
@@ -270,49 +317,49 @@
 
 
         {{-- @if (in_array('partner_management', $permissions ?? [])) --}}
-            @php
-                $is_active_partner =
-                    Route::is('admin.consultant.index') ||
-                    Route::is('admin.consultant.create') ||
-                    Route::is('admin.consultant.edit') ||
-                    Route::is('admin.level.index') ||
-                    Route::is('admin.level.create') ||
-                    Route::is('admin.level.edit');
-            @endphp
+        @php
+            $is_active_partner =
+                Route::is('admin.consultant.index') ||
+                Route::is('admin.consultant.create') ||
+                Route::is('admin.consultant.edit') ||
+                Route::is('admin.level.index') ||
+                Route::is('admin.level.create') ||
+                Route::is('admin.level.edit');
+        @endphp
 
-            <li class="nav-item {{ $is_active_partner ? 'active' : '' }}">
-                <a class="nav-link" data-toggle="collapse" href="#partner_management"
-                    aria-expanded="{{ $is_active_partner ? 'true' : 'false' }}" aria-controls="partner_management">
-                    <i class="fa fa-home menu-icon"></i>
-                    <span class="menu-title">Partner Management</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse {{ $is_active_partner ? 'show' : '' }}" id="partner_management">
-                    <ul class="nav flex-column sub-menu">
+        <li class="nav-item {{ $is_active_partner ? 'active' : '' }}">
+            <a class="nav-link" data-toggle="collapse" href="#partner_management"
+                aria-expanded="{{ $is_active_partner ? 'true' : 'false' }}" aria-controls="partner_management">
+                <i class="fa fa-home menu-icon"></i>
+                <span class="menu-title">Partner Management</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse {{ $is_active_partner ? 'show' : '' }}" id="partner_management">
+                <ul class="nav flex-column sub-menu">
 
-                        {{-- Create Level  --}}
+                    {{-- Create Level  --}}
 
-                        <li class="nav-item ">
-                            <a href="{{ route('admin.level.index') }}"
-                                class="nav-link {{ Route::is('admin.level.index') || Route::is('admin.level.create') || Route::is('admin.level.edit') ? 'active' : '' }}">
-                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
-                                Manage Level 
-                            </a>
-                        </li>
+                    <li class="nav-item ">
+                        <a href="{{ route('admin.level.index') }}"
+                            class="nav-link {{ Route::is('admin.level.index') || Route::is('admin.level.create') || Route::is('admin.level.edit') ? 'active' : '' }}">
+                            <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                            Manage Level
+                        </a>
+                    </li>
 
-                        {{-- manage partner  --}}
+                    {{-- manage partner  --}}
 
-                        <li class="nav-item ">
-                            <a href="{{ route('admin.consultant.index') }}"
-                                class="nav-link {{ Route::is('admin.consultant.index') || Route::is('admin.consultant.create') || Route::is('admin.consultant.edit') ? 'active' : '' }}">
-                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
-                                Manage Partner
-                            </a>
-                        </li>
+                    <li class="nav-item ">
+                        <a href="{{ route('admin.consultant.index') }}"
+                            class="nav-link {{ Route::is('admin.consultant.index') || Route::is('admin.consultant.create') || Route::is('admin.consultant.edit') ? 'active' : '' }}">
+                            <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                            Manage Partner
+                        </a>
+                    </li>
 
-                    </ul>
-                </div>
-            </li>
+                </ul>
+            </div>
+        </li>
         {{-- @endif --}}
 
 

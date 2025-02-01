@@ -12,9 +12,11 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Laravel\Sanctum\HasApiTokens;
 
 class UserLoginController extends Controller
 {
@@ -86,7 +88,7 @@ class UserLoginController extends Controller
         $user->type = $request->type;
         $user->is_verified = '0';
         $user->role = 'student';
-        
+
         $tempCode = rand(10000, 99999);
         $user->temp_mail_code = $tempCode;
         $user->save();
@@ -95,7 +97,7 @@ class UserLoginController extends Controller
             'email' => $user->email,
             'verification_code' => $tempCode,
         ];
-        
+
         try {
             Mail::to($user->email)->send(new EmailVerificationCustom($data));
             $email = $data['email'];
@@ -140,19 +142,20 @@ class UserLoginController extends Controller
 
     }
 
-    public function sendVerificationEmail(){
-        
-        $user = auth()->user(); 
+    public function sendVerificationEmail()
+    {
+
+        $user = auth()->user();
         // dd($user);
         $tempCode = rand(10000, 99999);
         $user->temp_mail_code = $tempCode;
         $user->save();
-    
+
         $data = [
             'email' => $user->email,
             'verification_code' => $tempCode,
         ];
-    
+
         try {
             Mail::to($user->email)->send(new EmailVerificationCustom($data));
             $email = $data['email'];
@@ -167,13 +170,13 @@ class UserLoginController extends Controller
     public function userVerify(Request $request)
     {
         $user = User::where('email', $request->email)->first();
-    
+
         if ($user && $request->verification_code == $user->temp_mail_code) {
             // Update user verification status
             $user->temp_mail_code = '';
             $user->is_verified = '1';
             $user->save();
-    
+
             // Conditional redirect based on login status and user role
             if (auth()->check()) {
                 return redirect()->route('user.dashboard')->with('success', 'Your email has been successfully verified!');
@@ -189,8 +192,8 @@ class UserLoginController extends Controller
             return redirect()->back()->with('error', 'Verification code does not match.');
         }
     }
-    
-    
+
+
 
 
     public function partnerRegister(Request $request)
@@ -214,7 +217,7 @@ class UserLoginController extends Controller
             return redirect('/sign-in')->with('error', 'This mail have already register, Please try another mail.');
             // return redirect('/sign-in')->with('error', 'Email not verified. Please Verify your email!');
         }
-        
+
         $validator = Validator::make($request->all(), [
 
             // 'email' => 'email:rfc,dns',
@@ -278,10 +281,10 @@ class UserLoginController extends Controller
             'email' => $user->email,
             'verification_code' => $tempCode,
         ];
-        
+
         // $user->save();
 
-        
+
 
         // return redirect('/partner-sign-in')->with('success', 'You are successfully Registered. Now You can login. Thank You.');
         try {
@@ -378,6 +381,84 @@ class UserLoginController extends Controller
         return back()->with('error', 'Your email or password is incorrect.');
     }
 
+
+    
+    
+    // public function userSignin(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'email' => 'required|email',
+    //         'password' => 'required|min:6',
+    //     ]);
+    
+    //     $user = User::where('email', $request->email)->first();
+    
+    //     if ($user) {
+    //         $remember_me = $request->has('remember_me') ? true : false;
+    
+    //         if ($user->type == 1) {
+    //             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
+    //                 $UserIP = $_SERVER['REMOTE_ADDR'];
+    //                 $browser_address = $_SERVER['HTTP_USER_AGENT'];
+    //                 $timeDate = date("Y-m-d h:i:sa");
+    
+    //                 $user_access = Useraccess::where('user_id', auth()->user()->id)
+    //                     ->where('ip_address', $UserIP)
+    //                     ->where('browser_address', $browser_address)
+    //                     ->first();
+    
+    //                 if ($user_access) {
+    //                     $user_access->date = Carbon::now();
+    //                     $user_access->save();
+    //                 } else {
+    //                     $user_access_list = Useraccess::where('user_id', auth()->user()->id)->get();
+    //                     if ($user_access_list->count() >= 3) {
+    //                         $user_access_old = $user_access_list[0];
+    //                         $user_access_old->delete();
+    //                     }
+    //                     Useraccess::insert([
+    //                         'user_id' => auth()->user()->id,
+    //                         'ip_address' => $UserIP,
+    //                         'browser_address' => $browser_address,
+    //                         'date' => $timeDate
+    //                     ]);
+    //                 }
+    
+    //                 // 🔥 Generate a Sanctum Token
+    //                 $token = $user->createToken('auth_token')->plainTextToken;
+    
+    //                 // 🔥 Return the token if API request
+    //                 if ($request->wantsJson()) {
+    //                     return response()->json([
+    //                         'user' => auth()->user(),
+    //                         'token' => $token
+    //                     ]);
+    //                 }
+    
+    //                 // 🔥 Maintain redirection for session-based login
+    //                 if (session()->has('login_pre_url') && session()->has('login_pre_url') != url('sign-in')) {
+    //                     return redirect(session()->get('login_pre_url'));
+    //                 } else {
+    //                     return redirect('/user/profile');
+    //                 }
+    //             }
+    //         }
+    //     }
+    
+    //     if ($request->wantsJson()) {
+    //         return response()->json(['message' => 'Invalid credentials'], 401);
+    //     }
+    
+    //     return back()->with('error', 'Your email or password is incorrect.');
+    // }
+    
+    
+    
+
+    
+    
+
+
     public function consultentSignin(Request $request)
     {
         $this->validate($request, [
@@ -468,6 +549,7 @@ class UserLoginController extends Controller
             $data = [];
             $token = $this->generateRandomString(6);
 
+            $user->password = Hash::make($request['new_password']);
             $user->change_token = $token;
             $user->change_date = date("Y-m-d H:i:s");
             $user->update();
@@ -479,7 +561,8 @@ class UserLoginController extends Controller
             dispatch(new \App\Jobs\SendEmailJob($details));
 
             Session::put('new_password', $request->new_password);
-            return redirect()->route('user.password_confirm', $user->id);
+            // return redirect()->route('user.password_confirm', $user->id);
+            return back()->with('success', 'Password Changed Successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong. Please try again later.');
         }
@@ -525,7 +608,7 @@ class UserLoginController extends Controller
     {
         session()->forget('partner_ref_id');
         auth()->logout();
-        return redirect('/');
+        return redirect('http://localhost:5173/');
     }
 
     //Forget Password section start here
