@@ -56,7 +56,7 @@
                                 $header_logo = \App\Models\Tp_option::where('option_name', 'theme_logo')->first();
                             @endphp
 
-                            <a class="navbar-brand" href="{{ url('http://localhost:5173/') }}">
+                            <a class="navbar-brand" href="{{ env('FRONTEND_URL') }}">
                                 <img style="width: 75%; margin-top: -135px;"
                                     src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
                                     alt="Logo-{{ @$theme_header->company_name }}">
@@ -131,10 +131,10 @@
                             {{-- <div class="text-center mt-3">
                             <form action="{{ route('auth.google') }}" method="get">
                                 <input type="hidden" name="login_type" value="2">
-                            
-                                <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-google me-1"></i></button>                       
+
+                                <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-google me-1"></i></button>
                             </form>
-                            
+
                             <form action="{{ route('auth.facebook') }}" method="get">
                                 <input type="hidden" name="login_type" value="2">
                             <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-facebook me-1"></i></button>
@@ -146,8 +146,8 @@
                             <div class="" style="padding: 10px; margin-left:60px">
                                 <form action="{{ route('auth.google') }}" method="get">
                                     <input type="hidden" name="login_type" value="6">
-                                
-                                    <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-google me-1"></i></button>                       
+
+                                    <button class="btn btn-outline-dark-cerulean btn-lg mb-3"><i class="fab fa-google me-1"></i></button>
                                 </form>
                             </div>
                             <div class="" style="padding: 10px">

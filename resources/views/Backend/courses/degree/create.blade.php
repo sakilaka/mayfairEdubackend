@@ -25,9 +25,10 @@
                         <div class="col-md-9 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample" action="{{ route('admin.degree.store') }}" method="POST" enctype="multipart/form-data">
+                                    <form class="forms-sample" action="{{ route('admin.degree.store') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        
+
                                         {{-- <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="page_url" class=" col-form-label">Department
@@ -56,10 +57,11 @@
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input id="degree_name" type="text"
-                                                    name="name" class="form-control" placeholder="Enter Degree Name" required>
+                                                <input id="degree_name" type="text" name="name"
+                                                    class="form-control" placeholder="Enter Degree Name" required>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="degree_name" class="col-form-label">Degree Image
@@ -68,8 +70,8 @@
                                                 <p>:</p>
                                             </div>
                                             <div class="col-sm-9">
-                                                <input id="degree_name" type="file"
-                                                    name="degree" class="form-control" required>
+                                                <input id="degree_name" type="file" name="degree"
+                                                    class="form-control" required>
                                             </div>
                                         </div>
 

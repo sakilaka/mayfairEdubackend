@@ -7,6 +7,7 @@ use App\Http\Controllers\Frontend\UniversityController as FrontendniversityContr
 use App\Http\Controllers\Auth\SocialLoginController;
 use App\Http\Controllers\Backend\CKEditorUploadController;
 use App\Http\Controllers\Backend\GetConsultation\GetConsultationController;
+use App\Http\Controllers\Backend\Home\AboutUsController;
 use App\Http\Controllers\Backend\Landing\LandingPageController;
 use App\Http\Controllers\Backend\Student_Appliction\StudentApplictionController;
 use App\Http\Controllers\Backend\subscriber\SubscriberController;
@@ -76,16 +77,16 @@ Route::middleware(['accessLogin'])->group(function () {
     //     Route::get('/partner-register', [FrontendController::class, 'consultantRegister'])->name('frontend.consultant_register');
     // });
 
-    
+
     Route::post('/sign-in', [UserLoginController::class, 'userSignin'])->name('frontend.sign_in');
     Route::post('/partner-sign-in', [UserLoginController::class, 'consultentSignin'])->name('frontend.consultent_sign_in');
     Route::post('/register', [UserLoginController::class, 'userRegister'])->name('frontend.set_register');
     Route::post('/verify', [UserLoginController::class, 'userVerify'])->name('frontend.set_verify');
     Route::post('/partner-register', [UserLoginController::class, 'partnerRegister'])->name('frontend.set_register_partner');
-    
+
     Route::get('/send-verification-email', [UserLoginController::class, 'sendVerificationEmail'])->name('frontend.send_verification_email');
 
-    
+
 
     //Subscription Route
     Route::post('/subscription', [SubscriberController::class, 'add_subscription'])->name('frontend.subscription');
@@ -103,10 +104,10 @@ Route::middleware(['accessLogin'])->group(function () {
     Route::get('/activity-details/{key}', [FrontendController::class, 'activity_details'])->name('frontend.activity_details');
     Route::get('/learner', [FrontendController::class, 'learner'])->name('frontend.learner');
     Route::get('/instructor', [FrontendController::class, 'instructor'])->name('frontend.instructor');
-    
+
     Route::get('/scholarship', [FrontendController::class, 'scholarship'])->name('frontend.scholarship');
     Route::get('/scholarship-program-filter', [FrontendController::class, 'ajaxScholarshipProgramFilter'])->name('frontend.scholarship.program_filter');
-    
+
     //office details Route
     Route::get('/office/{office_id}', [FrontendController::class, 'office_details'])->name('frontend.office_details');
 
@@ -123,7 +124,7 @@ Route::middleware(['accessLogin'])->group(function () {
     //Event List Page Route
     Route::get('/event-list', [FrontendController::class, 'eventList'])->name('frontend.event_list');
     Route::get('/event-details/{id}', [FrontendController::class, 'eventDetails'])->name('frontend.event.details');
-    
+
     //Expo List Page Route
     Route::get('/expo-list', [FrontendController::class, 'expoList'])->name('frontend.expo_list');
     // Route::get('/expo-details/{id}', [FrontendController::class, 'expoDetails'])->name('frontend.expo.details');
@@ -299,7 +300,7 @@ Route::get('/apply-cart/{id}/', [StudentApplicationController::class, "applyCart
 Route::get('/application/detail/{id}', [StudentApplicationController::class, "applicationDetails"])->name('application.details');
 Route::post('/application/program/delete', [StudentApplicationController::class, "applyCartDelete"])->name('application.program.delete');
 
-// university application 
+// university application
 Route::post('application/personalUni', [StudentApplicationController::class, 'applicationPersonalInfoUni'])->name('application.personalUni');
 
 
@@ -365,7 +366,7 @@ Route::get('/success', [StudentApplicationController::class, "successApplication
 
 
 
-// University 
+// University
 Route::prefix('list')->group(function () {
     Route::get('all-universities', [FrontendniversityController::class, "index"])->name('frontend.all_universities_list_new');
     Route::get('all-universities/{id}', [FrontendniversityController::class, "single"])->name('frontend.all_universities_list');
@@ -374,3 +375,5 @@ Route::prefix('list')->group(function () {
 });
 
 Route::get('/testimonial', [FrontendController::class, "testimonial"])->name('frontend.testimonial');
+
+Route::get('about-us', [AboutUsController::class, "indexAbout"])->name('abouUs.index');

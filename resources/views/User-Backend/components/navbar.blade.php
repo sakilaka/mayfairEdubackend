@@ -3,7 +3,7 @@
 @endphp
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row default-layout-navbar">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo" href="{{ url('http://localhost:5173/') }}">
+        <a class="navbar-brand brand-logo" href="{{ env('FRONTEND_URL') }}">
             <img src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
             alt="Logo-{{ @$theme_header->company_name }}">
         </a>

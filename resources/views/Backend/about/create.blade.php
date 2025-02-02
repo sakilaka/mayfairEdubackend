@@ -139,6 +139,38 @@
                                             </div>
                                         </div>
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="card_des" class="col-form-label">About</label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <textarea id="" name="about" class="form-control" rows="4" placeholder="Enter about"
+                                                    required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="card_des" class="col-form-label">Our mission</label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <textarea id="" name="mission" class="form-control" rows="4" placeholder="Enter mission"
+                                                    required></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-3 d-flex justify-content-between align-items-center">
+                                                <label for="card_des" class="col-form-label">Our vision</label>
+                                                <p>:</p>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <textarea id="" name="vision" class="form-control" rows="4" placeholder="Enter Card Description"
+                                                    required></textarea>
+                                            </div>
+                                        </div>
 
                                         <div class="text-center">
                                             <button type="submit" class="btn btn-primary mr-2">Submit</button>

@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('banner_title');
             $table->string('banner_image1');
             $table->string('banner_image2');
-            // $table->string('card_image');
-            // $table->string('card_title');
-            // $table->string('card_des');
+            $table->text('about');
+            $table->text('mission');
+            $table->text('vision');
             $table->timestamps();
         });
     }

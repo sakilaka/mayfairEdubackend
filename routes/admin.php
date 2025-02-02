@@ -67,16 +67,26 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::get('dashboards', [BackendController::class, 'indexs'])->name('admin.level.create');
 
   // level star
-  
-  // home route start
-   // about-us 
+
+
+   // about-us
    Route::get('aboutUs', [AboutUsController::class, "index"])->name('about-us.index');
    Route::get('about-us-create', [AboutUsController::class, "create"])->name('about-us.create');
    Route::post('about-us-store', [AboutUsController::class, "store"])->name('about-us.store');
    Route::get('about-us-edit/{id}', [AboutUsController::class, "edit"])->name('about-us.edit');
    Route::post('about-us-update/{id}', [AboutUsController::class, "update"])->name('about-us.update');
    Route::post('about-us-delete', [AboutUsController::class, "destroy"])->name('about-us.delete');
+   
+// about card
+  Route::get('about-card', [AboutUsController::class, "indexCard"])->name('about-us-card.index');
+  Route::get('about-us-card-create', [AboutUsController::class, "createCard"])->name('about-us-card.create');
+  Route::post('about-us-card-store', [AboutUsController::class, "storeCard"])->name('about-us-card.store');
+  Route::get('about-us-card-edit/{id}', [AboutUsController::class, "editCard"])->name('about-us-card.edit');
+  Route::post('about-us-card-update/{id}', [AboutUsController::class, "updateCard"])->name('about-us-card.update');
+  Route::post('about-us-card-delete', [AboutUsController::class, "destroyCard"])->name('about-us-card.delete');
 
+
+   // home route start
 
   Route::prefix('home')->group(function () {
     //category
@@ -89,8 +99,8 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
     Route::get('/home-category_status_toggle/{id}', [CategoryController::class, 'status_toggle'])->name('home-category.status_toggle');
     //end category
 
-   
-    
+
+
 
     //sub category
     // Route::resource('home-sub-category', SubCategoryController::class);
@@ -547,7 +557,7 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::get('/open-application/doc/download/{id}', [StudentApplictionController::class, 'openApplicationFileDownload'])->name('admin.open-application-file-download');
 
 
-  
+
   Route::get('student-appliction-list-assigned', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list_assigned');
   Route::get('student-appliction-list', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list');
   Route::post('student-appliction-list', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list.filter');

@@ -36,7 +36,7 @@
     <!-- Navigation -->
     <nav class="navbar sticky-header navbar-expand-lg" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('http://localhost:5173/') }}">
+            <a class="navbar-brand" href="{{ env('FRONTEND_URL') }}">
                 <img src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
                     alt="Logo-{{ @$theme_header->company_name }}">
             </a>

@@ -75,6 +75,15 @@
                                 About
                             </a>
                         </li>
+
+                        <li class="nav-item ">
+                            <a href="{{ route('about-us-card.index') }}"
+                                class="nav-link {{ Route::is('about-us-card.create') || Route::is('about-us-card.index') || Route::is('about-us-card.edit') ? 'active' : '' }}">
+                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
+                                About
+                            </a>
+                        </li>
+
                     </ul>
                 </div>
             </li>

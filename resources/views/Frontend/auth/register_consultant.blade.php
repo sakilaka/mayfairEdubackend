@@ -55,7 +55,7 @@
                                 $header_logo = \App\Models\Tp_option::where('option_name', 'theme_logo')->first();
                             @endphp
 
-                            <a class="navbar-brand" href="{{ url('http://localhost:5173/') }}">
+                            <a class="navbar-brand" href="{{ env('FRONTEND_URL') }}">
                                 <img style="width: 75%; margin-top: -35px;"
                                     src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
                                     alt="Logo-{{ @$theme_header->company_name }}">

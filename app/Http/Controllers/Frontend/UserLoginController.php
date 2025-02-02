@@ -382,31 +382,31 @@ class UserLoginController extends Controller
     }
 
 
-    
-    
+
+
     // public function userSignin(Request $request)
     // {
     //     $this->validate($request, [
     //         'email' => 'required|email',
     //         'password' => 'required|min:6',
     //     ]);
-    
+
     //     $user = User::where('email', $request->email)->first();
-    
+
     //     if ($user) {
     //         $remember_me = $request->has('remember_me') ? true : false;
-    
+
     //         if ($user->type == 1) {
     //             if (Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember_me)) {
     //                 $UserIP = $_SERVER['REMOTE_ADDR'];
     //                 $browser_address = $_SERVER['HTTP_USER_AGENT'];
     //                 $timeDate = date("Y-m-d h:i:sa");
-    
+
     //                 $user_access = Useraccess::where('user_id', auth()->user()->id)
     //                     ->where('ip_address', $UserIP)
     //                     ->where('browser_address', $browser_address)
     //                     ->first();
-    
+
     //                 if ($user_access) {
     //                     $user_access->date = Carbon::now();
     //                     $user_access->save();
@@ -423,10 +423,10 @@ class UserLoginController extends Controller
     //                         'date' => $timeDate
     //                     ]);
     //                 }
-    
+
     //                 // 🔥 Generate a Sanctum Token
     //                 $token = $user->createToken('auth_token')->plainTextToken;
-    
+
     //                 // 🔥 Return the token if API request
     //                 if ($request->wantsJson()) {
     //                     return response()->json([
@@ -434,7 +434,7 @@ class UserLoginController extends Controller
     //                         'token' => $token
     //                     ]);
     //                 }
-    
+
     //                 // 🔥 Maintain redirection for session-based login
     //                 if (session()->has('login_pre_url') && session()->has('login_pre_url') != url('sign-in')) {
     //                     return redirect(session()->get('login_pre_url'));
@@ -444,19 +444,19 @@ class UserLoginController extends Controller
     //             }
     //         }
     //     }
-    
+
     //     if ($request->wantsJson()) {
     //         return response()->json(['message' => 'Invalid credentials'], 401);
     //     }
-    
+
     //     return back()->with('error', 'Your email or password is incorrect.');
     // }
-    
-    
-    
 
-    
-    
+
+
+
+
+
 
 
     public function consultentSignin(Request $request)
@@ -608,7 +608,7 @@ class UserLoginController extends Controller
     {
         session()->forget('partner_ref_id');
         auth()->logout();
-        return redirect('http://localhost:5173/');
+        return redirect(env('FRONTEND_URL'));
     }
 
     //Forget Password section start here

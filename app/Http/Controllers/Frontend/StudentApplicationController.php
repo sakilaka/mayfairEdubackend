@@ -29,13 +29,13 @@ use Illuminate\Support\Facades\Log;
 class StudentApplicationController extends Controller
 {
 
-    
+
     public function applications()
     {
         $applications = StudentApplication::where('user_id', auth()->user()->id)->has('carts')->get();
         return view('Frontend.university.applications');
     }
-    
+
     public function successApplication()
     {
         // $applications = StudentApplication::where('user_id', auth()->user()->id)->has('carts')->get();
@@ -233,52 +233,52 @@ class StudentApplicationController extends Controller
         return redirect()->route('apply_admission', $params);
     }
 
-    public function applyAdmission($id) 
+    public function applyAdmission($id)
     {
         $data['countries']   = Country::all();
         $data['application'] = StudentApplication::find($id);
-    
+
         // If application is null, redirect or handle gracefully
         if (!$data['application']) {
-            return redirect('http://localhost:5173/course?message=Application%20not%20found');
+            return redirect(env('FRONTEND_URL', 'https://mayfaireducation.global/') . '/course?message=Application%20not%20found');
         }
-        
-    
+
+
         // Use optional chaining and null coalescing to avoid errors
         $programs = json_decode($data['application']?->programs ?? '[]', true) ?? [];
-    
+
         // Fetch all programs related to the application
         $data['programs'] = Course::whereIn('id', $programs)->get();
-    
+
         $data['is_contain_masters_or_phd'] = false;
         foreach ($data['programs'] as $program) {
             if (in_array($program->degree?->name ?? '', ['Masters', 'PhD'])) {
                 $data['is_contain_masters_or_phd'] = true;
             }
         }
-    
+
         $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
         $data['refund']  = Page::where('title', 'Refund Policy')->first();
         $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
         $data['payment'] = Page::where('title', 'Payment Process')->first();
-    
+
         // Handle cases where the user might not be authenticated
         $data['user'] = User::find(auth()->id() ?? 1);
-    
+
         // Determine the total service charge based on the user's star level
         $userStarLevel      = $data['user']?->star ?? null;
         $totalServiceCharge = 0;
-    
+
         foreach ($data['programs'] as $program) {
             $serviceChargeField = 'service_charge_' . ($userStarLevel ?? 'beginner');
             $totalServiceCharge += $program->$serviceChargeField ?? 0;
         }
-    
+
         $data['service_charge'] = $totalServiceCharge;
-    
+
         return view('Frontend.university.apply', $data);
     }
-    
+
 
     public function applyAdmissionUniversity()
     {
@@ -430,7 +430,7 @@ class StudentApplicationController extends Controller
         $application->birth_place          = $request->place_of_birth;
         $application->religion             = $request->religion;
 
-        // Home address 
+        // Home address
         $application->home_country       = $request->country;
         $application->home_city          = $request->city;
         $application->home_district      = $request->district;
@@ -439,7 +439,7 @@ class StudentApplicationController extends Controller
         $application->home_street        = $request->street;
         $application->home_zipcode       = $request->zipcode;
 
-        // post address 
+        // post address
         $application->current_country       = $request->country;
         $application->current_city          = $request->city;
         $application->current_district      = $request->district;
@@ -467,7 +467,7 @@ class StudentApplicationController extends Controller
         $application->save();
 
 
-        $educationData = $request->input('education'); 
+        $educationData = $request->input('education');
 
         foreach ($educationData as $field) {
             $studentEducation = new UniversityEducation;
@@ -480,9 +480,9 @@ class StudentApplicationController extends Controller
             $studentEducation->school = $field['school'] ?? null;
             $studentEducation->save();
         }
-    
 
-        // $workExperienceData = $request->input('work'); 
+
+        // $workExperienceData = $request->input('work');
 
         // foreach ($workExperienceData as $field) {
         //     $workExperience = new UniversityWork;
@@ -509,7 +509,7 @@ class StudentApplicationController extends Controller
 
         if ($request->hasFile('documents')) {
             Log::info('Files received for upload: ', $request->file('documents'));
-        
+
             foreach ($request->file('documents') as $index => $file) {
                 // Log details for each file being processed
                 Log::info("Processing file at index {$index}", [
@@ -517,23 +517,23 @@ class StudentApplicationController extends Controller
                     'file_size' => $file->getSize(),
                     'file_extension' => $file->getClientOriginalExtension(),
                 ]);
-                
+
                 if ($file->isValid()) {
                     // Log success information before saving the file
                     $filename = time() . '_' . $file->getClientOriginalName();
                     Log::info("Saving file: {$filename} to upload/application directory");
-        
+
                     $file->move(public_path('upload/application'), $filename);
-                
+
                     $title = $request->input("titles.$index", 'Unknown Document');
-                    
+
                     Log::info("Saving document details to the database: ", [
                         'document_name' => $title,
                         'document_type' => 'fixed',
                         'document_file' => $filename,
                         'extension' => $file->getClientOriginalExtension(),
                     ]);
-                    
+
                     UniversityDocument::create([
                         'application_id' => $application->id,
                         'document_name'  => $title,
@@ -552,9 +552,9 @@ class StudentApplicationController extends Controller
         } else {
             Log::warning('No files found in the request');
         }
-        
 
-        
+
+
 
         $data['code'] = 0;
         $data['msg']  = "Personal information Update Successfully";

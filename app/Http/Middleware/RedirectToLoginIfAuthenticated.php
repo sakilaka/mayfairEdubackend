@@ -19,7 +19,7 @@ class RedirectToLoginIfAuthenticated
     {
         if (auth()->check()) {
             // return redirect()->route('home');
-            return redirect('http://localhost:5173/');
+            return redirect(env('FRONTEND_URL'));
         }
         return $next($request);
     }

@@ -15,6 +15,14 @@ class AboutUsController extends Controller
         return view("Backend.about.index", $data);
     }
 
+    public function indexAbout()
+    {
+        $data["about"] = AboutUs::first();
+        return response()->json([
+            'data' => $data
+        ]);
+    }
+
     public function create()
     {
         return view("Backend.about.create");
@@ -26,20 +34,18 @@ class AboutUsController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'banner_title' => 'required|string|max:255',
+                'about'   => 'required|string',
+                'mission' => 'required|string',
+                'vision'  => 'required|string',
                 'banner_image1' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'banner_image2' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             ], [
                 'banner_title.required' => 'The banner title is required.',
-                'banner_title.string' => 'The banner title must be a valid string.',
-                'banner_title.max' => 'The banner title cannot exceed 255 characters.',
-
+                'about.required' => 'The about section is required.',
+                'mission.required' => 'The mission field is required.',
+                'vision.required' => 'The vision field is required.',
                 'banner_image1.image' => 'The first banner image must be a valid image file.',
-                'banner_image1.mimes' => 'The first banner image must be in jpg, jpeg, png, or webp format.',
-                'banner_image1.max' => 'The first banner image must not exceed 2MB in size.',
-
                 'banner_image2.image' => 'The second banner image must be a valid image file.',
-                'banner_image2.mimes' => 'The second banner image must be in jpg, jpeg, png, or webp format.',
-                'banner_image2.max' => 'The second banner image must not exceed 2MB in size.',
             ]);
 
             if ($validator->fails()) {
@@ -50,12 +56,17 @@ class AboutUsController extends Controller
 
             $validated_data = $validator->validated();
 
+            // Debug: Check validated data before storing
+            \Log::info('Validated Data:', $validated_data);
+
             $data = [
-                'banner_title' => $validated_data['banner_title']
+                'banner_title' => $validated_data['banner_title'],
+                'about' => $validated_data['about'],
+                'mission' => $validated_data['mission'],
+                'vision' => $validated_data['vision']
             ];
 
             if ($request->hasFile('banner_image1')) {
-
                 $fileName = uniqid() . '.' . $request->banner_image1->getClientOriginalExtension();
                 $request->banner_image1->move(public_path('upload/about_us/'), $fileName);
                 $data['banner_image1'] = 'upload/about_us/' . $fileName;
@@ -68,14 +79,18 @@ class AboutUsController extends Controller
             }
 
             $about_us = AboutUs::create($data);
+
             if ($about_us) {
                 return redirect(route('about-us.index'))->with('success', 'About Us content added successfully.');
             } else {
                 return redirect()->back()->with('error', 'Failed to create about us content.');
             }
         } catch (\Exception $e) {
-            // return $e->getMessage();
-            return back()->with('error', 'Something Went Wrong!');
+            \Log::error($e->getMessage());
+            return back()->with('error', 'Something Went Wrong: ' . $e->getMessage());
         }
     }
+
+
+
 }
