@@ -121,6 +121,7 @@ class StudentApplicationController extends Controller
 
     return redirect()->route('apply_admission', $params);
     } */
+   
     public function applyCart(Request $request, $id, $partner_ref_id = null, $applied_by = null)
     {
         $auth_user = auth('admin')->user() ?? auth()->user();

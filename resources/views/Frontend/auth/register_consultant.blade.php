@@ -7,7 +7,7 @@
     <br>
     <br>
     <br>
-    <div class="py-5">
+    <div class="pb-5 pt-2">
         <div class="container-lg">
             <div class="row justify-content-center">
                 <div class="col-xl-9">

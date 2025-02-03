@@ -1,18 +1,24 @@
 @extends('Frontend.layouts.master-layout')
 @section('title', '- Student Login')
 @section('head')
-
+    <style>
+        @media (max-width: 1100px) {
+            .navbar-brand img{
+                margin-top: 1px !important;
+            }
+        }
+    </style>
 @endsection
 @section('main_content')
     <br>
     <br>
     <br>
-    <div class="py-5">
+    <div class="pb-5">
         <div class="container-lg">
             <div class="row justify-content-center">
                 <div class="col-xl-9">
                     <div class="row mx-0 align-items-center border-md rounded-3">
-                        <div class="col-md-6 border-end-md p-4 p-sm-5">
+                        <div class="col-md-6 border-end-md pb-4 p-sm-5">
                             @php
                                 $home_content = \App\Models\HomeContentSetup::first();
                             @endphp
@@ -47,7 +53,8 @@
                             @endphp
 
                             <a class="navbar-brand" href="{{ env('FRONTEND_URL') }}">
-                                <img style="width: 75%; margin-top: -135px;" src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
+                                <img style="width: 75%; margin-top: -135px;"
+                                    src="{{ @$header_logo->header_image == '' ? @$header_logo->no_image : @$header_logo->header_image_show }}"
                                     alt="Logo-{{ @$theme_header->company_name }}">
                             </a>
 

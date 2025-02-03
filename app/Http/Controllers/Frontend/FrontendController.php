@@ -59,7 +59,7 @@ use ZipArchive;
 
 class FrontendController extends Controller
 {
-    
+
 
     public function testimonial()
     {
@@ -69,7 +69,7 @@ class FrontendController extends Controller
             'data' => $testimonial,
         ], 200);
     }
-    
+
     public function getCountries($continent)
     {
         $countries = Country::where('continent_id', $continent)->where('status', 1)->orderBy('name', 'asc')->get();
@@ -800,7 +800,7 @@ class FrontendController extends Controller
 
         return view('Frontend.pages.common-page', $data);
     }
-    
+
     public function learner()
     {
         $data['home_content'] = HomeContentSetup::first();
@@ -809,25 +809,25 @@ class FrontendController extends Controller
         $data['partners']     = Partner::all();
         return view('Frontend.pages.learner', $data);
     }
-    
+
     public function instructor()
     {
         $data['instructor'] = InstructorPageSetup::first();
         return view('Frontend.pages.instructor', $data);
     }
-    
+
     public function office_details($office_id)
     {
         $data['office'] = Office::find($office_id);
-        
+
         return response()->json([
             'data' => $data
         ]);
-        
+
         // return view('Frontend.pages.office_details', $data);
     }
-    
-    
+
+
     public function contact()
     {
         // $data['site_setting'] = SiteSetting::first();
@@ -970,14 +970,14 @@ class FrontendController extends Controller
             $data["categories"] = Category::where('parent_id', '=', 0)->where('type', 'blog')->get();
             $data['banner']     = Banner::where('type', 'blog')->where('status', 1)->orderBy('id', 'desc')->first();
         }
-        
+
         // else if(isset($request->category)){
         //     $data['blogs'] = Blog::leftJoin('categories','categories.id','blogs.category_id')
         //     ->where('blogs.category_id','like','%'.$request->category.'%')
         //     ->get();
         //     $data["categories"] = Category::where('parent_id', '=' ,0)->where('type', 'blog')->get();
         // }
-        
+
         else {
             $data['blogs']      = Blog::where('status', 1)->get();
             $data["categories"] = Category::where('parent_id', '=', 0)->where('type', 'blog')->get();
@@ -993,7 +993,7 @@ class FrontendController extends Controller
         // return view('Frontend.pages.blog', $data);
     }
 
-    
+
     public function blogDetails($id)
     {
         $blog        = Blog::find($id);
@@ -1466,73 +1466,6 @@ class FrontendController extends Controller
             'continents'   => Continent::withCount('universities')->get(),
         ];
 
-        if ($request->university) {
-            $courses->where('university_id', $request->university);
-        }
-        if ($request->degree) {
-            $courses->where('degree_id', $request->degree);
-        }
-        if ($request->department) {
-            $courses->where('department_id', $request->department);
-        }
-        if ($request->intake) {
-            $courses->where('section_id', $request->intake);
-        }
-        if ($request->state) {
-            $universityIds = University::where('state_id', $request->state)->pluck('id');
-            $courses->whereIn('university_id', $universityIds);
-        }
-
-        if ($request->sortBy) {
-            $courses->orderBy('views', $request->sortBy === 'top_pick' ? 'desc' : 'asc');
-        } else {
-            $courses->orderBy('views', 'desc');
-        }
-
-        if ($request->search) {
-            $search = $request->search;
-
-            $degreeIds      = Degree::where('name', 'like', "%$search%")->pluck('id');
-            $departmentIds  = Department::where('name', 'like', "%$search%")->pluck('id');
-            $universityIds  = University::where('name', 'like', "%$search%")->pluck('id');
-            $cityIds        = City::where('name', 'like', "%$search%")->pluck('id');
-            $stateIds       = State::where('name', 'like', "%$search%")->pluck('id');
-            $languageIds    = CourseLanguage::where('name', 'like', "%$search%")->pluck('id');
-            $scholarshipIds = Scholarship::where('title', 'like', "%$search%")->pluck('id');
-
-            if ($cityIds->isNotEmpty()) {
-                $cityUniversities = University::whereIn('city_id', $cityIds)->pluck('id');
-                $universityIds    = $universityIds->merge($cityUniversities);
-            }
-
-            if ($stateIds->isNotEmpty()) {
-                $stateUniversities = University::whereIn('state_id', $stateIds)->pluck('id');
-                $universityIds     = $universityIds->merge($stateUniversities);
-            }
-
-            $courses->where(function ($query) use (
-                $degreeIds,
-                $departmentIds,
-                $universityIds,
-                $languageIds,
-                $scholarshipIds
-            ) {
-                $query->when($degreeIds->isNotEmpty(), fn($q) => $q->orWhereIn('degree_id', $degreeIds))
-                    ->when($departmentIds->isNotEmpty(), fn($q) => $q->orWhereIn('department_id', $departmentIds))
-                    ->when($universityIds->isNotEmpty(), fn($q) => $q->orWhereIn('university_id', $universityIds))
-                    ->when($languageIds->isNotEmpty(), fn($q) => $q->orWhereIn('language_id', $languageIds))
-                    ->when($scholarshipIds->isNotEmpty(), function ($q) use ($scholarshipIds) {
-                        $q->orWhereIn('scholarship_id', $scholarshipIds)
-                            ->orWhere(function ($query) use ($scholarshipIds) {
-                                foreach ($scholarshipIds as $id) {
-                                    $query->orWhereJsonContains('additional_scholarships', $id);
-                                }
-                            });
-                    });
-            });
-        }
-
-        // $data['intake'] = Intake
 
         $data['courses'] = $courses->with('university', 'degree', 'department')->where('status', 1)->paginate(10);
         return response()->json($data);
