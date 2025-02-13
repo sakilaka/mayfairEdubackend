@@ -127,9 +127,16 @@ class UniversityController extends Controller
         $data['scholarships'] = Scholarship::where('status', 1)->get();
         $data['dormitories'] = Dormitory::all();
         $data['intakes'] = Section::all();
-        
+        $data['cities'] = City::all();
+
 
         return view("Backend.university.create", $data);
+    }
+
+    public function getCitiesByCountry($country_id)
+    {
+        $cities = City::where('country_id', $country_id)->get();
+        return response()->json($cities);
     }
 
     /**
@@ -165,20 +172,20 @@ class UniversityController extends Controller
             $university->tags = $request->tags ? json_encode($request->tags) : '';
 
             $university->year_fee = $request->year_fee;
-            $university->application_charge = $request->application_charge ?? "";
-            $university->accommodation_fee = $request->accommodation_fee ?? "";
-            $university->insurance_fee = $request->insurance_fee ?? "";
-            $university->visa_extension_fee = $request->visa_extension_fee ?? "";
-            $university->medical_in_china_fee = $request->medical_in_china_fee ?? "";
+            $university->application_charge = $request->application_charge;
+            $university->accommodation_fee = $request->accommodation_fee;
+            $university->insurance_fee = $request->insurance_fee;
+            $university->visa_extension_fee = $request->visa_extension_fee;
+            $university->medical_in_china_fee = $request->medical_in_china_fee;
 
-            $university->service_charge_beginner = $request->service_charge_beginner ?? "";
-            $university->service_charge_1 = $request->service_charge_1 ?? "";
-            $university->service_charge_2 = $request->service_charge_2 ?? "";
-            $university->service_charge_3 = $request->service_charge_3 ?? "";
-            $university->service_charge_4 = $request->service_charge_4 ?? "";
-            $university->service_charge_5 = $request->service_charge_5 ?? "";
-            $university->service_charge_6 = $request->service_charge_6 ?? "";
-            $university->service_charge_7 = $request->service_charge_7 ?? "";
+            $university->service_charge_beginner = $request->service_charge_beginner;
+            $university->service_charge_1 = $request->service_charge_1;
+            $university->service_charge_2 = $request->service_charge_2;
+            $university->service_charge_3 = $request->service_charge_3;
+            $university->service_charge_4 = $request->service_charge_4;
+            $university->service_charge_5 = $request->service_charge_5;
+            $university->service_charge_6 = $request->service_charge_6;
+            $university->service_charge_7 = $request->service_charge_7;
 
             $yearly_original_fee = $request->year_fee +
                 $request->accommodation_fee +
@@ -249,9 +256,9 @@ class UniversityController extends Controller
     {
         $data["university"] = $university = University::find($id);
         $data['continents'] = Continent::all();
-        $data['countries'] = Country::where('continent_id', @$university->continent->id)->get();
+        $data['countries'] = Country::where('status', 1)->get();
         $data['states'] = State::where(['status' => 1])->get();
-        $data['cities'] = City::where('state_id', @$university->state->id)->get();
+        $data['cities'] = City::all();
         $data['majors'] = Department::where('status', 1)->get();
         $data['scholarships'] = Scholarship::where('status', 1)->get();
         $data['dormitories'] = Dormitory::all();
@@ -264,7 +271,7 @@ class UniversityController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    
+
     {
         $request->validate([
             'name' => 'required',
@@ -294,20 +301,20 @@ class UniversityController extends Controller
             $university->tags = $request->tags ? json_encode($request->tags) : '';
 
             $university->year_fee = $request->year_fee;
-            $university->application_charge = $request->application_charge ?? "";
-            $university->accommodation_fee = $request->accommodation_fee ?? "";
-            $university->insurance_fee = $request->insurance_fee ?? "";
-            $university->visa_extension_fee = $request->visa_extension_fee ?? "";
-            $university->medical_in_china_fee = $request->medical_in_china_fee ?? "";
+            $university->application_charge = $request->application_charge;
+            $university->accommodation_fee = $request->accommodation_fee;
+            $university->insurance_fee = $request->insurance_fee;
+            $university->visa_extension_fee = $request->visa_extension_fee;
+            $university->medical_in_china_fee = $request->medical_in_china_fee;
 
-            $university->service_charge_beginner = $request->service_charge_beginner ?? "";
-            $university->service_charge_1 = $request->service_charge_1 ?? "";
-            $university->service_charge_2 = $request->service_charge_2 ?? "";
-            $university->service_charge_3 = $request->service_charge_3 ?? "";
-            $university->service_charge_4 = $request->service_charge_4 ?? "";
-            $university->service_charge_5 = $request->service_charge_5 ?? "";
-            $university->service_charge_6 = $request->service_charge_6 ?? "";
-            $university->service_charge_7 = $request->service_charge_7 ?? "";
+            $university->service_charge_beginner = $request->service_charge_beginner;
+            $university->service_charge_1 = $request->service_charge_1;
+            $university->service_charge_2 = $request->service_charge_2;
+            $university->service_charge_3 = $request->service_charge_3;
+            $university->service_charge_4 = $request->service_charge_4;
+            $university->service_charge_5 = $request->service_charge_5;
+            $university->service_charge_6 = $request->service_charge_6;
+            $university->service_charge_7 = $request->service_charge_7;
 
             $yearly_original_fee = $request->year_fee +
                 $request->accommodation_fee +
@@ -357,10 +364,10 @@ class UniversityController extends Controller
 
 
 
-                    
+
        // Image gallery
 
-       
+
         $allGalleries = [];
         $oldGalleries = json_decode($university->image_gallery, true) ?? [];
 
@@ -428,7 +435,7 @@ class UniversityController extends Controller
         // Video Contents
 
 
-        
+
         $videoContents = [];
         $videoTypes = $request->input('video_type') ?? [];
         $youtubeEmbedCodes = $request->input('youtube_embed_code') ?? [];
@@ -494,8 +501,8 @@ class UniversityController extends Controller
         $university->video = json_encode($finalVideoContents);
 
 
-         
-            
+
+
             $university->save();
 
             DB::commit();
@@ -506,7 +513,7 @@ class UniversityController extends Controller
             return back()->with('error', $e->getMessage());
         }
     }
-    
+
 
     public function destroy(Request $request)
     {
@@ -539,22 +546,22 @@ class UniversityController extends Controller
     //         return redirect()->back()->with('error', 'Something Went Wrong!');
     //     }
     // }
-    
+
     public function status($id)
     {
         try {
             // Find the university by ID
             $university = University::find($id);
-    
+
             if ($university) {
                 // Toggle university status
                 $newStatus = $university->status == 0 ? 1 : 0;
                 $university->status = $newStatus;
-                
+
                 Course::where('university_id', $id)->update(['status' => $newStatus]);
 
                 $university->update();
-    
+
                 return redirect()->route('admin.university.index')->with('success', 'University and Program Statuses Changed Successfully!');
             } else {
                 return redirect()->back()->with('error', 'University Not Found!');
@@ -563,7 +570,7 @@ class UniversityController extends Controller
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
-    
+
 
     public function universityFAQMAnage()
     {

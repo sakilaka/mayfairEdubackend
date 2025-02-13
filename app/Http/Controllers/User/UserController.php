@@ -42,7 +42,7 @@ class UserController extends Controller
     {
         return redirect(route('user.dashboard'));
     }
-    
+
     public function dashboard(Request $request)
     {
         $daily = "";
@@ -115,7 +115,7 @@ class UserController extends Controller
         } else {
             $data['courses_all'] = Course::where(['status' => 1, 'type' => 'university'])->inRandomOrder()->limit(8)->get();
         }
-        
+
         $data['daily'] = $daily;
         $data['monthly'] = $monthly;
         $data['yearly'] = $yearly;
@@ -144,7 +144,7 @@ class UserController extends Controller
                 'b' => $totalApplicationsApproved,
             ];
         }
-        
+
         $data['dataForChart'] = array_reverse($last30Days);
 
         // fetch visitors of last 30 days
@@ -161,11 +161,11 @@ class UserController extends Controller
             ];
         }
         $data['total_applications'] = StudentApplication::where('user_id', Auth::id())->count();
-        
+
         $data['totalServiceCharge'] = 0;
         $data['totalApplicationFee'] = 0;
         $data['totalServiceChargePaid'] = 0;
-        
+
         foreach ($data['orders'] as $order) {
             if ($order->status !== 0 && $order->status !== 1) {
                 $data['totalApplicationFee'] += $order->paid_application_fees;
@@ -175,7 +175,7 @@ class UserController extends Controller
         }
         return view('User-Backend.index', $data);
     }
-    
+
     public function myCourseList()
     {
         return view('user.customer.my_course_list');
@@ -290,9 +290,7 @@ class UserController extends Controller
 
     public function myOrderDetails($id)
     {
-        $data['s_appliction'] = StudentApplication::with('documents','educations','work_experiences','familyMembers')->find($id);
-        // dd($data['s_appliction']);
-        // return view('user.order.application_details', $data);
+        $data['s_application'] = StudentApplication::with('educations')->find($id);
         return view('User-Backend.application_view', $data);
     }
 

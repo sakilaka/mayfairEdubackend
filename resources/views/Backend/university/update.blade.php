@@ -62,9 +62,7 @@
                                                 <div class="row">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <label class="form-control-label">University Icon <span
-                                                                    class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                            <label class="form-control-label">University Icon</label>
                                                             <div class="dropify-wrapper" style="border: none">
                                                                 <div class="dropify-loader"></div>
                                                                 <div class="dropify-errors-container">
@@ -109,8 +107,7 @@
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
                                                             <label class="form-control-label">University Banner Image
-                                                                <span class="text-danger"
-                                                                    style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                                </label>
                                                             <div class="dropify-wrapper" style="border: none">
                                                                 <div class="dropify-loader"></div>
                                                                 <div class="dropify-errors-container">
@@ -207,11 +204,10 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Scholarship
-                                                        <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span>
+                                                        
                                                     </label>
                                                     <select class="form-control form-control-lg scholarshipSelect2"
-                                                        name="scholarship_id[]" multiple required>
+                                                        name="scholarship_id[]" multiple>
                                                         <option value="">Select Scholarships</option>
                                                         @php
                                                             $selectedScholarships =
@@ -277,6 +273,7 @@
                                                     </select>
                                                 </div>
                                             </div>
+
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Continent
@@ -293,23 +290,10 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <div class="form-group">
-                                                    <label>Country <span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="country_id"
-                                                        id="country" required>
-                                                        <option value="">Select Continent First</option>
-                                                        @foreach ($countries as $country)
-                                                            <option @if ($country->id == $university->country_id) Selected @endif
-                                                                value="{{ $country->id }}">{{ $country->name }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
                                             </div> --}}
-                                            <div class="col-md-4">
+
+
+                                            {{-- <div class="col-md-4">
                                                 <div class="form-group">
                                                     <label>Province <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
@@ -323,19 +307,31 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> --}}
+
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>City <span class="text-danger"
+                                                    <label>Country <span class="text-danger"
                                                             style="font-size: 1.25rem; line-height:0;">*</span></label>
-                                                    <select class="form-control form-control-lg" name="city_id"
-                                                        id="city" required>
-                                                        <option value="">Select Province First</option>
-                                                        @foreach ($cities as $city)
-                                                            <option @if ($city->id == $university->city_id) Selected @endif
-                                                                value="{{ $city->id }}">{{ $city->name }}
+                                                    <select class="form-control form-control-lg" name="country_id"
+                                                        id="country" required>
+                                                        <option value="">Select Country</option>
+                                                        @foreach ($countries as $country)
+                                                            <option value="{{ $country->id }}"
+                                                                @if ($country->id == $university->country_id) selected @endif>
+                                                                {{ $country->name }}
                                                             </option>
                                                         @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-4">
+                                                <div class="form-group">
+                                                    <label>City</label>
+                                                    <select class="form-control form-control-lg" name="city_id"
+                                                        id="city">
+                                                        <option value="">Loading...</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -348,7 +344,9 @@
                                                         id="intake" required>
                                                         <option value="">Select Intake</option>
                                                         @foreach ($intakes as $single)
-                                                            <option value="{{ $single->name }}" @if ($single->name == $university->intake) Selected @endif>{{ $single->name }}
+                                                            <option value="{{ $single->name }}"
+                                                                @if ($single->name == $university->intake) Selected @endif>
+                                                                {{ $single->name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -367,152 +365,136 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Application Fees (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Application Fees ($)</label>
                                                     <input type="number" min="0" name="application_charge"
                                                         placeholder="Enter Application Fees"
                                                         value="{{ $university->application_charge }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Yearly Fee (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Yearly Fee ($)</label>
                                                     <input type="number" min="0" name="year_fee"
                                                         placeholder="Enter Yearly Course Fee"
-                                                        value="{{ $university->year_fee }}" class="form-control"
-                                                        required>
+                                                        value="{{ $university->year_fee }}" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Accommodation Fee (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Accommodation Fee ($)</label>
                                                     <input type="number" min="0" name="accommodation_fee"
                                                         placeholder="Enter Accommodation Fee" class="form-control"
-                                                        value="{{ $university->accommodation_fee }}" required>
+                                                        value="{{ $university->accommodation_fee }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Yearly Insurance Fee (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Yearly Insurance Fee ($)</label>
                                                     <input type="number" min="0" name="insurance_fee"
                                                         placeholder="Enter Insurance Fee" class="form-control"
-                                                        value="{{ $university->insurance_fee }}" required>
+                                                        value="{{ $university->insurance_fee }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Visa Extension Fee (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Visa Extension Fee ($)</label>
                                                     <input type="number" min="0" name="visa_extension_fee"
                                                         placeholder="Enter Visa Extension Fee" class="form-control"
-                                                        value="{{ $university->visa_extension_fee }}" required>
+                                                        value="{{ $university->visa_extension_fee }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Medical In China Fee (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Medical In China Fee ($)</label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
                                                         placeholder="Enter Medical In China Fee" class="form-control"
-                                                        value="{{ $university->medical_in_china_fee }}" required>
+                                                        value="{{ $university->medical_in_china_fee }}">
                                                 </div>
                                             </div>
 
                                             {{-- <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (CNY)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge ($)</label>
                                                     <input type="number" min="0" name="service_charge"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div> --}}
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (Beginner)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (Beginner)</label>
                                                     <input type="number" min="0"
                                                         name="service_charge_beginner"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_beginner }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (1 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (1 star)</label>
                                                     <input type="number" min="0" name="service_charge_1"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_1 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (2 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (2 star)</label>
                                                     <input type="number" min="0" name="service_charge_2"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_2 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (3 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (3 star)</label>
                                                     <input type="number" min="0" name="service_charge_3"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_3 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (4 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (4 star)</label>
                                                     <input type="number" min="0" name="service_charge_4"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_4 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (5 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (5 star)</label>
                                                     <input type="number" min="0" name="service_charge_5"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_5 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (6 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (6 star)</label>
                                                     <input type="number" min="0" name="service_charge_6"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_6 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Service Charge (7 star)<span class="text-danger"
-                                                            style="font-size: 1.25rem; line-height:0;">*</span></label>
+                                                    <label>Service Charge (7 star)</label>
                                                     <input type="number" min="0" name="service_charge_7"
                                                         placeholder="Enter Service Charge"
                                                         value="{{ $university->service_charge_7 }}"
-                                                        class="form-control" required>
+                                                        class="form-control">
                                                 </div>
                                             </div>
 
@@ -566,7 +548,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        {{-- <div class="row">
                                             <div class="col-12 mb-2">
                                                 <h5>Display Section</h5>
                                             </div>
@@ -643,12 +625,12 @@
                                                             class="form-control"
                                                             placeholder="Enter Countdown Deadline"
                                                             value="{{ $display_data['countdown_deadline'] ?? '' }}"
-                                                            {{-- min="{{ date('Y-m-d') }}" --}}>
+                                                            >
                                                     </div>
                                                 </div>
                                             </div>
 
-                                        </div>
+                                        </div> --}}
 
                                         <div class="row mt-4">
                                             <div class="col-12 mb-2">
@@ -684,7 +666,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Tuition Fee 1 (CNY)</label>
+                                                        <label>Tuition Fee 1 ($)</label>
                                                         <input type="number" min="0"
                                                             name="fs_tuition_fee_1[]"
                                                             placeholder="Enter Yearly Tuition Fee"
@@ -695,7 +677,7 @@
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label>Tuition Fee 2 (CNY)</label>
+                                                        <label>Tuition Fee 2 ($)</label>
                                                         <input type="number" min="0"
                                                             name="fs_tuition_fee_2[]"
                                                             placeholder="Enter Yearly Tuition Fee"
@@ -707,7 +689,7 @@
 
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Accommodation Fee 1 (CNY)</label>
+                                                    <label>Accommodation Fee 1 ($)</label>
                                                     <input type="number" min="0"
                                                         name="fs_accommodation_fee_1"
                                                         placeholder="Enter Accommodation Fee" class="form-control"
@@ -716,7 +698,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Accommodation Fee 2 (CNY)</label>
+                                                    <label>Accommodation Fee 2 ($)</label>
                                                     <input type="number" min="0"
                                                         name="fs_accommodation_fee_2"
                                                         placeholder="Enter Accommodation Fee" class="form-control"
@@ -725,7 +707,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Insurance Fee (CNY)</label>
+                                                    <label>Insurance Fee ($)</label>
                                                     <input type="number" min="0" name="fs_insurance_fee"
                                                         placeholder="Enter Insurance Fee" class="form-control"
                                                         value="{{ $fees_structure['insurance_fee'] ?? '' }}">
@@ -733,7 +715,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Visa Extension Fee (CNY)</label>
+                                                    <label>Visa Extension Fee ($)</label>
                                                     <input type="number" min="0" name="fs_visa_extension_fee"
                                                         placeholder="Enter Visa Extension Fee" class="form-control"
                                                         value="{{ $fees_structure['visa_extension_fee'] ?? '' }}">
@@ -741,7 +723,7 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Medical In China Fee (CNY)</label>
+                                                    <label>Medical In China Fee ($)</label>
                                                     <input type="number" min="0"
                                                         name="fs_medical_in_china_fee"
                                                         placeholder="Enter Medical In China Fee" class="form-control"
@@ -1147,7 +1129,7 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
-                                                            {{-- 
+                                                            {{--
                                                             <div class="col-12 youtube-section">
                                                                 <div class="form-group">
                                                                     <label for="">Video Title<span
@@ -1344,7 +1326,7 @@
 
             var myvar = `
                 <div class="row align-items-center mt-2">
-                
+
                     <div
                         class="col-sm-12 col-md-5 mt-3 img-upload-container">
                         <label class="form-control-label">Add
@@ -1446,7 +1428,7 @@
                                 <div class="gallery-image-container">
 
                                     <div class="row align-items-center mt-2">
-                                      
+
                                         <div
                                             class="col-sm-12 col-md-5 img-upload-container">
                                             <label class="form-control-label">Upload
@@ -1712,7 +1694,7 @@
                             </a>
                         </div>
                     </div>
-                 
+
 
                     <!-- Youtube Section -->
                     <div class="col-12 youtube-section d-none">
@@ -1754,6 +1736,47 @@
             $(this).closest('.video-container').remove();
         });
     </script>
+
+    <script>
+        $(document).ready(function() {
+            function fetchCities(country_id, selectedCity = null) {
+                $('#city').html('<option value="">Loading...</option>');
+
+                if (country_id) {
+                    $.ajax({
+                        url: `/get-cities/${country_id}`,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+                            let options = '<option value="">Select City</option>';
+                            $.each(data, function(key, city) {
+                                let selected = (selectedCity && city.id == selectedCity) ?
+                                    'selected' : '';
+                                options +=
+                                    `<option value="${city.id}" ${selected}>${city.name}</option>`;
+                            });
+                            $('#city').html(options);
+                        }
+                    });
+                } else {
+                    $('#city').html('<option value="">Select City</option>'); // Reset dropdown
+                }
+            }
+
+            let selectedCountry = $('#country').val();
+            let selectedCity = '{{ $university->city_id ?? '' }}'; // Pre-select city if available
+
+            if (selectedCountry) {
+                fetchCities(selectedCountry, selectedCity);
+            }
+
+            $('#country').change(function() {
+                let country_id = $(this).val();
+                fetchCities(country_id);
+            });
+        });
+    </script>
+
 </body>
 
 </html>

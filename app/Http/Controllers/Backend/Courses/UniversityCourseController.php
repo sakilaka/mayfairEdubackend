@@ -101,74 +101,78 @@ class UniversityCourseController extends Controller
         try {
             DB::beginTransaction();
 
-            $course = new Course();
+            $universityIds = is_array($request->university_id) ? $request->university_id : [$request->university_id];
 
-            $course->type = 'university';
-            $course->department_id = $request->department_id ?? "";
-            $course->degree_id = $request->degree_id;
-            $course->university_id = $request->university_id ?? "";
-            $course->language_id = $request->language_id ?? 0;
-            $course->section_id = $request->section_id ?? 0;
+            foreach ($universityIds as $universityId) {
+                $course = new Course();
 
-            $course->name = $request->course_name ?? "";
-            $course->scholarship_id = $request->scholarship_id ?? null;
-            $course->additional_scholarships = json_encode($request->optional_scholarship_id) ?? null;
-            $course->dormitories = json_encode($request->dormitory_id);
-            $course->coursetype = $request->course_type;
+                $course->type = 'university';
+                $course->department_id = $request->department_id ?? "";
+                $course->degree_id = $request->degree_id;
+                $course->university_id = $universityId; 
+                $course->language_id = $request->language_id ?? 0;
+                $course->section_id = $request->section_id ?? 0;
 
-            $course->course_duration = $request->course_duration;
-            $course->application_deadline = $request->application_deadline;
+                $course->name = $request->course_name ?? "";
+                $course->scholarship_id = $request->scholarship_id ?? null;
+                $course->additional_scholarships = json_encode($request->optional_scholarship_id) ?? null;
+                $course->dormitories = json_encode($request->dormitory_id);
+                $course->coursetype = $request->course_type;
 
-            $course->requisites = $request->requisites ?? "";
-            $course->admission_process = $request->admission_process ?? "";
-            $course->accommodation = $request->accommodation ?? "";
-            $course->about = $request->about ?? "";
+                $course->course_duration = $request->course_duration;
+                $course->application_deadline = $request->application_deadline;
 
-            $course->service_charge_beginner = $request->service_charge_beginner ?? "";
-            $course->service_charge_1 = $request->service_charge_1 ?? null;
-            $course->service_charge_2 = $request->service_charge_2 ?? null;
-            $course->service_charge_3 = $request->service_charge_3 ?? null;
-            $course->service_charge_4 = $request->service_charge_4 ?? null;
-            $course->service_charge_5 = $request->service_charge_5 ?? null;
-            $course->service_charge_6 = $request->service_charge_6 ?? null;
-            $course->service_charge_7 = $request->service_charge_7 ?? null;
-            $course->application_charge = $request->application_charge ?? null;
+                $course->requisites = $request->requisites ?? "";
+                $course->admission_process = $request->admission_process ?? "";
+                $course->accommodation = $request->accommodation ?? "";
+                $course->about = $request->about ?? "";
 
-            $course->year_fee = $request->year_fee;
-            $course->accommodation_fee = $request->accommodation_fee ?? null;
-            $course->insurance_fee = $request->insurance_fee ?? null;
-            $course->visa_extension_fee = $request->visa_extension_fee ?? null;
-            $course->medical_in_china_fee = $request->medical_in_china_fee ?? null;
-            $course->others_fee = $request->others_fee ?? null;
+                $course->service_charge_beginner = $request->service_charge_beginner ?? "";
+                $course->service_charge_1 = $request->service_charge_1 ?? null;
+                $course->service_charge_2 = $request->service_charge_2 ?? null;
+                $course->service_charge_3 = $request->service_charge_3 ?? null;
+                $course->service_charge_4 = $request->service_charge_4 ?? null;
+                $course->service_charge_5 = $request->service_charge_5 ?? null;
+                $course->service_charge_6 = $request->service_charge_6 ?? null;
+                $course->service_charge_7 = $request->service_charge_7 ?? null;
+                $course->application_charge = $request->application_charge ?? null;
 
-            $yearly_original_fee = $request->year_fee +
-                $request->accommodation_fee +
-                $request->insurance_fee +
-                $request->visa_extension_fee +
-                $request->medical_in_china_fee;
+                $course->year_fee = $request->year_fee;
+                $course->accommodation_fee = $request->accommodation_fee ?? null;
+                $course->insurance_fee = $request->insurance_fee ?? null;
+                $course->visa_extension_fee = $request->visa_extension_fee ?? null;
+                $course->medical_in_china_fee = $request->medical_in_china_fee ?? null;
+                $course->others_fee = $request->others_fee ?? null;
 
-            $course->yearly_original_fee = $yearly_original_fee;
+                $yearly_original_fee = ($request->year_fee ?? 0) +
+                    ($request->accommodation_fee ?? 0) +
+                    ($request->insurance_fee ?? 0) +
+                    ($request->visa_extension_fee ?? 0) +
+                    ($request->medical_in_china_fee ?? 0);
 
-            $course->save();
+                $course->yearly_original_fee = $yearly_original_fee;
 
-            // Related coursed
-            if ($request->relatedcourse_id) {
-                foreach ($request->relatedcourse_id as $value) {
-                    $relatedcourse = new RelatedCourse();
-                    $relatedcourse->course_id = $course->id;
-                    $relatedcourse->relatedcourse_id = $value;
-                    $relatedcourse->save();
+                $course->save();
+
+                // Related courses
+                if ($request->relatedcourse_id) {
+                    foreach ($request->relatedcourse_id as $value) {
+                        $relatedcourse = new RelatedCourse();
+                        $relatedcourse->course_id = $course->id;
+                        $relatedcourse->relatedcourse_id = $value;
+                        $relatedcourse->save();
+                    }
                 }
             }
 
             DB::commit();
-            return redirect(route('admin.u_course.index'))->with('success', 'University Program Created Successfully');
+            return redirect(route('admin.u_course.index'))->with('success', 'University Programs Created Successfully');
         } catch (\Exception $e) {
             DB::rollBack();
-            return $e->getMessage();
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -206,6 +210,7 @@ class UniversityCourseController extends Controller
             $course->department_id = $request->department_id ?? "";
             $course->degree_id = $request->degree_id;
             $course->university_id = $request->university_id ?? "";
+            // $course->university_id = is_array($request->university_id) ? implode(',', $request->university_id) : $request->university_id;
             $course->language_id = $request->language_id ?? 0;
             $course->section_id = $request->section_id ?? 0;
 

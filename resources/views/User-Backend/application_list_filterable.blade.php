@@ -21,6 +21,9 @@
         .select2-container--default .select2-selection--single .select2-selection__arrow {
             top: 7px;
         }
+        button.dt-button, div.dt-button, a.dt-button, input.dt-button{
+            background-color: #824fa3;
+        }
     </style>
 </head>
 
@@ -41,7 +44,7 @@
                         <nav aria-label="breadcrumb">
                             <div class="d-md-flex justify-content-between">
 
-                                <a href="{{ route('frontend.university_course_list') }}"><button class="ml-3 btn btn-primary-bg" data-toggle=""
+                                <a href="{{ env('FRONTEND_URL', 'http://localhost:5173') . 'course' }}"><button class="ml-3 btn btn-primary-bg" data-toggle=""
                                     data-target="#">Add a new application</button></a>
 
                                 <button class="ml-3 btn btn-primary-bg" data-toggle="modal"
@@ -50,7 +53,7 @@
                                 <button class="ml-3 btn btn-primary-bg" data-toggle="modal"
                                     data-target="#manage_filters_modal">Manage Filters</button>
 
-                               
+
                             </div>
 
                         </nav>
@@ -252,14 +255,11 @@
                                                 </td>
                                             @endif
                                             @if (isset($table_manipulate_data['student_name']) && $table_manipulate_data['student_name'] == 'on')
-                                                @php
-                                                    $studentName = $item->first_name . ' ' . $item->last_name;
-                                                @endphp
                                                 <td
                                                     style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">
                                                     <span data-toggle="tooltip" data-placement="top"
-                                                        data-original-title="{{ $studentName ?? '' }}">
-                                                        {{ $studentName ?? '' }}
+                                                        data-original-title="{{ $item->full_name ?? '' }}">
+                                                        {{ $item->full_name ?? '' }}
                                                     </span>
                                                 </td>
                                             @endif
@@ -293,45 +293,17 @@
                                                 <td
                                                     style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">
                                                     <span data-toggle="tooltip" data-placement="top"
-                                                        data-original-title="{{ $item->passport_number ?? '' }}">
-                                                        {{ $item->passport_number ?? '' }}
+                                                        data-original-title="{{ $item->passport_no ?? '' }}">
+                                                        {{ $item->passport_no ?? '' }}
                                                     </span>
                                                 </td>
                                             @endif
                                             @if (isset($table_manipulate_data['program_name']) && $table_manipulate_data['program_name'] == 'on')
-                                                @php
-                                                    $programIds = json_decode($item->programs) ?? [];
-                                                    $programs = collect($programIds)
-                                                        ->map(function ($programId) {
-                                                            $course = \App\Models\Course::find($programId);
-                                                            return $course
-                                                                ? [
-                                                                    'id' => $course->id,
-                                                                    'name' => $course->name,
-                                                                ]
-                                                                : null;
-                                                        })
-                                                        ->filter()
-                                                        ->unique('id')
-                                                        ->values();
 
-                                                    $programLinks = $programs
-                                                        ->map(function ($program) {
-                                                            return '<a href="' .
-                                                                route('frontend.course.details', [
-                                                                    'id' => $program['id'],
-                                                                ]) .
-                                                                '" target="_blank" style="color: var(--primary_background);" data-toggle="tooltip" data-placement="top" data-original-title="' .
-                                                                $program['name'] .
-                                                                '">' .
-                                                                $program['name'] .
-                                                                '</a>';
-                                                        })
-                                                        ->implode(',<br>');
-                                                @endphp
                                                 <td
                                                     style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">
-                                                    {!! $programLinks !!}
+                                                    {{-- {!! $programLinks !!} --}}
+                                                    {{ $item->program_name }}
                                                 </td>
                                             @endif
                                             @if (isset($table_manipulate_data['section_id']) && $table_manipulate_data['section_id'] == 'on')
@@ -397,7 +369,7 @@
                                             @endif
                                             @if (isset($table_manipulate_data['passport_exipre_date']) && $table_manipulate_data['passport_exipre_date'] == 'on')
                                                 <td class="text-center">
-                                                    {{ $item->passport_exipre_date }}
+                                                    {{ $item->passport_expiration_date }}
 
                                                 </td>
                                             @endif
@@ -416,7 +388,7 @@
                                                     @endif
                                                 </td>
                                             @endif
-                                            
+
                                             @if (isset($table_manipulate_data['application_status']) && $table_manipulate_data['application_status'] == 'on')
                                                 <td data-field="status">
                                                     @php

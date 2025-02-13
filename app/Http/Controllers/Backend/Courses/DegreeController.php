@@ -34,22 +34,22 @@ class DegreeController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'degree' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'degree' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
-    
+
         $degree = new Degree();
         $degree->name = $request->name;
-    
+
         if ($request->hasFile('degree')) {
             $fileName = rand().time().'.'.$request->degree->getClientOriginalExtension();
             $request->degree->move(public_path('upload/degree/'), $fileName);
             $degree->image = $fileName;
         }
-    
+
         $degree->save();
         return redirect()->route('admin.degree.index')->with('success', 'Degree Added Successfully');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -76,28 +76,28 @@ class DegreeController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'degree' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'degree' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         ]);
-    
+
         $degree = Degree::findOrFail($id);
         $degree->name = $request->name;
-    
+
         if ($request->hasFile('degree')) {
             // Delete old image if exists
             if ($degree->image && file_exists(public_path('upload/degree/' . $degree->image))) {
                 unlink(public_path('upload/degree/' . $degree->image));
             }
-    
+
             // Store new image
             $fileName = rand().time().'.'.$request->degree->getClientOriginalExtension();
             $request->degree->move(public_path('upload/degree/'), $fileName);
             $degree->image = $fileName;
         }
-    
+
         $degree->save();
         return redirect()->route('admin.degree.index')->with('success', 'Degree Updated Successfully');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.

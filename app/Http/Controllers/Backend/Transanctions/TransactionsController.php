@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend\Transanctions;
 
 use App\Http\Controllers\Controller;
+use App\Models\ApplicationTransaction;
 use App\Models\Balance;
 use App\Models\Country;
+use App\Models\StudentApplication;
 use App\Models\Transaction;
 use Carbon\Carbon;
 use DateTime;
@@ -141,9 +143,80 @@ class TransactionsController extends Controller
         return view('Backend.transactions.in_form_add', $data);
     }
 
+    public function in_form_application($id)
+    {
+        $data['transaction_type'] = 'in';
+        $data['application'] = StudentApplication::find($id);
+        // dd($data['application']);
+        return view('Backend.transactions.in_form_add_application', $data);
+    }
+
     /**
      * store in transaction
      */
+    public function in_form_update_app(Request $request)
+    {
+        try {
+            // $request->validate([
+            //     'client_name' => 'nullable|string|max:255',
+            //     'client_phone' => 'nullable|string|max:255',
+            //     'category' => 'required|string|max:255',
+            //     'title' => 'nullable|string|max:255',
+            //     'amount' => 'required|numeric|min:0',
+            //     'is_refundable' => 'required|in:yes,no',
+            //     'refunded_amount' => 'nullable|numeric|min:0',
+            //     'status' => 'required|in:Pending,Resolved',
+            //     'description' => 'nullable|string',
+            // ]);
+
+            $unique_id = explode('-', uuid_create())[0];
+            $transaction = new ApplicationTransaction();
+            $transaction->application_id = $request->application_id;
+            $transaction->transaction_id = $unique_id;
+            $transaction->transaction_type = 'in';
+            $transaction->client_name = $request->input('client_name');
+            $transaction->client_phone = $request->input('client_phone');
+            $transaction->category = $request->input('category');
+            if ($transaction->category == 'Other') {
+                $transaction->category = $request->input('title');
+            }
+            $transaction->amount = $request->input('amount');
+            $transaction->price_per_item = $request->input('price_per_item');
+            $transaction->vat = $request->input('vat');
+            $transaction->in_number = $request->input('in_number');
+            $transaction->customer_number = $request->input('customer_number');
+            $transaction->in_due_date = $request->input('in_due_date');
+            $transaction->is_refundable = $request->input('is_refundable');
+            $transaction->status = $request->input('status');
+            $transaction->description = $request->input('description');
+
+            if ($transaction->is_refundable === 'yes') {
+                $refundableAmount = $request->input('refundable_amount');
+
+                if ($refundableAmount > $transaction->amount) {
+                    return redirect()->back()->withErrors([
+                        'error' => 'Please fix the issue(s) first.',
+                        'refundable_amount' => 'Refunded amount cannot be greater than the original amount.'
+                    ]);
+                }
+
+                $transaction->refundable_amount = $refundableAmount;
+            } else {
+                $transaction->refundable_amount = 0;
+            }
+
+            if ($transaction->status === 'Resolved') {
+                $balance = Balance::firstOrCreate([]);
+                $balance->current_balance += $transaction->amount;
+                $balance->save();
+            }
+            $transaction->save();
+            return redirect()->route('admin.student_appliction_list')->with('success', 'In Transaction successfully created.');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            return redirect()->back()->with('error', 'Something Went Wrong!');
+        }
+    }
     public function in_form_update(Request $request)
     {
         try {
@@ -170,6 +243,11 @@ class TransactionsController extends Controller
                 $transaction->category = $request->input('title');
             }
             $transaction->amount = $request->input('amount');
+            $transaction->price_per_item = $request->input('price_per_item');
+            $transaction->vat = $request->input('vat');
+            $transaction->in_number = $request->input('in_number');
+            $transaction->customer_number = $request->input('customer_number');
+            $transaction->in_due_date = $request->input('in_due_date');
             $transaction->is_refundable = $request->input('is_refundable');
             $transaction->status = $request->input('status');
             $transaction->description = $request->input('description');
@@ -198,13 +276,12 @@ class TransactionsController extends Controller
             $transaction->save();
             return redirect()->route('admin.transactions.index')->with('success', 'In Transaction successfully created.');
         } catch (\Exception $e) {
+            return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
 
-    /**
-     * add out transaction form
-     */
+
     public function out_form()
     {
         $data['transaction_type'] = 'out';

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Backend\Student_Appliction;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendApplicationFeedback;
+use App\Models\AgreementForm;
 use App\Models\ApplicationDocument;
 use App\Models\ApplicationEducation;
+use App\Models\ApplicationTransaction;
 use App\Models\ApplicationWork;
 use App\Models\Continent;
 use App\Models\Country;
@@ -32,10 +34,10 @@ class StudentApplictionController extends Controller
 {
     public function indexList(Request $request)
     {
-        $data['applications'] = UniversityApplication::orderBy('id', 'desc')->get();  
+        $data['applications'] = UniversityApplication::orderBy('id', 'desc')->get();
         return view('Backend.open_application.index', $data);
     }
-    
+
     public function index(Request $request)
     {
         $page_route = Route::currentRouteName();
@@ -45,16 +47,9 @@ class StudentApplictionController extends Controller
 
         $data['applications'] = StudentApplication::orderBy('id', 'desc')
         ->where('status', '!=', 0)
-        ->get();  
-          
-        $data['assigned_applications'] = StudentApplication::where(function ($query) {
-            $userId = auth()->user()->id;
-            $query->where('partner_ref_id', 'like', '%"partner":' . $userId . '%')
-                ->orWhere('partner_ref_id', 'like', '%"manager":' . $userId . '%')
-                ->orWhere('partner_ref_id', 'like', '%"support":' . $userId . '%');
-        })
-            ->orderBy('id', 'desc')
-            ->get();
+        ->get();
+
+
 
         if ($request->study_fund && $request->study_fund != 'all') {
             $data['applications'] = StudentApplication::orderBy('id', 'desc')
@@ -122,7 +117,7 @@ class StudentApplictionController extends Controller
             $table_manipulation_fields = $record->fields;
         }
         $data['table_manipulate_data'] = json_decode($table_manipulation_fields, true);
-        
+
         $table_manipulation_filters = StudentApplicationTableModify::where(['user_id' => auth()->user()->id, 'page_route' => $page_route])->value('filter');
         $data['table_manipulate_filter_data'] = json_decode($table_manipulation_filters, true);
 
@@ -264,7 +259,7 @@ class StudentApplictionController extends Controller
             return redirect()->back()->with('error', 'Something went wrong!');
         }
     }
-    
+
 
     public function getFilterItems(Request $request)
     {
@@ -305,7 +300,7 @@ class StudentApplictionController extends Controller
 
         return response()->json($items);
     }
-    
+
 
     public function fetchApplication($application_id)
     {
@@ -401,7 +396,7 @@ class StudentApplictionController extends Controller
             $total_students = User::where('partner_ref_id', $partner->id)
                 ->where('role', 'student')
                 ->count();
-            
+
             $user = User::where('id', $partner->id)->first();
             $levels = $user->star;
             // dd($levels);
@@ -493,7 +488,7 @@ class StudentApplictionController extends Controller
         // $data['applications'] = StudentApplication::where('user_id', $partner_id)->get();
 
             return view('Backend.student_appliction.partner_wise_application', $data);
-       
+
     }
 
     public function assignStudentToEmployee(Request $request)
@@ -771,16 +766,16 @@ class StudentApplictionController extends Controller
         $request->validate([
             'paid_amount' => 'required|numeric|min:0',
         ]);
-    
+
         $s_appliction = StudentApplication::find($id);
         if ($s_appliction) {
             // Add the new amount to the existing paid amount
             $s_appliction->paid_amount += $request->paid_amount;
             $s_appliction->save();
 
-    
+
             // Set payment status based on the total paid amount
-           
+
             if ($s_appliction->paid_amount >= $s_appliction->service_charge) {
                 $s_appliction->payment_status = 1;  // Paid
             } else {
@@ -788,9 +783,9 @@ class StudentApplictionController extends Controller
             }
             $s_appliction->save();
 
-    
+
             // Save the changes
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Amount updated successfully.',
@@ -801,22 +796,22 @@ class StudentApplictionController extends Controller
             return response()->json(['success' => false, 'message' => 'Application not found.'], 404);
         }
     }
-    
+
     public function updateApplicationFee(Request $request, $id)
     {
         $request->validate([
             'paid_application_fees' => 'required|numeric|min:0',
         ]);
-    
+
         $s_appliction = StudentApplication::find($id);
         if ($s_appliction) {
             // Add the new amount to the existing paid amount
             $s_appliction->paid_application_fees += $request->paid_application_fees;
             $s_appliction->save();
 
-    
+
             // Set payment status based on the total paid amount
-           
+
             if ($s_appliction->paid_application_fee >= $s_appliction->service_charge) {
                 $s_appliction->payment_status_application = 1;  // Paid
             } else {
@@ -824,9 +819,9 @@ class StudentApplictionController extends Controller
             }
             $s_appliction->save();
 
-    
+
             // Save the changes
-    
+
             return response()->json([
                 'success' => true,
                 'message' => 'Amount updated successfully.',
@@ -837,8 +832,8 @@ class StudentApplictionController extends Controller
             return response()->json(['success' => false, 'message' => 'Application not found.'], 404);
         }
     }
-    
-    
+
+
 
 
     public function editDocument($id)
@@ -869,10 +864,10 @@ class StudentApplictionController extends Controller
 
     public function details($id)
     {
-        $data['s_appliction'] = StudentApplication::find($id);
+        $data['s_application'] = StudentApplication::with('educations')->find($id);
         return view('Backend.student_appliction.application_details', $data);
     }
-    
+
     public function openDetails($id)
     {
         $data['o_application'] = UniversityApplication::with([
@@ -883,19 +878,46 @@ class StudentApplictionController extends Controller
         ])->find($id);
 
         // dd($data['o_application']);
-    
+
         if (!$data['o_application']) {
             return redirect()->back()->with('error', 'Application not found');
         }
-    
+
         return view('Backend.open_application.application_details', $data);
     }
-    
+
 
     public function applicationInvoice($id)
     {
         $data['orderdetails'] = StudentApplication::find($id);
+        $data['transactionDetails'] = ApplicationTransaction::where('application_id', $id)->first();
+        // dd($data['transactionDetails']);
         return view('Backend.student_appliction.invoice', $data);
+    }
+
+    public function applicationAgreementCreate()
+    {
+        $data['agreement'] = StudentApplication::all();
+        return view('Backend.student_appliction.agreement', $data);
+    }
+    public function applicationAgreement()
+    {
+        $data['agreement'] = AgreementForm::all();
+        return view('Backend.student_appliction.agreementIndex', $data);
+    }
+
+    public function applicationAgreementInvoice($id)
+    {
+        $data['agreement'] = StudentApplication::find($id);
+        $data['agreementDetails'] = AgreementForm::where('application_id', $id)->first();
+        return view('Backend.student_appliction.agreement_invoice', $data);
+    }
+
+    public function applicationAgreementInvoiceNotID($id)
+    {
+        // $data['agreement'] = StudentApplication::find($id);
+        $data['agreementDetails'] = AgreementForm::where('id', $id)->first();
+        return view('Backend.student_appliction.agreement_invoice_Not_id', $data);
     }
 
     public function delete(Request $request)
@@ -942,7 +964,7 @@ class StudentApplictionController extends Controller
 
         return response()->download($filePath);
     }
-    
+
     public function openApplicationFileDownload($id)
     {
         $file = UniversityDocument::find($id);
@@ -1015,7 +1037,15 @@ class StudentApplictionController extends Controller
     function applicationOrderPrint($id)
     {
         $data['orderdetails'] = StudentApplication::find($id);
+        $data['transactionDetails'] = ApplicationTransaction::where('application_id', $id)->first();
         return view('Backend.student_appliction.print', $data);
+    }
+
+    function applicationAgreementPrint($id)
+    {
+        // $data['agreement'] = StudentApplication::find($id);
+        $data['agreementDetails'] = AgreementForm::where('id', $id)->first();
+        return view('Backend.student_appliction.agreementPrintID', $data);
     }
 
     public function applicationFormDownload($id)
@@ -1048,7 +1078,7 @@ class StudentApplictionController extends Controller
         $name = 'Student_Application_Form_ ' . date('Y-m-d i:h:s');
         $mpdf->Output($name . '.pdf', 'D');
     }
-    
+
     public function openApplicationFormDownload($id)
     {
         $data['o_application'] = UniversityApplication::with([
@@ -1057,7 +1087,7 @@ class StudentApplictionController extends Controller
             'work_experiences',
             'documents',
         ])->find($id);
-        
+
         $html = view('Backend.open_application.download_application', $data);
 
         $mpdf = new Mpdf([
@@ -1512,5 +1542,87 @@ class StudentApplictionController extends Controller
         }
         //Notification  End
         return redirect()->back()->with('success', 'Application status update successfully');
+    }
+
+    public function storeAgreement(Request $request)
+    {
+        // dd($request->all());
+        // $request->validate([
+        //     'name' => 'required|string',
+        //     'passport_number' => 'nullable|string',
+        //     'present_address' => 'required|string',
+        //     'permanent_address' => 'required|string',
+        //     'spouse_name' => 'nullable|string',
+        //     'spouse_passport_number' => 'nullable|string',
+        //     'children_names' => 'nullable|string',
+        //     'children_passport_numbers' => 'nullable|string',
+        //     'study_destination' => 'required|string',
+        //     'services' => 'required|array',
+        //     'file_opening_fee' => 'required|integer',
+        //     'application_fees' => 'required|integer',
+        //     'admission_service_charge' => 'required|integer',
+        //     'tuition_fee' => 'required|integer',
+        //     'health_insurance' => 'required|integer',
+        //     'residence_permit' => 'required|integer',
+        //     'vfs_fee' => 'required|integer',
+        //     'travel_food' => 'required|integer',
+        //     'air_ticket' => 'required|integer',
+        //     'final_service' => 'required|integer',
+        //     'house_rent' => 'required|integer',
+        //     'bank_statement_confirmation' => 'required|string',
+        //     'applicant_obligations' => 'required|string',
+        //     'consultant_obligations' => 'required|string',
+        //     'applicant_signature' => 'nullable|string',
+        //     'consultant_signature' => 'nullable|string',
+        //     'agreement_date' => 'required|date',
+        // ]);
+
+        // Create new instance
+        $agreement = new AgreementForm();
+
+        // Assign values individually
+        $agreement->application_id = $request->application_id;
+        $agreement->full_name = $request->name;
+        $agreement->passport_number = $request->passport_number;
+        $agreement->present_address = $request->present_address;
+        $agreement->permanent_address = $request->permanent_address;
+        $agreement->spouse_name = $request->spouse_name;
+        $agreement->spouse_passport_number = $request->spouse_passport_number;
+        $agreement->children_names = $request->children_names;
+        $agreement->children_passport_numbers = $request->children_passport_numbers;
+        $agreement->study_destination = $request->study_destination;
+
+        // Convert checkbox array to JSON before saving
+        $agreement->services_required = json_encode($request->services);
+
+        // Assign fees
+        $agreement->file_opening_fee = $request->file_opening_fee;
+        $agreement->application_fees = $request->application_fees;
+        $agreement->admission_service_charge = $request->admission_service_charge;
+        $agreement->first_year_tuition_fees = $request->tuition_fee;
+        $agreement->health_insurance = $request->health_insurance;
+        $agreement->residence_permit_fees = $request->residence_permit;
+        $agreement->vfs_fees = $request->vfs_fee;
+        $agreement->travel_food_accommodation = $request->travel_food;
+        $agreement->air_ticket = $request->air_ticket;
+        $agreement->final_service_fee = $request->final_service;
+        $agreement->house_rent_deposit = $request->house_rent;
+
+        // Convert "on" to boolean for checkboxes
+        $agreement->bank_statement_confirmation = $request->bank_statement_confirmation === 'Yes' ? true : false;
+        $agreement->refund_acknowledgment = $request->has('refund_acknowledgment');
+        $agreement->exchange_rate_policy_agreement = $request->has('exchange_rate_policy');
+        $agreement->applicant_obligations_agreement = $request->has('applicant_obligations');
+        $agreement->consultant_obligations_agreement = $request->has('consultant_obligations');
+
+        // Assign signatures and date
+        $agreement->applicant_signature = $request->applicant_signature;
+        $agreement->consultant_signature = $request->consultant_signature;
+        $agreement->agreement_date = $request->agreement_date;
+
+        // Save to database
+        $agreement->save();
+
+        return redirect()->route('admin.student_appliction_agreement')->with('success', 'Agreement saved successfully.');
     }
 }

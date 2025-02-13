@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class StudentApplication extends Model
 {
     use HasFactory;
-    
+
     protected $dates = ['created_at'];
 
     function carts()
@@ -17,7 +17,7 @@ class StudentApplication extends Model
     }
     function educations()
     {
-        return $this->hasMany(ApplicationEducation::class, 'application_id');
+        return $this->hasMany(ApplicationSchool::class, 'application_id');
     }
     function familyMembers()
     {

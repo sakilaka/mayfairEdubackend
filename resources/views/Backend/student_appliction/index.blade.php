@@ -244,14 +244,11 @@
                                                 </td>
                                             @endif
                                             @if (isset($table_manipulate_data['student_name']) && $table_manipulate_data['student_name'] == 'on')
-                                                @php
-                                                    $studentName = $item->first_name . ' ' . $item->last_name;
-                                                @endphp
                                                 <td
                                                     style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">
                                                     <span data-toggle="tooltip" data-placement="top"
                                                         data-original-title="{{ $studentName ?? '' }}">
-                                                        {{ $studentName ?? '' }}
+                                                        {{ $item->full_name ?? '' }}
                                                     </span>
                                                 </td>
                                             @endif
@@ -285,47 +282,20 @@
                                                 <td
                                                     style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px;">
                                                     <span data-toggle="tooltip" data-placement="top"
-                                                        data-original-title="{{ $item->passport_number ?? '' }}">
-                                                        {{ $item->passport_number ?? '' }}
+                                                        data-original-title="{{ $item->passport_no ?? '' }}">
+                                                        {{ $item->passport_no ?? '' }}
                                                     </span>
                                                 </td>
                                             @endif
                                             @if (isset($table_manipulate_data['program_name']) && $table_manipulate_data['program_name'] == 'on')
-                                                @php
-                                                    $programIds = json_decode($item->programs) ?? [];
-                                                    $programs = collect($programIds)
-                                                        ->map(function ($programId) {
-                                                            $course = \App\Models\Course::find($programId);
-                                                            return $course
-                                                                ? [
-                                                                    'id' => $course->id,
-                                                                    'name' => $course->name,
-                                                                ]
-                                                                : null;
-                                                        })
-                                                        ->filter()
-                                                        ->unique('id')
-                                                        ->values();
 
-                                                    $programLinks = $programs
-                                                        ->map(function ($program) {
-                                                            return '<a href="' .
-                                                                route('frontend.course.details', [
-                                                                    'id' => $program['id'],
-                                                                ]) .
-                                                                '" target="_blank" style="color: var(--primary_background);" data-toggle="tooltip" data-placement="top" data-original-title="' .
-                                                                $program['name'] .
-                                                                '">' .
-                                                                $program['name'] .
-                                                                '</a>';
-                                                        })
-                                                        ->implode(',<br>');
-                                                @endphp
                                                 <td
                                                     style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 150px;">
-                                                    {!! $programLinks !!}
+                                                    {{-- {!! $programLinks !!} --}}
+                                                    {{ $item->program_name }}
                                                 </td>
                                             @endif
+
                                             @if (isset($table_manipulate_data['section_id']) && $table_manipulate_data['section_id'] == 'on')
                                                 @php
                                                     $programIds = json_decode($item->programs) ?? [];
@@ -350,6 +320,7 @@
                                                     </span>
                                                 </td>
                                             @endif
+
                                             @if (isset($table_manipulate_data['university_name']) && $table_manipulate_data['university_name'] == 'on')
                                                 @php
                                                     $programIds = json_decode($item->programs) ?? [];
@@ -387,12 +358,14 @@
 
                                                 </td>
                                             @endif
+
                                             @if (isset($table_manipulate_data['passport_exipre_date']) && $table_manipulate_data['passport_exipre_date'] == 'on')
                                                 <td class="text-center">
                                                     {{ $item->passport_exipre_date }}
 
                                                 </td>
                                             @endif
+
                                             @if (isset($table_manipulate_data['gender']) && $table_manipulate_data['gender'] == 'on')
                                                 <td class="text-center">
                                                     {{ $item->gender }}
@@ -408,6 +381,7 @@
                                                     @endif
                                                 </td>
                                             @endif
+
                                             @if (isset($table_manipulate_data['application_status']) && $table_manipulate_data['application_status'] == 'on')
                                                 <td data-field="status">
                                                     @php
@@ -487,6 +461,7 @@
                                                     </span>
                                                 </td>
                                             @endif
+
                                             @if (isset($table_manipulate_data['action']) && $table_manipulate_data['action'] == 'on')
                                                 <td class="text-right">
                                                     <div class="dropdown dropdown-action">
@@ -514,12 +489,35 @@
                                                                     data-placement="top" data-original-title="View">
                                                                     <i class="fa fa-eye" aria-hidden="true"></i>
                                                                 </a>
+
                                                                 <a href="{{ route('admin.application-form-download', $item->id) }}"
                                                                     class="btn text-primary" data-toggle="tooltip"
                                                                     data-placement="top"
                                                                     data-original-title="Download Application">
                                                                     <i class="fa fa-download" aria-hidden="true"></i>
                                                                 </a>
+
+                                                                <a href="{{ route('admin.transactions.in_form_application', $item->id) }}"
+                                                                    class="btn text-primary" data-toggle="tooltip"
+                                                                    data-placement="top"
+                                                                    data-original-title="Add Transaction">
+                                                                    <i class="fa fa-bank" aria-hidden="true"></i>
+                                                                </a>
+
+                                                                {{-- <a href="{{ route('admin.student_appliction_agreement', $item->id) }}"
+                                                                    class="btn text-primary" data-toggle="tooltip"
+                                                                    data-placement="top"
+                                                                    data-original-title="Add Agreement">
+                                                                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                                                                </a> --}}
+
+                                                                <a href="{{ route('admin.student_appliction_agreement_invoice', $item->id) }}"
+                                                                    class="btn text-primary" data-toggle="tooltip"
+                                                                    data-placement="top"
+                                                                    data-original-title="Agreement Invoice">
+                                                                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                                                                </a>
+
                                                                 <a href="{{ route('admin.application-all-document-download', $item->id) }}"
                                                                     class="btn text-primary" data-toggle="tooltip"
                                                                     data-placement="top"

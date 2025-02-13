@@ -83,6 +83,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div
                                                 class="col-sm-12 col-md-5 d-flex justify-content-center align-items-center">
                                                 <div class="px-3 mt-3">
@@ -92,7 +93,9 @@
                                                         style="border-radius: 8px"></video>
                                                 </div>
                                             </div>
+
                                         </div>
+
 
                                         <div class="row my-4" id="banner_photo_type" style="display: none">
                                             <div class="col-sm-12 mt-3">
@@ -107,17 +110,60 @@
 
                                                 <div class="mg-t-10 mg-sm-t-0 banner-image-container">
                                                     @php
-                                                        $bannerImages = json_decode($home_content->banner_image, true);
+                                                        $hero_content = json_decode($home_content->hero_content, true);
                                                         $random = rand(10000, 90000);
                                                     @endphp
 
-                                                    @if (empty($bannerImages))
+                                                    @if (empty($hero_content))
+
+                                                        <div class="row mt-4 mb-4">
+                                                            <div class="col-sm-12">
+                                                                <label class=" form-control-label">Banner Short Text:<span
+                                                                        class="tx-danger"></span></label>
+                                                                <div class="mg-t-10 mg-sm-t-0">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg"
+                                                                        name="hero_content[{{ $random }}][banner_short_text]"
+                                                                        value="">
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                        </div>
+
+                                                        <div class="row mt-4 mb-4">
+                                                            <div class="col-sm-12">
+                                                                <label class=" form-control-label">Banner Text:<span
+                                                                        class="tx-danger"></span></label>
+                                                                <div class="mg-t-10 mg-sm-t-0">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg"
+                                                                        name="hero_content[{{ $random }}][banner_text]"
+                                                                        value="">
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                        </div>
+
+                                                        <div class="row mt-4 mb-4">
+                                                            <div class="col-sm-12">
+                                                                <label class=" form-control-label">Button Url:<span
+                                                                        class="tx-danger"></span></label>
+                                                                <div class="mg-t-10 mg-sm-t-0">
+                                                                    <input type="text"
+                                                                        class="form-control form-control-lg"
+                                                                        name="hero_content[{{ $random }}][button_url]"
+                                                                        value="">
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                        </div>
+
                                                         <div class="d-flex align-items-center mt-2 row">
                                                             <div class="col-12 mt-3 form-group">
                                                                 <label for="">Image URL</label>
                                                                 <input type="text" class="form-control"
                                                                     placeholder="Enter Image Redirection URL"
-                                                                    name="image_url[{{ $random }}]">
+                                                                    name="hero_content[{{ $random }}][image_url]">
                                                             </div>
 
                                                             <div class="col-sm-12 col-md-6 img-upload-container">
@@ -129,7 +175,7 @@
                                                                         <ul></ul>
                                                                     </div>
                                                                     <input type="file" class="dropify"
-                                                                        name="banner_image[{{ $random }}]"
+                                                                        name="hero_content[{{ $random }}][banner_image]"
                                                                         accept="image/*">
                                                                     <button type="button"
                                                                         class="dropify-clear">Remove</button>
@@ -150,6 +196,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+
                                                             <div
                                                                 class="img-preview-container col-sm-11 col-md-5 d-flex justify-content-center align-items-center">
                                                                 <div class="px-3 mt-3">
@@ -166,14 +213,56 @@
                                                             </div>
                                                         </div>
                                                     @else
-                                                        @foreach ($bannerImages['images'] as $key => $image)
+                                                        @foreach ($hero_content as $key => $item)
+                                                            <div>
+                                                                <div class="row mt-4 mb-4">
+                                                                <div class="col-sm-12">
+                                                                    <label class="form-control-label">Banner short Text:<span
+                                                                            class="tx-danger"></span></label>
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            name="hero_content[{{ $key }}][banner_short_text]"
+                                                                            value="{{ $item['banner_short_text'] ?? '' }}">
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+                                                            <div class="row mt-4 mb-4">
+                                                                <div class="col-sm-12">
+                                                                    <label class="form-control-label">Banner Text:<span
+                                                                            class="tx-danger"></span></label>
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            name="hero_content[{{ $key }}][banner_text]"
+                                                                            value="{{ $item['banner_text'] ?? '' }}">
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+
+                                                            <div class="row mt-4 mb-4">
+                                                                <div class="col-sm-12">
+                                                                    <label class="form-control-label">Button Url:<span
+                                                                            class="tx-danger"></span></label>
+                                                                    <div class="mg-t-10 mg-sm-t-0">
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            name="hero_content[{{ $key }}][button_url]"
+                                                                            value="{{ $item['button_url'] ?? '' }}">
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                            </div>
+
                                                             <div class="d-flex align-items-center mt-2 row">
                                                                 <div class="col-12 mt-3 form-group">
                                                                     <label for="">Image URL</label>
                                                                     <input type="text" class="form-control"
                                                                         placeholder="Enter Image Redirection URL"
-                                                                        name="image_url[{{ $key }}]"
-                                                                        value="{{ $bannerImages['image_url'][$key] ?? '' }}">
+                                                                        name="hero_content[{{ $key }}][image_url]"
+                                                                        value="{{ $item['image_url'] ?? '' }}">
                                                                 </div>
 
                                                                 <div class="col-sm-12 col-md-6 img-upload-container">
@@ -185,11 +274,13 @@
                                                                             <ul></ul>
                                                                         </div>
                                                                         <input type="file" class="dropify"
-                                                                            name="banner_image[{{ $key }}]"
-                                                                            accept="image/*">
+                                                                            name="hero_content[{{ $key }}][banner_image]"
+                                                                            accept="image/*"
+                                                                            data-default-file="{{ asset($item['banner_image']) ?? asset('frontend/images/No-image.jpg') }}">
+                                                                        <!-- Add hidden input for old image -->
                                                                         <input type="hidden"
-                                                                            name="old_banner_image[{{ $key }}]"
-                                                                            value="{{ $image ?? '' }}">
+                                                                            name="hero_content[{{ $key }}][old_banner_image]"
+                                                                            value="{{ $item['banner_image'] ?? '' }}">
                                                                         <button type="button"
                                                                             class="dropify-clear">Remove</button>
                                                                         <div class="dropify-preview">
@@ -202,17 +293,19 @@
                                                                                             class="dropify-filename-inner"></span>
                                                                                     </p>
                                                                                     <p class="dropify-infos-message">
-                                                                                        Drag and drop or click
-                                                                                        to replace</p>
+                                                                                        Drag and drop or click to
+                                                                                        replace
+                                                                                    </p>
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
+
                                                                 <div
                                                                     class="img-preview-container col-sm-11 col-md-5 d-flex justify-content-center align-items-center">
                                                                     <div class="px-3 mt-3">
-                                                                        <img src="{{ $image ?? asset('frontend/images/No-image.jpg') }}"
+                                                                        <img src="{{ $item['banner_image'] ?? asset('frontend/images/No-image.jpg') }}"
                                                                             alt="" class="img-fluid"
                                                                             style="border-radius: 10px; max-height: 200px !important;">
                                                                     </div>
@@ -224,6 +317,7 @@
                                                                     </a>
                                                                 </div>
                                                             </div>
+                                                            </div>
                                                         @endforeach
                                                     @endif
 
@@ -231,92 +325,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row mt-4 mb-4">
-                                            <div class="col-sm-12">
-                                                <label class=" form-control-label">Banner Text:<span
-                                                        class="tx-danger"></span></label>
-                                                <div class="mg-t-10 mg-sm-t-0">
-                                                    <input type="text" class="form-control form-control-lg"
-                                                        name="banner_text"
-                                                        value="{{ $home_content->banner_text ?? '' }}">
-                                                </div>
-                                            </div>
-                                            <hr>
-                                        </div>
 
-                                        @if ($faqs->count() == 0)
-                                            <div class="row">
-                                                <div class="col-sm-5">
-                                                    <label class=" form-control-label">Button Text:<span
-                                                            class="tx-danger"></span></label>
-                                                    <div class="mg-t-10 mg-sm-t-0">
-                                                        <input value="" type="text"
-                                                            name="home_content_ques[]" class="form-control"
-                                                            placeholder="Enter Text">
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-7 d-flex align-items-center ">
-                                                    <div style="width: 97%;">
-                                                        <label class=" form-control-label">Button URL:<span
-                                                                class="tx-danger"></span></label>
-                                                        <div class="mg-t-10 mg-sm-t-0">
-                                                            <input type="text" value=""
-                                                                name="home_content_ans[]" class="form-control"
-                                                                placeholder="Enter URL ">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <label class=" form-control-label"></label>
-                                                        <a id="plus-btn-data-question" href="javascript:void(0)"
-                                                            class="plus-btn-data px-1 p-0 m-0 ml-2"><i
-                                                                class="fas fa-plus"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div><!-- row -->
-                                        @else
-                                            <div class="add-question-data-show">
-                                                @foreach ($faqs as $k => $faq)
-                                                    <div class="row">
-                                                        <div class="col-sm-5 mt-3">
-                                                            <label class=" form-control-label">Button Text:<span
-                                                                    class="tx-danger"></span></label>
-                                                            <div class="mg-t-10 mg-sm-t-0">
-                                                                <input type="text" value="{{ $faq->question }}"
-                                                                    name="home_content_old_ques[{{ $faq->id }}]"
-                                                                    class="form-control" placeholder="Enter Question">
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-7 mt-3 d-flex align-items-center ">
-                                                            <div style="width: 97%;">
-                                                                <label class=" form-control-label">Button URL:<span
-                                                                        class="tx-danger"></span></label>
-                                                                <div class="mg-t-10 mg-sm-t-0">
-                                                                    <input value="{{ $faq->answer }}" type="text"
-                                                                        name="home_content_old_ans[{{ $faq->id }}]"
-                                                                        class="form-control"
-                                                                        placeholder="Enter Answer ">
-                                                                </div>
-                                                            </div>
-                                                            <div>
-                                                                <label class=" form-control-label"></label>
-                                                                @if ($k == 0)
-                                                                    <a id="plus-btn-data-question"
-                                                                        href="javascript:void(0)"
-                                                                        class="plus-btn-data px-1 p-0 m-0 ml-2"><i
-                                                                            class="fas fa-plus"></i></a>
-                                                                @else
-                                                                    <a faq_id="{{ $faq->id }}"
-                                                                        href="javascript:void(0)"
-                                                                        class="minus-btn-question-old-data px-1 p-0 m-0 ml-2"><i
-                                                                            class="fas fa-minus-circle"></i></a>
-                                                                @endif
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                @endforeach
-                                            </div>
-                                        @endif
 
                                         <div class="row mt-4">
                                             <div class="col-sm-12 mg-t-10 mg-sm-t-0 text-center">
@@ -1685,7 +1694,7 @@
 
             var myvar = `
                 <div class="row align-items-center mt-2">
-                    
+
                     <div class="col-12 mt-3">
                         <div class="form-group">
                             <label>Image Position</label>
@@ -1831,6 +1840,11 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            $('.dropify').dropify();
+        });
+    </script>
 
     <script>
         $('#video_upload').on('change', function(e) {
@@ -1860,12 +1874,53 @@
             var randomNumber = Math.floor(10000 + Math.random() * 90000);
 
             var myvar = `
+                <div>
+                    <div class="row mt-4 mb-4">
+                    <div class="col-sm-12">
+                        <label class=" form-control-label">Banner Text:<span
+                                class="tx-danger"></span></label>
+                        <div class="mg-t-10 mg-sm-t-0">
+                            <input type="text"
+                                class="form-control form-control-lg"
+                                name="hero_content[${randomNumber}][banner_text]"
+                                value="">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="row mt-4 mb-4">
+                    <div class="col-sm-12">
+                        <label class=" form-control-label">Banner Short Text:<span
+                                class="tx-danger"></span></label>
+                        <div class="mg-t-10 mg-sm-t-0">
+                            <input type="text"
+                                class="form-control form-control-lg"
+                                name="hero_content[${randomNumber}][banner_short_text]"
+                                value="">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+
+                    <div class="row mt-4 mb-4">
+                    <div class="col-sm-12">
+                        <label class=" form-control-label">Button Url:<span
+                                class="tx-danger"></span></label>
+                        <div class="mg-t-10 mg-sm-t-0">
+                            <input type="text"
+                                class="form-control form-control-lg"
+                                name="hero_content[${randomNumber}][button_url]"
+                                value="">
+                        </div>
+                    </div>
+                    <hr>
+                </div>
                 <div class="d-flex align-items-center mt-2 row">
                     <div class="col-12 mt-3 form-group">
                         <label for="">Image URL</label>
                         <input type="text" class="form-control"
                             placeholder="Enter Image Redirection URL"
-                            name="image_url[${randomNumber}]">
+                            name="hero_content[${randomNumber}][image_url]">
                     </div>
 
                     <div class="col-sm-12 col-md-6 img-upload-container">
@@ -1877,7 +1932,7 @@
                                 <ul></ul>
                             </div>
                             <input type="file" class="dropify"
-                                name="banner_image[${randomNumber}]"
+                                name="hero_content[${randomNumber}][banner_image]"
                                 accept="image/*">
                             <button type="button"
                                 class="dropify-clear">Remove</button>
@@ -1913,6 +1968,7 @@
                         </a>
                     </div>
                 </div>
+                </div>
             `;
 
             $('.banner-image-container').prepend(myvar);
@@ -1920,7 +1976,7 @@
         });
 
         $(document).on('click', '.remove-banner-image', function() {
-            $(this).parent().parent().remove();
+            $(this).parent().parent().parent().remove();
         });
     </script>
 

@@ -26,7 +26,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <form class="forms-sample" action="{{ route('admin.degree.update', $degree->id) }}"
-                                        method="POST">
+                                        method="POST" enctype="multipart/form-data">
                                         @csrf
 
                                         {{-- <div class="form-group row">

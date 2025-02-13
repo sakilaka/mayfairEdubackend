@@ -126,7 +126,7 @@ class FrontendController extends Controller
 
         $data['universities'] = University::where('status', 1)->orderBy('id', 'desc')->get();
         $data['degrees']      = Degree::with('courses')->get();
-        $data['countries']    = Country::get();
+        $data['countries'] = Country::orderBy('name', 'asc')->get();
         $data['provinces']    = State::all();
         $data['cities']       = City::all();
         $data['majors']       = Department::all();
@@ -183,7 +183,7 @@ class FrontendController extends Controller
         ]);
 
         $data['university_list'] = University::where(['status' => 1, 'show_on_home' => 1])
-            ->limit(8)
+            ->limit(10)
             ->orderBy('name', 'asc')
             ->get()
             ->map(function ($university) {

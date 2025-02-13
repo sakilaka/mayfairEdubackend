@@ -16,6 +16,7 @@ use App\Models\Event;
 use App\Models\Expo;
 use App\Models\FooterImage;
 use App\Models\State;
+use Illuminate\Support\Facades\Log;
 
 use function PHPUnit\Framework\isNull;
 
@@ -36,95 +37,143 @@ class HomeContentController extends Controller
         $data['blogItems'] = Blog::all();
         $data['eventItems'] = Event::all();
         $data['expoItems'] = Expo::all();
-
+        // return json_decode($data['home_content']->banner_image, true);
         return view("Backend.home.content_setup.index", $data);
     }
 
 
+
+    // public function setBannerSection(Request $request)
+    // {
+    //     try {
+    //         $home_content = HomeContentSetup::first();
+    //         $hero_content = [];
+
+    //         if ($home_content == null) {
+    //             $home_content = new HomeContentSetup;
+    //         }
+
+    //         $home_content->banner_type = $request->banner_type;
+
+    //         if ($request->banner_type === 'photo') {
+    //             $hero_content = $request->hero_content;
+
+    //             if ($request->hero_content) {
+    //                 foreach ($request->hero_content as $key => $option) {
+    //                     if (is_file($option['banner_image'])) {
+    //                         $file = $option['banner_image'];
+    //                         $fileName = 'gallery_' . uniqid() . '.' . $file->getClientOriginalExtension();
+    //                         $file->move(public_path('upload/home_content/banner'), $fileName);
+    //                         $hero_content[$key]['banner_image'] = 'upload/home_content/banner/' . $fileName;
+    //                     }
+    //                 }
+    //             }
+    //         } elseif ($request->banner_type === 'video') {
+    //             // Handling banner video
+    //             if ($request->file('banner_video')) {
+    //                 $videos = [];
+
+    //                 foreach ($request->file('banner_video') as $file) {
+    //                     $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+    //                     $file->move(public_path('upload/home_content/banner/'), $fileName);
+    //                     $videos[] = url('upload/home_content/banner/' . $fileName);
+    //                 }
+
+    //                 $oldVideos = json_decode($home_content->banner_video, true) ?? [];
+
+    //                 foreach ($oldVideos as $video) {
+    //                     $oldVideoPath = public_path(parse_url($video, PHP_URL_PATH));
+    //                     if (file_exists($oldVideoPath)) {
+    //                         unlink($oldVideoPath);
+    //                     }
+    //                 }
+
+    //                 $home_content->banner_video = json_encode($videos);
+    //             }
+    //         }
+
+    //         $home_content->hero_content = json_encode($hero_content);
+    //         $home_content->save();
+
+    //         Log::info('Banner section updated successfully.');
+    //         return redirect()->back()->with('success', 'Banner Updated Successfully');
+    //     } catch (\Exception $e) {
+    //         return $e->getMessage();
+    //         Log::error('Error updating banner section', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
+    //         return redirect()->back()->with('error', $e->getMessage());
+    //     }
+    // }
+
     public function setBannerSection(Request $request)
     {
         try {
-            if ($request->home_content_old_ques) {
-                foreach ($request->home_content_old_ques as $key => $value) {
-                    $faq = Faq::find($key);
-                    $faq->question = $value;
-                    $faq->answer = $request->home_content_old_ans[$key];
-                    $faq->type = "homepage";
-                    $faq->save();
-                }
-            }
-
-            if ($request->home_content_ques) {
-                foreach ($request->home_content_ques as $key => $value) {
-                    $faq = new Faq;
-                    $faq->question = $value;
-                    $faq->answer = $request->home_content_ans[$key];
-                    $faq->type = "homepage";
-                    $faq->save();
-                }
-            }
-
             $home_content = HomeContentSetup::first();
+            $hero_content = [];
 
             if ($home_content == null) {
                 $home_content = new HomeContentSetup;
             }
 
-            $home_content->banner_text = $request->banner_text;
             $home_content->banner_type = $request->banner_type;
 
-            // Handling banner video
-            if ($request->file('banner_video')) {
-                $videos = [];
+            if ($request->banner_type === 'photo') {
+                $hero_content = $request->hero_content;
 
-                foreach ($request->file('banner_video') as $file) {
-                    $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/home_content/banner/'), $fileName);
-                    $videos[] = url('upload/home_content/banner/' . $fileName);
-                }
+                if ($request->hero_content) {
+                    foreach ($request->hero_content as $key => $option) {
+                        // Check if a new image is uploaded
+                        if (isset($option['banner_image']) && is_file($option['banner_image'])) {
+                            $file = $option['banner_image'];
+                            $fileName = 'gallery_' . uniqid() . '.' . $file->getClientOriginalExtension();
+                            $file->move(public_path('upload/home_content/banner'), $fileName);
+                            $hero_content[$key]['banner_image'] = 'upload/home_content/banner/' . $fileName;
 
-                $oldVideos = json_decode($home_content->banner_video, true) ?? [];
-
-                foreach ($oldVideos as $video) {
-                    $oldVideoPath = public_path(parse_url($video, PHP_URL_PATH));
-                    if (file_exists($oldVideoPath)) {
-                        unlink($oldVideoPath);
+                            // Delete the old image if it exists
+                            if (isset($option['old_banner_image']) && file_exists(public_path($option['old_banner_image']))) {
+                                unlink(public_path($option['old_banner_image']));
+                            }
+                        } else {
+                            // If no new image is uploaded, retain the old image
+                            $hero_content[$key]['banner_image'] = $option['old_banner_image'] ?? '';
+                        }
                     }
                 }
+            } elseif ($request->banner_type === 'video'
+            ) {
+                // Handling banner video
+                if ($request->file('banner_video')) {
+                    $videos = [];
 
-                $home_content->banner_video = json_encode($videos);
-            }
+                    foreach ($request->file('banner_video') as $file) {
+                        $fileName = rand() . time() . '.' . $file->getClientOriginalExtension();
+                        $file->move(public_path('upload/home_content/banner/'), $fileName);
+                        $videos[] = url('upload/home_content/banner/' . $fileName);
+                    }
 
-            // Handling banner images
-            $bannerImages = [];
-            if ($request->hasFile('banner_image')) {
-                foreach ($request->file('banner_image') as $key => $file) {
-                    $fileName = 'gallery_' . rand() . time() . '.' . $file->getClientOriginalExtension();
-                    $file->move(public_path('upload/home_content/banner'), $fileName);
-                    $bannerImages[$key] = url('upload/home_content/banner/' . $fileName);
+                    $oldVideos = json_decode($home_content->banner_video, true) ?? [];
+
+                    foreach ($oldVideos as $video) {
+                        $oldVideoPath = public_path(parse_url($video, PHP_URL_PATH));
+                        if (file_exists($oldVideoPath)) {
+                            unlink($oldVideoPath);
+                        }
+                    }
+
+                    $home_content->banner_video = json_encode($videos);
                 }
             }
 
-            $oldBannerImages = $request->old_banner_image ?? [];
-            $mergedBannerImages = $oldBannerImages;
-
-            foreach ($bannerImages as $key => $url) {
-                if (isset($mergedBannerImages[$key]) && file_exists(public_path('upload/home_content/banner/' . basename($mergedBannerImages[$key])))) {
-                    unlink(public_path('upload/home_content/banner/' . basename($mergedBannerImages[$key])));
-                }
-
-                $mergedBannerImages[$key] = $url;
-            }
-            $banner_data['images'] = $mergedBannerImages;
-            $banner_data['image_url'] = $request->image_url;
-
-            $home_content->banner_image = json_encode($banner_data);
+            $home_content->hero_content = json_encode($hero_content);
             $home_content->save();
+
+            Log::info('Banner section updated successfully.');
             return redirect()->back()->with('success', 'Banner Updated Successfully');
         } catch (\Exception $e) {
+            Log::error('Error updating banner section', ['error' => $e->getMessage(), 'trace' => $e->getTraceAsString()]);
             return redirect()->back()->with('error', $e->getMessage());
         }
     }
+
 
     public function setSubBannerSection(Request $request)
     {

@@ -703,6 +703,7 @@
 
 
                                 </div>
+                                
                                 <div class="form-check mb-4">
                                     <input class="form-check-input" type="checkbox" id="user_terms" name="user_terms"
                                         checked value="1" required="">

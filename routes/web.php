@@ -7,6 +7,7 @@ use App\Http\Controllers\Backend\GetConsultation\GetConsultationController;
 use App\Http\Controllers\Backend\Landing\LandingPageController;
 use App\Http\Controllers\Backend\Student_Appliction\StudentApplictionController;
 use App\Http\Controllers\Backend\subscriber\SubscriberController;
+use App\Http\Controllers\Backend\University\UniversityController;
 use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Frontend\UserLoginController;
@@ -287,7 +288,7 @@ Route::get('apply-now', [FrontendController::class, 'applyNow'])->name('frontend
 
 Route::get('/apply-cart/{id}/', [StudentApplicationController::class, "applyCart"])->name('apply_cart')->middleware('userCheck');
 
-Route::get('/apply-admission/{id}/', [StudentApplicationController::class, "applyAdmission"])->name('apply_admission')->middleware('userCheck');
+Route::get('/apply-admission/{id}/', [StudentApplicationController::class, "applyAdmission"])->name('apply_admission');
 
 
 Route::get('/application/detail/{id}', [StudentApplicationController::class, "applicationDetails"])->name('application.details');
@@ -295,6 +296,7 @@ Route::post('/application/program/delete', [StudentApplicationController::class,
 
 // university application
 Route::post('application/personalUni', [StudentApplicationController::class, 'applicationPersonalInfoUni'])->name('application.personalUni');
+Route::post('application/store', [StudentApplicationController::class, 'applicationStore'])->name('application.store');
 
 
 Route::post('application/personal/{id}', [StudentApplicationController::class, 'applicationPersonalInfo'])->name('application.personal');
@@ -356,3 +358,6 @@ Route::get('/sitemap.xml', function () {
 Route::get('/apply-admission-university', [StudentApplicationController::class, "applyAdmissionUniversity"])->name('apply_admission_university');
 
 Route::get('/success', [StudentApplicationController::class, "successApplication"])->name('success.application');
+
+Route::get('/get-cities/{country_id}', [UniversityController::class, 'getCitiesByCountry']);
+

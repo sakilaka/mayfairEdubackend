@@ -61,7 +61,7 @@
                                                     class="form-control" placeholder="Enter Degree Name" required>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="form-group row">
                                             <div class="col-sm-3 d-flex justify-content-between align-items-center">
                                                 <label for="degree_name" class="col-form-label">Degree Image

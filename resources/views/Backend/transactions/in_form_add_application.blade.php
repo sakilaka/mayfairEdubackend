@@ -20,19 +20,20 @@
                             In - Transaction
                         </h3>
 
-                        <nav aria-label="breadcrumb">
+                        {{-- <nav aria-label="breadcrumb">
                             <a href="{{ route('admin.transactions.index') }}" class="btn btn-primary btn-fw">
                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                 View All Transactions</a>
-                        </nav>
+                        </nav> --}}
+
                     </div>
 
-                     <div class="row card">
+                    <div class="row card">
                         <div class="col-md-12 p-4 form-container">
                             @php
                                 $action = '#';
                                 if ($transaction_type == 'in') {
-                                    $action = route('admin.transactions.in_form_update');
+                                    $action = route('admin.transactions.in_form_app_update');
                                 } elseif ($transaction_type == 'out') {
                                     $action = route('admin.transactions.out_form_update');
                                 } elseif ($transaction_type == 'deposit') {
@@ -51,7 +52,7 @@
                                                 class="form-control @error('client_name') is-invalid @enderror"
                                                 name="client_name" placeholder="Enter Client Name"
                                                 value="{{ old('client_name') }}">
-                                                {{-- <input type="hidden" name="application_id" value="{{ $application->id }}"> --}}
+                                                <input type="hidden" name="application_id" value="{{ $application->id }}">
                                             @error('client_name')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror

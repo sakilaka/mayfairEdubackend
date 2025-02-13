@@ -27,20 +27,7 @@ class UserLoginController extends Controller
 
         $verified_email = User::where('email', $request->email)->where('email_verified_at', null)->first();
         if ($verified_email) {
-            // $token= $this->generateRandomString(16);
-            // $verified_email->email_verify_token = $token;
-            // $verified_email->update();
-
-            // $data['user'] = $verified_email;
-            // $data['token'] = $token;
-
-            // $details['email'] = $request->email;
-            // $details['send_item'] = new EmailVerificationCustom($data);
-            // dispatch(new \App\Jobs\SendEmailJob($details));
-
-            // return redirect('/sign-in')->with('success', 'You are register successfully. Now you can login!');
             return redirect('/sign-in')->with('error', 'This mail have already register, Please try another mail.');
-            // return redirect('/sign-in')->with('error', 'Email not verified. Please Verify your email!');
         }
 
         $validator = Validator::make($request->all(), [
@@ -51,8 +38,7 @@ class UserLoginController extends Controller
             'password' => [
                 'required',
                 'string',
-                'min:8', // must be at least 10 characters in length
-                // 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/',
+                'min:8',
             ],
         ]);
         if ($validator->fails()) {
@@ -106,40 +92,6 @@ class UserLoginController extends Controller
             // return $e->getMessage();
             return redirect()->back()->with('error', 'Registration successful. But failed to send verification code');
         }
-
-        // if($user->type == 1){
-        //     $patient = New Patient;
-        //     $patient->type = 1;
-        //     $patient->name = ($request->fname ?? '') .' '.($request->lname ?? '');
-        //     // $patient->dob = $request->p_dob;
-        //     // $patient->gender = $request->p_gender;
-        //     // $patient->age = $request->p_age;
-        //     $patient->user_id =  $user->id;
-        //     $patient->save();
-        // }
-
-        // $token= $this->generateRandomString(16);
-        // // dd($token);
-        // $user->email_verify_token = $token;
-        // $user->update();
-
-        // $data['user'] = $user;
-        // $data['token'] = $token;
-
-        // $details['email'] = $user->email;
-        // $details['send_item']=new EmailVerificationCustom($data);
-
-        // dispatch(new \App\Jobs\SendEmailJob($details));
-
-        // DB::commit();
-
-        // return redirect('/sign-in')->with('error', 'We have sent you email verification link! Please Verify.');
-        // }catch(\Exception $e){
-        //     DB::rollBack();
-        //    // return back()->with ('error', $e->getMessage());
-        //     return back()->with ('error_message', "Something Went Wrong!")->withInput();
-        // }
-
     }
 
     public function sendVerificationEmail()

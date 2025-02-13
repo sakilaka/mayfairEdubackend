@@ -58,7 +58,7 @@ Route::prefix('u_courses')->middleware(['auth:admin', 'adminCheck:0'])->group(fu
     Route::post('update/{id}', [UniversityCourseController::class, "update"])->name('admin.u_course.update');
     Route::post('delete', [UniversityCourseController::class, "destroy"])->name('admin.u_course.delete');
     Route::get('/status/{id}', [UniversityCourseController::class, 'status'])->name('admin.u_course.status');
-    
+
 
     Route::get('show-on-home/{id}', [UniversityCourseController::class, 'show_on_home_toggle'])->name('admin.u_course.show_on_home_toggle');
 });

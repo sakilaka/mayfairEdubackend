@@ -14,8 +14,8 @@
             --secondary_background: {{ $theme_color['secondary_color'] ?? '#068b76' }};
             --tertiary_background: {{ $theme_color['tertiary_color'] ?? '#f40000' }};
 
-            --btn_primary_color: var(--secondary_background);
-            --btn_primary_hover_color: var(--primary_background);
+            --btn_primary_color: var(--primary_background);
+            --btn_primary_hover_color: #683a85;
 
             --btn_secondary_color: var(--primary_background);
             --btn_secondary_hover_color: var(--secondary_background);

@@ -25,6 +25,66 @@
                 box-shadow: none;
             }
         }
+         li {
+            font-size: 0.9rem;
+        }
+
+        .text {
+            font-size: 16px;
+        }
+
+        h6 {
+            font-weight: bold;
+        }
+
+        .custom-bg {
+            position: relative;
+            height: 330px;
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 1)),
+                url("{{ asset('backend/assets/images/fav.png') }}") no-repeat center center;
+            background-size: auto 106%;
+        }
+
+        .bank-details {
+            display: flex;
+            align-items: center;
+            border-top: 2px solid black;
+            padding: 10px;
+        }
+
+        .qr-section {
+            text-align: center;
+            margin-right: 20px;
+        }
+
+        .qr-section img {
+            width: 150px;
+            height: 150px;
+        }
+
+        .info-section {
+            flex: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+
+        td {
+            padding: 5px;
+        }
+
+        p {
+            margin: 2px 0;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 
     <script>
@@ -46,171 +106,244 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card px-2">
+
+                                @php
+                                    $exchangeRate = 125.91; // Example rate, make this dynamic if needed
+                                    $vatAmount =
+                                        ($transactionDetails->vat / 100) *
+                                        $transactionDetails->price_per_item *
+                                        $transactionDetails->amount;
+                                    $totalAmount =
+                                        $vatAmount + $transactionDetails->price_per_item * $transactionDetails->amount;
+                                    $totalEUR = $totalAmount / $exchangeRate;
+                                @endphp
+
+
                                 <div class="card-body">
-                                    <div class="mt-4 container-fluid d-flex justify-content-between">
-                                        <p class="text-right d-inline-block" style="font-size: 1.25rem">
-                                            @php
-                                                $title = \App\Models\Tp_option::where(
-                                                    'option_name',
-                                                    'theme_option_header',
-                                                )->first();
-                                            @endphp
-                                            <strong>{{ $title->company_name }}</strong>
-                                        </p>
-                                        <p class="text-right d-inline-block" style="font-size: 1.25rem">
-                                            <strong>Application ID: </strong>
-                                            {{ $orderdetails->application_code }}
-                                        </p>
-                                    </div>
-                                    <div class="mt-4 container-fluid d-flex justify-content-between">
-                                        <div class="col-md-5 pl-0 d-flex justify-content-start align-items-start">
-                                            <ul class="list-unstyled">
-                                                <li>Student ID :
-                                                    <span style="color:#5d9fc5;">
-                                                        {{ $orderdetails->student->id }}
-                                                    </span>
-                                                </li>
-                                                <li>Student Name :
-                                                    <span style="color:#5d9fc5;">
-                                                        {{ $orderdetails->student->name }}
-                                                    </span>
-                                                </li>
-                                                <li>Email :
-                                                    <span style="color:#5d9fc5;">
-                                                        {{ $orderdetails->student->email }}
-                                                    </span>
-                                                </li>
-                                                <li>Phone Number :
-                                                    <span style="color:#5d9fc5;">
-                                                        {{ $orderdetails->student->mobile }}
-                                                    </span>
-                                                </li>
-                                                <li>Address :
-                                                    <span style="color:#5d9fc5;">
-                                                        {{ $orderdetails->student->address }}
-                                                    </span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-2 d-flex justify-content-center align-items-start">
-                                            <img src="{{ asset('backend/assets/images/logo.svg') }}"
-                                                alt="{{ env('APP_NAME') }}" width="150px">
-                                        </div>
-                                        <div class="col-md-5 pr-0 d-flex justify-content-end align-items-start">
-                                            <ul class="list-unstyled">
-                                                <li>
-                                                    <span class="fw-bold">
-                                                        Creation Date: </span>
-                                                    {{ date('d M, Y', strtotime(@$orderdetails->created_at)) }}
-                                                </li>
-                                                <li>
-                                                    <span class="me-1 fw-bold">
-                                                        Payment Status: </span>
-                                                    @if (@$orderdetails->payment_method)
-                                                        <span class="badge bg-warning text-white fw-bold">
-                                                            {{ @$orderdetails->payment_method }}
-                                                        </span>
-                                                    @endif
-                                                </li>
-
-                                                <li>
-                                                    @php
-                                                        function getStatusBadgeClass($status)
-                                                        {
-                                                            $statusClasses = [
-                                                                0 => 'bg-primary',
-                                                                1 => 'bg-info',
-                                                                2 => 'bg-success',
-                                                                3 => 'bg-danger',
-                                                            ];
-
-                                                            return $statusClasses[$status] ?? '';
-                                                        }
-
-                                                        function getStatusText($status)
-                                                        {
-                                                            $statusTexts = [
-                                                                0 => 'Application Start',
-                                                                1 => 'Processing',
-                                                                2 => 'Approval',
-                                                                3 => 'Cancel',
-                                                            ];
-
-                                                            return $statusTexts[$status] ?? '';
-                                                        }
-                                                    @endphp
-                                                    <span class="me-1 fw-bold">Status :</span>
-                                                    <span
-                                                        class="badge fw-bold {{ getStatusBadgeClass($orderdetails->status) }} text-white">
-                                                        {{ getStatusText($orderdetails->status) }}
-                                                    </span>
-                                                </li>
-
-
-                                            </ul>
-                                        </div>
+                                    <div>
+                                        <img src="{{ asset('backend/assets/images/new_logo.png') }}"
+                                            alt="{{ env('APP_NAME') }}" width="250px">
                                     </div>
 
-                                    <div class="container-fluid mt-5 d-flex justify-content-center w-100">
-                                        <div class="table-responsive w-100">
-                                            <table class="table table-striped">
-                                                <thead>
-                                                    <tr class="bg-dark text-white">
-                                                        <th>SL</th>
-                                                        <th>Program Name</th>
-                                                        <th class="text-right">University Name</th>
-                                                        <th class="text-right">Application Fee</th>
-                                                        <th class="text-right">Service Charge</th>
-                                                        <th class="text-right">Total Fee</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @php
-                                                        $total_application_fees = 0;
-                                                        $total_service_charges = 0;
-                                                        $total_fees = 0;
-                                                        $programIds = json_decode($orderdetails->programs) ?? [];
-                                                    @endphp
-                                                    @foreach ($programIds as $programId)
-                                                        @php
-                                                            $course = \App\Models\Course::find($programId);
-                                                            $applicationFee = $course->application_charge ?? 0;
-                                                            $serviceCharge = $orderdetails->service_charge ?? 0;
-                                                            $totalApplicationFee = $applicationFee;
-                                                            $totalServiceCharge = $serviceCharge;
-                                                            $totalFee = $totalApplicationFee + $totalServiceCharge;
+                                    <div class="mt-2 d-flex justify-content-between" style="width: 92%;">
+                                        <div class="">
+                                            <div>
+                                                <h6 class="">Head Office Address:</h6>
+                                                <p class="text">Vindi 9-2, Kristiine, Tallinn, 11315, Estonia</p>
+                                            </div>
 
-                                                            $total_application_fees += $applicationFee;
-                                                            $total_service_charges += $serviceCharge;
-                                                            $total_fees += $totalFee;
-                                                        @endphp
-                                                        <tr>
-                                                            <th scope="row">{{ $loop->iteration }}</th>
-                                                            <td>{{ $course->name ?? 'N/A' }}</td>
-                                                            <td>{{ $course->university->name ?? 'N/A' }}</td>
-                                                            <td class="text-right">{{ $applicationFee }}</td>
-                                                            <td class="text-right">{{ $serviceCharge }}</td>
-                                                            <td class="text-right">{{ $totalFee }}</td>
-                                                        </tr>
-                                                    @endforeach
-                                                    <tr>
-                                                        <th scope="row" colspan="3">Total</th>
-                                                        <td class="text-right" style="font-weight: bold">
-                                                            {{ $total_application_fees }}</td>
-                                                        <td class="text-right" style="font-weight: bold">
-                                                            {{ $total_service_charges }}</td>
-                                                        <td class="text-right" style="font-weight: bold">
-                                                            {{ $total_fees }}</td>
-                                                    </tr>
-                                                </tbody>
+                                            <div class="mt-3">
+                                                <h6>Bangladesh office address:</h6>
+                                                <p class="text">House-14/16, apartment-401, Third Floor, Road no-5,
+                                                    Block-B, <br>
+                                                    Mirpur-10,
+                                                    Dhaka-1216, Bangladesh.</p>
+                                            </div>
+                                            <div class="mt-3">
+                                                <h6>Student Name: {{ $orderdetails->full_name }}</h6>
+                                                {{-- <p class="text mt-2">Bangladesh</p> --}}
+                                            </div>
+                                            <div class="mt-3">
+                                                <h6>Bangladesh office address:</h6>
+                                                <p class="text">ABDUL HAKIMS HOME, PAGAR, ABUL <br>
+                                                    HOSSAIN ROAD, TONGI EAST, MONNU NAGAR - 1710,
+                                                    GAZIPUR</p>
+                                            </div>
+                                            <div class="mt-2">
+                                                <p class="text">Study Destination : Finland</p>
+                                                <p class="text">File Number: MGE-2025-108</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="me-4">
+                                            <h1 class="mb-2">Invoice</h1>
+                                            <div class="mt-5 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Invoice Date:</p>
+                                                <p style="font-size: 16px;">{{ $transactionDetails->created_at }}</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Invoice Number:</p>
+                                                <p style="font-size: 16px;">{{ $transactionDetails->in_number }}</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Our Reference:</p>
+                                                <p style="font-size: 16px;">info@mayfairedu.global</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Customer Number:</p>
+                                                <p style="font-size: 16px;">{{ $transactionDetails->customer_number }}
+                                                </p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Invoice Due Date:</p>
+                                                <p style="font-size: 16px;">{{ $transactionDetails->in_due_date }}</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Payment Reference:</p>
+                                                <p style="font-size: 16px;">10004075</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Term Of Payment:</p>
+                                                <p style="font-size: 16px;">Within 3 Days Due Net</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Penalty Interest:</p>
+                                                <p style="font-size: 16px;">11.5%</p>
+                                            </div>
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                                <p
+                                                    style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
+                                                    Time of Remarks:</p>
+                                                <p style="font-size: 16px;">72 hours</p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="mt-5">
+                                        <hr class="m-0">
+                                        <table class="table table-striped" style="">
+                                            <thead>
+                                                <tr class="">
+                                                    <th class="">SL</th>
+                                                    <th class="">Item</th>
+                                                    <th class="">Product/Service</th>
+                                                    <th class="">Amount</th>
+                                                    <th class="">Price per item</th>
+                                                    <th class="">Vat- %</th>
+                                                    <th class="">Vat amount</th>
+                                                    <th class="">Total In EURO</th>
+                                                    <th class="">Total In BDT</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody class="">
+                                                <tr class="">
+                                                    <td>1</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $orderdetails->program_name }}</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $transactionDetails->category }}</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $transactionDetails->amount }}</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $transactionDetails->price_per_item }}</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $transactionDetails->vat }}</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $vatAmount }}
+                                                    </td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ number_format($totalEUR, 2) }}</td>
+                                                    <td class="" style="font-weight: bold">
+                                                        {{ $totalAmount }}
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+
+                                    <div class="custom-bg">
+                                        <div class="d-flex justify-content-between p-5">
+                                            <p class="text">Invoice Total</p>
+                                            <p class="text">
+                                                {{ $totalAmount }}
+                                            </p>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between p-5">
+                                            <p class="text">Total</p>
+                                            <p>Vat (%)</p>
+                                            <div>
+                                                <p>Price incl.tax</p>
+                                                <p>{{ $transactionDetails->price_per_item }}</p>
+                                            </div>
+                                            <div>
+                                                <p>Vat</p>
+                                                <p>{{ $transactionDetails->vat }}</p>
+                                            </div>
+                                            <div>
+                                                <p>Total</p>
+                                                <p>{{ $totalAmount }}
+                                                </p>
+                                            </div>
+                                            <p class="text">
+                                                {{ $totalAmount }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="my-3">
+                                        <p class="text" style="font-weight: bold;">Reminder fee 100.00 EURO, In
+                                            12,591
+                                            BDT</p>
+                                        <p class="text" style="font-weight: bold;">In Word: One hundred euro, Twelve
+                                            thousand five hundred ninety-one</p>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="bank-details">
+                                        <div class="qr-section">
+                                            <h5>SCAN FOR BANK DETAILS</h5>
+                                            <img src="{{ asset('backend/assets/images/QRcode.png') }}"
+                                                alt="QR Code">
+                                        </div>
+
+                                        <div class="info-section">
+                                            <table>
+                                                <tr>
+                                                    <td><strong>Telephone</strong></td>
+                                                    <td>+372 58700 600 <br> +372 5699 8641</td>
+                                                    <td><strong>Business Identity Code</strong></td>
+                                                    <td>14679610</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>WWW-address</strong></td>
+                                                    <td>www.mayfaireducation.global</td>
+                                                    <td><strong>VAT-number</strong></td>
+                                                    <td>14679610</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>e-mail</strong></td>
+                                                    <td>info@mayfaireducation.global</td>
+                                                    <td><strong>Locality</strong></td>
+                                                    <td>Tallinn</td>
+                                                </tr>
                                             </table>
+                                            <p>
+                                                <strong>Bangladesh:</strong> +8801898878100,
+                                                <strong>Pakistan:</strong> +923131203868,
+                                                <strong>Egypt:</strong> +201029600802
+                                            </p>
+                                            <p>
+                                                <strong>Nigeria:</strong> +2347035795956,
+                                                <strong>Turkiye:</strong> +905555710610,
+                                                <strong>India:</strong> +91997198065
+                                            </p>
+                                            <p class="tagline mt-3"><em>Your Trusted Global Education Consultancy
+                                                    Firm</em>
+                                            </p>
                                         </div>
                                     </div>
 
-                                    <div class="container-fluid mt-5 w-100">
-                                        <h4 class="text-right mb-5" style="font-size: 1.25rem">Total :
-                                            {{ $total_fees }}</h4>
-                                    </div>
 
                                 </div>
                             </div>

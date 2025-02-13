@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\EmailVerificationCustom;
 use App\Models\ApplicationDocument;
 use App\Models\ApplicationEducation;
+use App\Models\ApplicationSchool;
 use App\Models\ApplicationWork;
 use App\Models\Country;
 use App\Models\Course;
@@ -25,10 +27,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class StudentApplicationController extends Controller
 {
-
 
     public function applications()
     {
@@ -121,7 +124,7 @@ class StudentApplicationController extends Controller
 
     return redirect()->route('apply_admission', $params);
     } */
-   
+
     public function applyCart(Request $request, $id, $partner_ref_id = null, $applied_by = null)
     {
         $auth_user = auth('admin')->user() ?? auth()->user();
@@ -154,13 +157,13 @@ class StudentApplicationController extends Controller
         $params = [];
         if ($partner_ref_id) {
             $params['partner_ref_id'] = is_array($partner_ref_id) && count($partner_ref_id) === 1
-            ? reset($partner_ref_id)
-            : $partner_ref_id;
+                ? reset($partner_ref_id)
+                : $partner_ref_id;
         }
         if ($applied_by) {
             $params['applied_by'] = is_array($applied_by) && count($applied_by) === 1
-            ? array_key_first($applied_by)
-            : $applied_by;
+                ? array_key_first($applied_by)
+                : $applied_by;
         }
         if ($is_anonymous) {
             $params['is_anonymous'] = $is_anonymous;
@@ -198,14 +201,14 @@ class StudentApplicationController extends Controller
 
         if ($application == null) {
             $application                   = new StudentApplication();
-            $application->user_id          = $auth_user->id;
+            $application->user_id          = $auth_user->id ?? 1;
             $randomNumber                  = random_int(100000, 999999); // Generates a 6-digit random number
-            $application->application_code = date('ymd') . $randomNumber;
+            // $application->application_code = date('ymd') . $randomNumber;
             // $application->application_code = date('ymd') . strtoupper($this->generateRandomString(6));
 
             // $application->service_charge = (float) $course->service_charge ?? 0;
             $application->application_fee = (float) $course->application_charge ?? 0;
-            $application->total_fee       = /* $application->service_charge + */$application->application_fee;
+            $application->total_fee       = /* $application->service_charge + */ $application->application_fee;
             $application->applied_by      = !empty($applied_by) ? json_encode($applied_by) : null;
             $application->is_anonymous    = $is_anonymous;
             $application->programs        = json_encode([$course->id]);
@@ -221,7 +224,7 @@ class StudentApplicationController extends Controller
 
             // $application->service_charge += (float) $course->service_charge;
             $application->application_fee += (float) $course->application_charge;
-            $application->total_fee += /* $course->service_charge + */$course->application_charge;
+            $application->total_fee += /* $course->service_charge + */ $course->application_charge;
             $application->applied_by = !empty($applied_by) ? json_encode($applied_by) : $application->applied_by;
             $existingPrograms[]      = $course->id;
             // $application->programs = json_encode($existingPrograms);
@@ -237,45 +240,40 @@ class StudentApplicationController extends Controller
     public function applyAdmission($id)
     {
         $data['countries']   = Country::all();
-        $data['application'] = StudentApplication::find($id);
+        // $data['application'] = StudentApplication::find($id);
 
-        // If application is null, redirect or handle gracefully
-        if (!$data['application']) {
-            return redirect(env('FRONTEND_URL', 'https://mayfaireducation.global/') . '/course?message=Application%20not%20found');
-        }
+        // if (!$data['application']) {
+        //     return redirect(env('FRONTEND_URL', 'https://mayfaireducation.global/') . 'course?message=Application%20not%20found');
+        // }
 
 
-        // Use optional chaining and null coalescing to avoid errors
-        $programs = json_decode($data['application']?->programs ?? '[]', true) ?? [];
+        // $programs = json_decode($data['application']?->programs ?? '[]', true) ?? [];
 
-        // Fetch all programs related to the application
-        $data['programs'] = Course::whereIn('id', $programs)->get();
+        $data['program'] = Course::where('id', $id)->first();
 
-        $data['is_contain_masters_or_phd'] = false;
-        foreach ($data['programs'] as $program) {
-            if (in_array($program->degree?->name ?? '', ['Masters', 'PhD'])) {
-                $data['is_contain_masters_or_phd'] = true;
-            }
-        }
+        // $data['is_contain_masters_or_phd'] = false;
+        // foreach ($data['programs'] as $program) {
+        //     if (in_array($program->degree?->name ?? '', ['Masters', 'PhD'])) {
+        //         $data['is_contain_masters_or_phd'] = true;
+        //     }
+        // }
 
-        $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
-        $data['refund']  = Page::where('title', 'Refund Policy')->first();
-        $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
-        $data['payment'] = Page::where('title', 'Payment Process')->first();
+        // $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
+        // $data['refund']  = Page::where('title', 'Refund Policy')->first();
+        // $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
+        // $data['payment'] = Page::where('title', 'Payment Process')->first();
 
-        // Handle cases where the user might not be authenticated
-        $data['user'] = User::find(auth()->id() ?? 1);
+        // $data['user'] = User::find(auth()->id() ?? 1);
 
-        // Determine the total service charge based on the user's star level
-        $userStarLevel      = $data['user']?->star ?? null;
-        $totalServiceCharge = 0;
+        // $userStarLevel      = $data['user']?->star ?? null;
+        // $totalServiceCharge = 0;
 
-        foreach ($data['programs'] as $program) {
-            $serviceChargeField = 'service_charge_' . ($userStarLevel ?? 'beginner');
-            $totalServiceCharge += $program->$serviceChargeField ?? 0;
-        }
+        // foreach ($data['programs'] as $program) {
+        //     $serviceChargeField = 'service_charge_' . ($userStarLevel ?? 'beginner');
+        //     $totalServiceCharge += $program->$serviceChargeField ?? 0;
+        // }
 
-        $data['service_charge'] = $totalServiceCharge;
+        // $data['service_charge'] = $totalServiceCharge;
 
         return view('Frontend.university.apply', $data);
     }
@@ -390,6 +388,85 @@ class StudentApplicationController extends Controller
             return response()->json($data);
         }
     }
+
+    public function applicationStore(Request $request)
+    {
+        if (!auth()->check()) {
+            $user = new User();
+            $user->name = $request->full_name ?? '';
+            $user->mobile = $request->phone;
+            $user->email = $request->email;
+            $user->password = $request->password;
+            $user->type = 1;
+            $user->is_verified = '0';
+            $user->role = 'student';
+            $user->save();
+        }
+
+
+        // Create Student Application
+        // dd($request->all());
+        $application = new StudentApplication();
+        $application->user_id = auth()->user()->id ?? $user->id;
+        // dd($application->user_id);
+        $application->email = $request->email;
+        $application->program_name = $request->program_name;
+        $application->phone = $request->phone;
+        $application->country_of_residence = $request->country_of_residence;
+        $application->address = $request->address;
+        $application->postal_code = $request->postal_code;
+        $application->full_name = $request->full_name;
+        $application->forenames = $request->forenames;
+        $application->surname = $request->surname;
+        $application->date_of_birth = $request->date_of_birth;
+        $application->place_of_birth = $request->place_of_birth;
+        $application->passport_no = $request->passport_no;
+        $application->passport_issue_date = $request->passport_issue_date;
+        $application->passport_expiration_date = $request->passport_expiration_date;
+        $application->issuing_authority = $request->issuing_authority;
+        $application->emergency_name = $request->emergency_name;
+        $application->emergency_phone = $request->emergency_phone;
+        $application->relationship = $request->relationship;
+
+        $application->relation_country = $request->relation_country;
+        $application->higher_year_of_completion = $request->higher_year_of_completion;
+        $application->higher_degree_name = $request->higher_degree_name;
+        $application->higher_student_number = $request->higher_student_number;
+        $application->higher_major_subject = $request->higher_major_subject;
+        $application->higher_cgpa = $request->higher_cgpa;
+        $application->higher_certificate_issue_date = $request->higher_certificate_issue_date;
+        $application->higher_school_university = $request->higher_school_university;
+        $application->higher_country_of_completion = $request->higher_country_of_completion;
+        $application->higher_institution_address = $request->higher_institution_address;
+        $application->higher_institution_email = $request->higher_institution_email;
+        $application->higher_institution_website = $request->higher_institution_website;
+        $application->ielts_pte_score = $request->ielts_pte_score;
+        $application->score_report_code = $request->score_report_code;
+        $application->language_test_date = $request->language_test_date;
+        $application->test_taker_id = $request->test_taker_id;
+        $application->registration_id = $request->registration_id;
+        $application->save();
+
+        // Store multiple school records
+        foreach ($request->year_of_completion as $index => $year) {
+            ApplicationSchool::create([
+                'application_id' => $application->id, // Associate with StudentApplication
+                'year_of_completion' => $year,
+                'degree_name' => $request->degree_name[$index],
+                'student_roll_number' => $request->student_roll_number[$index],
+                'major_subject' => $request->major_subject[$index],
+                'cgpa' => $request->cgpa[$index],
+                'certificate_issue_date' => $request->certificate_issue_date[$index],
+                'school_university' => $request->school_university[$index],
+                'country_of_completion' => $request->country_of_completion[$index],
+                'institution_address' => $request->institution_address[$index],
+                'institution_website' => $request->institution_website[$index] ?? null, // Optional
+            ]);
+        }
+
+        return redirect()->back()->with('success', 'Your Application has been receievd..');
+    }
+
 
     public function applicationPersonalInfoUni(Request $request)
     {
@@ -560,7 +637,7 @@ class StudentApplicationController extends Controller
         $data['code'] = 0;
         $data['msg']  = "Personal information Update Successfully";
         // return response()->json($data);
-        return redirect()->route('success.application')->with('success','Application Submitted Successfully');
+        return redirect()->route('success.application')->with('success', 'Application Submitted Successfully');
     }
 
     public function applicationPersonalInfo(Request $request, $id)
@@ -610,7 +687,6 @@ class StudentApplicationController extends Controller
 
     public function applicationHomeAddress(Request $request, $id)
     {
-        // return $request;
         $application = StudentApplication::find($id);
         if ($application) {
             $application->home_country       = $request->country;
