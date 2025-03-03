@@ -470,7 +470,7 @@
                                                                 class="fa fa-ellipsis-v text-primary"></i></a>
                                                         <div class="dropdown-menu dropdown-menu-right">
                                                             <div class="d-flex">
-                                                                <a href="javascript:void(0)"
+                                                                {{-- <a href="javascript:void(0)"
                                                                     class="btn text-primary show-application-support-modal-trigger"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     data-original-title="View supports for this application"
@@ -483,7 +483,7 @@
                                                                     data-original-title="Assign Application to Partner"
                                                                     data-application-id="{{ $item->id }}">
                                                                     <i class="fa fa-plus" aria-hidden="true"></i>
-                                                                </a>
+                                                                </a> --}}
                                                                 <a href="{{ route('admin.student_appliction_details', $item->id) }}"
                                                                     class="btn text-primary" data-toggle="tooltip"
                                                                     data-placement="top" data-original-title="View">
@@ -514,7 +514,7 @@
                                                                 <a href="{{ route('admin.student_appliction_agreement_invoice', $item->id) }}"
                                                                     class="btn text-primary" data-toggle="tooltip"
                                                                     data-placement="top"
-                                                                    data-original-title="Agreement Invoice">
+                                                                    data-original-title="Agreement">
                                                                     <i class="fa fa-tasks" aria-hidden="true"></i>
                                                                 </a>
 
@@ -527,7 +527,7 @@
                                                                 <a href="{{ route('admin.student_appliction_invoice', $item->id) }}"
                                                                     class="btn text-primary" data-toggle="tooltip"
                                                                     data-placement="top"
-                                                                    data-original-title="Invoice">
+                                                                    data-original-title="Transactions">
                                                                     <i class="fa fa-solid fa-receipt"
                                                                         aria-hidden="true"></i>
                                                                 </a>

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,7 +26,7 @@
                         <div class="col-md-9 m-auto grid-margin stretch-card">
                             <div class="card">
                                 <div class="card-body">
-                                    <form class="forms-sample" action="{{ route('about-us-card.store') }}" method="POST"
+                                    <form class="forms-sample" action="{{ route('about-us-card.update', $card->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
 
@@ -66,7 +67,7 @@
                                                     <div
                                                         class="col-sm-12 col-md-4 col-lg-6 d-flex justify-content-center align-items-center">
                                                         <div class="px-3">
-                                                            <img src="{{ asset('frontend/images/No-image.jpg') }}"
+                                                            <img src="{{ asset($card->card_image) }}"
                                                                 alt="" class="img-fluid"
                                                                 style="border-radius: 10px; max-height: 200px !important;"
                                                                 id="card_preview">
@@ -84,7 +85,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <input id="card_title" type="text" name="card_title"
-                                                    class="form-control" placeholder="Enter Card Title" required>
+                                                    class="form-control" placeholder="Enter Card Title" value="{{ $card->card_title }}" required>
                                             </div>
                                         </div>
 
@@ -96,7 +97,7 @@
                                             </div>
                                             <div class="col-sm-9">
                                                 <textarea id="card_des" name="card_des" class="form-control" rows="4" placeholder="Enter Card Description"
-                                                    required></textarea>
+                                                    required>{{ $card->card_des }}</textarea>
                                             </div>
                                         </div>
 
@@ -124,6 +125,8 @@
             $('.dropify').dropify();
         });
     </script>
+
+
 
 </body>
 

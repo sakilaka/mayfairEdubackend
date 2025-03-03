@@ -16,46 +16,50 @@
                             @php
                                 $home_content = \App\Models\HomeContentSetup::first();
                             @endphp
+
+                            <img class="d-block img-fluid mx-auto" style="margin-top:50px;"
+                                src="{{ asset('backend/assets/images/new_logo.png') }}" width="344" alt="image">
+
                             <h2 class="h3 mb-4 fw-bold text-uppercase align-items-center" style="text-align:center">
                                 Please Verify your email. </h2>
                             <h4 class="mb-0" style="font-size:20px ;text-align:center">
                                 {{ $home_content->register_des }} </h4>
                             <br>
-              
+
 
                             {{-- <img class="d-block img-fluid mx-auto" style="margin-top:50px; height:380px; width:330px;"
                                 src="{{ $home_content->register_image_show }}" width="344" alt="image"> --}}
                         </div>
 
                         <div class="col-md-6 px-4 pt-2 pb-4 px-sm-5 pb-sm-5 pt-md-5">
-    
+
                             <h4 class="text-center my-2">Email Sent Successfully. Please Check Your Mail</h4>
-                        
+
                             <form action="{{ route('frontend.set_verify') }}" class="myform" id="student"
                                   enctype="multipart/form-data" method="post" accept-charset="utf-8">
                                 @csrf
                                 <input type="hidden" name="email" value="{{ $email }}">
-                        
+
                                 <div class="mb-3">
                                     <label for="user_name" class="form-label mb-1">Enter Verification Code</label>
-                                    <input type="text" class="form-control form-control-lg" id="user_name" 
+                                    <input type="text" class="form-control form-control-lg" id="user_name"
                                            name="verification_code" placeholder="Your Code" required autofocus>
                                 </div>
-                        
+
                                 <button type="submit" class="btn btn-dark-cerulean btn-lg w-100 registerbtn">
                                     Submit
                                 </button>
                             </form>
-                        
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @include('Frontend.layouts.parts.news-letter')
+    {{-- @include('Frontend.layouts.parts.news-letter') --}}
 
 @endsection
 

@@ -428,6 +428,7 @@
                                         <tr role="row">
                                             {{-- <th>SL</th> --}}
                                             <th>Trxn ID</th>
+                                            <th>App ID</th>
                                             <th>Client</th>
                                             <th>Category</th>
                                             <th>Type</th>
@@ -452,6 +453,11 @@
                                                         {{ strtoupper($transaction->transaction_id) }}
                                                     </a>
                                                 </td>
+
+                                                <td>
+                                                    {{ $transaction->application_id ?? "No Id " }}
+                                                </td>
+                                                
                                                 <td>
                                                     <span data-toggle="tooltip"
                                                         title="{{ $transaction->client_name }}">
@@ -562,6 +568,13 @@
                                                     <a data-toggle="modal" data-target="#delete_modal_box"
                                                         class="btn text-primary delete-item">
                                                         <i class="fa fa-trash" aria-hidden="true"></i>
+                                                    </a>
+                                                    <a href="{{ route('admin.transaction_invoice', $transaction->transaction_id) }}"
+                                                        class="btn text-primary" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        data-original-title="Invoice">
+                                                        <i class="fa fa-solid fa-receipt"
+                                                            aria-hidden="true"></i>
                                                     </a>
                                                 </td>
                                             </tr>

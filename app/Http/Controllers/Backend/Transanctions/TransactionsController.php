@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Backend\Transanctions;
 
 use App\Http\Controllers\Controller;
-use App\Models\ApplicationTransaction;
+use App\Models\Transaction;
 use App\Models\Balance;
 use App\Models\Country;
 use App\Models\StudentApplication;
-use App\Models\Transaction;
 use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
@@ -170,11 +169,14 @@ class TransactionsController extends Controller
             // ]);
 
             $unique_id = explode('-', uuid_create())[0];
-            $transaction = new ApplicationTransaction();
+            $transaction = new Transaction();
             $transaction->application_id = $request->application_id;
             $transaction->transaction_id = $unique_id;
             $transaction->transaction_type = 'in';
             $transaction->client_name = $request->input('client_name');
+            $transaction->client_address = $request->input('client_address');
+            $transaction->file_number = $request->input('file_number');
+            $transaction->study_in = $request->input('study_in');
             $transaction->client_phone = $request->input('client_phone');
             $transaction->category = $request->input('category');
             if ($transaction->category == 'Other') {
@@ -183,8 +185,10 @@ class TransactionsController extends Controller
             $transaction->amount = $request->input('amount');
             $transaction->price_per_item = $request->input('price_per_item');
             $transaction->vat = $request->input('vat');
-            $transaction->in_number = $request->input('in_number');
-            $transaction->customer_number = $request->input('customer_number');
+            $transaction->bdt_amount = $request->input('bdt_amount');
+            $transaction->reminder = $request->input('reminder');
+            $transaction->reminder_in_word = $request->input('reminder_in_word');
+            $transaction->in_number = $unique_id;
             $transaction->in_due_date = $request->input('in_due_date');
             $transaction->is_refundable = $request->input('is_refundable');
             $transaction->status = $request->input('status');
@@ -211,9 +215,9 @@ class TransactionsController extends Controller
                 $balance->save();
             }
             $transaction->save();
-            return redirect()->route('admin.student_appliction_list')->with('success', 'In Transaction successfully created.');
+            return redirect()->route('admin.transactions.index')->with('success', 'In Transaction successfully created.');
         } catch (\Exception $e) {
-            return $e->getMessage();
+            // return $e->getMessage();
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
@@ -231,12 +235,16 @@ class TransactionsController extends Controller
                 'status' => 'required|in:Pending,Resolved',
                 'description' => 'nullable|string',
             ]);
+            // dd($request->all());
 
             $unique_id = explode('-', uuid_create())[0];
             $transaction = new Transaction();
             $transaction->transaction_id = $unique_id;
             $transaction->transaction_type = 'in';
             $transaction->client_name = $request->input('client_name');
+            $transaction->client_address = $request->input('client_address');
+            $transaction->file_number = $request->input('file_number');
+            $transaction->study_in = $request->input('study_in');
             $transaction->client_phone = $request->input('client_phone');
             $transaction->category = $request->input('category');
             if ($transaction->category == 'Other') {
@@ -245,7 +253,10 @@ class TransactionsController extends Controller
             $transaction->amount = $request->input('amount');
             $transaction->price_per_item = $request->input('price_per_item');
             $transaction->vat = $request->input('vat');
-            $transaction->in_number = $request->input('in_number');
+            $transaction->bdt_amount = $request->input('bdt_amount');
+            $transaction->reminder = $request->input('reminder');
+            $transaction->reminder_in_word = $request->input('reminder_in_word');
+            $transaction->in_number = $unique_id;
             $transaction->customer_number = $request->input('customer_number');
             $transaction->in_due_date = $request->input('in_due_date');
             $transaction->is_refundable = $request->input('is_refundable');
@@ -571,5 +582,20 @@ class TransactionsController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
+    }
+
+
+    public function transactionInvoice($id)
+    {
+        // $data['orderdetails'] = StudentApplication::find($id);
+        $data['transactionDetails'] = Transaction::where('transaction_id', $id)->first();
+        // dd($data['transactionDetails']);
+        return view('Backend.transactions.invoice', $data);
+    }
+    function transactionOrderPrint($id)
+    {
+        // $data['orderdetails'] = StudentApplication::find($id);
+        $data['transactionDetails'] = Transaction::where('transaction_id', $id)->first();
+        return view('Backend.transactions.print', $data);
     }
 }

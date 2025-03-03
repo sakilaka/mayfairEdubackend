@@ -24,6 +24,7 @@ use App\Http\Controllers\User\ebook\EbookController;
 use App\Http\Controllers\User\UserController;
 use App\Http\Controllers\User\ebook\EbookAudioController;
 use App\Http\Controllers\User\ebook\EbookVideoController;
+use App\Models\StudentApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Sitemap\Sitemap;
@@ -358,6 +359,10 @@ Route::get('/sitemap.xml', function () {
 Route::get('/apply-admission-university', [StudentApplicationController::class, "applyAdmissionUniversity"])->name('apply_admission_university');
 
 Route::get('/success', [StudentApplicationController::class, "successApplication"])->name('success.application');
+Route::get('/success-application', [StudentApplicationController::class, "successApplicationStudent"])->name('success.application.student');
 
 Route::get('/get-cities/{country_id}', [UniversityController::class, 'getCitiesByCountry']);
+Route::get('/get-application/{id}', function ($id) {
+    return response()->json(StudentApplication::find($id));
+});
 

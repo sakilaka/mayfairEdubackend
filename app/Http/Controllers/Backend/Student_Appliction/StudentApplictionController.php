@@ -7,6 +7,7 @@ use App\Mail\SendApplicationFeedback;
 use App\Models\AgreementForm;
 use App\Models\ApplicationDocument;
 use App\Models\ApplicationEducation;
+use App\Models\ApplicationSchool;
 use App\Models\ApplicationTransaction;
 use App\Models\ApplicationWork;
 use App\Models\Continent;
@@ -19,6 +20,7 @@ use App\Models\StudentApplication;
 use App\Models\Notification;
 use App\Models\Section;
 use App\Models\StudentApplicationTableModify;
+use App\Models\Transaction;
 use App\Models\University;
 use App\Models\UniversityApplication;
 use App\Models\UniversityDocument;
@@ -677,8 +679,11 @@ class StudentApplictionController extends Controller
 
     public function editProgramInfo($id)
     {
-        $data['s_appliction'] = StudentApplication::find($id);
-        // dd($data['s_appliction']);
+        $data['s_application'] = StudentApplication::find($id);
+        $data['schools'] = ApplicationSchool::where('application_id', $id)->get();
+        $data['countries'] = Country::all();
+
+        // dd($data['s_application']);
         $data['managers'] = User::where('role', 'manager')->get();
         $data['supports'] = User::where('role', 'support')->get();
         $data['programs'] = Course::all();
@@ -689,73 +694,73 @@ class StudentApplictionController extends Controller
     public function updateProgramInfo(Request $request, $id)
     {
         try {
-            $s_appliction = StudentApplication::find($id);
+            // Update the StudentApplication
+            $application = StudentApplication::find($id);
 
-            if ($s_appliction && $request->has('feedback') && ($request->feedback != null)) {
-                $feedbackText = $request->input('feedback');
+            $application->email = $request->email;
+            $application->program_name = $request->program_name;
+            $application->phone = $request->phone;
+            $application->country_of_residence = $request->country_of_residence;
+            $application->address = $request->address;
+            $application->postal_code = $request->postal_code;
+            $application->full_name = $request->full_name;
+            $application->forenames = $request->forenames;
+            $application->surname = $request->surname;
+            $application->date_of_birth = $request->date_of_birth;
+            $application->place_of_birth = $request->place_of_birth;
+            $application->passport_no = $request->passport_no;
+            $application->passport_issue_date = $request->passport_issue_date;
+            $application->passport_expiration_date = $request->passport_expiration_date;
+            $application->issuing_authority = $request->issuing_authority;
+            $application->emergency_name = $request->emergency_name;
+            $application->emergency_phone = $request->emergency_phone;
+            $application->relationship = $request->relationship;
 
-                $student = User::find($s_appliction->user_id);
-                $partnerRefId = json_decode($s_appliction->partner_ref_id, true);
+            $application->relation_country = $request->relation_country;
+            $application->higher_year_of_completion = $request->higher_year_of_completion;
+            $application->higher_degree_name = $request->higher_degree_name;
+            $application->higher_student_number = $request->higher_student_number;
+            $application->higher_major_subject = $request->higher_major_subject;
+            $application->higher_cgpa = $request->higher_cgpa;
+            $application->higher_certificate_issue_date = $request->higher_certificate_issue_date;
+            $application->higher_school_university = $request->higher_school_university;
+            $application->higher_country_of_completion = $request->higher_country_of_completion;
+            $application->higher_institution_address = $request->higher_institution_address;
+            $application->higher_institution_email = $request->higher_institution_email;
+            $application->higher_institution_website = $request->higher_institution_website;
+            $application->ielts_pte_score = $request->ielts_pte_score;
+            $application->score_report_code = $request->score_report_code;
+            $application->language_test_date = $request->language_test_date;
+            $application->test_taker_id = $request->test_taker_id;
+            $application->registration_id = $request->registration_id;
+            $application->save();
 
-                $recipients = [];
+            if ($request->has('year_of_completion')) {
+                foreach ($request->year_of_completion as $index => $year) {
+                    // Check if the record already exists
+                    $school = ApplicationSchool::where('application_id', $application->id)
+                        ->where('id', $request->school_id[$index] ?? null) // Use school_id to identify existing records
+                        ->first();
 
-                if ($student) {
-                    $recipients[] = $student->email;
-                }
-
-                if (is_array($partnerRefId)) {
-                    foreach ($partnerRefId as $role => $userId) {
-                        $user = User::find($userId);
-                        if ($user) {
-                            $recipients[] = $user->email;
-                        }
+                    if ($school) {
+                        // Update existing record
+                        $school->update([
+                            'year_of_completion' => $year,
+                            'degree_name' => $request->degree_name[$index],
+                            'student_roll_number' => $request->student_roll_number[$index],
+                            'major_subject' => $request->major_subject[$index],
+                            'cgpa' => $request->cgpa[$index],
+                            'certificate_issue_date' => $request->certificate_issue_date[$index],
+                            'school_university' => $request->school_university[$index],
+                            'country_of_completion' => $request->country_of_completion[$index],
+                            'institution_address' => $request->institution_address[$index],
+                            'institution_website' => $request->institution_website[$index] ?? null,
+                        ]);
                     }
                 }
-
-                $data = [
-                    'subject' => 'Feedback For Application (' . $s_appliction->application_code . ')',
-                    'feedback' => $feedbackText,
-                ];
-
-                foreach ($recipients as $recipientEmail) {
-                    Mail::to($recipientEmail)->send(new SendApplicationFeedback($data));
-                }
             }
 
-            $newProgramIds = isset($request->program_id) ? array_map('intval', $request->program_id) : [];
-
-            $s_appliction->service_charge = 0;
-            $s_appliction->application_fee = 0;
-            $s_appliction->total_fee = 0;
-
-            foreach ($newProgramIds as $program_id) {
-                $program = Course::find($program_id);
-
-                if ($program) {
-                    $s_appliction->service_charge += (float) $program->service_charge;
-                    $s_appliction->application_fee += (float) $program->application_charge;
-                    $s_appliction->total_fee += (float) $program->service_charge + (float) $program->application_charge;
-                }
-            }
-
-            $s_appliction->programs = json_encode($newProgramIds);
-
-            $s_appliction->service_charge = $request->service_charge;
-            $s_appliction->total_fee = $request->total_fee;
-            $s_appliction->status = $request->status;
-            $s_appliction->payment_status = $request->payment_status;
-            $s_appliction->save();
-
-            $status = ['Not Complete', 'Processing', 'Approved', 'Cancel', 'Not Submitted', 'Submitted', 'Pending', 'E-documents Qualified', 'Waiting Processing', 'Processing', 'More Documents Needed', 'Re-Submitted', 'Rejected', 'Transferred', 'Accepted', 'E-offer Delivered', 'Offer Delivered'];
-
-            $notification = new Notification();
-            $notification->relation_id = $s_appliction->id;
-            $notification->text = 'Application Status Has Changed To \'' . $status[$request->status - 1] . '\'.';
-            $notification->user_id = auth()->user()->id;
-            $notification->type = 'university';
-            $notification->save();
-
-            return redirect()->back()->with('success', 'Status Changed Successfully');
+            return redirect()->route('admin.student_appliction_list')->with('success', 'Updated Successfully');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
@@ -890,10 +895,23 @@ class StudentApplictionController extends Controller
     public function applicationInvoice($id)
     {
         $data['orderdetails'] = StudentApplication::find($id);
-        $data['transactionDetails'] = ApplicationTransaction::where('application_id', $id)->first();
+
+        if (!$data['orderdetails']) {
+            return redirect()->back()->with('error', 'No application found.');
+        }
+
+        $data['transactionDetails'] = Transaction::where('application_id', $id)->get();
+
+        if (!$data['transactionDetails']) {
+            return redirect()->back()->with('error', 'No transaction created for this application.');
+        }
+
         // dd($data['transactionDetails']);
-        return view('Backend.student_appliction.invoice', $data);
+
+        return view('Backend.student_appliction.all_invoice', $data);
     }
+
+
 
     public function applicationAgreementCreate()
     {
@@ -909,15 +927,27 @@ class StudentApplictionController extends Controller
     public function applicationAgreementInvoice($id)
     {
         $data['agreement'] = StudentApplication::find($id);
+
+        if (!$data['agreement']) {
+            return redirect()->back()->with('error', 'No application found.');
+        }
+
         $data['agreementDetails'] = AgreementForm::where('application_id', $id)->first();
+
+        if (!$data['agreementDetails']) {
+            return redirect()->back()->with('error', 'No agreement created for this application.');
+        }
+
         return view('Backend.student_appliction.agreement_invoice', $data);
     }
+
+
 
     public function applicationAgreementInvoiceNotID($id)
     {
         // $data['agreement'] = StudentApplication::find($id);
         $data['agreementDetails'] = AgreementForm::where('id', $id)->first();
-        return view('Backend.student_appliction.agreement_invoice_Not_id', $data);
+        return view('Backend.student_appliction.agreement_invoice_not_id', $data);
     }
 
     public function delete(Request $request)
@@ -1037,14 +1067,23 @@ class StudentApplictionController extends Controller
     function applicationOrderPrint($id)
     {
         $data['orderdetails'] = StudentApplication::find($id);
-        $data['transactionDetails'] = ApplicationTransaction::where('application_id', $id)->first();
+        $data['transactionDetails'] = Transaction::where('application_id', $id)->first();
         return view('Backend.student_appliction.print', $data);
     }
 
     function applicationAgreementPrint($id)
     {
+        $data['agreement'] = StudentApplication::find($id);
+        $data['agreementDetails'] = AgreementForm::where('application_id', $id)->first();
+        // dd($data['agreementDetails']);
+        return view('Backend.student_appliction.agreementPrintID', $data);
+    }
+
+    function applicationAgreementPrintID($id)
+    {
         // $data['agreement'] = StudentApplication::find($id);
         $data['agreementDetails'] = AgreementForm::where('id', $id)->first();
+        // dd($data['agreementDetails']);
         return view('Backend.student_appliction.agreementPrintID', $data);
     }
 
@@ -1624,5 +1663,15 @@ class StudentApplictionController extends Controller
         $agreement->save();
 
         return redirect()->route('admin.student_appliction_agreement')->with('success', 'Agreement saved successfully.');
+    }
+
+    public function deleteAgreement(Request $request){
+        try {
+            $agreement = AgreementForm::find($request->agreement_id);
+            $agreement->delete();
+            return redirect()->route('admin.student_appliction_agreement')->with('success', 'Agreement Deleted Successfully!');
+        } catch (\Throwable $th) {
+            return redirect()->route('admin.student_appliction_agreement')->with('error', 'Something Went Wrong!');
+        }
     }
 }

@@ -49,19 +49,22 @@
                                             <td>{{ $item->passport_number }}</td>
 
                                             <td class="text-right">
+
                                                 {{-- <a href="{{ route('admin.degree.edit', $item->id) }}"
                                                     class="btn text-primary">
                                                     <i class="fa fa-edit" aria-hidden="true"></i>
                                                 </a> --}}
+
                                                 <input type="hidden" value="{{ $item->id }}">
-                                                {{-- <a data-toggle="modal" data-target="#delete_modal_box"
+
+                                                <a data-toggle="modal" data-target="#delete_modal_box"
                                                     class="btn text-primary delete-item">
                                                     <i class="fa fa-trash" aria-hidden="true"></i>
-                                                </a> --}}
+                                                </a>
                                                 @php
                                                     if ($item->application_id) {
                                                         $action = 'admin.student_appliction_agreement_invoice';
-                                                        $params = ['id' => $item->application_id]; // Pass the required ID
+                                                        $params = ['id' => $item->application_id];
                                                     } else {
                                                         $action = 'admin.student_appliction_agreement_invoice_withoutId';
                                                         $params = ['id' => $item->id];
@@ -90,9 +93,9 @@
                                     width="50" height="46">
                                 <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
                                 <div class="m-t-20 flex">
-                                    <form action="{{ route('admin.degree.delete') }}" method="POST" id="deleteForm">
+                                    <form action="{{ route('admin.agreement.delete') }}" method="POST" id="deleteForm">
                                         @csrf
-                                        <input type="hidden" name="degree_id" id="modal_item_id" value="">
+                                        <input type="hidden" name="agreement_id" id="modal_item_id" value="">
                                     </form>
                                     <div class="mt-3">
                                         <a href="#" class="btn btn-success" data-dismiss="modal">Cancel</a>

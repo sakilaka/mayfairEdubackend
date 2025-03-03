@@ -80,7 +80,7 @@
                             <a href="{{ route('about-us-card.index') }}"
                                 class="nav-link {{ Route::is('about-us-card.create') || Route::is('about-us-card.index') || Route::is('about-us-card.edit') ? 'active' : '' }}">
                                 <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
-                                About
+                                About Card
                             </a>
                         </li>
 
@@ -289,37 +289,6 @@
 
                         <li class="nav-item ">
                             @php
-                                $program_application_routes =
-                                    Route::is('admin.open_application_list') ||
-                                    Route::is('admin.open_application_details');
-                            @endphp
-                            @if (in_array('program_applications_module', $permissions ?? []))
-                                <a href="{{ route('admin.open_application_list') }}"
-                                    class="nav-link {{ $program_application_routes && request()->query('type') !== 'assigned' ? 'active' : '' }}">
-                                    <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
-                                    Open Applications
-                                </a>
-                            @endif
-
-                        </li>
-                        @if (!in_array(Auth::user()->role, ['manager', 'support']))
-                            <li class="nav-item ">
-                                @php
-                                    $partner_wise_student_application_routes =
-                                        Route::is('admin.student_appliction_list_partner_wise') ||
-                                        Route::is('admin.appliction_list_partner_wise') ||
-                                        Route::is('admin.student_list_partner_wise');
-                                @endphp
-                                <a href="{{ route('admin.student_appliction_list_partner_wise') }}"
-                                    class="nav-link {{ $partner_wise_student_application_routes ? 'active' : '' }}">
-                                    <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
-                                    Partner Wise Application
-                                </a>
-                            </li>
-                        @endif
-
-                        <li class="nav-item ">
-                            @php
                                 $agreement_application_routes =
                                     Route::is('admin.student_appliction_agreement') ||
                                     Route::is('admin.student_appliction_agreement_create');
@@ -331,13 +300,6 @@
                             </a>
                         </li>
 
-                        <li class="nav-item ">
-                            <a href="{{ route('frontend.apply_now', ['partner_ref_id' => session('partner_ref_id'), 'applied_by' => session('applied_by')]) }}"
-                                class="nav-link" target="_blank">
-                                <i class="fa fa-caret-right mr-3" aria-hidden="true"></i>
-                                Apply New Application
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </li>

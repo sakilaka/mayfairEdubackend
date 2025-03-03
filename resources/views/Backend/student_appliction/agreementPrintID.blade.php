@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Appliction-agreement-Invoice-{{ $agreementDetails->id }}</title>
+    <title>{{ env('APP_NAME') }} | Appliction-agreement-{{ $agreementDetails->id }}</title>
 
     <style>
         li {

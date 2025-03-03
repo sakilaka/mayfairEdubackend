@@ -3,29 +3,10 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Appliction-Invoice-{{ $orderdetails->application_code }}</title>
+    <title>{{ env('APP_NAME') }} | Application Invoice</title>
 
     <style>
         li {
-            font-size: 0.9rem;
-        }
-
-        @media print {
-            body {
-                -webkit-print-color-adjust: exact !important;
-                color-adjust: exact !important;
-                margin: 0 !important;
-            }
-
-            .badge {
-                border: 0;
-            }
-
-            .card {
-                box-shadow: none;
-            }
-        }
-         li {
             font-size: 0.9rem;
         }
 
@@ -86,23 +67,30 @@
             text-align: center;
         }
     </style>
-
-    <script>
-        function handlePrint() {
-            history.back();
-        }
-
-        window.addEventListener('afterprint', handlePrint);
-        window.print();
-    </script>
 </head>
 
 <body>
     <div class="container-scroller">
-        <div class="container-fluid page-body-wrapper">
+        @include('Backend.components.navbar')
 
-            <div class="main-panel m-auto">
-                <div class="content-wrapper bg-white">
+        <div class="container-fluid page-body-wrapper">
+            @include('Backend.components.sidebar')
+
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="page-header">
+                        <h3 class="page-title">
+                            Transaction Invoice
+                        </h3>
+
+                        <nav aria-label="breadcrumb">
+                            <a href="{{ route('admin.transaction_order_print', $transactionDetails->transaction_id) }}"
+                                class="btn btn-primary">
+                                <i class="fa fa-print mr-1"></i>Print
+                            </a>
+                        </nav>
+                    </div>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card px-2">
@@ -139,16 +127,16 @@
                                                     Mirpur-10,
                                                     Dhaka-1216, Bangladesh.</p>
                                             </div>
-                                            <div class="mt-3">
+                                            {{-- <div class="mt-3">
                                                 <h6>Student Name: {{ $orderdetails->full_name }}</h6>
-                                                {{-- <p class="text mt-2">Bangladesh</p> --}}
-                                            </div>
-                                             <div class="mt-3">
+                                                <p class="text mt-2">Bangladesh</p>
+                                            </div> --}}
+                                            <div class="mt-3">
                                                 <h6>Student Permanent Address:</h6>
                                                 <p class="text">{{ $transactionDetails->client_address ?? 'No address!' }}</p>
                                             </div>
                                             <div class="mt-2">
-                                               <p class="text">Study Destination : {{ $transactionDetails->study_in }}</p>
+                                                <p class="text">Study Destination : {{ $transactionDetails->study_in }}</p>
                                                 <p class="text">File Number: {{ $transactionDetails->file_number }}</p>
                                             </div>
                                         </div>
@@ -173,7 +161,7 @@
                                                     Our Reference:</p>
                                                 <p style="font-size: 16px;">info@mayfairedu.global</p>
                                             </div>
-                                             <div class="my-2 d-flex" style="font-size: 16px;">
+                                            <div class="my-2 d-flex" style="font-size: 16px;">
                                                 <p
                                                     style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
                                                     Student Number:</p>
@@ -220,7 +208,7 @@
                                             <thead>
                                                 <tr class="">
                                                     <th class="">SL</th>
-                                                    <th class="">Item</th>
+                                                    {{-- <th class="">Item</th> --}}
                                                     <th class="">Product/Service</th>
                                                     <th class="">Amount</th>
                                                     <th class="">Price per item</th>
@@ -234,8 +222,8 @@
                                             <tbody class="">
                                                 <tr class="">
                                                     <td>1</td>
-                                                    <td class="" style="font-weight: bold">
-                                                        {{ $orderdetails->program_name }}</td>
+                                                    {{-- <td class="" style="font-weight: bold">
+                                                        {{ $orderdetails->program_name }}</td> --}}
                                                     <td class="" style="font-weight: bold">
                                                         {{ $transactionDetails->category }}</td>
                                                     <td class="" style="font-weight: bold">
@@ -247,7 +235,7 @@
                                                     <td class="" style="font-weight: bold">
                                                         {{ $vatAmount }}
                                                     </td>
-                                                     <td class="" style="font-weight: bold">
+                                                   <td class="" style="font-weight: bold">
                                                         {{ number_format($totalAmount, 2) }}</td>
                                                     <td class="" style="font-weight: bold">
                                                         {{ $totalBDT }}
@@ -288,7 +276,7 @@
                                         </div>
                                     </div>
 
-                                     <div class="my-3">
+                                    <div class="my-3">
                                         <p class="text" style="font-weight: bold;">Reminder : {{ $transactionDetails->reminder }}</p>
                                         <p class="text" style="font-weight: bold;">In Word: {{ $transactionDetails->reminder_in_word }}</p>
                                     </div>
@@ -346,6 +334,8 @@
                     </div>
 
                 </div>
+
+                @include('Backend.components.footer')
             </div>
         </div>
     </div>

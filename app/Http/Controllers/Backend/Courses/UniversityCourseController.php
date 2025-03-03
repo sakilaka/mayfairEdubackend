@@ -103,6 +103,11 @@ class UniversityCourseController extends Controller
 
             $universityIds = is_array($request->university_id) ? $request->university_id : [$request->university_id];
 
+            $universityIds = array_filter($universityIds, function ($id) {
+                return $id !== 'all';
+            });
+
+
             foreach ($universityIds as $universityId) {
                 $course = new Course();
 

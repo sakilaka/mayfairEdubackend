@@ -106,94 +106,9 @@ class FrontendController extends Controller
         return back();
     }
 
-    public function index(Request $request)
+    public function homeContent()
     {
         $data['home_content'] = HomeContentSetup::first();
-
-        $data['partners'] = Partner::all();
-
-        $footerImageRecord = FooterImage::first() ?? [];
-        if ($footerImageRecord) {
-            $data['footer_image'] = json_decode($footerImageRecord['footer_image'], true) ?? [];
-        } else {
-            $data['footer_image'] = [];
-        }
-
-        $data['buttons']     = Faq::where('type', 'homepage')->get();
-        $data['continents']  = Continent::where('status', 1)->orderBy('id', 'desc')->get();
-        $data['learn_texts'] = HomeContentItem::where('type', "homepage")->get();
-        $data['clients']     = Client::all();
-
-        $data['universities'] = University::where('status', 1)->orderBy('id', 'desc')->get();
-        $data['degrees']      = Degree::with('courses')->get();
-        $data['countries'] = Country::orderBy('name', 'asc')->get();
-        $data['provinces']    = State::all();
-        $data['cities']       = City::all();
-        $data['majors']       = Department::all();
-
-        $data['homecontentlocations'] = HomeContentLocation::orderBy('id', 'desc')->get();
-        $data['services']             = AdditionalPage::where('page', 'our-services')->first();
-
-        // Fetch selected programs for 'all programs' tab
-        $selected_programs = Course::where(['status' => 1, 'type' => 'university', 'show_on_home' => 1])
-            ->orderBy('updated_at', 'desc')
-            ->limit(8)
-            ->get();
-        $data['courses_all'] = count($selected_programs) > 0
-        ? $selected_programs
-        : Course::with('university', 'degree', 'department')->where(['status' => 1, 'type' => 'university'])->inRandomOrder()->limit(8)->get();
-
-        $data['courses_our_top_pics'] = Course::where(['status' => 1, 'type' => 'university', 'coursetype' => 1])
-            ->orderBy('id', 'desc')
-            ->limit(8)
-            ->get();
-        $data['courses_most_popular'] = Course::where(['status' => 1, 'type' => 'university', 'coursetype' => 2])
-            ->orderBy('id', 'desc')
-            ->limit(8)
-            ->get();
-        $data['courses_fastest_admissions'] = Course::where(['status' => 1, 'type' => 'university', 'coursetype' => 3])
-            ->orderBy('id', 'desc')
-            ->limit(8)
-            ->get();
-        $data['courses_highest_rating'] = Course::where(['status' => 1, 'type' => 'university', 'coursetype' => 4])
-            ->orderBy('id', 'desc')
-            ->limit(8)
-            ->get();
-        $data['courses_top_ranked'] = Course::where(['status' => 1, 'type' => 'university', 'coursetype' => 5])
-            ->orderBy('id', 'desc')
-            ->limit(8)
-            ->get();
-
-        $data['categories']    = Category::where('parent_id', 0)->where('type', 'home')->get();
-        $data['sub_categorys'] = Category::where('type', "home")
-            ->where('parent_id', '!=', '')
-            ->where('is_sub', 0)
-            ->get();
-        $data['testimonials_learner'] = Testimonial::where(['status' => 1, 'type' => 'learner'])->get();
-        $data['testimonials_partner'] = Testimonial::where(['status' => 1, 'type' => 'partner'])->get();
-
-        // Visitor count with IP address
-        $UserIP   = $_SERVER['REMOTE_ADDR'];
-        $timeDate = date("Y-m-d h:i:sa");
-        VisitorModel::insert([
-            'ip_address' => $UserIP,
-            'visit_time' => $timeDate,
-            'created_at' => Carbon::now(),
-            'updated_at' => now(),
-        ]);
-
-        $data['university_list'] = University::where(['status' => 1, 'show_on_home' => 1])
-            ->limit(10)
-            ->orderBy('name', 'asc')
-            ->get()
-            ->map(function ($university) {
-                $university->course_count = Course::where([
-                    'university_id' => $university->id,
-                    'status'        => 1,
-                ])->count();
-                return $university;
-            });
-
         $latestUpdates          = json_decode($data['home_content']->latest_updates, true);
         $data['latest_updates'] = [];
 
@@ -207,6 +122,95 @@ class FrontendController extends Controller
                 $data['latest_updates'][] = Expo::find($update['expo']);
             }
         }
+        return response()->json([
+            'status'  => true,
+            'message' => 'Data retrieved successfully',
+            'data'    => $data,
+        ]);
+
+    }
+
+    public function getCourseList()
+    {
+        // Fetch selected programs for 'all programs' tab
+        $selected_programs = Course::with(['university', 'degree', 'department'])
+        ->where(['status' => 1, 'type' => 'university', 'show_on_home' => 1])
+            ->orderBy('updated_at', 'desc')
+            ->select('id', 'application_deadline', 'course_duration', 'name', 'year_fee', 'university_id', 'degree_id', 'department_id') // Include foreign keys
+            ->limit(8)
+            ->get();
+
+        // If no selected programs, fetch random programs
+        $data['courses_all'] = count($selected_programs) > 0
+            ? $selected_programs
+            : Course::with(['university', 'degree', 'department'])
+            ->select('id', 'application_deadline', 'course_duration', 'name', 'year_fee', 'university_id', 'degree_id', 'department_id') // Include foreign keys
+            ->where(['status' => 1, 'type' => 'university'])
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Data retrieved successfully',
+            'data'    => $data,
+        ]);
+    }
+
+    public function getUniversityList()
+    {
+        $data['universities'] = University::where('status', 1)->select('id','country_id','name')->get();
+
+
+        $data['university_list'] = University::where(['status' => 1, 'show_on_home' => 1])
+        ->select('id', 'banner_image', 'image',  'name', 'address')
+        ->withCount(['courses' => function ($query) {
+            $query->where('status', 1);
+        }])
+        ->limit(10)
+        ->orderBy('name', 'asc')
+        ->get();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Data retrieved successfully',
+            'data'    => $data,
+        ]);
+
+    }
+
+    public function getCategoriesList()
+    {
+        $data['degrees']  = Degree::withCount('courses')->get();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Data retrieved successfully',
+            'data'    => $data,
+        ]);
+
+    }
+
+    public function getCountriesList()
+    {
+        $data['countries']    = Country::orderBy('name', 'asc')->get();
+
+        return response()->json([
+            'status'  => true,
+            'message' => 'Data retrieved successfully',
+            'data'    => $data,
+        ]);
+
+    }
+
+    public function index()
+    {
+        $data['provinces']    = State::all();
+        $data['cities']       = City::all();
+        $data['majors']       = Department::all();
+
+        $data['homecontentlocations'] = HomeContentLocation::orderBy('id', 'desc')->get();
+
         $data['office'] = Office::all();
 
         return response()->json([
@@ -1455,7 +1459,6 @@ class FrontendController extends Controller
         $courses = Course::query();
 
         $data = [
-            'universities' => University::withCount('courses')->get(),
             'degrees'      => Degree::withCount('courses')->get(),
             'states'       => State::withCount('universities')->get(),
             'cities'       => City::withCount('universities')->get(),
@@ -1466,8 +1469,18 @@ class FrontendController extends Controller
             'continents'   => Continent::withCount('universities')->get(),
         ];
 
+        // Fetch courses with related data and limit columns for university
+        $data['courses'] = $courses->with([
+            'university' => function ($query) {
+                $query->select('id', 'image', 'banner_image', 'name', 'year_fee', 'intake', 'address') ;
+            },
+            'degree',
+            'department'
+        ])
+        ->select('id', 'application_deadline', 'course_duration', 'name', 'year_fee', 'university_id', 'degree_id', 'department_id')
+        ->where('status', 1)
+        ->paginate(10);
 
-        $data['courses'] = $courses->with('university', 'degree', 'department')->where('status', 1)->paginate(10);
         return response()->json($data);
     }
 

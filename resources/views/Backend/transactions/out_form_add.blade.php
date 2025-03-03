@@ -88,12 +88,14 @@
                                                 <option value="Assets Cost"
                                                     {{ old('category') == 'Assets Cost' ? 'selected' : '' }}>Assets Cost
                                                 </option>
-                                                <option value="Ranji Withdraw"
+
+                                                {{-- <option value="Ranji Withdraw"
                                                     {{ old('category') == 'Ranji Withdraw' ? 'selected' : '' }}>Ranji
                                                     Withdraw</option>
                                                 <option value="Rakin Withdraw"
                                                     {{ old('category') == 'Rakin Withdraw' ? 'selected' : '' }}>Rakin
-                                                    Withdraw</option>
+                                                    Withdraw</option> --}}
+                                                    
                                                 <option value="Family Withdraw"
                                                     {{ old('category') == 'Family Withdraw' ? 'selected' : '' }}>Family
                                                     Withdraw</option>

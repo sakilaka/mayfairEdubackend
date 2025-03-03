@@ -674,6 +674,9 @@
                                         </div>
                                     </div>
 
+
+
+
                                     <div class="dtlms-tabs-horizontal-content" style="display: none;">
                                         <div class="dtlms-title">Tuition Fees & Scholarship Costs</div>
 
@@ -763,15 +766,7 @@
                                                                         {{ $medical_in_china_fee !== null ? convertCurrency($medical_in_china_fee) : '-' }}
                                                                     </span>
                                                                 </div>
-                                                                {{-- <div
-                                                                    class="d-flex border-top justify-content-between mt-3 pt-1">
-                                                                    <span class="text-muted text-start mb-0">
-                                                                        Total Yearly Fees
-                                                                    </span>
-                                                                    <span class="text-muted text-end fw-bold mb-0">
-                                                                        {{ convertCurrency($total_yearly_fees) }}
-                                                                    </span>
-                                                                </div> --}}
+                                                               
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1175,18 +1170,21 @@
                                         </div>
                                     </div>
 
+
+
+
                                     <div class="dtlms-tabs-horizontal-content" style="display: none;">
                                         <div class="dtlms-title">Gallery</div>
 
 
-                                        
+
                                         <p style="color: black !important;" class="mb-4 text-center fs-3 fw-bold">Images</p>
 
                                         <div id="gallery" class="section-background-img">
                                             @php
                                                 $imageGallery = json_decode($university->image_gallery, true) ?? [];
                                                 $hasImages = false;
-    
+
                                                 // Check if there is at least one image in the gallery
                                                 foreach ($imageGallery as $gallery) {
                                                     if (!empty($gallery['images'])) {
@@ -1195,7 +1193,7 @@
                                                     }
                                                 }
                                             @endphp
-    
+
                                             @if ($hasImages)
                                                 @foreach ($imageGallery as $key => $gallery)
                                                     @foreach ($gallery['images'] as $img)
@@ -1212,7 +1210,7 @@
                                                 </h4>
                                             @endif
                                         </div>
-    
+
 
 
 
@@ -1253,8 +1251,6 @@
                                         </div>
                                     </section>
 
-
-                                        
                                     </div>
 
                                 </div>
@@ -1309,19 +1305,19 @@
                                             <label>Application Deadline :</label>
                                             {{ date('d-m-Y', strtotime($course->application_deadline)) }}
                                         </li>
-                                        
+
                                         @if (auth()->check())
                                             <li>
                                                 <label>Service Charge:</label>
                                                 @convertCurrency($service_charge ?? 0)
                                             </li>
                                         @endif
-                                    
+
                                         <li>
                                             <label>Application Fees:</label>
                                             @convertCurrency($course->application_charge)
                                         </li>
-                                    
+
                                         <li>
                                             <label>Tuition Fees (Yearly): </label>
                                             @convertCurrency($yearly_tuition_fee)

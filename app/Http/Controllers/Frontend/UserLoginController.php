@@ -89,7 +89,7 @@ class UserLoginController extends Controller
             $email = $data['email'];
             return view('Frontend.auth.verification_check', compact('email'))->with('success', 'You are successfully Registered. Now You can Verify. Thank You.');
         } catch (\Exception $e) {
-            // return $e->getMessage();
+            return $e->getMessage();
             return redirect()->back()->with('error', 'Registration successful. But failed to send verification code');
         }
     }

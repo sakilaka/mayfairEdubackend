@@ -563,6 +563,7 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::post('student-appliction-list', [StudentApplictionController::class, "index"])->name('admin.student_appliction_list.filter');
   Route::get('student-appliction-details/{id}', [StudentApplictionController::class, "details"])->name('admin.student_appliction_details');
   Route::get('student-appliction-invoice/{id}', [StudentApplictionController::class, "applicationInvoice"])->name('admin.student_appliction_invoice');
+  Route::get('transaction_invoice/{id}', [TransactionsController::class, "transactionInvoice"])->name('admin.transaction_invoice');
   Route::get('student-appliction-agreement', [StudentApplictionController::class, "applicationAgreement"])->name('admin.student_appliction_agreement');
   Route::get('student-appliction-agreement-create', [StudentApplictionController::class, "applicationAgreementCreate"])->name('admin.student_appliction_agreement_create');
   Route::get('student-appliction-agreement-invoice/{id}', [StudentApplictionController::class, "applicationAgreementInvoice"])->name('admin.student_appliction_agreement_invoice');
@@ -578,6 +579,7 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::post('/update-application-fee/{id}', [StudentApplictionController::class, 'updateApplicationFee'])->name('admin.update.paid.amount');
 
   Route::post('/student-application-agreement', [StudentApplictionController::class, 'storeAgreement'])->name('admin.agreement.store');
+  Route::post('/student-application-agreement-delete', [StudentApplictionController::class, 'deleteAgreement'])->name('admin.agreement.delete');
 
   Route::get('student-appliction-document/{id}', [StudentApplictionController::class, "editDocument"])->name('admin.student_appliction_document');
   Route::post('student-appliction-document-update/{id}', [StudentApplictionController::class, "updateDocument"])->name('admin.student_appliction_document-update');
@@ -587,8 +589,9 @@ Route::prefix('admin')->middleware(['auth:admin', 'adminCheck:0'])->group(functi
   Route::get('/application/doc/all-download/{application_id}', [StudentApplictionController::class, 'allDocumentDownload'])->name('admin.application-all-document-download');
   Route::get('/application/doc/download/{id}', [StudentApplictionController::class, 'applicationFileDownload'])->name('admin.application-file-download');
   Route::get('/application-order-print/{id}', [StudentApplictionController::class, 'applicationOrderPrint'])->name('admin.application_order_print');
+  Route::get('/transaction-order-print/{id}', [TransactionsController::class, 'transactionOrderPrint'])->name('admin.transaction_order_print');
   Route::get('/application-agreement-print/{id}', [StudentApplictionController::class, 'applicationAgreementPrint'])->name('admin.application_agreement_print');
-  Route::get('/application-agreement-print-id/{id}', [StudentApplictionController::class, 'applicationAgreementPrint'])->name('admin.application_agreement_print_not_id');
+  Route::get('/application-agreement-print-id/{id}', [StudentApplictionController::class, 'applicationAgreementPrintID'])->name('admin.application_agreement_print_not_id');
 
   Route::get('/application/form/download/{id}', [StudentApplictionController::class, 'applicationFormDownload'])->name('admin.application-form-download');
   Route::get('/application/open/form/download/{id}', [StudentApplictionController::class, 'openApplicationFormDownload'])->name('admin.open-application-form-download');

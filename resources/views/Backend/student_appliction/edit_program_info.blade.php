@@ -38,239 +38,761 @@
                     </div>
 
                     <div class="row">
-                        <div class="my-2 col-md-2">
+                        {{-- <div class="my-2 col-md-2">
                             @include('Backend.student_appliction.theme_options_tabs_nav')
-                        </div>
+                        </div> --}}
 
-                        <div class="my-2 col-md-10">
+                        <div class="my-2 col-md-12">
                             <div class="tab-content tab-content-vertical bg-white rounded">
                                 <div class="tab-pane fade show active" id="program-info-tab-content" role="tabpanel"
                                     aria-labelledby="home-tab-vertical">
 
                                     <form novalidate="" method="post"
-                                        action="{{ route('admin.student_appliction_program_update', $s_appliction->id) }}"
+                                        action="{{ route('admin.student_appliction_program_update', $s_application->id) }}"
                                         data-validate="parsley" id="DataEntry_formId" enctype="multipart/form-data">
                                         @csrf
 
-                                        <div class="row">
-                                            <div class="col-lg-12 mb-2">
-                                                <h4>Program Information</h4>
-                                            </div>
+                                        <h5 class="multisteps-form__title">Contact Information</h5>
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Application ID:') }}</label>
-                                                    <input disabled value="{{ $s_appliction->application_code }}"
-                                                        type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Student Name:') }}</label>
-                                                    <input disabled value="{{ @$s_appliction->student->name }}"
-                                                        type="text" class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Programs:') }}</label>
+                                        <div class="multisteps-form__content">
+                                            <div class="form-row">
 
-                                                    <select name="program_id[]"
-                                                        class="form-control form-control-lg select2" required multiple>
-                                                        @php
-                                                            $selectedProgramIds =
-                                                                json_decode($s_appliction->programs) ?? [];
-                                                        @endphp
-                                                        @forelse ($programs as $item)
-                                                            <option value="{{ $item->id }}"
-                                                                {{ in_array($item->id, $selectedProgramIds) ? 'selected' : '' }}>
-                                                                {{ $item->name }} - ({{ $item->university?->name }})
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="email" id="email" name="email"
+                                                            data-name="email" required="" placeholder="Email"
+                                                            class="form-control" maxlength=""
+                                                            value="{{ $s_application->email }}">
+                                                        <label for="email"
+                                                            class="form-control-placeholder">Email</label>
+
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+                                                        <input type="tel" id="" name="phone"
+                                                            data-name="phone" required=""
+                                                            placeholder="Enter Phone Number"
+                                                            class="form-control"
+                                                            value="{{ $s_application->phone }}">
+                                                        <label for="phone" class="form-control-placeholder">
+                                                            Phone</label>
+
+                                                        {{-- <span class="text-danger" id="output"></span> --}}
+                                                        <div class="invalid-feedback">Please provide a valid
+                                                            contact
+                                                            number.
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <select name="country_of_residence" class="form-control"
+                                                            id="">
+                                                            <option value="Select country">Select Country
                                                             </option>
-                                                        @empty
-                                                            <option value="">No Program Available</option>
-                                                        @endforelse
-                                                    </select>
+
+
+                                                            @foreach ($countries as $country)
+                                                                <option
+                                                                    {{ $s_application->country_of_residence == $country->id ? 'selected' : '' }}
+                                                                    value="{{ $country->id }}">
+                                                                    {{ $country->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <label for="contact_id" class="form-control-placeholder">
+                                                            Country Of Residence
+                                                        </label>
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('University Name:') }}</label>
-                                                    @php
-                                                        $programIds = json_decode($s_appliction->programs) ?? [];
 
-                                                        $universityNames = collect($programIds)
-                                                            ->map(function ($programId) {
-                                                                $course = \App\Models\Course::find($programId);
-                                                                return $course?->university?->name;
-                                                            })
-                                                            ->filter()
-                                                            ->unique()
-                                                            ->implode(', ');
-                                                    @endphp
-                                                    <input disabled value="{{ $universityNames }}" type="text"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Application Fees:') }}</label>
-                                                    <input disabled value="{{ $s_appliction->application_fee }}"
-                                                        type="text" class="form-control">
-                                                </div>
-                                            </div>
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="service_charge">{{ __('Final Service Charge:') }}
-                                                        <span class="text-danger">*</span>
-                                                    </label>
-                                                    <input id="service_charge" name="service_charge"
-                                                        value="{{ $s_appliction->service_charge }}" type="text"
-                                                        class="form-control" required>
-                                                </div>
-                                            </div>
+                                                        <input type="text" id="address" name="address"
+                                                            data-name="address" required="" placeholder="address"
+                                                            class="form-control" maxlength=""
+                                                            value="{{ $s_application->address }}">
+                                                        <input type="hidden" name="program_name"
+                                                            value="{{ $s_application->program_name }}">
+                                                        <label for="address"
+                                                            class="form-control-placeholder">Address</label>
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="total_fee">{{ __('Total Cost:') }}</label>
-                                                    <input id="total_fee" name="total_fee" readonly
-                                                        value="{{ $s_appliction->total_fee }}" type="text"
-                                                        class="form-control">
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Payment Status:') }}</label>
-                                                    <select id="payment_status" name="payment_status"
-                                                        class="form-control form-control-lg">
-                                                        <option @if ($s_appliction->payment_status == 0) Selected @endif
-                                                            value="0">Unpaid</option>
-                                                        <option @if ($s_appliction->payment_status == 1) Selected @endif
-                                                            value="1">Paid</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Payment Status Application:') }}</label>
-                                                    <select id="payment_status_application" name="payment_status_application"
-                                                        class="form-control form-control-lg">
-                                                        <option @if ($s_appliction->payment_status_application == 0) Selected @endif
-                                                            value="0">Unpaid</option>
-                                                        <option @if ($s_appliction->payment_status_application == 1) Selected @endif
-                                                            value="1">Paid</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-
-                                            {{-- payment modal  --}}
-
-
-                                            <div class="modal fade" id="paymentModal" tabindex="-1"
-                                                aria-labelledby="paymentModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="paymentModalLabel">Enter Payment
-                                                                Amount</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <label for="paid_amount">Amount Paid:</label>
-                                                            <input type="number" id="paid_amount"
-                                                                class="form-control" placeholder="Enter amount">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="postal_code" name="postal_code"
+                                                            data-name="postal_code" required=""
+                                                            placeholder="postal_code" class="form-control"
+                                                            maxlength="" value="{{ $s_application->postal_code }}">
+                                                        <label for="postal_code" class="form-control-placeholder">Postal
+                                                            code</label>
+
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" id="submitPayment"
-                                                                class="btn btn-primary"
-                                                                data-id="{{ $s_appliction->id }}">Submit</button>
-                                                        </div>
+
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            {{-- Application modal  --}}
+                                        </div>
 
-                                            <div class="modal fade" id="paymentModalApplication" tabindex="-1"
-                                                aria-labelledby="paymentModalApplicationLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="paymentModalApplicationLabel">Enter Payment
-                                                                Amount</h5>
-                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <h5 class="multisteps-form__title">Personal Information</h5>
+                                        <div class="multisteps-form__content">
+                                            <div class="form-row ">
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="full_name" name="full_name"
+                                                            data-name="full_name" required=""
+                                                            placeholder="full name (Given Name)" class="form-control"
+                                                            maxlength="" value="{{ $s_application->full_name }}">
+                                                        <label for="full_name" class="form-control-placeholder">
+                                                            Full name (Given Name)</label>
+
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                         </div>
-                                                        <div class="modal-body">
-                                                            <label for="paid_application_fees">Amount Paid:</label>
-                                                            <input type="number" id="paid_application_fees"
-                                                                class="form-control" placeholder="Enter amount">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="forenames" name="forenames"
+                                                            data-name="forenames" placeholder="ForeNames"
+                                                            class="form-control" maxlength=""
+                                                            value="{{ $s_application->forenames }}">
+                                                        <label for="forenames" class="form-control-placeholder">
+                                                            ForeNames</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="surname" name="surname"
+                                                            data-name="surname" required=""
+                                                            placeholder="Surname (Family name)" class="form-control"
+                                                            maxlength="" value="{{ $s_application->surname }}">
+                                                        <label for="surname" class="form-control-placeholder">
+                                                            Surname (Family name)</label>
+
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                         </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" id="submitPaymentApplication"
-                                                                class="btn btn-primary"
-                                                                data-id="{{ $s_appliction->id }}">Submit</button>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="nationality" name="nationality"
+                                                            data-name="nationality" placeholder="nationality"
+                                                            class="form-control" maxlength=""
+                                                            value="{{ $s_application->nationality }}">
+                                                        <label for="nationality" class="form-control-placeholder">
+                                                            Nationality</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="date" id="date_of_birth" name="date_of_birth"
+                                                            data-name="date_of_birth" date-field=""
+                                                            data-date="Y-m-d" required=""
+                                                            placeholder="Date of birth"
+                                                            class="form-control flatpickr-input" maxlength=""
+                                                            value="{{ $s_application->date_of_birth }}">
+                                                        <label for="date_of_birth" class="form-control-placeholder">
+                                                            Date of birth</label>
+
+                                                        <div class="invalid-feedback">
+                                                            This field is required.
                                                         </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="place_of_birth"
+                                                            name="place_of_birth" data-name="place_of_birth"
+                                                            placeholder="Place of birth" class="form-control"
+                                                            maxlength=""
+                                                            value="{{ $s_application->place_of_birth ?? '' }}">
+                                                        <label for="place_of_birth" class="form-control-placeholder">
+                                                            Place of birth</label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+
+                                        <h5 class="multisteps-form__title">Passport Information</h5>
+
+                                        <div class="multisteps-form__content">
+                                            <div class="form-row ">
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="passport_no" name="passport_no"
+                                                            data-name="passport_no" placeholder="Passport number"
+                                                            class="form-control" maxlength=""
+                                                            value="{{ $s_application->passport_no ?? '' }}">
+                                                        <label for="passport_no" class="form-control-placeholder">
+                                                            Passport number</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="date" id="passport_issue_date"
+                                                            name="passport_issue_date" data-name="passport_issue_date"
+                                                            date-field="" data-date="Y-m-d"
+                                                            placeholder="Passport issue date"
+                                                            class="form-control flatpickr-input" maxlength=""
+                                                            value="{{ $s_application->passport_issue_date }}">
+                                                        <label for="passport_issue_date"
+                                                            class="form-control-placeholder">
+                                                            Passport issue date</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="date" id="passport_expiration_date"
+                                                            name="passport_expiration_date"
+                                                            data-name="passport_expiration_date" date-field=""
+                                                            data-date="Y-m-d" placeholder="Passport expiry date"
+                                                            class="form-control flatpickr-input" maxlength=""
+                                                            value="{{ $s_application->passport_expiration_date }}">
+                                                        <label for="passport_expiration_date"
+                                                            class="form-control-placeholder">
+                                                            Passport expiry date</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12  col-md-4">
+                                                    <div class=" form-label-group mt-2">
+
+                                                        <input type="text" id="issuing_authority"
+                                                            name="issuing_authority" data-name="issuing authority"
+                                                            date-field="" data-date="Y-m-d"
+                                                            placeholder="Issuing Authority"
+                                                            class="form-control flatpickr-input" maxlength=""
+                                                            value="{{ $s_application->issuing_authority }}">
+                                                        <label for="issuing authority"
+                                                            class="form-control-placeholder">
+                                                            Issuing Authority</label>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                        <h5 class="multisteps-form__title">Emergency Contact Details</h5>
+                                        <div class="form-row ">
+                                            <div class="col-12  col-md-4">
+                                                <div class=" form-label-group mt-2">
+
+                                                    <input type="text" id="emergency_name" name="emergency_name"
+                                                        data-name="emergency_name" required=""
+                                                        placeholder="emergency_name" class="form-control"
+                                                        maxlength="" value="{{ $s_application->emergency_name }}">
+                                                    <label for="emergency_name"
+                                                        class="form-control-placeholder">Emergency name</label>
+
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class=" form-label-group mt-2">
+                                                    <input type="tel" id="phone" name="emergency_phone"
+                                                        data-name="phone" required=""
+                                                        placeholder="Enter Phone Number"
+                                                        class="form-control"
+                                                        value="{{ $s_application->emergency_phone }}">
+                                                    <label for="phone" class="form-control-placeholder">
+                                                        Phone</label>
+
+                                                    {{-- <span class="text-danger" id="output"></span> --}}
+                                                    <div class="invalid-feedback">Please provide a valid
+                                                        contact
+                                                        number.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class=" form-label-group mt-2">
+
+                                                    <input type="text" id="relationship" name="relationship"
+                                                        data-name="relationship" required=""
+                                                        placeholder="relationship" class="form-control"
+                                                        maxlength="" value="{{ $s_application->relationship }}">
+                                                    <label for="relationship"
+                                                        class="form-control-placeholder">Relationship</label>
+
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-12  col-md-4">
+                                                <div class=" form-label-group mt-2">
+
+                                                    <select name="relation_country" class="form-control"
+                                                        id="relation_country">
+                                                        <option value="Select country">Select Country
+                                                        </option>
+
+                                                        @foreach ($countries as $country)
+                                                            <option
+                                                                {{ $s_application->relation_country == $country->id ? 'selected' : '' }}
+                                                                value="{{ $country->id }}">
+                                                                {{ $country->name }}</option>
+                                                        @endforeach
+
+                                                    </select>
+                                                    <label for="relationship"
+                                                        class="form-control-placeholder">Country</label>
+
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <h5 class="multisteps-form__title">Higher Education Details</h5>
+                                        <div class="form-row ">
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="year_of_completion"
+                                                        name="higher_year_of_completion"
+                                                        data-name="year_of_completion" required
+                                                        placeholder="Year of Completion" class="form-control"
+                                                        maxlength=""
+                                                        value="{{ $s_application->higher_year_of_completion }}">
+                                                    <label for="year_of_completion"
+                                                        class="form-control-placeholder">Year of
+                                                        Completion</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="degree_name" name="higher_degree_name"
+                                                        data-name="degree_name" required placeholder="Degree Name"
+                                                        class="form-control" maxlength=""
+                                                        value="{{ $s_application->higher_degree_name }}">
+                                                    <label for="degree_name" class="form-control-placeholder">Degree
+                                                        Name</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="student_number"
+                                                        name="higher_student_number" data-name="student_number"
+                                                        required placeholder="Student Number" class="form-control"
+                                                        maxlength=""
+                                                        value="{{ $s_application->higher_student_number }}">
+                                                    <label for="student_number"
+                                                        class="form-control-placeholder">Student Number</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="major_subject"
+                                                        name="higher_major_subject" data-name="major_subject" required
+                                                        placeholder="Major Subject" class="form-control"
+                                                        maxlength=""
+                                                        value="{{ $s_application->higher_major_subject }}">
+                                                    <label for="major_subject" class="form-control-placeholder">Major
+                                                        Subject</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="cgpa" name="higher_cgpa"
+                                                        data-name="cgpa" required
+                                                        placeholder="Cumulative Grade Point Average / Percentage"
+                                                        class="form-control" maxlength=""
+                                                        value="{{ $s_application->higher_cgpa }}">
+                                                    <label for="cgpa" class="form-control-placeholder">Cumulative
+                                                        Grade Point
+                                                        Average / Percentage</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="date" id="certificate_issue_date"
+                                                        name="higher_certificate_issue_date"
+                                                        data-name="certificate_issue_date" required
+                                                        class="form-control"
+                                                        value="{{ $s_application->higher_certificate_issue_date }}">
+                                                    <label for="certificate_issue_date"
+                                                        class="form-control-placeholder">Certificate Issue
+                                                        Date</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="school_university"
+                                                        name="higher_school_university" data-name="school_university"
+                                                        required placeholder="School/University" class="form-control"
+                                                        maxlength=""
+                                                        value="{{ $s_application->higher_school_university }}">
+                                                    <label for="school_university"
+                                                        class="form-control-placeholder">School/University</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="country_of_completion"
+                                                        name="higher_country_of_completion"
+                                                        data-name="country_of_completion" required
+                                                        placeholder="Country of Completion" class="form-control"
+                                                        maxlength=""
+                                                        value="{{ $s_application->higher_country_of_completion }}">
+                                                    <label for="country_of_completion"
+                                                        class="form-control-placeholder">Country of
+                                                        Completion</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="institution_address"
+                                                        name="higher_institution_address"
+                                                        data-name="institution_address" required
+                                                        placeholder="Street Address of Institution"
+                                                        class="form-control" maxlength=""
+                                                        value="{{ $s_application->higher_institution_address }}">
+                                                    <label for="institution_address"
+                                                        class="form-control-placeholder">Street Address of
+                                                        Institution</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="institution_email"
+                                                        name="higher_institution_email" data-name="institution_email"
+                                                        required placeholder="Street email of Institution"
+                                                        class="form-control" maxlength=""
+                                                        value="{{ $s_application->higher_institution_email }}">
+                                                    <label for="institution_email"
+                                                        class="form-control-placeholder">Email of
+                                                        Institution</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" id="institution_website"
+                                                        name="higher_institution_website"
+                                                        data-name="institution_website" required
+                                                        placeholder="Street website of Institution"
+                                                        class="form-control" maxlength=""
+                                                        value="{{ $s_application->higher_institution_website }}">
+                                                    <label for="institution_website"
+                                                        class="form-control-placeholder">Website of
+                                                        Institution</label>
+                                                    <div class="invalid-feedback">
+                                                        This field is required.
                                                     </div>
                                                 </div>
                                             </div>
 
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="address">{{ __('Status:') }}</label>
-                                                    <select name="status" class="form-control form-control-lg">
-                                                        <option value=""> Select Status</option>
-                                                        <option @if ($s_appliction->status == 0) Selected @endif
-                                                            value="0"> Not Complete</option>
-                                                        <option @if ($s_appliction->status == 1) Selected @endif
-                                                            value="1"> Pending</option>
-                                                        <option @if ($s_appliction->status == 2) Selected @endif
-                                                            value="2"> Re-submit</option>
-                                                        <option @if ($s_appliction->status == 3) Selected @endif
-                                                            value="3"> Submitted</option>
-                                                        <option @if ($s_appliction->status == 4) Selected @endif
-                                                            value="4">Processing</option>
-                                                        <option @if ($s_appliction->status == 5) Selected @endif
-                                                            value="5">Initial Review Passed</option>
-                                                        <option @if ($s_appliction->status == 6) Selected @endif
-                                                            value="6">Pre-Admission</option>
-                                                        <option @if ($s_appliction->status == 7) Selected @endif
-                                                            value="7">Admitted </option>
-                                                        <option @if ($s_appliction->status == 8) Selected @endif
-                                                            value="8">Got JW202</option>
-                                                        <option @if ($s_appliction->status == 9) Selected @endif
-                                                            value="9">Got Visa</option>
-                                                        <option @if ($s_appliction->status == 10) Selected @endif
-                                                            value="10">Registration</option>
-                                                    </select>
+                                        </div>
+
+                                        <div class="d-flex justify-content-between w-100">
+                                            <h5 class="multisteps-form__title">High School Information</h5>
+                                            {{-- <div class="mt-3">
+                                                <button type="button" class="btn btn-primary" id="add-school">Add
+                                                    School</button>
+                                            </div> --}}
+                                        </div>
+
+                                        @foreach ($schools as $school)
+                                            <div id="schools-container">
+                                                <div class="school-entry">
+                                                    <div class="form-row">
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+
+                                                                <input type="hidden" name="school_id[]" value="{{ $school->id ?? '' }}">
+
+
+                                                                <input type="text" name="year_of_completion[]"
+                                                                    required placeholder="Year of Completion"
+                                                                    class="form-control"
+                                                                    value="{{ $school->year_of_completion }}">
+                                                                <label class="form-control-placeholder">Year of
+                                                                    Completion</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="degree_name[]" required
+                                                                    placeholder="Degree Name" class="form-control"
+                                                                    value="{{ $school->degree_name }}">
+                                                                <label class="form-control-placeholder">Degree
+                                                                    Name</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="student_roll_number[]"
+                                                                    required placeholder="Student Roll Number"
+                                                                    class="form-control"
+                                                                    value="{{ $school->student_roll_number }}">
+                                                                <label class="form-control-placeholder">Student Roll
+                                                                    Number</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="major_subject[]" required
+                                                                    placeholder="Major Subject" class="form-control"
+                                                                    value="{{ $school->major_subject }}">
+                                                                <label class="form-control-placeholder">Major
+                                                                    Subject</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="cgpa[]" required
+                                                                    placeholder="Cumulative Grade Point Average / Percentage"
+                                                                    class="form-control" value="{{ $school->cgpa }}">
+                                                                <label class="form-control-placeholder">Cumulative
+                                                                    Grade Point Average / Percentage</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="date" name="certificate_issue_date[]"
+                                                                    required class="form-control"
+                                                                    value="{{ $school->certificate_issue_date }}">
+                                                                <label class="form-control-placeholder">Certificate
+                                                                    Issue Date</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="school_university[]"
+                                                                    required placeholder="School/University"
+                                                                    class="form-control"
+                                                                    value="{{ $school->school_university }}">
+                                                                <label
+                                                                    class="form-control-placeholder">School/University</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="country_of_completion[]"
+                                                                    required placeholder="Country of Completion"
+                                                                    class="form-control"
+                                                                    value="{{ $school->country_of_completion }}">
+                                                                <label class="form-control-placeholder">Country of
+                                                                    Completion</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="institution_address[]"
+                                                                    required
+                                                                    placeholder="Street Address of Institution"
+                                                                    class="form-control"
+                                                                    value="{{ $school->institution_address }}">
+                                                                <label class="form-control-placeholder">Street Address
+                                                                    of Institution</label>
+                                                                <div class="invalid-feedback">This field is required.
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-12  col-md-4">
+                                                            <div class="form-label-group mt-2">
+                                                                <input type="text" name="institution_website[]"
+                                                                    placeholder="Institution Website"
+                                                                    class="form-control"
+                                                                    value="{{ $school->institution_website }}">
+                                                                <label class="form-control-placeholder">Institution
+                                                                    Website</label>
+                                                            </div>
+                                                        </div>
+
+                                                        {{-- <div class="col-12 text-right mt-3">
+                                                            <button type="button" class="btn btn-danger remove-school">Remove School</button>
+                                                        </div> --}}
+
+                                                    </div>
+                                                    <hr>
+                                                </div>
+                                            </div>
+                                        @endforeach
+
+                                        <h5 class="multisteps-form__title">Language Proficiency Test</h5>
+                                        <div class="form-row">
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" name="ielts_pte_score" required
+                                                        placeholder="IELTS/PTE Academic Score" class="form-control"
+                                                        value="{{ $s_application->ielts_pte_score }}">
+                                                    <label class="form-control-placeholder">IELTS/PTE Academic
+                                                        Score</label>
+                                                    <div class="invalid-feedback">This field is required.</div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="paid_amount">{{ __('Paid Amount:') }}</label>
-                                                    <input id="paid_amount" name="paid_amount" readonly
-                                                        value="{{ $s_appliction->paid_amount ?? '0' }}"
-                                                        type="text" class="form-control">
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" name="score_report_code" required
+                                                        placeholder="Score Report Code" class="form-control"
+                                                        value="{{ $s_application->score_report_code }}">
+                                                    <label class="form-control-placeholder">Score Report
+                                                        Code</label>
+                                                    <div class="invalid-feedback">This field is required.</div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6">
-                                                <div class="form-group">
-                                                    <label for="paid_application_fees">{{ __('Paid Application fees:') }}</label>
-                                                    <input id="paid_application_fees" name="paid_application_fees" readonly
-                                                        value="{{ $s_appliction->paid_application_fees ?? '0' }}"
-                                                        type="text" class="form-control">
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="date" name="language_test_date" required
+                                                        class="form-control"
+                                                        value="{{ $s_application->language_test_date }}">
+                                                    <label class="form-control-placeholder">Date of the PTE/IELTS
+                                                        Language Test</label>
+                                                    <div class="invalid-feedback">This field is required.</div>
                                                 </div>
                                             </div>
 
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label>Feedback</label>
-                                                    <textarea name="feedback" rows="5" class="editor form-control" placeholder="Write feedback here"></textarea>
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" name="test_taker_id" required
+                                                        placeholder="Test Taker ID" class="form-control"
+                                                        value="{{ $s_application->test_taker_id }}">
+                                                    <label class="form-control-placeholder">Test Taker ID</label>
+                                                    <div class="invalid-feedback">This field is required.</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12  col-md-4">
+                                                <div class="form-label-group mt-2">
+                                                    <input type="text" name="registration_id" required
+                                                        placeholder="Registration ID" class="form-control"
+                                                        value="{{ $s_application->registration_id }}">
+                                                    <label class="form-control-placeholder">Registration
+                                                        ID</label>
+                                                    <div class="invalid-feedback">This field is required.</div>
                                                 </div>
                                             </div>
                                         </div>
@@ -304,22 +826,6 @@
 
     <script>
         $('.select2').select2();
-
-        $(document).ready(function() {
-            let total_programs = @json(count($selectedProgramIds));
-
-            $('#service_charge').on('input', function() {
-                var serviceCharge = parseFloat($(this).val()) || 0;
-                var originalTotal = parseFloat('{{ $s_appliction->application_fee }}') || 0;
-                var newTotal = originalTotal + (serviceCharge * total_programs);
-
-                if (newTotal % 1 === 0) {
-                    $('#total_fee').val(newTotal);
-                } else {
-                    $('#total_fee').val(newTotal.toFixed(2));
-                }
-            });
-        });
     </script>
 
     <script>

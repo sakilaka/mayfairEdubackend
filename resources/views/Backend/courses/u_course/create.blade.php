@@ -270,9 +270,9 @@
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label>Medical In China Fee ($)</label>
+                                                    <label>Medical Fee ($)</label>
                                                     <input type="number" min="0" name="medical_in_china_fee"
-                                                        placeholder="Enter Medical In China Fee" class="form-control"
+                                                        placeholder="Enter Medical Fee" class="form-control"
                                                         >
                                                 </div>
                                             </div>

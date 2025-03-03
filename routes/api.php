@@ -68,6 +68,11 @@ Route::middleware(['accessLogin'])->group(function () {
     Route::get('change-currency/{name}', [FrontendController::class, 'changeCurrency'])->name('frontend.change_currency');
     //Home Route
     Route::get('/home', [FrontendController::class, 'index'])->name('home');
+    Route::get('/home-content', [FrontendController::class, 'homeContent'])->name('homeContent');
+    Route::get('/get-course', [FrontendController::class, 'getCourseList'])->name('getCourse');
+    Route::get('/get-university', [FrontendController::class, 'getUniversityList'])->name('getUniversity');
+    Route::get('/get-categories', [FrontendController::class, 'getCategoriesList'])->name('getCategories');
+    Route::get('/get-countries', [FrontendController::class, 'getCountriesList'])->name('getCountries');
     Route::get('/typeahead-search', [FrontendController::class, 'typeaHeadSearch'])->name('home.head_search');
 
     // Route::group(['middleware' => 'redirectIfAuthenticated'], function () {
@@ -377,3 +382,4 @@ Route::prefix('list')->group(function () {
 Route::get('/testimonial', [FrontendController::class, "testimonial"])->name('frontend.testimonial');
 
 Route::get('about-us', [AboutUsController::class, "indexAbout"])->name('abouUs.index');
+Route::get('about-us-card', [AboutUsController::class, "indexAboutCard"])->name('abouUsCard.index');

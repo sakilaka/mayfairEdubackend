@@ -79,14 +79,14 @@
                                                 class="form-control form-control-lg @error('category') is-invalid @enderror"
                                                 name="category" required>
                                                 <option value="">Select Type</option>
-                                                <option value="Ranji Deposit"
+                                                {{-- <option value="Ranji Deposit"
                                                     {{ old('category') == 'Ranji Deposit' ? 'selected' : '' }}>
                                                     Ranji Deposit
                                                 </option>
                                                 <option value="Rakin Deposit"
                                                     {{ old('category') == 'Rakin Deposit' ? 'selected' : '' }}>
                                                     Rakin Deposit
-                                                </option>
+                                                </option> --}}
                                                 <option value="Student Deposit"
                                                     {{ old('category') == 'Student Deposit' ? 'selected' : '' }}>
                                                     Student Deposit

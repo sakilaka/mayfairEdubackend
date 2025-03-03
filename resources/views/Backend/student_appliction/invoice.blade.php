@@ -28,7 +28,7 @@
 
         .bank-details {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
             border-top: 2px solid black;
             padding: 10px;
         }
@@ -44,7 +44,7 @@
         }
 
         .info-section {
-            flex: 1;
+            width: 800px;
         }
 
         table {
@@ -91,19 +91,19 @@
                         </nav>
                     </div>
 
-                    <div class="row">
+                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card px-2">
 
                                 @php
-                                    $exchangeRate = 125.91; // Example rate, make this dynamic if needed
-                                    $vatAmount =
-                                        ($transactionDetails->vat / 100) *
-                                        $transactionDetails->price_per_item *
-                                        $transactionDetails->amount;
+                                    $exchangeRate = $transactionDetails->bdt_amount / 100;
+                                    $vatAmount = $transactionDetails->vat;
+                                        // ($transactionDetails->vat / 100) *
+                                        // $transactionDetails->price_per_item *
+                                        // $transactionDetails->amount;
                                     $totalAmount =
                                         $vatAmount + $transactionDetails->price_per_item * $transactionDetails->amount;
-                                    $totalEUR = $totalAmount / $exchangeRate;
+                                    $totalBDT = $totalAmount * $exchangeRate;
                                 @endphp
 
 
@@ -127,19 +127,17 @@
                                                     Mirpur-10,
                                                     Dhaka-1216, Bangladesh.</p>
                                             </div>
-                                            <div class="mt-3">
+                                            {{-- <div class="mt-3">
                                                 <h6>Student Name: {{ $orderdetails->full_name }}</h6>
-                                                {{-- <p class="text mt-2">Bangladesh</p> --}}
-                                            </div>
+                                                <p class="text mt-2">Bangladesh</p>
+                                            </div> --}}
                                             <div class="mt-3">
-                                                <h6>Bangladesh office address:</h6>
-                                                <p class="text">ABDUL HAKIMS HOME, PAGAR, ABUL <br>
-                                                    HOSSAIN ROAD, TONGI EAST, MONNU NAGAR - 1710,
-                                                    GAZIPUR</p>
+                                                <h6>Student Permanent Address:</h6>
+                                                <p class="text">{{ $transactionDetails->client_address ?? 'No address!'}}</p>
                                             </div>
                                             <div class="mt-2">
-                                                <p class="text">Study Destination : Finland</p>
-                                                <p class="text">File Number: MGE-2025-108</p>
+                                                <p class="text">Study Destination : {{ $transactionDetails->study_in }}</p>
+                                                <p class="text">File Number: {{ $transactionDetails->file_number }}</p>
                                             </div>
                                         </div>
 
@@ -163,11 +161,11 @@
                                                     Our Reference:</p>
                                                 <p style="font-size: 16px;">info@mayfairedu.global</p>
                                             </div>
-                                            <div class="my-2 d-flex" style="font-size: 16px;">
+                                             <div class="my-2 d-flex" style="font-size: 16px;">
                                                 <p
                                                     style="font-weight: bold; margin-right: 5px; font-size: 16px; width: 170px;">
-                                                    Customer Number:</p>
-                                                <p style="font-size: 16px;">{{ $transactionDetails->customer_number }}
+                                                    Student Number:</p>
+                                                <p style="font-size: 16px;">{{ $transactionDetails->client_phone }}
                                                 </p>
                                             </div>
                                             <div class="my-2 d-flex" style="font-size: 16px;">
@@ -210,7 +208,7 @@
                                             <thead>
                                                 <tr class="">
                                                     <th class="">SL</th>
-                                                    <th class="">Item</th>
+                                                    {{-- <th class="">Item</th> --}}
                                                     <th class="">Product/Service</th>
                                                     <th class="">Amount</th>
                                                     <th class="">Price per item</th>
@@ -224,8 +222,8 @@
                                             <tbody class="">
                                                 <tr class="">
                                                     <td>1</td>
-                                                    <td class="" style="font-weight: bold">
-                                                        {{ $orderdetails->program_name }}</td>
+                                                    {{-- <td class="" style="font-weight: bold">
+                                                        {{ $orderdetails->program_name }}</td> --}}
                                                     <td class="" style="font-weight: bold">
                                                         {{ $transactionDetails->category }}</td>
                                                     <td class="" style="font-weight: bold">
@@ -238,9 +236,9 @@
                                                         {{ $vatAmount }}
                                                     </td>
                                                     <td class="" style="font-weight: bold">
-                                                        {{ number_format($totalEUR, 2) }}</td>
+                                                        {{ number_format($totalAmount, 2) }}</td>
                                                     <td class="" style="font-weight: bold">
-                                                        {{ $totalAmount }}
+                                                        {{ $totalBDT }}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -278,15 +276,13 @@
                                         </div>
                                     </div>
 
-                                    <div class="my-3">
-                                        <p class="text" style="font-weight: bold;">Reminder fee 100.00 EURO, In
-                                            12,591
-                                            BDT</p>
-                                        <p class="text" style="font-weight: bold;">In Word: One hundred euro, Twelve
-                                            thousand five hundred ninety-one</p>
+                                     <div class="my-3">
+                                        <p class="text" style="font-weight: bold;">Reminder : {{ $transactionDetails->reminder }}</p>
+                                        <p class="text" style="font-weight: bold;">In Word: {{ $transactionDetails->reminder_in_word }}</p>
                                     </div>
 
                                     <hr>
+
 
                                     <div class="bank-details">
                                         <div class="qr-section">

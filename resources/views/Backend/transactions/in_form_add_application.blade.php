@@ -47,13 +47,55 @@
                                     <!-- Client Name Field -->
                                     <div class="col-12 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label for="client_name">Client Name</label>
+                                            <label for="client_name">Student Name</label>
                                             <input type="text" id="client_name"
                                                 class="form-control @error('client_name') is-invalid @enderror"
-                                                name="client_name" placeholder="Enter Client Name"
+                                                name="client_name" placeholder="Enter Student Name"
                                                 value="{{ old('client_name') }}">
                                                 <input type="hidden" name="application_id" value="{{ $application->id }}">
                                             @error('client_name')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label for="client_address">Student Permanent Address</label>
+                                            <input type="text" id="client_address"
+                                                class="form-control @error('client_address') is-invalid @enderror"
+                                                name="client_address" placeholder="Enter Student Address"
+                                                value="{{ old('client_address') }}">
+                                                {{-- <input type="hidden" name="application_id" value="{{ $application->id }}"> --}}
+                                            @error('client_address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label for="study_in">Study In</label>
+                                            <input type="text" id="study_in"
+                                                class="form-control @error('study_in') is-invalid @enderror"
+                                                name="study_in" placeholder="Enter Country"
+                                                value="{{ old('study_in') }}">
+                                                {{-- <input type="hidden" name="application_id" value="{{ $application->id }}"> --}}
+                                            @error('client_address')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label for="file_number">File Number</label>
+                                            <input type="text" id="file_number"
+                                                class="form-control @error('file_number') is-invalid @enderror"
+                                                name="file_number" placeholder="Enter File Number"
+                                                value="{{ old('file_number') }}">
+                                                {{-- <input type="hidden" name="application_id" value="{{ $application->id }}"> --}}
+                                            @error('client_address')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
@@ -126,9 +168,23 @@
                                         </div>
                                     </div>
 
+
                                     <div class="col-12 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label for="amount">Price Per Item <span class="text-danger">*</span></label>
+                                            <label for="amount">Amount (number of item)<span class="text-danger">*</span></label>
+                                            <input type="number" step="0.01" id="amount"
+                                                class="form-control @error('amount') is-invalid @enderror"
+                                                name="amount" placeholder="Enter Amount" value="{{ old('amount') }}"
+                                                required>
+                                            @error('amount')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label for="amount">Price Per Item (Euro)<span class="text-danger">*</span></label>
                                             <input type="number" step="0.1" id="amount"
                                                 class="form-control"
                                                 name="price_per_item" placeholder="Enter Number" value=""
@@ -141,7 +197,7 @@
 
                                     <div class="col-12 col-md-6 col-lg-3">
                                         <div class="form-group">
-                                            <label for="amount">VAT (%)<span class="text-danger">*</span></label>
+                                            <label for="amount">VAT amount<span class="text-danger">*</span></label>
                                             <input type="number" step="0.1" id="amount"
                                                 class="form-control"
                                                 name="vat" placeholder="Enter Number" value=""
@@ -152,31 +208,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-12 col-md-6 col-lg-3">
-                                        <div class="form-group">
-                                            <label for="amount">Invoice Number <span class="text-danger">*</span></label>
-                                            <input type="number" step="0.01" id="amount"
-                                                class="form-control"
-                                                name="in_number" placeholder="Enter Number" value=""
-                                                required>
-                                            @error('amount')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12 col-md-6 col-lg-3">
-                                        <div class="form-group">
-                                            <label for="amount">Customer Number <span class="text-danger">*</span></label>
-                                            <input type="number" step="0.01" id="amount"
-                                                class="form-control"
-                                                name="customer_number" placeholder="Enter Number" value=""
-                                                required>
-                                            @error('amount')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <div class="col-12 col-md-6 col-lg-3">
                                         <div class="form-group">
@@ -191,20 +222,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Amount Field -->
 
-                                    <div class="col-12 col-md-6 col-lg-3">
-                                        <div class="form-group">
-                                            <label for="amount">Amount <span class="text-danger">*</span></label>
-                                            <input type="number" step="0.01" id="amount"
-                                                class="form-control @error('amount') is-invalid @enderror"
-                                                name="amount" placeholder="Enter Amount" value="{{ old('amount') }}"
-                                                required>
-                                            @error('amount')
-                                                <span class="text-danger">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
 
                                     <!-- Refundable Field -->
                                     <div class="col-12 col-md-6 col-lg-3">
@@ -258,6 +276,39 @@
                                                 </option>
                                             </select>
                                             @error('status')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                     <div class="col-12 col-md-6 col-lg-3">
+                                        <div class="form-group">
+                                            <label for="bdt_amount">Converted Amount in BDT (100 EUR) </label>
+                                            <input type="number" id="bdt_amount" class="form-control" name="bdt_amount"
+                                                placeholder="Enter Amount">
+                                            @error('bdt_amount')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="reminder">Reminder </label>
+                                            <input id="reminder" class="form-control" name="reminder"
+                                                placeholder="Enter reminder">
+                                            @error('reminder')
+                                                <span class="text-danger">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="reminder_word">Reminder (In word)</label>
+                                            <input id="reminder_word" class="form-control" name="reminder_in_word"
+                                                placeholder="Enter reminder in word">
+                                            @error('reminder_word')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>

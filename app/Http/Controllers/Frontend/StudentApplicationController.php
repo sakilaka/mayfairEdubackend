@@ -45,6 +45,12 @@ class StudentApplicationController extends Controller
         return view('Frontend.success');
     }
 
+    public function successApplicationStudent()
+    {
+        // $applications = StudentApplication::where('user_id', auth()->user()->id)->has('carts')->get();
+        return view('Frontend.university.success_apply');
+    }
+
     public function generateRandomString($length = 10)
     {
         return substr(str_shuffle(str_repeat($x = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length / strlen($x)))), 1, $length);
@@ -464,7 +470,7 @@ class StudentApplicationController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('success', 'Your Application has been receievd..');
+        return redirect()->route('success.application.student')->with('success', 'Your Application has been receievd..');
     }
 
 

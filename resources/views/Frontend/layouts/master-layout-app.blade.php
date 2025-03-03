@@ -28,7 +28,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lg-thumbnail.min.css"
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        
+
 
     @php
         $titles = '';
@@ -106,8 +106,8 @@
     @if ($theme_color)
         <style>
             :root {
-                --primary_background: {{ $theme_color['primary_color'] ?? '#068b76' }};
-                --secondary_background: {{ $theme_color['secondary_color'] ?? '#068b76' }};
+                --primary_background: {{ $theme_color['primary_color'] ?? '#824fa3' }};
+                --secondary_background: {{ '#824fa3' ?? '#068b76' }};
                 --tertiary_background: {{ $theme_color['tertiary_color'] ?? '#f40000' }};
 
                 --btn_primary_color: var(--secondary_background);
@@ -119,7 +119,7 @@
                 --btn_tertiary_color: var(--tertiary_background);
                 --btn_tertiary_hover_color: {{ '#c10000' }};
 
-                --section_background: {{ '#f2fafe' }};
+                --section_background: {{ '#824fa3' }};
             }
         </style>
     @endif
@@ -797,7 +797,7 @@
             $(document).ready(function() {
                 $('#justified-gallery-university').justifiedGallery({
                     rowHeight: 170,
-                    margins: 5,  
+                    margins: 5,
                     maxRowHeight: 180,
                     lastRow: 'nojustify',
                     captions: false
@@ -809,7 +809,7 @@
                 });
             });
         </script>
-        
+
 
 
 <script type="text/javascript">

@@ -17,13 +17,13 @@
                 <div class="content-wrapper">
                     <div class="page-header">
                         <h3 class="page-title">
-                            All Category
+                            All Card
                         </h3>
 
                         <nav aria-label="breadcrumb">
-                            <a href="{{ route('about-us.create') }}" class="btn btn-primary btn-fw">
+                            <a href="{{ route('about-us-card.create') }}" class="btn btn-primary btn-fw">
                                 <i class="fa fa-plus" aria-hidden="true"></i>
-                                Add About</a>
+                                Add Card</a>
                         </nav>
                     </div>
 
@@ -34,28 +34,31 @@
                                 <thead>
                                     <tr role="row">
                                         <th>SL</th>
-                                        <th>Image</th>
-                                        <th class="text-center">Status</th>
+                                        <th>title</th>
+                                        {{-- <th class="text-center">Status</th> --}}
                                         <th class="text-right">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <tr role="row" class="odd">
+                                  @foreach ($cards as $card)
+                                      <tr role="row" class="odd">
                                         <td class="text-left">1</td>
-                                       
-                                        {{-- <td class="text-right">
-                                            <a href="{{ route('home-category.edit', $about->id) }}"
+                                        <td>{{ $card->card_title }}</td>
+
+                                        <td class="text-right">
+                                            <a href="{{ route('about-us-card.edit', $card->id) }}"
                                                 class="btn text-primary">
                                                 <i class="fa fa-edit" aria-hidden="true"></i>
                                             </a>
-                                            <input type="hidden" value="{{ $about->id }}">
+                                            <input type="hidden" value="{{ $card->id }}">
                                             <a data-toggle="modal" data-target="#delete_modal_box"
                                                 class="btn text-primary delete-item">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </a>
-                                        </td> --}}
+                                        </td>
                                     </tr>
+                                  @endforeach
 
                                 </tbody>
                             </table>
@@ -71,10 +74,11 @@
                                 <img src="{{ asset('backend/assets/images/warning.png') }}" alt=""
                                     width="50" height="46">
                                 <h5 class="mt-3 mb-4">Are you sure want to delete this?</h5>
+
                                 <div class="m-t-20 flex">
-                                    <form action="{{ route('home-category.delete') }}" method="POST" id="deleteForm">
+                                    <form action="{{ route('about-us-card.delete') }}" method="POST" id="deleteForm">
                                         @csrf
-                                        <input type="hidden" name="category_id" id="modal_item_id" value="">
+                                        <input type="hidden" name="card_id" id="modal_item_id" value="">
                                     </form>
                                     <div class="mt-3">
                                         <a href="#" class="btn btn-success" data-dismiss="modal">Cancel</a>
@@ -82,6 +86,7 @@
                                             onclick="document.getElementById('deleteForm').submit()">Confirm</a>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>

@@ -3,7 +3,7 @@
 
 <head>
     @include('Backend.components.head')
-    <title>{{ env('APP_NAME') }} | Appliction-Invoice-{{ $orderdetails->application_code }}</title>
+    <title>{{ env('APP_NAME') }} | Appliction-Invoice-{{ $transactionDetails->transaction_id }}</title>
 
     <style>
         li {
@@ -107,7 +107,7 @@
                         <div class="col-lg-12">
                             <div class="card px-2">
 
-                                @php
+                                 @php
                                     $exchangeRate = $transactionDetails->bdt_amount / 100;
                                     $vatAmount = $transactionDetails->vat;
                                         // ($transactionDetails->vat / 100) *
@@ -139,16 +139,16 @@
                                                     Mirpur-10,
                                                     Dhaka-1216, Bangladesh.</p>
                                             </div>
-                                            <div class="mt-3">
+                                            {{-- <div class="mt-3">
                                                 <h6>Student Name: {{ $orderdetails->full_name }}</h6>
-                                                {{-- <p class="text mt-2">Bangladesh</p> --}}
-                                            </div>
-                                             <div class="mt-3">
+                                                <p class="text mt-2">Bangladesh</p>
+                                            </div> --}}
+                                            <div class="mt-3">
                                                 <h6>Student Permanent Address:</h6>
                                                 <p class="text">{{ $transactionDetails->client_address ?? 'No address!' }}</p>
                                             </div>
                                             <div class="mt-2">
-                                               <p class="text">Study Destination : {{ $transactionDetails->study_in }}</p>
+                                                <p class="text">Study Destination : {{ $transactionDetails->study_in }}</p>
                                                 <p class="text">File Number: {{ $transactionDetails->file_number }}</p>
                                             </div>
                                         </div>
@@ -220,7 +220,7 @@
                                             <thead>
                                                 <tr class="">
                                                     <th class="">SL</th>
-                                                    <th class="">Item</th>
+                                                    {{-- <th class="">Item</th> --}}
                                                     <th class="">Product/Service</th>
                                                     <th class="">Amount</th>
                                                     <th class="">Price per item</th>
@@ -234,8 +234,8 @@
                                             <tbody class="">
                                                 <tr class="">
                                                     <td>1</td>
-                                                    <td class="" style="font-weight: bold">
-                                                        {{ $orderdetails->program_name }}</td>
+                                                    {{-- <td class="" style="font-weight: bold">
+                                                        {{ $orderdetails->program_name }}</td> --}}
                                                     <td class="" style="font-weight: bold">
                                                         {{ $transactionDetails->category }}</td>
                                                     <td class="" style="font-weight: bold">
@@ -247,7 +247,7 @@
                                                     <td class="" style="font-weight: bold">
                                                         {{ $vatAmount }}
                                                     </td>
-                                                     <td class="" style="font-weight: bold">
+                                                   <td class="" style="font-weight: bold">
                                                         {{ number_format($totalAmount, 2) }}</td>
                                                     <td class="" style="font-weight: bold">
                                                         {{ $totalBDT }}

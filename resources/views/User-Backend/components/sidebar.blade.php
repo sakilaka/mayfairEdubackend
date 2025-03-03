@@ -58,9 +58,10 @@
             </li> --}}
 
             {{-- apply for new application --}}
+
             <li class="nav-item">
                 <a class="nav-link"
-                    href="{{ route('frontend.university_course_list', ['partner-ref' => session('partner_ref_id'), 'applied_by' => session('applied_by')]) }}">
+                    href="{{ env('FRONTEND_URL') . 'course' }}">
                     <i class="fas fa-receipt menu-icon"></i>
                     <span class="menu-title">Apply For New</span>
                 </a>
