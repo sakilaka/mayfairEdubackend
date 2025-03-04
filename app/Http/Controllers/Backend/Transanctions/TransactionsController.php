@@ -221,6 +221,7 @@ class TransactionsController extends Controller
             return redirect()->back()->with('error', 'Something Went Wrong!');
         }
     }
+    
     public function in_form_update(Request $request)
     {
         try {

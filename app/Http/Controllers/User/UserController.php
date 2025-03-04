@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendApplicationFeedback;
+use App\Models\AgreementForm;
 use App\Models\ApplicationDocument;
 use App\Models\ApplicationEducation;
 use App\Models\ApplicationWork;
@@ -25,6 +26,7 @@ use App\Models\CourseParticipant;
 use App\Models\Ebook;
 use App\Models\StudentApplication;
 use App\Models\StudentApplicationTableModify;
+use App\Models\Transaction;
 use App\Models\University;
 use App\Models\VisitorModel;
 use App\Models\Withdrawal;
@@ -101,10 +103,7 @@ class UserController extends Controller
             $userRole = $user->role;
             $data['status'] = $user->status;
             $data['orders'] =
-                StudentApplication::where(function ($query) use ($userId, $userRole) {
-                    $query->where('applied_by', 'like', '%"' . $userRole . '":' . $userId . '%');
-                })
-                ->get();
+                StudentApplication::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
         } elseif (Auth::user()->role == 'student') {
             $data['orders'] = StudentApplication::where('user_id', auth()->user()->id)->orderBy('id', 'desc')->get();
         }
@@ -694,15 +693,72 @@ class UserController extends Controller
         return view('User-Backend.partner_application_manage.partner_manage_application_filterable', $data);
     }
 
+    public function manageApplicationAgreement($id)
+    {
+        $data['agreement'] = StudentApplication::find($id);
+
+        if (!$data['agreement']) {
+            return redirect()->back()->with('error', 'No application found.');
+        }
+
+        $data['agreementDetails'] = AgreementForm::where('application_id', $id)->first();
+
+        if (!$data['agreementDetails']) {
+            return redirect()->back()->with('error', 'No transaction created for this application.');
+        }
+
+        return view('User-Backend.partner_application_manage.partner_application_agreement', $data);
+    }
+
+
+    public function manageApplicationAgreementPrint($id)
+    {
+        $data['agreement'] = StudentApplication::find($id);
+
+        if (!$data['agreement']) {
+            return redirect()->back()->with('error', 'No application found.');
+        }
+
+        $data['agreementDetails'] = AgreementForm::where('application_id', $id)->first();
+
+        if (!$data['agreementDetails']) {
+            return redirect()->back()->with('error', 'No transaction created for this application.');
+        }
+
+        return view('User-Backend.partner_application_manage.partner_application_agreement_print', $data);
+    }
+
+
     public function manageApplicationInvoice($id)
     {
         $data['orderdetails'] = StudentApplication::find($id);
+
+        if (!$data['orderdetails']) {
+            return redirect()->back()->with('error', 'No application found.');
+        }
+
+        $data['transactionDetails'] = Transaction::where('application_id', $id)->first();
+
+        if (!$data['transactionDetails']) {
+            return redirect()->back()->with('error', 'No transaction created for this application.');
+        }
+
         return view('User-Backend.partner_application_manage.partner_application_invoice', $data);
     }
 
     public function manageApplicationInvoicePrint($id)
     {
         $data['orderdetails'] = StudentApplication::find($id);
+
+        if (!$data['orderdetails']) {
+            return redirect()->back()->with('error', 'No application found.');
+        }
+
+        $data['transactionDetails'] = Transaction::where('application_id', $id)->first();
+
+        if (!$data['transactionDetails']) {
+            return redirect()->back()->with('error', 'No transaction created for this application.');
+        }
         return view('User-Backend.partner_application_manage.partner_application_invoice_print', $data);
     }
 

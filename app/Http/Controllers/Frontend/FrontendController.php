@@ -1472,7 +1472,7 @@ class FrontendController extends Controller
         // Fetch courses with related data and limit columns for university
         $data['courses'] = $courses->with([
             'university' => function ($query) {
-                $query->select('id', 'image', 'banner_image', 'name', 'year_fee', 'intake', 'address') ;
+                $query->select('id', 'image', 'banner_image', 'name', 'year_fee', 'intake', 'address', 'country_id') ;
             },
             'degree',
             'department'

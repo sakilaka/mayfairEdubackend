@@ -175,6 +175,11 @@
                                                     data-original-title="View Invoice">
                                                     <i class="fa fa-solid fa-receipt" aria-hidden="true"></i>
                                                 </a>
+                                                <a href="{{ route('frontend.manage_consultant_application_agreement', @$application->id) }}"
+                                                    class="btn text-primary" data-toggle="tooltip" data-placement="top"
+                                                    data-original-title="View Agreement">
+                                                    <i class="fa fa-solid fa-tasks" aria-hidden="true"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

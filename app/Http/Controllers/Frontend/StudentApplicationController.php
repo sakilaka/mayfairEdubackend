@@ -414,6 +414,7 @@ class StudentApplicationController extends Controller
         // dd($request->all());
         $application = new StudentApplication();
         $application->user_id = auth()->user()->id ?? $user->id;
+
         // dd($application->user_id);
         $application->email = $request->email;
         $application->program_name = $request->program_name;

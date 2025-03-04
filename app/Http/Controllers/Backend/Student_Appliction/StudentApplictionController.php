@@ -900,7 +900,7 @@ class StudentApplictionController extends Controller
             return redirect()->back()->with('error', 'No application found.');
         }
 
-        $data['transactionDetails'] = Transaction::where('application_id', $id)->get();
+        $data['transactionDetails'] = Transaction::where('application_id', $id)->first();
 
         if (!$data['transactionDetails']) {
             return redirect()->back()->with('error', 'No transaction created for this application.');

@@ -111,11 +111,20 @@
                                     <!-- Destination and Services -->
                                     <div class="form-group">
                                         <label class="form-control-label">Study Destination:</label>
-                                        <select name="study_destination" class="form-control">
+                                        <select name="study_destination" id="study_destination" class="form-control"
+                                            onchange="toggleOtherField()">
                                             <option value="Finland">Finland</option>
                                             <option value="Other">Other</option>
                                         </select>
                                     </div>
+
+                                    <!-- Text Field for 'Other' (Initially Hidden) -->
+                                    <div class="form-group" id="other_destination_group" style="display: none;">
+                                        <label class="form-control-label">Enter Study Destination:</label>
+                                        <input type="text" name="study_destination" id="other_destination"
+                                            class="form-control">
+                                    </div>
+
                                     <div class="form-group">
                                         <label class="form-control-label">Services Required:</label><br>
                                         <input type="checkbox" name="services[]" value="Overseas Study Consulting">
@@ -318,6 +327,23 @@
                         }
                     });
                 });
+            </script>
+
+            <script>
+                function toggleOtherField() {
+                    var select = document.getElementById("study_destination");
+                    var otherField = document.getElementById("other_destination_group");
+                    var otherInput = document.getElementById("other_destination");
+
+                    if (select.value === "Other") {
+                        otherField.style.display = "block";
+                        otherInput.setAttribute("name", "study_destination");
+                        select.removeAttribute("name"); // Ensure the input has the correct name
+                    } else {
+                        otherField.style.display = "none";
+                        otherInput.removeAttribute("name"); // Remove name to avoid duplicate form data
+                    }
+                }
             </script>
 </body>
 

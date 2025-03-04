@@ -44,12 +44,18 @@
 
                         <nav aria-label="breadcrumb">
                             <div class="d-md-flex justify-content-between">
-                                <button class="btn btn-primary-bg" data-toggle="modal"
+                                <a href="{{ env('FRONTEND_URL') }}course?apply_by_admin=true">
+                                    <button class="btn btn-primary-bg">Add a New Application</button>
+                                </a>
+
+
+                                <button class="btn btn-primary-bg ml-3" data-toggle="modal"
                                     data-target="#manage_fields_modal">Manage Fields</button>
 
                                 <button class="ml-3 btn btn-primary-bg" data-toggle="modal"
                                     data-target="#manage_filters_modal">Manage Filters</button>
                             </div>
+
 
                         </nav>
                     </div>

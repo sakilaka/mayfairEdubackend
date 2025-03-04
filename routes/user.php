@@ -99,6 +99,10 @@ Route::middleware(['accessLogin'])->group(function () {
                 Route::get('/partner-manage-application', [UserController::class, 'manageApplication'])->name('frontend.manage_consultant_application');
                 Route::post('/partner-manage-application', [UserController::class, 'manageApplication'])->name('frontend.manage_consultant_application_filter');
                 Route::get('/partner-manage-student', [UserController::class, 'manageStudent'])->name('frontend.manage_consultant_student');
+
+                Route::get('/partner-manage-application-agreement/{id}', [UserController::class, 'manageApplicationAgreement'])->name('frontend.manage_consultant_application_agreement');
+                Route::get('/partner-manage-application-agreement-print/{id}', [UserController::class, 'manageApplicationAgreementPrint'])->name('frontend.manage_consultant_application_agreement_print');
+
                 Route::get('/partner-manage-application-invoice/{id}', [UserController::class, 'manageApplicationInvoice'])->name('frontend.manage_consultant_application_invoice');
                 Route::get('/partner-manage-application-invoice-print/{id}', [UserController::class, 'manageApplicationInvoicePrint'])->name('frontend.manage_consultant_application_invoice_print');
                 Route::get('/partner-application-details/{id}', [UserController::class, 'applicationDetails'])->name('frontend.application-details');
