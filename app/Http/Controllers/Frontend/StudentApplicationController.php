@@ -246,40 +246,10 @@ class StudentApplicationController extends Controller
     public function applyAdmission($id)
     {
         $data['countries']   = Country::all();
-        // $data['application'] = StudentApplication::find($id);
-
-        // if (!$data['application']) {
-        //     return redirect(env('FRONTEND_URL', 'https://mayfaireducation.global/') . 'course?message=Application%20not%20found');
-        // }
-
-
-        // $programs = json_decode($data['application']?->programs ?? '[]', true) ?? [];
+        $data['application'] = StudentApplication::where('user_id', auth()->user()->id)->first();
 
         $data['program'] = Course::where('id', $id)->first();
 
-        // $data['is_contain_masters_or_phd'] = false;
-        // foreach ($data['programs'] as $program) {
-        //     if (in_array($program->degree?->name ?? '', ['Masters', 'PhD'])) {
-        //         $data['is_contain_masters_or_phd'] = true;
-        //     }
-        // }
-
-        // $data['terms']   = Page::where('title', 'Terms And Conditions')->first();
-        // $data['refund']  = Page::where('title', 'Refund Policy')->first();
-        // $data['privacy'] = Page::where('title', 'Privacy Policy')->first();
-        // $data['payment'] = Page::where('title', 'Payment Process')->first();
-
-        // $data['user'] = User::find(auth()->id() ?? 1);
-
-        // $userStarLevel      = $data['user']?->star ?? null;
-        // $totalServiceCharge = 0;
-
-        // foreach ($data['programs'] as $program) {
-        //     $serviceChargeField = 'service_charge_' . ($userStarLevel ?? 'beginner');
-        //     $totalServiceCharge += $program->$serviceChargeField ?? 0;
-        // }
-
-        // $data['service_charge'] = $totalServiceCharge;
 
         return view('Frontend.university.apply', $data);
     }

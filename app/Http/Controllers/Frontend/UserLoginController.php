@@ -560,6 +560,7 @@ class UserLoginController extends Controller
     {
         session()->forget('partner_ref_id');
         auth()->logout();
+
         return redirect(env('FRONTEND_URL'));
     }
 

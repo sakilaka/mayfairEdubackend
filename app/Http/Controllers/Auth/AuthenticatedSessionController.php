@@ -50,6 +50,8 @@ class AuthenticatedSessionController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        // dd(env('FRONTEND_URL'));
+
 
         return redirect(env('FRONTEND_URL'));
     }

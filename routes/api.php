@@ -29,6 +29,7 @@ use App\Http\Controllers\User\ebook\EbookVideoController;
 use App\Http\Controllers\User\ebook\EbookController;
 use App\Models\University;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,17 +42,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/user', function (Request $request) {
-    // return auth()->check();
-    if (!auth()->check()) {
-        return response()->json([
-            'message' => 'No user found'
-        ], 401);
-    }
+Route::get('/check-auth', function (Request $request) {
+    Log::info('Session Data:', session()->all());
+    Log::info('User:', ['user' => auth()->user()]);
 
-    $user = auth()->user();
     return response()->json([
-        'user' => $user
+        'authenticated' => auth()->check(),
+        'user' => auth()->user() ?: null,
     ]);
 });
 

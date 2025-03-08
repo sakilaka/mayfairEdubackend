@@ -729,33 +729,6 @@
                         <!--multisteps-form-->
                         <div class="multisteps-form">
 
-                            <!--progress bar-->
-
-                            {{-- <div class="row">
-                                <div class="col-12 ml-auto mr-auto mb-4">
-                                    <div class="multisteps-form__progress">
-
-                                        <button class="multisteps-form__progress-btn js-active" type="button"
-                                            title="Your information">
-                                            Your Information
-                                        </button>
-                                        <button class="multisteps-form__progress-btn" type="button" title="Family">Your
-                                            Family
-                                        </button>
-                                        <button id="agreement-nav" class="multisteps-form__progress-btn" type="button"
-                                            title="Agreement">Declaration and Agreement
-                                        </button>
-                                        <button class="multisteps-form__progress-btn confirm-nav" type="button"
-                                            title="Upload Documents">Upload Documents
-                                        </button>
-                                        <button id="" class="multisteps-form__progress-btn disabled"
-                                            type="button" title="Final Step">Final Step
-                                        </button>
-                                    </div>
-                                </div>
-                            </div> --}}
-
-
 
                             <!--form panels-->
                             <div class="row">
@@ -782,7 +755,7 @@
                                                                 <input type="email" id="email" name="email"
                                                                     data-name="email" required="" placeholder="Email"
                                                                     class="form-control" maxlength=""
-                                                                    value="{{ auth()->user()->email ?? '' }}">
+                                                                    value="{{ auth()->user()->email ?? $application->email ?? '' }}">
                                                                 <label for="email"
                                                                     class="form-control-placeholder">Email</label>
 
@@ -799,7 +772,7 @@
                                                                     data-name="phone" required=""
                                                                     placeholder="Enter Phone Number"
                                                                     class="form-control form-control-lg pt-0 phone-input @error('phone') is-invalid @enderror"
-                                                                    value="{{ auth()->user()->phone ?? '' }}">
+                                                                    value="{{ auth()->user()->phone ?? $application->phone ?? '' }}">
                                                                 <label for="phone" class="form-control-placeholder">
                                                                     Phone</label>
 
@@ -983,7 +956,7 @@
                                                                 <input type="text" id="passport_no" name="passport_no"
                                                                     data-name="passport_no" placeholder="Passport number"
                                                                     class="form-control" maxlength=""
-                                                                    value="{{ $application->passport_number ?? '' }}">
+                                                                    value="{{ $application->passport_no ?? '' }}">
                                                                 <label for="passport_no" class="form-control-placeholder">
                                                                     Passport number</label>
 

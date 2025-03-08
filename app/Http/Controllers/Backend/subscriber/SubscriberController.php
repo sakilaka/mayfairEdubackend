@@ -20,36 +20,26 @@ class SubscriberController extends Controller
     public function add_subscription(Request $request)
     {
         try {
-            
             $request->validate([
-                // 'name' => 'required',
-                'email' => 'required|email',
+                'email' => 'required|email|unique:subscribers,email',
             ]);
-            $isSubscribed = Subscriber::where('email', $request->email)->exists();
-    
-            if ($isSubscribed) {
-                return redirect()->back()->with('success', 'Your email is already subscribed. Thank You.');
-            }
-    
-            /**** Subscriptions ******/
-            $subscriptions = new Subscriber();
-            // $subscriptions->name = $request->name;
-            $subscriptions->email = $request->email;
-            $subscriptions->save();
-    
-            //-----------Mail-----------///
-            $this->emailData = [
-                'message'    => 'You are Subscribed Successfully, Thank You..',
-            ];
-            $send_mail = $subscriptions->email;
-            Mail::to($send_mail)->send(new SubscribedMail($this->emailData));
-            //-----------Mail-----------///
-    
-            return redirect()->back()->with('success', 'Subscribed Successfully, Thank you.');
+
+            // Save new subscriber
+            $subscription = new Subscriber();
+            $subscription->email = $request->email;
+            $subscription->save();
+
+            // Send confirmation email
+            Mail::to($subscription->email)->send(new SubscribedMail([
+                'message' => 'You are Subscribed Successfully, Thank You.',
+            ]));
+
+            return response()->json(['message' => 'Subscribed Successfully, Thank you.'], 200);
         } catch (\Exception $e) {
-            return redirect()->back()->with('success', 'Subscribed Successfully, Thank you.');
+            return response()->json(['message' => 'Subscription failed. Please try again.'], 500);
         }
     }
+
 
     public function destroy(Request $request)
     {
